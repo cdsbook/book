@@ -1,0 +1,8 @@
+book_filename: "intro_to_cds.Rmd"
+output_dir: "docs"
+delete_merged_file: True
+rmd_files:
+ - "index.Rmd"
+ - "src/book/01_intro.Rmd"
+ - "src/book/02_setup.Rmd"
+ - "src/book/03_r_programming_chapter.Rmd"

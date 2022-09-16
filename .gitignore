@@ -1,0 +1,6 @@
+docs/*.pdf
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata

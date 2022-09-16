@@ -1,0 +1,58 @@
+The central component of everything we will be doing in R this semester is **data**. Even non-data science programs revolve around data. 
+
+At a very basic level, a computer is just a fancy calculator that adds and subtracts numbers. Even things like words and pictures are stored inside a computer as numbers.
+
+However, we often want to work work with data that is not numbers. For example, in the last section we were able to get R to print out the sentence *Hello, World!* To your computer that was just numbers flowing down wires as electrical signals. But the R programming language took care of converting our instruction into something your computer could understand.
+
+This is the magic of programming languages! They allow us to write commands in (relatively) human-readable instructions, and then take care of translating that into the very unreadable numbers that computers work with.
+
+R allows us to work with several "higher-level" types of data. These **data types** include:
+
+* the **character** data type holds text (i.e. letters, symbols, and the characters that represent numbers). We need to put the text inside quotation marks so that R knows where the text starts and ends: `"this is character data"`.
+
+  * Note: in other programming languages this datatype is sometimes known as a "character string" or just a "string".
+
+* the **numeric** data type holds numbers such as `0` or `12.5` (i.e. both integers (whole numbers) and decimals). Unlike text, numbers are written *without* quotation marks around them.
+
+* the **Boolean** data type holds a value that is either `TRUE` or `FALSE`. (This is sometimes also referred to as the logical data type.)
+
+<!-- Book version -->
+
+```{r numeric-data-book-exercise, eval=is_book, echo=F, results='asis'}
+cat('::: {.exercise}
+**Exercise:** Type the number 2 into the RStudio console. Hit the <Enter> key to run this line of code. What do you get back?
+:::')
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r character_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+gradethis::question('What data type is `"CDS 101"`?',
+  answer("Numeric."),
+  answer("Character.", correct = TRUE),
+  answer("Boolean."),
+  allow_retry = TRUE
+)
+```
+
+```{r logical_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+gradethis::question('What data type is `FALSE`?',
+  answer("Numeric."),
+  answer("Character."),
+  answer("Boolean.", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r numeric_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+gradethis::question('What data type is `42`?',
+  answer("Numeric.", correct = TRUE),
+  answer("Character."),
+  answer("Boolean."),
+  allow_retry = TRUE
+)
+```
+
+<!-- End tutorial version -->

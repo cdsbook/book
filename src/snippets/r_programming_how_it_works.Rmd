@@ -1,0 +1,21 @@
+R is an *interpreted programming language*.
+
+That is a fancy way of saying that R runs (i.e. "interprets") every line of code one at a time.
+
+So far we have written a line of code and then run it. In a couple of exercises you may have run multiple lines of code where one line depended on a result from a previous line. However, R completely finished running the first line before moving onto the next one.
+
+When R *interprets* a line of code, it figures out how to convert your human-readable code into computer-readable instructions (which are a series of 0s and 1s, since a computer is basically a bunch of wires that can either have an electrical current flowing down them (which we denote as 1) or not (0)).
+
+Because R is interpreted line-by-line, it is an ideal programming language for exploring and analyzing scientific data, where we typically figure out what to do next as we go along!
+
+We will soon be learning how to write multiple lines of R code in a file and then run them from the file. However, even when R runs code from a file, it still figures out how to run it one line at a time.
+
+> **Compiled Programming Languages**
+>
+> Not every programming language is interpreted like R. Some are *compiled*. 
+>
+> This means that you write all your code in a file, and then turn all of it into computer-readable instructions at once. This step is called *compilation* and can take a long time (up to hours for large programs in some languages!). It is typically slower to write programs in a compiled language because of this extra step.
+> 
+> The main advantage of a compiled programming language is that your computer can figure out how to optimize all the lines of code so that they run extremely fast.
+>
+> Famous examples of compiled programming languages are Java and C++.

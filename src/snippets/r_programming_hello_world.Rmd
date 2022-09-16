@@ -1,0 +1,70 @@
+It is a long-standing tradition that your first program in any new programming language should simply display the message "Hello, World!".
+
+In R we can use the `print()` *function* to display a piece of data (such as the text *Hello, World!*).
+
+For example, we can run this line of code in R:
+
+```{r, results=FALSE}
+print("Hello, World!")
+```
+
+And R will return this result:
+
+```{r, echo=FALSE}
+print("Hello, World!")
+```
+
+::: {.info-box}
+> **What's happening here?**
+>
+> We will learn more about the different parts of this code in this chapter,
+> but briefly:
+>
+> * `print(...)` is a **function**: it takes some input ingredients (which we 
+>   list between the brackets after the function's name), and does something 
+>   with them.
+> * `"Hello, World!"` is a string of characters (and other symbols, such as 
+>   `!`). A **character string** is a type of data that computers can work with.
+:::
+
+<!-- Book code -->
+
+```{r hello-world-exercise-book, echo=F, eval=is_book, results = 'asis'}
+cat("::: {.exercise}
+**Exercise: Try it yourself:** Open up RStudio and copy the line of code into the RStudio
+Console. Then hit the <Enter> key on your keyboard to run the line. You should
+get back the same output as above.
+
+Congratulations! You just ran your first program in R.
+:::")
+```
+
+<!-- Tutorial code -->
+
+```{r hello-world-exercise-instructions-tutorial, echo=F, eval=is_tutorial, results = 'asis'}
+cat('<p class="comment3">
+Run the simple program in the code section below (click on *Run Code*). The output of the program will be displayed below the code section. Then edit the text inside the `print()` function to the correct text (*Hello, World!*), and try running the code again. Once it displays the correct statement, click the *Submit Answer* button.
+
+(If a yellow box appears warning you that your answer is "invisible", don\'t worry. You can safely ignore this.)
+</p>')
+```
+
+```{r hello-world-exercise-tutorial, eval=is_tutorial, exercise=TRUE, echo=F}
+print("Hello, Student!")
+```
+
+```{r hello-world-exercise-tutorial-hint, echo=F, eval=is_tutorial, results = 'asis'}
+cat('<div id="hello-world-hint">
+<p class="comment">
+**Hint:** Enter the correct text inside quotation marks.
+</p>
+</div>')
+```
+
+```{r hello-world-exercise-tutorial-solution, eval=is_tutorial, echo=F}
+print("Hello, World!")
+```
+
+```{r hello-world-exercise-tutorial-check, eval=is_tutorial, echo=F}
+gradethis::grade_code("You just ran your first program! Don't worry, things will get more interesting soon...")
+```
