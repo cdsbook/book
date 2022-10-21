@@ -1,0 +1,55 @@
+### Examining the data
+
+<!-- TODO: change the dataset -->
+
+For the first part of this `r if(is_book){"chapter"} else{"interactive tutorial"}` we will be using a dataset of US presidents. This dataset is stored in a variable called `presidential`.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Use `head()` function to check some of the contents of the `presidential` dataframe. (The `head()` function prints the first six rows of a dataframe.)
+
+Run `head(presidential)` in the R Console and examine the output.
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Use `head()` function to check the contents of the `presidential` dataframe. (The `head()` function prints the first six rows of a dataframe.)
+</p>')
+```
+
+```{r ques1, exercise=TRUE, eval=is_tutorial, echo=FALSE}
+head(_____)
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="ques1-hint">
+<p class="comment">
+**Hint:** Please check the data frame name that you are supplying as the argument to the head function
+</p>
+</div>')
+```
+
+```{r ques1-solution, eval=is_tutorial, echo=FALSE}
+head(presidential)
+```
+
+```{r ques1-check, eval=is_tutorial, echo=FALSE}
+grade_code("Don't worry, things will soon get harder.")
+```
+
+<!-- End tutorial -->
+
+<!--
+TODO:
+glimpse function? `str` function?
+quiz (number of rows, columns, what does each observation represent, etc.)
+-->

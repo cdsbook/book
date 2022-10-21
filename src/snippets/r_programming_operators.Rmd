@@ -100,7 +100,7 @@ Run this code chunk to figure out what the `-` operator does (feel free to play 
 ")
 ```
 
-```{r operators_subtraction, exercise=TRUE, eval=is_tutorial}
+```{r operators_subtraction, exercise=TRUE, eval=is_tutorial, echo=FALSE}
 5 - 2
 ```
 
@@ -136,7 +136,7 @@ Run this code chunk to figure out what the `*` operator does (feel free to play 
 ")
 ```
 
-```{r operators_multiplication, eval=is_tutorial, exercise=TRUE}
+```{r operators_multiplication, eval=is_tutorial, exercise=TRUE, echo=FALSE}
 3 * 2
 ```
 
@@ -174,7 +174,7 @@ Run this code chunk to figure out what the `/` operator does (feel free to play 
 ")
 ```
 
-```{r operators_division, eval=is_tutorial, exercise=TRUE}
+```{r operators_division, eval=is_tutorial, exercise=TRUE, echo=FALSE}
 3 / 2
 ```
 
@@ -213,7 +213,7 @@ Run this code chunk to figure out what the `^` operator does (play around with t
 ```
 
 
-```{r operators_exponent, eval=is_tutorial, exercise=TRUE}
+```{r operators_exponent, eval=is_tutorial, exercise=TRUE, echo=FALSE}
 4 ^ 2
 ```
 
@@ -248,7 +248,7 @@ If you have difficulty try also dividing the same numbers. E.g. try both
 
 <!-- Tutorial version -->
 
-```{r, eval=is_tutorial, eval=is_tutorial, echo=F, results = 'asis'}
+```{r, eval=is_tutorial, eval=is_tutorial, echo=F, results = 'asis', echo=FALSE}
 cat("<p class='comment3'>
 Run this code chunk to figure out what the `%%` operator does (play around with the numbers to see what happens - for instance, try `4 %% 3` as well as `6 %% 3` and `3 %% 3`):
 </p>
@@ -257,7 +257,7 @@ Run this code chunk to figure out what the `%%` operator does (play around with 
 
 
 
-```{r operators_modulo, eval=is_tutorial, exercise=TRUE}
+```{r operators_modulo, eval=is_tutorial, exercise=TRUE, echo=FALSE}
 5 %% 3
 ```
 
@@ -305,7 +305,7 @@ Then change the `<` to a `>` operator (i.e. reverse its direction). What is the 
 ")
 ```
 
-```{r operators_inequality, eval=is_tutorial, exercise=TRUE}
+```{r operators_inequality, eval=is_tutorial, exercise=TRUE, echo=is_tutorial}
 4 > 3
 ```
 
@@ -357,7 +357,7 @@ Then try changing one of the numbers and rerunning the code.
 ")
 ```
 
-```{r operators_equality, eval=is_tutorial, exercise=TRUE}
+```{r operators_equality, eval=is_tutorial, exercise=TRUE, echo=is_tutorial}
 4 == 4
 ```
 
@@ -432,7 +432,7 @@ Modify the expression below so that it performs this calculation $\frac{3 + 5}{(
 ")
 ```
 
-```{r operators_parentheses, eval=is_tutorial, exercise=TRUE}
+```{r operators_parentheses, eval=is_tutorial, exercise=TRUE, echo=FALSE}
 3 + 5 / 5 * 2 ^ 2
 ```
 

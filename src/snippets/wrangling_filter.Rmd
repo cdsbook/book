@@ -1,0 +1,97 @@
+### The `filter` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BnscboiLaUM?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1bs6q7_PNEqKa6FLYfPY65kwkZtRQ8QKB)
+
+### Some practice
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Filter just the Democratic president rows from the `presidential` dataset
+</p>')
+```
+
+```{r ovpystbnuatwdydf, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  filter(_______)
+```
+
+```{r ovpystbnuatwdydf-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"Replace the blank with a Boolean condition to filter on"
+```
+
+```{r ovpystbnuatwdydf-hint-2, eval=is_tutorial, echo=FALSE}
+# hint text
+"You will need to filter just rows where the *party* column contains the value 'Democratic'"
+```
+
+```{r ovpystbnuatwdydf-solution, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  filter(party == "Democratic")
+```
+
+```{r ovpystbnuatwdydf-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+### Filtering with multiple conditions
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis', echo=FALSE}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis', echo=FALSE}
+cat('<p class="comment3">
+Filter rows where the president was Nixon *or* Ford
+</p>')
+```
+
+```{r nxzkrjfwezbgmywj, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  _______
+```
+
+```{r nxzkrjfwezbgmywj-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"You will need to use the 'or' operator: |"
+```
+
+```{r nxzkrjfwezbgmywj-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+presidential %>%
+  filter(name == "Nixon" | name == "Ford")
+```
+
+```{r nxzkrjfwezbgmywj-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->

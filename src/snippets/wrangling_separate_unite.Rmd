@@ -1,0 +1,29 @@
+### The `separate` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uqiqEnRKfFg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/17SOza86ASc-ioFA6_vmFeUj_HGWv_B7t)
+
+<!--
+TODO:
+Add exercises
+-->
+
+### The `unite` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/izCk8NBycmo?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1En-4bj2Vh74wdkPbdRmXSSS5K0UQNFGK)
+
+
+That's it for this tutorial!
+
+<!--
+TODO:
+Add exercises
+-->
+
+<!--
+TODO:
+- joins: inner, left, right, full outer
+-->

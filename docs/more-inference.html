@@ -4,33 +4,33 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Introduction | An Introduction to Computing and Data for Scientists</title>
-  <meta name="description" content="1 Introduction | An Introduction to Computing and Data for Scientists" />
+  <title>12 More Inference | An Introduction to Computing and Data for Scientists</title>
+  <meta name="description" content="12 More Inference | An Introduction to Computing and Data for Scientists" />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Introduction | An Introduction to Computing and Data for Scientists" />
+  <meta property="og:title" content="12 More Inference | An Introduction to Computing and Data for Scientists" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Introduction | An Introduction to Computing and Data for Scientists" />
+  <meta name="twitter:title" content="12 More Inference | An Introduction to Computing and Data for Scientists" />
   
   
   
 
 
 
-<meta name="date" content="2022-10-21" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="setup.html"/>
+<link rel="prev" href="more-models.html"/>
+<link rel="next" href="causality.html"/>
 <script src="book_assets/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="book_assets/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -182,106 +182,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="visualizing-data.html"><a href="visualizing-data.html#one-variable-histograms-and-bar-charts"><i class="fa fa-check"></i><b>4.4</b> One variable: histograms and bar charts</a></li>
 <li class="chapter" data-level="4.5" data-path="visualizing-data.html"><a href="visualizing-data.html#two-variables-scatter-plots"><i class="fa fa-check"></i><b>4.5</b> Two variables: scatter plots</a></li>
 <li class="chapter" data-level="4.6" data-path="visualizing-data.html"><a href="visualizing-data.html#trends-line-graphs"><i class="fa fa-check"></i><b>4.6</b> Trends: line graphs</a></li>
-<li class="chapter" data-level="4.7" data-path="visualizing-data.html"><a href="visualizing-data.html#improving-your-graphs"><i class="fa fa-check"></i><b>4.7</b> Improving your graphs</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="wrangling-data.html"><a href="wrangling-data.html"><i class="fa fa-check"></i><b>5</b> Wrangling Data</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="wrangling-data.html"><a href="wrangling-data.html#wrangling-overview"><i class="fa fa-check"></i><b>5.1</b> Wrangling overview</a></li>
-<li class="chapter" data-level="5.2" data-path="wrangling-data.html"><a href="wrangling-data.html#the-dplyr-package-and-the-tidverse"><i class="fa fa-check"></i><b>5.2</b> The <code>dplyr</code> package and the <code>tidverse</code></a></li>
-<li class="chapter" data-level="5.3" data-path="wrangling-data.html"><a href="wrangling-data.html#the-presidential-dataset"><i class="fa fa-check"></i><b>5.3</b> The <code>presidential</code> Dataset</a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="wrangling-data.html"><a href="wrangling-data.html#examining-the-data"><i class="fa fa-check"></i><b>5.3.1</b> Examining the data</a></li>
-</ul></li>
-<li class="chapter" data-level="5.4" data-path="wrangling-data.html"><a href="wrangling-data.html#picking-columns-with-select"><i class="fa fa-check"></i><b>5.4</b> Picking columns with <code>select()</code></a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-select-function"><i class="fa fa-check"></i><b>5.4.1</b> The <code>select</code> function</a></li>
-<li class="chapter" data-level="5.4.2" data-path="wrangling-data.html"><a href="wrangling-data.html#a-simple-select"><i class="fa fa-check"></i><b>5.4.2</b> A simple <code>select()</code></a></li>
-<li class="chapter" data-level="5.4.3" data-path="wrangling-data.html"><a href="wrangling-data.html#selecting-multiple-columns"><i class="fa fa-check"></i><b>5.4.3</b> Selecting multiple columns</a></li>
-<li class="chapter" data-level="5.4.4" data-path="wrangling-data.html"><a href="wrangling-data.html#selecting-a-range"><i class="fa fa-check"></i><b>5.4.4</b> Selecting a range</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="wrangling-data.html"><a href="wrangling-data.html#sorting-with-arrange"><i class="fa fa-check"></i><b>5.5</b> Sorting with <code>arrange()</code></a>
-<ul>
-<li class="chapter" data-level="5.5.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-arrange-function"><i class="fa fa-check"></i><b>5.5.1</b> The <code>arrange</code> function</a></li>
-<li class="chapter" data-level="5.5.2" data-path="wrangling-data.html"><a href="wrangling-data.html#arrange-practice"><i class="fa fa-check"></i><b>5.5.2</b> Arrange practice</a></li>
-</ul></li>
-<li class="chapter" data-level="5.6" data-path="wrangling-data.html"><a href="wrangling-data.html#piping-data-between-functions"><i class="fa fa-check"></i><b>5.6</b> <em>Piping</em> data between functions</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-pipe-operator"><i class="fa fa-check"></i><b>5.6.1</b> The pipe <code>%&gt;%</code> operator</a></li>
-<li class="chapter" data-level="5.6.2" data-path="wrangling-data.html"><a href="wrangling-data.html#piping-practice"><i class="fa fa-check"></i><b>5.6.2</b> Piping practice</a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="wrangling-data.html"><a href="wrangling-data.html#boolean-logic"><i class="fa fa-check"></i><b>5.7</b> Boolean logic</a>
-<ul>
-<li class="chapter" data-level="5.7.1" data-path="wrangling-data.html"><a href="wrangling-data.html#review-of-boolean-logic"><i class="fa fa-check"></i><b>5.7.1</b> Review of Boolean logic</a></li>
-<li class="chapter" data-level="5.7.2" data-path="wrangling-data.html"><a href="wrangling-data.html#boolean-logic-quiz"><i class="fa fa-check"></i><b>5.7.2</b> Boolean logic quiz</a></li>
-</ul></li>
-<li class="chapter" data-level="5.8" data-path="wrangling-data.html"><a href="wrangling-data.html#picking-rows-with-filter"><i class="fa fa-check"></i><b>5.8</b> Picking rows with <code>filter()</code></a>
-<ul>
-<li class="chapter" data-level="5.8.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-filter-function"><i class="fa fa-check"></i><b>5.8.1</b> The <code>filter</code> function</a></li>
-<li class="chapter" data-level="5.8.2" data-path="wrangling-data.html"><a href="wrangling-data.html#some-practice"><i class="fa fa-check"></i><b>5.8.2</b> Some practice</a></li>
-<li class="chapter" data-level="5.8.3" data-path="wrangling-data.html"><a href="wrangling-data.html#filtering-with-multiple-conditions"><i class="fa fa-check"></i><b>5.8.3</b> Filtering with multiple conditions</a></li>
-</ul></li>
-<li class="chapter" data-level="5.9" data-path="wrangling-data.html"><a href="wrangling-data.html#creating-columns-with-mutate"><i class="fa fa-check"></i><b>5.9</b> Creating columns with <code>mutate()</code></a>
-<ul>
-<li class="chapter" data-level="5.9.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-mutate-function"><i class="fa fa-check"></i><b>5.9.1</b> The <code>mutate</code> function</a></li>
-<li class="chapter" data-level="5.9.2" data-path="wrangling-data.html"><a href="wrangling-data.html#end-year"><i class="fa fa-check"></i><b>5.9.2</b> End year</a></li>
-</ul></li>
-<li class="chapter" data-level="5.10" data-path="wrangling-data.html"><a href="wrangling-data.html#grouping-and-summarizing"><i class="fa fa-check"></i><b>5.10</b> Grouping and summarizing</a>
-<ul>
-<li class="chapter" data-level="5.10.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-group_by-and-summarize-functions"><i class="fa fa-check"></i><b>5.10.1</b> The <code>group_by</code> and <code>summarize</code> functions</a></li>
-<li class="chapter" data-level="5.10.2" data-path="wrangling-data.html"><a href="wrangling-data.html#practice"><i class="fa fa-check"></i><b>5.10.2</b> Practice</a></li>
-</ul></li>
-<li class="chapter" data-level="5.11" data-path="wrangling-data.html"><a href="wrangling-data.html#what-is-tidy-data"><i class="fa fa-check"></i><b>5.11</b> What is tidy data?</a></li>
-<li class="chapter" data-level="5.12" data-path="wrangling-data.html"><a href="wrangling-data.html#converting-columns-to-rows"><i class="fa fa-check"></i><b>5.12</b> Converting columns to rows</a>
-<ul>
-<li class="chapter" data-level="5.12.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-pivot_longer-function"><i class="fa fa-check"></i><b>5.12.1</b> The <code>pivot_longer()</code> function</a></li>
-<li class="chapter" data-level="5.12.2" data-path="wrangling-data.html"><a href="wrangling-data.html#practice-1"><i class="fa fa-check"></i><b>5.12.2</b> Practice</a></li>
-</ul></li>
-<li class="chapter" data-level="5.13" data-path="wrangling-data.html"><a href="wrangling-data.html#turning-rows-to-columns"><i class="fa fa-check"></i><b>5.13</b> Turning rows to columns</a>
-<ul>
-<li class="chapter" data-level="5.13.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-pivot_wider-function"><i class="fa fa-check"></i><b>5.13.1</b> The <code>pivot_wider()</code> function</a></li>
-<li class="chapter" data-level="5.13.2" data-path="wrangling-data.html"><a href="wrangling-data.html#practice-2"><i class="fa fa-check"></i><b>5.13.2</b> Practice</a></li>
-<li class="chapter" data-level="5.13.3" data-path="wrangling-data.html"><a href="wrangling-data.html#what-happened-to-those-dates"><i class="fa fa-check"></i><b>5.13.3</b> What happened to those dates?</a></li>
-</ul></li>
-<li class="chapter" data-level="5.14" data-path="wrangling-data.html"><a href="wrangling-data.html#splitting-and-combining"><i class="fa fa-check"></i><b>5.14</b> Splitting and combining</a>
-<ul>
-<li class="chapter" data-level="5.14.1" data-path="wrangling-data.html"><a href="wrangling-data.html#the-separate-function"><i class="fa fa-check"></i><b>5.14.1</b> The <code>separate</code> function</a></li>
-<li class="chapter" data-level="5.14.2" data-path="wrangling-data.html"><a href="wrangling-data.html#the-unite-function"><i class="fa fa-check"></i><b>5.14.2</b> The <code>unite</code> function</a></li>
-</ul></li>
-<li class="chapter" data-level="5.15" data-path="wrangling-data.html"><a href="wrangling-data.html#other-data-wrangling-functions"><i class="fa fa-check"></i><b>5.15</b> Other data wrangling functions</a>
-<ul>
-<li class="chapter" data-level="5.15.1" data-path="wrangling-data.html"><a href="wrangling-data.html#other-helpful-dplyr-verbs"><i class="fa fa-check"></i><b>5.15.1</b> Other helpful <code>dplyr</code> verbs</a></li>
-</ul></li>
-</ul></li>
+<li class="chapter" data-level="5" data-path="wrangling.html"><a href="wrangling.html"><i class="fa fa-check"></i><b>5</b> Wrangling</a></li>
 <li class="chapter" data-level="6" data-path="exploratory-data-analysis-and-scientific-discovery.html"><a href="exploratory-data-analysis-and-scientific-discovery.html"><i class="fa fa-check"></i><b>6</b> Exploratory Data Analysis and Scientific Discovery</a></li>
 <li class="chapter" data-level="7" data-path="modeling.html"><a href="modeling.html"><i class="fa fa-check"></i><b>7</b> Modeling</a></li>
-<li class="chapter" data-level="8" data-path="statistical-inference.html"><a href="statistical-inference.html"><i class="fa fa-check"></i><b>8</b> Statistical Inference</a></li>
-<li class="chapter" data-level="9" data-path="an-example.html"><a href="an-example.html"><i class="fa fa-check"></i><b>9</b> An Example</a></li>
-<li class="chapter" data-level="10" data-path="more-about-r.html"><a href="more-about-r.html"><i class="fa fa-check"></i><b>10</b> More about R</a></li>
-<li class="chapter" data-level="11" data-path="computing-and-computers.html"><a href="computing-and-computers.html"><i class="fa fa-check"></i><b>11</b> Computing and Computers</a></li>
-<li class="chapter" data-level="12" data-path="reproducibility-1.html"><a href="reproducibility-1.html"><i class="fa fa-check"></i><b>12</b> Reproducibility</a></li>
-<li class="chapter" data-level="13" data-path="more-graphs.html"><a href="more-graphs.html"><i class="fa fa-check"></i><b>13</b> More Graphs</a></li>
-<li class="chapter" data-level="14" data-path="more-models.html"><a href="more-models.html"><i class="fa fa-check"></i><b>14</b> More Models</a></li>
-<li class="chapter" data-level="15" data-path="more-statistics.html"><a href="more-statistics.html"><i class="fa fa-check"></i><b>15</b> More Statistics</a></li>
-<li class="chapter" data-level="16" data-path="causality.html"><a href="causality.html"><i class="fa fa-check"></i><b>16</b> Causality</a></li>
-<li class="chapter" data-level="17" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>17</b> Simulation</a></li>
-<li class="chapter" data-level="18" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>18</b> Prediction</a></li>
-<li class="chapter" data-level="19" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>19</b> Image Data</a></li>
-<li class="chapter" data-level="20" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>20</b> Text Data</a></li>
-<li class="chapter" data-level="21" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>21</b> Time Series</a></li>
-<li class="chapter" data-level="22" data-path="online-data.html"><a href="online-data.html"><i class="fa fa-check"></i><b>22</b> Online Data</a></li>
-<li class="chapter" data-level="23" data-path="geospatial-data.html"><a href="geospatial-data.html"><i class="fa fa-check"></i><b>23</b> Geospatial Data</a></li>
-<li class="chapter" data-level="24" data-path="bioinformatic-data.html"><a href="bioinformatic-data.html"><i class="fa fa-check"></i><b>24</b> Bioinformatic Data</a></li>
-<li class="chapter" data-level="25" data-path="network-data.html"><a href="network-data.html"><i class="fa fa-check"></i><b>25</b> Network Data</a></li>
-<li class="chapter" data-level="26" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>26</b> Databases</a></li>
-<li class="chapter" data-level="27" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>27</b> Big Data</a></li>
-<li class="chapter" data-level="28" data-path="output-papers.html"><a href="output-papers.html"><i class="fa fa-check"></i><b>28</b> Output: Papers</a></li>
-<li class="chapter" data-level="29" data-path="output-webpages.html"><a href="output-webpages.html"><i class="fa fa-check"></i><b>29</b> Output: Webpages</a></li>
-<li class="chapter" data-level="30" data-path="output-dashboards.html"><a href="output-dashboards.html"><i class="fa fa-check"></i><b>30</b> Output: Dashboards</a></li>
-<li class="chapter" data-level="31" data-path="output-apps.html"><a href="output-apps.html"><i class="fa fa-check"></i><b>31</b> Output: Apps</a></li>
-<li class="chapter" data-level="32" data-path="output-software.html"><a href="output-software.html"><i class="fa fa-check"></i><b>32</b> Output: Software</a></li>
-<li class="chapter" data-level="33" data-path="appendix-further-reading.html"><a href="appendix-further-reading.html"><i class="fa fa-check"></i><b>33</b> Appendix: Further Reading</a></li>
-<li class="chapter" data-level="34" data-path="appendix-rstudio-other-editors.html"><a href="appendix-rstudio-other-editors.html"><i class="fa fa-check"></i><b>34</b> Appendix: RStudio &amp; other editors</a></li>
-<li class="chapter" data-level="35" data-path="appendix-git-github.html"><a href="appendix-git-github.html"><i class="fa fa-check"></i><b>35</b> Appendix: Git &amp; GitHub</a></li>
+<li class="chapter" data-level="8" data-path="inference.html"><a href="inference.html"><i class="fa fa-check"></i><b>8</b> Inference</a></li>
+<li class="chapter" data-level="9" data-path="more-about-r.html"><a href="more-about-r.html"><i class="fa fa-check"></i><b>9</b> More about R</a></li>
+<li class="chapter" data-level="10" data-path="reproducibility-1.html"><a href="reproducibility-1.html"><i class="fa fa-check"></i><b>10</b> Reproducibility</a></li>
+<li class="chapter" data-level="11" data-path="more-models.html"><a href="more-models.html"><i class="fa fa-check"></i><b>11</b> More Models</a></li>
+<li class="chapter" data-level="12" data-path="more-inference.html"><a href="more-inference.html"><i class="fa fa-check"></i><b>12</b> More Inference</a></li>
+<li class="chapter" data-level="13" data-path="causality.html"><a href="causality.html"><i class="fa fa-check"></i><b>13</b> Causality</a></li>
+<li class="chapter" data-level="14" data-path="simulation.html"><a href="simulation.html"><i class="fa fa-check"></i><b>14</b> Simulation</a></li>
+<li class="chapter" data-level="15" data-path="prediction.html"><a href="prediction.html"><i class="fa fa-check"></i><b>15</b> Prediction</a></li>
+<li class="chapter" data-level="16" data-path="dashboards.html"><a href="dashboards.html"><i class="fa fa-check"></i><b>16</b> Dashboards</a></li>
+<li class="chapter" data-level="17" data-path="image-data.html"><a href="image-data.html"><i class="fa fa-check"></i><b>17</b> Image Data</a></li>
+<li class="chapter" data-level="18" data-path="text-data.html"><a href="text-data.html"><i class="fa fa-check"></i><b>18</b> Text Data</a></li>
+<li class="chapter" data-level="19" data-path="time-series.html"><a href="time-series.html"><i class="fa fa-check"></i><b>19</b> Time Series</a></li>
+<li class="chapter" data-level="20" data-path="online-data.html"><a href="online-data.html"><i class="fa fa-check"></i><b>20</b> Online Data</a></li>
+<li class="chapter" data-level="21" data-path="geospatial-data.html"><a href="geospatial-data.html"><i class="fa fa-check"></i><b>21</b> Geospatial Data</a></li>
+<li class="chapter" data-level="22" data-path="bioinformatic-data.html"><a href="bioinformatic-data.html"><i class="fa fa-check"></i><b>22</b> Bioinformatic Data</a></li>
+<li class="chapter" data-level="23" data-path="network-data.html"><a href="network-data.html"><i class="fa fa-check"></i><b>23</b> Network Data</a></li>
+<li class="chapter" data-level="24" data-path="databases.html"><a href="databases.html"><i class="fa fa-check"></i><b>24</b> Databases</a></li>
+<li class="chapter" data-level="25" data-path="big-data.html"><a href="big-data.html"><i class="fa fa-check"></i><b>25</b> Big Data</a></li>
 </ul>
 
       </nav>
@@ -299,23 +221,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">1</span> Introduction<a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="what-are-the-computational-and-data-sciences" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> What are the computational and data sciences?<a href="introduction.html#what-are-the-computational-and-data-sciences" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-</div>
-<div id="reproducibility" class="section level2 hasAnchor" number="1.2">
-<h2><span class="header-section-number">1.2</span> Reproducibility<a href="introduction.html#reproducibility" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-
-</div>
+<div id="more-inference" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> More Inference<a href="more-inference.html#more-inference" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="setup.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="more-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="causality.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="book_assets/gitbook-2.6.7/js/app.min.js"></script>
@@ -357,7 +272,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["intro_to_cds.pdf"],
+"download": null,
 "search": {
 "engine": "fuse",
 "options": null

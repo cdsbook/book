@@ -1,0 +1,69 @@
+\newpage
+
+# Exploratory Data Analysis and Scientific Discovery
+
+# Modeling
+
+# Statistical Inference
+
+# An Example
+
+<!-- Section: Advanced Topics (prior section is "Basics") -->
+
+# More about R
+
+# Computing and Computers
+
+# Reproducibility
+
+# More Graphs
+
+# More Models
+
+# More Statistics
+
+# Causality
+
+# Simulation
+
+# Prediction
+
+<!-- Section: Scientific Data -->
+
+# Image Data
+
+# Text Data
+
+# Time Series
+
+# Online Data
+
+# Geospatial Data
+
+# Bioinformatic Data
+
+# Network Data
+
+# Databases
+
+# Big Data
+
+<!-- Section: Outputs -->
+
+# Output: Papers
+
+# Output: Webpages
+
+# Output: Dashboards
+
+# Output: Apps
+
+# Output: Software
+
+<!-- Appendices -->
+
+# Appendix: Further Reading
+
+# Appendix: RStudio & other editors
+
+# Appendix: Git & GitHub

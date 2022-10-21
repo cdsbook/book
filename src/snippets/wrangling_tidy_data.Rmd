@@ -1,0 +1,10 @@
+So far we have looked at relatively simple data wrangling operations that return subsets of the data. However, we often want to reshape the dataframe to turn it into a format called **tidy data**. This video will introduce you to what tidy data looks like.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FAU7bgezxRU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/174WhC51cMkM_IfBH12HME-bZNQu3rJ4o) -->

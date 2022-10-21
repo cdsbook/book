@@ -1,0 +1,90 @@
+### The pipe `%>%` operator
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SdrBENv3F-s?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1SCd5J-w1Z9E6vmT2LbmaeDZaE8pDA2p4)
+
+As described in the video, the pipe operator takes the value on its left and inserts it as the first argument of the function on the right.
+
+In other words:
+
+```r
+some_data %>% someFunction()
+```
+
+is equivalent to:
+
+```r
+someFunction(some_data)
+```
+
+If there are other arguments supplied to the function, they get "pushed back" so that the data piped in can claim the "first argument" spot:
+
+```r
+some_dataframe %>% someFunction(this_is_really_argument_2)
+```
+
+is the same as:
+
+```r
+someFunction(some_data, this_is_really_argument_2)
+```
+
+### Piping practice
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Rewrite this code so that it uses a pipe to insert the `presidential` dataframe in the first argument position of `select`:
+
+`select(presidential, name, party)`
+</p>')
+```
+
+```{r kammbwbduyotylwz, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Your code here
+____ %>%
+  select(_____, _____)
+```
+
+(Note that we can put a new line after the `%>%` operator as above - R knows that there must be a right-hand side, so it treats both lines as the same line.)
+
+```{r kammbwbduyotylwz-solution, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  select(name, party)
+```
+
+```{r kammbwbduyotylwz-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+
+**Why does this matter?**
+
+The first argument of functions in the *tidyverse* is the dataframe. However, many functions also output a dataframe (as does a variable holding a dataframe, such as `presidential`). So we can just pipe from one function to another and build up a long chain of functions: i.e. a *pipe*:
+
+```r
+some_dataframe %>%
+  select(some_columns) %>%
+  some_other_function() %>%
+  a_third_function(different_argument)
+```
+
+> Note that I have invented some made-up functions and variable names in the code above - this is called *pseudocode*.
+

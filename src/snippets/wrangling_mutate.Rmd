@@ -1,0 +1,51 @@
+### The `mutate` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1YuxbvsaErk?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/155Z3Zs3AUjg6We5IotAexY_bdpFGDDvA)
+
+### End year
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis', eval=is_tutorial}
+cat('<p class="comment3">
+Using `mutate`, create a new column called `end_year` that holds the year a president left office. (This will simply be the year from the `end` column, which you can get with the `year(...)` function as in the video.)
+</p>')
+```
+
+```{r xbrhhzyosbgawlut, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# replace the blanks with either a function or a column name
+presidential %>%
+  mutate(
+    end_year = _____(_____)
+  )
+```
+
+```{r xbrhhzyosbgawlut-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+presidential %>%
+  mutate(
+    end_year = year(end)
+  )
+```
+
+```{r xbrhhzyosbgawlut-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+

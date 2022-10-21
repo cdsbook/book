@@ -1,0 +1,54 @@
+### The `arrange` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9Hnz8KEBCUc?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1yrnIiFINXI1nA8IFRnPhbLZVdU5MVcXn)
+
+
+### Arrange practice
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+`select` the `name` and `start` columns from the `presidential` dataframe, and then pipe that to the `arrange` function to sort the presidents in alphabetical order of their names.
+</p>')
+```
+
+```{r xnzbwsknxpjuvnpc, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Fill in the 5 blanks with either a function or a column name
+presidential %>%
+  _____(_____, _____) %>%
+  _____(_____)
+```
+
+```{r xnzbwsknxpjuvnpc-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"The two functions are select and arrange, and the column is called name"
+```
+
+```{r xnzbwsknxpjuvnpc-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+presidential %>%
+  select(name, start) %>%
+  arrange(name)
+```
+
+```{r xnzbwsknxpjuvnpc-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->

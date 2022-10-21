@@ -1,0 +1,98 @@
+### The `pivot_wider()` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ULZ2iLDDjTU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/1c3yI5GcKdF93rALaa72jo8vV0PqyIuGW) -->
+
+
+### Practice
+
+Let's use the `pivot_wider()` function to undo the transformation we did earlier with the `pivot_longer()` function.
+
+I.e. we want to turn this:
+
+| name | type_of_date | date | party |
+| ---- | ------------ | ---- | ----- |
+| Eisenhower | start | 1953-01-20 | Republican |
+| Eisenhower | end | 1961-01-20 | Republican |
+| Kennedy | start | 1961-01-20 | Democratic |
+| Kennedy | end | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+back into this:
+
+| name | start | end | party |
+| ---- | ----- | --- | ----- |
+| Eisenhower | 1953-01-20 | 1961-01-20 | Republican |
+| Kennedy    | 1961-01-20 | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Use `pivot_wider()` to recreate the `start` and `end` columns.
+</p>')
+```
+
+```{r hrtyr6tyufjd, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+pres_gathered <- presidential %>%
+  pivot_longer(cols = start | end , names_to="type_of_date", values_to="date")
+
+pres_gathered %>%
+  pivot_wider(names_from = _____, values_from = _____)
+```
+
+```{r hrtyr6tyufjd-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"`names_from` and `values_from` refer to the two columns that we created when we lengthened the original presidential dataframe in a previous exercise."
+```
+
+```{r hrtyr6tyufjd-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+pres_gathered %>%
+  pivot_wider(names_from = type_of_date, values_from = date)
+```
+
+```{r hrtyr6tyufjd-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+
+### What happened to those dates?
+
+When we tried to reverse the transformation, we were not able to retrieve the start and end date columns back in the same format as we originally started with in the `presidential` dataframe.
+
+Instead of actual dates in the column, you should see values such as `<date [1]>`. This indicate that each cell of the table holds a list of dates instead of just a single date.
+
+You code will also have generated a warning about this: `Warning: Values are not uniquely identified; output will contain list-cols.`
+
+What are these non-unique values that we are being warned about? If you look through the table created by `pivot_wider()`, you will notice that one president's date list is longer than the others (see if you can find which president this is).
+
+<!-- TODO: Make this ^^ a question -->
+
+In fact, there were two US presidents with this same surname during the period of this dataset, and consequently, when we tried to widen the table and identify unique rows, we identified 2 start dates and 2 end dates for this presidential surname.
+
+To avoid these problems when using `pivot_wider()`, we always need at least one column in the remaining non-widened columns that is unique for each row we wish to generate in our output. Here we fail that requirement, because one of the presidential surnames in our dataset is used by two seperate observations (presidents).
+
+By default, `pivot_wider()` assumes that all remaining columns are unique for all widened rows. However, if there are only one or a few unique columns, these can be specified by supplying those column names to the `id_cols` argument of the `pivot_wider()` function. 

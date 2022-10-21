@@ -1,0 +1,99 @@
+\newpage
+# Wrangling Data
+
+In this chapter we will learn how to manipulate and transform tables of data.
+
+## Wrangling overview
+
+```{r, child=c('src/snippets/wrangling_overview.Rmd')}
+```
+
+
+## The `dplyr` package and the `tidverse`
+
+```{r, child=c('src/snippets/wrangling_packages.Rmd')}
+```
+
+
+## The `presidential` Dataset
+
+```{r, child=c('src/snippets/wrangling_dataset.Rmd')}
+```
+
+
+## Picking columns with `select()`
+
+```{r, child=c('src/snippets/wrangling_select.Rmd')}
+```
+
+
+## Sorting with `arrange()`
+
+```{r, child=c('src/snippets/wrangling_arrange.Rmd')}
+```
+
+
+## *Piping* data between functions
+
+```{r, child=c('src/snippets/wrangling_pipes.Rmd')}
+```
+
+
+<!--
+Note: Skipped over the slice function here
+-->
+
+
+## Boolean logic
+
+```{r, child=c('src/snippets/wrangling_boolean_logic.Rmd')}
+```
+
+
+
+## Picking rows with `filter()`
+
+```{r, child=c('src/snippets/wrangling_filter.Rmd')}
+```
+
+
+## Creating columns with `mutate()`
+
+```{r, child=c('src/snippets/wrangling_mutate.Rmd')}
+```
+
+
+## Grouping and summarizing
+
+```{r, child=c('src/snippets/wrangling_group_summarize.Rmd')}
+```
+
+
+## What is tidy data?
+
+```{r, child=c('src/snippets/wrangling_tidy_data.Rmd')}
+```
+
+
+## Converting columns to rows
+
+```{r, child=c('src/snippets/wrangling_pivot_longer.Rmd')}
+```
+
+
+## Turning rows to columns
+
+```{r, child=c('src/snippets/wrangling_pivot_wider.Rmd')}
+```
+
+
+## Splitting and combining
+
+```{r, child=c('src/snippets/wrangling_separate_unite.Rmd')}
+```
+
+
+## Other data wrangling functions
+
+```{r, child=c('src/snippets/wrangling_other_functions.Rmd')}
+```

@@ -1,0 +1,8 @@
+Before we begin to make our own graphs, we need to learn some terminology for describing the underlying data. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zM5y3dZ-o6o?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/ETqhI64qDaFGja02KJaA_usBe0iEVyOhjM5kH7ENZswmsg?e=mg4B0G)
+
+
+TBA: written version

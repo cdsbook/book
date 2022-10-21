@@ -1,0 +1,62 @@
+### Review of Boolean logic
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_nVGIkzf8fg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1j8y2iLJSiiH7B-NmA6T-Qf9-Mlyb3m1x)
+
+### Boolean logic quiz
+
+You are already a little familiar with Boolean operators from the Introduction to R tutorial, so let's refresh our memories with a quick quiz.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Quiz TBA
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r boolean_q1_quiz, echo=FALSE, eval=is_tutorial}
+question("What does this Boolean expression evaluate to: 2 == 2",
+  answer("TRUE", correct = TRUE),
+  answer("FALSE"),
+  answer("4"),
+  answer("2"),
+  allow_retry = TRUE
+)
+```
+
+```{r boolean_q2_quiz, echo=FALSE, eval=is_tutorial}
+question('What does this Boolean expression evaluate to: (2 == 2) & (2 == "2")',
+  answer("TRUE"),
+  answer("FALSE", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r boolean_q3_quiz, echo=FALSE, eval=is_tutorial}
+question('What does this Boolean expression evaluate to: ((2 == 2) & (2 == "2")) | TRUE',
+  answer("TRUE", correct = TRUE),
+  answer("FALSE"),
+  allow_retry = TRUE
+)
+```
+
+```{r boolean_q4_quiz, echo=FALSE, eval=is_tutorial}
+question('What does this Boolean expression evaluate to: xor( ((2 == 2) & (2 == "2")), !FALSE )',
+  answer("TRUE", correct = TRUE),
+  answer("FALSE"),
+  allow_retry = TRUE
+)
+```
+
+<!-- End tutorial -->
+
+<!-- TODO: Possible addition: boolean operators in `select()` ? e.g. %in% -->
+

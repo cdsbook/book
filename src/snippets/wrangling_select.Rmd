@@ -1,0 +1,176 @@
+### The `select` function
+
+The `select()` function can be used to pick certain columns of a dataset. The output of `select()` is a new dataframe containing just the columns that you specified.
+
+**Ignore the video's instruction to follow along in RStudio**: you will try this function out on the next page of this tutorial instead.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bfmMYUOWnls?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1DtuT-rtWs-i6MzWiYtX4HUvlqpIlZfUm)
+
+### A simple `select()`
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Select just the `name` column from the `presidential` dataset.
+</p>')
+```
+
+```{r ques3, exercise=TRUE, eval=is_tutorial}
+# Replace the blank with the name of the column
+select(presidential, _____)
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="ques3-hint">
+<p class="comment">
+**Hint:** Replace `column_name` with `name`
+</p>
+</div>')
+```
+
+```{r ques3-solution, eval=is_tutorial}
+select(presidential, name)
+```
+
+```{r ques3-check, eval=is_tutorial}
+grade_code("Nice work!")
+```
+
+<!-- End tutorial -->
+
+### Selecting multiple columns
+
+We can put as many column names as we want into the `select` function, separating each by a comma.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Select both the `name` and `party` columns from the `presidential` dataset.
+</p>')
+```
+
+```{r ullkyutezymdlivi, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Replace the blanks:
+select(____, _____, _____)
+```
+
+```{r ullkyutezymdlivi-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"Fill in the 3 blanks with the name of the dataset and the two columns"
+```
+
+```{r ullkyutezymdlivi-hint-2, eval=is_tutorial, echo=FALSE}
+# hint text
+"Make sure that you have a comma between each argument, and that your function has opening and closing parentheses!"
+```
+
+```{r ullkyutezymdlivi-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+select(presidential, name, party)
+```
+
+```{r ullkyutezymdlivi-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+
+### Selecting a range
+
+In R, the range operator, `:` (the colon punctuation symbol) indicates a range.
+
+For example, this code create a vector of all the integer numbers in the range of 1-10:
+
+```{r}
+1:10
+```
+
+(We could also have written `c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)` as you learned in the first week, but the range operator is a convenient shorthand in this scenario.)
+
+We can also use the range operator to indicate a range of columns inside `dplyr` functions such as `select`:
+
+```r
+select(presidential, name:end)
+```
+
+This selects all sequential columns from `name` to `end` (which in this case is `name`, `start`, and `end`).
+
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Using the range operator, select just the `start` and `end` columns.
+</p>')
+```
+
+```{r uupnzgtdbacueimj, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Write your code here
+
+```
+
+```{r uupnzgtdbacueimj-solution, eval=is_tutorial, echo=FALSE}
+select(presidential, start:end)
+```
+
+```{r uupnzgtdbacueimj-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+> Note:
+>
+> You combine ranges and individual column selections by separating them by commas, e.g.
+>
+> ```r
+> select(presidential, name:start, party)
+> ```
+
+<!--
+TODO
+### Inverse selections
+-->

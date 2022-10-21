@@ -1,0 +1,63 @@
+### The `group_by` and `summarize` functions
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5UOC4b2_G8s?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1myTkhZPrLjylP5mtvkARZrk7GFhxzR5H)
+
+### Practice
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Let\'s figure out the mean term length for Democratic vs. Republican presidents.
+
+To do this, we need several steps:
+
+1. Create a column with `mutate` that holds the term length for each president.
+2. `group_by` the `party` variable
+3. `summarize` over this grouping, calculating the mean of the tem length for each group.
+</p>')
+```
+
+```{r znboeaizprewqwby, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  mutate(
+    term_length = _____ - ______
+  ) %>%
+  group_by(_____) %>%
+  summarize(
+    mean = mean(_______)
+  )
+```
+
+```{r znboeaizprewqwby-solution, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  mutate(
+    term_length = end - start
+  ) %>%
+  group_by(party) %>%
+  summarize(
+    mean = mean(term_length)
+  )
+```
+
+```{r znboeaizprewqwby-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+

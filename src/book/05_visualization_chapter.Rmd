@@ -1,0 +1,38 @@
+\newpage
+# Visualizing Data
+
+In this chapter we will learn how to make simple graphs using R.
+
+## Visualization principles
+
+```{r, child=c('src/snippets/visualization_principles.Rmd')}
+```
+
+
+## Data Overview
+
+```{r, child=c('src/snippets/visualization_data.Rmd')}
+```
+
+
+## The `plot()` function
+
+TBD
+
+## One variable: histograms and bar charts
+
+TBD
+
+## Two variables: scatter plots
+
+TBD
+
+## Trends: line graphs
+
+TBD
+
+## Improving your graphs
+
+TBD
+
+

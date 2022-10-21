@@ -1,0 +1,774 @@
+---
+title: "Data Wrangling tutorial"
+author: 
+ - "Ajay Kulkarni"
+ - "Dominic White"
+tutorial:
+  version: 1.4
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+<style>
+p.comment {
+background-color: #EDBB99;
+padding: 10px;
+border: 1px solid black;
+font-style: italic;
+}
+</style>
+
+<style>
+p.comment1 {
+background-color: #A2D9CE;
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment2 {
+background-color: #EDBB99; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment3 {
+background-color: #FDFEFE; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+
+```{r setup, context='setup', include=FALSE}
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(checkr)
+library(sortable)
+library(lubridate)
+
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.checker = grade_learnr)
+tutorial_options(exercise.startover = TRUE)
+tutorial_options(exercise.completion = FALSE)
+
+new_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
+    #cat(tutorial_id, " (", tutorial_version, "): ", user_id, ", ", event, ", ", "\n", sep = "")
+  cat(tutorial_id, " (", tutorial_version, "): ", user_id , "\n", sep = "")
+  cat("event: ", event, "\n", sep = "")
+}
+
+options(tutorial.event_recorder = new_recorder)
+```
+
+<!--
+TODO:
+- add presidential quotes as success messages
+-->
+
+## Welcome
+
+This tutorial will introduce you to data transformations using the `dplyr` package, and data tidying using the `tidyr` package. Both of these packages are part of the *tidyverse*, and so are imported when you run `library(tidyverse)`.
+
+## What is data wrangling?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j8tKN7Iw5dw?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1LssVpGMhlblGewJtwO3NgdSZO-FF0uQQ)
+
+
+## The `presidential` Dataset
+
+### Examining the data
+
+For the first part of this interactive tutorial we will be using the `presidential` dataset.
+
+<p class="comment3">
+Use `head()` function to check the contents of the `presidential` dataframe. (The `head()` function prints the first six rows of a dataframe.)
+</p>
+
+```{r ques1, exercise=TRUE}
+head(_____)
+```
+
+<div id="ques1-hint">
+<p class="comment">
+**Hint:** Please check the data frame name that you are supplying as the argument to the head function
+</p>
+</div>
+
+```{r ques1-solution}
+head(presidential)
+```
+
+```{r ques1-check}
+grade_code("Don't worry, things will soon get harder.")
+```
+
+<!--
+TODO:
+glimpse function?
+quiz (number of rows, columns, what does each observation represent, etc.)
+-->
+
+## Picking columns with `select`
+
+### The `select` function
+
+This video will introduce you to the `select` function, which we can use to pick subsets of the columns of a dataset. The output of `select` is a new dataframe containing just the columns that you desire.
+
+**Ignore the video's instruction to follow along in RStudio**: you will try this function out on the next page of this tutorial instead.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bfmMYUOWnls?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1DtuT-rtWs-i6MzWiYtX4HUvlqpIlZfUm)
+
+### A simple `select`
+
+<p class="comment3">
+Select just the `name` column from the `presidential` dataset.
+</p>
+
+```{r ques3, exercise=TRUE}
+# Replace the blank with the name of the column
+select(presidential, _____)
+```
+
+<div id="ques3-hint">
+<p class="comment">
+**Hint:** Replace `column_name` with `name`
+</p>
+</div>
+
+```{r ques3-solution}
+select(presidential, name)
+```
+
+```{r ques3-check}
+grade_code("Nice work!")
+```
+
+### Selecting multiple columns
+
+We can put as many column names as we want into the `select` function, separating each by a comma.
+
+<p class="comment3">
+Select both the `name` and `party` columns from the `presidential` dataset.
+</p>
+
+```{r ullkyutezymdlivi, exercise = TRUE}
+# Replace the blanks:
+select(____, _____, _____)
+```
+
+```{r ullkyutezymdlivi-hint-1}
+# hint text
+"Fill in the 3 blanks with the name of the dataset and the two columns"
+```
+
+```{r ullkyutezymdlivi-hint-2}
+# hint text
+"Make sure that you have a comma between each argument, and that your function has opening and closing parentheses!"
+```
+
+```{r ullkyutezymdlivi-solution}
+# solution code
+select(presidential, name, party)
+```
+
+```{r ullkyutezymdlivi-check}
+# check code
+gradethis::grade_code()
+```
+
+### Selecting a range
+
+In R, the range operator, `:` (the colon punctuation symbol) indicates a range.
+
+For example, this code create a vector of all the integer numbers in the range of 1-10:
+
+```{r}
+1:10
+```
+
+(We could also have written `c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)` as you learned in the first week, but the range operator is a convenient shorthand in this scenario.)
+
+We can also use the range operator to indicate a range of columns inside `dplyr` functions such as `select`:
+
+```r
+select(presidential, name:end)
+```
+
+This selects all sequential columns from `name` to `end` (which in this case is `name`, `start`, and `end`).
+
+
+<p class="comment3">
+Using the range operator, select just the `start` and `end` columns.
+</p>
+
+```{r uupnzgtdbacueimj, exercise = TRUE}
+# Write your code here
+
+```
+
+```{r uupnzgtdbacueimj-solution}
+select(presidential, start:end)
+```
+
+```{r uupnzgtdbacueimj-check}
+# check code
+gradethis::grade_code()
+```
+
+> Note:
+>
+> You combine ranges and individual column selections by separating them by commas, e.g.
+>
+> ```r
+> select(presidential, name:start, party)
+> ```
+
+<!--
+TODO
+### Inverse selections
+-->
+
+## Pipes
+
+### The pipe `%>%` operator
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SdrBENv3F-s?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1SCd5J-w1Z9E6vmT2LbmaeDZaE8pDA2p4)
+
+As described in the video, the pipe operator takes the value on its left and inserts it as the first argument of the function on the right.
+
+In other words:
+
+```r
+some_data %>% someFunction()
+```
+
+is equivalent to:
+
+```r
+someFunction(some_data)
+```
+
+If there are other arguments supplied to the function, they get "pushed back" so that the data piped in can claim the "first argument" spot:
+
+```r
+some_dataframe %>% someFunction(this_is_really_argument_2)
+```
+
+is the same as:
+
+```r
+someFunction(some_data, this_is_really_argument_2)
+```
+
+### Piping practice
+
+<div class="comment3">
+Rewrite this code so that it uses a pipe to insert the `presidential` dataframe in the first argument position of `select`:
+
+```r
+select(presidential, name, party)
+```
+</div>
+
+```{r kammbwbduyotylwz, exercise = TRUE}
+# Your code here
+____ %>%
+  select(_____, _____)
+```
+
+(Note that we can put a new line after the `%>%` operator as above - R knows that there must be a right-hand side, so it treats both lines as the same line.)
+
+```{r kammbwbduyotylwz-solution}
+presidential %>%
+  select(name, party)
+```
+
+```{r kammbwbduyotylwz-check}
+# check code
+gradethis::grade_code()
+```
+
+**Why does this matter?**
+
+The first argument of functions in the *tidyverse* is the dataframe. However, many functions also output a dataframe (as does a variable holding a dataframe, such as `presidential`). So we can just pipe from one function to another and build up a long chain of functions: i.e. a *pipe*:
+
+```r
+some_dataframe %>%
+  select(some_columns) %>%
+  someOtherFunction() %>%
+  aThirdFunction(different_argument)
+```
+
+> Note that I have invented some made-up functions and variable names in the code above - this is called *pseudocode*.
+
+
+
+## Sorting with `arrange`
+
+### The `arrange` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9Hnz8KEBCUc?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1yrnIiFINXI1nA8IFRnPhbLZVdU5MVcXn)
+
+
+### Arrange practice
+
+<p class="comment3">
+`select` the `name` and `start` columns from the `presidential` dataframe, and then pipe that to the `arrange` function to sort the presidents in alphabetical order of their names.
+</p>
+
+```{r xnzbwsknxpjuvnpc, exercise = TRUE}
+# Fill in the 5 blanks with either a function or a column name
+presidential %>%
+  _____(_____, _____) %>%
+  _____(_____)
+```
+
+```{r xnzbwsknxpjuvnpc-hint-1}
+# hint text
+"The two functions are select and arrange, and the column is called name"
+```
+
+```{r xnzbwsknxpjuvnpc-solution}
+# solution code
+presidential %>%
+  select(name, start) %>%
+  arrange(name)
+```
+
+```{r xnzbwsknxpjuvnpc-check}
+# check code
+gradethis::grade_code()
+```
+
+
+<!--
+Note: Skipped over Glassbrenner's video of the slice function here
+-->
+
+## Boolean logic
+
+### Review of Boolean logic
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_nVGIkzf8fg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1j8y2iLJSiiH7B-NmA6T-Qf9-Mlyb3m1x)
+
+### Boolean logic quiz
+
+You are already a little familiar with Boolean operators from the Introduction to R tutorial, so let's refresh our memories with a quick quiz.
+
+```{r boolean_q1_quiz, echo=FALSE}
+question("What does this Boolean expression evaluate to: 2 == 2",
+  answer("TRUE", correct = TRUE),
+  answer("FALSE"),
+  answer("4"),
+  answer("2"),
+  allow_retry = TRUE
+)
+```
+
+```{r boolean_q2_quiz, echo=FALSE}
+question('What does this Boolean expression evaluate to: (2 == 2) & (2 == "2")',
+  answer("TRUE"),
+  answer("FALSE", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r boolean_q3_quiz, echo=FALSE}
+question('What does this Boolean expression evaluate to: ((2 == 2) & (2 == "2")) | TRUE',
+  answer("TRUE", correct = TRUE),
+  answer("FALSE"),
+  allow_retry = TRUE
+)
+```
+
+```{r boolean_q4_quiz, echo=FALSE}
+question('What does this Boolean expression evaluate to: xor( ((2 == 2) & (2 == "2")), !FALSE )',
+  answer("TRUE", correct = TRUE),
+  answer("FALSE"),
+  allow_retry = TRUE
+)
+```
+
+## Picking rows with `filter`
+
+### The `filter` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BnscboiLaUM?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1bs6q7_PNEqKa6FLYfPY65kwkZtRQ8QKB)
+
+### Some practice
+
+<p class="comment3">
+Filter just the Democratic president rows from the `presidential` dataset
+</p>
+
+```{r ovpystbnuatwdydf, exercise = TRUE}
+presidential %>%
+  filter(_______)
+```
+
+```{r ovpystbnuatwdydf-hint-1}
+# hint text
+"Replace the blank with a Boolean condition to filter on"
+```
+
+```{r ovpystbnuatwdydf-hint-2}
+# hint text
+"You will need to filter just rows where the *party* column contains the value 'Democratic'"
+```
+
+```{r ovpystbnuatwdydf-solution}
+presidential %>%
+  filter(party == "Democratic")
+```
+
+```{r ovpystbnuatwdydf-check}
+# check code
+gradethis::grade_code()
+```
+
+### Filtering with multiple conditions
+
+<p class="comment3">
+Filter rows where the president was Nixon *or* Ford
+</p>
+
+```{r nxzkrjfwezbgmywj, exercise = TRUE}
+presidential %>%
+  _______
+```
+
+```{r nxzkrjfwezbgmywj-hint-1}
+# hint text
+"You will need to use the 'or' operator: |"
+```
+
+```{r nxzkrjfwezbgmywj-solution}
+# solution code
+presidential %>%
+  filter(name == "Nixon" | name == "Ford")
+```
+
+```{r nxzkrjfwezbgmywj-check}
+# check code
+gradethis::grade_code()
+```
+
+## Creating columns with `mutate`
+
+### The `mutate` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1YuxbvsaErk?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/155Z3Zs3AUjg6We5IotAexY_bdpFGDDvA)
+
+### End year
+
+<p class="comment3">
+Using `mutate`, create a new column called `end_year` that holds the year a president left office. (This will simply be the year from the `end` column, which you can get with the `year(...)` function as in the video.)
+</p>
+
+```{r xbrhhzyosbgawlut, exercise = TRUE}
+# replace the blanks with either a function or a column name
+presidential %>%
+  mutate(
+    end_year = _____(_____)
+  )
+```
+
+```{r xbrhhzyosbgawlut-solution}
+# solution code
+presidential %>%
+  mutate(
+    end_year = year(end)
+  )
+```
+
+```{r xbrhhzyosbgawlut-check}
+# check code
+gradethis::grade_code()
+```
+
+## Grouping and summarizing
+
+### The `group_by` and `summarize` functions
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5UOC4b2_G8s?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1myTkhZPrLjylP5mtvkARZrk7GFhxzR5H)
+
+### Practice
+
+<div class="comment3">
+Let's figure out the mean term length for Democratic vs. Republican presidents.
+
+To do this, we need several steps:
+
+1. Create a column with `mutate` that holds the term length for each president.
+2. `group_by` the `party` variable
+3. `summarize` over this grouping, calculating the mean of the tem length for each group.
+</div>
+
+```{r znboeaizprewqwby, exercise = TRUE}
+presidential %>%
+  mutate(
+    term_length = _____ - ______
+  ) %>%
+  group_by(_____) %>%
+  summarize(
+    mean = mean(_______)
+  )
+```
+
+```{r znboeaizprewqwby-solution}
+presidential %>%
+  mutate(
+    term_length = end - start
+  ) %>%
+  group_by(party) %>%
+  summarize(
+    mean = mean(term_length)
+  )
+```
+
+```{r znboeaizprewqwby-check}
+# check code
+gradethis::grade_code()
+```
+## `dplyr` wrap-up
+
+### Other helpful `dplyr` verbs
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZTL_tP70-zo?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1mjcislhv3o_KUbTlSsw8pT6aar4uqSYZ)
+
+<!--
+TODO:
+- add exercises here?
+-->
+
+## What is tidy data?
+
+So far we have looked at relatively simple data wrangling operations that return subsets of the data. However, we often want to reshape the dataframe to turn ut into a format called **tidy data**. This video will introduce you to what tidy data looks like.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FAU7bgezxRU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/174WhC51cMkM_IfBH12HME-bZNQu3rJ4o) -->
+
+
+## Converting columns to rows
+
+
+### The `pivot_longer()` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B-OTLMCYYGQ?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/1CTxz65d4TfHhCAl3AaF1guNl3OvFABgm) -->
+
+
+### Practice
+
+Let's try the `pivot_longer()` function on the `presidential` dataset. We will reshape this dataset to convert the two data columns (`start` and `end`) into rows, with a names column that indicates the name of the original column, and a values column that holds the dates.
+
+In other words, we want to convert the `presidential` dataframe:
+
+| name | start | end | party |
+| ---- | ----- | --- | ----- |
+| Eisenhower | 1953-01-20 | 1961-01-20 | Republican |
+| Kennedy    | 1961-01-20 | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+into this:
+
+| name | type_of_date | date | party |
+| ---- | ------------ | ---- | ----- |
+| Eisenhower | start | 1953-01-20 | Republican |
+| Eisenhower | end | 1961-01-20 | Republican |
+| Kennedy | start | 1961-01-20 | Democratic |
+| Kennedy | end | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+The data in both dataframes is the same, but we have changed the *shape* of the dataframe by converting columns into rows.
+
+<p class="comment3">
+Fill in the 4 blanks to achieve the reshaping operation described above.
+</p>
+
+```{r xyryspqqovaxcgou, exercise = TRUE}
+presidential %>%
+  pivot_longer(cols = _____ | _____ , names_to="_____", values_to="______")
+```
+
+```{r xyryspqqovaxcgou-hint-1}
+# hint text
+"Replace the blanks with the names of the original columns and the two new columns."
+```
+
+```{r xyryspqqovaxcgou-hint-2}
+# hint text
+"List start before end in `pivot_longer()`: the order doesn't actually matter, but the grader doesn't know that :("
+```
+
+```{r xyryspqqovaxcgou-solution}
+# solution code
+presidential %>%
+  pivot_longer(cols = start | end , names_to="type_of_date", values_to="date")
+```
+
+<!--
+TODO:
+- make sure the order of columns doesn't matter for the grader, and then remove hint #2
+-->
+
+```{r xyryspqqovaxcgou-check}
+# check code
+gradethis::grade_code()
+```
+
+
+## Turning rows to columns
+
+### The `spread` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ULZ2iLDDjTU?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/1c3yI5GcKdF93rALaa72jo8vV0PqyIuGW) -->
+
+
+### Practice
+
+Let's use the `pivot_wider()` function to undo the transformation we did earlier with the `pivot_longer()` function.
+
+I.e. we want to turn this:
+
+| name | type_of_date | date | party |
+| ---- | ------------ | ---- | ----- |
+| Eisenhower | start | 1953-01-20 | Republican |
+| Eisenhower | end | 1961-01-20 | Republican |
+| Kennedy | start | 1961-01-20 | Democratic |
+| Kennedy | end | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+back into this:
+
+| name | start | end | party |
+| ---- | ----- | --- | ----- |
+| Eisenhower | 1953-01-20 | 1961-01-20 | Republican |
+| Kennedy    | 1961-01-20 | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+
+
+<p class="comment3">
+Use `pivot_wider()` to recreate the `start` and `end` columns.
+</p>
+
+```{r hrtyr6tyufjd, exercise = TRUE}
+pres_gathered <- presidential %>%
+  pivot_longer(cols = start | end , names_to="type_of_date", values_to="date")
+
+pres_gathered %>%
+  pivot_wider(names_from = _____, values_from = _____)
+```
+
+```{r hrtyr6tyufjd-hint-1}
+# hint text
+"`names_from` and `values_from` refer to the two columns that we created when we lengthened the original presidential dataframe in a previous exercise."
+```
+
+```{r hrtyr6tyufjd-solution}
+# solution code
+pres_gathered %>%
+  pivot_wider(names_from = type_of_date, values_from = date)
+```
+
+```{r hrtyr6tyufjd-check}
+# check code
+gradethis::grade_code()
+```
+
+### What happened to those dates?
+
+When we tried to reverse the transformation, we were not able to retrieve the start and end date columns back in the same format as we originally started with in the `presidential` dataframe.
+
+Instead of actual dates in the column, you should see values such as `<date [1]>`. This indicate that each cell of the table holds a list of dates instead of just a single date.
+
+You code will also have generated a warning about this: `Warning: Values are not uniquely identified; output will contain list-cols.`
+
+What are these non-unique values that we are being warned about? If you look through the table created by `pivot_wider()`, you will notice that one president's date list is longer than the others (see if you can find which president this is).
+
+<!-- TODO: Make this ^^ a question -->
+
+In fact, there were two US presidents with this same surname during the period of this dataset, and consequently, when we tried to widen the table and identify unique rows, we identified 2 start dates and 2 end dates for this presidential surname.
+
+To avoid these problems when using `pivot_wider()`, we always need at least one column in the remaining non-widened columns that is unique for each row we wish to generate in our output. Here we fail that requirement, because one of the presidential surnames in our dataset is used by two seperate observations (presidents).
+
+By default, `pivot_wider()` assumes that all remaining columns are unique for all widened rows. However, if there are only one or a few unique columns, these can be specified by supplying those column names to the `id_cols` argument of the `pivot_wider()` function. 
+
+
+## Splitting and combining
+
+### The `separate` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uqiqEnRKfFg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/17SOza86ASc-ioFA6_vmFeUj_HGWv_B7t)
+
+<!--
+TODO:
+Add exercises
+-->
+
+### The `unite` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/izCk8NBycmo?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1En-4bj2Vh74wdkPbdRmXSSS5K0UQNFGK)
+
+
+That's it for this tutorial!
+
+<!--
+TODO:
+Add exercises
+-->
+
+<!--
+TODO:
+- joins: inner, left, right, full outer
+-->
+

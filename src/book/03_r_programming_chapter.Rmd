@@ -1,5 +1,5 @@
 \newpage
-# Programming in R
+# Introduction to R
 
 ```{r, child=c('src/snippets/r_programming_hello_world.Rmd')}
 ```

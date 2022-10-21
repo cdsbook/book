@@ -1,0 +1,89 @@
+### The `pivot_longer()` function
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B-OTLMCYYGQ?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/1CTxz65d4TfHhCAl3AaF1guNl3OvFABgm) -->
+
+
+### Practice
+
+Let's try the `pivot_longer()` function on the `presidential` dataset. We will reshape this dataset to convert the two data columns (`start` and `end`) into rows, with a names column that indicates the name of the original column, and a values column that holds the dates.
+
+In other words, we want to convert the `presidential` dataframe:
+
+| name | start | end | party |
+| ---- | ----- | --- | ----- |
+| Eisenhower | 1953-01-20 | 1961-01-20 | Republican |
+| Kennedy    | 1961-01-20 | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+into this:
+
+| name | type_of_date | date | party |
+| ---- | ------------ | ---- | ----- |
+| Eisenhower | start | 1953-01-20 | Republican |
+| Eisenhower | end | 1961-01-20 | Republican |
+| Kennedy | start | 1961-01-20 | Democratic |
+| Kennedy | end | 1963-11-22 | Democratic |
+| ... | ... | ... | ... |
+
+The data in both dataframes is the same, but we have changed the *shape* of the dataframe by converting columns into rows.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Exercise TBM
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Fill in the 4 blanks to achieve the reshaping operation described above.
+</p>')
+```
+
+```{r xyryspqqovaxcgou, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+presidential %>%
+  pivot_longer(cols = _____ | _____ , names_to="_____", values_to="______")
+```
+
+```{r xyryspqqovaxcgou-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"Replace the blanks with the names of the original columns and the two new columns."
+```
+
+```{r xyryspqqovaxcgou-hint-2, eval=is_tutorial, echo=FALSE}
+# hint text
+"List start before end in `pivot_longer()`: the order doesn't actually matter, but the grader doesn't know that :("
+```
+
+```{r xyryspqqovaxcgou-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+presidential %>%
+  pivot_longer(cols = start | end , names_to="type_of_date", values_to="date")
+```
+
+<!--
+TODO:
+- make sure the order of columns doesn't matter for the grader, and then remove hint #2
+-->
+
+```{r xyryspqqovaxcgou-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+

@@ -1,0 +1,672 @@
+---
+title: "Data Visualization tutorial"
+author: "by Dominic White"
+tutorial:
+  version: 1.2
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+<style>
+p.comment {
+background-color: #EDBB99;
+padding: 10px;
+border: 1px solid black;
+font-style: italic;
+}
+</style>
+
+<style>
+p.comment1 {
+background-color: #A2D9CE;
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment2 {
+background-color: #EDBB99; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment3 {
+background-color: #FDFEFE; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+
+```{r setup, include=FALSE, context="setup"}
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(checkr)
+library(sortable)
+library(diffobj)
+library(flair)
+library(listviewer)
+
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.checker = grade_learnr)
+tutorial_options(exercise.startover = TRUE)
+tutorial_options(exercise.completion = FALSE)
+
+new_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
+    #cat(tutorial_id, " (", tutorial_version, "): ", user_id, ", ", event, ", ", "\n", sep = "")
+  cat(tutorial_id, " (", tutorial_version, "): ", user_id , "\n", sep = "")
+  cat("event: ", event, "\n", sep = "")
+}
+
+options(tutorial.event_recorder = new_recorder)
+```
+
+## Welcome
+
+This tutorial will introduce you to creating graphs in R.
+
+## Visualization principles
+
+This video will introduce you to the importance of visualization in data science, and how it can be used effectively (or ineffectively).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tHEVRahx0WE?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1VK_vXEHBK5U35rfgetwon07A7YLpaj_H/edit)
+
+<!--
+### Quiz
+
+Quiz to go here
+
+TODO: add a quiz on video. 
+Ideas:
+* ask students to identify misleading aspects of one or more graphs
+-->
+
+## Creating Basic Graphs
+
+This video will teach you how to create simple graphs in R.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8JoPQZq327w?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<!-- Slides: [PDF](https://drive.google.com/file/d/1KiY4qavGUf3gMQF5rg1cR5HzmaI9i0dQ/edit) -->
+
+<!--
+### Quiz
+
+Quiz to go here
+
+TODO: add a quiz on video
+Quiz:
+* Appropriateness of different graphs for different datatypes?
+-->
+
+## Interpreting Scatter Plots
+
+This video will teach you about the patterns that can be described from scatter plots.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZhXwfkUk8gQ?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<!-- Slides: [PDF](https://drive.google.com/file/d/1KiY4qavGUf3gMQF5rg1cR5HzmaI9i0dQ/edit) -->
+
+<!--
+### Quiz
+
+Quiz to go here
+-->
+
+## Graphs of One Variable
+
+Scatter plots show the co-variation between two variables. But often we want to examination in just a single variable.
+
+This video will show you how to create histograms to visualize continuous variables and bar graphs to visualize categorical variables.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PJXEauOPuEA?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<!-- Slides: [PDF](https://drive.google.com/file/d/1KiY4qavGUf3gMQF5rg1cR5HzmaI9i0dQ/edit) -->
+
+<!--
+### Quiz
+
+Quiz to go here
+-->
+
+## Interpreting Histograms
+
+This video will teach you how to describe the shape of histograms.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3Bhke58QC4g?rel=0" frameborder="0" allowfullscreen></iframe>
+
+<!-- Slides: [PDF](https://drive.google.com/file/d/1KiY4qavGUf3gMQF5rg1cR5HzmaI9i0dQ/edit) -->
+
+<!--
+### Quiz
+
+Quiz to go here
+-->
+
+
+
+
+
+
+
+
+
+
+
+<!-- ## Visualization with `ggplot` -->
+
+<!-- This video will show you how to create graphs in R using a *package* called `ggplot`. -->
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/Wx-Kr9cp7O8?rel=0" frameborder="0" allowfullscreen></iframe> -->
+
+<!-- Slides: [PDF](https://drive.google.com/file/d/1iOh3_7T7hhCO3IWkSoXCT1xqQUUHc0hw/edit) -->
+
+
+<!-- ## The `ggplot` library -->
+
+<!-- ### Load the `tidyverse` package -->
+
+<!-- The `tidyverse` package actually a *meta-package*: a collection of multiple other packages that are commonly used together. We can thus run `library(tidyverse)` to load all these packages at once. -->
+
+<!-- Load the `tidyverse` package: -->
+
+<!-- ```{r xxdpwjzwuhmszksa, exercise = TRUE} -->
+<!-- # replace these underscores  -->
+<!-- ____ -->
+<!-- ``` -->
+
+<!-- -->
+<!-- ```{r xxdpwjzwuhmszksa-hint-1} -->
+<!-- # hint text -->
+<!-- "" -->
+<!-- ``` -->
+
+<!-- ```{r xxdpwjzwuhmszksa-hint-2} -->
+<!-- # hint text -->
+<!-- "" -->
+<!-- ``` -->
+<!-- -->
+
+<!-- ```{r xxdpwjzwuhmszksa-solution} -->
+<!-- # solution code -->
+<!-- library(tidyverse) -->
+<!-- ``` -->
+
+<!-- ```{r xxdpwjzwuhmszksa-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!-- ### The `starwars` dataset -->
+
+<!-- The `starwars` dataset is a small dataset that is automatically loaded when we import the `tidyverse` package. -->
+
+<!-- Run the following code chunk to inspect the dataset, and then answer the following quiz questions: -->
+
+<!-- ```{r osikxouifqvtzztk, exercise = TRUE} -->
+<!-- starwars -->
+<!-- ``` -->
+
+<!-- `starwars` is an example of a **dataframe**: a table of data with rows and columns. Each row contains an *observation*, and each column holds a *variable*. -->
+
+<!-- ```{r starwars_col_quiz, echo=FALSE} -->
+<!-- question("How many variables are in this dataset?", -->
+<!--   answer("13", correct = TRUE), -->
+<!--   answer("4"), -->
+<!--   answer("87"), -->
+<!--   answer("10"), -->
+<!--   answer("77"), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- ```{r starwars_rows_quiz, echo=FALSE} -->
+<!-- question("How many observations are in this dataset?", -->
+<!--   answer("13"), -->
+<!--   answer("4"), -->
+<!--   answer("87", correct = TRUE), -->
+<!--   answer("10"), -->
+<!--   answer("77"), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- ```{r starwars_obs_quiz, echo=FALSE} -->
+<!-- question("What does each observation in this dataset represent?", -->
+<!--   answer("A fact about a Star Wars character, e.g. their eye color or height"), -->
+<!--   answer("A series of data about the same characteristic, e.g. eye color"), -->
+<!--   answer("A Star Wars character", correct = TRUE), -->
+<!--   answer("These are not the answers you are looking for."), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
+
+
+<!-- ## Histograms -->
+
+<!-- ### Creating a histogram -->
+
+<!-- Histograms show us the distribution of *numerical* variables. Creating a histogram is a good first step when you want to start exploring the data in a single continuous variable. -->
+
+<!-- There are several continuous variables in the `starwars` dataset, including `height`, `mass`, and `birth_year`. -->
+
+<!-- <p class="comment3"> -->
+<!-- Fill in the blanks to create a histogram of the `birth_year` variable. -->
+<!-- </p> -->
+
+<!-- ```{r imdzaeiaspowmfmd, exercise = TRUE, message = FALSE, warning = FALSE} -->
+<!-- ggplot(data = ___) + -->
+<!--   geom_histogram(mapping = aes(x = ___ )) -->
+<!-- ``` -->
+
+<!-- ```{r imdzaeiaspowmfmd-check} -->
+<!-- ans <- ggplot(data = starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year )) -->
+
+<!-- gradethis::grade_result( -->
+<!--   fail_if( ~ !is.ggplot(.result), "Hmm, it doesn't look like you are creating a ggplot graph."), -->
+<!--   fail_if( ~ length(.result$layers) != 1, paste("Your plot has the wrong number of geom functions! You should have just 1 geom function, geom_histogram.")), -->
+<!--   fail_if( ~ !identical(.result$labels$x, "birth_year"), "You are not plotting the birth_year variable on the x-axis"), -->
+<!--   pass_if( ~ sapply(.result$layers, function(x) class(x$geom)[1]) == "GeomBar", -->
+<!--            '"Do. Or do not. There is no try." - Yoda') -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- ### Customize your histogram -->
+
+<!-- Let's take a look at what your code does: -->
+
+<!-- ```{r starwars_basic_hist, include=FALSE, message = FALSE, warning = FALSE} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year)) -->
+<!-- ``` -->
+
+
+<!-- ```{r, message = FALSE, warning = FALSE} -->
+<!-- decorate('starwars_basic_hist') %>% -->
+<!--   flair_funs(color = "Coral") %>% -->
+<!--   flair_input_vals(background = "Aquamarine") %>% -->
+<!--   flair("x", background = "") -->
+<!-- ``` -->
+
+
+<!-- ```{r ggplot_funcs_quiz, echo=FALSE} -->
+<!-- question("How many functions are used in the code that creates the histogram?", -->
+<!--   answer("1", message = "Every variable name followed by parentheses is a function, e.g. ggplot()"), -->
+<!--   answer("2", message = "Functions can be nested inside other functions."), -->
+<!--   answer("3", correct = TRUE, message = "ggplot, geom_histogram, and aes are all functions."), -->
+<!--   answer("4", message = "Every variable name followed by parentheses is a function, e.g. ggplot()"), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- We create ggplot graphs by first running the `ggplot()` function, and then adding layers to it with the `+` operator. -->
+
+<!-- Geom functions are a type of layer that we can add. They are *geometric* layers, such as points, bars, or lines. -->
+
+<!-- ```{r ggplot_geoms_quiz, echo=FALSE} -->
+<!-- question("What type of geometric layer is created by the geom_histogram() function?", -->
+<!--   answer("Points"), -->
+<!--   answer("Bars", correct = TRUE), -->
+<!--   answer("Lines"), -->
+<!--   answer("Polygons"), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- Each of the graphing functions expects certain arguments. -->
+
+<!-- For example,  -->
+
+<!-- * we need to pass in a dataframe as the first argument of the `ggplot` function: here we pass in the `starwars` dataframe -->
+<!-- * every geom function needs an **aesthetic mapping**: to do this we pass the `aes()` function to the `mapping` parameter. -->
+<!--   - the aesthetic mapping tells `ggplot` how to convert a variable in the dataframe (e.g. `birth_year`) into a geometric object. -->
+<!--   - in a histogram, we are only required to map one thing: *what goes on the x-axis* (for this geom function, `ggplot` automatically calculates the y-axis by counting up the number of observations in each bin) -->
+
+<!-- ### Aesthetic parameters -->
+
+<!-- If we want to change the appearance of a geom function's layer based on a variable (column) of the dataset, then we need to edit the parameters of the aesthetic function. -->
+
+<!-- You might have noticed in the previous histogram that there were several very old Star Wars characters. This might make you wonder why, and to investigate that question, you might want to look at the distribution of ages in different types of character. -->
+
+<!-- For example, you could make one histogram for males, and another for females. However, making separate plots would be a lot of work - fortunately `ggplot` allows us to break our histogram into different colored subsets using the `fill` parameter. -->
+
+<!-- We want to `fill` (color) by the `gender` variable. Therefore, the `fill` parameter needs to go inside the `aes()` function's parentheses, next to the `x` parameter, and separated by commas. -->
+
+<!-- <p class="comment3"> -->
+<!-- Fill in the blank to color the histogram by the `gender` variable. -->
+<!-- </p> -->
+
+<!-- ```{r adaeqqcacfofqcxs, exercise = TRUE, message = FALSE, warning = FALSE} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year, fill = _____ )) -->
+<!-- ``` -->
+
+<!-- ```{r adaeqqcacfofqcxs-hint} -->
+<!-- "gender should NOT be in quotation marks, because it is a variable name, not a character string." -->
+<!-- ``` -->
+
+<!-- ```{r adaeqqcacfofqcxs-solution} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year, fill = gender )) -->
+<!-- ``` -->
+
+<!-- ```{r adaeqqcacfofqcxs-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!-- > The `fill` parameter gets its name because we are "filling" the inside of the bars with different colors. -->
+<!-- > -->
+<!-- > You might wonder why this parameter is not called `color`, but try changing `fill` to `color` in your code above and see what happens! -->
+
+<!-- ### Fixed parameters -->
+
+<!-- But what about if we wanted to make all the bars of the histogram a particular color (e.g. blue), irrespective of any other variables in the `starwars` dataframe? -->
+
+<!-- We could try changing the value of the `fill` argument to `"blue"`, but the result is not quite what we hoped for: -->
+
+<!-- ```{r non_blue_histogram, include = FALSE, message = FALSE, warning = FALSE} -->
+<!-- ggplot(starwars) +  -->
+<!--   geom_histogram(aes(x = birth_year, fill="blue")) -->
+<!-- ``` -->
+
+<!-- ```{r, message = FALSE, warning= FALSE, fig.width=4} -->
+<!-- decorate("non_blue_histogram") %>% -->
+<!--   flair('fill="blue"') -->
+<!-- ``` -->
+
+<!-- Why is the histogram red when we are asking for blue? -->
+
+<!-- In this case, we are no longer creating an aesthetic mapping from the dataframe to the geometric layer, so we need to move the `fill` parameter. `fill` should now be a *fixed parameter of the geom function* (i.e. outside of the `aes()` function. -->
+
+<!-- <p class="comment3"> -->
+<!-- Fill in the blank with the character string `"blue"` to color the histogram correctly. -->
+<!-- </p> -->
+
+<!-- ```{r lafmjqzvjmozypfw, exercise = TRUE, message = FALSE, warning= FALSE} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year), fill = _____ ) -->
+<!-- ``` -->
+
+<!-- ```{r lafmjqzvjmozypfw-hint} -->
+<!-- '"blue" needs to be in quotation marks to indicate that it is a character string (i.e. a piece of data), not a variable.' -->
+<!-- ``` -->
+
+<!-- ```{r lafmjqzvjmozypfw-solution} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year), fill = "blue" ) -->
+<!-- ``` -->
+
+<!-- ```{r lafmjqzvjmozypfw-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!-- This is **an important difference to remember**, so commit it to memory - if you do not, you will run into a lot of frustrating errors down the road! -->
+
+<!-- * If we want to change the appearance based on the values of a column of the dataframe (e.g. the `gender` variable), then the argument goes **inside the `aes()` function**. -->
+<!-- * If we are changing the appearance based on some other (fixed) value, then the argument goes **outside the `aes()` function**. -->
+
+<!-- ### The `position` and `alpha` parameters -->
+
+<!-- You might have noticed that when we colored our histogram by the `gender` variable, the different colored bars were stacked on top of each other. -->
+
+<!-- However, we don't usually want this arrangement because it makes the different distributions hard to compare. Humans are bad at visually comparing relative areas (which is why pie charts are bad). -->
+
+<!-- Instead, we want to start all the different colored bars from the x axis (so that they overlap rather than being stacked). We can customize this part of the graph with the `position` parameter. We want to set `position = "identity"`. -->
+
+<!-- ```{r position_parameter_type_quiz} -->
+<!-- question('Is position="identity" an aesthetic mapping or a fixed parameter?', -->
+<!--   answer("Fixed.", correct = TRUE, message='Yes! "identity" is a value (a character string), <i>NOT</i> a variable in the starwars dataframe'), -->
+<!--   answer("An aesthetic mapping", message = 'Is "identity" one of the columns of the dataset?'), -->
+<!--   allow_retry = TRUE -->
+<!--   ) -->
+<!-- ``` -->
+
+<!-- #### Position -->
+
+<!-- <p class="comment3"> -->
+<!-- Add `position="identity"` into this code in the correct spot (and don't forget the comma!). -->
+<!-- </p> -->
+
+<!-- ```{r fdeedqhioyiosqoh, exercise = TRUE, message = FALSE, warning=FALSE} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year, fill = gender)) -->
+<!-- ``` -->
+
+<!-- ```{r fdeedqhioyiosqoh-solution} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year, fill=gender), position = "identity") -->
+<!-- ``` -->
+
+<!-- ```{r fdeedqhioyiosqoh-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!-- #### Alpha -->
+
+<!-- There's just one problem with this graph: tall bars will obscure any shorter bars behind them. -->
+
+<!-- We can fix this by making the bars *transparent*. We do this with the `alpha` parameter. -->
+
+<!-- `alpha` can be any number between 0 (completely invisible) and 1 (completely opaque). A value in the range of 0.3-0.4 usually works well. -->
+
+<!-- <p class="comment3"> -->
+<!-- Add `alpha = 0.3` into this code in the correct spot (and don't forget the comma again!). -->
+<!-- </p> -->
+
+<!-- ```{r zdhdieapenquuivt, exercise = TRUE, message = FALSE, warning=FALSE} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping=aes(x=birth_year, fill=gender), position="identity") -->
+<!-- ``` -->
+
+<!-- ```{r zdhdieapenquuivt-hint-1} -->
+<!-- # hint text -->
+<!-- "Is alpha's argument a fixed value or a column from the starwars dataframe?" -->
+<!-- ``` -->
+
+
+<!-- ```{r zdhdieapenquuivt-solution} -->
+<!-- ggplot(starwars) + -->
+<!--   geom_histogram(mapping = aes(x = birth_year, fill = gender), position="identity", alpha=0.3) -->
+<!-- ``` -->
+
+<!-- ```{r zdhdieapenquuivt-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!--
+TODO: bins and binwidth parameter
+-->
+
+<!-- ## Bar plots -->
+
+<!-- Histograms count up the number of observations within the range of each bin. They therefore allow us to plot a continuous numerical variable as if it were made up of categories. -->
+
+<!-- But what if we have a categorical variable? -->
+
+<!-- To visualize the number of observations in each category of a categorical variable, we can make a **bar graph**. (A bar graph is the categorical equivalent of a histogram.) -->
+
+<!-- To make a bar graph, we use the `geom_bar` geom function. As with a histogram, we need to create any aesthetic mappings with the `aes` function -->
+
+<!-- <p class="comment3"> -->
+<!-- Create a bar graph of the `gender` variable from the `starwars` dataset by filling in the 4 blanks. -->
+<!-- </p> -->
+
+<!-- ```{r svavlersyjppyzbi, exercise = TRUE, message = FALSE, warning=FALSE} -->
+<!-- ggplot(data = _____ ) + -->
+<!--   _____(mapping = ____(x = _____ ) ) -->
+<!-- ``` -->
+
+<!-- ```{r svavlersyjppyzbi-hint-1} -->
+<!-- # 2 of the blanks are functions; the other 2 are arguments -->
+<!-- "" -->
+<!-- ``` -->
+
+<!-- ```{r svavlersyjppyzbi-hint-2} -->
+<!-- # hint text -->
+<!-- "Take a look back at the histogram code. It should be very similar, except that you should use geom_bar instead of geom_histogram, and gender instead of birth_year" -->
+<!-- ``` -->
+
+<!-- ```{r svavlersyjppyzbi-solution} -->
+<!-- # solution code -->
+<!-- ggplot(data = starwars ) + -->
+<!--   geom_bar(mapping = aes(x = gender ) ) -->
+<!-- ``` -->
+
+<!-- ```{r svavlersyjppyzbi-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+
+<!-- ## Scatter plots -->
+
+<!-- ### `geom_point` -->
+
+<!-- Earlier we used histograms to look at the distribution of a single variable by iteself. -->
+
+<!-- However, we often want to look at the **covariation** of multiple variables (i.e. as one variable changes, how does a second one vary?). -->
+
+<!-- When we want to visualize the covariation of two *continuous* variables, we can create a **scatter plot**. -->
+
+<!-- In `ggplot`, a scatter plot layer is created with the `geom_point` geom function (because the geometric objects it creates are points). -->
+
+<!-- As well as providing an aesthetic mapping for the x axis, we also need to specify a variable to go on the y axis of a scatter plot. This code example gives a template for creating a scatter plot. -->
+
+<!-- ```r -->
+<!-- ggplot(data = ...) + -->
+<!--   geom_point(mapping = aes(x = ..., y = ...)) -->
+<!-- ``` -->
+
+<!-- <p class="comment3"> -->
+<!-- Using the `starwars` dataset, create a scatter plot of `mass` (y axis) vs `height` (x axis). (No starter code this time, but you can use the example above.) -->
+<!-- </p> -->
+
+<!-- ```{r ycnolkxvwbbkkeba, exercise = TRUE, message=FALSE, warning=FALSE} -->
+
+<!-- ``` -->
+
+<!-- ```{r ycnolkxvwbbkkeba-solution} -->
+<!-- ggplot(data = starwars) + -->
+<!--   geom_point(mapping = aes(x = height, y = mass)) -->
+<!-- ``` -->
+
+<!-- ```{r ycnolkxvwbbkkeba-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!-- ### Coloring a scatter plot -->
+
+<!-- Histograms and bar charts were made up of bars, and to color bars we used the `fill` parameter to fill the inside of them. -->
+
+<!-- However, the points of a scatter plot are just dots, and so do not have an interior that can be filled with color (as far as `ggplot` is concerned). Instead, we need to use the `color` parameter to change their color. -->
+
+<!-- Otherwise, the `color` parameter behaves in much the same way as the `fill` parameter (i.e. it can be used as either an aesthetic parameter to color by a variable, or as a fixed parameter to color by a single value). -->
+
+<!-- <p class="comment3"> -->
+<!-- Create the same scatter plot of `mass` (y axis) vs `height` (x axis) as in the previous exercise, but color the points by the `gender` variable. -->
+<!-- </p> -->
+
+<!-- ```{r pptqamnxpmyscjfb, exercise = TRUE} -->
+
+<!-- ``` -->
+
+<!-- ```{r pptqamnxpmyscjfb-hint} -->
+<!-- # hint text -->
+<!-- "gender is a variable, so this is an aesthetic parameter (i.e. inside the aes function)" -->
+<!-- ``` -->
+
+<!-- ```{r pptqamnxpmyscjfb-solution} -->
+<!-- # solution code -->
+<!-- ggplot(data = starwars) + -->
+<!--   geom_point(mapping = aes(x = height, y = mass, color = gender)) -->
+<!-- ``` -->
+
+<!-- ```{r pptqamnxpmyscjfb-check} -->
+<!-- # check code -->
+<!-- gradethis::grade_code() -->
+<!-- ``` -->
+
+<!--
+
+TODO:
+
+* test the tutorial: https://ew.com/movies/2020/01/02/star-wars-movies-best-quotes/
+* add more starwars quotes on successful completion of exercises:
+
+### Other parameters
+- aes vs fixed parameter practice
+
+
+## Faceting
+
+- building
+-->
+
+<!-- ## Describing visualizations -->
+
+<!-- TODO:
+This video covers
+-->
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/p6J9IxSBMwo?rel=0" frameborder="0" allowfullscreen></iframe> -->
+
+<!-- Slides: [PDF](https://drive.google.com/file/d/1zVbreifnXfsTiPiTNnQoacOPvtwG-aLN/edit) -->
+
+<!--
+### Quiz
+
+Quiz to go here
+
+TODO: add a quiz on video
+Quiz version of the final slide(s) example plot?
+-->
+
+<!--
+TODO: programming questions
+- histogram
+- scatter plot
+- parameters inside or outside aesthetic function
+- ggplot resources (how to get help on a function, ggplot cheatsheet)
+-->
+
+<!-- ### The End! -->
+
+<!-- That's all, folks! -->
+
+<!-- ```{r} -->
+<!-- # ans <- ggplot(data = starwars) + -->
+<!-- #   geom_histogram(mapping = aes(x = birth_year )) -->
+<!-- #  -->
+<!-- # rm_data <- function(x){ -->
+<!-- #   x <- x[-1] -->
+<!-- #   x <- x[-7] -->
+<!-- #   return(x) -->
+<!-- # } -->
+<!-- # # rm_data(ans) -->
+<!-- #  -->
+<!-- #  -->
+<!-- # diffStr( -->
+<!-- #   rm_data( -->
+<!-- #     ggplot(data = starwars) + -->
+<!-- #       geom_histogram(mapping = aes(x = birth_year )) -->
+<!-- #   ), -->
+<!-- #   rm_data(ans) -->
+<!-- # ) -->
+<!-- ``` -->
+
+

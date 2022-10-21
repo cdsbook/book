@@ -1,0 +1,334 @@
+---
+title: "Data Visualization tutorial"
+author: "by Dominic White"
+tutorial:
+  version: 1.3
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+<style>
+p.comment {
+background-color: #EDBB99;
+padding: 10px;
+border: 1px solid black;
+font-style: italic;
+}
+</style>
+
+<style>
+p.comment1 {
+background-color: #A2D9CE;
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment2 {
+background-color: #EDBB99; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment3 {
+background-color: #FDFEFE; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+
+```{r setup, include=FALSE, context="setup"}
+library(tidyverse)
+library(learnr)
+library(gradethis)
+library(checkr)
+library(sortable)
+library(diffobj)
+library(flair)
+library(listviewer)
+
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.checker = grade_learnr)
+tutorial_options(exercise.startover = TRUE)
+tutorial_options(exercise.completion = FALSE)
+
+new_recorder <- function(tutorial_id, tutorial_version, user_id, event, data) {
+    #cat(tutorial_id, " (", tutorial_version, "): ", user_id, ", ", event, ", ", "\n", sep = "")
+  cat(tutorial_id, " (", tutorial_version, "): ", user_id , "\n", sep = "")
+  cat("event: ", event, "\n", sep = "")
+}
+
+options(tutorial.event_recorder = new_recorder)
+```
+
+## Welcome
+
+This tutorial will introduce you to creating graphs in R.
+
+## Visualization principles
+
+This video will introduce you to the importance of visualization in data science, and how it can be used effectively (or ineffectively).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tHEVRahx0WE?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/ETyT0aRqt6tHspWXcGyumEgBG6K79TUuaN0mWTLsaiOySA?e=KkfEsO)
+
+
+## Data Overview
+
+Before we begin to make our own graphs, we need to learn some terminology for describing the underlying data. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/zM5y3dZ-o6o?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/ETqhI64qDaFGja02KJaA_usBe0iEVyOhjM5kH7ENZswmsg?e=mg4B0G)
+
+
+## Creating Basic Graphs
+
+This video will teach you how to create simple graphs in R.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/N3dYCR75RqA?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/Eflj-ZbwysRIjeWbUg1wSoQBAf26ac5hF_RPRRjpylmI8A?e=9jM9YC)
+
+### The `ggplot2` library
+
+Although the `qplot()` function has already been defined for us, we still need to tell R where to find that definition before we can use the function.
+
+Functions like `qplot()` are usually collected into *packages* which we can then install and load in R when we need them. Datasets can also be included in packages.
+
+* The `qplot()` function is part of the `ggplot2` package which contains functions for creating graphs.
+* The `starwars` dataset is part of the `dplyr` package which mostly contains functions for manipulating datasets (we will learn about this soon in the data wrangling module).
+
+Before we can use `qplot()` or `starwars`, we need to import their packages. We import a package using the `library()` function.
+
+### Load the `tidyverse` package
+
+The `tidyverse` package actually a *meta-package*: a collection of multiple other packages that are commonly used together. `ggplot2` and `dplyr` are both part of the tidyverse. We can thus run `library(tidyverse)` to load both of these packages at once.
+
+Load the `tidyverse` meta-package using the `library()` function with the correct argument:
+
+```{r xxdpwjzwuhmszksa, exercise = TRUE}
+# replace these underscores with the code
+____
+```
+
+
+```{r xxdpwjzwuhmszksa-hint-1}
+"Type in: library(tidyverse)"
+```
+
+
+```{r xxdpwjzwuhmszksa-solution}
+# solution code
+library(tidyverse)
+```
+
+```{r xxdpwjzwuhmszksa-check}
+# check code
+gradethis::grade_code()
+```
+
+### The `starwars` dataset
+
+Now that we have loaded the `tidyverse` meta-package (and thus the `dplyr` package that it contains, we have access to the dataset of Star Wars character statistics stored in the `starwars` variable.
+
+Run the following code chunk to inspect the dataset, and then answer the following quiz questions:
+
+```{r osikxouifqvtzztk, exercise = TRUE}
+starwars
+```
+
+`starwars` is an example of a **dataframe**: a table of data with rows and columns. Each row contains an *observation*, and each column holds a *variable*.
+
+```{r starwars_col_quiz, echo=FALSE}
+question("How many variables are in this dataset?",
+  answer("14", correct = TRUE),
+  answer("4"),
+  answer("87"),
+  answer("10"),
+  answer("77"),
+  allow_retry = TRUE
+)
+```
+
+```{r starwars_rows_quiz, echo=FALSE}
+question("How many observations are in this dataset?",
+  answer("14"),
+  answer("4"),
+  answer("87", correct = TRUE),
+  answer("10"),
+  answer("77"),
+  allow_retry = TRUE
+)
+```
+
+```{r starwars_obs_quiz, echo=FALSE}
+question("What does each observation in this dataset represent?",
+  answer("A fact about a Star Wars character, e.g. their eye color or height"),
+  answer("A series of data about the same characteristic, e.g. eye color"),
+  answer("A single Star Wars character", correct = TRUE),
+  answer('"These are not the answers you are looking for."'),
+  allow_retry = TRUE
+)
+```
+
+
+## Interpreting Scatter Plots
+
+This video will teach you about the patterns that can be described in scatter plots.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1qy42UG9KxI?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/EX4UdCpVmZ9Iovu6VUWUeUcB6MPiqerCa6cHHaDNoDPBcQ?e=bcNKiW)
+
+### Interpret these scatter plots
+
+Pick the correct description for each of these scatter plots:
+
+```{r, echo = FALSE}
+x <- runif(100,0,100)
+y <- x * -2 + rnorm(100, 0, 5)
+ggplot2::qplot(x,y)
+```
+
+```{r scatter_plot_interp_1, echo=FALSE}
+question("The relationship in the scatter plot shown above is best described as ...:",
+  answer("Non-linear"),
+  answer("Linear and positive"),
+  answer("Linear and negative", correct = TRUE),
+  answer("Showing no relationship between x and y"),
+  allow_retry = TRUE
+)
+```
+
+```{r, echo = FALSE}
+x <- runif(100,0,100)
+y <- x^2 + x*rnorm(100, 0, 10)
+ggplot2::qplot(x,y)
+```
+
+```{r scatter_plot_interp_2, echo=FALSE}
+question("The relationship in the scatter plot shown above is best described as ...:",
+  answer("Non-linear", correct = TRUE),
+  answer("Linear and positive"),
+  answer("Linear and negative"),
+  answer("Showing no relationship between x and y"),
+  allow_retry = TRUE
+)
+```
+
+## Graphs of One Variable
+
+Scatter plots show the co-variation between two variables. But often we want to examination in just a single variable.
+
+This video will show you how to create histograms to visualize continuous variables and bar graphs to visualize categorical variables.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/exEQJozQNt0?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/Ec31has3P-RGnhRzZG1sCOUBN1JuMUTicFQts5kajlHvyA?e=CIMnUj)
+
+
+<p class="comment3">
+Fill in the blank to create a histogram of the `mass` variable from the `starwars` dataset. (You can ignore any warning about the number of bins.)
+</p>
+
+```{r gsfewpofvjsvmdfg, warning=FALSE, exercise = TRUE}
+# replace the underscores with the variable
+qplot(x = ____, data = starwars)
+```
+
+
+```{r gsfewpofvjsvmdfg-hint-1}
+# hint text
+"Replace the underscores with `mass`"
+```
+
+
+```{r gsfewpofvjsvmdfg-solution}
+# solution code
+qplot(x = mass, data = starwars)
+```
+
+```{r gsfewpofvjsvmdfg-check}
+# check code
+gradethis::grade_code()
+```
+
+
+
+## Interpreting Histograms
+
+This video will teach you how to describe the shape of histograms.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/TmPShy8gK24?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/Ea_4rRVzhrhAnQSzQYvRrnoBrqJI-FM9FPb7Qr2RFyiFow?e=sixkdy)
+
+### Outliers in histograms
+
+Here is the histogram of the `mass` of Star Wars characters that you created earlier.
+  
+```{r, echo=FALSE, warning=FALSE}
+qplot(x = mass, data = starwars)
+```
+
+```{r histogram_interp_1, echo=FALSE}
+question("Is there an outlier in this histogram?",
+  answer("Yes", correct = TRUE),
+  answer("No"),
+  allow_retry = TRUE
+)
+```
+
+### A galaxy without Jabba
+
+Here is the histogram of the `starwars` dataset characters *without* Jabba the Hutt. The number of bins has also been reduced to decrease the jaggedness of the distribution.
+
+```{r, warning=FALSE, echo=FALSE}
+qplot(x = mass, data = filter(starwars, name!="Jabba Desilijic Tiure"), bins = 7)
+```
+
+Answer the following questions about this histogram:
+
+```{r histogram_interp_2, echo=FALSE}
+question("How many bins can you see in this histogram?",
+  answer("1"),
+  answer("3"),
+  answer("5"),
+  answer("7", correct = TRUE),
+  answer("8"),
+  answer("9"),
+  answer("10"),
+  answer("15"),
+  answer("20"),
+  answer("30"),
+  allow_retry = TRUE
+)
+```
+
+```{r histogram_interp_3, echo=FALSE}
+question("How would you describe the modality of this histogram?",
+  answer("Unimodal", correct = TRUE),
+  answer("Bimodal"),
+  answer("Multi-modal"),
+  answer("Uniform"),
+  allow_retry = TRUE
+)
+```
+
+```{r histogram_interp_4, echo=FALSE}
+question("How would you describe the skewness of this histogram?",
+  answer("Symmetric"),
+  answer("Right skewed", correct = TRUE),
+  answer("Left skewed"),
+  allow_retry = TRUE
+)
+```
