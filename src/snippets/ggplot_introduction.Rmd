@@ -1,0 +1,23 @@
+So far we have created graphs with the `qplot()` function from the `ggplot2` package.
+
+However `qplot()` is just a **q**uick plotting function that allows us to make simple graphs. To get access to all the visualization features of the `ggplot2` package, we will need to learn the proper way to create `ggplot` graphs.
+
+For example, instead of using `qplot()` to create a histogram:
+
+```{r, echo=TRUE, warning=FALSE}
+qplot(x = height, bins = 30, data = starwars)
+```
+
+...we will use an alternative pair of functions, `ggplot()` and `geom_histogram()`, like this:
+
+```{r, echo=TRUE, warning=FALSE}
+ggplot(data = starwars) +
+  geom_histogram(
+    mapping = aes(x = height),
+    bins = 30
+  )
+```
+
+As you can see, the histograms are exactly the same. However, we've avoided this way of creating graphs up until now, because we've been trying to keep our code as simple as possible. 
+
+Now we need to make the trade of slightly more complicated code in exchange for much better graphs. So let's jump in and see how and why this works.

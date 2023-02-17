@@ -1,0 +1,36 @@
+# Graphs with `ggplot`
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+## From `qplot()` to `ggplot() + ...`
+
+{{< include ../../src/snippets/ggplot_introduction.Rmd >}}
+
+
+## Graphs as layers and transformations
+
+{{< include ../../src/snippets/ggplot_layers.Rmd >}}
+
+
+## Aesthetic mappings and other parameters
+
+{{< include ../../src/snippets/ggplot_aesthetic_mappings.Rmd >}}
+
+
+## Scatter plots with `ggplot()`
+
+{{< include ../../src/snippets/ggplot_scatter_plots.Rmd >}}
+
+
+## Piping to `ggplot()`
+
+{{< include ../../src/snippets/ggplot_piping.Rmd >}}
+
+
+## Labeling graphs
+
+{{< include ../../src/snippets/ggplot_labels.Rmd >}}
+

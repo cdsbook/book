@@ -1,0 +1,51 @@
+
+*TODO: This was moved from EDA and needs updating to be consistent with chapter*
+
+It is good practice to label all the graphs we create. We can do this by adding the `labs()` function to a graph:
+
+```{r, echo=TRUE}
+diamonds %>%
+  ggplot() +
+  geom_violin(mapping = aes(x = "price", y = price)) +
+  labs(title = "Violin plot of price", y = "price ($)")
+```
+
+Notice how:
+
+* the `labs()` function is a separate function that we add on to the graph as a separate layer with the `+` operator
+* inside the `labs()` function, we can supply an argument to the `title` parameter to change the title, and the `y` (and `x`) arguments to change the labels on those axes.
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Using the `labs()` function, add a title and y-axis label to the boxplot of `price` that you created earlier (we will leave the x-axis label as its default, since that is adequate for this graph.)
+</p>
+
+```{r boxplot_labels_exercise, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Fill in the blanks:
+diamonds %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = "price", y = price)) +
+  _____(_____ = "A boxplot of price", _____ = "price ($)")
+```
+
+```{r boxplot_labels_exercise-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = "price", y = price)) +
+  labs(title = "A boxplot of price", y = "price ($)")
+```
+
+```{r boxplot_labels_exercise-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->

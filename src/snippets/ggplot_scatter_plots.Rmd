@@ -1,0 +1,10 @@
+Hopefully you are beginning to see that the `ggplot()` syntax uses many of the same parameters as `qplot()`, just in different places.
+
+We can create a scatter plot by switching to a geom function called `geom_point()` and passing an additional column to the `aes()` function to go on the `y` axis:
+
+```{r, echo=TRUE, warning=FALSE}
+ggplot(data = starwars) +
+  geom_point(
+    mapping = aes(x = height, y = mass)
+  )
+```

@@ -1,0 +1,39 @@
+The `ggplot2` package gets its name because it s based on a concept called the *Grammar of Graphics* (hence **gg**plot...). This is a fascinating topic that we unfortunately don't have the time to dive into, but the key idea is that **all data visualizations can be described using a common set of terms and ideas** (i.e. a "grammar").
+
+One of the most important parts of this grammar are the layers that we can add to a graph.
+
+For example, the `ggplot()` function by itself just creates a blank canvas:
+
+```{r, echo=TRUE, warning=FALSE}
+ggplot(data = starwars)
+```
+
+To actually get something interesting on this graph, we need to take the __data__ and __map__ it to some __geometric__ shape.
+
+For example, if we wanted to map the `height` column of the `starwars` dataset to the geometric shape of a histograms bars, we could use this code:
+
+`geom_histogram(mapping = aes(x = height))`
+
+A few things to note:
+
+* The `geom_histogram()` functions is an example of what we call a *geom function* (each of which specifies a different type of geometry).
+* Geom functions have a parameter called `mapping` which, unsurprisingly, tells R how to convert a column of data into a pretty layer.
+* The argument that we pass to the `mapping` parameter is a function called `aes()` (this is short for "aesthetic"). Inside the `aes()` function we need to specify any parts of the histogram's appearance that are determined by a column in the dataset.
+  * In our example the x-axis of the histogram needs to show the `height` variable.
+
+We then add this layer to the canvas created by `ggplot()`. How do we add things together in R? With the addition operator `+` of course!
+
+And so our final code looks like this:
+
+```r
+ggplot(data = starwars) +
+  geom_histogram(mapping = aes(x = height))
+```
+
+```{r, warning=FALSE}
+ggplot(data = starwars) +
+  geom_histogram(
+    mapping = aes(x = height),
+    bins = 30
+  )
+```

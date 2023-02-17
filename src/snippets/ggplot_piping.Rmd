@@ -1,0 +1,25 @@
+One advantage of `ggplot()` over `qplot()` is that we can pipe a dataframe to `ggplot()` because the first parameter of ggplot() is the dataset to be used.
+
+So instead of explicity passing the `starwars` dataframe to the `data` parameter:
+
+```r
+ggplot(data = starwars) + ...
+```
+
+...we could write this:
+
+```r
+starwars %>%
+  ggplot() + ...
+```
+
+This might not seem like much, but it does mean that we can put the graphing functions at the end of a series of piped functions that transform and wrangle our dataset, for example:
+
+```r
+some_dataset %>%
+  mutate(...) %>%
+  filter(...) %>%
+  ggplot() + geom_FUNCTION(...)
+```
+
+
