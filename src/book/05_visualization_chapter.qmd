@@ -2,6 +2,7 @@
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
 ```
 
 In this chapter we will learn how to make simple graphs using R.
@@ -31,6 +32,10 @@ TBD
 ## Trends: line graphs
 
 TBD
+
+## Importance of visualization
+
+{{< include ../../src/snippets/visualization_anscombe_example.Rmd >}}
 
 ## Improving your graphs
 

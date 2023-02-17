@@ -18,14 +18,6 @@ TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
 {{< include ../../src/snippets/eda_intro.Rmd >}}
 
 
-### The importance of visualizations
-
-<!-- TODO: move this to the earlier visualization chapter? -->
-<!-- TODO: talk more about summary statistics -->
-
-{{< include ../../src/snippets/eda_anscombe_example.Rmd >}}
-
-
 ### Types of variation to explore
 
 {{< include ../../src/snippets/eda_types_of_variation.Rmd >}}
