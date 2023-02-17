@@ -81,6 +81,7 @@ TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
 
 {{< include ../../src/snippets/eda_violin_plot.Rmd >}}
 
+TODO: Include a comparison of histogram, boxplot, and violins (all in the same plot, aligned for cmparison).
 
 ## Multivariate covariation
 
