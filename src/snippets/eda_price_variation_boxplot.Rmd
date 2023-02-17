@@ -2,6 +2,8 @@ We also want to look a the distribution of the `price` variable. Let's do that w
 
 Box plots (also called box-and-whisker plots) visualize not only the distribution but also show several summary statistics:
 
+TODO: replace with my own image that I know I own copyright of.
+
 ```{r}
 knitr::include_graphics("../img/boxplot.png")
 ```
