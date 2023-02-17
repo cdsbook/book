@@ -1,0 +1,25 @@
+
+
+It's generally a good idea to go into EDA with a question in mind.
+
+The question doesn't have to be perfect - indeed, you might well decide that the question can be improved after you've explored the data.
+
+However, having a question in mind allows us to focus our EDA and not get distracted by the huge number of possibilities that we can explore with a single dataset.
+
+So: *what makes a good question?*
+
+In general, we want:
+
+* to be as specific as possible,
+
+* while still being interesting.
+
+Specificity is good because it makes our analysis shorter and more direct. Broad questions are often of more general interest, but it is harder to come up with an approach to answering them.
+
+An analogy is a New Year's resolution: consider "Exercise more" vs. "Go for a 30 minute run 3x per week." One of these is specific and measureable (while still be relevant to the overall goal of increasing your fitness), while the other is much broader and less-defined (and potentially easier to weasel out of...).
+
+For this tutorial, our starting question will be:
+
+> What is the effect of the size of a diamond on its price?
+
+This is a better starting place that a broader question such as "What factors influence diamond prices?" Where would we start with such a question? Not only would we want data on the physical characteristics of diamonds, but probably also on the supply of diamonds, the controls imposed by diamond cartels, the effect of advertizing to make diamonds seem exclusive, popular campaigns against blood diamonds... we could spend all day just thinking about the question, and never get to the actual EDA!

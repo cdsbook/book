@@ -1,0 +1,87 @@
+
+
+With graphs, we want to visualize the distribution of a variable.
+
+Two good graphs for visualizing the distributions of one continuous variable are histograms and boxplots. (You might also want to look up density plots and violin plots on the ["What graph should I plot" cheatsheet](https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing).)
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Create a histogram of the `carat` variable.
+</p>
+
+```{r fahlctbqxqfcqwpn, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+diamonds %>%
+  ggplot() +
+  _______(mapping = aes(______))
+```
+
+```{r fahlctbqxqfcqwpn-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = carat))
+```
+
+```{r fahlctbqxqfcqwpn-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+Plots of distributions show common versus less common values of a variable. This allows us to answer questions like:
+
+* What values are common? Does this match your prior expectations?
+* What values are uncommon? Again, does this match your prior expectation?
+* Does the overall appearance show any unusual patterns that bear further investigation?
+
+One thing you might note is that the distribution is not very smooth. To make it smoother, we could increase the size of the bins. However, to see what's going on with this distribution, let's *decrease* the bin size.
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Create another histogram of the `carat` variable, but this time set the `binwidth` parameter to 0.01
+</p>
+
+```{r lqdlcrkzyiczdqtn, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+diamonds %>%
+  ggplot() +
+  geom_histogram(__________)
+```
+
+```{r lqdlcrkzyiczdqtn-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"binwidth is a fixed value. Therefore, should it go as a parameter of the geom_histogram function or the aes function?"
+```
+
+```{r lqdlcrkzyiczdqtn-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = carat), binwidth = 0.01)
+```
+
+```{r lqdlcrkzyiczdqtn-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+Interesting! There's an odd sawtooth pattern to this data that suggests several clusters to the data. This pattern raises several interesting questions:
+
+* What's causing these groups ("clusters")?
+* Why does each cluster have a sharp left-hand side, and a long tail on the right?

@@ -1,0 +1,54 @@
+We also want to look a the distribution of the `price` variable. Let's do that with a new type of graph: the box plot.
+
+Box plots (also called box-and-whisker plots) visualize not only the distribution but also show several summary statistics:
+
+```{r}
+knitr::include_graphics("images/boxplot.png")
+```
+
+We create a box plot using the `geom_boxplot` geom function. There are two required aesthetic mappings in a box plot (note that in `ggplot` the orientation of the boxplot is rotated 90 degrees): 
+
+* `x` should be a categorical variable to create different box plots for.
+* `y` is the variable that we want to show the distribution of.
+
+```{r}
+diamonds %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = cut, y = price))
+```
+
+
+You might have spotted a problem here: what if we only want to create one box plot rather that breaking down the variable into a different box plot for each category of `x`? In this case, we need to provide a character string to `x` instead of a variable name - however, despite the fact that x is a fixed value, it still goes inside the `aes` function...
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Create a single box plot of the `price` variable by providing the string `"price"` as the argument to the `x` parameter.
+</p>
+
+```{r ixzvzwepjdibpkvq, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Fill in the blank:
+diamonds %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = _____, y = price))
+```
+
+```{r ixzvzwepjdibpkvq-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = "price", y = price))
+```
+
+```{r ixzvzwepjdibpkvq-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->

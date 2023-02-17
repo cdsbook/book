@@ -1,0 +1,7 @@
+
+
+Now that you've verified the data, you can start on the EDA process. 
+
+As a reminder, we usually want to *start with univariate analysis* of each variable separately. Programs and data are both complicated, so it is always a good idea to start small and simple, and add in complexity gradually.
+
+If we do the opposite and start complicated, it is easy to make small mistakes and assumptions which might make our final conclusions wrong!

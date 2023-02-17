@@ -1,0 +1,11 @@
+For this tutorial, we will be using the `diamonds` dataset, which is automatically loaded with the `ggplot2` graphing package.
+
+This means that you just need to run `library(ggplot2)` or `library(tidyverse)` (the `tidyverse` meta-package includes `ggplot2`), and the diamonds dataset will be available for you to use.
+
+In the real world, loading data tends to be a much messier task (a topic for another day).
+
+#### Check the dataset's documentation
+
+Most datasets come with documentation describing the data that they contain.
+
+In R, most datasets that come as part of a package have some kind of documentation page. In RStudio, you can bring this up by running `?name_of_dataset` in the console, e.g. `?diamonds`. That won't work in this tutorial, but you can also see the `diamonds` documentation page online here: [https://ggplot2.tidyverse.org/reference/diamonds.html](https://ggplot2.tidyverse.org/reference/diamonds.html)

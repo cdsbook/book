@@ -1,0 +1,175 @@
+<!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
+
+If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories:
+
+```r
+dataframe %>%
+  group_by(categorical_variable) %>%
+  summarize(
+    count = n(),
+    proportion = n() / nrow(.),
+    percentage = 100 * proportion
+  )
+```
+
+Notes on this code:
+
+  * the `n()` function returns the number of rows. It does not need an argument.
+  * the `nrow()` function also calculates the number of rows, but needs an argument (a variable who's rows it should count).
+  * the `.` argument inside `nrow` is used to refer to the original `dataframe` that we piped in.
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Calculate summary statistics for the categorical `cut` column of the `diamonds` dataframe.
+</p>
+
+```{r lwsyhxxvndkapsgg, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Replace the blanks, following the template above
+diamonds %>%
+  group_by(____) %>%
+  _____(
+    count = n(),
+    proportion = ______,
+    _____ = _______
+  )
+```
+
+```{r lwsyhxxvndkapsgg-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"You will need to fill in the categorical variable to group by, the `summarize` function, and the three expressions inside the summarize function"
+```
+
+```{r lwsyhxxvndkapsgg-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  group_by(cut) %>%
+  summarize(
+    count = n(),
+    proportion = n() / nrow(.),
+    percentage = 100 * proportion
+  )
+```
+
+```{r lwsyhxxvndkapsgg-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+For a continuous variable, we typically use a few statistics (a number representative of other numbers) to summarize the:
+
+1. center (i.e. mean, median, mode), &
+
+2. spread (e.g. the standard deviation, the range, the interquartile range, etc.)
+
+of a distribution.
+
+```r
+dataframe %>%
+  summarize(
+    mean    = mean(continuous_variable),
+    median  = median(continuous_variable),
+    std.dev = sd(continuous_variable),
+    iqr     = IQR(continuous_variable),
+    min     = min(continuous_variable),
+    max     = max(continuous_variable)
+  )
+```
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Calculate summary statistics the 6 summary statistics listed above for the continuous variable `carat` from the `diamonds` dataframe.
+<p>
+
+```{r rsrzqnjqelsdcbxe, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Fill in the blanks:
+diamonds %>%
+  summarize(
+    mean    = mean(____),
+    median  = _______,
+    std.dev = _______,
+    ________,
+    ________,
+    ________
+  )
+```
+
+```{r rsrzqnjqelsdcbxe-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  summarize(
+    mean    = mean(carat),
+    median  = median(carat),
+    std.dev = sd(carat),
+    iqr     = IQR(carat),
+    min     = min(carat),
+    max     = max(carat)
+  )
+```
+
+```{r rsrzqnjqelsdcbxe-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+In our original question, we were interested in two variables: size (i.e. `carat`) and `price`. We should therefore calculate summary statistics for the `price` variable as well
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Repeat your summary statistics calculation for the continuous variable `price`.
+<p>
+
+```{r cybpzfzntosxuqtr, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# One big blank to fill in this time!
+diamonds %>%
+  _______
+```
+
+```{r cybpzfzntosxuqtr-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"You should be able to just change the variable in you previous code from carat to price"
+```
+
+```{r cybpzfzntosxuqtr-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  summarize(
+    mean    = mean(price),
+    median  = median(price),
+    std.dev = sd(price),
+    iqr     = IQR(price),
+    min     = min(price),
+    max     = max(price)
+  )
+```
+
+```{r cybpzfzntosxuqtr-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->

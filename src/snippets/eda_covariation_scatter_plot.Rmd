@@ -1,0 +1,67 @@
+
+
+If you have two continuous variables, such as `price` and `carat` in the `diamonds` dataset, then a scatter plot is generally a good method of examining their covariation:
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Create a scatter plot with `price` on the y-axis and `carat` on the x-axis.
+</p>
+
+```{r kfxhpnqgmtclqbkt, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+diamonds %>%
+  ggplot() +
+  ______ +
+  labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
+```
+
+```{r kfxhpnqgmtclqbkt-solution, eval=is_tutorial, echo=FALSE}
+diamonds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = carat, y = price)) +
+  labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
+```
+
+```{r kfxhpnqgmtclqbkt-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+
+We can see several things about this graph:
+
+* There's obviously a positive relationship between these two variables.
+* It's hard to tell the density of the points (i.e. where most of the points fall), because in many places all the point overlap in a blog.
+
+We have a several options to show density.
+
+* We could make the points transparent with the `alpha` parameter. Then dense regions would be darker (because there would be many overlapping transparent points). For example, with `alpha = 0.1`:
+
+  ```{r, echo = TRUE}
+  diamonds %>%
+    ggplot() +
+    geom_point(mapping = aes(x = carat, y = price), alpha=0.1) +
+    labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
+  ```
+
+* We can also create a heat map, which is a colored grid where the intensity of the color represents a value on a scale - in this case, the color represents the density. This uses the `geom_bin2d` geom function:
+
+  ```{r, echo = TRUE}
+  diamonds %>%
+    ggplot() +
+    geom_bin2d(mapping = aes(x = carat, y = price)) +
+    labs(title = "Heat map of dimond price vs size", y = "price ($)", x = "size (carats)")
+  ```
+  
+  This is essentially a 2-dimensional histogram. Each square is like a bar in a univariate histogram. In this heat map, the color represents the "height" of the 2-dimensional bin, i.e. how many diamonds fall into each cell of the heat map's grid.
+
+<!-- Todo
+Have students recreate this graph
+-->

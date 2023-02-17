@@ -1,0 +1,131 @@
+# Exploratory Data Analysis and Scientific Discovery
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+```
+
+## What is EDA?
+
+<!--
+TODO: Acknowledgements (Peng book, R4DS, NIST handbook, Seltman book)
+
+TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
+-->
+
+### Exploratory Data Analysis (EDA)
+
+{{< include ../../src/snippets/eda_intro.Rmd >}}
+
+
+### The importance of visualizations
+
+<!-- TODO: move this to the earlier visualization chapter? -->
+<!-- TODO: talk more about summary statistics -->
+
+{{< include ../../src/snippets/eda_anscombe_example.Rmd >}}
+
+
+### Types of variation to explore
+
+{{< include ../../src/snippets/eda_types_of_variation.Rmd >}}
+
+
+
+## Starting EDA
+
+### A "first steps" EDA checklist
+
+{{< include ../../src/snippets/eda_checklist.Rmd >}}
+
+
+### Formulate your question
+
+{{< include ../../src/snippets/eda_questions.Rmd >}}
+
+
+### Load the data and read the documentation
+
+{{< include ../../src/snippets/eda_load_data.Rmd >}}
+
+
+### Get an overview of the data
+
+{{< include ../../src/snippets/eda_glimpse.Rmd >}}
+
+
+### Look at the first and last rows of your dataframe
+
+{{< include ../../src/snippets/eda_head_tail.Rmd >}}
+
+
+### Make sure that the data makes sense
+
+{{< include ../../src/snippets/eda_sanity_check.Rmd >}}
+
+
+### Start the EDA cycle
+
+{{< include ../../src/snippets/eda_cycle.Rmd >}}
+
+
+## Univariate variation
+
+### Non-graphical methods (i.e. summary statistics)
+
+{{< include ../../src/snippets/eda_summary_statistics_univariate.Rmd >}}
+
+
+### Graphical analysis of `carat`
+
+{{< include ../../src/snippets/eda_carat_variation.Rmd >}}
+
+
+### `price` visualization
+
+{{< include ../../src/snippets/eda_price_variation_boxplot.Rmd >}}
+
+
+### Violin plots
+
+{{< include ../../src/snippets/eda_violin_plot.Rmd >}}
+
+
+## Multivariate covariation
+
+When we have multiple variables we want to understand how their variation is related: this is called **covariation**.
+
+<!--
+### Non-graphical (i.e. summary statistics)
+See:
+- NIST handbook: https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm
+- Section 4.4: https://www.stat.cmu.edu/~hseltman/309/Book/chapter4.pdf
+- mathematical covariance (and relationship to R-squared) + graphical interpretation with heat map (correlation plot)
+-->
+
+### Co-variation with summary statistics
+
+__TODO__
+
+### Graphical
+
+{{< include ../../src/snippets/eda_covariation_scatter_plot.Rmd >}}
+
+
+### Coloring and faceting by categorical variables
+
+__TODO__
+
+<!--
+
+TODO:
+Faceting... since its in the quiz...
+
+-->
+
+
+## Your turn
+
+### Do some EDA
+
+{{< include ../../src/snippets/eda_outro.Rmd >}}
+

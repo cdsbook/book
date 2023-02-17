@@ -1,0 +1,13 @@
+Hopefully you are now convinced why graphing data is important. But what type of graphs should you create?
+
+The rest of this tutorial will go through different types of graphs, but here are some general concepts to bear in mind:
+
+* We can broadly divide EDA into two types: univariate and multivariate
+
+  * Univariate, or "one variable", analysis looks at the **variation** within a single variable's values. Our goal here is to understand the distribution of this variable.
+  
+  * Multivariate (i.e. "many variables") refers to analysis of 2 or more variables where we want to examine the **covariance** between variables. In other words, how does one variable change in response to changes in another.
+
+* As a general principle, you should do univariate EDA first before multivariate EDA.
+
+* We have put together a flow chart to help you pick the right type of graph for particular types of data and analysis goals: [available as a PDF here](https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing).

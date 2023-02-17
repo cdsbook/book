@@ -1,0 +1,54 @@
+
+
+We can use the `glimpse` function to get a compact overview of a dataframe.
+
+Note: the `glimpse` function is a modern "tidyverse" version of an older R function called `str`.
+
+<!-- Book version -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Run the `glimpse` function to get an overview of the columns in the `diamonds` dataset.
+</p>
+
+```{r qafosdhqdvbhhvdf, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+
+```
+
+```{r qafosdhqdvbhhvdf-hint, eval=is_tutorial, echo=FALSE}
+"The syntax for the glimpse function is glimpse(name_of_dataframe)"
+```
+
+
+```{r qafosdhqdvbhhvdf-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+glimpse(diamonds)
+```
+
+```{r qafosdhqdvbhhvdf-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+
+```{r diamonds_carat_type_quiz, eval=is_tutorial, eval=is_tutorial, echo=FALSE}
+question("What type of data does the carat variable hold?", 
+  answer("Continuous", message = "Carat is the weight of the diamond, which is continuous.", correct=TRUE),
+  answer("Categorical"),
+  allow_retry = TRUE
+  )
+```
+
+
+```{r diamonds_cut_type_quiz, eval=is_tutorial, echo=FALSE}
+question("What type of data does the cut variable hold?", 
+  answer("Continuous"),
+  answer("Categorical", message = "glimpse tells us that cut is an `Ordered factor`. A factor is the data type R uses to hold categorical variables. A factor has levels, which have labels (e.g. 'Fair' or 'Good' for cut), but in each row the levels are referred to by their number (to save space).", correct=TRUE),
+  allow_retry = TRUE
+  )
+```
+
+<!-- End tutorial -->

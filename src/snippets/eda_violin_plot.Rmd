@@ -1,0 +1,11 @@
+An alternative to the boxplot is the violin plot. This combines aspects of the histogram and boxplot into a single graph.
+
+The code for a violin plot is almost identical to the code or a boxplot - we just use the `geom_violin()` geom function:
+
+
+
+```{r, echo=TRUE}
+diamonds %>%
+  ggplot() +
+  geom_violin(mapping = aes(x = "price", y = price))
+```

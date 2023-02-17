@@ -1,0 +1,10 @@
+We expect certain things about our dataset to be true:
+
+* Does the dataset have the correct number of rows and columns?
+* Do the numbers in each column make sense: 
+  * does a column called `date` contain dates, or does it have random numbers that don't seem to be dates?
+  * does a column called `USA_states` contain all 50 states as you might expect? Or does it also contain "non-state" regions such as the District of Columbia and Puerto Rico.
+* What is an observation in the dataset? 
+  * In the `diamonds` dataset, each row represents a different diamond. This is probably what you would expect. But what if the dataset rows each represented a *diamond store* instead, and the numbers were the average of all the diamonds in that shop? In this scenario, the data (and what questions we can ask with it) would be very different.
+* Are the values plausible?
+  * For example, in the `diamonds` dataset, are the prices for the diamonds realistic? Is the range of values of the `carat` variable realistic (for example, most diamonds are pretty small, so if this dataset claimed to have data on 50,000 diamonds that were all 100 carats or larger, then we might be a little suspicious...)

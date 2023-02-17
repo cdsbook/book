@@ -1,0 +1,19 @@
+Exploratory data analysis, or **EDA** for short, is a vague, hard-to-define concept... but is also the activity that will occupy much of your time as a data scientist.
+
+Here's the problem:
+
+* When you first get a dataset, you don't know very much about it. You probably choose the dataset because you thought it might help you solve a particular problem, but you don't know how (or if) the data can help you do that, or what other nuances might be present in the dataset.
+
+* So, the first step is to do a little digging: open the data up, and:
+
+  1. Plot a few basic graphs (EDA is mostly done with graphs because they make it very easy to spot patterns).
+  
+  2. Calculate some simple statistics (e.g. averages and ranges)
+
+* This basic analysis will probably give you some ideas about the data. You'll probably spot some patterns that bear further investigation, or maybe some issues that you'll need to address.
+
+* How do you do this? More analysis, visualization, and general experimentation, which in turn will reveal more potential patterns, and so the cycle continues...
+
+Your end goal is to find some interesting questions in the dataset that deserve some kind of follow-up.
+
+Does this seem all seem vague and open-ended? That's because it is fundamentally a creative activity. There's no one "right way" to create a painting or a book. Exploratory data analysis is the same. And just like those other creative activities, the way to get better is to practice.
