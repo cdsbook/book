@@ -7,3 +7,6 @@ docs/*.pdf
 .Ruserdata
 
 /.quarto/
+_book
+_bookdown_files
+*.backup
