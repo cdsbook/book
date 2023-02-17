@@ -170,7 +170,7 @@ cat('<div id="what_is_b-hint">
 b
 ```
 
-```{r what_is_b-check, eval=is_tutorial}
+```{r what_is_b-check, eval=is_tutorial, echo=F}
 grade_code(":)")
 ```
 
@@ -219,7 +219,7 @@ cat('<div id="b_is_7-hint">
 b <- 7
 ```
 
-```{r b_is_7-check, eval=is_tutorial}
+```{r b_is_7-check, eval=is_tutorial, echo=F}
 grade_result(
   pass_if(function(x) identical(x, 7), "This is a correct message.")
 )

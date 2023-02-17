@@ -42,7 +42,7 @@ cat('<div id="hypotenuse_code-hint">
 </div>')
 ```
 
-```{r hypotenuse_code-check, eval=is_tutorial}
+```{r hypotenuse_code-check, eval=is_tutorial, echo=F}
 grade_conditions(
   pass_if(~ .result == sqrt(10^2 + 20^2))
 )
@@ -162,7 +162,7 @@ cat('<div id="hypotenuse_function-hint">
 </div>')
 ```
 
-```{r hypotenuse_function-check, eval=is_tutorial}
+```{r hypotenuse_function-check, eval=is_tutorial, echo=F}
 grade_conditions(
   pass_if(~ .result == sqrt(3^2 + 4^2))
 )
@@ -212,7 +212,7 @@ Replace the blanks to create a function to calculate the *area of a triangle* in
 </p>')
 ```
 
-```{r triangle_area_function, exercise=TRUE, eval=is_tutorial}
+```{r triangle_area_function, exercise=TRUE, eval=is_tutorial, echo=F}
 _______ <- function(a, b) {
   area <- _______
   return(area)
@@ -227,7 +227,7 @@ cat('<div id="triangle_area_function-hint">
 </div>')
 ```
 
-```{r triangle_area_function-check, eval=is_tutorial}
+```{r triangle_area_function-check, eval=is_tutorial, echo=F}
 grade_conditions(
   pass_if(~ identical(.result(4,5), 10)),
   pass_if(~ identical(.result(10,20), 100))

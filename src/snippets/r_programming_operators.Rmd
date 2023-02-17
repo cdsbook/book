@@ -436,8 +436,9 @@ Modify the expression below so that it performs this calculation $\frac{3 + 5}{(
 3 + 5 / 5 * 2 ^ 2
 ```
 
-```{r operators_parentheses-check, eval=is_tutorial}
+```{r operators_parentheses-check, eval=is_tutorial, echo=F}
 grade_result(
   pass_if(~ identical(.result, 0.08), "Looks like you're a parenthesis master!")
 )
 ```
+

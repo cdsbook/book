@@ -1,0 +1,41 @@
+# Introduction to R
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+```
+
+{{< include ../../src/snippets/r_programming_hello_world.Rmd >}}
+
+
+## Data
+
+{{< include ../../src/snippets/r_programming_data.Rmd >}}
+
+## Operators
+
+{{< include ../../src/snippets/r_programming_operators.Rmd >}}
+
+## Storing and reusing results with *variables*
+
+{{< include ../../src/snippets/r_programming_variables.Rmd >}}
+
+## How R works
+
+{{< include ../../src/snippets/r_programming_how_it_works.Rmd >}}
+
+
+## More about data
+
+{{< include ../../src/snippets/r_programming_data_2.Rmd >}}
+
+
+## Expressions and how they are evaluated
+
+{{< include ../../src/snippets/r_programming_evaluation.Rmd >}}
+
+
+## Functions
+
+{{< include ../../src/snippets/r_programming_functions.Rmd >}}
+
+

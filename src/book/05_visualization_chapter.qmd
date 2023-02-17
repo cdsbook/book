@@ -1,18 +1,19 @@
-\newpage
 # Visualizing Data
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+```
 
 In this chapter we will learn how to make simple graphs using R.
 
 ## Visualization principles
 
-```{r, child=c('src/snippets/visualization_principles.Rmd')}
-```
+{{< include ../../src/snippets/visualization_principles.Rmd >}}
 
 
 ## Data Overview
 
-```{r, child=c('src/snippets/visualization_data.Rmd')}
-```
+{{< include ../../src/snippets/visualization_data.Rmd >}}
 
 
 ## The `plot()` function

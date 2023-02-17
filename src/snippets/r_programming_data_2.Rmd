@@ -55,7 +55,7 @@ cat('<div id="d_is_true-hint">
  d <- TRUE
 ```
 
-```{r d_is_true-check, eval=is_tutorial}
+```{r d_is_true-check, eval=is_tutorial, echo=F}
 grade_code(":)")
 ```
 
@@ -121,7 +121,7 @@ cat('<div id="create_a_list-hint">
 list(10, "z", FALSE, -0.1*10)
 ```
 
-```{r create_a_list-check, eval=is_tutorial}
+```{r create_a_list-check, eval=is_tutorial, echo=F}
 grade_code(":)")
 ```
 
@@ -174,7 +174,7 @@ cat('<div id="create_a_vector">
 c("This", "is a", "vector!")
 ```
 
-```{r create_a_vector-check, eval=is_tutorial}
+```{r create_a_vector-check, eval=is_tutorial, echo=F}
 grade_code(":)")
 ```
 

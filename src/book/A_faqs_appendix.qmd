@@ -1,0 +1,19 @@
+# Frequently Asked Questions
+
+...i.e. frequently encountered problems and how to fix them.
+
+## RStudio
+
+### RStudio error: Error occurred during transmission
+
+If you get this error message when logging into the GMU RStudio Server:
+
+![RStudio error message: Error occurred during transmission](img/rstudio-error-occurred-during-transmission.png)
+
+Solution
+
+* Go to https://rstudio.cos.gmu.edu/home
+* Click the "Quit" button (near the top of the page)
+* Then you should be able to reopen a project.
+
+

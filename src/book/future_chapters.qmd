@@ -1,8 +1,4 @@
-\newpage
-
-# Exploratory Data Analysis and Scientific Discovery
-
-# Modeling
+# Linear Modeling
 
 # Statistical Inference
 
@@ -14,11 +10,15 @@
 
 # Computing and Computers
 
+# More Data Wrangling
+
 # Reproducibility
+
+# Loading Data
 
 # More Graphs
 
-# More Models
+# More Modeling
 
 # More Statistics
 
@@ -28,6 +28,10 @@
 
 # Prediction
 
+# Concurrent Programming
+
+# Interfacing with C++
+
 <!-- Section: Scientific Data -->
 
 # Image Data
@@ -35,6 +39,8 @@
 # Text Data
 
 # Time Series
+
+# Signal Processing
 
 # Online Data
 

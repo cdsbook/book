@@ -1,4 +1,0 @@
-\newpage
-# Frequently Asked Questions
-
-...i.e. frequently encountered problems and how to fix them.

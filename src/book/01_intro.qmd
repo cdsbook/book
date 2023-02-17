@@ -1,0 +1,15 @@
+# Introduction
+
+```{r setup, include=FALSE}
+is_book = TRUE
+is_tutorial = FALSE
+```
+
+## What are the computational and data sciences?
+
+## Reproducibility
+
+```{r}
+print(is_book)
+```
+
