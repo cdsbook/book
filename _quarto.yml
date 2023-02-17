@@ -18,7 +18,7 @@ book:
     - src/book/05_visualization_chapter.qmd
     - src/book/06_wrangling_chapter.qmd
     - src/book/07_ggplot_chapter.qmd
-    # - src/book/08_eda_chapter.qmd
+    - src/book/08_eda_chapter.qmd
     # - src/book/future_chapters.qmd
     # - src/book/A_faqs_appendix.qmd
     # - summary.qmd

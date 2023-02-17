@@ -2,6 +2,7 @@
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
 ```
 
 ## What is EDA?
@@ -28,7 +29,6 @@ TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
 ### Types of variation to explore
 
 {{< include ../../src/snippets/eda_types_of_variation.Rmd >}}
-
 
 
 ## Starting EDA

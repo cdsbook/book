@@ -3,7 +3,7 @@ We also want to look a the distribution of the `price` variable. Let's do that w
 Box plots (also called box-and-whisker plots) visualize not only the distribution but also show several summary statistics:
 
 ```{r}
-knitr::include_graphics("images/boxplot.png")
+knitr::include_graphics("../img/boxplot.png")
 ```
 
 We create a box plot using the `geom_boxplot` geom function. There are two required aesthetic mappings in a box plot (note that in `ggplot` the orientation of the boxplot is rotated 90 degrees): 
