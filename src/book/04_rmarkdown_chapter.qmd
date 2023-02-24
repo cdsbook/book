@@ -1,3 +1,10 @@
 # Literate Programming
 
 RMarkdown and Quarto
+
+Reproducibility
+
+* Open Science Foundation: https://osf.io/
+  * Includes replication studies, e.g.
+    * Cancer Biology reproducibility project: https://osf.io/collections/rpcb/discover e.g. https://osf.io/nbryi/
+    * Psychology reproducibility project: https://osf.io/ezcuj/wiki/home/
