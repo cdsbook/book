@@ -1,0 +1,11 @@
+> Statistical inference is the process of using data analysis to deduce properties of an underlying distribution of probability. Inferential statistical analysis infers properties of a population, for example by testing hypotheses and deriving estimates.
+>
+> *Source: [Wikipedia](https://en.wikipedia.org/wiki/Statistical_inference)*
+
+What does the above definition mean in simple terms?
+
+The world around us is an uncertain, random place. Take the heights of the students in this class: you all have a wide range of heights - some taller, some shorter. 
+
+We could plot a histogram of your heights - we would call this graph a *distribution* of your heights, and we could *infer* various things about it, e.g. the mean.
+
+This process of going from raw measurements (e.g. of heights) to properties of the distribution that those measurements came from is called *statistical inference*.

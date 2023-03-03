@@ -1,0 +1,61 @@
+So we've reported the slope and intercept: however, these don't tell us about how well the model fits the data, i.e. how close the points are to the model's line.
+
+For example, you could have a steep slope (suggesting that a change in $x$ is correlated with a big change in $y$), but the points could be scattered a long way from the line (i.e. large residuals). For example, consider these two graphs:
+
+```{r}
+set.seed(42)
+x1 <- 1:10 + rnorm(10, 0, 0.5) 
+x2 <- 1:10 + rnorm(10, 0, 0.5)
+x <- c(x1, x2)
+y <- c(x1 + rnorm(10, 0, 3), 2*x2 + rnorm(10, 0, 0.5))
+series <- c(rep("Low slope, large scatter", 10), rep("Steep slope, low scatter", 10))
+tibble(x, y, series) %>%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm", se = FALSE) +
+  facet_wrap(~ series)
+```
+
+We can use a statistic called $R^2$ (R-squared). You can think of $R^2$ as *the % of the variation in $y$ that is explained by the explanatory variable, $x$*.
+
+$R^2$ varies between 0 and 1. 1 means that the model explains all the variation: i.e. the points fall exactly on the line of best fit! As the points get further from the line, $R^2$ will decrease.
+
+We can report the $R^2$ by piping a model to the `glance()` function.
+
+```r
+your_model %>%
+  glance()
+```
+
+<p class="comment3">
+Fill in the blank with the correct function to report the $R^2$ value of your model.
+</p>
+
+```{r pejquogcchrafyyt, exercise = TRUE, exercise.setup="create_model", eval=is_tutorial}
+sim_model %>%
+  _______()
+```
+
+
+```{r pejquogcchrafyyt-solution, exercise.setup="create_model", eval=is_tutorial}
+sim_model %>%
+  glance()
+```
+
+```{r pejquogcchrafyyt-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+You'll note that `glance` reports a whole bunch of statistics. We only care about the first column, `r.squared`, and can ignore the rest.
+
+```{r rsquared_quiz, eval=is_tutorial}
+question(
+  "What is the R-squared value of your model?",
+  answer("0.935", correct=TRUE),
+  answer("0.926"),
+  answer("1.52"),
+  answer("114"),
+  allow_retry = TRUE
+)
+```

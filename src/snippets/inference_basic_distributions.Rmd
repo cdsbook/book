@@ -1,0 +1,43 @@
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BL5Bt-nI22k?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](http://sp19-001.cds101.com/doc/data_distributions_01_quantifying_data_distributions.pdf)
+
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tvUw91TrWO4?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](http://sp19-001.cds101.com/doc/data_distributions_02_quantifying_data_distributions_in_r.pdf)
+
+
+
+
+Fill in the ellipses (`...`) to create a boxplot of the `Sepal.Length` variable from the `iris` dataset.
+
+```{r tfowvuehwkrgqrbv, exercise = TRUE, eval=is_tutorial, echo=F}
+# replace the three ellipses
+iris %>%
+  ggplot() +
+  geom_...(
+    mapping = aes(
+      x = ...,
+      y = ...
+    )
+  )
+```
+
+```{r tfowvuehwkrgqrbv-solution, eval=is_tutorial, echo=F}
+# solution code
+iris %>%
+  ggplot() +
+  geom_boxplot(
+    mapping = aes(
+      x = "",
+      y = Sepal.Length
+    )
+  )
+```
+
+```{r tfowvuehwkrgqrbv-check, eval=is_tutorial, echo=F}
+# check code
+gradethis::grade_code()
+```

@@ -1,0 +1,63 @@
+The best linear model is the one that has the smallest sum of the squared residuals. We don't need to worry too much about the mathematics behind this - however, you should be aware that the math does make the simplifying assumption that the residuals have a *normal* distribution (more or less).
+
+The normal distribution is a bell-shaped distribution:
+
+TODO: add image of normal distribution
+
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/Normal_Distribution_NIST.gif") -->
+<!-- ``` -->
+
+We can plot a histogram of the residuals and see if that has a (more or less) normal distribution:
+
+TODO: add image of histogram of normal distribution
+
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/hist_normal_dist_wikipedia.png") -->
+<!-- ``` -->
+
+To do that, we will need to:
+
+1) Calculate a new column in our dataframe holding the residuals.
+2) Plot the residuals.
+
+
+This starter code calculates the residuals using your model and a useful function called `add_residuals`. The new dataframe (with an additional column called `resid` to hold the residuals), has been saved in a new variable called `sim_model_df`.
+
+<p class="comment3">
+Use this new `sim_model_df` dataframe to create histogram of the `resid` column (fill in the correct geom function and the `resid` column name in the appropriate blanks).
+</p>
+
+```{r yopfnelideskkmld, exercise = TRUE, exercise.setup="create_model", eval=is_tutorial}
+sim_model_df <- sim_df %>%
+  add_residuals(sim_model)
+
+sim_model_df %>%
+  ggplot() +
+  _______(mapping = aes(x = ________), bins = 5)
+```
+
+```{r yopfnelideskkmld-solution, eval=is_tutorial}
+sim_model_df <- sim_df %>%
+  add_residuals(sim_model)
+
+sim_model_df %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = resid), bins = 5)
+```
+
+```{r yopfnelideskkmld-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+As you can see, our histogram does not look like a perfectly normal distribution - however, the randomly simulated `sim_df` dataframe was created with normal residuals! 
+
+This is the challenge of working with random data: it will rarely look "perfect". This is why we say that we only expect *nearly* normal residuals to satisfy this condition. 
+
+In your graph, there does appear to be a roughly normal distribution (of course, it's easy to say that when we know it should be!): 
+
+* There's a single higher peak in the middle.
+* The heights of the bins decrease on either side.
+* There seem to be a similar number of residuals on either side of the central peak (i.e. the distribution is symmetric).
+* Although the left-most bin is higher than we might expect, this can be explained as just a quirk of the data (remember that all data is a little bit random), especially as this dataset is small (such random variation tends to get "averaged out" as the number of data points increases).

@@ -1,0 +1,22 @@
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VYChbNddUkM?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1qInq4DXzYsHjmnw2lVu_ffVrAUuzN5ko/view?usp=sharing)
+
+<!--
+TODO:
+ - Add a separate section with some additional explanation of correlation vs. causation
+-->
+
+```{r correlation_vs_causation_quiz, eval=is_tutorial, echo=F}
+question(
+  "You create a linear model with a high $R^{2}$ - does this mean that:",
+  answer("A change in the explanatory variable, *x*, **causes** a change in the response variable, *y*"),
+  answer(
+    "A change in the explanatory variable, *x*, is **correlated** with a change in the response variable, *y*", 
+    correct = TRUE,
+    message = "In both a linear model, and the hypothesis tests you will learn about here, we can **never** say that the explanatory variable *causes* the change in the response, only that the changes are correlated."
+    ),
+  allow_retry = TRUE
+)
+```

@@ -1,0 +1,23 @@
+For a simple regression with one explanatory variable, we can see whether there is a linear relationship by plotting a scatter plot with the model line. For example, compare these two plots:
+
+```{r}
+set.seed(42)
+x1 <- 1:20 + rnorm(20, 0, 0.5) 
+x2 <- 1:20 + rnorm(20, 0, 0.5)
+x <- c(x1, x2)
+y <- c(400*x1 + rnorm(20, 0, 100), x2^3 + rnorm(20, 0, 100))
+series <- c(rep("Linearity condition satisfied", 20), rep("Linearity condition violated", 20))
+tibble(x, y, series) %>%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm", se = FALSE) +
+  facet_wrap(~ series)
+```
+
+In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious *non-linear* trend, and that data violates this assumption of the linear model.
+
+<!--
+TODO:
+- Add a quiz/code question here asking students to interpret their own graph
+- Add quiz questions of other graphs that are harder to interpret
+-->

@@ -1,0 +1,35 @@
+
+### Gender discrimination case study
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EL9bbzblRq8?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](http://sp19-001.cds101.com/doc/inference_and_simulation_01_gender_discrimination_case_study.pdf)
+
+
+### A hypothesis test as a court trial
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LzsLhuxYiMs?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](http://sp19-001.cds101.com/doc/inference_and_simulation_02_a_hypothesis_test_as_a_court_trial.pdf)
+
+
+### A manual simulation of the gender discrimination experiment
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hjVjAzuMRDM?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](http://sp19-001.cds101.com/doc/inference_and_simulation_03_a_manual_simulation_of_the_gender_discrimination_experiment.pdf)
+
+
+### Simulating the gender discrimination experiment in R
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8wQ-uU611vI?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](http://sp19-001.cds101.com/doc/inference_and_simulation_04_simulating_the_gender_discrimination_experiment_in_r.pdf)
+
+
+### One-sided hypothesis tests using infer
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YmeQ9ThQw9M?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1SUewphETMnIvzhbXoKK5mXQXhRxpLxhv/view?usp=sharing)
+

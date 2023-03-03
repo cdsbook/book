@@ -1,0 +1,84 @@
+# Modeling
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+library(sortable)
+library(modelr)
+library(broom)
+
+set.seed(42)
+x <- 1:10 + rnorm(10, 0, 0.5)
+y <- 2*x + rnorm(10, 0, 1)
+sim_df <- tibble(x, y)
+```
+
+## What is a model
+
+{{< include ../../src/snippets/modeling_basic_intro.Rmd >}}
+
+
+{{< include ../../src/snippets/modeling_basic_correlation_not_causation.Rmd >}}
+
+
+
+## Creating models in R
+
+{{< include ../../src/snippets/modeling_basic_lm_video.Rmd >}}
+
+
+### Let's create a linear model
+
+{{< include ../../src/snippets/modeling_basic_lm_usage.Rmd >}}
+
+
+## Fitting models
+
+{{< include ../../src/snippets/modeling_basic_fitting_video.Rmd >}}
+
+
+### Your model's coefficients
+
+{{< include ../../src/snippets/modeling_basic_coefficients.Rmd >}}
+
+
+### $R^2$: how good is your model?
+
+{{< include ../../src/snippets/modeling_basic_rsquared.Rmd >}}
+
+
+### What's a good $R^2$?
+
+{{< include ../../src/snippets/modeling_basic_rsquared_goodness.Rmd >}}
+
+
+## Model assumptions
+
+### Assumptions of the linear model
+
+{{< include ../../src/snippets/modeling_basic_assumptions_overview.Rmd >}}
+
+
+### Linearity
+
+{{< include ../../src/snippets/modeling_basic_assumptions_linearity.Rmd >}}
+
+<!-- TODO: visualizing models and trend lines in general - always show the underlying data points to avoid misleading -->
+
+
+### Nearly normal residuals
+
+{{< include ../../src/snippets/modeling_basic_assumptions_normal_residuals.Rmd >}}
+
+
+### Constant variability of residuals
+
+{{< include ../../src/snippets/modeling_basic_assumptions_constant_variability.Rmd >}}
+
+
+
+### Independent observations
+
+{{< include ../../src/snippets/modeling_basic_assumptions_independence.Rmd >}}
+
+

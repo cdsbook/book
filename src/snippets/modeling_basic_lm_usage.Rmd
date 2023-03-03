@@ -1,0 +1,58 @@
+Let's create your first linear model in R, using a simulated dataset called `sim_df`.
+
+This is what the first few rows of the dataset look like:
+
+```{r}
+sim_df %>% head()
+```
+
+As you can see, there are two variables, $x$ and $y$. Here's what they look like:
+
+```{r}
+sim_df %>%
+  ggplot() +
+  geom_point(aes(x,y))
+```
+
+This looks like a pretty good candidate for a linear model, so let's create one.
+
+We'll do that with the `lm` function. The general syntax of this function is:
+
+```r
+lm(response ~ explanatory, data = _______)
+```
+
+* `response` and `explanatory` are the column names of those two variables. 
+* The `data` parameter expects the dataframe containing those columns.
+
+<div class="comment2">
+What's going on with `response ~ explanatory`? This is what's know as an R *formula*.
+
+The mathematical forumla for a linear model is $y=mx+c$. In R, we would write this as `y ~ x`: i.e. we replace $=$ with `~`, and we only include the actual variables. From this, R infers that we want to estimate the model's coefficients (the slope, $m$, and the intercept, $c$).
+</div>
+
+<p class="comment3">
+Fill in the blanks in the lm function with the two variables, `y` and `x`, and the dataframe `sim_df`.
+</p>
+
+```{r hclgfwuhnrvyquge, exercise = TRUE, warning=FALSE, message=FALSE, eval=is_tutorial}
+sim_model <- lm(_____ ~ _______, data = _____)
+```
+
+```{r hclgfwuhnrvyquge-hint-1, eval=is_tutorial}
+# hint text
+"Make sure to get the variables in the right order!"
+```
+
+```{r hclgfwuhnrvyquge-solution, eval=is_tutorial}
+sim_model <- lm(y ~ x, data = sim_df)
+```
+
+```{r hclgfwuhnrvyquge-check, warning=FALSE, message=FALSE, eval=is_tutorial}
+grade_code()
+```
+
+
+<div class="comment3">
+**Note**: Unfortunately the `lm` function is a part of the core R programming language that predates the `tidyverse` packages. Unlike the tidyverse functions, the first argument of `lm` is the formula, not the dataframe. Therefore, you cannot pipe a dataframe to `lm`, because pipe inserts the dataframe into the first argument position (which will cause an error).
+</div>

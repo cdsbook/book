@@ -1,0 +1,41 @@
+The residuals of a linear model are arranged above and below the line. As we saw in the previous section, this arrangement should look similar to a normal distribution, i.e.
+
+* most residuals will be small (close to the line)
+* a few residuals will be large
+
+The linear model also assumes that this normal distribution is the same in all parts of the model (i.e. at both high and low value of $x$).
+
+For example, in this model, we can clearly see that the variation in the residuals *is not constant* - this is a violation of this third assumption of the linear model:
+
+```{r}
+set.seed(46)
+x <- 1:100 + rnorm(100)
+y <- x + 100:1 * rnorm(100)
+ggplot(mapping = aes(x, y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Decreasing variation in points")
+```
+
+In the graph above, the points on the right lie much closer to the line: i.e. the residuals will be smaller.
+
+For simple linear models like this (with only a single explanatory variable $x$), we can get a reasonable idea of the variability of the residuals just by looking at a scatter plot of the model, as above.
+
+For comparison, here is the model you fit earlier:
+
+```{r}
+sim_df %>%
+  ggplot(mapping = aes(x, y)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+```{r assumption_3_quiz, eval=is_tutorial}
+question(
+  "Does your model (as shown above) satisfy the linear model's assumption of constant variability of residuals?",
+  answer("Yes, the model satisfies this assumption.", correct = TRUE),
+  answer("No, the model violates this condition."),
+  allow_retry = TRUE
+)
+```

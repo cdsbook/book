@@ -1,0 +1,49 @@
+We usually want to report the slope and intercept of a linear model. The slope is especially useful to report, because it indicates how much $y$ changes as $x$ changes.
+
+We can report the model coefficients with the `tidy()` function from the `broom` package. The syntax is like this:
+
+```r
+your_model %>%
+  tidy()
+```
+
+<p class="comment3">
+Replace the blank with the correct function to report the coefficients.
+</p>
+
+```{r create_model, include=FALSE, eval=is_tutorial}
+sim_model <- lm(y ~ x, data = sim_df)
+```
+
+```{r hojasacuvjabzyjp, exercise = TRUE, exercise.setup="create_model", eval=is_tutorial}
+sim_model %>%
+  _______()
+```
+
+```{r hojasacuvjabzyjp-solution, eval=is_tutorial}
+sim_model %>%
+  tidy()
+```
+
+```{r hojasacuvjabzyjp-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+```{r lm_slope_quiz, eval=is_tutorial}
+question(
+  "What is the slope of the linear model?",
+  answer("1.27"),
+  answer("1.75", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r lm_intercept_quiz, eval=is_tutorial}
+question(
+  "What is the intercept of the linear model?",
+  answer("1.27", correct = TRUE),
+  answer("1.75"),
+  allow_retry = TRUE
+)
+```

@@ -1,0 +1,9 @@
+We can use the $R^2$ to determine how "good" a model is. However, what value of $R^2$ is "good"?
+
+It turns out that the answer to this question varies widely between different areas of science.
+
+In physics, we often collect data from simple systems where data can be collected very accurately, so physicists expect high $R^2$ values in their experiments. For example, if you are measuring the speed of an object, there will be only one or two variables that will affect the speed, so you should get a very good correlation. Physical variable are generally easy to predict.
+
+In contrast, the social sciences (e.g. psychology or economics) will accept lower $R^2$ values, because there social systems are very complex with a huge number of interacting variables. For example, you could measure the effect of a good night's sleep on students' exam results the next day, but there are going to ge a lot of other things that affect how well a student does (such as how much they studied). As a result, even if sleep and exam results are related, the correlation will be very weak. Psychologists may be quite happy with $R^2$ values of less than 0.5 (i.e. 50%).
+
+For the purposes of this class, you can think of an $R^2$ > 0.5 as good, an $R^2$ > 0.25 as okay, and an $R^2$ > 0.1 as weak.

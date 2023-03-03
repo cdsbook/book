@@ -1,0 +1,25 @@
+### "Correlation does not imply causation"
+
+A common saying when working with models is that "correlation does not imply causation". *What does this mean?*
+
+When we create a linear model (e.g. a line of best fit), we have 2 variables:
+
+* $y$, the response variable
+* $x$, the explanatory variable
+
+We are implicitly saying that the values of $x$ *explain* the values of $y$, or alternatively that the $y$ variable *responds* to changes in $x$. This language implies that $x$ is directly causing $y$, and not the other way around.
+
+However...
+
+The linear model cannot actually tell us which variable is causing changes in the other (**causation**). Just because we decide to call one variable $y$ and the other $x$, does not mean that is the direction of effect in the real world.
+
+For example, taller people generally weigh more, but there is nothing stopping us from making height the response variable (y), even though most people would say that it makes no sense that your weight *causes* your height.
+
+In fact, none of the variables in your model could directly *cause* a change in the other. For example, there might be a third variable (that's not in your model) that actually causes the change in your model.
+
+Therefore, even if there seems to be a straight line relationship between two variables, we cannot definitively say that once causes the change in the other - only that they are **correlated**.
+
+<!--
+TODO:
+- quiz questions on this
+-->

@@ -1,0 +1,15 @@
+The fourth (and final) assumption of the linear model is that all the observations (data points) were generated *independently*.
+
+We will not worry to much about this assumption in this course, as the datasets we give you will have independent observations (for the most part).
+
+But what does it mean for observations to be *non-independent*?
+
+Consider the stock market: we could have a dataset that contains measurements of a company's stock price at the end of each day. However these observations are not independent. A stock price will rise or fall, but this change will be *from the previous observation*. I.e. if the stock ends day 1 at 100, it will probably end day 2 pretty close to 100. Therefore, the data points are not independent.
+
+For comparison, think about measuring the height of all the students in this class: one student's height does not significantly affect an other's, so these observations are all independent.
+
+
+<!--
+TODO: 
+add quiz 
+-->

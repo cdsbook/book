@@ -1,0 +1,44 @@
+# Inference
+
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+library(sortable)
+library(modelr)
+library(broom)
+```
+
+<!--
+TODO:
+ - add in more, better quizzes and exercises throughout!
+-->
+
+
+## What is inference?
+
+{{< include ../../src/snippets/inference_basic_intro.Rmd >}}
+
+
+## Distributions
+
+### Data sampling
+
+{{< include ../../src/snippets/inference_basic_data_sampling.Rmd >}}
+
+
+### Quantifying data distributions
+
+{{< include ../../src/snippets/inference_basic_distributions.Rmd >}}
+
+
+### Probability mass functions
+
+{{< include ../../src/snippets/inference_basic_pmfs.Rmd >}}
+
+
+## Hypothesis testing
+
+{{< include ../../src/snippets/inference_basic_hypothesis_test.Rmd >}}
+
+

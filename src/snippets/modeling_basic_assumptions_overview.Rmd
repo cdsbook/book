@@ -1,0 +1,13 @@
+All models make assumptions - that's how they are able to simplify complexity.
+
+The linear model makes these assumptions:
+
+1. **Linearity**: we assume that there is a linear relationship between the response and explanatory variables (i.e. that they fall more or less along a straight line).
+
+2. **Nearly normal residuals**: the residuals are normally distributed around the model line.
+
+3. **Constant variation of residuals**: the variation in residual size (above and below the model line) is similar in all parts of the model.
+
+4. **Independent observations**: Each observation (i.e. each $(x,y)$ point) was generated independently from the others.
+
+These might seem a little complicated, but they all make some intuitive sense when you think about what they mean, so let's go through them one-by-one.

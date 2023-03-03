@@ -1,0 +1,8 @@
+### Video introduction
+
+This video will introduce you to the concept of *models*, and in particular the *linear model* (which you may already be familiar with as a *line of best fit*).
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yeKA0m8M8Dc?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing)
+
