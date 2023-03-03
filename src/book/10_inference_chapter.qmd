@@ -4,9 +4,6 @@
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
-library(sortable)
-library(modelr)
-library(broom)
 ```
 
 <!--
