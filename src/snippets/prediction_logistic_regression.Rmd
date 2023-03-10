@@ -1,0 +1,17 @@
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/quKGW2Lltt0?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Link to slides: [PDF](https://drive.google.com/file/d/12V_i-IHLMI32UQMJoLwVRrCmgt_6_h0w/view?usp=sharing)
+
+### Test yourself
+
+```{r glm_quiz, eval=is_tutorial}
+question(
+  "What type of link function should you use to map a linear model to a binary response (i.e. logistic regression)? I.e. what is the `family` argument of the `glm()` function?",
+  answer("binary"),
+  answer("binomial", correct = TRUE),
+  answer("gaussian"),
+  answer("poisson")
+)
+```

@@ -1,0 +1,19 @@
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HwZwWkxqafs?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Link to slides: [PDF](https://drive.google.com/file/d/1ui9_U0d0lgNyl1psulAigETQPV5UDdv8/view?usp=sharing)
+
+### Test yourself
+
+```{r terminology-1_quiz}
+question(
+  "In a predictive model, what is a feature?",
+  answer("An explanatory variable, $x$", correct = TRUE),
+  answer("The response variable, $y$"),
+  answer("An observation (i.e. a row in the dataset)"),
+  random_answer_order = TRUE,
+  allow_retry = TRUE
+)
+```
+

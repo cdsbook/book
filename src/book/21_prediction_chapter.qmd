@@ -1,0 +1,22 @@
+# Modeling for Prediction
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+
+## Predictive modeling
+
+{{< include ../../src/snippets/prediction_intro.Rmd >}}
+
+
+## Data splits
+
+{{< include ../../src/snippets/prediction_data_splits.Rmd >}}
+
+
+## Logistic regression
+
+{{< include ../../src/snippets/prediction_logistic_regression.Rmd >}}
+
