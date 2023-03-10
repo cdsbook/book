@@ -12,19 +12,56 @@ book:
   chapters:
     - index.qmd
     - src/book/01_intro.qmd
-    - src/book/02_setup.qmd
-    - src/book/03_r_programming_chapter.qmd
-    - src/book/04_rmarkdown_chapter.qmd
-    - src/book/05_visualization_chapter.qmd
-    - src/book/06_wrangling_chapter.qmd
-    - src/book/07_ggplot_chapter.qmd
-    - src/book/08_eda_chapter.qmd
-    - src/book/09_modeling_chapter.qmd
-    - src/book/10_inference_chapter.qmd
-    - src/book/11_more_r_chapter.qmd
-    # - src/book/future_chapters.qmd
-    # - src/book/A_faqs_appendix.qmd
-    # - summary.qmd
+    - part: "Basic Topics"
+      chapters:
+      - src/book/02_setup.qmd
+      - src/book/03_r_programming_chapter.qmd
+      - src/book/04_rmarkdown_chapter.qmd
+      - src/book/05_visualization_chapter.qmd
+      - src/book/06_wrangling_chapter.qmd
+      - src/book/07_ggplot_chapter.qmd
+      - src/book/08_eda_chapter.qmd
+      - src/book/09_modeling_chapter.qmd
+      - src/book/10_inference_chapter.qmd
+    - part: "Advanced Topics"
+      chapters:
+      - src/book/11_more_r_chapter.qmd
+      # 12 Computing and Computers
+      # 13 More Data Wrangling
+      # 14 Reproducibility
+      # 15 Loading Data
+      # 16 More Graphs
+      # 17 More Modeling
+      # 18 More Statistics
+      # 19 Causality
+      # 20 Simulation
+      # 21 Prediction
+      # 22 Concurrent Programming
+      # 23 Interfacing with C++
+    # - part: "Scientific Data"
+      # chapters:
+      # 24 Image Data
+      # 25 Text Data
+      # 26 Time Series
+      # 27 Signal Processing
+      # 28 Online Data
+      # 29 Geospatial Data
+      # 30 Bioinformatic Data
+      # 31 Network Data
+      # 32 Databases
+      # 33 Big Data
+    # - part: "Outputs"
+      # chapters:
+      # 34 Output: Papers
+      # 35 Output: Webpages
+      # 36 Output: Dashboards
+      # 37 Output: Apps
+      # 38 Output: Software
+    # appendices:
+    # - appendix_faqs.qmd
+    # - appendix_further_reading.qmd
+    # - appendix_IDEs.qmd
+    # - appendix_git_github.qmd
     # - references.qmd
 
 # bibliography: references.bib
