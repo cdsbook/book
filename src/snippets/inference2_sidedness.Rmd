@@ -1,0 +1,29 @@
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/krwRh7G6FPI?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1EqzByiMEvi9V9MfPQ9XsLT-wcSkU69Fq/view?usp=sharing)
+
+
+### 1 or 2?
+
+<!--
+Questions to add:
+* Writing alternative hypotheses for 1 and 2 sides
+* Which parameter in code specifies order of diff calculation -> order
+* Examples of whether to use 1 or 2 sided.
+* Calculating p-value
+  * 1 sided left and right
+  * 2 sided
+-->
+
+```{r alt_hypothesis_specification-quiz, eval=is_tutorial}
+question(
+  "You want to conduct a *two-sided* hypothesis test on data from an experiment comparing whether a patient survive a disease after receiving a drug or a placebo. What is your alternative hypothesis?",
+  answer("The difference in proportions of patients who survive is significantly different between drug and placebo groups.", correct = TRUE, message = "In a two-sided test, the alternative hypothesis is that there is a difference, regardless of direction (i.e. whether the difference is positive or negative is unimportant)."),
+  answer("The difference in means of patients who survive is significantly different between drug and placebo groups."),
+  answer("The difference in means of patients who survive is significantly greater in the drug group than the placebo group."),
+  answer("The difference in proportions of patients who survive is significantly greater in the drug group than the placebo group."),
+  allow_retry = TRUE
+)
+```

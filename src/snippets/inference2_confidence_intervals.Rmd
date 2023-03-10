@@ -1,0 +1,32 @@
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iDxp6DHMHcc?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/11eyvzCjS_M-owi_6Ry3WH0_5sqk5Y009/view?usp=sharing)
+
+
+### Questions
+
+<!--
+Extra questions?
+-->
+
+```{r permutations_vs_boostrap_1_quiz, eval=is_tutorial}
+question(
+  "You want to conduct a hypothesis test using the `infer` package in R. How should you shuffle the data to generate a null distribution?",
+  answer("Bootstraps"),
+  answer("Permutations", correct = TRUE, message = "A permutation shuffles up the values of the explanatory and response variables, and so simulates a world in which there is no relationship between the two (i.e. the null hypothesis)."),
+  answer("It doesn't matter"),
+  allow_retry = TRUE
+)
+```
+
+```{r permutations_vs_boostrap_2_quiz, eval=is_tutorial}
+question(
+  "You want to calculate the confidence interval around a statistic (e.g. the mean) using the `infer` package in R. How can you approximate resampling the original population?",
+  answer("Bootstraps", correct = TRUE, message = "By taking random samples of rows from the original sample (*bootstrap resampling*), we can approximate resampling the original population."),
+  answer("It doesn't matter"),
+  answer("Permutations"),
+  allow_retry = TRUE
+)
+```

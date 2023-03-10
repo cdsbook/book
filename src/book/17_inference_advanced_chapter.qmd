@@ -1,0 +1,42 @@
+# More Statistics
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+## Statistical Inference Review
+
+{{< include ../../src/snippets/inference2_review.Rmd >}}
+
+
+## One-sided vs. two-sided tests
+
+{{< include ../../src/snippets/inference2_sidedness.Rmd >}}
+
+
+## Effect sizes
+
+{{< include ../../src/snippets/inference2_effect_sizes.Rmd >}}
+
+
+## Resampling with permutations versus bootstraps
+
+Coming soon.
+
+
+## Confidence intervals
+
+{{< include ../../src/snippets/inference2_confidence_intervals.Rmd >}}
+
+
+## Further reading
+
+If you wish to do further reading on *bootstrapping* and *confidence intervals*, here are some online book chapters on the topic. (They cover the same material, so pick the one that makes the most sense to you.)
+
+* Statistical Inference via Data Science by Chester Ismay and Albert Kim
+  * Chapter 8: Bootstrapping and Confidence Intervals - https://moderndive.com/8-confidence-intervals.html
+  
+* Statistical Modeling by Daniel Kaplan
+  * Chapter 5: Confidence Intervals - https://dtkaplan.github.io/SM2-bookdown/confidence-intervals.html
+

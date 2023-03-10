@@ -1,0 +1,82 @@
+### Video overview
+
+This video reviews the inference material covered in the first module.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pVAxez7pA1M?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1uQMSTvCp1sWsH2OY1nLfUjpXaHKgRK6s/view?usp=sharing)
+
+
+### Test your understanding
+
+<!--
+Other questions to add:
+* What is observed statistic
+* What is the null distribution
+* interpreting the p-values meaning -> the probability of coming from the null
+* alpha
+-->
+
+```{r response_vs_explanatory-quiz, eval=is_tutorial}
+question(
+  "You give sick patients either a drug or a placebo, and you measure whether they die or survive. This is stored in 2 variables, `treatment` and `outcome`, which are both categorical. What are your explanatory and response variables?",
+  answer("response = `treatment`, explanatory = `outcome`"),
+  answer("response = `outcome`, explanatory = `treatment`", correct = TRUE),
+  answer('response = `"survived"`, explanatory = `"drug"`'),
+  answer('response = `"survived"`, explanatory = `"placebo"`'),
+  allow_retry = TRUE
+)
+```
+
+```{r simulations_p_value-quiz, eval=is_tutorial}
+question(
+  "In a particular hypothesis test, we generate 10,000 permutations of our original data. 200 of them have a test statistic more extreme than our observed statistic. What is the p-value?",
+  answer("0"),
+  answer("0.01"),
+  answer("0.02", correct = TRUE, message="The p-value is the probability that a value as or more extreme than the observed statistic came from the null distribution, which equivalent to the fraction of simulations more extreme than the observed statistic. This is 200/10,000 = 0.02"),
+  answer("0.05"),
+  answer("0.1"),
+  answer("0.2"),
+  answer("0.5"),
+  answer("1"),
+  answer("2"),
+  answer("5"),
+  answer("50"),
+  allow_retry = TRUE
+)
+```
+
+
+
+### Supplementary reading
+
+These two chapters provide a good review of the original statistical inference material that we covered in the first inference module. You should review them before starting this week's assignment:
+
+* Statistical Inference via Data Science by Chester Ismay and Albert Kim (available online at: https://moderndive.com/)
+  * Chapter 7: Sampling - https://moderndive.com/7-sampling.html
+  * Chapter 9: Hypothesis testing - https://moderndive.com/9-hypothesis-testing.html
+  
+On a lighter note, you can get an animated explanation of a hypothesis test with alpacas here: https://www.jwilber.me/permutationtest/
+
+### Code review
+
+In the first inference module, we used the `infer` package to simulate the null distribution.
+
+We ran 10,000 random *permutations* to shuffle up the values of the response and explanatory variables. This random shuffling ensures that we simulate a distribution where there is no relationship between the two variables.
+
+```r
+<DATAFRAME> %>%
+  specify(<RESPONSE> ~ <EXPLANATORY>) %>%
+  hypothesize(null = "independence") %>%
+  generate(10000, type = "permute") %>%
+  calculate(stat = "...", order = c(..., ...))
+```
+
+* The `specify` function defines the response and explanatory variables.
+* The `hypothesize` function declares what the null hypothesis is between those variables. `"independence"` means that there is no relationship between them.
+* The `generate` function is where the simulations are actually run: we specify how many, and how to shuffle the data (in this case, using permutations).
+* The `calculate` functions takes the simulations and calculates a *test statistic*: i.e. a single value for each one (e.g. the difference in proportions, or the difference in means).
+
+<!--
+### Test how much you remember!
+-->

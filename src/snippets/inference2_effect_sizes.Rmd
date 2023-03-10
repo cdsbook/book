@@ -1,0 +1,10 @@
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o7oJPQMUS6A?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1Ysg-oR6FLpuJ2OQ9ArzPNLvakImMgpBP/view?usp=sharing)
+
+<!--
+### Question time
+
+-->
