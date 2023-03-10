@@ -1,4 +1,4 @@
-#More about R
+# More about R
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
@@ -7,203 +7,18 @@ suppressPackageStartupMessages(library(tidyverse))
 
 ## Welcome
 
-{{< include ../../src/snippets/inference_basic_intro.Rmd >}}
+This chapter/tutorial will start with a refresher on basic programming in R (from Module 1: variables, data types, functions), and then introduce some additional programming concepts such as control flow and loops.
 
-This tutorial will start with a refresher on basic programming in R (from Module 1: variables, data types, functions), and then introduce some additional programming concepts such as control flow and loops.
+{{< include ../../src/snippets/r_programming2_intro.Rmd >}}
 
 
 ## Values and variables
 
-### A recap
+{{< include ../../src/snippets/r_programming2_variables_recap.Rmd >}}
 
-By now you are familiar with the idea that in R we have **values** and **variables**. We can write something like:
+{{< include ../../src/snippets/r_programming2_expressions_statements.Rmd >}}
 
-```r
-x <- 2
-```
-
-to store the *value* 2 in the *variable* `x`. We do so using the **assignment operator**, `<-`.
-
-This allows us to use a variable such as `x` in future lines of code. When that future code is run, the variable will be replaced with its value, e.g.
-
-```r
-x + 3
-```
-
-becomes
-
-```r
-2 + 3
-```
-
-### Expressions and statements
-
-As we learn more about programming, it's useful to distinguish between different types of code.
-
-In programming, an **expression** is a piece of code that *returns a value*. For example:
-
-* `2 + 2` returns the value `4`
-* `1 == 2` returns the value `FALSE`
-
-If you run a line of R code that contains just an expression by itself, the expression will be **evaluated**, and the result will by displayed in the RStudio Console.
-
-However, the result of an expression is not saved by default. Instead it is just calculated and then discarded by the program. Otherwise, if you kept bits of data you don't need, your computer would very quickly run out of memory!
-
-Therefore we almost never want an expression by itself - instead we want to do something with it, such as assigning it to a variable. Later in this tutorial we will learn of other things we can do with the results of expressions.
-
-A **statement** is a line of code that runs but *does not return a value*. If nothing is printed out in the Console when you run a line of code, then that line is a statement.
-
-```{r expression-statement-1, echo=FALSE}
-question("Is `2` an *expression*, a *statement*, or neither?",
-  answer("Expression", correct = TRUE, message = "A value by itself is a valid expression. R will run this line, and it will evaluate to itself (i.e. `2`)."),
-  answer("Statement"),
-  answer("Neither"),
-  allow_retry = TRUE
-)
-```
-
-```{r expression-statement-2, echo=FALSE}
-question("Is `x <- 2` an *expression*, a *statement*, or neither?",
-  answer("Expression"),
-  answer("Statement", correct = TRUE, message = "There is no output in the Console from the assignment operation, so we call a line of code like this an *assignment statement*."),
-  answer("Neither"),
-  allow_retry = TRUE
-)
-```
-
-```{r expression-statement-3, echo=FALSE}
-question("Is `TRUE` an *expression*, a *statement*, or neither?",
-  answer("Expression", correct = TRUE, message = "`TRUE` is a value of the *Boolean data type* - therefore it is a valid expression in its own right, and will evaluate to itself."),
-  answer("Statement"),
-  answer("Neither"),
-  allow_retry = TRUE
-)
-```
-
-```{r expression-statement-4, echo=FALSE}
-question("Is `2 + TRUE` an *expression*, a *statement*, or neither?",
-  answer("Expression", correct = TRUE, message = "An expression can contain multiple values and operations on those values. The Boolean value `TRUE` is mathematically equal to the number 1, so the result of this expression is `3`. (`FALSE` is equal to 0.)"),
-  answer("Statement"),
-  answer("Neither"),
-  allow_retry = TRUE
-)
-```
-
-```{r expression-statement-5, echo=FALSE}
-question("Is `y <- 2 + TRUE` an *expression*, a *statement*, or neither?",
-  answer("Expression"),
-  answer("Statement", correct = TRUE, message = "Everything on the right of the assignment operator `<-` is the expression that will first be evaluated to a single value (statements can contain expressions). This value will be stored in the variable on the left."),
-  answer("Neither"),
-  allow_retry = TRUE
-)
-```
-
-```{r expression-statement-6, echo=FALSE}
-question("Is `2 +` an *expression*, a *statement*, or neither?",
-  answer("Expression"),
-  answer("Statement"),
-  answer("Neither", correct = TRUE, message = "This is an *incomplete* expression or statement which will result in an error when run in R because there must be some value on the right of the `+`."),
-  allow_retry = TRUE
-)
-```
-
-
-### How an R program runs
-
-What happens when you run an R program (or a code chunk in an RMarkdown document)? And why does this mean that `2 +` by itself is not a valid expression?
-
-But why will this code cause an error:
-
-```r
-2 +
-```
-
-when this code will run successfully?
-
-```r
-2 +
-2
-```
-
-When you run an R program, your code is sent, **line by line** to another program called the R **interpreter** (this is what is running in the RStudio Console). The interpreter converts your code into electrical signals that can be understood by your computer, and then takes the computer's output and turns it back into a readable response that it displays on the screen.
-
-We do not need to worry about how this happens, but the important thing to note is that this happens one line at a time. So this is why `2 +` doesn't work: it gets to the end of the line and has nothing to add to the first number.
-
-*However...* if a line ends in an incomplete expression, then before giving an error, R will first look to see if the next line could be the continuation of the first. This is why this code chunk works, even though the expression has been broken over multiple lines:
-
-```r
-2 +
-2
-```
-
-As programmers, we want to format our code to be read by humans not computers (R only cares if your code is correct, not it is easy to read). It sometimes helps readability to break long lines into multiple lines. For example, compare:
-
-```r
-some_dataframe %>% filter(col1==2) %>% select(col2,col3) %>% ggplot()+geom_point(mapping=aes(x=col3,y=col2))
-```
-
-with the same code broken over several lines:
-
-```r
-some_dataframe %>%
-  filter(col1 == 2) %>% 
-  select(col2, col3) %>% 
-  ggplot() + 
-  geom_point(
-    mapping = aes(
-        x = col3,
-        y = col2
-      )
-    )
-```
-
-Also note that *indentation aids readability by indicating what goes together*:
-
-* When we break an expression over multiple lines, you should indent every subsequent line of that expression by 2 spaces to indicate to a reader that it is part of the same expression. 
-* In addition, if you insert a line break between a set of parentheses `(...)`, you should also indent the contents of those parentheses by 2 spaces (as we have done with  both the `geom_point()` and `aes()` functions above). 
-
-Long lines of code in an RMarkdown code chunk will also overrun the right margin of a PDF after you knit, as lines in a code chunk are not automatically wrapped onto the next line, unlike regular text. Therefore you may have to break up a long line simply to fit it on the page.
-
-What about this code?
-
-```r
-2 + 
-  y <- TRUE
-```
-
-```{r multiline-1, echo=FALSE}
-question("The code chunk above will:",
-  answer("Run, but return the value 3 and store `TRUE` in y"),
-  answer("Run, but return the value 2 and store `TRUE` in y"),
-  answer("Give an error that the variable `y` does not exist in the environment"),
-  answer("Statement"),
-  answer("Give an error that `2 + y` is not a variable", correct = TRUE, message = "This is technically one line of code: `2 + y <- TRUE`. However the left-hand side of `<-` must be a variable, but `2 + y` is not a variable, so this will"),
-  allow_retry = TRUE,
-  random_answer_order = TRUE,
-  incorrect = "What would the code look like if you formatted it all on a single line?"
-)
-```
-
-What about this code chunk?
-
-```r
-some_dataset %>%
-  filter(col_A == "some_value")
-  mutate(
-    new_column = col_B * 100
-  )
-```
-
-```{r multiline-2, echo=FALSE}
-question("The code chunk above will:",
-  answer("Run just fine"),
-  answer("There will be an error in the `mutate` function", correct = TRUE, message = "We have forgotten a pipe operator after the `filter` function! Therefore, R will evaluate the first two lines, but treat the `mutate` function as a separate expression - however `mutate` never gets a dataset input, which is the required first argument of the function, so it will generate an error."),
-  answer("There will be an error in the `filter` function"),
-  allow_retry = TRUE,
-  random_answer_order = TRUE,
-  incorrect = "How does R know whether it has reached the end of an expression or it should continue to look on the next line?"
-)
-```
+{{< include ../../src/snippets/r_programming2_execution.Rmd >}}
 
 ## Data types
 
@@ -221,6 +36,8 @@ Lists
 Dataframes and tibbles.
 -->
 
+
+
 In the first interactive tutorial, *An Introduction to Programming in R*, you learned about basic **data types** such as numbers, character strings, and Boolean values.
 
 You also learned about more complex **data structures** such as vectors and lists which can hold multiple values of those basic data types.
@@ -233,156 +50,23 @@ However, the dataframe has been in R since the language was first created, and a
 
 The `tidyverse` collection of packages that we have been using add a new version of a dataframe that fix a lot of these problems called the **tibble**. We will use the names *dataframe* and *tibble* interchangeably in this course, and for the most part they are pretty similar, but you should be aware that they have some subtle differences and you should use tibbles when possible.
 
-### Vectors
-
-You can create a vector with the `c()` function. You can also create a vector of numbers using the `:` operator. For example, these two lines both create the same vector of the values 1 through 5:
-
-```{r, echo=TRUE}
-c(1,2,3,4,5)
-```
-
-```{r, echo=TRUE}
-1:5
-```
 
 
-<p class="comment3">
-Create a vector of all the integer numbers from 2 to 250.
-</p>
+{{< include ../../src/snippets/r_programming2_vectors.Rmd >}}
 
-```{r aiwkmkcqayvrufhf, exercise = TRUE}
+{{< include ../../src/snippets/r_programming2_tibbles.Rmd >}}
 
-```
-
-```{r aiwkmkcqayvrufhf-hint-1}
-# hint text
-"Try using the `:` operator"
-```
-
-```{r aiwkmkcqayvrufhf-solution}
-2:250
-```
-
-```{r aiwkmkcqayvrufhf-check}
-# check code
-gradethis::grade_code()
-```
-
-
-### Other vector tips
-
-There are several other useful things to remember about vectors:
-
-* You can combine two vectors into a single vector with the `c()` function:
-
-    ```{r, echo=TRUE}
-    x <- 1:3
-    y <- 4:6
-    
-    c(y, x)
-    ```
-
-* You can *extract* a single value from a vector by **indexing** into the vector with square brackets `[...]` and the position of item that you want:
-
-    ```{r, echo=TRUE}
-    x <- 101:110
-    
-    x[5]
-    ```
-
-* You can change any value in a vector with square brackets and the assignment operator:
-
-    ```{r, echo=TRUE}
-    x <- 1:5
-    x[2] <- 42
-    
-    x
-    ```
-
-* You can even extend a vector by one element by assigning to a position 1 higher than it's current length:
-
-    ```{r, echo=TRUE}
-    x <- 1:5
-    x[6] <- 42
-    
-    x
-    ```
-
-<!--
-Add exercises
--->
-
-### Tibbles
-
-You can create a tibble using the `tibble()` function. The arguments of the function should be vectors that will form the columns of the table, for example:
-
-```{r, echo=TRUE}
-b <- c(TRUE, FALSE, TRUE)
-z <- c("Anna", "Bob", "Carlos")
-
-tibble(
-  a = 1:3,
-  4:6,
-  student_name = z,
-  b
-)
-```
-
-Note that:
-* if the vector is stored in a variable, the variable name will be the column name (e.g. column `b`)
-* you can override the column name by using `new_name = the_vector` as we did for the 1st and 3rd columns
-* if you do not, you may get an unsual column name, e.g. the 2nd column
-
-<p class="comment3">
-Fill in the blanks to create a tibble with the column names: `student`, `grade`, `pass` (in that order)
-</p>
-
-```{r fjvsmmyysjpaxqmf, exercise = TRUE}
-student <- c("Daphne", "Ed", "Frankie")
-col_3 <- c(TRUE, TRUE, FALSE)
-g <- c("A", "C", "F")
-
-tibble(
-  ____,
-  ____,
-  ____
-  )
-```
-
-```{r fjvsmmyysjpaxqmf-hint-1}
-# hint text
-""
-```
-
-```{r fjvsmmyysjpaxqmf-hint-2}
-# hint text
-""
-```
-
-```{r fjvsmmyysjpaxqmf-solution}
-# solution code
-student <- c("Daphne", "Ed", "Frankie")
-col_3 <- c(TRUE, TRUE, FALSE)
-g <- c("A", "C", "F")
-
-tibble(
-  student,
-  grade = g,
-  pass = col_3
-  )
-```
-
-```{r fjvsmmyysjpaxqmf-check}
-# check code
-gradethis::grade_code()
-```
-
-
-
-<!--
 ## Functions
--->
 
+Coming soon.
+
+## Scope and the environment
+
+Coming soon.
+
+<!--
+Running functions from packages without loading the package...
+-->
 
 ## Control Flow
 
@@ -392,124 +76,10 @@ But what about if you don't always want to go to the next line? Maybe want to ju
 
 In the first interactive tutorial we mentioned **functions**, which are a way of saving particular lines of code so that they can be re-run. You learned how to **define** a function that had several input **parameters**, and then **call** it when you want to run it by *passing* values as **arguments** for each parameter. (Yes, there are a lot of words to learn for functions - you should review the first tutorial if this makes no sense!)
 
-### *If*-statements
-
-There are also methods of **control flow** for choosing whether to skip a line entirely. We can use an `if` statement to run one or more lines of code based on the result of a Boolean condition:
-
-```r
-if(some_boolean_condition_is_TRUE){
-  run the code inside these curly brackets
-}
-```
-
-* A Boolean condition is an expression that results in a Boolean value (`TRUE` or `FALSE`). If the expression evaluates to `TRUE`, then the code following the *if* statements inside the curly brackets `{...}` is run.
-* You are already familiar with these conditions, as you have used them in the `filter()` function to indicate which rows to pick from a dataframe.
-
-<p class="comment3">
-Change the value of the `x` variable in the first line so that the code in the if statement is run.
-</p>
-
-```{r qzxwzhahunefufkc, exercise = TRUE}
-x <- "ninety-nine"
-
-if(x == 99){
-  print("You did it!")
-}
-
-print("This will always run.")
-```
-<!--
-```{r qzxwzhahunefufkc-hint-1}
-# hint text
-""
-```
-
-```{r qzxwzhahunefufkc-hint-2}
-# hint text
-""
-```
--->
-
-```{r qzxwzhahunefufkc-solution}
-x <- 99
-
-if(x == 99){
-  print("You did it!")
-}
-
-print("This will always run.")
-```
-
-```{r qzxwzhahunefufkc-check}
-# check code
-gradethis::grade_code()
-```
 
 
+{{< include ../../src/snippets/r_programming2_if_else.Rmd >}}
 
-### *If/else*-statements
-
-Often you may want to do one thing if a condition is TRUE, and something else if it's not. In this case you can put an `else{...}` block after the `if{...}` block:
-
-```r
-if(some_boolean_condition_is_TRUE){
-  if TRUE, run the code inside these curly brackets
-} else {
-  otherwise, run this instead
-}
-```
-
-<p class="comment3">
-Change the Boolean value in the `if` parentheses so that the else block is executed instead.
-</p>
-
-```{r dxkfdawzkzncnspv, exercise = TRUE}
-if(TRUE){
-  print("the condition was TRUE")
-} else{
-  print("the expression was FALSE")
-}
-```
-
-```{r dxkfdawzkzncnspv-hint-1}
-# hint text
-""
-```
-
-```{r dxkfdawzkzncnspv-hint-2}
-# hint text
-""
-```
-
-```{r dxkfdawzkzncnspv-solution}
-if(FALSE){
-  print("the condition was TRUE")
-} else{
-  print("the expression was FALSE")
-}
-```
-
-```{r dxkfdawzkzncnspv-check}
-# check code
-gradethis::grade_code()
-```
-
-In general you won't want to put just `TRUE` or `FALSE` in the parentheses in real world code, because it will always execute one of the blocks or the other - however it is a valid Boolean expression!
-
-<!--
-multiple if/else
-
-### The `if_else()` function
-
-Sometimes we want to 
-
-if_else inside mutate
-
-case_when inside mutate
-
-True and False as 0 and 1
-
--->
 
 ## Loops
 
@@ -517,88 +87,8 @@ Sometimes you want to run a particular piece of code over and over again (after 
 
 To do this we need to use a **loop**.
 
-### *For* loops
+{{< include ../../src/snippets/r_programming2_for_loops.Rmd >}}
 
-The most common type of loop in R is the **for loop**.
-
-The idea behind the for loop is that "*for* every *thing* in a *group of things*, run some code".
-
-In R code, we would write this as:
-
-```r
-for(thing in many_things){
-  some code to run
-}
-```
-
-For example, you could loop through a vector of numbers, and print out each number:
-
-```{r wyfjiaqcdwwcrasz, exercise = TRUE}
-for(x in 1:10){
-  print(x)
-}
-```
-
-<!--
-```{r wyfjiaqcdwwcrasz-hint-1}
-# hint text
-""
-```
-
-```{r wyfjiaqcdwwcrasz-hint-2}
-# hint text
-""
-```
-
-```{r wyfjiaqcdwwcrasz-solution}
-for(x in 1:10){
-  print(x)
-}
-```
-
-```{r wyfjiaqcdwwcrasz-check}
-# check code
-gradethis::grade_code()
-```
--->
-
-Note that on each **iteration** of the loop we update the variable `x` (or whatever you choose to call it) and that variable can be used in the code inside the for loop's code block `{...}`
-
-<p class="comment3">
-Fill in the blank in the *if* statement's condition so that only *even* numbers are printed out. (Remember that an even number divided by 2 will have have a remainder of 0.)
-</p>
-
-```{r yrmkqxvwpawfdzeo, exercise = TRUE}
-for(x in 1:10){
-  if(_____){
-    print(x)
-  }
-}
-```
-
-```{r yrmkqxvwpawfdzeo-hint-1}
-# hint text
-""
-```
-
-```{r yrmkqxvwpawfdzeo-hint-2}
-# hint text
-""
-```
-
-```{r yrmkqxvwpawfdzeo-solution}
-# solution code
-for(x in 1:10){
-  if(x %% 2 == 0){
-    print(x)
-  }
-}
-```
-
-```{r yrmkqxvwpawfdzeo-check}
-# check code
-gradethis::grade_code()
-```
 
 
 ### Vectorization
@@ -611,7 +101,6 @@ We do not have to worry about this too much, as we are working on small datasets
 
 There are also situations where we have to use loops rather than vectorized operations (i.e. if one calculation depends on the result of the previous). However, if you are working on large datasets in R in the future, and your code is running too slowly, see if there is a way to speed it up by applying an operation to entire vectors at a time (rather than looping through a vector).
 
-
 <!--
 
 
@@ -620,4 +109,19 @@ Make a note about this? Optional/advanced
 Timing?
 
 Mapping functions?
+-->
+
+## Installing R packages
+
+Coming soon.
+
+<!--
+- install.packages()
+- installation location
+- different versions of R
+- dependencies and installation problems -> refer to solutions in the FAQ.
+  - installing underlying software
+  - installing a different version of the package (possibly from a different location/mirror)
+  
+
 -->

@@ -1,0 +1,21 @@
+### A recap
+
+By now you are familiar with the idea that in R we have **values** and **variables**. We can write something like:
+
+```r
+x <- 2
+```
+
+to store the *value* 2 in the *variable* `x`. We do so using the **assignment operator**, `<-`.
+
+This allows us to use a variable such as `x` in future lines of code. When that future code is run, the variable will be replaced with its value, e.g.
+
+```r
+x + 3
+```
+
+becomes
+
+```r
+2 + 3
+```

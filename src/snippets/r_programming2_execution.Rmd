@@ -1,0 +1,96 @@
+### How an R program runs
+
+What happens when you run an R program (or a code chunk in an RMarkdown document)? And why does this mean that `2 +` by itself is not a valid expression?
+
+But why will this code cause an error:
+
+```r
+2 +
+```
+
+when this code will run successfully?
+
+```r
+2 +
+2
+```
+
+When you run an R program, your code is sent, **line by line** to another program called the R **interpreter** (this is what is running in the RStudio Console). The interpreter converts your code into electrical signals that can be understood by your computer, and then takes the computer's output and turns it back into a readable response that it displays on the screen.
+
+We do not need to worry about how this happens, but the important thing to note is that this happens one line at a time. So this is why `2 +` doesn't work: it gets to the end of the line and has nothing to add to the first number.
+
+*However...* if a line ends in an incomplete expression, then before giving an error, R will first look to see if the next line could be the continuation of the first. This is why this code chunk works, even though the expression has been broken over multiple lines:
+
+```r
+2 +
+2
+```
+
+As programmers, we want to format our code to be read by humans not computers (R only cares if your code is correct, not it is easy to read). It sometimes helps readability to break long lines into multiple lines. For example, compare:
+
+```r
+some_dataframe %>% filter(col1==2) %>% select(col2,col3) %>% ggplot()+geom_point(mapping=aes(x=col3,y=col2))
+```
+
+with the same code broken over several lines:
+
+```r
+some_dataframe %>%
+  filter(col1 == 2) %>% 
+  select(col2, col3) %>% 
+  ggplot() + 
+  geom_point(
+    mapping = aes(
+        x = col3,
+        y = col2
+      )
+    )
+```
+
+Also note that *indentation aids readability by indicating what goes together*:
+
+* When we break an expression over multiple lines, you should indent every subsequent line of that expression by 2 spaces to indicate to a reader that it is part of the same expression. 
+* In addition, if you insert a line break between a set of parentheses `(...)`, you should also indent the contents of those parentheses by 2 spaces (as we have done with  both the `geom_point()` and `aes()` functions above). 
+
+Long lines of code in an RMarkdown code chunk will also overrun the right margin of a PDF after you knit, as lines in a code chunk are not automatically wrapped onto the next line, unlike regular text. Therefore you may have to break up a long line simply to fit it on the page.
+
+What about this code?
+
+```r
+2 + 
+  y <- TRUE
+```
+
+```{r multiline-1, echo=FALSE, eval=is_tutorial}
+question("The code chunk above will:",
+  answer("Run, but return the value 3 and store `TRUE` in y"),
+  answer("Run, but return the value 2 and store `TRUE` in y"),
+  answer("Give an error that the variable `y` does not exist in the environment"),
+  answer("Statement"),
+  answer("Give an error that `2 + y` is not a variable", correct = TRUE, message = "This is technically one line of code: `2 + y <- TRUE`. However the left-hand side of `<-` must be a variable, but `2 + y` is not a variable, so this will"),
+  allow_retry = TRUE,
+  random_answer_order = TRUE,
+  incorrect = "What would the code look like if you formatted it all on a single line?"
+)
+```
+
+What about this code chunk?
+
+```r
+some_dataset %>%
+  filter(col_A == "some_value")
+  mutate(
+    new_column = col_B * 100
+  )
+```
+
+```{r multiline-2, echo=FALSE, eval=is_tutorial}
+question("The code chunk above will:",
+  answer("Run just fine"),
+  answer("There will be an error in the `mutate` function", correct = TRUE, message = "We have forgotten a pipe operator after the `filter` function! Therefore, R will evaluate the first two lines, but treat the `mutate` function as a separate expression - however `mutate` never gets a dataset input, which is the required first argument of the function, so it will generate an error."),
+  answer("There will be an error in the `filter` function"),
+  allow_retry = TRUE,
+  random_answer_order = TRUE,
+  incorrect = "How does R know whether it has reached the end of an expression or it should continue to look on the next line?"
+)
+```

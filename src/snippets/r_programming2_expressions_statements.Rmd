@@ -1,0 +1,70 @@
+### Expressions and statements
+
+As we learn more about programming, it's useful to distinguish between different types of code.
+
+In programming, an **expression** is a piece of code that *returns a value*. For example:
+
+* `2 + 2` returns the value `4`
+* `1 == 2` returns the value `FALSE`
+
+If you run a line of R code that contains just an expression by itself, the expression will be **evaluated**, and the result will by displayed in the RStudio Console.
+
+However, the result of an expression is not saved by default. Instead it is just calculated and then discarded by the program. Otherwise, if you kept bits of data you don't need, your computer would very quickly run out of memory!
+
+Therefore we almost never want an expression by itself - instead we want to do something with it, such as assigning it to a variable. Later in this tutorial we will learn of other things we can do with the results of expressions.
+
+A **statement** is a line of code that runs but *does not return a value*. If nothing is printed out in the Console when you run a line of code, then that line is a statement.
+
+```{r expression-statement-1, echo=FALSE, eval=is_tutorial}
+question("Is `2` an *expression*, a *statement*, or neither?",
+  answer("Expression", correct = TRUE, message = "A value by itself is a valid expression. R will run this line, and it will evaluate to itself (i.e. `2`)."),
+  answer("Statement"),
+  answer("Neither"),
+  allow_retry = TRUE
+)
+```
+
+```{r expression-statement-2, echo=FALSE, eval=is_tutorial}
+question("Is `x <- 2` an *expression*, a *statement*, or neither?",
+  answer("Expression"),
+  answer("Statement", correct = TRUE, message = "There is no output in the Console from the assignment operation, so we call a line of code like this an *assignment statement*."),
+  answer("Neither"),
+  allow_retry = TRUE
+)
+```
+
+```{r expression-statement-3, echo=FALSE, eval=is_tutorial}
+question("Is `TRUE` an *expression*, a *statement*, or neither?",
+  answer("Expression", correct = TRUE, message = "`TRUE` is a value of the *Boolean data type* - therefore it is a valid expression in its own right, and will evaluate to itself."),
+  answer("Statement"),
+  answer("Neither"),
+  allow_retry = TRUE
+)
+```
+
+```{r expression-statement-4, echo=FALSE, eval=is_tutorial}
+question("Is `2 + TRUE` an *expression*, a *statement*, or neither?",
+  answer("Expression", correct = TRUE, message = "An expression can contain multiple values and operations on those values. The Boolean value `TRUE` is mathematically equal to the number 1, so the result of this expression is `3`. (`FALSE` is equal to 0.)"),
+  answer("Statement"),
+  answer("Neither"),
+  allow_retry = TRUE
+)
+```
+
+```{r expression-statement-5, echo=FALSE, eval=is_tutorial}
+question("Is `y <- 2 + TRUE` an *expression*, a *statement*, or neither?",
+  answer("Expression"),
+  answer("Statement", correct = TRUE, message = "Everything on the right of the assignment operator `<-` is the expression that will first be evaluated to a single value (statements can contain expressions). This value will be stored in the variable on the left."),
+  answer("Neither"),
+  allow_retry = TRUE
+)
+```
+
+```{r expression-statement-6, echo=FALSE, eval=is_tutorial}
+question("Is `2 +` an *expression*, a *statement*, or neither?",
+  answer("Expression"),
+  answer("Statement"),
+  answer("Neither", correct = TRUE, message = "This is an *incomplete* expression or statement which will result in an error when run in R because there must be some value on the right of the `+`."),
+  allow_retry = TRUE
+)
+```

@@ -1,0 +1,82 @@
+### *For* loops
+
+The most common type of loop in R is the **for loop**.
+
+The idea behind the for loop is that "*for* every *thing* in a *group of things*, run some code".
+
+In R code, we would write this as:
+
+```r
+for(thing in many_things){
+  some code to run
+}
+```
+
+For example, you could loop through a vector of numbers, and print out each number:
+
+```{r wyfjiaqcdwwcrasz, exercise = is_tutorial}
+for(x in 1:10){
+  print(x)
+}
+```
+
+<!--
+```{r wyfjiaqcdwwcrasz-hint-1}
+# hint text
+""
+```
+
+```{r wyfjiaqcdwwcrasz-hint-2}
+# hint text
+""
+```
+
+```{r wyfjiaqcdwwcrasz-solution}
+for(x in 1:10){
+  print(x)
+}
+```
+
+```{r wyfjiaqcdwwcrasz-check}
+# check code
+gradethis::grade_code()
+```
+-->
+
+Note that on each **iteration** of the loop we update the variable `x` (or whatever you choose to call it) and that variable can be used in the code inside the for loop's code block `{...}`
+
+<p class="comment3">
+Fill in the blank in the *if* statement's condition so that only *even* numbers are printed out. (Remember that an even number divided by 2 will have have a remainder of 0.)
+</p>
+
+```{r yrmkqxvwpawfdzeo, exercise = TRUE, eval=is_tutorial}
+for(x in 1:10){
+  if(_____){
+    print(x)
+  }
+}
+```
+
+```{r yrmkqxvwpawfdzeo-hint-1, eval=is_tutorial}
+# hint text
+""
+```
+
+```{r yrmkqxvwpawfdzeo-hint-2, eval=is_tutorial}
+# hint text
+""
+```
+
+```{r yrmkqxvwpawfdzeo-solution, eval=is_tutorial}
+# solution code
+for(x in 1:10){
+  if(x %% 2 == 0){
+    print(x)
+  }
+}
+```
+
+```{r yrmkqxvwpawfdzeo-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```

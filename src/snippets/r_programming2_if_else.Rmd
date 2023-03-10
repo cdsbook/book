@@ -1,0 +1,118 @@
+### *If*-statements
+
+There are also methods of **control flow** for choosing whether to skip a line entirely. We can use an `if` statement to run one or more lines of code based on the result of a Boolean condition:
+
+```r
+if(some_boolean_condition_is_TRUE){
+  run the code inside these curly brackets
+}
+```
+
+* A Boolean condition is an expression that results in a Boolean value (`TRUE` or `FALSE`). If the expression evaluates to `TRUE`, then the code following the *if* statements inside the curly brackets `{...}` is run.
+* You are already familiar with these conditions, as you have used them in the `filter()` function to indicate which rows to pick from a dataframe.
+
+<p class="comment3">
+Change the value of the `x` variable in the first line so that the code in the if statement is run.
+</p>
+
+```{r qzxwzhahunefufkc, exercise = TRUE, eval=is_tutorial}
+x <- "ninety-nine"
+
+if(x == 99){
+  print("You did it!")
+}
+
+print("This will always run.")
+```
+<!--
+```{r qzxwzhahunefufkc-hint-1}
+# hint text
+""
+```
+
+```{r qzxwzhahunefufkc-hint-2}
+# hint text
+""
+```
+-->
+
+```{r qzxwzhahunefufkc-solution, eval=is_tutorial}
+x <- 99
+
+if(x == 99){
+  print("You did it!")
+}
+
+print("This will always run.")
+```
+
+```{r qzxwzhahunefufkc-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+
+
+### *If/else*-statements
+
+Often you may want to do one thing if a condition is TRUE, and something else if it's not. In this case you can put an `else{...}` block after the `if{...}` block:
+
+```r
+if(some_boolean_condition_is_TRUE){
+  if TRUE, run the code inside these curly brackets
+} else {
+  otherwise, run this instead
+}
+```
+
+<p class="comment3">
+Change the Boolean value in the `if` parentheses so that the else block is executed instead.
+</p>
+
+```{r dxkfdawzkzncnspv, exercise = TRUE, eval=is_tutorial}
+if(TRUE){
+  print("the condition was TRUE")
+} else{
+  print("the expression was FALSE")
+}
+```
+
+```{r dxkfdawzkzncnspv-hint-1, eval=is_tutorial}
+# hint text
+""
+```
+
+```{r dxkfdawzkzncnspv-hint-2, eval=is_tutorial}
+# hint text
+""
+```
+
+```{r dxkfdawzkzncnspv-solution, eval=is_tutorial}
+if(FALSE){
+  print("the condition was TRUE")
+} else{
+  print("the expression was FALSE")
+}
+```
+
+```{r dxkfdawzkzncnspv-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+In general you won't want to put just `TRUE` or `FALSE` in the parentheses in real world code, because it will always execute one of the blocks or the other - however it is a valid Boolean expression!
+
+<!--
+multiple if/else
+
+### The `if_else()` function
+
+Sometimes we want to 
+
+if_else inside mutate
+
+case_when inside mutate
+
+True and False as 0 and 1
+
+-->
