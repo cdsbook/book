@@ -32,7 +32,7 @@ sim_df %>%
 
 But what does a linear model look like in higher dimensions?
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, eval=is_tutorial}
 # Code adapted from https://chart-studio.plotly.com/~diego898/122/_3d-plane-of-best-fit-through-generated-dummy-data/#code
 trace1 <- list(
   uid = "5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b", 

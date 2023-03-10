@@ -47,7 +47,7 @@ For comparison, here are three example residual vs predicted plots (with purple 
 
 
 ```{r, out.width = "600px"}
-knitr::include_graphics("images/resid-vs-pred.png")
+knitr::include_graphics("../img/resid-vs-pred.png")
 ```
 
 <!--
