@@ -1,0 +1,72 @@
+# More Models
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(modelr))
+suppressPackageStartupMessages(library(broom))
+suppressPackageStartupMessages(library(plotly))
+
+set.seed(42)
+x <- 1:10 + rnorm(10, 0, 0.5)
+y <- 2*x + rnorm(10, 0, 1)
+sim_df <- tibble(x, y)
+```
+
+## Models in more dimensions
+
+{{< include ../../src/snippets/modeling2_multiple_explanatory_variables.Rmd >}}
+
+
+## Multiple regression in R
+
+{{< include ../../src/snippets/modeling2_lm_multiple_regression.Rmd >}}
+
+{{< include ../../src/snippets/modeling2_diamonds_multiple_example.Rmd >}}
+
+
+## Interaction terms
+
+{{< include ../../src/snippets/modeling2_interaction.Rmd >}}
+
+
+## Testing assumptions
+
+{{< include ../../src/snippets/modeling2_linearity_assumption.Rmd >}}
+
+{{< include ../../src/snippets/modeling2_constant_variability_assumption.Rmd >}}
+
+{{< include ../../src/snippets/modeling2_normal_residuals_assumption.Rmd >}}
+
+{{< include ../../src/snippets/modeling2_independence_assumption.Rmd >}}
+
+<!--
+TODO
+- quiz questions on assumptions
+- code questions on assumptions
+-->
+
+
+## Hypothesis tests for models
+
+{{< include ../../src/snippets/modeling2_hypothesis_tests.Rmd >}}
+
+{{< include ../../src/snippets/modeling2_p_values.Rmd >}}
+
+<!-- 
+
+TODO:
+
+## Confidence intervals for models
+
+* Use geom_smooth with method="lm" and show the se
+
+## Non-linear response variables
+
+aka. generalized linear models
+
+## Other residuals types
+
+maybe...
+
+-->

@@ -1,0 +1,34 @@
+### Linear models and hypothesis tests
+
+You may remember from our first modeling module that the `tidy` function reported a p-value for the model and for each explanatory variable. See the `p.value` columns in both of these examples:
+
+```{r}
+sim_model <- lm(y ~ x, data=sim_df)
+```
+
+
+```{r, echo = TRUE}
+sim_model %>%
+  glance() %>%
+  select(r.squared, p.value)
+```
+
+As you will remember from our inference modules, the p-value is *the probability that the actual data was generated in a world in which the null hypothesis is true*.
+
+Null hypothesis?! But we haven't specified any hypotheses for our linear model, have we?
+
+In fact, there is a null hypothesis for every linear model, although we have never formally written it down. The null hypothesis for a linear model is that *there is no relationship between the response and explanatory variables*. In other words, our null hypothesis is that the line of best fit is a horizontally flat line (e.g. the blue line in this plot):
+
+```{r}
+sim_df %>%
+  ggplot() +
+  geom_point(mapping = aes(x, y)) +
+  geom_abline(slope = 0, intercept = 0, color = "blue") +
+  ylim(-5,25)
+```
+
+In other words, the p-value is the probability that the data came from this line. Just by looking at it, we can see that this is not very likely, and in fact the p-value is 0.000005 (or 0.0005%), i.e. statistically very unlikely.
+
+We continue to use our regular significance threshold, $\alpha = 0.05$. In this case, we can reject our null hypothesis (that there is no relationship).
+
+However, hypothesis testing only tells us the probability that there is a relationship, or not. If there is a relationship, it doesn't tell us how good it is, i.e. how well our model fits the data. For this, we need to continue to use the $R^2$ value, as well as our graphs to check the 3 main assumptions of the linear model.

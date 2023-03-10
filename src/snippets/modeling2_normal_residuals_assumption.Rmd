@@ -1,0 +1,38 @@
+### Nearly-normal residuals
+
+We could plot a histogram of the residuals to see if they are normally distributed.
+
+However, it is often hard to interpret the "normality" of a histogram. Instead, a much better method is to create a Quantile-Quantile (Q-Q) plot. This video from Stat Quest gives an excellent overview of what a Q-Q plot is:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/okjYjClSjOg?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Q-Q plots are so useful that `ggplot` already contains geom functions for creating them. 
+
+First however, we need to add a column of residuals to our dataframe using the `add_residuals` function that you are already familiar with (we're also going to re-add the `pred` column to show you how to do both at the same time, and because we'll need both columns in the next section):
+
+```{r, echo=TRUE}
+diamonds_plus_preds <- diamonds %>%
+  add_predictions(diamonds_model) %>%
+  add_residuals(diamonds_model)
+```
+
+Now we can use the `diamonds_plus` data frame to create a Q-Q plot (with both points and a reference line):
+
+```{r, echo = TRUE}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_qq(mapping = aes(sample = resid))+
+  geom_qq_line(mapping = aes(sample = resid))
+```
+
+```{r qqplot_question, eval=is_tutorial}
+question(
+  "Does this model satisfy the assumption of nearly-normal residuals?",
+  answer("Yes"),
+  answer("No", correct = TRUE),
+  answer("Can't say one way or the other"),
+  incorrect = "To satisfy this assumption, the majority of the points should fall very close to the line."
+  )
+```
+
+

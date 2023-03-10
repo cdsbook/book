@@ -1,0 +1,58 @@
+### Linearity
+
+By definition, a linear model's predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e. true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables.
+
+In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a *scatter plot* of the observed response variable vs the predicted response variable.
+
+<!--
+TODO
+- need to explain this more thoroughly, ideally with a picture
+-->
+
+We call this an *observed vs predicted* plot (observed on the *y* axis, predicted on the *x*). Because these values are essentially the same number (or would be if the model went through every data point exactly), we should expect these variables to fall on a line with a slope of 1 and an intercept of 0. We will add such a reference line to our plot for comparison.
+
+Before we can do so, we need to calculate the predicted values. We can easily create a column of predicted values using the `add_predictions` function from the `broom` package, which adds a column called `pred` to a dataframe using a model (such as the `diamonds_model` that you created earlier with the `lm` function):
+
+```{r}
+diamonds_model <- lm(price ~ carat + depth, data = diamonds)
+```
+
+```{r, echo = TRUE}
+diamonds_plus_preds <- diamonds %>%
+  add_predictions(diamonds_model)
+```
+
+
+<div class="comment3">
+Using the new `diamonds_plus_preds` data frame, fill in the *3* blanks to create an *observed vs predicted* plot by:
+
+* plotting the true (observed) response variable, `price`, on the y axis, and the model's predictions, `pred`, on the x axis
+* adding a reference line using the `geom_abline` function with a slope of 1 and an intercept of 0.
+</div>
+
+```{r add_diamond_predictions, eval=is_tutorial}
+diamonds_model <- lm(price ~ carat + depth, data = diamonds)
+diamonds_plus_preds <- diamonds %>%
+  add_predictions(diamonds_model)
+```
+
+```{r xwquzrffbtcvubwf, exercise = TRUE, exercise.setup = "add_diamond_predictions", eval=is_tutorial}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = _____, y = _____)) +
+  geom_abline(slope = 1, intercept = ___, color = "red")
+```
+
+```{r xwquzrffbtcvubwf-solution, eval=is_tutorial}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = price)) +
+  geom_abline(slope = 1, intercept = 0, color = "red")
+```
+
+```{r xwquzrffbtcvubwf-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+We can see from this plot that while there is definitely a relationship, it is slightly non-linear. This is a violation of the linearity assumption.

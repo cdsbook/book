@@ -31,11 +31,11 @@ book:
       # 14 Reproducibility
       # 15 Loading Data
       # 16 More Graphs
-      # 17 More Modeling
-      # 18 More Statistics
+      - src/book/17_inference_advanced_chapter.qmd
+      - src/book/18_modeling_advanced_chapter.qmd
       # 19 Causality
       # 20 Simulation
-      # 21 Prediction
+      # - src/book/21_prediction_chapter.qmd
       # 22 Concurrent Programming
       # 23 Interfacing with C++
     # - part: "Scientific Data"

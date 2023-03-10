@@ -1,0 +1,24 @@
+### Independence and interaction
+
+So far we have assumed that each term is independent: i.e. each one contributes to the response variable $y$ a separate amount proportional to its coefficient.
+
+However, it is possible for variables to *interact* with each other:
+
+$y = m_1 x_1 + m_2 x_2 + m_3 x_1 x_2 + c$
+
+This linear model has an *interaction term*: $x_1 x_2$. What this means is that the contribution of either variable depends somewhat on the value of the other!
+
+For example, consider an experiment where we are looking at the effect of water and sunlight on plant height. Both variables may increase a plant's height - however they are also dependent on each other. If we keep a plant in complete darkness, then no amount of water will help it grow (and vice versa). In otherwords, the effect of either sunlight or water on plant height depends on how much of the other variable the plant is receiving.
+
+It is very easy to add interaction terms to a linear model. For example, the formula above would be written something like:
+
+`y ~ x1 + x2 + x1 * x2`
+
+As you can see, we just add an asterisk `*` between variables that we wish to have an interaction between.
+
+<!--
+TODO
+- graphs showing curved(?) slope of interaction model
+- quiz on interactions
+- also general polynomial terms?
+-->

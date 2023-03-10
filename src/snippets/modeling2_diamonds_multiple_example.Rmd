@@ -1,0 +1,36 @@
+### Create a multiple regression model
+
+<!-- 
+TODO
+- switch to a smaller dataset that does not take so long to generate graphs
+-->
+
+Let's create a linear model from the `diamonds` dataset.
+
+The `diamonds` dataset is included as part of the `ggplot2` package and contains observations about the properties of thousands of diamonds. We are going to use three variables from the dataset:
+
+* the `price` variable will be our response variable (i.e. y)
+* the `carat` and `depth` variables will be our explanatory variables
+
+<p class="comment3">
+Fill in the blanks to create this linear model.
+</p>
+
+```{r kovzhddvrmedbxrc, exercise = TRUE, eval=is_tutorial}
+diamonds_model <- lm(_____ ~ _______ + _______, data = _______)
+```
+
+```{r kovzhddvrmedbxrc-solution, eval=is_tutorial}
+diamonds_model <- lm(price ~ carat + depth, data = diamonds)
+```
+
+```{r kovzhddvrmedbxrc-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+<!--
+TODO
+- section on categorical explanatory variables?
+- section on confounding (builds on previous tutorial's correlation vs causation)
+-->

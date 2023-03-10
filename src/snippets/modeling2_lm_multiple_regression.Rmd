@@ -1,0 +1,70 @@
+### `lm()` with multiple explanatory variables
+
+Recall that the first argument of the `lm` function was a formula. We create an R formula by:
+
+* removing the constant coefficients
+* replacing the $=$ sign with `~` (~ means "is related to")
+
+For example,
+
+$y = m x + c$
+
+becomes
+
+`y ~ x`
+
+The same principle applies to multiple explanatory variables:
+
+
+$y = m_1 x_1 + m_2 x_2 + c$
+
+becomes
+
+`y ~ x1 + x2`
+
+<p class="comment3">
+For each of the following questions, identify the correct R formula (or original linear model equation). Some questions assume that the data is in a data frame called `df`.
+</p>
+
+<!--
+TODO:
+- include feedback on these question
+-->
+
+```{r formula1_quiz, eval=is_tutorial}
+question(
+  "What is the correct R formula for this equation: ${Price} = m_1 \\times {Bedrooms} + m_2 \\times {Sqft} + c$ ?",
+  answer("`y ~ x1 + x2`"),
+  answer("`Bedrooms + Sqft ~ Price`"),
+  answer("`Price + Bedrooms + Sqft`"),
+  answer("`Price ~ Bedrooms + Sqft`", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r formula2_quiz, eval=is_tutorial}
+question(
+  "What is the equation behind this R formula: `cost ~ labor + goods` ?",
+  answer("$y = m_1 x_1 + m_2 x_2 + c$"),
+  answer("${cost} = m_1 \\times {labor} + m_2 \\times {goods} + c$", correct = TRUE),
+  answer("$y = m_1 \\times {labor} + m_2 \\times {goods} + c$"),
+  answer("`Cost ~ Labor + Goods`"),
+  allow_retry = TRUE
+)
+```
+
+```{r formula3_quiz, eval=is_tutorial}
+question(
+  "How would you create this linear model in R? ${Price} = m_1 \\times {Bedrooms} + m_2 \\times {Sqft} + c$",
+  answer("`lm(Price ~ Bedrooms + Sqft, data = df)`", correct = TRUE),
+  answer("`lm(Price ~ Bedrooms + Sqft)`"),
+  answer("`df %>% lm(Price ~ Bedrooms + Sqft)`"),
+  answer("`Price ~ Bedrooms + Sqft`"),
+  allow_retry = TRUE
+)
+```
+
+<!--
+TODO
+- actual code exercises on this
+-->

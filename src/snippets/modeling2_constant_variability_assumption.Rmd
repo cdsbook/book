@@ -1,0 +1,56 @@
+### Constant variability
+
+To assess constant variability of the residuals, we can just plot the residuals (on the y-axis) vs the predicted response variable (x-axis): a *residuals vs predicted plot*.
+
+Again, this graph will always have just two dimensions, regardless of how many explanatory variables are in our model, and so it is ideal for assessing this assumption.
+
+In this graph, our reference line should be a horizontal line plotted at $y = 0$, because the residuals should be distributed around zero in all parts of the model.
+
+<p class="comment3">
+Fill in the *3* blanks to create a residuals vs. predicted plot (remember that these are stored in the `resid` and `pred` columns). Set the `geom_hline` to intercept at $y = 0$.
+</p>
+
+```{r add_pred_and_resid, eval=is_tutorial}
+diamonds_model <- lm(price ~ carat + depth, data = diamonds)
+diamonds_plus_preds <- diamonds %>%
+  add_predictions(diamonds_model) %>%
+  add_residuals(diamonds_model)
+```
+
+```{r zjheaqgdmjiltikc, exercise = TRUE, exercise.setup = "add_pred_and_resid", eval=is_tutorial}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = ______, y = ______)) +
+  geom_hline(yintercept = ____, color = "white", size = 2)
+```
+
+```{r zjheaqgdmjiltikc-solution, eval=is_tutorial}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = pred, y = resid)) +
+  geom_hline(yintercept = 0, color = "white", size = 2)
+```
+
+```{r zjheaqgdmjiltikc-check, eval=is_tutorial}
+# check code
+gradethis::grade_code()
+```
+
+
+We can clearly see that the variability of residuals is not constant above and below the reference line.
+
+For comparison, here are three example residual vs predicted plots (with purple guide lines showing the variability):
+
+* the left-most plot shows constant variability of the residuals above and below the line
+* the middle graph violates this assumption because the variability of the residuals increases as the predicted values increase.
+* the third graph also violates this assumption, because the variation above and below the line is not consistent (this pattern arises because there is not a linear relationship between the response and explanatory variables - the residual vs predicted plot can also be used to examine the first assumption of linearity).
+
+
+```{r, out.width = "600px"}
+knitr::include_graphics("images/resid-vs-pred.png")
+```
+
+<!--
+TODO:
+- have questions asking students to interpret different assumptions plots
+-->

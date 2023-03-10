@@ -1,0 +1,39 @@
+### p-values of individual variables
+
+The `tidy()` function also reports a p-value for each variable in the model.
+
+```{r, echo = TRUE}
+sim_model %>%
+  tidy()
+```
+
+For individual variables, the null hypothesis is that *each individual explanatory variable has no relationship with the response variable*. In other words, our null hypothesis is that the intercept and slope are 0.
+
+As we can see for this example, because the p-values of the slope is below 0.05, so we reject our null hypothesis. We find that the non-zero slope of the x variable is statistically significant. However, the intercept has a p-value of 0.26. This is greater than 0.05, so we cannot reject our null hypothesis of a zero intercept for this particular dataset.
+
+(This dataset was simulated with an intercept of zero, so that makes sense!)
+
+
+> **A note on scientific notation**
+>
+> In the previous examples, our p-values have been written as strange numbers, such as: 2.637853e-01
+>
+> This is a convenient way of writing numbers that are very large or very small. We can write 1.2 million (1,200,000) as:
+>
+> $1.2 \times 10^6$
+> 
+> i.e. 1.2 times 1 million, or
+>
+> `1.2e6`
+>
+> which uses `e` to represent "10 to the power of".
+>
+> For numbers that are less that one, we can do the same thing but use a negative power of ten. For example, we can write 0.263 as:
+> 
+> $2.63 \times 10^{-1}$
+> 
+> or
+>
+> `2.63e-1`
+>
+> because $10^{-1}$ is 0.1
