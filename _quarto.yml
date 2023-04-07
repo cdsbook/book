@@ -38,8 +38,8 @@ book:
       # - src/book/21_prediction_chapter.qmd
       # 22 Concurrent Programming
       # 23 Interfacing with C++
-    # - part: "Scientific Data"
-      # chapters:
+    - part: "Scientific Data"
+      chapters:
       # 24 Image Data
       # 25 Text Data
       # 26 Time Series
@@ -48,7 +48,7 @@ book:
       # 29 Geospatial Data
       # 30 Bioinformatic Data
       # 31 Network Data
-      # 32 Databases
+      - src/book/32_databases_chapter.qmd
       # 33 Big Data
     # - part: "Outputs"
       # chapters:

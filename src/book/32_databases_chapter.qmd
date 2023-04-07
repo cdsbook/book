@@ -1,0 +1,278 @@
+# Databases
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+## Relational data
+
+A __database__ is simply an organized way of storing data.
+
+There are obviously many ways that one could choose to organize data, but a particularly common form of database is the **relational database**, in which data is broken up into multiple tables. In general the goal of a relational database is to avoid repeating the same piece of data in multiple rows.
+
+For example, in the dataset of hobbits and addresses in the previous section, we can avoid repeating the same address for Bilbo and Frodo by splitting the addresses into a separate table. Then every hobbit who lives at a particular address gets a link to that address row in the separate address table (instead of repeatedly writing out the same address for each hobbit).
+
+In addition, relational databases follow the same rules that *tidy* datasets have to follow:
+
+1. Every column is a variable.
+2. Every row is an observation.
+3. Every cell is a single value.
+
+Relational databases are extremely common (for example, almost every website you visit has a relational database that stores the website's information), and learning how to work with these databases is a vital skill for every data scientist.
+
+
+### Joining matching rows
+
+In such cases, there are often columns in each table that link the two tables back together.
+
+For example, consider these two tables:
+
+```{r, echo=FALSE}
+tibble(
+  names = c("Bilbo", "Frodo", "Sam"),
+  age = c(111, 50, 38),
+  hobbit_hole = c(1, 1, 2)
+)
+tibble(
+  id = c(1, 2),
+  address = c("Bag End, Hobbiton", "3 Bagshot Row, Hobbiton"),
+)
+```
+
+The first table contains three hobbits. However, instead of listing out their addresses, we have instead recorded a number that corresponds to the `id` column of the second table.
+
+By matching the `hobbit_hole` column with the `id` column, we can see that Bilbo and Frodo both live at Bag End whereas Sam lives at 3 Bagshot Row.
+
+Some terminology:
+
+* In the mathematical theory of databases, each of these tables would be called a "relation", hence the name *relational data* for data stored across multiple tables in this fashion.
+
+* The `id` column in the table of addresses is an example of a **key**. A key is any column (or columns) that provide a unique way of identifying every row in a table.
+
+* The `hobbit_hole` column in the table of hobbits is a **foreign key**. This links each hobbit to the identifying key in a *different* (i.e. "foreign") table.
+
+Of course, we could just have recorded this data as a single table! For example:
+
+```{r, echo=FALSE}
+tibble(
+  names = c("Bilbo", "Frodo", "Sam"),
+  age = c(111, 50, 38),
+  hobbit_hole = c("Bag End, Hobbiton", "Bag End, Hobbiton", "3 Bagshot Row, Hobbiton"),
+)
+```
+
+What are the advantages to splitting data over multiple tables?
+
+* One reason is to avoid repeating certain values. For example, we have written the address *Bag End* twice. If we split addresses into a separate table then we only need to write it once. This means that:
+    * We need less space to store our data.
+    * We can reduce errors and inconsistencies (for example, we won't end up with two different spellings of Bag End by accident (Bag End vs. Bag-End)).
+    * Updating the dataset is easier (if we later decided that Bag End did need to be spelled with a hyphen then we would only need to update it in one place - otherwise we might easily update it for one hobbit and forget to do so for another).
+
+Of course, sometimes we need to combine data from multiple tables into a single dataframe for analysis.
+
+To do this we need to **join** the separate datasets back together, typically using by using columns that link to connected rows in different tables (such as keys and foreign keys).
+
+There are several different ways to join tables, which will link rows in different ways.
+
+To illustrate these different joins let us imagine that we are ecologists in a similar world to that inhabited by the hobbits from the previous section. We have gathered the following two tables of data about different species inhabiting this unusual world.
+
+```{r, echo=TRUE}
+species <- tibble(
+  species = c("Giant Eagle", "Goblin", "Goblin", "Giant Spider", "Balrog"),
+  location = c(2, 2, 3, 1, NA)
+)
+
+sightings <- tibble(
+  location_id = c(1,2,3,4),
+  name = c("Mirkwood Forest", "Misty Mountains", "Mordor", "The Shire")
+)
+```
+
+One important thing to note is that **there are some rows in each table that do not have a match in the other table**.
+
+<!-- TODO: Exercise identifying these rows. -->
+
+The default type of join is an **inner join** (if somebody ever says just "join" then they are usually referring to an inner join).
+
+An inner join matches rows that have the same values in some column(s). Any rows in either table that do not have a match are omitted.
+
+We will use the `inner_join()` function from the `dplyr` package which has the following signature:
+
+`inner_join(x, y, by=NULL)`
+
+* `x` and `y` are two dataframes that we wish to join.
+* The `by` parameter specifies which columns to use for matching rows. If we do not specify it then R will automatically match any columns with the same names. It is a good idea to always specify it to make sure that we are only joining on the columns that we want to match!
+
+Note that:
+* We are piping in the `species` tibble to the `inner_join()` function, but we could have written it inside the function instead.
+* The argument to `by` is a *named vector* specifying the names of the columns. 
+    * `"location_id"` is the only value in this 1 item vector, but we have also named this item as `"location"`.
+    * R will look for the column `"location"` in the first dataframe (which is `species` in this example), and `location_id` in the second dataframe (`sightings`).
+
+```{r, echo=TRUE}
+species %>%
+  inner_join(sightings, by=c("location" = "location_id"))
+```
+
+
+In our output we only have rows that had a matching row in the other dataframe (i.e. we dropped the Balrog row from the `species` dataframe and The Shire from the `sightings` table).
+
+Also, note that the Misty Mountains now appear twice in the output, even though there is only one Misty Mountains row in the `sightings` table.
+
+## Database software and SQL
+
+You could create your own simple version of a relational database by storing each of your tables in a separate file on your computer's harddrive. For simple applications this is a valid solution - however in more complex projects you start to run into problems with ensuring that tables contain the corret data, or that different programs can simultaneously access the data (and don't accidentally overwrite an update to a file created by another computer program), or simply with efficiently wrangling large amounts of data.
+
+We can solve all of these problems by using a dedicated database program that takes of care of storing our data for us. In addition to storing the data for us, these *database management systems* (DMS) will also allow us to `query` the data (i.e. access it) and will run those queries in an efficient manner.
+
+Relational databases all use a special programming language for accessing their data. This programming language is called __SQL__.
+
+> SQL stands for Structured Query Language. It is properly pronounced using by spelling out the acronym: "ess-kew-ell". However, some people pronounce it as "sequel".
+
+Fortunately we do not need to learn SQL for this class (although you should learn SQL at some point if you wish to do more work with data in the future, since most of it will be stored in databases). Instead we can interact with relational databases using the data wrangling functions that we have already learned.
+
+I.e. we can use functions like `select()`, `filter()`, and `inner_join()` directly on a relational database and R will translate these into the SQL programming language for us!
+
+
+### Connecting to a database.
+
+Since a database management system is a separate software program, we need first need to set up a connection to that database software from R.
+
+To do this we can use an R package called `DBI`. In these examples we will connect to a database program called *SQLite*. (There are many other relational database systems (MySQL, PostgreSQL, etc.) but we could connect to those with very similar code.)
+
+```r
+con <- DBI::dbConnect(RSQLite::SQLite(), "my_database_name.sqlite")
+```
+
+What is this code doing?
+
+* The `dbConnect()` function from the `DBI` package sets up the connection to the database. 
+
+  * Note that we have used the `::` operator in the general form `package_name::function` to access the function from a particular package. This way we do not have to load the package first with the `library()` function.
+
+* Then we use the `SQLite()` function from the `RSQLite package to specify that this database uses the SQLite dabase management system.
+
+* Finally we have to specify the location of the database. SQLite stores databases as a file on your computer, so here we have just written the name of such a file: `"my_database_name.sqlite"`.
+
+
+### Listing tables
+
+We can get a list of all the tables in a database by running this `DBI` package function on our new connection:
+
+```r
+DBI::dbListTables(con)
+```
+
+### Connecting to a database table
+
+To access a table in our database with our standard data wrangling functions, we need to create a new R variable that points to that table. We do this with the `tbl()` function from the `dbplyr` package:
+
+```r
+some_table <- tbl(con, "table_name")
+```
+
+This code creates a new variable called `some_table` that allows us to access a particular database table.
+
+You will need to create a new variable in the same way for every database table that you wish to access from R.
+
+> Note that the `dbplyr` package is different to `dplyr`:
+>
+> * `dplyr` contains the data wrangling functions that we have used to interact with R dataframes (e.g. `filter()`, `select()`, etc.).
+> * `dbplyr` allows us to use these data wrangling functions on databases by translating the functions into SQL, and then converting the database output back into an R dataframe.
+
+### An example: selecting columns
+
+We can now use our data wrangling functions on the database table just as if it was an R dataframe.
+
+For example, to `select()` columns:
+
+```r
+example_query <- some_table %>%
+  select(example_column_1, example_column_2)
+```
+
+One difference, however, is that this code will not create a new dataframe. Instead it creates a SQL query that *can* be run on the database (in the future) to create a new dataframe.
+
+We have stored this query in a new variable called `example_query`. If we wish, we can view what the SQL query looks like by running the `show_query()` function:
+
+```r
+example_query %>%
+  show_query()
+```
+
+To run the query and return a dataframe, you need to run the `collect()` function on the query:
+
+```r
+example_df <- example_query %>%
+  collect()
+```
+
+This will retrieve the data from the database and store it as an R dataframe in a new variable called `example_df`.
+
+## Joining data from relational database tables
+
+In the __More Data Wrangling__ chapter, we learned that we could join separate tables of data together by matching rows with 
+
+### Outer joins
+
+Sometimes we want to preserve a row from one (or both) of the tables we are joining even if there is no match with the other table. These are called **outer joins**, and there are three types depending on which table(s) we want to keep unmatched rows from:
+
+* A *left outer join* (or just "left join") keeps all rows from the table on the left (i.e. the first dataframe we name).
+* A *right outer join* (aka "right join") keeps the rows in the table on the right instead (the second dataframe we name).
+* A *full outer join* ("full join") keeps all rows from both tables.
+
+Any rows that are kept but not matched to a row in the other table will just have missing data in the other table's columns.
+
+The process for doing these joins is very similar to an inner join.
+
+
+#### Left outer joins
+
+```{r, echo=TRUE}
+species %>%
+  left_join(sightings, by=c("location" = "location_id"))
+```
+
+
+#### Right outer joins
+
+```{r, echo=TRUE}
+species %>%
+  right_join(sightings, by=c("location" = "location_id"))
+```
+
+
+#### Full outer joins
+
+```{r, echo=TRUE}
+species %>%
+  full_join(sightings, by=c("location" = "location_id"))
+```
+
+
+<!-- TODO:
+
+## Joining strategies
+
+### Joining on multiple columns 
+
+### Self-joins
+
+### Handling repeated column names
+
+### Handling missing data 
+
+
+```{r}
+# Dataset for exercises
+band_members 
+
+band_instruments
+```
+
+-->
+
+
+## Non-relational databases
+
