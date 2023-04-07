@@ -69,6 +69,8 @@ book:
 format:
   pdf:
     documentclass: scrreport
+    reference-location: margin
+    citation-location: margin
   # html:
   #   theme: cosmo
   # epub:

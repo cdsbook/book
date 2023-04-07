@@ -1,15 +1,71 @@
 # Introduction
 
 ```{r setup, include=FALSE}
-is_book = TRUE
-is_tutorial = FALSE
+source("prechapter.R")
 ```
 
 ## What are the computational and data sciences?
 
+In this book we are concerned with two closely related fields:
+
+* __Computational science__ (also called scientific computing) combines computer science (i.e. the theory of how computers work) with applied problems. 
+
+* __Data science__ similarly combines statistics (i.e. the mathematical theory of analyzing data) with applied problems.
+
+Basically we want to know how to apply computers and data to solve real world problems.
+
+There are problems in the world that we could choose to address with computers and data. In this book we will focus on problems from the natural and social sciences (i.e. physics, biology, economics, psychology, etc.).
+
+## Why this book?
+
+Many books on these topics (particularly data science) are interested in business problems. Businesses are typically concerned with learning about the future, typically in the interest of making more profit tomorrow.
+
+There is nothing inherently wrong with this, and indeed scientists are sometimes interested in predicting the future as well. However scientists are more generally interested in the broader goal of understanding *how* the world works. W
+
+Although scientists and business people have to worry about many of the same problems when dealing with computers and data, our different end goals mean that we put more emphasis on different parts of the process.
+
+As scientists, we want to learn the underlying truths of the universe.
+
+* We want to make sure that any discoveries we make are *real* (we don't want to fool ourselves, a pit that is surprisingly easy to fall into). We therefore care about making sure that our experiments are reproducible. (I.e. if we have discovered something real, any other scientist should be able to follow our steps to get to the same result.)
+
+* Since we care about understanding over prediction, we prefer simpler mathematical approaches that are easier to interpret.
+
+* As scientists we should try to focus on simplicity and clarity over glamour!
+
+That's not to say that a data scientist at a company *shouldn't* care about reproducibility, simplicity, and clarity. But if a company can make a million dollars tomorrow with a sexy but complicated and hard-to-reproduce analysis, then they should do so! But this would be bad practice for a scientist.
+
+
 ## Reproducibility
 
-```{r}
-print(is_book)
-```
+The rest of this book is focused on how to use computers and data in ways that are good scientific practice. However, let us take a moment to talk more about the importance of reproducibility.
+
+Unfortunately, scientists are not rewarded for making sure that their analyses are reproducible, or for checking that they can reproduce the work of other scientists. Consider how the process of modern science works:
+
+1. The scientist needs to get money to pay for their future work, so they apply for grants. In the USA, a lot of grant money is distributed by the federal government; other grants may come from private organizations. However, there is never enough money for every scientist who applies, and so the grant distributors have to pick their favorites. And what makes a proposal likely to be funded? Doing exciting, new research (not routine reproduction of other scientists existing work).
+
+2. Even if you decide to reproduce an experiment, its not always simple to do so. Scientists are supposed to describe the steps they followed in their experiment, but they do not always provide enough details for somebody else to replicate their work exactly. Sometimes, scientists can't even reproduce their own work (this is not uncommon in laboratory experiments in chemistry or biology, where you are working with minuscule substances that you hope are in your test tubes, but which might be subtly different from one day to the next).
+
+    In the computational and data sciences, there are often subtle choices we can make in terms of parameter values, or choice of algorithm, or simply the way that you write your code, which can significantly alter the output of your computer program. Thus you may also need the original computer code that was used for the analysis!
+
+    If the experiment is the analysis of an existing dataset, then anyone wishing to reproduce the work will need access to the same data and code. Unfortunately, scientists do not always make their data or code available when they publish their results. 
+    
+    * Sometimes this is for good reasons (e.g. protecting the privacy of the people in the dataset, or not publishing the genetic sequence of a dangerous virus).
+    
+    * Other times the reasons might be more self-serving. For example, if you were able to get a large grant of money to do a difficult experiment, you might want to publish several different analyses of the results. Unfortunately there are no prizes for second place in science, and the first person to make a discovery gets the glory. If somebody else publishes a discovery that you were about to publish yourself, then scientists call this getting "scooped". To avoid getting scooped, you might decide to restrict access to your data until you have published all the analyses of it that you want to.
+    
+      You can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an *embargo* on it. This delays the publication of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.
+    
+    * And sometimes scientists don't have a good reason for not publishing their data/code, except that it wasn't required of them[^nodatanote]. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:
+    
+    [^nodatanote]: This is a problem of both the scientists as well as science as a discpline.
+    
+      - In the USA, the federal government has started to require that any science done using its grants has to make data available when results are published.
+      
+      - New initiatives like the [Center for Open Science](https://www.cos.io/)[^csf] are promoting the sharing of data and code, for example by creating the [Open Science Framework](https://osf.io/)[^osf] for new studies
+      
+      [^csf]: https://www.cos.io/
+      [^osf]: https://osf.io/
+      
+      - There are now various websites that will permanently archive code and data so that it can be easily shared with other researchers, such as DataDryad and FigShare.
+
 
