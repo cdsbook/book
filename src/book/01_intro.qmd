@@ -39,7 +39,13 @@ That's not to say that a data scientist at a company *shouldn't* care about repr
 
 The rest of this book is focused on how to use computers and data in ways that are good scientific practice. However, let us take a moment to talk more about the importance of reproducibility.
 
-Unfortunately, scientists are not rewarded for making sure that their analyses are reproducible, or for checking that they can reproduce the work of other scientists. Consider how the process of modern science works:
+Unfortunately, scientists are not rewarded for making sure that their analyses are reproducible, or for checking that they can reproduce the work of other scientists. 
+
+In a recent survey of 1500 scientists [@baker500ScientistsLift2016], a shockingly high percentage said that they were unable to reproduce another scientist's work:
+
+{{< include ../../src/snippets/reproducibility_failures_by_discipline.Rmd >}}
+
+Consider how the process of modern science works:
 
 1. The scientist needs to get money to pay for their future work, so they apply for grants. In the USA, a lot of grant money is distributed by the federal government; other grants may come from private organizations. However, there is never enough money for every scientist who applies, and so the grant distributors have to pick their favorites. And what makes a proposal likely to be funded? Doing exciting, new research (not routine reproduction of other scientists existing work).
 

@@ -64,7 +64,7 @@ book:
     # - appendix_git_github.qmd
     # - references.qmd
 
-# bibliography: references.bib
+bibliography: references.bib
 
 format:
   pdf:
