@@ -57,20 +57,28 @@ book:
       # 36 Output: Dashboards
       # 37 Output: Apps
       # 38 Output: Software
-    # appendices:
-    # - appendix_faqs.qmd
+    - src/book/references.qmd
+  appendices:
+  - src/book/A_faqs_appendix.qmd
+  - src/book/B_vscode_appendix.qmd
     # - appendix_further_reading.qmd
     # - appendix_IDEs.qmd
     # - appendix_git_github.qmd
-    # - references.qmd
+    # 
 
 bibliography: references.bib
 
 format:
   pdf:
-    documentclass: scrreport
-    reference-location: margin
-    citation-location: margin
+    documentclass: scrreprt
+    # reference-location: margin
+    # citation-location: margin
+    # include-before-body:
+    #   - text: |
+    #     
+    # geometry:
+    #   - top=2in
+    #   - left=2in
   # html:
   #   theme: cosmo
   # epub:
