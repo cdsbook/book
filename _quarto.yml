@@ -28,7 +28,7 @@ book:
       - src/book/11_more_r_chapter.qmd
       # 12 Computing and Computers
       # 13 More Data Wrangling
-      # 14 Reproducibility
+      - src/book/14_reproducibility_chapter.qmd
       # 15 Loading Data
       # 16 More Graphs
       - src/book/17_inference_advanced_chapter.qmd
