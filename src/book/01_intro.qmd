@@ -61,9 +61,9 @@ Consider how the process of modern science works:
     
       You can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an *embargo* on it. This delays the publication of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.
     
-    * And sometimes scientists don't have a good reason for not publishing their data/code, except that it wasn't required of them[^nodatanote]. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:
+    * And sometimes scientists don't have a good reason for not publishing their data/code, except that it wasn't required of them[^no_data_note]. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:
     
-    [^nodatanote]: This is a problem of both the scientists as well as science as a discpline.
+    [^no_data_note]: This is a problem of both the scientists as well as science as a discpline.
     
       - In the USA, the federal government has started to require that any science done using its grants has to make data available when results are published.
       
