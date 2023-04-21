@@ -3,7 +3,6 @@
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
-library(sortable)
 library(modelr)
 library(broom)
 
@@ -63,7 +62,10 @@ sim_df <- tibble(x, y)
 
 {{< include ../../src/snippets/modeling_basic_assumptions_linearity.Rmd >}}
 
-<!-- TODO: visualizing models and trend lines in general - always show the underlying data points to avoid misleading -->
+<!-- TODO: visualizing models and trend lines in general - always show the underlying data points to avoid misleading
+
+TODO: use coef() function to get model coefficients.
+-->
 
 
 ### Nearly normal residuals
