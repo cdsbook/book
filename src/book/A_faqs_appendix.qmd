@@ -16,4 +16,14 @@ Solution
 * Click the "Quit" button (near the top of the page)
 * Then you should be able to reopen a project.
 
+## Packages
+
+### Installing an older version of a package
+
+To install an older version of the lmvar package, you can have students run these two lines of code:
+
+```r
+require(remotes)
+install_version("lmvar", version = "1.5.2", repos = "http://cran.us.r-project.org")
+```
 
