@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to Computing and Data for Scientists - 14&nbsp; More Models</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/book/32_databases_chapter.html" rel="next">
+<link href="../../src/book/17_inference_advanced_chapter.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/11_more_r_chapter.html">Advanced Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/18_modeling_advanced_chapter.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">An Introduction to Computing and Data for Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basic Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/02_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/03_r_programming_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/05_visualization_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/06_wrangling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/07_ggplot_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/09_modeling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_inference_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_more_r_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scientific Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#models-in-more-dimensions" id="toc-models-in-more-dimensions" class="nav-link active" data-scroll-target="#models-in-more-dimensions"><span class="header-section-number">14.1</span> Models in more dimensions</a>
+  <ul class="collapse">
+  <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables"><span class="header-section-number">14.1.1</span> Multiple explanatory variables</a></li>
+  <li><a href="#but-what-does-that-look-like" id="toc-but-what-does-that-look-like" class="nav-link" data-scroll-target="#but-what-does-that-look-like"><span class="header-section-number">14.1.2</span> But what does that look like?</a></li>
+  </ul></li>
+  <li><a href="#multiple-regression-in-r" id="toc-multiple-regression-in-r" class="nav-link" data-scroll-target="#multiple-regression-in-r"><span class="header-section-number">14.2</span> Multiple regression in R</a>
+  <ul class="collapse">
+  <li><a href="#lm-with-multiple-explanatory-variables" id="toc-lm-with-multiple-explanatory-variables" class="nav-link" data-scroll-target="#lm-with-multiple-explanatory-variables"><span class="header-section-number">14.2.1</span> <code>lm()</code> with multiple explanatory variables</a></li>
+  <li><a href="#create-a-multiple-regression-model" id="toc-create-a-multiple-regression-model" class="nav-link" data-scroll-target="#create-a-multiple-regression-model"><span class="header-section-number">14.2.2</span> Create a multiple regression model</a></li>
+  </ul></li>
+  <li><a href="#interaction-terms" id="toc-interaction-terms" class="nav-link" data-scroll-target="#interaction-terms"><span class="header-section-number">14.3</span> Interaction terms</a>
+  <ul class="collapse">
+  <li><a href="#independence-and-interaction" id="toc-independence-and-interaction" class="nav-link" data-scroll-target="#independence-and-interaction"><span class="header-section-number">14.3.1</span> Independence and interaction</a></li>
+  </ul></li>
+  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions"><span class="header-section-number">14.4</span> Testing assumptions</a>
+  <ul class="collapse">
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">14.4.1</span> Linearity</a></li>
+  <li><a href="#constant-variability" id="toc-constant-variability" class="nav-link" data-scroll-target="#constant-variability"><span class="header-section-number">14.4.2</span> Constant variability</a></li>
+  <li><a href="#nearly-normal-residuals" id="toc-nearly-normal-residuals" class="nav-link" data-scroll-target="#nearly-normal-residuals"><span class="header-section-number">14.4.3</span> Nearly-normal residuals</a></li>
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">14.4.4</span> Independent Observations</a></li>
+  </ul></li>
+  <li><a href="#hypothesis-tests-for-models" id="toc-hypothesis-tests-for-models" class="nav-link" data-scroll-target="#hypothesis-tests-for-models"><span class="header-section-number">14.5</span> Hypothesis tests for models</a>
+  <ul class="collapse">
+  <li><a href="#linear-models-and-hypothesis-tests" id="toc-linear-models-and-hypothesis-tests" class="nav-link" data-scroll-target="#linear-models-and-hypothesis-tests"><span class="header-section-number">14.5.1</span> Linear models and hypothesis tests</a></li>
+  <li><a href="#p-values-of-individual-variables" id="toc-p-values-of-individual-variables" class="nav-link" data-scroll-target="#p-values-of-individual-variables"><span class="header-section-number">14.5.2</span> p-values of individual variables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="models-in-more-dimensions" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="models-in-more-dimensions"><span class="header-section-number">14.1</span> Models in more dimensions</h2>
+<section id="multiple-explanatory-variables" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="multiple-explanatory-variables"><span class="header-section-number">14.1.1</span> Multiple explanatory variables</h3>
+<p>In our previous module on linear models, we considered what is called <em>simple linear regression</em>: a linear model with just one explanatory variable, <span class="math inline">\(x\)</span>:</p>
+<p><span class="math inline">\(y = m \times x + c\)</span></p>
+<p>which we created using the <code>lm</code> function.</p>
+<p>However, we can technically have as many explanatory variables in our model as we like! (But we can only ever have a single response variable, <span class="math inline">\(y\)</span>) For example, this model has <em>two explanatory variables</em>, called <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> to differentiate them:</p>
+<p><span class="math inline">\(y = m_1 \times x_1 + m_2 \times x_2 + c\)</span></p>
+<p>Note:</p>
+<ul>
+<li>each explanatory variable gets its own coefficient (<span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span>)</li>
+<li>there is still just a single intercept, <span class="math inline">\(c\)</span></li>
+</ul>
+</section>
+<section id="but-what-does-that-look-like" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="but-what-does-that-look-like"><span class="header-section-number">14.1.2</span> But what does that look like?</h3>
+<p>We can pretty easily plot <span class="math inline">\(y\)</span> vs a single explanatory variable <span class="math inline">\(x\)</span>. In this case, a linear model is just a best-fit line through the data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>x <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sim_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(x, y)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="18_modeling_advanced_chapter_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>But what does a linear model look like in higher dimensions?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code adapted from https://chart-studio.plotly.com/~diego898/122/_3d-plane-of-best-fit-through-generated-dummy-data/#code</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>trace1 <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">uid =</span> <span class="st">"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">mode =</span> <span class="st">"markers"</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"Data"</span>, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"scatter3d"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(<span class="fl">3.882026172983832</span>, <span class="sc">-</span><span class="fl">0.3627411659871381</span>, <span class="sc">-</span><span class="fl">0.8540957393017248</span>, <span class="fl">1.3263858966870303</span>, <span class="sc">-</span><span class="fl">0.461584604814709</span>, <span class="fl">1.9436211856492926</span>, <span class="sc">-</span><span class="fl">1.6020576556067476</span>, <span class="sc">-</span><span class="fl">0.4017809362082619</span>, <span class="sc">-</span><span class="fl">0.977277879876411</span>, <span class="fl">0.37816251960217356</span>, <span class="sc">-</span><span class="fl">0.30230275057533557</span>, <span class="sc">-</span><span class="fl">0.7474548114407578</span>, <span class="sc">-</span><span class="fl">0.1871838500258336</span>, <span class="fl">0.3187276529430212</span>, <span class="sc">-</span><span class="fl">1.5362436862772237</span>, <span class="fl">0.4001572083672233</span>, <span class="sc">-</span><span class="fl">0.8264385386590144</span>, <span class="sc">-</span><span class="fl">0.7421650204064419</span>, <span class="fl">0.7065731681919482</span>, <span class="fl">0.9008264869541871</span>, <span class="sc">-</span><span class="fl">0.5788496647644155</span>, <span class="sc">-</span><span class="fl">0.20829875557799488</span>, <span class="fl">0.681594518281627</span>, <span class="fl">0.8024563957963952</span>, <span class="fl">0.7774903558319101</span>, <span class="sc">-</span><span class="fl">1.5447710967776116</span>, <span class="fl">0.9693967081580112</span>, <span class="fl">0.6764332949464997</span>, <span class="fl">1.7858704939058352</span>, <span class="fl">1.5430145954067358</span>, <span class="fl">0.05616534222974544</span>, <span class="sc">-</span><span class="fl">0.2127402802139687</span>, <span class="sc">-</span><span class="fl">0.3595531615405413</span>, <span class="sc">-</span><span class="fl">1.2348258203536526</span>, <span class="fl">0.15634896910398005</span>, <span class="fl">0.41059850193837233</span>, <span class="sc">-</span><span class="fl">0.1550100930908342</span>, <span class="fl">1.2023798487844113</span>, <span class="fl">0.40198936344470165</span>, <span class="sc">-</span><span class="fl">1.0799315083634233</span>, <span class="fl">0.9222066715665268</span>, <span class="sc">-</span><span class="fl">0.6895497777502005</span>, <span class="sc">-</span><span class="fl">0.1715463312222481</span>, <span class="fl">0.0875512413851909</span>, <span class="fl">1.8958891760305832</span>, <span class="sc">-</span><span class="fl">0.6634782863621074</span>, <span class="fl">1.8492637284793418</span>, <span class="fl">0.33367432737426683</span>, <span class="sc">-</span><span class="fl">1.3749512934180188</span>, <span class="fl">1.469358769900285</span>, <span class="fl">0.01747915902505673</span>, <span class="sc">-</span><span class="fl">1.180632184122412</span>, <span class="fl">0.26705086934918293</span>, <span class="fl">1.117016288095853</span>, <span class="fl">1.454273506962975</span>, <span class="fl">2.240893199201458</span>, <span class="sc">-</span><span class="fl">0.14963454032767076</span>, <span class="fl">0.9060446582753853</span>, <span class="sc">-</span><span class="fl">1.1680934977411974</span>, <span class="sc">-</span><span class="fl">0.6510255933001469</span>, <span class="sc">-</span><span class="fl">1.980796468223927</span>, <span class="sc">-</span><span class="fl">0.4380743016111864</span>, <span class="fl">0.8443629764015471</span>, <span class="fl">1.2224450703824274</span>, <span class="fl">0.6350314368921064</span>, <span class="fl">0.386902497859262</span>, <span class="sc">-</span><span class="fl">0.20515826376580087</span>, <span class="fl">0.12898291075741067</span>, <span class="fl">1.336527949436392</span>, <span class="fl">1.9507753952317897</span>, <span class="fl">1.4805147914344243</span>, <span class="fl">0.3169426119248496</span>, <span class="sc">-</span><span class="fl">2.2234031522244266</span>, <span class="fl">1.7133427216493666</span>, <span class="fl">0.3024718977397814</span>, <span class="fl">0.12167501649282841</span>, <span class="sc">-</span><span class="fl">1.4200179371789752</span>, <span class="fl">0.4393917012645369</span>, <span class="sc">-</span><span class="fl">0.17992483581235091</span>, <span class="sc">-</span><span class="fl">0.6848100909403132</span>, <span class="sc">-</span><span class="fl">1.0994007905841945</span>, <span class="sc">-</span><span class="fl">0.1513572082976979</span>, <span class="sc">-</span><span class="fl">0.43782004474443403</span>, <span class="fl">0.05194539579613895</span>, <span class="sc">-</span><span class="fl">1.0930615087305058</span>, <span class="fl">0.40746183624111043</span>, <span class="fl">0.5392491912918173</span>, <span class="fl">1.9100649530990337</span>, <span class="fl">0.42833187053041766</span>, <span class="fl">0.6536185954403606</span>, <span class="fl">0.9444794869904138</span>, <span class="fl">0.03183055827435118</span>, <span class="fl">1.9295320538169858</span>, <span class="sc">-</span><span class="fl">1.4543656745987648</span>, <span class="fl">0.4627822555257742</span>, <span class="fl">0.8235041539637314</span>, <span class="fl">0.9766390364837128</span>, <span class="sc">-</span><span class="fl">1.3477590611424464</span>, <span class="fl">0.052165079260974405</span>, <span class="sc">-</span><span class="fl">1.7262826023316769</span>), </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">3.882026172983832</span>, <span class="sc">-</span><span class="fl">0.6343220936809636</span>, <span class="fl">0.31306770165090136</span>, <span class="fl">0.298238174206056</span>, <span class="sc">-</span><span class="fl">1.3159074105115212</span>, <span class="sc">-</span><span class="fl">1.17312340511416</span>, <span class="fl">0.6252314510271875</span>, <span class="fl">0.17742614225375283</span>, <span class="fl">1.8675579901499675</span>, <span class="fl">0.1549474256969163</span>, <span class="sc">-</span><span class="fl">0.3873268174079523</span>, <span class="sc">-</span><span class="fl">0.41361898075974735</span>, <span class="fl">0.04575851730144607</span>, <span class="fl">0.920858823780819</span>, <span class="fl">0.46566243973045984</span>, <span class="fl">1.764052345967664</span>, <span class="sc">-</span><span class="fl">0.7447548220484399</span>, <span class="fl">0.8644361988595057</span>, <span class="fl">0.3563663971744019</span>, <span class="sc">-</span><span class="fl">1.1651498407833565</span>, <span class="sc">-</span><span class="fl">0.8707971491818818</span>, <span class="fl">0.5765908166149409</span>, <span class="sc">-</span><span class="fl">1.0342428417844647</span>, <span class="sc">-</span><span class="fl">0.2680033709513804</span>, <span class="sc">-</span><span class="fl">1.2527953600499262</span>, <span class="sc">-</span><span class="fl">1.0002153473895647</span>, <span class="sc">-</span><span class="fl">1.2704849984857336</span>, <span class="sc">-</span><span class="fl">0.635846078378881</span>, <span class="fl">0.010500020720820478</span>, <span class="sc">-</span><span class="fl">0.7395629963913133</span>, <span class="sc">-</span><span class="fl">0.31155253212737266</span>, <span class="sc">-</span><span class="fl">1.6138978475579515</span>, <span class="sc">-</span><span class="fl">0.672460447775951</span>, <span class="fl">1.1394006845433007</span>, <span class="sc">-</span><span class="fl">0.3479121493261526</span>, <span class="sc">-</span><span class="fl">0.10321885179355784</span>, <span class="fl">0.947251967773748</span>, <span class="fl">1.2302906807277207</span>, <span class="fl">0.12691209270361992</span>, <span class="fl">1.126635922106507</span>, <span class="fl">0.6140793703460803</span>, <span class="sc">-</span><span class="fl">0.8034096641738411</span>, <span class="fl">0.5232766605317537</span>, <span class="fl">0.9494208069257608</span>, <span class="fl">1.4882521937955997</span>, <span class="sc">-</span><span class="fl">0.0984525244254323</span>, <span class="sc">-</span><span class="fl">0.43515355172163744</span>, <span class="fl">0.44386323274542566</span>, <span class="sc">-</span><span class="fl">0.35399391125348395</span>, <span class="fl">1.5327792143584575</span>, <span class="sc">-</span><span class="fl">0.45553250351734315</span>, <span class="sc">-</span><span class="fl">0.510805137568873</span>, <span class="sc">-</span><span class="fl">1.2928569097234486</span>, <span class="sc">-</span><span class="fl">0.9128222254441586</span>, <span class="fl">0.144043571160878</span>, <span class="fl">0.9787379841057392</span>, <span class="sc">-</span><span class="fl">0.6945678597313655</span>, <span class="fl">1.8675589604265699</span>, <span class="sc">-</span><span class="fl">0.0392828182274956</span>, <span class="fl">0.8568306119026912</span>, <span class="sc">-</span><span class="fl">0.8877857476301128</span>, <span class="sc">-</span><span class="fl">0.5096521817516535</span>, <span class="sc">-</span><span class="fl">1.225435518830168</span>, <span class="sc">-</span><span class="fl">0.40317694697317963</span>, <span class="fl">0.16667349537252904</span>, <span class="sc">-</span><span class="fl">0.8954665611936756</span>, <span class="fl">1.4940790731576061</span>, <span class="fl">0.7290905621775369</span>, <span class="fl">2.16323594928069</span>, <span class="sc">-</span><span class="fl">1.7062701906250126</span>, <span class="fl">1.9229420264803847</span>, <span class="fl">1.1880297923523018</span>, <span class="sc">-</span><span class="fl">0.6436184028328905</span>, <span class="sc">-</span><span class="fl">0.06824160532463124</span>, <span class="fl">0.06651722238316789</span>, <span class="fl">0.7610377251469934</span>, <span class="sc">-</span><span class="fl">1.0485529650670926</span>, <span class="sc">-</span><span class="fl">1.4912575927056055</span>, <span class="fl">1.1787795711596507</span>, <span class="fl">0.402341641177549</span>, <span class="fl">0.37642553115562943</span>, <span class="fl">0.9500884175255894</span>, <span class="sc">-</span><span class="fl">1.1474686524111024</span>, <span class="sc">-</span><span class="fl">0.9072983643832422</span>, <span class="fl">0.3960067126616453</span>, <span class="fl">0.6722947570124355</span>, <span class="sc">-</span><span class="fl">0.7699160744453164</span>, <span class="sc">-</span><span class="fl">0.8612256850547025</span>, <span class="sc">-</span><span class="fl">0.028182228338654868</span>, <span class="sc">-</span><span class="fl">2.5529898158340787</span>, <span class="fl">2.383144774863942</span>, <span class="sc">-</span><span class="fl">0.6743326606573761</span>, <span class="sc">-</span><span class="fl">0.4980324506923049</span>, <span class="fl">2.2697546239876076</span>, <span class="sc">-</span><span class="fl">1.6301983469660446</span>, <span class="fl">0.7717905512136674</span>, <span class="fl">0.2082749780768603</span>, <span class="fl">1.8831506970562544</span>, <span class="sc">-</span><span class="fl">1.1043833394284506</span>, <span class="sc">-</span><span class="fl">0.813146282044454</span>), </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">c</span>(<span class="fl">0.6014148753050095</span>, <span class="fl">52.76493680024886</span>, <span class="fl">28.830181943943813</span>, <span class="sc">-</span><span class="fl">52.751941211785535</span>, <span class="sc">-</span><span class="fl">116.76325181356648</span>, <span class="sc">-</span><span class="fl">185.65277987329165</span>, <span class="fl">166.9266453026271</span>, <span class="sc">-</span><span class="fl">32.74004418686453</span>, <span class="fl">200.35475438264095</span>, <span class="fl">84.07114839099326</span>, <span class="sc">-</span><span class="fl">388.7351875153565</span>, <span class="fl">44.1641313590487</span>, <span class="fl">124.12766472786151</span>, <span class="fl">11.33498950758262</span>, <span class="fl">137.75319692929813</span>, <span class="fl">69.93385864098357</span>, <span class="fl">30.233468047331854</span>, <span class="fl">165.09992349889487</span>, <span class="fl">132.69190946366308</span>, <span class="sc">-</span><span class="fl">206.11535605233962</span>, <span class="fl">26.99732219416606</span>, <span class="fl">365.6174266134817</span>, <span class="sc">-</span><span class="fl">31.784900223469393</span>, <span class="sc">-</span><span class="fl">165.8343459440985</span>, <span class="sc">-</span><span class="fl">146.27731910939744</span>, <span class="fl">10.210615390490545</span>, <span class="sc">-</span><span class="fl">50.87361679224105</span>, <span class="sc">-</span><span class="fl">110.51610451997985</span>, <span class="sc">-</span><span class="fl">114.91059728659813</span>, <span class="sc">-</span><span class="fl">9.211078415251677</span>, <span class="sc">-</span><span class="fl">12.345496216569781</span>, <span class="sc">-</span><span class="fl">150.20963346355904</span>, <span class="sc">-</span><span class="fl">81.6021418991762</span>, <span class="fl">62.37725640290973</span>, <span class="fl">71.2915984442432</span>, <span class="sc">-</span><span class="fl">79.86847898246879</span>, <span class="fl">72.68455508109857</span>, <span class="fl">75.95651283788784</span>, <span class="sc">-</span><span class="fl">31.44557337935764</span>, <span class="fl">282.6790798921676</span>, <span class="sc">-</span><span class="fl">80.04878296553002</span>, <span class="sc">-</span><span class="fl">34.87737844022634</span>, <span class="fl">80.0106052206387</span>, <span class="fl">70.59644155587</span>, <span class="fl">36.88090048841791</span>, <span class="sc">-</span><span class="fl">20.960391883243197</span>, <span class="sc">-</span><span class="fl">215.60192693204198</span>, <span class="fl">56.02926881751827</span>, <span class="sc">-</span><span class="fl">39.22168581135089</span>, <span class="fl">109.19498731579706</span>, <span class="sc">-</span><span class="fl">92.38694595459536</span>, <span class="sc">-</span><span class="fl">75.30341111686698</span>, <span class="sc">-</span><span class="fl">130.22720888849</span>, <span class="sc">-</span><span class="fl">185.3731571473548</span>, <span class="fl">105.22665586124084</span>, <span class="fl">14.144545758253031</span>, <span class="fl">2.9242732489158243</span>, <span class="fl">1.1669016364443507</span>, <span class="fl">121.87838283834178</span>, <span class="sc">-</span><span class="fl">46.94177432519599</span>, <span class="sc">-</span><span class="fl">50.010839552593836</span>, <span class="sc">-</span><span class="fl">26.167096300997564</span>, <span class="sc">-</span><span class="fl">6.079239773173526</span>, <span class="sc">-</span><span class="fl">84.7611095980838</span>, <span class="fl">110.21636367129128</span>, <span class="sc">-</span><span class="fl">224.15927360347007</span>, <span class="fl">186.41050332336596</span>, <span class="fl">7.169682592501054</span>, <span class="fl">102.77209750471626</span>, <span class="sc">-</span><span class="fl">21.581724138016796</span>, <span class="fl">308.8768868115247</span>, <span class="fl">229.41389106695559</span>, <span class="sc">-</span><span class="fl">5.206358355322031</span>, <span class="fl">83.9845870497286</span>, <span class="sc">-</span><span class="fl">62.87852405647838</span>, <span class="fl">5.928508882708712</span>, <span class="sc">-</span><span class="fl">235.1797972236149</span>, <span class="sc">-</span><span class="fl">258.92704556152404</span>, <span class="fl">24.750468381961923</span>, <span class="sc">-</span><span class="fl">112.63339759970111</span>, <span class="fl">39.835715392615406</span>, <span class="fl">143.7387638843515</span>, <span class="sc">-</span><span class="fl">142.56710308804608</span>, <span class="sc">-</span><span class="fl">60.880299394084815</span>, <span class="fl">123.9687416050054</span>, <span class="fl">76.25604817699059</span>, <span class="sc">-</span><span class="fl">37.495883472786346</span>, <span class="sc">-</span><span class="fl">162.4630155758125</span>, <span class="sc">-</span><span class="fl">20.648920355074306</span>, <span class="sc">-</span><span class="fl">280.80620838340803</span>, <span class="fl">201.0298512682453</span>, <span class="sc">-</span><span class="fl">72.25885831763277</span>, <span class="fl">35.049556162643526</span>, <span class="fl">270.53472727948645</span>, <span class="sc">-</span><span class="fl">193.10382080579126</span>, <span class="fl">114.09991346642917</span>, <span class="sc">-</span><span class="fl">88.86871570838584</span>, <span class="fl">282.071569269954</span>, <span class="sc">-</span><span class="fl">79.07507692577363</span>, <span class="sc">-</span><span class="fl">154.61086620064873</span>), </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">marker =</span> <span class="fu">list</span>(</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">2</span>, </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">opacity =</span> <span class="fl">0.9</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>trace2 <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">uid =</span> <span class="st">"f606e49f-bb1b-4d74-acc9-a9d80027e663"</span>, </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="st">"Plane of Best Fit"</span>, </span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">"surface"</span>, </span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">nrow=</span><span class="dv">7</span>, <span class="at">ncol=</span><span class="dv">7</span>), </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">3</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">3</span>), <span class="at">nrow=</span><span class="dv">7</span>, <span class="at">ncol=</span><span class="dv">7</span>), </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">z =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">168.76593592211438</span>, <span class="sc">-</span><span class="fl">198.5860701810799</span>, <span class="sc">-</span><span class="fl">228.40620444004537</span>, <span class="sc">-</span><span class="fl">258.2263386990109</span>, <span class="sc">-</span><span class="fl">288.0464729579764</span>, <span class="sc">-</span><span class="fl">317.8666072169419</span>, <span class="sc">-</span><span class="fl">347.6867414759074</span>, <span class="sc">-</span><span class="fl">82.74318014958601</span>, <span class="sc">-</span><span class="fl">112.56331440855152</span>, <span class="sc">-</span><span class="fl">142.38344866751703</span>, <span class="sc">-</span><span class="fl">172.2035829264825</span>, <span class="sc">-</span><span class="fl">202.02371718544802</span>, <span class="sc">-</span><span class="fl">231.8438514444135</span>, <span class="sc">-</span><span class="fl">261.663985703379</span>, <span class="fl">3.279575622942346</span>, <span class="sc">-</span><span class="fl">26.540558636023157</span>, <span class="sc">-</span><span class="fl">56.36069289498866</span>, <span class="sc">-</span><span class="fl">86.18082715395416</span>, <span class="sc">-</span><span class="fl">116.00096141291965</span>, <span class="sc">-</span><span class="fl">145.82109567188516</span>, <span class="sc">-</span><span class="fl">175.64122993085067</span>, <span class="fl">89.3023313954707</span>, <span class="fl">59.4821971365052</span>, <span class="fl">29.662062877539697</span>, <span class="sc">-</span><span class="fl">0.15807138142580102</span>, <span class="sc">-</span><span class="fl">29.9782056403913</span>, <span class="sc">-</span><span class="fl">59.7983398993568</span>, <span class="sc">-</span><span class="fl">89.6184741583223</span>, <span class="fl">175.32508716799907</span>, <span class="fl">145.50495290903356</span>, <span class="fl">115.68481865006805</span>, <span class="fl">85.86468439110256</span>, <span class="fl">56.044550132137054</span>, <span class="fl">26.22441587317156</span>, <span class="sc">-</span><span class="fl">3.595718385793944</span>, <span class="fl">261.3478429405274</span>, <span class="fl">231.5277086815619</span>, <span class="fl">201.7075744225964</span>, <span class="fl">171.8874401636309</span>, <span class="fl">142.0673059046654</span>, <span class="fl">112.24717164569992</span>, <span class="fl">82.42703738673441</span>, <span class="fl">347.37059871305576</span>, <span class="fl">317.5504644540903</span>, <span class="fl">287.7303301951248</span>, <span class="fl">257.91019593615925</span>, <span class="fl">228.09006167719377</span>, <span class="fl">198.2699274182283</span>, <span class="fl">168.44979315926278</span>), <span class="at">nrow=</span><span class="dv">7</span>, <span class="at">ncol=</span><span class="dv">7</span>), </span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">opacity =</span> <span class="fl">0.7</span>, </span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">showscale =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">colorscale =</span> <span class="st">"Greys"</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">list</span>(trace1, trace2)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>layout <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">scene =</span> <span class="fu">list</span>(</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">xaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"x1"</span>)), </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">yaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"x2"</span>)), </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">zaxis =</span> <span class="fu">list</span>(<span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"y"</span>))</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  ), </span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">title =</span> <span class="fu">list</span>(<span class="at">text =</span> <span class="st">"3D Plane of Best Fit Through 2 Explanatory Variables"</span>), </span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="at">margin =</span> <span class="fu">list</span>(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    <span class="at">b =</span> <span class="dv">10</span>, </span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">l =</span> <span class="dv">0</span>, </span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">r =</span> <span class="dv">0</span>, </span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">t =</span> <span class="dv">100</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">plot_ly</span>()</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">add_trace</span>(p, <span class="at">uid=</span>trace1<span class="sc">$</span>uid, <span class="at">mode=</span>trace1<span class="sc">$</span>mode, <span class="at">name=</span>trace1<span class="sc">$</span>name, <span class="at">type=</span>trace1<span class="sc">$</span>type, <span class="at">x=</span>trace1<span class="sc">$</span>x, <span class="at">y=</span>trace1<span class="sc">$</span>y, <span class="at">z=</span>trace1<span class="sc">$</span>z, <span class="at">marker=</span>trace1<span class="sc">$</span>marker)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">add_trace</span>(p, <span class="at">uid=</span>trace2<span class="sc">$</span>uid, <span class="at">name=</span>trace2<span class="sc">$</span>name, <span class="at">type=</span>trace2<span class="sc">$</span>type, <span class="at">x=</span>trace2<span class="sc">$</span>x, <span class="at">y=</span>trace2<span class="sc">$</span>y, <span class="at">z=</span>trace2<span class="sc">$</span>z, <span class="at">opacity=</span>trace2<span class="sc">$</span>opacity, <span class="at">showscale=</span>trace2<span class="sc">$</span>showscale, <span class="at">colorscale=</span>trace2<span class="sc">$</span>colorscale)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">layout</span>(p, <span class="at">scene=</span>layout<span class="sc">$</span>scene, <span class="at">title=</span>layout<span class="sc">$</span>title, <span class="at">margin=</span>layout<span class="sc">$</span>margin)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you can see, in three dimensions we have a <em>plane</em> of best fit rather than a line (note: you should be able to zoom and rotate the 3D graph).</p>
+<p>In fact, we can have more than 2 explanatory variables. Although we can’t realistically visualize 4 or more dimensions, you can think of a high dimensional linear model as a high dimensional plane: a <em>hyperplane</em>.</p>
+<p>However, as we shall see, our inability to plot high dimensional linear models makes it impossible to assess the linear model’s assumptions by plotting the original data. Instead we will create alternative plots that reduce each assumption down to a 2D graph.</p>
+</section>
+</section>
+<section id="multiple-regression-in-r" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="multiple-regression-in-r"><span class="header-section-number">14.2</span> Multiple regression in R</h2>
+<section id="lm-with-multiple-explanatory-variables" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="lm-with-multiple-explanatory-variables"><span class="header-section-number">14.2.1</span> <code>lm()</code> with multiple explanatory variables</h3>
+<p>Recall that the first argument of the <code>lm</code> function was a formula. We create an R formula by:</p>
+<ul>
+<li>removing the constant coefficients</li>
+<li>replacing the <span class="math inline">\(=\)</span> sign with <code>~</code> (~ means “is related to”)</li>
+</ul>
+<p>For example,</p>
+<p><span class="math inline">\(y = m x + c\)</span></p>
+<p>becomes</p>
+<p><code>y ~ x</code></p>
+<p>The same principle applies to multiple explanatory variables:</p>
+<p><span class="math inline">\(y = m_1 x_1 + m_2 x_2 + c\)</span></p>
+<p>becomes</p>
+<p><code>y ~ x1 + x2</code></p>
+<p class="comment3">
+For each of the following questions, identify the correct R formula (or original linear model equation). Some questions assume that the data is in a data frame called <code>df</code>.
+</p>
+<!--
+TODO:
+- include feedback on these question
+-->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the correct R formula for this equation: ${Price} = m_1 </span><span class="sc">\\</span><span class="st">times {Bedrooms} + m_2 </span><span class="sc">\\</span><span class="st">times {Sqft} + c$ ?"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`y ~ x1 + x2`"</span>),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`Bedrooms + Sqft ~ Price`"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`Price + Bedrooms + Sqft`"</span>),</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`Price ~ Bedrooms + Sqft`"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the equation behind this R formula: `cost ~ labor + goods` ?"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"$y = m_1 x_1 + m_2 x_2 + c$"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"${cost} = m_1 </span><span class="sc">\\</span><span class="st">times {labor} + m_2 </span><span class="sc">\\</span><span class="st">times {goods} + c$"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"$y = m_1 </span><span class="sc">\\</span><span class="st">times {labor} + m_2 </span><span class="sc">\\</span><span class="st">times {goods} + c$"</span>),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`Cost ~ Labor + Goods`"</span>),</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"How would you create this linear model in R? ${Price} = m_1 </span><span class="sc">\\</span><span class="st">times {Bedrooms} + m_2 </span><span class="sc">\\</span><span class="st">times {Sqft} + c$"</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`lm(Price ~ Bedrooms + Sqft, data = df)`"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`lm(Price ~ Bedrooms + Sqft)`"</span>),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`df %&gt;% lm(Price ~ Bedrooms + Sqft)`"</span>),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"`Price ~ Bedrooms + Sqft`"</span>),</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+TODO
+- actual code exercises on this
+-->
+</section>
+<section id="create-a-multiple-regression-model" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="create-a-multiple-regression-model"><span class="header-section-number">14.2.2</span> Create a multiple regression model</h3>
+<!-- 
+TODO
+- switch to a smaller dataset that does not take so long to generate graphs
+-->
+<p>Let’s create a linear model from the <code>diamonds</code> dataset.</p>
+<p>The <code>diamonds</code> dataset is included as part of the <code>ggplot2</code> package and contains observations about the properties of thousands of diamonds. We are going to use three variables from the dataset:</p>
+<ul>
+<li>the <code>price</code> variable will be our response variable (i.e.&nbsp;y)</li>
+<li>the <code>carat</code> and <code>depth</code> variables will be our explanatory variables</li>
+</ul>
+<p class="comment3">
+Fill in the blanks to create this linear model.
+</p>
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>diamonds_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(_____ <span class="sc">~</span> _______ <span class="sc">+</span> _______, <span class="at">data =</span> _______)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diamonds_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> depth, <span class="at">data =</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+TODO
+- section on categorical explanatory variables?
+- section on confounding (builds on previous tutorial's correlation vs causation)
+-->
+</section>
+</section>
+<section id="interaction-terms" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="interaction-terms"><span class="header-section-number">14.3</span> Interaction terms</h2>
+<section id="independence-and-interaction" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="independence-and-interaction"><span class="header-section-number">14.3.1</span> Independence and interaction</h3>
+<p>So far we have assumed that each term is independent: i.e.&nbsp;each one contributes to the response variable <span class="math inline">\(y\)</span> a separate amount proportional to its coefficient.</p>
+<p>However, it is possible for variables to <em>interact</em> with each other:</p>
+<p><span class="math inline">\(y = m_1 x_1 + m_2 x_2 + m_3 x_1 x_2 + c\)</span></p>
+<p>This linear model has an <em>interaction term</em>: <span class="math inline">\(x_1 x_2\)</span>. What this means is that the contribution of either variable depends somewhat on the value of the other!</p>
+<p>For example, consider an experiment where we are looking at the effect of water and sunlight on plant height. Both variables may increase a plant’s height - however they are also dependent on each other. If we keep a plant in complete darkness, then no amount of water will help it grow (and vice versa). In otherwords, the effect of either sunlight or water on plant height depends on how much of the other variable the plant is receiving.</p>
+<p>It is very easy to add interaction terms to a linear model. For example, the formula above would be written something like:</p>
+<p><code>y ~ x1 + x2 + x1 * x2</code></p>
+<p>As you can see, we just add an asterisk <code>*</code> between variables that we wish to have an interaction between.</p>
+<!--
+TODO
+- graphs showing curved(?) slope of interaction model
+- quiz on interactions
+- also general polynomial terms?
+-->
+</section>
+</section>
+<section id="testing-assumptions" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="testing-assumptions"><span class="header-section-number">14.4</span> Testing assumptions</h2>
+<section id="linearity" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="linearity"><span class="header-section-number">14.4.1</span> Linearity</h3>
+<p>By definition, a linear model’s predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e.&nbsp;true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables.</p>
+<p>In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a <em>scatter plot</em> of the observed response variable vs the predicted response variable.</p>
+<!--
+TODO
+- need to explain this more thoroughly, ideally with a picture
+-->
+<p>We call this an <em>observed vs predicted</em> plot (observed on the <em>y</em> axis, predicted on the <em>x</em>). Because these values are essentially the same number (or would be if the model went through every data point exactly), we should expect these variables to fall on a line with a slope of 1 and an intercept of 0. We will add such a reference line to our plot for comparison.</p>
+<p>Before we can do so, we need to calculate the predicted values. We can easily create a column of predicted values using the <code>add_predictions</code> function from the <code>broom</code> package, which adds a column called <code>pred</code> to a dataframe using a model (such as the <code>diamonds_model</code> that you created earlier with the <code>lm</code> function):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>diamonds_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> depth, <span class="at">data =</span> diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(diamonds_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="comment3">
+<p>Using the new <code>diamonds_plus_preds</code> data frame, fill in the <em>3</em> blanks to create an <em>observed vs predicted</em> plot by:</p>
+<ul>
+<li>plotting the true (observed) response variable, <code>price</code>, on the y axis, and the model’s predictions, <code>pred</code>, on the x axis</li>
+<li>adding a reference line using the <code>geom_abline</code> function with a slope of 1 and an intercept of 0.</li>
+</ul>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diamonds_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> depth, <span class="at">data =</span> diamonds)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(diamonds_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-exercise="true" data-exercise.setup="add_diamond_predictions">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> _____, <span class="at">y =</span> _____)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> ___, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pred, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can see from this plot that while there is definitely a relationship, it is slightly non-linear. This is a violation of the linearity assumption.</p>
+</section>
+<section id="constant-variability" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="constant-variability"><span class="header-section-number">14.4.2</span> Constant variability</h3>
+<p>To assess constant variability of the residuals, we can just plot the residuals (on the y-axis) vs the predicted response variable (x-axis): a <em>residuals vs predicted plot</em>.</p>
+<p>Again, this graph will always have just two dimensions, regardless of how many explanatory variables are in our model, and so it is ideal for assessing this assumption.</p>
+<p>In this graph, our reference line should be a horizontal line plotted at <span class="math inline">\(y = 0\)</span>, because the residuals should be distributed around zero in all parts of the model.</p>
+<p class="comment3">
+Fill in the <em>3</em> blanks to create a residuals vs.&nbsp;predicted plot (remember that these are stored in the <code>resid</code> and <code>pred</code> columns). Set the <code>geom_hline</code> to intercept at <span class="math inline">\(y = 0\)</span>.
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>diamonds_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(price <span class="sc">~</span> carat <span class="sc">+</span> depth, <span class="at">data =</span> diamonds)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(diamonds_model) <span class="sc">%&gt;%</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(diamonds_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-exercise="true" data-exercise.setup="add_pred_and_resid">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ______, <span class="at">y =</span> ______)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> ____, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> pred, <span class="at">y =</span> resid)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can clearly see that the variability of residuals is not constant above and below the reference line.</p>
+<p>For comparison, here are three example residual vs predicted plots (with purple guide lines showing the variability):</p>
+<ul>
+<li>the left-most plot shows constant variability of the residuals above and below the line</li>
+<li>the middle graph violates this assumption because the variability of the residuals increases as the predicted values increase.</li>
+<li>the third graph also violates this assumption, because the variation above and below the line is not consistent (this pattern arises because there is not a linear relationship between the response and explanatory variables - the residual vs predicted plot can also be used to examine the first assumption of linearity).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../img/resid-vs-pred.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="../img/resid-vs-pred.png" class="img-fluid" width="600"></p>
+</div>
+</div>
+<!--
+TODO:
+- have questions asking students to interpret different assumptions plots
+-->
+</section>
+<section id="nearly-normal-residuals" class="level3" data-number="14.4.3">
+<h3 data-number="14.4.3" class="anchored" data-anchor-id="nearly-normal-residuals"><span class="header-section-number">14.4.3</span> Nearly-normal residuals</h3>
+<p>We could plot a histogram of the residuals to see if they are normally distributed.</p>
+<p>However, it is often hard to interpret the “normality” of a histogram. Instead, a much better method is to create a Quantile-Quantile (Q-Q) plot. This video from Stat Quest gives an excellent overview of what a Q-Q plot is:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/okjYjClSjOg?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Q-Q plots are so useful that <code>ggplot</code> already contains geom functions for creating them.</p>
+<p>First however, we need to add a column of residuals to our dataframe using the <code>add_residuals</code> function that you are already familiar with (we’re also going to re-add the <code>pred</code> column to show you how to do both at the same time, and because we’ll need both columns in the next section):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_predictions</span>(diamonds_model) <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(diamonds_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we can use the <code>diamonds_plus</code> data frame to create a Q-Q plot (with both points and a reference line):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> resid))<span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> resid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18_modeling_advanced_chapter_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Does this model satisfy the assumption of nearly-normal residuals?"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Yes"</span>),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"No"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Can't say one way or the other"</span>),</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">incorrect =</span> <span class="st">"To satisfy this assumption, the majority of the points should fall very close to the line."</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="independent-observations" class="level3" data-number="14.4.4">
+<h3 data-number="14.4.4" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">14.4.4</span> Independent Observations</h3>
+<p>Coming soon.</p>
+<!--
+TODO
+- quiz questions on assumptions
+- code questions on assumptions
+-->
+</section>
+</section>
+<section id="hypothesis-tests-for-models" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="hypothesis-tests-for-models"><span class="header-section-number">14.5</span> Hypothesis tests for models</h2>
+<section id="linear-models-and-hypothesis-tests" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="linear-models-and-hypothesis-tests"><span class="header-section-number">14.5.1</span> Linear models and hypothesis tests</h3>
+<p>You may remember from our first modeling module that the <code>tidy</code> function reported a p-value for the model and for each explanatory variable. See the <code>p.value</code> columns in both of these examples:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span>sim_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(r.squared, p.value)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  r.squared    p.value
+      &lt;dbl&gt;      &lt;dbl&gt;
+1     0.935 0.00000512</code></pre>
+</div>
+</div>
+<p>As you will remember from our inference modules, the p-value is <em>the probability that the actual data was generated in a world in which the null hypothesis is true</em>.</p>
+<p>Null hypothesis?! But we haven’t specified any hypotheses for our linear model, have we?</p>
+<p>In fact, there is a null hypothesis for every linear model, although we have never formally written it down. The null hypothesis for a linear model is that <em>there is no relationship between the response and explanatory variables</em>. In other words, our null hypothesis is that the line of best fit is a horizontally flat line (e.g.&nbsp;the blue line in this plot):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">0</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="18_modeling_advanced_chapter_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In other words, the p-value is the probability that the data came from this line. Just by looking at it, we can see that this is not very likely, and in fact the p-value is 0.000005 (or 0.0005%), i.e.&nbsp;statistically very unlikely.</p>
+<p>We continue to use our regular significance threshold, <span class="math inline">\(\alpha = 0.05\)</span>. In this case, we can reject our null hypothesis (that there is no relationship).</p>
+<p>However, hypothesis testing only tells us the probability that there is a relationship, or not. If there is a relationship, it doesn’t tell us how good it is, i.e.&nbsp;how well our model fits the data. For this, we need to continue to use the <span class="math inline">\(R^2\)</span> value, as well as our graphs to check the 3 main assumptions of the linear model.</p>
+</section>
+<section id="p-values-of-individual-variables" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="p-values-of-individual-variables"><span class="header-section-number">14.5.2</span> p-values of individual variables</h3>
+<p>The <code>tidy()</code> function also reports a p-value for each variable in the model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic    p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;
+1 (Intercept)     1.27     1.06       1.20 0.264     
+2 x               1.75     0.164     10.7  0.00000512</code></pre>
+</div>
+</div>
+<p>For individual variables, the null hypothesis is that <em>each individual explanatory variable has no relationship with the response variable</em>. In other words, our null hypothesis is that the intercept and slope are 0.</p>
+<p>As we can see for this example, because the p-values of the slope is below 0.05, so we reject our null hypothesis. We find that the non-zero slope of the x variable is statistically significant. However, the intercept has a p-value of 0.26. This is greater than 0.05, so we cannot reject our null hypothesis of a zero intercept for this particular dataset.</p>
+<p>(This dataset was simulated with an intercept of zero, so that makes sense!)</p>
+<blockquote class="blockquote">
+<p><strong>A note on scientific notation</strong></p>
+<p>In the previous examples, our p-values have been written as strange numbers, such as: 2.637853e-01</p>
+<p>This is a convenient way of writing numbers that are very large or very small. We can write 1.2 million (1,200,000) as:</p>
+<p><span class="math inline">\(1.2 \times 10^6\)</span></p>
+<p>i.e.&nbsp;1.2 times 1 million, or</p>
+<p><code>1.2e6</code></p>
+<p>which uses <code>e</code> to represent “10 to the power of”.</p>
+<p>For numbers that are less that one, we can do the same thing but use a negative power of ten. For example, we can write 0.263 as:</p>
+<p><span class="math inline">\(2.63 \times 10^{-1}\)</span></p>
+<p>or</p>
+<p><code>2.63e-1</code></p>
+<p>because <span class="math inline">\(10^{-1}\)</span> is 0.1</p>
+</blockquote>
+<!-- 
+
+TODO:
+
+## Confidence intervals for models
+
+* Use geom_smooth with method="lm" and show the se
+
+## Non-linear response variables
+
+aka. generalized linear models
+
+## Other residuals types
+
+maybe...
+
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/book/17_inference_advanced_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/book/32_databases_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to Computing and Data for Scientists - 9&nbsp; Modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/book/10_inference_chapter.html" rel="next">
+<link href="../../src/book/08_eda_chapter.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/09_modeling_chapter.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">An Introduction to Computing and Data for Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basic Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/02_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/03_r_programming_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/05_visualization_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/06_wrangling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/07_ggplot_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/09_modeling_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_inference_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_more_r_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scientific Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-model" id="toc-what-is-a-model" class="nav-link active" data-scroll-target="#what-is-a-model"><span class="header-section-number">9.1</span> What is a model</a>
+  <ul class="collapse">
+  <li><a href="#video-introduction" id="toc-video-introduction" class="nav-link" data-scroll-target="#video-introduction"><span class="header-section-number">9.1.1</span> Video introduction</a></li>
+  <li><a href="#correlation-does-not-imply-causation" id="toc-correlation-does-not-imply-causation" class="nav-link" data-scroll-target="#correlation-does-not-imply-causation"><span class="header-section-number">9.1.2</span> “Correlation does not imply causation”</a></li>
+  </ul></li>
+  <li><a href="#creating-models-in-r" id="toc-creating-models-in-r" class="nav-link" data-scroll-target="#creating-models-in-r"><span class="header-section-number">9.2</span> Creating models in R</a>
+  <ul class="collapse">
+  <li><a href="#video-introduction-1" id="toc-video-introduction-1" class="nav-link" data-scroll-target="#video-introduction-1"><span class="header-section-number">9.2.1</span> Video introduction</a></li>
+  <li><a href="#lets-create-a-linear-model" id="toc-lets-create-a-linear-model" class="nav-link" data-scroll-target="#lets-create-a-linear-model"><span class="header-section-number">9.2.2</span> Let’s create a linear model</a></li>
+  </ul></li>
+  <li><a href="#fitting-models" id="toc-fitting-models" class="nav-link" data-scroll-target="#fitting-models"><span class="header-section-number">9.3</span> Fitting models</a>
+  <ul class="collapse">
+  <li><a href="#video-introduction-2" id="toc-video-introduction-2" class="nav-link" data-scroll-target="#video-introduction-2"><span class="header-section-number">9.3.1</span> Video introduction</a></li>
+  <li><a href="#your-models-coefficients" id="toc-your-models-coefficients" class="nav-link" data-scroll-target="#your-models-coefficients"><span class="header-section-number">9.3.2</span> Your model’s coefficients</a></li>
+  <li><a href="#r2-how-good-is-your-model" id="toc-r2-how-good-is-your-model" class="nav-link" data-scroll-target="#r2-how-good-is-your-model"><span class="header-section-number">9.3.3</span> <span class="math inline">\(R^2\)</span>: how good is your model?</a></li>
+  <li><a href="#whats-a-good-r2" id="toc-whats-a-good-r2" class="nav-link" data-scroll-target="#whats-a-good-r2"><span class="header-section-number">9.3.4</span> What’s a good <span class="math inline">\(R^2\)</span>?</a></li>
+  </ul></li>
+  <li><a href="#model-assumptions" id="toc-model-assumptions" class="nav-link" data-scroll-target="#model-assumptions"><span class="header-section-number">9.4</span> Model assumptions</a>
+  <ul class="collapse">
+  <li><a href="#assumptions-of-the-linear-model" id="toc-assumptions-of-the-linear-model" class="nav-link" data-scroll-target="#assumptions-of-the-linear-model"><span class="header-section-number">9.4.1</span> Assumptions of the linear model</a></li>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">9.4.2</span> Linearity</a></li>
+  <li><a href="#nearly-normal-residuals" id="toc-nearly-normal-residuals" class="nav-link" data-scroll-target="#nearly-normal-residuals"><span class="header-section-number">9.4.3</span> Nearly normal residuals</a></li>
+  <li><a href="#constant-variability-of-residuals" id="toc-constant-variability-of-residuals" class="nav-link" data-scroll-target="#constant-variability-of-residuals"><span class="header-section-number">9.4.4</span> Constant variability of residuals</a></li>
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">9.4.5</span> Independent observations</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-a-model" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="what-is-a-model"><span class="header-section-number">9.1</span> What is a model</h2>
+<section id="video-introduction" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="video-introduction"><span class="header-section-number">9.1.1</span> Video introduction</h3>
+<p>This video will introduce you to the concept of <em>models</em>, and in particular the <em>linear model</em> (which you may already be familiar with as a <em>line of best fit</em>).</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yeKA0m8M8Dc?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing">PDF</a></p>
+</section>
+<section id="correlation-does-not-imply-causation" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="correlation-does-not-imply-causation"><span class="header-section-number">9.1.2</span> “Correlation does not imply causation”</h3>
+<p>A common saying when working with models is that “correlation does not imply causation”. <em>What does this mean?</em></p>
+<p>When we create a linear model (e.g.&nbsp;a line of best fit), we have 2 variables:</p>
+<ul>
+<li><span class="math inline">\(y\)</span>, the response variable</li>
+<li><span class="math inline">\(x\)</span>, the explanatory variable</li>
+</ul>
+<p>We are implicitly saying that the values of <span class="math inline">\(x\)</span> <em>explain</em> the values of <span class="math inline">\(y\)</span>, or alternatively that the <span class="math inline">\(y\)</span> variable <em>responds</em> to changes in <span class="math inline">\(x\)</span>. This language implies that <span class="math inline">\(x\)</span> is directly causing <span class="math inline">\(y\)</span>, and not the other way around.</p>
+<p>However…</p>
+<p>The linear model cannot actually tell us which variable is causing changes in the other (<strong>causation</strong>). Just because we decide to call one variable <span class="math inline">\(y\)</span> and the other <span class="math inline">\(x\)</span>, does not mean that is the direction of effect in the real world.</p>
+<p>For example, taller people generally weigh more, but there is nothing stopping us from making height the response variable (y), even though most people would say that it makes no sense that your weight <em>causes</em> your height.</p>
+<p>In fact, none of the variables in your model could directly <em>cause</em> a change in the other. For example, there might be a third variable (that’s not in your model) that actually causes the change in your model.</p>
+<p>Therefore, even if there seems to be a straight line relationship between two variables, we cannot definitively say that once causes the change in the other - only that they are <strong>correlated</strong>.</p>
+<!--
+TODO:
+- quiz questions on this
+-->
+</section>
+</section>
+<section id="creating-models-in-r" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="creating-models-in-r"><span class="header-section-number">9.2</span> Creating models in R</h2>
+<section id="video-introduction-1" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="video-introduction-1"><span class="header-section-number">9.2.1</span> Video introduction</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FSoPzQLfUKw?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing">PDF (same as before)</a></p>
+</section>
+<section id="lets-create-a-linear-model" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="lets-create-a-linear-model"><span class="header-section-number">9.2.2</span> Let’s create a linear model</h3>
+<p>Let’s create your first linear model in R, using a simulated dataset called <code>sim_df</code>.</p>
+<p>This is what the first few rows of the dataset look like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+      x     y
+  &lt;dbl&gt; &lt;dbl&gt;
+1  1.69  4.68
+2  1.72  5.72
+3  3.18  4.97
+4  4.32  8.35
+5  5.20 10.3 
+6  5.95 12.5 </code></pre>
+</div>
+</div>
+<p>As you can see, there are two variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Here’s what they look like:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This looks like a pretty good candidate for a linear model, so let’s create one.</p>
+<p>We’ll do that with the <code>lm</code> function. The general syntax of this function is:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(response <span class="sc">~</span> explanatory, <span class="at">data =</span> _______)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>response</code> and <code>explanatory</code> are the column names of those two variables.</li>
+<li>The <code>data</code> parameter expects the dataframe containing those columns.</li>
+</ul>
+<div class="comment2">
+<p>What’s going on with <code>response ~ explanatory</code>? This is what’s know as an R <em>formula</em>.</p>
+<p>The mathematical forumla for a linear model is <span class="math inline">\(y=mx+c\)</span>. In R, we would write this as <code>y ~ x</code>: i.e.&nbsp;we replace <span class="math inline">\(=\)</span> with <code>~</code>, and we only include the actual variables. From this, R infers that we want to estimate the model’s coefficients (the slope, <span class="math inline">\(m\)</span>, and the intercept, <span class="math inline">\(c\)</span>).</p>
+</div>
+<p class="comment3">
+Fill in the blanks in the lm function with the two variables, <code>y</code> and <code>x</code>, and the dataframe <code>sim_df</code>.
+</p>
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(_____ <span class="sc">~</span> _______, <span class="at">data =</span> _____)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hint text</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Make sure to get the variables in the right order!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="comment3">
+<p><strong>Note</strong>: Unfortunately the <code>lm</code> function is a part of the core R programming language that predates the <code>tidyverse</code> packages. Unlike the tidyverse functions, the first argument of <code>lm</code> is the formula, not the dataframe. Therefore, you cannot pipe a dataframe to <code>lm</code>, because pipe inserts the dataframe into the first argument position (which will cause an error).</p>
+</div>
+</section>
+</section>
+<section id="fitting-models" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="fitting-models"><span class="header-section-number">9.3</span> Fitting models</h2>
+<section id="video-introduction-2" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="video-introduction-2"><span class="header-section-number">9.3.1</span> Video introduction</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kCIg9qiNsMA?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing">PDF (same as before)</a></p>
+</section>
+<section id="your-models-coefficients" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="your-models-coefficients"><span class="header-section-number">9.3.2</span> Your model’s coefficients</h3>
+<p>We usually want to report the slope and intercept of a linear model. The slope is especially useful to report, because it indicates how much <span class="math inline">\(y\)</span> changes as <span class="math inline">\(x\)</span> changes.</p>
+<p>We can report the model coefficients with the <code>tidy()</code> function from the <code>broom</code> package. The syntax is like this:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p class="comment3">
+Replace the blank with the correct function to report the coefficients.
+</p>
+<div class="cell" data-exercise="true" data-exercise.setup="create_model">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the slope of the linear model?"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.27"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.75"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the intercept of the linear model?"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.27"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.75"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="r2-how-good-is-your-model" class="level3" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="r2-how-good-is-your-model"><span class="header-section-number">9.3.3</span> <span class="math inline">\(R^2\)</span>: how good is your model?</h3>
+<p>So we’ve reported the slope and intercept: however, these don’t tell us about how well the model fits the data, i.e.&nbsp;how close the points are to the model’s line.</p>
+<p>For example, you could have a steep slope (suggesting that a change in <span class="math inline">\(x\)</span> is correlated with a big change in <span class="math inline">\(y\)</span>), but the points could be scattered a long way from the line (i.e.&nbsp;large residuals). For example, consider these two graphs:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, x2)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">3</span>), <span class="dv">2</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>series <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Low slope, large scatter"</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">"Steep slope, low scatter"</span>, <span class="dv">10</span>))</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y, series) <span class="sc">%&gt;%</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can use a statistic called <span class="math inline">\(R^2\)</span> (R-squared). You can think of <span class="math inline">\(R^2\)</span> as <em>the % of the variation in <span class="math inline">\(y\)</span> that is explained by the explanatory variable, <span class="math inline">\(x\)</span></em>.</p>
+<p><span class="math inline">\(R^2\)</span> varies between 0 and 1. 1 means that the model explains all the variation: i.e.&nbsp;the points fall exactly on the line of best fit! As the points get further from the line, <span class="math inline">\(R^2\)</span> will decrease.</p>
+<p>We can report the <span class="math inline">\(R^2\)</span> by piping a model to the <code>glance()</code> function.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p class="comment3">
+Fill in the blank with the correct function to report the <span class="math inline">\(R^2\)</span> value of your model.
+</p>
+<div class="cell" data-exercise="true" data-exercise.setup="create_model">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-exercise.setup="create_model">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You’ll note that <code>glance</code> reports a whole bunch of statistics. We only care about the first column, <code>r.squared</code>, and can ignore the rest.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the R-squared value of your model?"</span>,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.935"</span>, <span class="at">correct=</span><span class="cn">TRUE</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.926"</span>),</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.52"</span>),</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"114"</span>),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="whats-a-good-r2" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="whats-a-good-r2"><span class="header-section-number">9.3.4</span> What’s a good <span class="math inline">\(R^2\)</span>?</h3>
+<p>We can use the <span class="math inline">\(R^2\)</span> to determine how “good” a model is. However, what value of <span class="math inline">\(R^2\)</span> is “good”?</p>
+<p>It turns out that the answer to this question varies widely between different areas of science.</p>
+<p>In physics, we often collect data from simple systems where data can be collected very accurately, so physicists expect high <span class="math inline">\(R^2\)</span> values in their experiments. For example, if you are measuring the speed of an object, there will be only one or two variables that will affect the speed, so you should get a very good correlation. Physical variable are generally easy to predict.</p>
+<p>In contrast, the social sciences (e.g.&nbsp;psychology or economics) will accept lower <span class="math inline">\(R^2\)</span> values, because there social systems are very complex with a huge number of interacting variables. For example, you could measure the effect of a good night’s sleep on students’ exam results the next day, but there are going to ge a lot of other things that affect how well a student does (such as how much they studied). As a result, even if sleep and exam results are related, the correlation will be very weak. Psychologists may be quite happy with <span class="math inline">\(R^2\)</span> values of less than 0.5 (i.e.&nbsp;50%).</p>
+<p>For the purposes of this class, you can think of an <span class="math inline">\(R^2\)</span> &gt; 0.5 as good, an <span class="math inline">\(R^2\)</span> &gt; 0.25 as okay, and an <span class="math inline">\(R^2\)</span> &gt; 0.1 as weak.</p>
+</section>
+</section>
+<section id="model-assumptions" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="model-assumptions"><span class="header-section-number">9.4</span> Model assumptions</h2>
+<section id="assumptions-of-the-linear-model" class="level3" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="assumptions-of-the-linear-model"><span class="header-section-number">9.4.1</span> Assumptions of the linear model</h3>
+<p>All models make assumptions - that’s how they are able to simplify complexity.</p>
+<p>The linear model makes these assumptions:</p>
+<ol type="1">
+<li><p><strong>Linearity</strong>: we assume that there is a linear relationship between the response and explanatory variables (i.e.&nbsp;that they fall more or less along a straight line).</p></li>
+<li><p><strong>Nearly normal residuals</strong>: the residuals are normally distributed around the model line.</p></li>
+<li><p><strong>Constant variation of residuals</strong>: the variation in residual size (above and below the model line) is similar in all parts of the model.</p></li>
+<li><p><strong>Independent observations</strong>: Each observation (i.e.&nbsp;each <span class="math inline">\((x,y)\)</span> point) was generated independently from the others.</p></li>
+</ol>
+<p>These might seem a little complicated, but they all make some intuitive sense when you think about what they mean, so let’s go through them one-by-one.</p>
+</section>
+<section id="linearity" class="level3" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="linearity"><span class="header-section-number">9.4.2</span> Linearity</h3>
+<p>For a simple regression with one explanatory variable, we can see whether there is a linear relationship by plotting a scatter plot with the model line. For example, compare these two plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, x2)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">400</span><span class="sc">*</span>x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">100</span>), x2<span class="sc">^</span><span class="dv">3</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">100</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>series <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Linearity condition satisfied"</span>, <span class="dv">20</span>), <span class="fu">rep</span>(<span class="st">"Linearity condition violated"</span>, <span class="dv">20</span>))</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y, series) <span class="sc">%&gt;%</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious <em>non-linear</em> trend, and that data violates this assumption of the linear model.</p>
+<!--
+TODO:
+- Add a quiz/code question here asking students to interpret their own graph
+- Add quiz questions of other graphs that are harder to interpret
+-->
+<!-- TODO: visualizing models and trend lines in general - always show the underlying data points to avoid misleading
+
+TODO: use coef() function to get model coefficients.
+-->
+</section>
+<section id="nearly-normal-residuals" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="nearly-normal-residuals"><span class="header-section-number">9.4.3</span> Nearly normal residuals</h3>
+<p>The best linear model is the one that has the smallest sum of the squared residuals. We don’t need to worry too much about the mathematics behind this - however, you should be aware that the math does make the simplifying assumption that the residuals have a <em>normal</em> distribution (more or less).</p>
+<p>The normal distribution is a bell-shaped distribution:</p>
+<p>TODO: add image of normal distribution</p>
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/Normal_Distribution_NIST.gif") -->
+<!-- ``` -->
+<p>We can plot a histogram of the residuals and see if that has a (more or less) normal distribution:</p>
+<p>TODO: add image of histogram of normal distribution</p>
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/hist_normal_dist_wikipedia.png") -->
+<!-- ``` -->
+<p>To do that, we will need to:</p>
+<ol type="1">
+<li>Calculate a new column in our dataframe holding the residuals.</li>
+<li>Plot the residuals.</li>
+</ol>
+<p>This starter code calculates the residuals using your model and a useful function called <code>add_residuals</code>. The new dataframe (with an additional column called <code>resid</code> to hold the residuals), has been saved in a new variable called <code>sim_model_df</code>.</p>
+<p class="comment3">
+Use this new <code>sim_model_df</code> dataframe to create histogram of the <code>resid</code> column (fill in the correct geom function and the <code>resid</code> column name in the appropriate blanks).
+</p>
+<div class="cell" data-exercise="true" data-exercise.setup="create_model">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sim_model_df <span class="ot">&lt;-</span> sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(sim_model)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>sim_model_df <span class="sc">%&gt;%</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ________), <span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sim_model_df <span class="ot">&lt;-</span> sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(sim_model)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>sim_model_df <span class="sc">%&gt;%</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid), <span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As you can see, our histogram does not look like a perfectly normal distribution - however, the randomly simulated <code>sim_df</code> dataframe was created with normal residuals!</p>
+<p>This is the challenge of working with random data: it will rarely look “perfect”. This is why we say that we only expect <em>nearly</em> normal residuals to satisfy this condition.</p>
+<p>In your graph, there does appear to be a roughly normal distribution (of course, it’s easy to say that when we know it should be!):</p>
+<ul>
+<li>There’s a single higher peak in the middle.</li>
+<li>The heights of the bins decrease on either side.</li>
+<li>There seem to be a similar number of residuals on either side of the central peak (i.e.&nbsp;the distribution is symmetric).</li>
+<li>Although the left-most bin is higher than we might expect, this can be explained as just a quirk of the data (remember that all data is a little bit random), especially as this dataset is small (such random variation tends to get “averaged out” as the number of data points increases).</li>
+</ul>
+</section>
+<section id="constant-variability-of-residuals" class="level3" data-number="9.4.4">
+<h3 data-number="9.4.4" class="anchored" data-anchor-id="constant-variability-of-residuals"><span class="header-section-number">9.4.4</span> Constant variability of residuals</h3>
+<p>The residuals of a linear model are arranged above and below the line. As we saw in the previous section, this arrangement should look similar to a normal distribution, i.e.</p>
+<ul>
+<li>most residuals will be small (close to the line)</li>
+<li>a few residuals will be large</li>
+</ul>
+<p>The linear model also assumes that this normal distribution is the same in all parts of the model (i.e.&nbsp;at both high and low value of <span class="math inline">\(x\)</span>).</p>
+<p>For example, in this model, we can clearly see that the variation in the residuals <em>is not constant</em> - this is a violation of this third assumption of the linear model:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">46</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decreasing variation in points"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the graph above, the points on the right lie much closer to the line: i.e.&nbsp;the residuals will be smaller.</p>
+<p>For simple linear models like this (with only a single explanatory variable <span class="math inline">\(x\)</span>), we can get a reasonable idea of the variability of the residuals just by looking at a scatter plot of the model, as above.</p>
+<p>For comparison, here is the model you fit earlier:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Does your model (as shown above) satisfy the linear model's assumption of constant variability of residuals?"</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Yes, the model satisfies this assumption."</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"No, the model violates this condition."</span>),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="independent-observations" class="level3" data-number="9.4.5">
+<h3 data-number="9.4.5" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">9.4.5</span> Independent observations</h3>
+<p>The fourth (and final) assumption of the linear model is that all the observations (data points) were generated <em>independently</em>.</p>
+<p>We will not worry to much about this assumption in this course, as the datasets we give you will have independent observations (for the most part).</p>
+<p>But what does it mean for observations to be <em>non-independent</em>?</p>
+<p>Consider the stock market: we could have a dataset that contains measurements of a company’s stock price at the end of each day. However these observations are not independent. A stock price will rise or fall, but this change will be <em>from the previous observation</em>. I.e. if the stock ends day 1 at 100, it will probably end day 2 pretty close to 100. Therefore, the data points are not independent.</p>
+<p>For comparison, think about measuring the height of all the students in this class: one student’s height does not significantly affect an other’s, so these observations are all independent.</p>
+<!--
+TODO: 
+add quiz 
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/book/08_eda_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/book/10_inference_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

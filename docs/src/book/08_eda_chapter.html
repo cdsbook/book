@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to Computing and Data for Scientists - 8&nbsp; Exploratory Data Analysis and Scientific Discovery</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/book/09_modeling_chapter.html" rel="next">
+<link href="../../src/book/07_ggplot_chapter.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/08_eda_chapter.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">An Introduction to Computing and Data for Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basic Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/02_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/03_r_programming_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/05_visualization_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/06_wrangling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/07_ggplot_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/09_modeling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_inference_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_more_r_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scientific Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-eda" id="toc-what-is-eda" class="nav-link active" data-scroll-target="#what-is-eda"><span class="header-section-number">8.1</span> What is EDA?</a>
+  <ul class="collapse">
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda"><span class="header-section-number">8.1.1</span> Exploratory Data Analysis (EDA)</a></li>
+  <li><a href="#types-of-variation-to-explore" id="toc-types-of-variation-to-explore" class="nav-link" data-scroll-target="#types-of-variation-to-explore"><span class="header-section-number">8.1.2</span> Types of variation to explore</a></li>
+  </ul></li>
+  <li><a href="#starting-eda" id="toc-starting-eda" class="nav-link" data-scroll-target="#starting-eda"><span class="header-section-number">8.2</span> Starting EDA</a>
+  <ul class="collapse">
+  <li><a href="#a-first-steps-eda-checklist" id="toc-a-first-steps-eda-checklist" class="nav-link" data-scroll-target="#a-first-steps-eda-checklist"><span class="header-section-number">8.2.1</span> A “first steps” EDA checklist</a></li>
+  <li><a href="#formulate-your-question" id="toc-formulate-your-question" class="nav-link" data-scroll-target="#formulate-your-question"><span class="header-section-number">8.2.2</span> Formulate your question</a></li>
+  <li><a href="#load-the-data-and-read-the-documentation" id="toc-load-the-data-and-read-the-documentation" class="nav-link" data-scroll-target="#load-the-data-and-read-the-documentation"><span class="header-section-number">8.2.3</span> Load the data and read the documentation</a></li>
+  <li><a href="#get-an-overview-of-the-data" id="toc-get-an-overview-of-the-data" class="nav-link" data-scroll-target="#get-an-overview-of-the-data"><span class="header-section-number">8.2.4</span> Get an overview of the data</a></li>
+  <li><a href="#look-at-the-first-and-last-rows-of-your-dataframe" id="toc-look-at-the-first-and-last-rows-of-your-dataframe" class="nav-link" data-scroll-target="#look-at-the-first-and-last-rows-of-your-dataframe"><span class="header-section-number">8.2.5</span> Look at the first and last rows of your dataframe</a></li>
+  <li><a href="#make-sure-that-the-data-makes-sense" id="toc-make-sure-that-the-data-makes-sense" class="nav-link" data-scroll-target="#make-sure-that-the-data-makes-sense"><span class="header-section-number">8.2.6</span> Make sure that the data makes sense</a></li>
+  <li><a href="#start-the-eda-cycle" id="toc-start-the-eda-cycle" class="nav-link" data-scroll-target="#start-the-eda-cycle"><span class="header-section-number">8.2.7</span> Start the EDA cycle</a></li>
+  </ul></li>
+  <li><a href="#univariate-variation" id="toc-univariate-variation" class="nav-link" data-scroll-target="#univariate-variation"><span class="header-section-number">8.3</span> Univariate variation</a>
+  <ul class="collapse">
+  <li><a href="#non-graphical-methods-i.e.-summary-statistics" id="toc-non-graphical-methods-i.e.-summary-statistics" class="nav-link" data-scroll-target="#non-graphical-methods-i.e.-summary-statistics"><span class="header-section-number">8.3.1</span> Non-graphical methods (i.e.&nbsp;summary statistics)</a></li>
+  <li><a href="#graphical-analysis-of-carat" id="toc-graphical-analysis-of-carat" class="nav-link" data-scroll-target="#graphical-analysis-of-carat"><span class="header-section-number">8.3.2</span> Graphical analysis of <code>carat</code></a></li>
+  <li><a href="#price-visualization" id="toc-price-visualization" class="nav-link" data-scroll-target="#price-visualization"><span class="header-section-number">8.3.3</span> <code>price</code> visualization</a></li>
+  <li><a href="#violin-plots" id="toc-violin-plots" class="nav-link" data-scroll-target="#violin-plots"><span class="header-section-number">8.3.4</span> Violin plots</a></li>
+  </ul></li>
+  <li><a href="#multivariate-covariation" id="toc-multivariate-covariation" class="nav-link" data-scroll-target="#multivariate-covariation"><span class="header-section-number">8.4</span> Multivariate covariation</a>
+  <ul class="collapse">
+  <li><a href="#co-variation-with-summary-statistics" id="toc-co-variation-with-summary-statistics" class="nav-link" data-scroll-target="#co-variation-with-summary-statistics"><span class="header-section-number">8.4.1</span> Co-variation with summary statistics</a></li>
+  <li><a href="#graphical" id="toc-graphical" class="nav-link" data-scroll-target="#graphical"><span class="header-section-number">8.4.2</span> Graphical</a></li>
+  <li><a href="#coloring-and-faceting-by-categorical-variables" id="toc-coloring-and-faceting-by-categorical-variables" class="nav-link" data-scroll-target="#coloring-and-faceting-by-categorical-variables"><span class="header-section-number">8.4.3</span> Coloring and faceting by categorical variables</a></li>
+  </ul></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn"><span class="header-section-number">8.5</span> Your turn</a>
+  <ul class="collapse">
+  <li><a href="#do-some-eda" id="toc-do-some-eda" class="nav-link" data-scroll-target="#do-some-eda"><span class="header-section-number">8.5.1</span> Do some EDA</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-eda" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="what-is-eda"><span class="header-section-number">8.1</span> What is EDA?</h2>
+<!--
+TODO: Acknowledgements (Peng book, R4DS, NIST handbook, Seltman book)
+
+TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
+-->
+<section id="exploratory-data-analysis-eda" class="level3" data-number="8.1.1">
+<h3 data-number="8.1.1" class="anchored" data-anchor-id="exploratory-data-analysis-eda"><span class="header-section-number">8.1.1</span> Exploratory Data Analysis (EDA)</h3>
+<p>Exploratory data analysis, or <strong>EDA</strong> for short, is a vague, hard-to-define concept… but is also the activity that will occupy much of your time as a data scientist.</p>
+<p>Here’s the problem:</p>
+<ul>
+<li><p>When you first get a dataset, you don’t know very much about it. You probably choose the dataset because you thought it might help you solve a particular problem, but you don’t know how (or if) the data can help you do that, or what other nuances might be present in the dataset.</p></li>
+<li><p>So, the first step is to do a little digging: open the data up, and:</p>
+<ol type="1">
+<li><p>Plot a few basic graphs (EDA is mostly done with graphs because they make it very easy to spot patterns).</p></li>
+<li><p>Calculate some simple statistics (e.g.&nbsp;averages and ranges)</p></li>
+</ol></li>
+<li><p>This basic analysis will probably give you some ideas about the data. You’ll probably spot some patterns that bear further investigation, or maybe some issues that you’ll need to address.</p></li>
+<li><p>How do you do this? More analysis, visualization, and general experimentation, which in turn will reveal more potential patterns, and so the cycle continues…</p></li>
+</ul>
+<p>Your end goal is to find some interesting questions in the dataset that deserve some kind of follow-up.</p>
+<p>Does this seem all seem vague and open-ended? That’s because it is fundamentally a creative activity. There’s no one “right way” to create a painting or a book. Exploratory data analysis is the same. And just like those other creative activities, the way to get better is to practice.</p>
+</section>
+<section id="types-of-variation-to-explore" class="level3" data-number="8.1.2">
+<h3 data-number="8.1.2" class="anchored" data-anchor-id="types-of-variation-to-explore"><span class="header-section-number">8.1.2</span> Types of variation to explore</h3>
+<p>Hopefully you are now convinced why graphing data is important. But what type of graphs should you create?</p>
+<p>The rest of this tutorial will go through different types of graphs, but here are some general concepts to bear in mind:</p>
+<ul>
+<li><p>We can broadly divide EDA into two types: univariate and multivariate</p>
+<ul>
+<li><p>Univariate, or “one variable”, analysis looks at the <strong>variation</strong> within a single variable’s values. Our goal here is to understand the distribution of this variable.</p></li>
+<li><p>Multivariate (i.e.&nbsp;“many variables”) refers to analysis of 2 or more variables where we want to examine the <strong>covariance</strong> between variables. In other words, how does one variable change in response to changes in another.</p></li>
+</ul></li>
+<li><p>As a general principle, you should do univariate EDA first before multivariate EDA.</p></li>
+<li><p>We have put together a flow chart to help you pick the right type of graph for particular types of data and analysis goals: <a href="https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing">available as a PDF here</a>.</p></li>
+</ul>
+</section>
+</section>
+<section id="starting-eda" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="starting-eda"><span class="header-section-number">8.2</span> Starting EDA</h2>
+<section id="a-first-steps-eda-checklist" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="a-first-steps-eda-checklist"><span class="header-section-number">8.2.1</span> A “first steps” EDA checklist</h3>
+<p>Here’s a checklist of things to check when you begin EDA on a dataset.</p>
+<ol type="1">
+<li><p>Formulate your question</p></li>
+<li><p>Load the data and check the dataset’s documentation</p></li>
+<li><p>Get an overview of the data</p></li>
+<li><p>Look at the first and last rows of your dataframe</p></li>
+<li><p>Make sure the data makes sense</p></li>
+<li><p>Start the EDA cycle.</p></li>
+</ol>
+<p>Based on: <a href="https://bookdown.org/rdpeng/exdata/exploratory-data-analysis-checklist.html">Exploratory Data Analysis, Chapter 4</a>, a free online book by Roger Peng, a professor of biostatistics at Johns Hopkins University.</p>
+</section>
+<section id="formulate-your-question" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="formulate-your-question"><span class="header-section-number">8.2.2</span> Formulate your question</h3>
+<p>It’s generally a good idea to go into EDA with a question in mind.</p>
+<p>The question doesn’t have to be perfect - indeed, you might well decide that the question can be improved after you’ve explored the data.</p>
+<p>However, having a question in mind allows us to focus our EDA and not get distracted by the huge number of possibilities that we can explore with a single dataset.</p>
+<p>So: <em>what makes a good question?</em></p>
+<p>In general, we want:</p>
+<ul>
+<li><p>to be as specific as possible,</p></li>
+<li><p>while still being interesting.</p></li>
+</ul>
+<p>Specificity is good because it makes our analysis shorter and more direct. Broad questions are often of more general interest, but it is harder to come up with an approach to answering them.</p>
+<p>An analogy is a New Year’s resolution: consider “Exercise more” vs.&nbsp;“Go for a 30 minute run 3x per week.” One of these is specific and measureable (while still be relevant to the overall goal of increasing your fitness), while the other is much broader and less-defined (and potentially easier to weasel out of…).</p>
+<p>For this tutorial, our starting question will be:</p>
+<blockquote class="blockquote">
+<p>What is the effect of the size of a diamond on its price?</p>
+</blockquote>
+<p>This is a better starting place that a broader question such as “What factors influence diamond prices?” Where would we start with such a question? Not only would we want data on the physical characteristics of diamonds, but probably also on the supply of diamonds, the controls imposed by diamond cartels, the effect of advertizing to make diamonds seem exclusive, popular campaigns against blood diamonds… we could spend all day just thinking about the question, and never get to the actual EDA!</p>
+</section>
+<section id="load-the-data-and-read-the-documentation" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="load-the-data-and-read-the-documentation"><span class="header-section-number">8.2.3</span> Load the data and read the documentation</h3>
+<p>For this tutorial, we will be using the <code>diamonds</code> dataset, which is automatically loaded with the <code>ggplot2</code> graphing package.</p>
+<p>This means that you just need to run <code>library(ggplot2)</code> or <code>library(tidyverse)</code> (the <code>tidyverse</code> meta-package includes <code>ggplot2</code>), and the diamonds dataset will be available for you to use.</p>
+<p>In the real world, loading data tends to be a much messier task (a topic for another day).</p>
+<section id="check-the-datasets-documentation" class="level4" data-number="8.2.3.1">
+<h4 data-number="8.2.3.1" class="anchored" data-anchor-id="check-the-datasets-documentation"><span class="header-section-number">8.2.3.1</span> Check the dataset’s documentation</h4>
+<p>Most datasets come with documentation describing the data that they contain.</p>
+<p>In R, most datasets that come as part of a package have some kind of documentation page. In RStudio, you can bring this up by running <code>?name_of_dataset</code> in the console, e.g.&nbsp;<code>?diamonds</code>. That won’t work in this tutorial, but you can also see the <code>diamonds</code> documentation page online here: <a href="https://ggplot2.tidyverse.org/reference/diamonds.html">https://ggplot2.tidyverse.org/reference/diamonds.html</a></p>
+</section>
+</section>
+<section id="get-an-overview-of-the-data" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="get-an-overview-of-the-data"><span class="header-section-number">8.2.4</span> Get an overview of the data</h3>
+<p>We can use the <code>glimpse</code> function to get a compact overview of a dataframe.</p>
+<p>Note: the <code>glimpse</code> function is a modern “tidyverse” version of an older R function called <code>str</code>.</p>
+<!-- Book version -->
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Run the <code>glimpse</code> function to get an overview of the columns in the <code>diamonds</code> dataset.
+</p>
+<!-- End tutorial -->
+</section>
+<section id="look-at-the-first-and-last-rows-of-your-dataframe" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="look-at-the-first-and-last-rows-of-your-dataframe"><span class="header-section-number">8.2.5</span> Look at the first and last rows of your dataframe</h3>
+<p>Sometimes dataset creators start with grand intentions, but motivation or reality gets in the way. Because of this, the data at the top of datasets often looks great. However, the last rows in the dataset may contain incomplete or problematic data that got added on at the end.</p>
+<p>We can examine both the first and last rows of the dataset with the <code>head</code> and <code>tail</code> functions respectively. The syntax of these functions is <code>head(dataset_name)</code>, e.g.:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 10
+  carat cut       color clarity depth table price     x     y     z
+  &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48</code></pre>
+</div>
+</div>
+<p>to display 6 rows from the top (or bottom) of the dataset. We can change the number of rows to display with the second argument:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 10
+   carat cut       color clarity depth table price     x     y     z
+   &lt;dbl&gt; &lt;ord&gt;     &lt;ord&gt; &lt;ord&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  0.23 Ideal     E     SI2      61.5    55   326  3.95  3.98  2.43
+ 2  0.21 Premium   E     SI1      59.8    61   326  3.89  3.84  2.31
+ 3  0.23 Good      E     VS1      56.9    65   327  4.05  4.07  2.31
+ 4  0.29 Premium   I     VS2      62.4    58   334  4.2   4.23  2.63
+ 5  0.31 Good      J     SI2      63.3    58   335  4.34  4.35  2.75
+ 6  0.24 Very Good J     VVS2     62.8    57   336  3.94  3.96  2.48
+ 7  0.24 Very Good I     VVS1     62.3    57   336  3.95  3.98  2.47
+ 8  0.26 Very Good H     SI1      61.9    55   337  4.07  4.11  2.53
+ 9  0.22 Fair      E     VS2      65.1    61   337  3.87  3.78  2.49
+10  0.23 Very Good H     VS1      59.4    61   338  4     4.05  2.39</code></pre>
+</div>
+</div>
+<p>We could also rewrite the previous code chunk using the pipe operator:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Use the <code>tail</code> function to display the <strong>last 8 rows</strong> of the diamonds dataframe. Note that this code uses the pipe operator <code>%&gt;%</code> to supply the first.
+</p>
+<!-- End tutorial -->
+<p>As you can see, the <code>diamonds</code> data is actually pretty nice at both the top and the bottom (as you might hope for an “offical” ggplot dataset). The example datasets that come with packages are often nice like this - unfortunately real-world data is usually less friendly.</p>
+</section>
+<section id="make-sure-that-the-data-makes-sense" class="level3" data-number="8.2.6">
+<h3 data-number="8.2.6" class="anchored" data-anchor-id="make-sure-that-the-data-makes-sense"><span class="header-section-number">8.2.6</span> Make sure that the data makes sense</h3>
+<p>We expect certain things about our dataset to be true:</p>
+<ul>
+<li>Does the dataset have the correct number of rows and columns?</li>
+<li>Do the numbers in each column make sense:
+<ul>
+<li>does a column called <code>date</code> contain dates, or does it have random numbers that don’t seem to be dates?</li>
+<li>does a column called <code>USA_states</code> contain all 50 states as you might expect? Or does it also contain “non-state” regions such as the District of Columbia and Puerto Rico.</li>
+</ul></li>
+<li>What is an observation in the dataset?
+<ul>
+<li>In the <code>diamonds</code> dataset, each row represents a different diamond. This is probably what you would expect. But what if the dataset rows each represented a <em>diamond store</em> instead, and the numbers were the average of all the diamonds in that shop? In this scenario, the data (and what questions we can ask with it) would be very different.</li>
+</ul></li>
+<li>Are the values plausible?
+<ul>
+<li>For example, in the <code>diamonds</code> dataset, are the prices for the diamonds realistic? Is the range of values of the <code>carat</code> variable realistic (for example, most diamonds are pretty small, so if this dataset claimed to have data on 50,000 diamonds that were all 100 carats or larger, then we might be a little suspicious…)</li>
+</ul></li>
+</ul>
+</section>
+<section id="start-the-eda-cycle" class="level3" data-number="8.2.7">
+<h3 data-number="8.2.7" class="anchored" data-anchor-id="start-the-eda-cycle"><span class="header-section-number">8.2.7</span> Start the EDA cycle</h3>
+<p>Now that you’ve verified the data, you can start on the EDA process.</p>
+<p>As a reminder, we usually want to <em>start with univariate analysis</em> of each variable separately. Programs and data are both complicated, so it is always a good idea to start small and simple, and add in complexity gradually.</p>
+<p>If we do the opposite and start complicated, it is easy to make small mistakes and assumptions which might make our final conclusions wrong!</p>
+</section>
+</section>
+<section id="univariate-variation" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="univariate-variation"><span class="header-section-number">8.3</span> Univariate variation</h2>
+<section id="non-graphical-methods-i.e.-summary-statistics" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="non-graphical-methods-i.e.-summary-statistics"><span class="header-section-number">8.3.1</span> Non-graphical methods (i.e.&nbsp;summary statistics)</h3>
+<!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
+<p>If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorical_variable) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion =</span> <span class="fu">n</span>() <span class="sc">/</span> <span class="fu">nrow</span>(.),</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="dv">100</span> <span class="sc">*</span> proportion</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notes on this code:</p>
+<ul>
+<li>the <code>n()</code> function returns the number of rows. It does not need an argument.</li>
+<li>the <code>nrow()</code> function also calculates the number of rows, but needs an argument (a variable who’s rows it should count).</li>
+<li>the <code>.</code> argument inside <code>nrow</code> is used to refer to the original <code>dataframe</code> that we piped in.</li>
+</ul>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Calculate summary statistics for the categorical <code>cut</code> column of the <code>diamonds</code> dataframe.
+</p>
+<!-- End tutorial -->
+<p>For a continuous variable, we typically use a few statistics (a number representative of other numbers) to summarize the:</p>
+<ol type="1">
+<li><p>center (i.e.&nbsp;mean, median, mode), &amp;</p></li>
+<li><p>spread (e.g.&nbsp;the standard deviation, the range, the interquartile range, etc.)</p></li>
+</ol>
+<p>of a distribution.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean    =</span> <span class="fu">mean</span>(continuous_variable),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median  =</span> <span class="fu">median</span>(continuous_variable),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">std.dev =</span> <span class="fu">sd</span>(continuous_variable),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr     =</span> <span class="fu">IQR</span>(continuous_variable),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min     =</span> <span class="fu">min</span>(continuous_variable),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max     =</span> <span class="fu">max</span>(continuous_variable)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Calculate summary statistics the 6 summary statistics listed above for the continuous variable <code>carat</code> from the <code>diamonds</code> dataframe.
+</p><p>
+<!-- End tutorial -->
+</p><p>In our original question, we were interested in two variables: size (i.e.&nbsp;<code>carat</code>) and <code>price</code>. We should therefore calculate summary statistics for the <code>price</code> variable as well</p>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Repeat your summary statistics calculation for the continuous variable <code>price</code>.
+</p><p>
+<!-- End tutorial -->
+</p></section>
+<section id="graphical-analysis-of-carat" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="graphical-analysis-of-carat"><span class="header-section-number">8.3.2</span> Graphical analysis of <code>carat</code></h3>
+<p>With graphs, we want to visualize the distribution of a variable.</p>
+<p>Two good graphs for visualizing the distributions of one continuous variable are histograms and boxplots. (You might also want to look up density plots and violin plots on the <a href="https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing">“What graph should I plot” cheatsheet</a>.)</p>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Create a histogram of the <code>carat</code> variable.
+</p>
+<!-- End tutorial -->
+<p>Plots of distributions show common versus less common values of a variable. This allows us to answer questions like:</p>
+<ul>
+<li>What values are common? Does this match your prior expectations?</li>
+<li>What values are uncommon? Again, does this match your prior expectation?</li>
+<li>Does the overall appearance show any unusual patterns that bear further investigation?</li>
+</ul>
+<p>One thing you might note is that the distribution is not very smooth. To make it smoother, we could increase the size of the bins. However, to see what’s going on with this distribution, let’s <em>decrease</em> the bin size.</p>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Create another histogram of the <code>carat</code> variable, but this time set the <code>binwidth</code> parameter to 0.01
+</p>
+<!-- End tutorial -->
+<p>Interesting! There’s an odd sawtooth pattern to this data that suggests several clusters to the data. This pattern raises several interesting questions:</p>
+<ul>
+<li>What’s causing these groups (“clusters”)?</li>
+<li>Why does each cluster have a sharp left-hand side, and a long tail on the right?</li>
+</ul>
+</section>
+<section id="price-visualization" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="price-visualization"><span class="header-section-number">8.3.3</span> <code>price</code> visualization</h3>
+<p>We also want to look a the distribution of the <code>price</code> variable. Let’s do that with a new type of graph: the box plot.</p>
+<p>Box plots (also called box-and-whisker plots) visualize not only the distribution but also show several summary statistics:</p>
+<p>TODO: replace with my own image that I know I own copyright of.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../img/boxplot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="../img/boxplot.png" class="img-fluid" width="617"></p>
+</div>
+</div>
+<p>We create a box plot using the <code>geom_boxplot</code> geom function. There are two required aesthetic mappings in a box plot (note that in <code>ggplot</code> the orientation of the boxplot is rotated 90 degrees):</p>
+<ul>
+<li><code>x</code> should be a categorical variable to create different box plots for.</li>
+<li><code>y</code> is the variable that we want to show the distribution of.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cut, <span class="at">y =</span> price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>You might have spotted a problem here: what if we only want to create one box plot rather that breaking down the variable into a different box plot for each category of <code>x</code>? In this case, we need to provide a character string to <code>x</code> instead of a variable name - however, despite the fact that x is a fixed value, it still goes inside the <code>aes</code> function…</p>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Create a single box plot of the <code>price</code> variable by providing the string <code>"price"</code> as the argument to the <code>x</code> parameter.
+</p>
+<!-- End tutorial -->
+</section>
+<section id="violin-plots" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="violin-plots"><span class="header-section-number">8.3.4</span> Violin plots</h3>
+<p>An alternative to the boxplot is the violin plot. This combines aspects of the histogram and boxplot into a single graph.</p>
+<p>The code for a violin plot is almost identical to the code or a boxplot - we just use the <code>geom_violin()</code> geom function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">"price"</span>, <span class="at">y =</span> price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>TODO: Include a comparison of histogram, boxplot, and violins (all in the same plot, aligned for cmparison).</p>
+</section>
+</section>
+<section id="multivariate-covariation" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="multivariate-covariation"><span class="header-section-number">8.4</span> Multivariate covariation</h2>
+<p>When we have multiple variables we want to understand how their variation is related: this is called <strong>covariation</strong>.</p>
+<!--
+### Non-graphical (i.e. summary statistics)
+See:
+- NIST handbook: https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm
+- Section 4.4: https://www.stat.cmu.edu/~hseltman/309/Book/chapter4.pdf
+- mathematical covariance (and relationship to R-squared) + graphical interpretation with heat map (correlation plot)
+-->
+<section id="co-variation-with-summary-statistics" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="co-variation-with-summary-statistics"><span class="header-section-number">8.4.1</span> Co-variation with summary statistics</h3>
+<p><strong>TODO</strong></p>
+</section>
+<section id="graphical" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="graphical"><span class="header-section-number">8.4.2</span> Graphical</h3>
+<p>If you have two continuous variables, such as <code>price</code> and <code>carat</code> in the <code>diamonds</code> dataset, then a scatter plot is generally a good method of examining their covariation:</p>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p class="comment3">
+Create a scatter plot with <code>price</code> on the y-axis and <code>carat</code> on the x-axis.
+</p>
+<!-- End tutorial -->
+<p>We can see several things about this graph:</p>
+<ul>
+<li>There’s obviously a positive relationship between these two variables.</li>
+<li>It’s hard to tell the density of the points (i.e.&nbsp;where most of the points fall), because in many places all the point overlap in a blog.</li>
+</ul>
+<p>We have a several options to show density.</p>
+<ul>
+<li><p>We could make the points transparent with the <code>alpha</code> parameter. Then dense regions would be darker (because there would be many overlapping transparent points). For example, with <code>alpha = 0.1</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), <span class="at">alpha=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter plot of dimond price vs size"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>, <span class="at">x =</span> <span class="st">"size (carats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div></li>
+<li><p>We can also create a heat map, which is a colored grid where the intensity of the color represents a value on a scale - in this case, the color represents the density. This uses the <code>geom_bin2d</code> geom function:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heat map of dimond price vs size"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>, <span class="at">x =</span> <span class="st">"size (carats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is essentially a 2-dimensional histogram. Each square is like a bar in a univariate histogram. In this heat map, the color represents the “height” of the 2-dimensional bin, i.e.&nbsp;how many diamonds fall into each cell of the heat map’s grid.</p></li>
+</ul>
+<!-- Todo
+Have students recreate this graph
+-->
+</section>
+<section id="coloring-and-faceting-by-categorical-variables" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="coloring-and-faceting-by-categorical-variables"><span class="header-section-number">8.4.3</span> Coloring and faceting by categorical variables</h3>
+<p><strong>TODO</strong></p>
+<!--
+
+TODO:
+Faceting... since its in the quiz...
+
+-->
+</section>
+</section>
+<section id="your-turn" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="your-turn"><span class="header-section-number">8.5</span> Your turn</h2>
+<section id="do-some-eda" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="do-some-eda"><span class="header-section-number">8.5.1</span> Do some EDA</h3>
+<p>There are all kinds of other graphs we can plot.</p>
+<p>In the code cells below, experiment on your own with some exploratory data analysis of the <code>diamonds</code> dataset.</p>
+<p>From our previous explorations, it there is a positive relationship between <code>price</code> and <code>carat</code>; in other words, as one variable increases, so does the other. However:</p>
+<ul>
+<li><p>the relationship was not perfect: there seemed to be some uneven scatter. What other variables might be influencing this relationship?</p></li>
+<li><p>relatedly, what other variables are related to price (&amp; what is the variation within those other variables by themselves)?</p></li>
+</ul>
+<!-- Book version -->
+<p>TODO: book exercises</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<p>In the following code boxes, play around with some EDA of your own. You might find it helpful to look at the <a href="https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing">“What graph should I plot” cheatsheet</a> for inspiration, and remember that you can always Google a geom function (or ask an instructor) to get more information on how to use it.</p>
+<!-- End tutorial -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/book/07_ggplot_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/book/09_modeling_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

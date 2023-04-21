@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: _book
+  # output-dir: _book
   preview:
     browser: false
 
@@ -68,18 +68,23 @@ book:
 
 bibliography: references.bib
 
-format:
-  pdf:
-    documentclass: scrreprt
-    # reference-location: margin
-    # citation-location: margin
-    # include-before-body:
-    #   - text: |
-    #     
-    # geometry:
-    #   - top=2in
-    #   - left=2in
-  # html:
-  #   theme: cosmo
-  # epub:
-  #   cover-image: cover.png
+# format:
+#   pdf:
+#     documentclass: scrreprt
+#     # reference-location: margin
+#     # citation-location: margin
+#     # include-before-body:
+#     #   - text: |
+#     #     
+#     # geometry:
+#     #   - top=2in
+#     #   - left=2in
+#   html:
+#     theme: cosmo
+#     output_dir: docs
+#   # epub:
+#   #   cover-image: cover.png
+
+profile:
+  group: 
+    - [book, website]

@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to Computing and Data for Scientists - 6&nbsp; Wrangling Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/book/07_ggplot_chapter.html" rel="next">
+<link href="../../src/book/05_visualization_chapter.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/06_wrangling_chapter.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">An Introduction to Computing and Data for Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basic Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/02_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/03_r_programming_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/05_visualization_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/06_wrangling_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/07_ggplot_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/09_modeling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_inference_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_more_r_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scientific Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#wrangling-overview" id="toc-wrangling-overview" class="nav-link active" data-scroll-target="#wrangling-overview"><span class="header-section-number">6.1</span> Wrangling overview</a></li>
+  <li><a href="#the-dplyr-package-and-the-tidverse" id="toc-the-dplyr-package-and-the-tidverse" class="nav-link" data-scroll-target="#the-dplyr-package-and-the-tidverse"><span class="header-section-number">6.2</span> The <code>dplyr</code> package and the <code>tidverse</code></a></li>
+  <li><a href="#the-presidential-dataset" id="toc-the-presidential-dataset" class="nav-link" data-scroll-target="#the-presidential-dataset"><span class="header-section-number">6.3</span> The <code>presidential</code> Dataset</a>
+  <ul class="collapse">
+  <li><a href="#examining-the-data" id="toc-examining-the-data" class="nav-link" data-scroll-target="#examining-the-data"><span class="header-section-number">6.3.1</span> Examining the data</a></li>
+  </ul></li>
+  <li><a href="#picking-columns-with-select" id="toc-picking-columns-with-select" class="nav-link" data-scroll-target="#picking-columns-with-select"><span class="header-section-number">6.4</span> Picking columns with <code>select()</code></a>
+  <ul class="collapse">
+  <li><a href="#the-select-function" id="toc-the-select-function" class="nav-link" data-scroll-target="#the-select-function"><span class="header-section-number">6.4.1</span> The <code>select</code> function</a></li>
+  <li><a href="#a-simple-select" id="toc-a-simple-select" class="nav-link" data-scroll-target="#a-simple-select"><span class="header-section-number">6.4.2</span> A simple <code>select()</code></a></li>
+  <li><a href="#selecting-multiple-columns" id="toc-selecting-multiple-columns" class="nav-link" data-scroll-target="#selecting-multiple-columns"><span class="header-section-number">6.4.3</span> Selecting multiple columns</a></li>
+  <li><a href="#selecting-a-range" id="toc-selecting-a-range" class="nav-link" data-scroll-target="#selecting-a-range"><span class="header-section-number">6.4.4</span> Selecting a range</a></li>
+  </ul></li>
+  <li><a href="#sorting-with-arrange" id="toc-sorting-with-arrange" class="nav-link" data-scroll-target="#sorting-with-arrange"><span class="header-section-number">6.5</span> Sorting with <code>arrange()</code></a>
+  <ul class="collapse">
+  <li><a href="#the-arrange-function" id="toc-the-arrange-function" class="nav-link" data-scroll-target="#the-arrange-function"><span class="header-section-number">6.5.1</span> The <code>arrange</code> function</a></li>
+  <li><a href="#arrange-practice" id="toc-arrange-practice" class="nav-link" data-scroll-target="#arrange-practice"><span class="header-section-number">6.5.2</span> Arrange practice</a></li>
+  </ul></li>
+  <li><a href="#piping-data-between-functions" id="toc-piping-data-between-functions" class="nav-link" data-scroll-target="#piping-data-between-functions"><span class="header-section-number">6.6</span> <em>Piping</em> data between functions</a>
+  <ul class="collapse">
+  <li><a href="#the-pipe-operator" id="toc-the-pipe-operator" class="nav-link" data-scroll-target="#the-pipe-operator"><span class="header-section-number">6.6.1</span> The pipe <code>%&gt;%</code> operator</a></li>
+  <li><a href="#piping-practice" id="toc-piping-practice" class="nav-link" data-scroll-target="#piping-practice"><span class="header-section-number">6.6.2</span> Piping practice</a></li>
+  </ul></li>
+  <li><a href="#boolean-logic" id="toc-boolean-logic" class="nav-link" data-scroll-target="#boolean-logic"><span class="header-section-number">6.7</span> Boolean logic</a>
+  <ul class="collapse">
+  <li><a href="#review-of-boolean-logic" id="toc-review-of-boolean-logic" class="nav-link" data-scroll-target="#review-of-boolean-logic"><span class="header-section-number">6.7.1</span> Review of Boolean logic</a></li>
+  <li><a href="#boolean-logic-quiz" id="toc-boolean-logic-quiz" class="nav-link" data-scroll-target="#boolean-logic-quiz"><span class="header-section-number">6.7.2</span> Boolean logic quiz</a></li>
+  </ul></li>
+  <li><a href="#picking-rows-with-filter" id="toc-picking-rows-with-filter" class="nav-link" data-scroll-target="#picking-rows-with-filter"><span class="header-section-number">6.8</span> Picking rows with <code>filter()</code></a>
+  <ul class="collapse">
+  <li><a href="#the-filter-function" id="toc-the-filter-function" class="nav-link" data-scroll-target="#the-filter-function"><span class="header-section-number">6.8.1</span> The <code>filter</code> function</a></li>
+  <li><a href="#some-practice" id="toc-some-practice" class="nav-link" data-scroll-target="#some-practice"><span class="header-section-number">6.8.2</span> Some practice</a></li>
+  <li><a href="#filtering-with-multiple-conditions" id="toc-filtering-with-multiple-conditions" class="nav-link" data-scroll-target="#filtering-with-multiple-conditions"><span class="header-section-number">6.8.3</span> Filtering with multiple conditions</a></li>
+  </ul></li>
+  <li><a href="#creating-columns-with-mutate" id="toc-creating-columns-with-mutate" class="nav-link" data-scroll-target="#creating-columns-with-mutate"><span class="header-section-number">6.9</span> Creating columns with <code>mutate()</code></a>
+  <ul class="collapse">
+  <li><a href="#the-mutate-function" id="toc-the-mutate-function" class="nav-link" data-scroll-target="#the-mutate-function"><span class="header-section-number">6.9.1</span> The <code>mutate</code> function</a></li>
+  <li><a href="#end-year" id="toc-end-year" class="nav-link" data-scroll-target="#end-year"><span class="header-section-number">6.9.2</span> End year</a></li>
+  </ul></li>
+  <li><a href="#grouping-and-summarizing" id="toc-grouping-and-summarizing" class="nav-link" data-scroll-target="#grouping-and-summarizing"><span class="header-section-number">6.10</span> Grouping and summarizing</a>
+  <ul class="collapse">
+  <li><a href="#the-group_by-and-summarize-functions" id="toc-the-group_by-and-summarize-functions" class="nav-link" data-scroll-target="#the-group_by-and-summarize-functions"><span class="header-section-number">6.10.1</span> The <code>group_by</code> and <code>summarize</code> functions</a></li>
+  <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">6.10.2</span> Practice</a></li>
+  </ul></li>
+  <li><a href="#what-is-tidy-data" id="toc-what-is-tidy-data" class="nav-link" data-scroll-target="#what-is-tidy-data"><span class="header-section-number">6.11</span> What is tidy data?</a></li>
+  <li><a href="#converting-columns-to-rows" id="toc-converting-columns-to-rows" class="nav-link" data-scroll-target="#converting-columns-to-rows"><span class="header-section-number">6.12</span> Converting columns to rows</a>
+  <ul class="collapse">
+  <li><a href="#the-pivot_longer-function" id="toc-the-pivot_longer-function" class="nav-link" data-scroll-target="#the-pivot_longer-function"><span class="header-section-number">6.12.1</span> The <code>pivot_longer()</code> function</a></li>
+  <li><a href="#practice-1" id="toc-practice-1" class="nav-link" data-scroll-target="#practice-1"><span class="header-section-number">6.12.2</span> Practice</a></li>
+  </ul></li>
+  <li><a href="#turning-rows-to-columns" id="toc-turning-rows-to-columns" class="nav-link" data-scroll-target="#turning-rows-to-columns"><span class="header-section-number">6.13</span> Turning rows to columns</a>
+  <ul class="collapse">
+  <li><a href="#the-pivot_wider-function" id="toc-the-pivot_wider-function" class="nav-link" data-scroll-target="#the-pivot_wider-function"><span class="header-section-number">6.13.1</span> The <code>pivot_wider()</code> function</a></li>
+  <li><a href="#practice-2" id="toc-practice-2" class="nav-link" data-scroll-target="#practice-2"><span class="header-section-number">6.13.2</span> Practice</a></li>
+  <li><a href="#what-happened-to-those-dates" id="toc-what-happened-to-those-dates" class="nav-link" data-scroll-target="#what-happened-to-those-dates"><span class="header-section-number">6.13.3</span> What happened to those dates?</a></li>
+  </ul></li>
+  <li><a href="#splitting-and-combining" id="toc-splitting-and-combining" class="nav-link" data-scroll-target="#splitting-and-combining"><span class="header-section-number">6.14</span> Splitting and combining</a>
+  <ul class="collapse">
+  <li><a href="#the-separate-function" id="toc-the-separate-function" class="nav-link" data-scroll-target="#the-separate-function"><span class="header-section-number">6.14.1</span> The <code>separate</code> function</a></li>
+  <li><a href="#the-unite-function" id="toc-the-unite-function" class="nav-link" data-scroll-target="#the-unite-function"><span class="header-section-number">6.14.2</span> The <code>unite</code> function</a></li>
+  </ul></li>
+  <li><a href="#other-data-wrangling-functions" id="toc-other-data-wrangling-functions" class="nav-link" data-scroll-target="#other-data-wrangling-functions"><span class="header-section-number">6.15</span> Other data wrangling functions</a>
+  <ul class="collapse">
+  <li><a href="#other-helpful-dplyr-verbs" id="toc-other-helpful-dplyr-verbs" class="nav-link" data-scroll-target="#other-helpful-dplyr-verbs"><span class="header-section-number">6.15.1</span> Other helpful <code>dplyr</code> verbs</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter we will learn how to manipulate and transform tables of data.</p>
+<section id="wrangling-overview" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="wrangling-overview"><span class="header-section-number">6.1</span> Wrangling overview</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j8tKN7Iw5dw?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1LssVpGMhlblGewJtwO3NgdSZO-FF0uQQ">PDF</a></p>
+</section>
+<section id="the-dplyr-package-and-the-tidverse" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="the-dplyr-package-and-the-tidverse"><span class="header-section-number">6.2</span> The <code>dplyr</code> package and the <code>tidverse</code></h2>
+<!-- TODO -->
+<p>TBA: packages and loading with <code>library()</code></p>
+</section>
+<section id="the-presidential-dataset" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="the-presidential-dataset"><span class="header-section-number">6.3</span> The <code>presidential</code> Dataset</h2>
+<section id="examining-the-data" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="examining-the-data"><span class="header-section-number">6.3.1</span> Examining the data</h3>
+<!-- TODO: change the dataset -->
+<p>For the first part of this chapter we will be using a dataset of US presidents. This dataset is stored in a variable called <code>presidential</code>.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Use <code>head()</code> function to check some of the contents of the <code>presidential</code> dataframe. (The <code>head()</code> function prints the first six rows of a dataframe.)</p>
+<p>Run <code>head(presidential)</code> in the R Console and examine the output.</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<!--
+TODO:
+glimpse function? `str` function?
+quiz (number of rows, columns, what does each observation represent, etc.)
+-->
+</section>
+</section>
+<section id="picking-columns-with-select" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="picking-columns-with-select"><span class="header-section-number">6.4</span> Picking columns with <code>select()</code></h2>
+<section id="the-select-function" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="the-select-function"><span class="header-section-number">6.4.1</span> The <code>select</code> function</h3>
+<p>The <code>select()</code> function can be used to pick certain columns of a dataset. The output of <code>select()</code> is a new dataframe containing just the columns that you specified.</p>
+<p><strong>Ignore the video’s instruction to follow along in RStudio</strong>: you will try this function out on the next page of this tutorial instead.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bfmMYUOWnls?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1DtuT-rtWs-i6MzWiYtX4HUvlqpIlZfUm">PDF</a></p>
+</section>
+<section id="a-simple-select" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="a-simple-select"><span class="header-section-number">6.4.2</span> A simple <code>select()</code></h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the blank with the name of the column</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, _____)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grade_code</span>(<span class="st">"Nice work!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial -->
+</section>
+<section id="selecting-multiple-columns" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="selecting-multiple-columns"><span class="header-section-number">6.4.3</span> Selecting multiple columns</h3>
+<p>We can put as many column names as we want into the <code>select</code> function, separating each by a comma.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+<section id="selecting-a-range" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="selecting-a-range"><span class="header-section-number">6.4.4</span> Selecting a range</h3>
+<p>In R, the range operator, <code>:</code> (the colon punctuation symbol) indicates a range.</p>
+<p>For example, this code create a vector of all the integer numbers in the range of 1-10:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>(We could also have written <code>c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)</code> as you learned in the first week, but the range operator is a convenient shorthand in this scenario.)</p>
+<p>We can also use the range operator to indicate a range of columns inside <code>dplyr</code> functions such as <code>select</code>:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, name<span class="sc">:</span>end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This selects all sequential columns from <code>name</code> to <code>end</code> (which in this case is <code>name</code>, <code>start</code>, and <code>end</code>).</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<blockquote class="blockquote">
+<p>Note:</p>
+<p>You combine ranges and individual column selections by separating them by commas, e.g.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, name<span class="sc">:</span>start, party)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</blockquote>
+<!--
+TODO
+### Inverse selections
+-->
+</section>
+</section>
+<section id="sorting-with-arrange" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="sorting-with-arrange"><span class="header-section-number">6.5</span> Sorting with <code>arrange()</code></h2>
+<section id="the-arrange-function" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="the-arrange-function"><span class="header-section-number">6.5.1</span> The <code>arrange</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9Hnz8KEBCUc?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1yrnIiFINXI1nA8IFRnPhbLZVdU5MVcXn">PDF</a></p>
+</section>
+<section id="arrange-practice" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="arrange-practice"><span class="header-section-number">6.5.2</span> Arrange practice</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+</section>
+<section id="piping-data-between-functions" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="piping-data-between-functions"><span class="header-section-number">6.6</span> <em>Piping</em> data between functions</h2>
+<section id="the-pipe-operator" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="the-pipe-operator"><span class="header-section-number">6.6.1</span> The pipe <code>%&gt;%</code> operator</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SdrBENv3F-s?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1SCd5J-w1Z9E6vmT2LbmaeDZaE8pDA2p4">PDF</a></p>
+<p>As described in the video, the pipe operator takes the value on its left and inserts it as the first argument of the function on the right.</p>
+<p>In other words:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>some_data <span class="sc">%&gt;%</span> <span class="fu">someFunction</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is equivalent to:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">someFunction</span>(some_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If there are other arguments supplied to the function, they get “pushed back” so that the data piped in can claim the “first argument” spot:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>some_dataframe <span class="sc">%&gt;%</span> <span class="fu">someFunction</span>(this_is_really_argument_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>is the same as:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">someFunction</span>(some_data, this_is_really_argument_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="piping-practice" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="piping-practice"><span class="header-section-number">6.6.2</span> Piping practice</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<p>(Note that we can put a new line after the <code>%&gt;%</code> operator as above - R knows that there must be a right-hand side, so it treats both lines as the same line.)</p>
+<!-- End tutorial -->
+<p><strong>Why does this matter?</strong></p>
+<p>The first argument of functions in the <em>tidyverse</em> is the dataframe. However, many functions also output a dataframe (as does a variable holding a dataframe, such as <code>presidential</code>). So we can just pipe from one function to another and build up a long chain of functions: i.e.&nbsp;a <em>pipe</em>:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>some_dataframe <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(some_columns) <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">some_other_function</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">a_third_function</span>(different_argument)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
+<p>Note that I have invented some made-up functions and variable names in the code above - this is called <em>pseudocode</em>.</p>
+</blockquote>
+<!--
+Note: Skipped over the slice function here
+-->
+</section>
+</section>
+<section id="boolean-logic" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="boolean-logic"><span class="header-section-number">6.7</span> Boolean logic</h2>
+<section id="review-of-boolean-logic" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="review-of-boolean-logic"><span class="header-section-number">6.7.1</span> Review of Boolean logic</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_nVGIkzf8fg?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1j8y2iLJSiiH7B-NmA6T-Qf9-Mlyb3m1x">PDF</a></p>
+</section>
+<section id="boolean-logic-quiz" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="boolean-logic-quiz"><span class="header-section-number">6.7.2</span> Boolean logic quiz</h3>
+<p>You are already a little familiar with Boolean operators from the Introduction to R tutorial, so let’s refresh our memories with a quick quiz.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Quiz TBA</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<!-- TODO: Possible addition: boolean operators in `select()` ? e.g. %in% -->
+</section>
+</section>
+<section id="picking-rows-with-filter" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="picking-rows-with-filter"><span class="header-section-number">6.8</span> Picking rows with <code>filter()</code></h2>
+<section id="the-filter-function" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="the-filter-function"><span class="header-section-number">6.8.1</span> The <code>filter</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BnscboiLaUM?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1bs6q7_PNEqKa6FLYfPY65kwkZtRQ8QKB">PDF</a></p>
+</section>
+<section id="some-practice" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="some-practice"><span class="header-section-number">6.8.2</span> Some practice</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+</section>
+<section id="filtering-with-multiple-conditions" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="filtering-with-multiple-conditions"><span class="header-section-number">6.8.3</span> Filtering with multiple conditions</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+</section>
+<section id="creating-columns-with-mutate" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="creating-columns-with-mutate"><span class="header-section-number">6.9</span> Creating columns with <code>mutate()</code></h2>
+<section id="the-mutate-function" class="level3" data-number="6.9.1">
+<h3 data-number="6.9.1" class="anchored" data-anchor-id="the-mutate-function"><span class="header-section-number">6.9.1</span> The <code>mutate</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1YuxbvsaErk?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/155Z3Zs3AUjg6We5IotAexY_bdpFGDDvA">PDF</a></p>
+</section>
+<section id="end-year" class="level3" data-number="6.9.2">
+<h3 data-number="6.9.2" class="anchored" data-anchor-id="end-year"><span class="header-section-number">6.9.2</span> End year</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+</section>
+<section id="grouping-and-summarizing" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="grouping-and-summarizing"><span class="header-section-number">6.10</span> Grouping and summarizing</h2>
+<section id="the-group_by-and-summarize-functions" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="the-group_by-and-summarize-functions"><span class="header-section-number">6.10.1</span> The <code>group_by</code> and <code>summarize</code> functions</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5UOC4b2_G8s?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1myTkhZPrLjylP5mtvkARZrk7GFhxzR5H">PDF</a></p>
+</section>
+<section id="practice" class="level3" data-number="6.10.2">
+<h3 data-number="6.10.2" class="anchored" data-anchor-id="practice"><span class="header-section-number">6.10.2</span> Practice</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+</section>
+<section id="what-is-tidy-data" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="what-is-tidy-data"><span class="header-section-number">6.11</span> What is tidy data?</h2>
+<p>So far we have looked at relatively simple data wrangling operations that return subsets of the data. However, we often want to reshape the dataframe to turn it into a format called <strong>tidy data</strong>. This video will introduce you to what tidy data looks like.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FAU7bgezxRU?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/174WhC51cMkM_IfBH12HME-bZNQu3rJ4o) -->
+</section>
+<section id="converting-columns-to-rows" class="level2" data-number="6.12">
+<h2 data-number="6.12" class="anchored" data-anchor-id="converting-columns-to-rows"><span class="header-section-number">6.12</span> Converting columns to rows</h2>
+<section id="the-pivot_longer-function" class="level3" data-number="6.12.1">
+<h3 data-number="6.12.1" class="anchored" data-anchor-id="the-pivot_longer-function"><span class="header-section-number">6.12.1</span> The <code>pivot_longer()</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/B-OTLMCYYGQ?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/1CTxz65d4TfHhCAl3AaF1guNl3OvFABgm) -->
+</section>
+<section id="practice-1" class="level3" data-number="6.12.2">
+<h3 data-number="6.12.2" class="anchored" data-anchor-id="practice-1"><span class="header-section-number">6.12.2</span> Practice</h3>
+<p>Let’s try the <code>pivot_longer()</code> function on the <code>presidential</code> dataset. We will reshape this dataset to convert the two data columns (<code>start</code> and <code>end</code>) into rows, with a names column that indicates the name of the original column, and a values column that holds the dates.</p>
+<p>In other words, we want to convert the <code>presidential</code> dataframe:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>start</th>
+<th>end</th>
+<th>party</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eisenhower</td>
+<td>1953-01-20</td>
+<td>1961-01-20</td>
+<td>Republican</td>
+</tr>
+<tr class="even">
+<td>Kennedy</td>
+<td>1961-01-20</td>
+<td>1963-11-22</td>
+<td>Democratic</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>into this:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>type_of_date</th>
+<th>date</th>
+<th>party</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eisenhower</td>
+<td>start</td>
+<td>1953-01-20</td>
+<td>Republican</td>
+</tr>
+<tr class="even">
+<td>Eisenhower</td>
+<td>end</td>
+<td>1961-01-20</td>
+<td>Republican</td>
+</tr>
+<tr class="odd">
+<td>Kennedy</td>
+<td>start</td>
+<td>1961-01-20</td>
+<td>Democratic</td>
+</tr>
+<tr class="even">
+<td>Kennedy</td>
+<td>end</td>
+<td>1963-11-22</td>
+<td>Democratic</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>The data in both dataframes is the same, but we have changed the <em>shape</em> of the dataframe by converting columns into rows.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!--
+TODO:
+- make sure the order of columns doesn't matter for the grader, and then remove hint #2
+-->
+<!-- End tutorial -->
+</section>
+</section>
+<section id="turning-rows-to-columns" class="level2" data-number="6.13">
+<h2 data-number="6.13" class="anchored" data-anchor-id="turning-rows-to-columns"><span class="header-section-number">6.13</span> Turning rows to columns</h2>
+<section id="the-pivot_wider-function" class="level3" data-number="6.13.1">
+<h3 data-number="6.13.1" class="anchored" data-anchor-id="the-pivot_wider-function"><span class="header-section-number">6.13.1</span> The <code>pivot_wider()</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ULZ2iLDDjTU?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<!--
+TODO:
+- Add new slides
+-->
+<!-- Slides: [PDF](https://drive.google.com/file/d/1c3yI5GcKdF93rALaa72jo8vV0PqyIuGW) -->
+</section>
+<section id="practice-2" class="level3" data-number="6.13.2">
+<h3 data-number="6.13.2" class="anchored" data-anchor-id="practice-2"><span class="header-section-number">6.13.2</span> Practice</h3>
+<p>Let’s use the <code>pivot_wider()</code> function to undo the transformation we did earlier with the <code>pivot_longer()</code> function.</p>
+<p>I.e. we want to turn this:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>type_of_date</th>
+<th>date</th>
+<th>party</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eisenhower</td>
+<td>start</td>
+<td>1953-01-20</td>
+<td>Republican</td>
+</tr>
+<tr class="even">
+<td>Eisenhower</td>
+<td>end</td>
+<td>1961-01-20</td>
+<td>Republican</td>
+</tr>
+<tr class="odd">
+<td>Kennedy</td>
+<td>start</td>
+<td>1961-01-20</td>
+<td>Democratic</td>
+</tr>
+<tr class="even">
+<td>Kennedy</td>
+<td>end</td>
+<td>1963-11-22</td>
+<td>Democratic</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p>back into this:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>name</th>
+<th>start</th>
+<th>end</th>
+<th>party</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Eisenhower</td>
+<td>1953-01-20</td>
+<td>1961-01-20</td>
+<td>Republican</td>
+</tr>
+<tr class="even">
+<td>Kennedy</td>
+<td>1961-01-20</td>
+<td>1963-11-22</td>
+<td>Democratic</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<!-- Book version -->
+<div class="exercise">
+<p>Exercise TBM</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+<section id="what-happened-to-those-dates" class="level3" data-number="6.13.3">
+<h3 data-number="6.13.3" class="anchored" data-anchor-id="what-happened-to-those-dates"><span class="header-section-number">6.13.3</span> What happened to those dates?</h3>
+<p>When we tried to reverse the transformation, we were not able to retrieve the start and end date columns back in the same format as we originally started with in the <code>presidential</code> dataframe.</p>
+<p>Instead of actual dates in the column, you should see values such as <code>&lt;date [1]&gt;</code>. This indicate that each cell of the table holds a list of dates instead of just a single date.</p>
+<p>You code will also have generated a warning about this: <code>Warning: Values are not uniquely identified; output will contain list-cols.</code></p>
+<p>What are these non-unique values that we are being warned about? If you look through the table created by <code>pivot_wider()</code>, you will notice that one president’s date list is longer than the others (see if you can find which president this is).</p>
+<!-- TODO: Make this ^^ a question -->
+<p>In fact, there were two US presidents with this same surname during the period of this dataset, and consequently, when we tried to widen the table and identify unique rows, we identified 2 start dates and 2 end dates for this presidential surname.</p>
+<p>To avoid these problems when using <code>pivot_wider()</code>, we always need at least one column in the remaining non-widened columns that is unique for each row we wish to generate in our output. Here we fail that requirement, because one of the presidential surnames in our dataset is used by two seperate observations (presidents).</p>
+<p>By default, <code>pivot_wider()</code> assumes that all remaining columns are unique for all widened rows. However, if there are only one or a few unique columns, these can be specified by supplying those column names to the <code>id_cols</code> argument of the <code>pivot_wider()</code> function.</p>
+</section>
+</section>
+<section id="splitting-and-combining" class="level2" data-number="6.14">
+<h2 data-number="6.14" class="anchored" data-anchor-id="splitting-and-combining"><span class="header-section-number">6.14</span> Splitting and combining</h2>
+<section id="the-separate-function" class="level3" data-number="6.14.1">
+<h3 data-number="6.14.1" class="anchored" data-anchor-id="the-separate-function"><span class="header-section-number">6.14.1</span> The <code>separate</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uqiqEnRKfFg?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/17SOza86ASc-ioFA6_vmFeUj_HGWv_B7t">PDF</a></p>
+<!--
+TODO:
+Add exercises
+-->
+</section>
+<section id="the-unite-function" class="level3" data-number="6.14.2">
+<h3 data-number="6.14.2" class="anchored" data-anchor-id="the-unite-function"><span class="header-section-number">6.14.2</span> The <code>unite</code> function</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/izCk8NBycmo?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1En-4bj2Vh74wdkPbdRmXSSS5K0UQNFGK">PDF</a></p>
+<p>That’s it for this tutorial!</p>
+<!--
+TODO:
+Add exercises
+-->
+<!--
+TODO:
+- joins: inner, left, right, full outer
+-->
+</section>
+</section>
+<section id="other-data-wrangling-functions" class="level2" data-number="6.15">
+<h2 data-number="6.15" class="anchored" data-anchor-id="other-data-wrangling-functions"><span class="header-section-number">6.15</span> Other data wrangling functions</h2>
+<section id="other-helpful-dplyr-verbs" class="level3" data-number="6.15.1">
+<h3 data-number="6.15.1" class="anchored" data-anchor-id="other-helpful-dplyr-verbs"><span class="header-section-number">6.15.1</span> Other helpful <code>dplyr</code> verbs</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ZTL_tP70-zo?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1mjcislhv3o_KUbTlSsw8pT6aar4uqSYZ">PDF</a></p>
+<!--
+TODO:
+- add exercises here?
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/book/05_visualization_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/book/07_ggplot_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

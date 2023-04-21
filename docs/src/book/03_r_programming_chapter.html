@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to Computing and Data for Scientists - 3&nbsp; Introduction to R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/book/04_rmarkdown_chapter.html" rel="next">
+<link href="../../src/book/02_setup.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/03_r_programming_chapter.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">An Introduction to Computing and Data for Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basic Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/02_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/03_r_programming_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/05_visualization_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/06_wrangling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/07_ggplot_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/09_modeling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_inference_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_more_r_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scientific Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data"><span class="header-section-number">3.1</span> Data</a></li>
+  <li><a href="#operators" id="toc-operators" class="nav-link" data-scroll-target="#operators"><span class="header-section-number">3.2</span> Operators</a>
+  <ul class="collapse">
+  <li><a href="#combining-data-with-operators" id="toc-combining-data-with-operators" class="nav-link" data-scroll-target="#combining-data-with-operators"><span class="header-section-number">3.2.1</span> Combining data with operators</a></li>
+  <li><a href="#operating-on-numbers" id="toc-operating-on-numbers" class="nav-link" data-scroll-target="#operating-on-numbers"><span class="header-section-number">3.2.2</span> Operating on numbers</a></li>
+  <li><a href="#the---operator" id="toc-the---operator" class="nav-link" data-scroll-target="#the---operator"><span class="header-section-number">3.2.3</span> The <code>-</code> operator</a></li>
+  <li><a href="#the-operator" id="toc-the-operator" class="nav-link" data-scroll-target="#the-operator"><span class="header-section-number">3.2.4</span> The <code>*</code> operator</a></li>
+  <li><a href="#the-operator-1" id="toc-the-operator-1" class="nav-link" data-scroll-target="#the-operator-1"><span class="header-section-number">3.2.5</span> The <code>/</code> operator</a></li>
+  <li><a href="#the-operator-2" id="toc-the-operator-2" class="nav-link" data-scroll-target="#the-operator-2"><span class="header-section-number">3.2.6</span> The <code>^</code> operator</a></li>
+  <li><a href="#the-operator-3" id="toc-the-operator-3" class="nav-link" data-scroll-target="#the-operator-3"><span class="header-section-number">3.2.7</span> The <code>%%</code> operator</a></li>
+  <li><a href="#the-and-operators" id="toc-the-and-operators" class="nav-link" data-scroll-target="#the-and-operators"><span class="header-section-number">3.2.8</span> The <code>&lt;</code> and <code>&gt;</code> operators</a></li>
+  <li><a href="#the-operators" id="toc-the-operators" class="nav-link" data-scroll-target="#the-operators"><span class="header-section-number">3.2.9</span> The <code>==</code> operators</a></li>
+  <li><a href="#which-operator-goes-first" id="toc-which-operator-goes-first" class="nav-link" data-scroll-target="#which-operator-goes-first"><span class="header-section-number">3.2.10</span> Which operator goes first?</a></li>
+  </ul></li>
+  <li><a href="#storing-and-reusing-results-with-variables" id="toc-storing-and-reusing-results-with-variables" class="nav-link" data-scroll-target="#storing-and-reusing-results-with-variables"><span class="header-section-number">3.3</span> Storing and reusing results with <em>variables</em></a>
+  <ul class="collapse">
+  <li><a href="#the-result-of-the-assignment-operator" id="toc-the-result-of-the-assignment-operator" class="nav-link" data-scroll-target="#the-result-of-the-assignment-operator"><span class="header-section-number">3.3.1</span> The “result” of the assignment operator</a></li>
+  <li><a href="#variables-are-variable" id="toc-variables-are-variable" class="nav-link" data-scroll-target="#variables-are-variable"><span class="header-section-number">3.3.2</span> Variables are… variable</a></li>
+  <li><a href="#when-does-assignment-happen" id="toc-when-does-assignment-happen" class="nav-link" data-scroll-target="#when-does-assignment-happen"><span class="header-section-number">3.3.3</span> When does assignment happen</a></li>
+  </ul></li>
+  <li><a href="#how-r-works" id="toc-how-r-works" class="nav-link" data-scroll-target="#how-r-works"><span class="header-section-number">3.4</span> How R works</a></li>
+  <li><a href="#more-about-data" id="toc-more-about-data" class="nav-link" data-scroll-target="#more-about-data"><span class="header-section-number">3.5</span> More about data</a>
+  <ul class="collapse">
+  <li><a href="#boolean-data-revisted" id="toc-boolean-data-revisted" class="nav-link" data-scroll-target="#boolean-data-revisted"><span class="header-section-number">3.5.1</span> Boolean data revisted</a></li>
+  <li><a href="#combining-pieces-of-data" id="toc-combining-pieces-of-data" class="nav-link" data-scroll-target="#combining-pieces-of-data"><span class="header-section-number">3.5.2</span> Combining pieces of data</a></li>
+  <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"><span class="header-section-number">3.5.3</span> Vectors</a></li>
+  </ul></li>
+  <li><a href="#expressions-and-how-they-are-evaluated" id="toc-expressions-and-how-they-are-evaluated" class="nav-link" data-scroll-target="#expressions-and-how-they-are-evaluated"><span class="header-section-number">3.6</span> Expressions and how they are evaluated</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">3.7</span> Functions</a>
+  <ul class="collapse">
+  <li><a href="#re-useable-code-functions" id="toc-re-useable-code-functions" class="nav-link" data-scroll-target="#re-useable-code-functions"><span class="header-section-number">3.7.1</span> Re-useable code = functions</a></li>
+  <li><a href="#how-the-hypotenuse-function-works" id="toc-how-the-hypotenuse-function-works" class="nav-link" data-scroll-target="#how-the-hypotenuse-function-works"><span class="header-section-number">3.7.2</span> How the <code>hypotenuse</code> function works</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>It is a long-standing tradition that your first program in any new programming language should simply display the message “Hello, World!”.</p>
+<p>In R we can use the <code>print()</code> <em>function</em> to display a piece of data (such as the text <em>Hello, World!</em>).</p>
+<p>For example, we can run this line of code in R:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>And R will return this result:</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello, World!"</code></pre>
+</div>
+</div>
+<div class="info-box">
+<blockquote class="blockquote">
+<p><strong>What’s happening here?</strong></p>
+<p>We will learn more about the different parts of this code in this chapter, but briefly:</p>
+<ul>
+<li><code>print(...)</code> is a <strong>function</strong>: it takes some input ingredients (which we list between the brackets after the function’s name), and does something with them.</li>
+<li><code>"Hello, World!"</code> is a string of characters (and other symbols, such as <code>!</code>). A <strong>character string</strong> is a type of data that computers can work with.</li>
+</ul>
+</blockquote>
+</div>
+<!-- Book code -->
+<div class="exercise">
+<p><strong>Exercise: Try it yourself:</strong> Open up RStudio and copy the line of code into the RStudio Console. Then hit the <enter> key on your keyboard to run the line. You should get back the same output as above.</enter></p>
+<p>Congratulations! You just ran your first program in R.</p>
+</div>
+<!-- Tutorial code -->
+<section id="data" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="data"><span class="header-section-number">3.1</span> Data</h2>
+<p>The central component of everything we will be doing in R this semester is <strong>data</strong>. Even non-data science programs revolve around data.</p>
+<p>At a very basic level, a computer is just a fancy calculator that adds and subtracts numbers. Even things like words and pictures are stored inside a computer as numbers.</p>
+<p>However, we often want to work work with data that is not numbers. For example, in the last section we were able to get R to print out the sentence <em>Hello, World!</em> To your computer that was just numbers flowing down wires as electrical signals. But the R programming language took care of converting our instruction into something your computer could understand.</p>
+<p>This is the magic of programming languages! They allow us to write commands in (relatively) human-readable instructions, and then take care of translating that into the very unreadable numbers that computers work with.</p>
+<p>R allows us to work with several “higher-level” types of data. These <strong>data types</strong> include:</p>
+<ul>
+<li><p>the <strong>character</strong> data type holds text (i.e.&nbsp;letters, symbols, and the characters that represent numbers). We need to put the text inside quotation marks so that R knows where the text starts and ends: <code>"this is character data"</code>.</p>
+<ul>
+<li>Note: in other programming languages this datatype is sometimes known as a “character string” or just a “string”.</li>
+</ul></li>
+<li><p>the <strong>numeric</strong> data type holds numbers such as <code>0</code> or <code>12.5</code> (i.e.&nbsp;both integers (whole numbers) and decimals). Unlike text, numbers are written <em>without</em> quotation marks around them.</p></li>
+<li><p>the <strong>Boolean</strong> data type holds a value that is either <code>TRUE</code> or <code>FALSE</code>. (This is sometimes also referred to as the logical data type.)</p></li>
+</ul>
+<!-- Book version -->
+<div class="exercise">
+<p><strong>Exercise:</strong> Type the number 2 into the RStudio console. Hit the <enter> key to run this line of code. What do you get back?</enter></p>
+</div>
+<!-- End book version -->
+<!-- Tutorial version -->
+<!-- End tutorial version -->
+</section>
+<section id="operators" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="operators"><span class="header-section-number">3.2</span> Operators</h2>
+<section id="combining-data-with-operators" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="combining-data-with-operators"><span class="header-section-number">3.2.1</span> Combining data with operators</h3>
+<p>Okay, so now we know about data.</p>
+<p>But data by itself is not especially useful. It just sits there until you <em>do something</em> to it. In programming languages there are often many ways of doing things to data, but one of the simplest is <strong>operators</strong>.</p>
+<p>Operators <em>operate</em> on data. The name may sound unusual, but you are already familiar with many operators, such as <code>+</code> and <code>-</code> for adding and subtracting numbers.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Try entering a number after the <code>&gt;</code> in the Console (e.g.&nbsp;1), then Enter, and see what happens.</p>
+</div>
+<p>When you hit enter, the R interpreter reads in the line, evaluates it, and returns the answer. In this case, you entered 1, so the computer thinks ‘Hey, it’s a 1! Wow, a one! The result of 1 is… drum roll, please… 1!’ and returns the result of this <strong>expression</strong>, which is a one.</p>
+<p>Cool! But not, I confess, particularly useful. Let’s fix that: next we’ll add two numbers together.</p>
+<div class="exercise">
+<p>At the prompt, enter two numbers separated by a plus sign, +</p>
+<p><code>&gt; 1 + 1</code></p>
+<p>What do you get?</p>
+</div>
+<p>(Note that I’ve left the Console’s <code>&gt;</code> prompt in the example code above, but I will leave it out in future.)</p>
+<!-- End book version -->
+<!-- Tutorial version -->
+<!-- End tutorial version -->
+<p>Great! Let’s move on and investigate operators in more depth…</p>
+</section>
+<section id="operating-on-numbers" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="operating-on-numbers"><span class="header-section-number">3.2.2</span> Operating on numbers</h3>
+<p>Heart surgeons operate on hearts, brain surgeons operate on brains. You will be operating on numbers… does that make you a data surgeon?</p>
+<p>Here are some of the operators available to us in R:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operator</th>
+<th style="text-align: center;">Example</th>
+<th style="text-align: center;">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><code>+</code></td>
+<td style="text-align: center;"><code>5 + 2</code></td>
+<td style="text-align: center;"><code>7</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: center;"><code>5 - 2</code></td>
+<td style="text-align: center;"><code>3</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>*</code></td>
+<td style="text-align: center;"><code>5 * 2</code></td>
+<td style="text-align: center;"><code>10</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>/</code></td>
+<td style="text-align: center;"><code>5 / 2</code></td>
+<td style="text-align: center;"><code>2.5</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>^</code></td>
+<td style="text-align: center;"><code>5 ^ 2</code></td>
+<td style="text-align: center;"><code>25</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>%%</code></td>
+<td style="text-align: center;"><code>5 %% 2</code></td>
+<td style="text-align: center;"><code>1</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>&lt;</code></td>
+<td style="text-align: center;"><code>5 &lt; 2</code></td>
+<td style="text-align: center;"><code>FALSE</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><code>&gt;</code></td>
+<td style="text-align: center;"><code>5 &gt; 2</code></td>
+<td style="text-align: center;"><code>TRUE</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><code>==</code></td>
+<td style="text-align: center;"><code>5 == 2</code></td>
+<td style="text-align: center;"><code>FALSE</code></td>
+</tr>
+</tbody>
+</table>
+<p>Some of these might seem obvious, while others might be unfamiliar. Let’s go through them all and figure out what they do.</p>
+</section>
+<section id="the---operator" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="the---operator"><span class="header-section-number">3.2.3</span> The <code>-</code> operator</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>In the R Console, type <code>5 - 2</code> and hit enter to run the line of code.</p>
+<p>You probably have a good idea of what <code>-</code> does, but try changing the numbers just to make sure!</p>
+</div>
+<!-- Tutorial version -->
+</section>
+<section id="the-operator" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="the-operator"><span class="header-section-number">3.2.4</span> The <code>*</code> operator</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>In the R Console, type <code>3 * 2</code> and hit enter to run the line of code.</p>
+<p>What does <code>*</code> do?</p>
+</div>
+<!-- Tutorial version -->
+</section>
+<section id="the-operator-1" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="the-operator-1"><span class="header-section-number">3.2.5</span> The <code>/</code> operator</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>In the R Console, type <code>3 / 2</code> and hit enter to run the line of code.</p>
+<p>What does <code>/</code> do? Just to be sure, try some other numbers.</p>
+</div>
+<!-- Tutorial version -->
+</section>
+<section id="the-operator-2" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="the-operator-2"><span class="header-section-number">3.2.6</span> The <code>^</code> operator</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>In the R Console, type <code>3 ^ 2</code> and hit enter to run the line of code.</p>
+<p>What does <code>^</code> do? Try some other numbers like <code>2 ^ 3</code> or <code>16 ^ 0.5</code></p>
+</div>
+<!-- Tutorial version -->
+</section>
+<section id="the-operator-3" class="level3" data-number="3.2.7">
+<h3 data-number="3.2.7" class="anchored" data-anchor-id="the-operator-3"><span class="header-section-number">3.2.7</span> The <code>%%</code> operator</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Next up, a slightly trickier one, type <code>3 %% 2</code> and hit enter to run the line of code.</p>
+<p>What does <code>%%</code> do? You will probably have to try some other numbers to figure this one out.</p>
+<p>If you have difficulty try also dividing the same numbers. E.g. try both <code>9 %% 4</code> and <code>9 / 4</code>.</p>
+</div>
+<!-- Tutorial version -->
+</section>
+<section id="the-and-operators" class="level3" data-number="3.2.8">
+<h3 data-number="3.2.8" class="anchored" data-anchor-id="the-and-operators"><span class="header-section-number">3.2.8</span> The <code>&lt;</code> and <code>&gt;</code> operators</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>So far we have operated on numbers and got numbers back. However these next operators will return a different type of data.</p>
+<p>What do you get if you run <code>8 &gt; 10</code>?</p>
+<p>Can you change the <code>8</code> into a number so that this expression returns <code>TRUE</code>?</p>
+<p>Then change the <code>&gt;</code> to a <code>&lt;</code> operator (i.e.&nbsp;reverse its direction). What is the result now?</p>
+</div>
+<!-- Tutorial version -->
+<blockquote class="blockquote">
+<p><strong>Boolean operators</strong></p>
+<p>In the previous section we learned about the Boolean data type which has only two possible values: <code>TRUE</code> or <code>FALSE</code>.</p>
+<p>Operators that always return a Boolean value are called Boolean operators. The <em>greater than</em> (<code>&gt;</code>) and <em>less than</em> (<code>&lt;</code>) operators are examples of Boolean operators.</p>
+<p>You can think of Boolean operators as asking a question that can only be be answered with either “true” or “false”, such as “Is 8 greater than 10?”</p>
+</blockquote>
+</section>
+<section id="the-operators" class="level3" data-number="3.2.9">
+<h3 data-number="3.2.9" class="anchored" data-anchor-id="the-operators"><span class="header-section-number">3.2.9</span> The <code>==</code> operators</h3>
+<!-- Book version -->
+<div class="exercise">
+<p>Let’s try another Boolean operator. What do you get if you run <code>8 == 10</code>? What about <code>8 == 8</code>?</p>
+<p>What do you think the <code>==</code> operator does?</p>
+</div>
+<!-- Tutorial version -->
+<blockquote class="blockquote">
+<p><strong>Combining comparisons</strong></p>
+<p>Sometimes we want to know if one datum is greater than <strong>or</strong> equal to another. You can use the Boolean operators <code>&gt;=</code> for such a comparison, or <code>&lt;=</code> to see if something is <em>less than or equal to</em> another.</p>
+</blockquote>
+</section>
+<section id="which-operator-goes-first" class="level3" data-number="3.2.10">
+<h3 data-number="3.2.10" class="anchored" data-anchor-id="which-operator-goes-first"><span class="header-section-number">3.2.10</span> Which operator goes first?</h3>
+<p>Just like in normal math, we can do sums in R with multiple operators:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In such a case, which operation do we do first?</p>
+<p>Again, just like in regular math, some operations are always done before others. For example, all multiplication and division will be done before any addition or subtraction.</p>
+<blockquote class="blockquote">
+<p><strong>F.Y.I.</strong></p>
+<p>The order in which operators are calculated is known as <em>operator precedence</em>, and you can find the precedence of any operator here: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html</p>
+</blockquote>
+<p>We can change the order of operations with parentheses: <code>(</code> and <code>)</code>. For example</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>whereas</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- Book version -->
+<div class="exercise">
+<p>Modify this R code</p>
+<p><code>3 + 5 / 5 * 2 ^ 2</code></p>
+<p>so that it performs the calculation $rac{3 + 5}{(5 imes 2) ^ 2}$.</p>
+<p>When correct, you should get the answer 0.08.</p>
+</div>
+<!-- Tutorial version -->
+</section>
+</section>
+<section id="storing-and-reusing-results-with-variables" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="storing-and-reusing-results-with-variables"><span class="header-section-number">3.3</span> Storing and reusing results with <em>variables</em></h2>
+<p>So far we have learnt how to combine data to get different results.</p>
+<p>We can do multiple separate calculations by putting each one on a separate line. When R reads your code, it treats everything on one line as a single expression that is separate from other lines:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This program will have two separate outputs: 4 and 25</p>
+<p>However, after these results are shown to us, they are thrown away! All that effort just discarded…</p>
+<p>What if we wish to save the result of a calculation so that we can reuse it in a subsequent line?</p>
+<p>In this case, we need to store the result in a <strong>variable</strong>.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Run these two lines of code in the RStudio Console and see what result you get.</p>
+<p><code>a &lt;- 2 + 2</code></p>
+<p><code>5 * a</code></p>
+<p>Then take a look at the <em>Environment</em> tab in the top-right pane of RStudio. Do you see a <strong>variable</strong> called <code>a</code>? Does it hold the value calculated in the first line of code or the second?</p>
+</div>
+<!-- Tutorial version -->
+<section id="the-result-of-the-assignment-operator" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="the-result-of-the-assignment-operator"><span class="header-section-number">3.3.1</span> The “result” of the assignment operator</h3>
+<p>We store the result of an expression in a variable using the <strong>assignment operator</strong>: <code>&lt;-</code></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>variable_name <span class="ot">&lt;-</span> value_to_be_stored</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- Book version -->
+<div class="exercise">
+<p>Run these two lines of code in the RStudio Console and see what result you get.</p>
+<p><code>2 + 3</code></p>
+<p><code>b &lt;- 2 + 4</code></p>
+<p>If you take another look at the <em>Environment</em> tab in the top-right pane of RStudio, you should see another variable called <code>b</code>. What value does it hold?</p>
+</div>
+<!-- End book version -->
+<!-- Tutorial version -->
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial version -->
+<p>The second line of code should not print out any output when it runs. This is because assignment has no “result” in the same way that a math expression does, so there is nothing to print out.</p>
+<p>If you want to see the data that is stored in a variable, you can put the name of the variable on a line by itself:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>some_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>R will evaluate this line: it will ask itself “What is the <em>result</em> of <code>some_variable</code>”, which is just whatever value is stored in that variable.</p>
+<p>For example,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>The other implication of this is that if you calculate something in R and do not assign the result to a variable then it will be printed out <strong><em>and then forgotten</em></strong>. So remember: if you calculate something important in R that you will need in the future, make sure that you store it in a variable.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Type the name of one of the variables in your Environment tab in the RStudio Console (e.g.&nbsp;<code>a</code>), and hit Enter to run it.</p>
+<p>Does this return the data that you think is stored in that variable?</p>
+</div>
+<!-- End book version -->
+<!-- Tutorial version -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial version -->
+</section>
+<section id="variables-are-variable" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="variables-are-variable"><span class="header-section-number">3.3.2</span> Variables are… variable</h3>
+<p>Variables get their name because <em>their value can vary</em>. We have created the variable <code>b</code> that holds the value 6, but we can change the value of <code>b</code> and store a completely different value in it!</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Try assigning the value <code>7</code> to the variable <code>b</code> using the assignment operator <code>&lt;-</code>.</p>
+<p>Since we already created <code>b</code> in an earlier exercise, you should see that its value in the Environment tab updates.</p>
+</div>
+<!-- End book version -->
+<!-- Tutorial version -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- TODO: weird output needs fixing -->
+<!-- End tutorial version-->
+</section>
+<section id="when-does-assignment-happen" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="when-does-assignment-happen"><span class="header-section-number">3.3.3</span> When does assignment happen</h3>
+<p><code>&lt;-</code> is an operator, just like <code>+</code> or <code>*</code>. As such, it has a <em>precedence</em>: it will happen before some operators but after others.</p>
+<p>However, it turns out that the <code>&lt;-</code> precedence is <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">extremely low</a> - i.e.&nbsp;it will happen after the result of all the other operators on that line of code have been calculated.</p>
+<p>So, when you write:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…you are essentially doing this:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: Add exercise -->
+</section>
+</section>
+<section id="how-r-works" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="how-r-works"><span class="header-section-number">3.4</span> How R works</h2>
+<p>R is an <em>interpreted programming language</em>.</p>
+<p>That is a fancy way of saying that R runs (i.e.&nbsp;“interprets”) every line of code one at a time.</p>
+<p>So far we have written a line of code and then run it. In a couple of exercises you may have run multiple lines of code where one line depended on a result from a previous line. However, R completely finished running the first line before moving onto the next one.</p>
+<p>When R <em>interprets</em> a line of code, it figures out how to convert your human-readable code into computer-readable instructions (which are a series of 0s and 1s, since a computer is basically a bunch of wires that can either have an electrical current flowing down them (which we denote as 1) or not (0)).</p>
+<p>Because R is interpreted line-by-line, it is an ideal programming language for exploring and analyzing scientific data, where we typically figure out what to do next as we go along!</p>
+<p>We will soon be learning how to write multiple lines of R code in a file and then run them from the file. However, even when R runs code from a file, it still figures out how to run it one line at a time.</p>
+<blockquote class="blockquote">
+<p><strong>Compiled Programming Languages</strong></p>
+<p>Not every programming language is interpreted like R. Some are <em>compiled</em>.</p>
+<p>This means that you write all your code in a file, and then turn all of it into computer-readable instructions at once. This step is called <em>compilation</em> and can take a long time (up to hours for large programs in some languages!). It is typically slower to write programs in a compiled language because of this extra step.</p>
+<p>The main advantage of a compiled programming language is that your computer can figure out how to optimize all the lines of code so that they run extremely fast.</p>
+<p>Famous examples of compiled programming languages are Java and C++.</p>
+</blockquote>
+</section>
+<section id="more-about-data" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="more-about-data"><span class="header-section-number">3.5</span> More about data</h2>
+<!-- TODO: decide how to edit this with respect to earlier Boolean content - currently quite repetitive -->
+<section id="boolean-data-revisted" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="boolean-data-revisted"><span class="header-section-number">3.5.1</span> Boolean data revisted</h3>
+<p>At the start of this chapter we mentioned that there is a type of data in R, called Boolean data, that can have one of two values: <code>TRUE</code> or <code>FALSE</code>.</p>
+<p>Then in the section on operators we saw that some operators (those that do comparisons) would give a <code>TRUE</code>/<code>FALSE</code> result even when the input data was not Boolean. For example,</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>because 2 is equal to 2 (i.e.&nbsp;this is a <em>true</em> expression).</p>
+<p>The value <code>2</code> is an example of <em>numeric</em> data. However, the result <code>TRUE</code> is an example of <strong>Boolean</strong> data.</p>
+<p>A Boolean value can only have one of two values (i.e.&nbsp;TRUE and FALSE). We often get a Boolean value when we do comparisons (e.g.&nbsp;checking if two values are equal, or if one is greater than the other).</p>
+<p>Just as with numeric data, we can store a Boolean value in a variable, e.g.&nbsp;<code>d &lt;- FALSE</code>.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Assign the value <code>TRUE</code> to a variable called <code>d</code>.</p>
+</div>
+<!-- End book version -->
+<!-- Tutorial version -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a> d <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- TODO: Maybe an exercise seeing if they can remember which operators were Boolean operators -->
+</section>
+<section id="combining-pieces-of-data" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="combining-pieces-of-data"><span class="header-section-number">3.5.2</span> Combining pieces of data</h3>
+<p>So far we have looked at pieces of data by themselves:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">"Hello!"</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello!"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>But what about if we want to combine multiple pieces of data together?</p>
+<p>R includes several types of <em>container</em> that can hold multiple pieces of data. We can then refer to that container by a single variable. For example, instead of the three variables above, we can create a <strong>list</strong> object that holds all three values:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="st">"Hello!"</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] 1
+
+[[2]]
+[1] "Hello!"
+
+[[3]]
+[1] TRUE</code></pre>
+</div>
+</div>
+<p>We create a list using <code>list()</code>. Every value in the list goes inside the parentheses, separated by commas.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Create a list holding 4 values (in this order): 10, “z”, FALSE, -0.1*10</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">10</span>, <span class="st">"z"</span>, <span class="cn">FALSE</span>, <span class="sc">-</span><span class="fl">0.1</span><span class="sc">*</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End book -->
+</section>
+<section id="vectors" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="vectors"><span class="header-section-number">3.5.3</span> Vectors</h3>
+<p>Lists can hold data of different types. For example, our list <code>l</code> holds a number, a character string, and a Boolean value.</p>
+<p>An alternative container in R is a <strong>vector</strong>. Vectors can also hold multiple pieces of data, but unlike a list, <em>all the data in a vector must be the same type of data</em>. For example, a vector could contain all numbers, or all characters, but not a mix of the two.</p>
+<p>We create a vector with <code>c()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3</code></pre>
+</div>
+</div>
+<!-- Book version -->
+<div class="exercise">
+<p>Create a vector holding 3 character strings (in this order): “This”, “is a”, “vector!”</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"This"</span>, <span class="st">"is a"</span>, <span class="st">"vector!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial -->
+<blockquote class="blockquote">
+<p>You might be wondering what the numbers in square brackets at the start of each line in the output mean? E.g. <code>[1]</code></p>
+<p>These tell us where abouts in the vector we are. The number indicates the position in the vector of the first element displayed on that line.</p>
+<p>For example, the <code>[1]</code> at the start of the line (before “Introduction”) shows that “Introduction” is the first element in this vector. ### Operations on vectors</p>
+</blockquote>
+<p>We can use operators on more complicated data structures just as we did on the simpler data types. For example, we can add 2 vectors together:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 7 9</code></pre>
+</div>
+</div>
+<p>As you can see, the individual elements are added together.</p>
+<!-- Book version -->
+<div class="exercise">
+<p>What happens if you add two vectors of different lengths? For example, run this code and see what happens:</p>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in v3 + v4: longer object length is not a multiple of shorter object
+length</code></pre>
+</div>
+</div>
+<p>What happens when you add two <code>v3</code> and <code>v4</code>?</p>
+<ul>
+<li>The 2 elements of v3 are added to the first 2 elements of v4, and the rest of v4 is unchanged.</li>
+<li>v4 is repeated to match the length of v3 before they are added.</li>
+<li>R guesses values for the remaining values of v3 so that the two vectors are the same length.</li>
+</ul>
+<!-- End book -->
+<!-- Tutorial version -->
+<div class="cell" data-exercise="true">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial -->
+</section>
+</section>
+<section id="expressions-and-how-they-are-evaluated" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="expressions-and-how-they-are-evaluated"><span class="header-section-number">3.6</span> Expressions and how they are evaluated</h2>
+<p>TODO</p>
+<ul>
+<li>Expressions and how they are evaluated. Lines and files.</li>
+</ul>
+</section>
+<section id="functions" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="functions"><span class="header-section-number">3.7</span> Functions</h2>
+<p>Perhaps, keen mathematician that you are, you want to calculate the length of the hypotenuse of a triangle. Dredging up memories of early math classes, you will doubtless recall Pythagoras’s theorem that the hypotenuse (the long side) of triangle is given by:</p>
+<p><span class="math inline">\(c = \sqrt{a^2 + b^2}\)</span></p>
+<p>(<span class="math inline">\(c\)</span> is the hypotenuse [long side] and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are the short sides.)</p>
+<!-- Book version -->
+<div class="exercise">
+<p>Let’s say we have a triangle where the shorter sides (a &amp; b) are 3 and 4 units long. Can you calculate the length of side c in R using just the operators from the first section?</p>
+<p><em>Hint #1:</em> The square root is equal to the 0.5 power of a number: <code>4 ^ 0.5 = 2</code></p>
+<p><em>Hint #2:</em> Just like in regular math equations, R will calculate some operators before others. For example it will do all multiplications before any additions. However, just like in regular math, we can change the order of operations by wrapping parts of our calculation in parentheses: <code>(...)</code></p>
+</div>
+<p>Did you get the answer 5? Fantastic!</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<section id="re-useable-code-functions" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="re-useable-code-functions"><span class="header-section-number">3.7.1</span> Re-useable code = functions</h3>
+<p>What’s that? Another complaint? You have to write out this long expression every time you need the hypotenuse of a triangle? (No doubt this is a frequent chore in your day-to-day life.)</p>
+<p>Again, there is a solution! R allows us to save pieces of code in variables. Yes, you heard that right: variables don’t just have to store data, they can also store code!</p>
+<p>These stored, reusable sections of code are called <strong>functions</strong>.</p>
+<p>For example, you could create a function to calculate the sum of two numbers:</p>
+<pre><code>adder &lt;- function(number1, number2) {
+    result &lt;- number1 + number2
+    return(result)
+}</code></pre>
+<p>Entering these 4 lines at the console prompt will be slow and error-prone, so let’s try something different.</p>
+<p>Click on the “File” menu at the top of RStudio. Select “New File” and then “R Script”. A blank editor window should appear in a new pane above the console.</p>
+<p>Copy the adder function from the previous page into this empty script. Then press “Control + Alt + R” on your keyboard (simultaneously). This will run the contents of your script all at once.</p>
+<p>If successful, you should see that <code>adder</code> appears in the Environment pane under a new section called <em>Functions</em>.</p>
+<p>How do we use our adder function? Go back to the console, and type something like this:</p>
+<blockquote class="blockquote">
+<p>adder(3, 5)</p>
+</blockquote>
+<p>If your function is working correctly you should get the result of the 2 numbers that you entered inside the braces.</p>
+<p>Let’s take another look at the adder function to understand what’s going on:</p>
+<pre><code>adder &lt;- function(number1, number2) {
+    result &lt;- number1 + number2
+    return(result)
+}</code></pre>
+<p><strong>Line 1:</strong> The first line creates a new function with the <code>function</code> keyword and saves it to the name <code>adder</code> using the assignment operator <code>&lt;-</code>, just as we did for variables.</p>
+<p>After <code>function</code> are a pair of parentheses. Inside these, we put a list of the parameters that the function can take, separated by commas. In this case, our adder function has two paramters (the numbers to add together). We are going to give these numbers the temporary names <code>number1</code> and <code>number2</code> (creative, I know). We will use these parameter names inside the function to refer to these two numbers.</p>
+<p>We end the line with an opening curly bracket <code>{</code> to indicate that the code that follows is part of the function.</p>
+<p><strong>Line 2:</strong> This is the meat of our adder function. We add our two number paramters together and store them in a variable called <code>result</code>. Its important to note that <code>result</code> only exists inside the curly brackets of the adder function (i.e.&nbsp;it vanishes after the function has finished).</p>
+<p><strong>Line 3:</strong> Here we specify what the function is should return: in this case we want to return the <code>result</code> variable.</p>
+<p><strong>Line 4:</strong> We signal the end of the function with a closing curly bracket (matching the one from the end of line 1).</p>
+<p>You might object (and not without reason) that our <code>adder</code> function is a very trivial example. Wouldn’t it just be easier to use the <code>+</code> operator?</p>
+<p>Yes, it would! So let’s look at a more complicated function.</p>
+<p>We can create a function to calculate the hypotenuse like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(c)</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we can use this <code>hypotenuse</code> function as many times as we like. For example calculate the hypotenuse of a triangle with sides of length 3 and 4, we would run:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypotenuse</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<!-- Book version -->
+<div class="exercise">
+<p>Use the <code>hypotenuse()</code> function to calculate the area of a triangle with sides of length 3 and 4.</p>
+<p><em>Hint:</em> Try changing the numbers inside the parentheses after <code>hypotenuse</code>.</p>
+</div>
+<p>Did you get the answer 5? Fantastic!</p>
+<!-- End book -->
+<!-- Tutorial version -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(c)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial -->
+</section>
+<section id="how-the-hypotenuse-function-works" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="how-the-hypotenuse-function-works"><span class="header-section-number">3.7.2</span> How the <code>hypotenuse</code> function works</h3>
+<p>There are a few things to note about this code:</p>
+<ul>
+<li>We tell R that we are creating a reusable function using the <code>function</code> keyword.</li>
+<li><code>function</code> is followed by parentheses <code>(...)</code> that contain <strong>parameters</strong>. Parameters are the names that we give to the input data to the function.
+<ul>
+<li>For example, above we created two parameters: <code>a</code> and <code>b</code></li>
+<li>You can have as many parameters as you want in a function, from zero on up. They must be separated by commas.</li>
+</ul></li>
+<li>The reusable code goes inside a pair of curly brackets <code>{...}</code>
+<ul>
+<li>We can now use the function’s parameters in this code (e.g.&nbsp;<code>a</code> and <code>b</code>). Essentially we temporarily create new variables with the parameter names (but these are)</li>
+</ul></li>
+<li>At the end of the function we can return a particular result with <code>return(...)</code> - just replace the dots with a value or</li>
+<li>We store the function in a name with the assignment operator <code>&lt;-</code> (just like we did with variables)</li>
+<li>When we want to run the code, we write the function name followed by parentheses, with any arguments inside the parentheses (separated by commas)</li>
+</ul>
+<!-- Book version -->
+<div class="exercise">
+<p>Replace the blanks to create a function to calculate the <em>area of a triangle</em> instead. Save this function as <code>triangle_area</code>.</p>
+<p>_______ &lt;- function(a, b) { area &lt;- _______ return(area) }</p>
+<p><em>Hint:</em> The area of a triangle is <span class="math inline">\(0.5 imes a imes b\)</span>.</p>
+</div>
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<!--
+TODO
+
+### Create your own functions
+or
+## Additional extra exercises
+
+
+Return a fixed value.
+
+Calculate the area of a rectangle.
+
+Passing variables, & making copies, modifying within function, & global variables
+
+-->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/book/02_setup.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/book/04_rmarkdown_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

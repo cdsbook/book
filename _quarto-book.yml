@@ -1,0 +1,6 @@
+project:
+  output-dir: _book
+
+format:
+  pdf:
+    documentclass: scrreprt
