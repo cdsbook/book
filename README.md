@@ -2,21 +2,6 @@
 
 _Book and Tutorials_
 
-## TODO
-* General:
-    * Improve tutorial autograder grading checks.
-* Intro to R chapter:
-    * Add intro to packages.
-    * Exercise: students can download the book R package and run a function to get the invite to the book Discord community.
-* Visualization chapter: 
-    * Write from scratch with `plot()` function and record new videos.
-    * New exercises.
-* Wrangling chapter:
-    * Add book versions of exercises
-    * Record new videos.
-    * Remove unusual/obscure functions.
-    * Add functions to join tables.
-
 ## Project structure
 
 The book and tutorials share the same source .Rmd files in the `src` directory.
