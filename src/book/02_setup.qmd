@@ -65,7 +65,9 @@ If not, then go to https://github.com and create a **free** account. A few sugge
 * They will also ask you a bunch of questions when you sign up about what you want to use GitHub for. It really doesn't matter what you respond to these questions (you will get the same account at the end), so either answer them or skip through them.
 
 
-## Step 2 (Option 1): Setting up RStudio Desktop
+## Step 2: Set up RStudio 
+
+### Option 1: Install RStudio Desktop on your computer
 
 If you are installing RStudio Desktop on your computer, then you should follow these steps:
 
@@ -150,12 +152,12 @@ If you are installing RStudio Desktop on your computer, then you should follow t
       
       (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio COnsole again.)
 
-## Option 2: Setting up Posit Cloud
+### Option 2: Create an account at Posit Cloud
 
 Got to https://posit.cloud/ and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.
 
 To connect your GitHub account, click on your profile name/icon in the top right of the posit.cloud homepage, and then on the *Authentication* page.
 
-Find the line on this page where it says GitHub, and click any unchecked checkboxes.
+Find the line on this page where it says GitHub, and *slowly* click any unchecked checkboxes (wait a couple of seconds between each checkbox in case a prompt appears).
 
-This may open up new webpages taking you to GitHub, which ask you to verify that you want to authorize Posit to access your GitHub account. Make sure you agree all of these, otherwise you might not be able to download or upload code from/to GitHub.
+Some of the checkboxes may open up new webpages taking you to GitHub, which will ask you to verify that you want to authorize Posit to access your GitHub account. Make sure you agree all of these, otherwise you might not be able to edit code on GitHub.
