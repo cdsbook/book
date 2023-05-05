@@ -1,1 +1,1 @@
-# VS Code set-up {sec-vscode-setup-appendix}
+# VS Code set-up {#sec-vscode-setup-appendix}
