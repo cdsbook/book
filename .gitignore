@@ -1,12 +1,17 @@
+# Project specific
 docs/*.pdf
+/.quarto/
+_book
+_bookdown_files
+*.backup
+src/book/**_files/
+src/tutorials/**/*.html
 
+# RStudio
 *.Rproj
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
 
-/.quarto/
-_book
-_bookdown_files
-*.backup
+
