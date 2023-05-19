@@ -1,1 +1,6 @@
+---
+execute:
+  freeze: auto
+---
+
 # Reproducibility {#sec-reproducibility-chapter}

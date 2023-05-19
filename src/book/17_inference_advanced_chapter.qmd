@@ -1,3 +1,8 @@
+---
+execute:
+  freeze: auto
+---
+
 # More Statistics
 
 ```{r setup, include=FALSE}

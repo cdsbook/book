@@ -1,3 +1,8 @@
+---
+execute:
+  freeze: auto
+---
+
 # Setup
 
 In this book we will be writing code using various tools that allow us to make programming easier and more reproducible, namely code editing software and version control software.
@@ -20,11 +25,12 @@ The most popular IDE for the R programming language is called *RStudio*, and the
 
 These two versions are functionally equivalent, so the only things you really have to decide is how averse you are to paying money and whether you can install software on the computer you are using.
 
+|   | Don't want to pay | Can pay if necessary |
+|---|-------------------|----------------------|
+| **Can install software** | Install RStudio Desktop. | Either works.[^other_considerations] | 
+| **Can't install software** | Use Posit Cloud online, and don't exceed the monthly free quota. | Use Posit Cloud. |
 
-|                            | Don't want to pay                                                  | Can pay if necessary |
-|----------------------------|--------------------------------------------------------------------|----------------------|
-| **Can install software**   | Install RStudio Desktop.                                           | Either works.[^other_considerations]        |
-| **Can't install software** | Use Posit Cloud online, and don't exceed the monthly free quota. | Use Posit Cloud.   |
+: How to pick the best RStudio editor for you.
 
 [^other_considerations]: Bear in mind that RStudio Cloud can only be used if you are connected to the internet, so if you want to work somewhere without internet then you will need to install RStudio Desktop. Also, RStudio Desktop will ultimately provide you with more flexibility.
 
@@ -58,103 +64,57 @@ If you already have a GitHub account, then proceed to step 2.
 
 If not, then go to https://github.com and create a **free** account. A few suggestions:
 
-* If you have any interest in working in tech in the future, then pick something vaguely professional as your GitHub username. You don't want to have to explain to a future employer why your GitHub username is `squeaky_boi69`. Your GitHub profile might be the programming equivalent of your LinkedIn profile.
+* If you have any interest in working in tech in the future, then pick something vaguely professional as your GitHub username. You don't want to have to explain to a future employer why your GitHub username is `squeaky_boi69`. Think of your GitHub profile as the the programming equivalent of your LinkedIn profile.
 
 * GitHub will ask if you want to upgrade to a fancy paid account when you register, but you should stick with the free account which has everything we need.
 
-* They will also ask you a bunch of questions when you sign up about what you want to use GitHub for. It really doesn't matter what you respond to these questions (you will get the same account at the end), so either answer them or skip through them.
+* GitHub will also ask you a bunch of questions when you sign up about what you want to use it for. It really doesn't matter what you respond to these questions, so feel free to skip through them.
 
 
 ## Step 2: Set up RStudio 
 
-### Option 1: Install RStudio Desktop on your computer
+### Option 1: Install RStudio Desktop on your computer {#sec-rstudio-desktop-installation}
 
 If you are installing RStudio Desktop on your computer, then you should follow these steps:
 
-1. First, you should first install Git by following the appropriate installation instructions for your operating system on the Git website: https://git-scm.com/downloads
+1. First, you should first install Git \index{Git} by following the appropriate installation instructions for your operating system on the Git website: [https://git-scm.com/downloads](https://git-scm.com/downloads)
 
-  (Note that Git is almost certainly already installed if you are using Linux.)
+    (Note that Git is almost certainly already installed if you are using Linux.)
 
 2. Next you should install R by going to the appropriate page for your operating system:
 
-  * Windows: download and install R from the *.exe* installer on this page: https://cran.rstudio.com/bin/windows/base/
+    * __Windows__: download and install R from the *.exe* installer on this page: [https://cran.rstudio.com/bin/windows/base/](https://cran.rstudio.com/bin/windows/base/)
   
-    Then also install RTools from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g. if you installed R v__4.2__.3 then you will need to install RTools v.__4.2__): https://cran.rstudio.com/bin/windows/Rtools/
+      Then _also_ install RTools from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g. if you installed R v__4.2__.3 then you will need to install RTools v.__4.2__): [https://cran.rstudio.com/bin/windows/Rtools/](https://cran.rstudio.com/bin/windows/Rtools/)
     
-  * Mac: download and install R from the appropriate *.pkg* installer for your version of macOS on this page: https://cran.rstudio.com/bin/macosx/
+    * __Mac__: download and install R from the appropriate *.pkg* installer for your version of macOS on this page: [https://cran.rstudio.com/bin/macosx/](https://cran.rstudio.com/bin/macosx/)
   
-  * Linux: follow the instructions for your flavor of Linux: https://cran.rstudio.com/
+    * __Linux__: follow the instructions for your flavor of Linux: [https://cran.rstudio.com/](https://cran.rstudio.com/)
   
-3. Finally we are can install RStudio Desktop. Download the installer for your operating system here and then install from it: https://posit.co/download/rstudio-desktop/
+3. Finally we are can install RStudio Desktop. Download the installer for your operating system here and then install from it: [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
 
-  Note that RStudio Desktop is free, but Posit (the company that created RStudio) also offers several paid versions, so make sure you get the free RStudio Desktop version.
+    Note that RStudio Desktop is free, but Posit (the company that created RStudio) also offers several paid versions, so make sure you get the free RStudio Desktop version.
+    
+    After you have installed RStudio, you should be able to start the program, which should look like this:
+    
+    ![RStudio](../img/rstudio_overview.png){#fig-rstudio-overview}
 
 4. One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.
 
-  __Windows and Mac users:__ 
+    __Windows and Mac users:__ 
     
-  * Download GitHub Desktop. Then open it, and go through these menu options: "File > Options > Accounts", and click the button sign in to GitHub. If you have two-factor authentication enabled on your account, you will need to use it here.
+    * Download GitHub Desktop. Then open it, and go through these menu options: "File > Options > Accounts", and click the button sign in to GitHub. If you have two-factor authentication enabled on your account, you will need to use it here.
 
-  * Then go to the _Git_ tab of the Options pop-up and type in your name (probably either your full name or your GitHub username) and the __same__ email you used to register for GitHub (it is important that these emails match), and then click Save.
+    * Then go to the _Git_ tab of the Options pop-up and type in your name (either your full name or your GitHub username) and the __same__ email you used to register for GitHub (it is important that these emails match), and then click Save.
 
-  * Finally, you can also go to the _Editors_ tab in the options and pick RStudio as your default editor (this is optional, since we won't need to use GitHub Desktop ever again in this book!).
+    * Finally, you can also go to the _Editors_ tab in the options and pick RStudio as your default editor (this is optional, since we won't need to use GitHub Desktop ever again in this book!).
   
-  __Linux users:__ 
-  
-    * First, go to RStudio and open the tab in the left hand pane called *Terminal*. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to "Tools > Terminal > New Terminal".
-    
-      In this terminal, set your GitHub username by running this line, making sure to replace your name inside the quotation marks:
-      
-      ```bash
-      git config --global user.name "Your Name Here"
-      ```
-      
-      Then run this line, again making sure to replace the email inside the quotation marks with the same email you used to sign up for GitHub:
-      
-      ```bash
-      git config --global user.email "you@emailHost.com"
-      ```
-      
-      I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details).
-      
-      ```bash
-      git config --global credential.helper store
-      ```
-    
-    * Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:
-    
-      ```r
-      install.packages("usethis","gitcreds")
-      ```
-      
-      then this line (which will open a GitHub web page - see below for what to fill in)
-      
-      ```r
-      usethis::create_github_token()
-      ```
-      
-      On the token webpage that appears, I recommend the following options:
-      
-      * In the *Note* field, write `RStudio`.
-      * For the expiration date, pick a date about 4 months into the future (or after the end of the semester if you are using this for a class).
-      
-      You can leave all the checked *scopes* as the defaults, and then scroll down to the green button at the bottom and click *Generate token*.
-      
-      The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). **You will never see this token again after you leave this page**, so don't close the webpage until you have finished this section, or you will have to create an entirely new token.
-      
-    * Return to the Console tab in RStudio, and run this line:
-    
-      ```r
-      gitcreds::gitcreds_set()
-      ```
-      
-      At the prompt, copy and paste the token from GitHub and click enter.
-      
-      (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio COnsole again.)
+    __Linux users:__ See the instructions in Appendix @sec-rstudio-github-linux-connection.
+
 
 ### Option 2: Create an account at Posit Cloud
 
-Got to https://posit.cloud/ and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.
+Got to [https://posit.cloud/](https://posit.cloud/) and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.
 
 To connect your GitHub account, click on your profile name/icon in the top right of the posit.cloud homepage, and then on the *Authentication* page.
 

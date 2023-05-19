@@ -1,3 +1,8 @@
+---
+execute:
+  freeze: auto
+---
+
 # Modeling for Prediction
 
 ```{r setup, include=FALSE}

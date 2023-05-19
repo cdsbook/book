@@ -1,3 +1,8 @@
+---
+execute:
+  freeze: auto
+---
+
 # Literate Programming
 
 RMarkdown and Quarto

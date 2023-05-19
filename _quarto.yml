@@ -58,13 +58,13 @@ book:
       # 37 Output: Apps
       # 38 Output: Software
     - src/book/references.qmd
+    - src/book/end_index.qmd
   appendices:
   - src/book/A_faqs_appendix.qmd
-  - src/book/B_vscode_appendix.qmd
+  - src/book/B_additional_setup_appendix.qmd
     # - appendix_further_reading.qmd
     # - appendix_IDEs.qmd
     # - appendix_git_github.qmd
-    # 
 
 bibliography: references.bib
 

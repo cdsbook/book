@@ -4,3 +4,11 @@ project:
 format:
   pdf:
     documentclass: scrreprt
+    toc: true
+    toc-depth: 2
+    execute:
+      cache: true
+    include-in-header:
+      - text: |
+          \usepackage{makeidx}
+          \makeindex

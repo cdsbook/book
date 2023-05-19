@@ -1,10 +1,12 @@
 # Project specific
-docs/*.pdf
+*.backup
 /.quarto/
 _book
 _bookdown_files
-*.backup
+_freeze
+docs/*.pdf
 src/book/**_files/
+src/book/**_cache/
 src/tutorials/**/*.html
 
 # RStudio

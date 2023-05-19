@@ -1,3 +1,8 @@
+---
+execute:
+  freeze: auto
+---
+
 # Exploratory Data Analysis and Scientific Discovery
 
 ```{r setup, include=FALSE}
