@@ -37,7 +37,7 @@ Write one (or more) lines of code that calculates the hypotenuse of a triangle w
 ```{r, eval=is_tutorial, echo=F, results = 'asis'}
 cat('<div id="hypotenuse_code-hint">
 <p class="comment">
-**Hint:** Remember that the square root is the same as raising a number to the power of $\sqrt{x} = x^\frac{1}{2}$, i.e. in R: `x^0.5`.
+**Hint:** Remember that the square root is the same as raising a number to the power of $\\sqrt{x} = x^\\frac{1}{2}$, i.e. in R: `x^0.5`.
 </p>
 </div>')
 ```

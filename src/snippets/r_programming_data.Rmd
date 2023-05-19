@@ -29,7 +29,7 @@ cat('::: {.exercise}
 <!-- Tutorial version -->
 
 ```{r character_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
-gradethis::question('What data type is `"CDS 101"`?',
+learnr::question('What data type is `"CDS 101"`?',
   answer("Numeric."),
   answer("Character.", correct = TRUE),
   answer("Boolean."),
@@ -38,7 +38,7 @@ gradethis::question('What data type is `"CDS 101"`?',
 ```
 
 ```{r logical_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
-gradethis::question('What data type is `FALSE`?',
+learnr::question('What data type is `FALSE`?',
   answer("Numeric."),
   answer("Character."),
   answer("Boolean.", correct = TRUE),
@@ -47,7 +47,7 @@ gradethis::question('What data type is `FALSE`?',
 ```
 
 ```{r numeric_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
-gradethis::question('What data type is `42`?',
+learnr::question('What data type is `42`?',
   answer("Numeric.", correct = TRUE),
   answer("Character."),
   answer("Boolean."),

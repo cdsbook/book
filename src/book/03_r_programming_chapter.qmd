@@ -11,15 +11,20 @@ source("prechapter.R")
 
 {{< include ../../src/snippets/r_programming_data.Rmd >}}
 
+
 ## Operators
 
 {{< include ../../src/snippets/r_programming_operators.Rmd >}}
+
 
 ## Storing and reusing results with *variables*
 
 {{< include ../../src/snippets/r_programming_variables.Rmd >}}
 
+
 ## How R works
+
+<!-- TODO: Sidebar here about Grace Hopper and the invention of programming languages (plus bugs, Arlington park, and the Queen of Code documentary from 538) -->
 
 {{< include ../../src/snippets/r_programming_how_it_works.Rmd >}}
 
