@@ -1,0 +1,51 @@
+---
+title: "Your First R Program"
+author: "Dominic White"
+format: revealjs
+---
+
+## Running R code in the *Console*
+
+TODO: Screenshot of RStudio.
+
+::: {.notes}
+We run R code by writing a line of code in a window called the Console, and then pressing Enter on our keyboards when we have reached the end of the line.
+
+R will then interpret the code that you have written and convert it into electrical signals that your computer can understand.
+
+If you have installed RStudio, then when you open the software you will see that it contains a pane called the *Console*. This allows us to write and run R code from within RStudio.
+
+The top of the Console starts with some information about the version of R that you are running. Below that is a greater-than symbol, with a blinking cursor. We call this the prompt, and we can write code after it.
+:::
+
+## Running R code in the interactive tutorial
+
+::: {.notes}
+If you are using the interactive tutorial version of this chapter, then you will be able to run code for exercises from within the tutorial itself.
+
+You will see a box like the one above for the exercise at the end of this section. To run the code, click the green "Play" button in the top right corner.
+:::
+
+## Your first program
+
+TODO: Video of Hello, world in RStudio goes here.
+
+::: {.notes}
+We are now ready to write our first computer program. Many years ago, a famous programming textbook was published which had a first program called "Hello, world", and it now a tradition to begin with a similar program when learning any new programming language.
+
+The "Hello, world" program is very simple. When the computer runs the program, it will simply print out the words "hello" and "world".
+
+For example, here's how we could run this program in the Console from within RStudio.
+
+First we are going to type in a command called `print()`. We will talk more about this in a moment, but for now, note that we need to add opening and closing parentheses immediately after the word print.
+
+Inside the parentheses, we add some opening and closing quotation marks, and then inside those we type the words "hello" and "world".
+
+When we're done, we can press the Enter key on our keyboard. R will immediately run this line of code. The print command that we have used here displays the words we supplied immediately below the line of code.
+:::
+
+## How does this program work?
+
+
+## How this program can go wrong
+

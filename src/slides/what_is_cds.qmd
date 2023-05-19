@@ -1,0 +1,12 @@
+---
+title: "What are the computational and data sciences?"
+author: "Dominic White"
+format: revealjs
+output-dir: "slides"
+---
+
+## Example
+
+* point 1
+* point 2
+* point 3
