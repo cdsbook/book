@@ -1,0 +1,60 @@
+# Additional Software Set-up
+
+## Connecting RStudio to GitHub on Linux {#sec-rstudio-github-linux-connection}
+
+* First, go to RStudio and open the tab in the left hand pane called *Terminal*. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to "Tools > Terminal > New Terminal".
+    
+  In this terminal, set your GitHub username by running this line, making sure to _replace your name_ inside the quotation marks:
+  
+  ```bash
+  git config --global user.name "Your Name Here"
+  ```
+  
+  Then run this commend, again making sure to *replace the email* inside the quotation marks with the same email you used to sign up for GitHub:
+  
+  ```bash
+  git config --global user.email "you@emailHost.com"
+  ```
+  
+  I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details - otherwise you will be typing them in a lot).
+  
+  ```bash
+  git config --global credential.helper store
+  ```
+
+* Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:
+
+  ```r
+  install.packages("usethis","gitcreds")
+  ```
+  
+  then this line (which will open a GitHub web page - see below for what to fill in)
+  
+  ```r
+  usethis::create_github_token()
+  ```
+  
+  <!-- ToDo: Add screenshot of GitHub token page. -->
+  
+  On the token webpage that appears, make sure that you are creating a "Classic token", and not a "Fine-grained" token. Then you will need to set the following options:
+  
+  * In the *Note* field, write something that indicates where this token will be used, e.g. `RStudio`.
+  * For the expiration date, pick a date about in the future after which you will no longer need the token. E.g. if you are following these instructions for a class, pick a date after the end of the semester.
+  
+    You should *not* select no expiration date - that is a security risk.
+  
+  You can leave all the checked *scopes* as the defaults, and then scroll down to the green *Generate token* button at the bottom of the webpage and click it.
+  
+  The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). **You will never see this token again after you leave this page**, so don't close the webpage until you have finished this section, or you will have to create an entirely new token.
+  
+* Return to the Console tab in RStudio, and run this line:
+
+  ```r
+  gitcreds::gitcreds_set()
+  ```
+  
+  At the prompt, copy and paste the token from GitHub and click enter.
+  
+  (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio Console again.)
+
+## VS Code IDE Set-up {#sec-vscode-setup-appendix}
