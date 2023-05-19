@@ -16,11 +16,29 @@ Solution
 * Click the "Quit" button (near the top of the page)
 * Then you should be able to reopen a project.
 
+## Cannot push to GitHub: "Authentication failed"
+
+You might find yourself with an error like this when you try to clone a repository from GitHub into RStudio, or push commits back to GitHub:
+
+```
+remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/mason-cds101/final-project-dominicwhite/'
+```
+
+This usually means that either:
+
+1. You have not correctly created and set your GitHub token (as per the instructions in step 4 Section @sec-rstudio-desktop-installation). If this is the first time you are trying to clone from or push to GitHub, this is probably the reason.
+
+2. Your previous token has expired, and you will need to create a new one and store it in RStudio. If your token used to allow you to clone from and push to GitHub but has suddenly stopped working, then this is probably the reason. 
+
+In both cases, repeat Step 4 in Section @sec-rstudio-desktop-installation.
+
 ## Packages
 
 ### Installing an older version of a package
 
-To install an older version of the lmvar package, you can have students run these two lines of code:
+To install an older version of a package (e.g. the `lmvar` package), you can run these two lines of code, making sure to replace the name of the package and the version that you want to install:
 
 ```r
 require(remotes)
