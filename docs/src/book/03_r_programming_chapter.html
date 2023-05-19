@@ -266,6 +266,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -286,8 +292,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  <a href="../../src/book/B_additional_setup_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></span></a>
   </div>
 </li>
       </ul>
@@ -361,31 +367,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>It is a long-standing tradition that your first program in any new programming language should simply display the message “Hello, World!”.</p>
 <p>In R we can use the <code>print()</code> <em>function</em> to display a piece of data (such as the text <em>Hello, World!</em>).</p>
 <p>For example, we can run this line of code in R:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And R will return this result:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-1_a820a110250ee8c0a07151519d27c154">
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Hello, World!"</code></pre>
 </div>
 </div>
-<div class="info-box">
-<blockquote class="blockquote">
+<div class="info-box callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p><strong>What’s happening here?</strong></p>
 <p>We will learn more about the different parts of this code in this chapter, but briefly:</p>
 <ul>
-<li><code>print(...)</code> is a <strong>function</strong>: it takes some input ingredients (which we list between the brackets after the function’s name), and does something with them.</li>
-<li><code>"Hello, World!"</code> is a string of characters (and other symbols, such as <code>!</code>). A <strong>character string</strong> is a type of data that computers can work with.</li>
+<li><code>print(...)</code> is a <strong>function</strong>: it is a recipe that takes some input ingredients (which we list between the parentheses after the function’s name), and does something with them.</li>
+<li><code>"Hello, World!"</code> is a <em>string</em> of characters (and other symbols, such as <code>!</code>). A <strong>character string</strong> is a type of data that computers can work with. Here we are supplying it as the input argument to the <code>print()</code> recipe.</li>
 </ul>
-</blockquote>
+</div>
 </div>
 <!-- Book code -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/hello-world-exercise-book_bfe640f8ff84c5dff07d32fef712e120">
 <div class="exercise">
-<p><strong>Exercise: Try it yourself:</strong> Open up RStudio and copy the line of code into the RStudio Console. Then hit the <enter> key on your keyboard to run the line. You should get back the same output as above.</enter></p>
+<p><strong>Exercise: Try it yourself:</strong> Open up RStudio and copy or type the line of code into the RStudio Console pane (see Fig. <a href="#fig-rstudio-overview-console">Figure&nbsp;<span>3.1</span></a>).</p>
+<div id="fig-rstudio-overview-console" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_overview_console.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.1: How to find the RStudio Console</figcaption><p></p>
+</figure>
+</div>
+<p>Note that you will need to write the code after the <em>prompt</em>, which is the <code>&gt;</code> symbol that starts the lowest line in the Console.</p>
+<p>After you have written all the code, press the <enter> key on your keyboard. This will send your code to the R Console, which will run it and return the output. You should get back the same output as we saw earlier (Fig. <a href="#fig-rstudio-helloworld">Figure&nbsp;<span>3.2</span></a>).</enter></p>
+<div id="fig-rstudio-helloworld" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_hello_world_output.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.2: Running the Hello World program in the RStudio Console</figcaption><p></p>
+</figure>
+</div>
 <p>Congratulations! You just ran your first program in R.</p>
 </div>
+</div>
+<!-- End book -->
 <!-- Tutorial code -->
+<!-- End tutorial -->
+<!-- Book code -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/rerun-console-exercise-book_57adbceaac90a1a24a91864fb3402840">
+<div class="exercise">
+<p><strong>Exercise:</strong> Try to edit the line in the Console containing the <code>print("Hello, World!")</code> command that you just ran. Can you change it?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you have pressed <enter> to run a line of code in the Console, you cannot go back and change it. To modify it, you will need to re-type out the code at the empty prompt at the bottom of the Console (below the output of the last line of code that you ran).</enter></p>
+</div>
+</div>
+<p>It can get tedious to rewrite the code you have already run in the Console. However, click at the new (empty) Console prompt, and press the Up arrow on your keyboard. RStudio should autofill the prompt with the previous line of code from your history.</p>
+<p>Modify this line to print out a different sentence, and rerun your new code.</p>
+</div>
+</div>
+<!-- End book -->
+<!-- Tutorial code -->
+<!-- skipped -->
+<!-- End tutorial -->
 <section id="data" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="data"><span class="header-section-number">3.1</span> Data</h2>
 <p>The central component of everything we will be doing in R this semester is <strong>data</strong>. Even non-data science programs revolve around data.</p>
@@ -402,8 +457,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>the <strong>Boolean</strong> data type holds a value that is either <code>TRUE</code> or <code>FALSE</code>. (This is sometimes also referred to as the logical data type.)</p></li>
 </ul>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/numeric-data-book-exercise_0f62479e8dbc85c312249043a99bf122">
 <div class="exercise">
 <p><strong>Exercise:</strong> Type the number 2 into the RStudio console. Hit the <enter> key to run this line of code. What do you get back?</enter></p>
+</div>
 </div>
 <!-- End book version -->
 <!-- Tutorial version -->
@@ -417,6 +474,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>But data by itself is not especially useful. It just sits there until you <em>do something</em> to it. In programming languages there are often many ways of doing things to data, but one of the simplest is <strong>operators</strong>.</p>
 <p>Operators <em>operate</em> on data. The name may sound unusual, but you are already familiar with many operators, such as <code>+</code> and <code>-</code> for adding and subtracting numbers.</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-2_cb3eac862583cd5556bd57b33abdadda">
 <div class="exercise">
 <p>Try entering a number after the <code>&gt;</code> in the Console (e.g.&nbsp;1), then Enter, and see what happens.</p>
 </div>
@@ -428,6 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What do you get?</p>
 </div>
 <p>(Note that I’ve left the Console’s <code>&gt;</code> prompt in the example code above, but I will leave it out in future.)</p>
+</div>
 <!-- End book version -->
 <!-- Tutorial version -->
 <!-- End tutorial version -->
@@ -498,57 +557,69 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the---operator" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="the---operator"><span class="header-section-number">3.2.3</span> The <code>-</code> operator</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-4_245bafd509578daf398f313f69b2b46a">
 <div class="exercise">
 <p>In the R Console, type <code>5 - 2</code> and hit enter to run the line of code.</p>
 <p>You probably have a good idea of what <code>-</code> does, but try changing the numbers just to make sure!</p>
+</div>
 </div>
 <!-- Tutorial version -->
 </section>
 <section id="the-operator" class="level3" data-number="3.2.4">
 <h3 data-number="3.2.4" class="anchored" data-anchor-id="the-operator"><span class="header-section-number">3.2.4</span> The <code>*</code> operator</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-6_6f06c7af4da71cfd78bd9b2a57a56e9e">
 <div class="exercise">
 <p>In the R Console, type <code>3 * 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>*</code> do?</p>
+</div>
 </div>
 <!-- Tutorial version -->
 </section>
 <section id="the-operator-1" class="level3" data-number="3.2.5">
 <h3 data-number="3.2.5" class="anchored" data-anchor-id="the-operator-1"><span class="header-section-number">3.2.5</span> The <code>/</code> operator</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-8_eea56dfef8c8b4caf716823154600794">
 <div class="exercise">
 <p>In the R Console, type <code>3 / 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>/</code> do? Just to be sure, try some other numbers.</p>
+</div>
 </div>
 <!-- Tutorial version -->
 </section>
 <section id="the-operator-2" class="level3" data-number="3.2.6">
 <h3 data-number="3.2.6" class="anchored" data-anchor-id="the-operator-2"><span class="header-section-number">3.2.6</span> The <code>^</code> operator</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-10_b245686fde4d68d03fbc38068972fdea">
 <div class="exercise">
 <p>In the R Console, type <code>3 ^ 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>^</code> do? Try some other numbers like <code>2 ^ 3</code> or <code>16 ^ 0.5</code></p>
+</div>
 </div>
 <!-- Tutorial version -->
 </section>
 <section id="the-operator-3" class="level3" data-number="3.2.7">
 <h3 data-number="3.2.7" class="anchored" data-anchor-id="the-operator-3"><span class="header-section-number">3.2.7</span> The <code>%%</code> operator</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-12_8bbc4ddb6dd2e332dbca41533243b074">
 <div class="exercise">
 <p>Next up, a slightly trickier one, type <code>3 %% 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>%%</code> do? You will probably have to try some other numbers to figure this one out.</p>
 <p>If you have difficulty try also dividing the same numbers. E.g. try both <code>9 %% 4</code> and <code>9 / 4</code>.</p>
+</div>
 </div>
 <!-- Tutorial version -->
 </section>
 <section id="the-and-operators" class="level3" data-number="3.2.8">
 <h3 data-number="3.2.8" class="anchored" data-anchor-id="the-and-operators"><span class="header-section-number">3.2.8</span> The <code>&lt;</code> and <code>&gt;</code> operators</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-14_fee3d001c6a23f695171541452b632c6">
 <div class="exercise">
 <p>So far we have operated on numbers and got numbers back. However these next operators will return a different type of data.</p>
 <p>What do you get if you run <code>8 &gt; 10</code>?</p>
 <p>Can you change the <code>8</code> into a number so that this expression returns <code>TRUE</code>?</p>
 <p>Then change the <code>&gt;</code> to a <code>&lt;</code> operator (i.e.&nbsp;reverse its direction). What is the result now?</p>
+</div>
 </div>
 <!-- Tutorial version -->
 <blockquote class="blockquote">
@@ -561,9 +632,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-operators" class="level3" data-number="3.2.9">
 <h3 data-number="3.2.9" class="anchored" data-anchor-id="the-operators"><span class="header-section-number">3.2.9</span> The <code>==</code> operators</h3>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-16_41a39629633ed54f2519d05f60e3b1ec">
 <div class="exercise">
 <p>Let’s try another Boolean operator. What do you get if you run <code>8 == 10</code>? What about <code>8 == 8</code>?</p>
 <p>What do you think the <code>==</code> operator does?</p>
+</div>
 </div>
 <!-- Tutorial version -->
 <blockquote class="blockquote">
@@ -586,11 +659,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>whereas</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-18_059f6f68644979b52b38edfb9c0cb123">
 <div class="exercise">
 <p>Modify this R code</p>
 <p><code>3 + 5 / 5 * 2 ^ 2</code></p>
 <p>so that it performs the calculation $rac{3 + 5}{(5 imes 2) ^ 2}$.</p>
 <p>When correct, you should get the answer 0.08.</p>
+</div>
 </div>
 <!-- Tutorial version -->
 </section>
@@ -606,11 +681,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What if we wish to save the result of a calculation so that we can reuse it in a subsequent line?</p>
 <p>In this case, we need to store the result in a <strong>variable</strong>.</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-20_bc05938224a0625cb6853f35ea1f374c">
 <div class="exercise">
 <p>Run these two lines of code in the RStudio Console and see what result you get.</p>
 <p><code>a &lt;- 2 + 2</code></p>
 <p><code>5 * a</code></p>
 <p>Then take a look at the <em>Environment</em> tab in the top-right pane of RStudio. Do you see a <strong>variable</strong> called <code>a</code>? Does it hold the value calculated in the first line of code or the second?</p>
+</div>
 </div>
 <!-- Tutorial version -->
 <section id="the-result-of-the-assignment-operator" class="level3" data-number="3.3.1">
@@ -618,18 +695,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We store the result of an expression in a variable using the <strong>assignment operator</strong>: <code>&lt;-</code></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>variable_name <span class="ot">&lt;-</span> value_to_be_stored</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-22_9cd592159a54bc6ee32ceda0c903788e">
 <div class="exercise">
 <p>Run these two lines of code in the RStudio Console and see what result you get.</p>
 <p><code>2 + 3</code></p>
 <p><code>b &lt;- 2 + 4</code></p>
 <p>If you take another look at the <em>Environment</em> tab in the top-right pane of RStudio, you should see another variable called <code>b</code>. What value does it hold?</p>
 </div>
+</div>
 <!-- End book version -->
 <!-- Tutorial version -->
-<div class="cell" data-exercise="true">
+<div class="cell" data-exercise="true" data-hash="03_r_programming_chapter_cache/html/sum_without_assignment_a50a8942b62193fc2296c4da36a88a0f">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-exercise="true">
+<div class="cell" data-exercise="true" data-hash="03_r_programming_chapter_cache/html/sum_with_assignment_e4f6dc23a6f45db5940a7f34a56bab56">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- End tutorial version -->
@@ -638,7 +717,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>some_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>R will evaluate this line: it will ask itself “What is the <em>result</em> of <code>some_variable</code>”, which is just whatever value is stored in that variable.</p>
 <p>For example,</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-24_efd5f45fb82923f05b568284e5b939e6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -648,13 +727,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The other implication of this is that if you calculate something in R and do not assign the result to a variable then it will be printed out <strong><em>and then forgotten</em></strong>. So remember: if you calculate something important in R that you will need in the future, make sure that you store it in a variable.</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-25_f19f106c15cad72589358160c163f539">
 <div class="exercise">
 <p>Type the name of one of the variables in your Environment tab in the RStudio Console (e.g.&nbsp;<code>a</code>), and hit Enter to run it.</p>
 <p>Does this return the data that you think is stored in that variable?</p>
 </div>
+</div>
 <!-- End book version -->
 <!-- Tutorial version -->
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/what_is_b-solution_52933d0418e577f915a218a834a492ff">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- End tutorial version -->
@@ -663,13 +744,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="variables-are-variable"><span class="header-section-number">3.3.2</span> Variables are… variable</h3>
 <p>Variables get their name because <em>their value can vary</em>. We have created the variable <code>b</code> that holds the value 6, but we can change the value of <code>b</code> and store a completely different value in it!</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-28_ea47a02e9af70754dab147ab54a1be4e">
 <div class="exercise">
 <p>Try assigning the value <code>7</code> to the variable <code>b</code> using the assignment operator <code>&lt;-</code>.</p>
 <p>Since we already created <code>b</code> in an earlier exercise, you should see that its value in the Environment tab updates.</p>
 </div>
+</div>
 <!-- End book version -->
 <!-- Tutorial version -->
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/b_is_7-solution_79a71ec514cea6c3c4dbaa3939659df7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- TODO: weird output needs fixing -->
@@ -709,7 +792,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="boolean-data-revisted"><span class="header-section-number">3.5.1</span> Boolean data revisted</h3>
 <p>At the start of this chapter we mentioned that there is a type of data in R, called Boolean data, that can have one of two values: <code>TRUE</code> or <code>FALSE</code>.</p>
 <p>Then in the section on operators we saw that some operators (those that do comparisons) would give a <code>TRUE</code>/<code>FALSE</code> result even when the input data was not Boolean. For example,</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-31_5a6aba5770234d68e97d486ba5efe97b">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
@@ -720,12 +803,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A Boolean value can only have one of two values (i.e.&nbsp;TRUE and FALSE). We often get a Boolean value when we do comparisons (e.g.&nbsp;checking if two values are equal, or if one is greater than the other).</p>
 <p>Just as with numeric data, we can store a Boolean value in a variable, e.g.&nbsp;<code>d &lt;- FALSE</code>.</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-32_451c7b51a22f1c46f1d16ff57cf3fcbb">
 <div class="exercise">
 <p>Assign the value <code>TRUE</code> to a variable called <code>d</code>.</p>
 </div>
+</div>
 <!-- End book version -->
 <!-- Tutorial version -->
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/d_is_true-solution_a7a99966f69c1ca404c2a94f6ff1ecdf">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a> d <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- TODO: Maybe an exercise seeing if they can remember which operators were Boolean operators -->
@@ -733,7 +818,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="combining-pieces-of-data" class="level3" data-number="3.5.2">
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="combining-pieces-of-data"><span class="header-section-number">3.5.2</span> Combining pieces of data</h3>
 <p>So far we have looked at pieces of data by themselves:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-35_0171303a98fd2efdd38d421ec615bb2d">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">"Hello!"</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
@@ -752,7 +837,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>But what about if we want to combine multiple pieces of data together?</p>
 <p>R includes several types of <em>container</em> that can hold multiple pieces of data. We can then refer to that container by a single variable. For example, instead of the three variables above, we can create a <strong>list</strong> object that holds all three values:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-36_de6baea0a3ac97f50fea7831555644a2">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="dv">1</span>, <span class="st">"Hello!"</span>, <span class="cn">TRUE</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>l</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -768,12 +853,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>We create a list using <code>list()</code>. Every value in the list goes inside the parentheses, separated by commas.</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-37_255c54c30d521705216c85b3773b32be">
 <div class="exercise">
 <p>Create a list holding 4 values (in this order): 10, “z”, FALSE, -0.1*10</p>
 </div>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/create_a_list-solution_4699e87bffba6309c0e9f0e8b9215515">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="dv">10</span>, <span class="st">"z"</span>, <span class="cn">FALSE</span>, <span class="sc">-</span><span class="fl">0.1</span><span class="sc">*</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- End book -->
@@ -783,19 +870,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Lists can hold data of different types. For example, our list <code>l</code> holds a number, a character string, and a Boolean value.</p>
 <p>An alternative container in R is a <strong>vector</strong>. Vectors can also hold multiple pieces of data, but unlike a list, <em>all the data in a vector must be the same type of data</em>. For example, a vector could contain all numbers, or all characters, but not a mix of the two.</p>
 <p>We create a vector with <code>c()</code>:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-40_993c1a05986a9e7b0f9c620ac6559476">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3</code></pre>
 </div>
 </div>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-41_24290db83abcf84be167a3b8b5d5f083">
 <div class="exercise">
 <p>Create a vector holding 3 character strings (in this order): “This”, “is a”, “vector!”</p>
 </div>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/create_a_vector-solution_ba98364d47f65f27692141891c4348ed">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"This"</span>, <span class="st">"is a"</span>, <span class="st">"vector!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- End tutorial -->
@@ -805,7 +894,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For example, the <code>[1]</code> at the start of the line (before “Introduction”) shows that “Introduction” is the first element in this vector. ### Operations on vectors</p>
 </blockquote>
 <p>We can use operators on more complicated data structures just as we did on the simpler data types. For example, we can add 2 vectors together:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-44_0a4a0d734391c6e47f74b351e58dc8ea">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -815,10 +904,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see, the individual elements are added together.</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-45_bcc3e53e7c1e282c58270bc7e91cea26">
 <div class="exercise">
 <p>What happens if you add two vectors of different lengths? For example, run this code and see what happens:</p>
 </div>
-<div class="cell">
+</div>
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-46_b5512517583af05b3cdeff9714427698">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -827,15 +918,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 length</code></pre>
 </div>
 </div>
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-47_8e73428c5296d5a348e1f11a178659fa">
 <p>What happens when you add two <code>v3</code> and <code>v4</code>?</p>
 <ul>
 <li>The 2 elements of v3 are added to the first 2 elements of v4, and the rest of v4 is unchanged.</li>
 <li>v4 is repeated to match the length of v3 before they are added.</li>
 <li>R guesses values for the remaining values of v3 so that the two vectors are the same length.</li>
 </ul>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
-<div class="cell" data-exercise="true">
+<div class="cell" data-exercise="true" data-hash="03_r_programming_chapter_cache/html/vector_broadcasting_3b669a32ea21bdafa8a85d11bc76278e">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -856,12 +949,14 @@ length</code></pre>
 <p><span class="math inline">\(c = \sqrt{a^2 + b^2}\)</span></p>
 <p>(<span class="math inline">\(c\)</span> is the hypotenuse [long side] and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are the short sides.)</p>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-50_e84e40469b8e31b507dad800d5a54a2e">
 <div class="exercise">
 <p>Let’s say we have a triangle where the shorter sides (a &amp; b) are 3 and 4 units long. Can you calculate the length of side c in R using just the operators from the first section?</p>
 <p><em>Hint #1:</em> The square root is equal to the 0.5 power of a number: <code>4 ^ 0.5 = 2</code></p>
 <p><em>Hint #2:</em> Just like in regular math equations, R will calculate some operators before others. For example it will do all multiplications before any additions. However, just like in regular math, we can change the order of operations by wrapping parts of our calculation in parentheses: <code>(...)</code></p>
 </div>
 <p>Did you get the answer 5? Fantastic!</p>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
 <!-- End tutorial -->
@@ -898,28 +993,30 @@ length</code></pre>
 <p>You might object (and not without reason) that our <code>adder</code> function is a very trivial example. Wouldn’t it just be easier to use the <code>+</code> operator?</p>
 <p>Yes, it would! So let’s look at a more complicated function.</p>
 <p>We can create a function to calculate the hypotenuse like this:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-53_960f2bb15bc7d0656e149f458ae39955">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(c)</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we can use this <code>hypotenuse</code> function as many times as we like. For example calculate the hypotenuse of a triangle with sides of length 3 and 4, we would run:</p>
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-54_cf3a5aa3d77da0c0574cb79d6e15285f">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypotenuse</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-55_0f30f7e62c2c33b7c8077231d0b89b6c">
 <div class="exercise">
 <p>Use the <code>hypotenuse()</code> function to calculate the area of a triangle with sides of length 3 and 4.</p>
 <p><em>Hint:</em> Try changing the numbers inside the parentheses after <code>hypotenuse</code>.</p>
 </div>
 <p>Did you get the answer 5? Fantastic!</p>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
-<div class="cell">
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/hypotenuse_definition_a624af74fd3ff7eac5245cc33e3ba7dc">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(c)</span>
@@ -946,10 +1043,12 @@ length</code></pre>
 <li>When we want to run the code, we write the function name followed by parentheses, with any arguments inside the parentheses (separated by commas)</li>
 </ul>
 <!-- Book version -->
+<div class="cell" data-hash="03_r_programming_chapter_cache/html/unnamed-chunk-58_31621b61bd4ae973d74ef8f3662fa7b3">
 <div class="exercise">
 <p>Replace the blanks to create a function to calculate the <em>area of a triangle</em> instead. Save this function as <code>triangle_area</code>.</p>
 <p>_______ &lt;- function(a, b) { area &lt;- _______ return(area) }</p>
 <p><em>Hint:</em> The area of a triangle is <span class="math inline">\(0.5 imes a imes b\)</span>.</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->

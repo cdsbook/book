@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/book/B_vscode_appendix.html" rel="next">
-<link href="../../src/book/references.html" rel="prev">
+<link href="../../src/book/B_additional_setup_appendix.html" rel="next">
+<link href="../../src/book/end_index.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -264,6 +264,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -284,8 +290,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  <a href="../../src/book/B_additional_setup_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></span></a>
   </div>
 </li>
       </ul>
@@ -304,9 +310,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#rstudio-error-error-occurred-during-transmission" id="toc-rstudio-error-error-occurred-during-transmission" class="nav-link" data-scroll-target="#rstudio-error-error-occurred-during-transmission"><span class="header-section-number">A.1.1</span> RStudio error: Error occurred during transmission</a></li>
   </ul></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">A.2</span> Packages</a>
+  <li><a href="#cannot-push-to-github-authentication-failed" id="toc-cannot-push-to-github-authentication-failed" class="nav-link" data-scroll-target="#cannot-push-to-github-authentication-failed"><span class="header-section-number">A.2</span> Cannot push to GitHub: “Authentication failed”</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">A.3</span> Packages</a>
   <ul class="collapse">
-  <li><a href="#installing-an-older-version-of-a-package" id="toc-installing-an-older-version-of-a-package" class="nav-link" data-scroll-target="#installing-an-older-version-of-a-package"><span class="header-section-number">A.2.1</span> Installing an older version of a package</a></li>
+  <li><a href="#installing-an-older-version-of-a-package" id="toc-installing-an-older-version-of-a-package" class="nav-link" data-scroll-target="#installing-an-older-version-of-a-package"><span class="header-section-number">A.3.1</span> Installing an older version of a package</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -351,13 +358,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="packages" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="packages"><span class="header-section-number">A.2</span> Packages</h2>
-<section id="installing-an-older-version-of-a-package" class="level3" data-number="A.2.1">
-<h3 data-number="A.2.1" class="anchored" data-anchor-id="installing-an-older-version-of-a-package"><span class="header-section-number">A.2.1</span> Installing an older version of a package</h3>
-<p>To install an older version of the lmvar package, you can have students run these two lines of code:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(remotes)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_version</span>(<span class="st">"lmvar"</span>, <span class="at">version =</span> <span class="st">"1.5.2"</span>, <span class="at">repos =</span> <span class="st">"http://cran.us.r-project.org"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="cannot-push-to-github-authentication-failed" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="cannot-push-to-github-authentication-failed"><span class="header-section-number">A.2</span> Cannot push to GitHub: “Authentication failed”</h2>
+<p>You might find yourself with an error like this when you try to clone a repository from GitHub into RStudio, or push commits back to GitHub:</p>
+<pre><code>remote: Support for password authentication was removed on August 13, 2021.
+remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
+fatal: Authentication failed for 'https://github.com/mason-cds101/final-project-dominicwhite/'</code></pre>
+<p>This usually means that either:</p>
+<ol type="1">
+<li><p>You have not correctly created and set your GitHub token (as per the instructions in step 4 Section <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a>). If this is the first time you are trying to clone from or push to GitHub, this is probably the reason.</p></li>
+<li><p>Your previous token has expired, and you will need to create a new one and store it in RStudio. If your token used to allow you to clone from and push to GitHub but has suddenly stopped working, then this is probably the reason.</p></li>
+</ol>
+<p>In both cases, repeat Step 4 in Section <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a>.</p>
+</section>
+<section id="packages" class="level2" data-number="A.3">
+<h2 data-number="A.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">A.3</span> Packages</h2>
+<section id="installing-an-older-version-of-a-package" class="level3" data-number="A.3.1">
+<h3 data-number="A.3.1" class="anchored" data-anchor-id="installing-an-older-version-of-a-package"><span class="header-section-number">A.3.1</span> Installing an older version of a package</h3>
+<p>To install an older version of a package (e.g.&nbsp;the <code>lmvar</code> package), you can run these two lines of code, making sure to replace the name of the package and the version that you want to install:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(remotes)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_version</span>(<span class="st">"lmvar"</span>, <span class="at">version =</span> <span class="st">"1.5.2"</span>, <span class="at">repos =</span> <span class="st">"http://cran.us.r-project.org"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
@@ -599,13 +619,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/book/references.html" class="pagination-link">
+      <a href="../../src/book/end_index.html" class="pagination-link">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">References</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/book/B_vscode_appendix.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/book/B_additional_setup_appendix.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

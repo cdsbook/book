@@ -230,6 +230,12 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -250,8 +256,8 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  <a href="../../src/book/B_additional_setup_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></span></a>
   </div>
 </li>
       </ul>
@@ -269,8 +275,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#code-editors" id="toc-code-editors" class="nav-link active" data-scroll-target="#code-editors"><span class="header-section-number">2.1</span> Code editors</a></li>
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control"><span class="header-section-number">2.2</span> Version control</a></li>
   <li><a href="#step-1-create-a-github-account" id="toc-step-1-create-a-github-account" class="nav-link" data-scroll-target="#step-1-create-a-github-account"><span class="header-section-number">2.3</span> Step 1: Create a GitHub account</a></li>
-  <li><a href="#step-2-option-1-setting-up-rstudio-desktop" id="toc-step-2-option-1-setting-up-rstudio-desktop" class="nav-link" data-scroll-target="#step-2-option-1-setting-up-rstudio-desktop"><span class="header-section-number">2.4</span> Step 2 (Option 1): Setting up RStudio Desktop</a></li>
-  <li><a href="#option-2-setting-up-posit-cloud" id="toc-option-2-setting-up-posit-cloud" class="nav-link" data-scroll-target="#option-2-setting-up-posit-cloud"><span class="header-section-number">2.5</span> Option 2: Setting up Posit Cloud</a></li>
+  <li><a href="#step-2-set-up-rstudio" id="toc-step-2-set-up-rstudio" class="nav-link" data-scroll-target="#step-2-set-up-rstudio"><span class="header-section-number">2.4</span> Step 2: Set up RStudio</a>
+  <ul class="collapse">
+  <li><a href="#sec-rstudio-desktop-installation" id="toc-sec-rstudio-desktop-installation" class="nav-link" data-scroll-target="#sec-rstudio-desktop-installation"><span class="header-section-number">2.4.1</span> Option 1: Install RStudio Desktop on your computer</a></li>
+  <li><a href="#option-2-create-an-account-at-posit-cloud" id="toc-option-2-create-an-account-at-posit-cloud" class="nav-link" data-scroll-target="#option-2-create-an-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an account at Posit Cloud</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -306,10 +315,11 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>These two versions are functionally equivalent, so the only things you really have to decide is how averse you are to paying money and whether you can install software on the computer you are using.</p>
 <table class="table">
+<caption>How to pick the best RStudio editor for you.</caption>
 <colgroup>
-<col style="width: 23%">
-<col style="width: 57%">
-<col style="width: 18%">
+<col style="width: 6%">
+<col style="width: 43%">
+<col style="width: 50%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -332,7 +342,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Later in this chapter I will give instructions for getting each of these options up and running.</p>
-<p>There are also other IDEs that you can use to write R code. A popular general IDE is VS Code, which can be used to write in any different programming language. The downside is that it lacks a lot of R specific features that you can find in RStudio. However, instructions to get set-up with VS Code are provided in an Appendix: <span class="quarto-unresolved-ref">?sec-vscode-setup-appendix</span>.</p>
+<p>There are also other IDEs that you can use to write R code. A popular general IDE is VS Code, which can be used to write in any different programming language. The downside is that it lacks a lot of R specific features that you can find in RStudio. However, instructions to get set-up with VS Code are provided in an Appendix: <a href="B_additional_setup_appendix.html#sec-vscode-setup-appendix"><span>Section&nbsp;B.2</span></a>.</p>
 </section>
 <section id="version-control" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="version-control"><span class="header-section-number">2.2</span> Version control</h2>
@@ -342,7 +352,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Unfortunately, you can’t edit the file while your friend is, otherwise you will end up with different versions of the document, and the only way to recombine them will be to compare them side-by-side and manually copy over any differences.</p>
 <p>In these modern times, you could instead use an online collaborative program like Google Docs - but while that is fine for text, programs need to be run, and that usually needs you and your friend to be working on separate computers so that your versions of the code don’t interfere with each other when running.</p>
 <p>Software engineers have come up with solutions to these problems, which they call <em>version control</em> (because it enables you to control the version of the program that you are running). The dominant version control software used today is called <strong>Git</strong>, and it is so popular that IDE’s like RStudio automatically include integrations to work with it.</p>
-<p>We will talk more about how Git works in <span class="quarto-unresolved-ref">?sec-reproducibility-chapter</span> but for now you can think of it as like the save points in a video game. When you reach a significant point (like adding an important software feature, or defeating a boss in a video game) you can save your progress at that point. This allows you rewind your progress back to that point if you make a mistake in the future.</p>
+<p>We will talk more about how Git works in <a href="14_reproducibility_chapter.html">Chapter&nbsp;<span>12</span></a> but for now you can think of it as like the save points in a video game. When you reach a significant point (like adding an important software feature, or defeating a boss in a video game) you can save your progress at that point. This allows you rewind your progress back to that point if you make a mistake in the future.</p>
 <p>Git can also figure out how to automatically combine different versions of a project (i.e.&nbsp;your version and your friend’s version), and it will keep track of all the changes you record in a save point as well as who made them.</p>
 <p>We can also use websites like GitHub.com to share projects that are managed with Git. This is useful for a number of reasons, but from a reproducibility perspective it allows other scientists to download our code and run it for themselves.</p>
 </section>
@@ -351,100 +361,49 @@ ul.task-list li input[type="checkbox"] {
 <p>If you already have a GitHub account, then proceed to step 2.</p>
 <p>If not, then go to https://github.com and create a <strong>free</strong> account. A few suggestions:</p>
 <ul>
-<li><p>If you have any interest in working in tech in the future, then pick something vaguely professional as your GitHub username. You don’t want to have to explain to a future employer why your GitHub username is <code>squeaky_boi69</code>. Your GitHub profile might be the programming equivalent of your LinkedIn profile.</p></li>
+<li><p>If you have any interest in working in tech in the future, then pick something vaguely professional as your GitHub username. You don’t want to have to explain to a future employer why your GitHub username is <code>squeaky_boi69</code>. Think of your GitHub profile as the the programming equivalent of your LinkedIn profile.</p></li>
 <li><p>GitHub will ask if you want to upgrade to a fancy paid account when you register, but you should stick with the free account which has everything we need.</p></li>
-<li><p>They will also ask you a bunch of questions when you sign up about what you want to use GitHub for. It really doesn’t matter what you respond to these questions (you will get the same account at the end), so either answer them or skip through them.</p></li>
+<li><p>GitHub will also ask you a bunch of questions when you sign up about what you want to use it for. It really doesn’t matter what you respond to these questions, so feel free to skip through them.</p></li>
 </ul>
 </section>
-<section id="step-2-option-1-setting-up-rstudio-desktop" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="step-2-option-1-setting-up-rstudio-desktop"><span class="header-section-number">2.4</span> Step 2 (Option 1): Setting up RStudio Desktop</h2>
+<section id="step-2-set-up-rstudio" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="step-2-set-up-rstudio"><span class="header-section-number">2.4</span> Step 2: Set up RStudio</h2>
+<section id="sec-rstudio-desktop-installation" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="sec-rstudio-desktop-installation"><span class="header-section-number">2.4.1</span> Option 1: Install RStudio Desktop on your computer</h3>
 <p>If you are installing RStudio Desktop on your computer, then you should follow these steps:</p>
 <ol type="1">
-<li>First, you should first install Git by following the appropriate installation instructions for your operating system on the Git website: https://git-scm.com/downloads</li>
-</ol>
-<p>(Note that Git is almost certainly already installed if you are using Linux.)</p>
-<ol start="2" type="1">
-<li>Next you should install R by going to the appropriate page for your operating system:</li>
-</ol>
+<li><p>First, you should first install Git by following the appropriate installation instructions for your operating system on the Git website: <a href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<p>(Note that Git is almost certainly already installed if you are using Linux.)</p></li>
+<li><p>Next you should install R by going to the appropriate page for your operating system:</p>
 <ul>
-<li><p>Windows: download and install R from the <em>.exe</em> installer on this page: https://cran.rstudio.com/bin/windows/base/</p>
-<p>Then also install RTools from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g.&nbsp;if you installed R v__4.2__.3 then you will need to install RTools v.__4.2__): https://cran.rstudio.com/bin/windows/Rtools/</p></li>
-<li><p>Mac: download and install R from the appropriate <em>.pkg</em> installer for your version of macOS on this page: https://cran.rstudio.com/bin/macosx/</p></li>
-<li><p>Linux: follow the instructions for your flavor of Linux: https://cran.rstudio.com/</p></li>
-</ul>
-<ol start="3" type="1">
-<li>Finally we are can install RStudio Desktop. Download the installer for your operating system here and then install from it: https://posit.co/download/rstudio-desktop/</li>
-</ol>
+<li><p><strong>Windows</strong>: download and install R from the <em>.exe</em> installer on this page: <a href="https://cran.rstudio.com/bin/windows/base/">https://cran.rstudio.com/bin/windows/base/</a></p>
+<p>Then <em>also</em> install RTools from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g.&nbsp;if you installed R v__4.2__.3 then you will need to install RTools v.__4.2__): <a href="https://cran.rstudio.com/bin/windows/Rtools/">https://cran.rstudio.com/bin/windows/Rtools/</a></p></li>
+<li><p><strong>Mac</strong>: download and install R from the appropriate <em>.pkg</em> installer for your version of macOS on this page: <a href="https://cran.rstudio.com/bin/macosx/">https://cran.rstudio.com/bin/macosx/</a></p></li>
+<li><p><strong>Linux</strong>: follow the instructions for your flavor of Linux: <a href="https://cran.rstudio.com/">https://cran.rstudio.com/</a></p></li>
+</ul></li>
+<li><p>Finally we are can install RStudio Desktop. Download the installer for your operating system here and then install from it: <a href="https://posit.co/download/rstudio-desktop/">https://posit.co/download/rstudio-desktop/</a></p>
 <p>Note that RStudio Desktop is free, but Posit (the company that created RStudio) also offers several paid versions, so make sure you get the free RStudio Desktop version.</p>
-<ol start="4" type="1">
-<li>One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.</li>
-</ol>
+<p>After you have installed RStudio, you should be able to start the program, which should look like this:</p>
+<img src="../img/rstudio_overview.png" id="fig-rstudio-overview" class="img-fluid" alt="RStudio"></li>
+<li><p>One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.</p>
 <p><strong>Windows and Mac users:</strong></p>
 <ul>
 <li><p>Download GitHub Desktop. Then open it, and go through these menu options: “File &gt; Options &gt; Accounts”, and click the button sign in to GitHub. If you have two-factor authentication enabled on your account, you will need to use it here.</p></li>
-<li><p>Then go to the <em>Git</em> tab of the Options pop-up and type in your name (probably either your full name or your GitHub username) and the <strong>same</strong> email you used to register for GitHub (it is important that these emails match), and then click Save.</p></li>
+<li><p>Then go to the <em>Git</em> tab of the Options pop-up and type in your name (either your full name or your GitHub username) and the <strong>same</strong> email you used to register for GitHub (it is important that these emails match), and then click Save.</p></li>
 <li><p>Finally, you can also go to the <em>Editors</em> tab in the options and pick RStudio as your default editor (this is optional, since we won’t need to use GitHub Desktop ever again in this book!).</p></li>
 </ul>
-<p><strong>Linux users:</strong></p>
-<pre><code>* First, go to RStudio and open the tab in the left hand pane called *Terminal*. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to "Tools &gt; Terminal &gt; New Terminal".
-
-  In this terminal, set your GitHub username by running this line, making sure to replace your name inside the quotation marks:
-  
-  ```bash
-  git config --global user.name "Your Name Here"
-  ```
-  
-  Then run this line, again making sure to replace the email inside the quotation marks with the same email you used to sign up for GitHub:
-  
-  ```bash
-  git config --global user.email "you@emailHost.com"
-  ```
-  
-  I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details).
-  
-  ```bash
-  git config --global credential.helper store
-  ```
-
-* Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:
-
-  ```r
-  install.packages("usethis","gitcreds")
-  ```
-  
-  then this line (which will open a GitHub web page - see below for what to fill in)
-  
-  ```r
-  usethis::create_github_token()
-  ```
-  
-  On the token webpage that appears, I recommend the following options:
-  
-  * In the *Note* field, write `RStudio`.
-  * For the expiration date, pick a date about 4 months into the future (or after the end of the semester if you are using this for a class).
-  
-  You can leave all the checked *scopes* as the defaults, and then scroll down to the green button at the bottom and click *Generate token*.
-  
-  The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). **You will never see this token again after you leave this page**, so don't close the webpage until you have finished this section, or you will have to create an entirely new token.
-  
-* Return to the Console tab in RStudio, and run this line:
-
-  ```r
-  gitcreds::gitcreds_set()
-  ```
-  
-  At the prompt, copy and paste the token from GitHub and click enter.
-  
-  (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio COnsole again.)</code></pre>
+<p><strong>Linux users:</strong> See the instructions in Appendix <a href="B_additional_setup_appendix.html#sec-rstudio-github-linux-connection"><span>Section&nbsp;B.1</span></a>.</p></li>
+</ol>
 </section>
-<section id="option-2-setting-up-posit-cloud" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="option-2-setting-up-posit-cloud"><span class="header-section-number">2.5</span> Option 2: Setting up Posit Cloud</h2>
-<p>Got to https://posit.cloud/ and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.</p>
+<section id="option-2-create-an-account-at-posit-cloud" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="option-2-create-an-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an account at Posit Cloud</h3>
+<p>Got to <a href="https://posit.cloud/">https://posit.cloud/</a> and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.</p>
 <p>To connect your GitHub account, click on your profile name/icon in the top right of the posit.cloud homepage, and then on the <em>Authentication</em> page.</p>
-<p>Find the line on this page where it says GitHub, and click any unchecked checkboxes.</p>
-<p>This may open up new webpages taking you to GitHub, which ask you to verify that you want to authorize Posit to access your GitHub account. Make sure you agree all of these, otherwise you might not be able to download or upload code from/to GitHub.</p>
+<p>Find the line on this page where it says GitHub, and <em>slowly</em> click any unchecked checkboxes (wait a couple of seconds between each checkbox in case a prompt appears).</p>
+<p>Some of the checkboxes may open up new webpages taking you to GitHub, which will ask you to verify that you want to authorize Posit to access your GitHub account. Make sure you agree all of these, otherwise you might not be able to edit code on GitHub.</p>
 
 
+</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>

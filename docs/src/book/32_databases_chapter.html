@@ -264,6 +264,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Index</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -284,8 +290,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/B_vscode_appendix.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">VS Code set-up</span></span></a>
+  <a href="../../src/book/B_additional_setup_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></span></a>
   </div>
 </li>
       </ul>
@@ -355,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="15.1.1" class="anchored" data-anchor-id="joining-matching-rows"><span class="header-section-number">15.1.1</span> Joining matching rows</h3>
 <p>In such cases, there are often columns in each table that link the two tables back together.</p>
 <p>For example, consider these two tables:</p>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-1_22a9fe7ab6596be62dfa22e0e55e0fe4">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   names   age hobbit_hole
@@ -381,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The <code>hobbit_hole</code> column in the table of hobbits is a <strong>foreign key</strong>. This links each hobbit to the identifying key in a <em>different</em> (i.e.&nbsp;“foreign”) table.</p></li>
 </ul>
 <p>Of course, we could just have recorded this data as a single table! For example:</p>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-2_bacaee37e5c9905cb0df911e61cfb44e">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   names   age hobbit_hole            
@@ -404,7 +410,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>To do this we need to <strong>join</strong> the separate datasets back together, typically using by using columns that link to connected rows in different tables (such as keys and foreign keys).</p>
 <p>There are several different ways to join tables, which will link rows in different ways.</p>
 <p>To illustrate these different joins let us imagine that we are ecologists in a similar world to that inhabited by the hobbits from the previous section. We have gathered the following two tables of data about different species inhabiting this unusual world.</p>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-3_b9263b298cf08d9e0648739e0a11597f">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Giant Eagle"</span>, <span class="st">"Goblin"</span>, <span class="st">"Goblin"</span>, <span class="st">"Giant Spider"</span>, <span class="st">"Balrog"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">location =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
@@ -426,7 +432,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>The <code>by</code> parameter specifies which columns to use for matching rows. If we do not specify it then R will automatically match any columns with the same names. It is a good idea to always specify it to make sure that we are only joining on the columns that we want to match!</li>
 </ul>
 <p>Note that: * We are piping in the <code>species</code> tibble to the <code>inner_join()</code> function, but we could have written it inside the function instead. * The argument to <code>by</code> is a <em>named vector</em> specifying the names of the columns. * <code>"location_id"</code> is the only value in this 1 item vector, but we have also named this item as <code>"location"</code>. * R will look for the column <code>"location"</code> in the first dataframe (which is <code>species</code> in this example), and <code>location_id</code> in the second dataframe (<code>sightings</code>).</p>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-4_f011a0b0cd82078406a9d9061e44cd18">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -518,7 +524,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The process for doing these joins is very similar to an inner join.</p>
 <section id="left-outer-joins" class="level4" data-number="15.3.1.1">
 <h4 data-number="15.3.1.1" class="anchored" data-anchor-id="left-outer-joins"><span class="header-section-number">15.3.1.1</span> Left outer joins</h4>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-5_2fc4f8a1905755a75f2bf3bc4ddd1020">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -535,7 +541,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="right-outer-joins" class="level4" data-number="15.3.1.2">
 <h4 data-number="15.3.1.2" class="anchored" data-anchor-id="right-outer-joins"><span class="header-section-number">15.3.1.2</span> Right outer joins</h4>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-6_6d7df91a5f21ee42f1c8be85722cc070">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -552,7 +558,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="full-outer-joins" class="level4" data-number="15.3.1.3">
 <h4 data-number="15.3.1.3" class="anchored" data-anchor-id="full-outer-joins"><span class="header-section-number">15.3.1.3</span> Full outer joins</h4>
-<div class="cell">
+<div class="cell" data-hash="32_databases_chapter_cache/html/unnamed-chunk-7_e1968e41f5dd1e05a22a998b0e3a2798">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -581,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-::: {.cell}
+::: {.cell hash='32_databases_chapter_cache/html/unnamed-chunk-8_71aa008c7dac4347a6fe215f3dff1941'}
 
 ```{.r .cell-code}
 # Dataset for exercises
@@ -868,7 +874,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../src/book/references.html" class="pagination-link">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text">Index</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
