@@ -1,6 +1,6 @@
 # Additional Software Set-up
 
-## How to clone a GitHub repository into RStudio
+## How to clone a GitHub repository into RStudio {#sec-create-new-rstudio-project}
 
 ### In RStudio Cloud
 
