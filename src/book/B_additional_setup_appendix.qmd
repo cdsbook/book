@@ -4,15 +4,15 @@
 
 ### In RStudio Cloud
 
-1. From your homepage, click on the New Project button in the top right of the screen (Fig. @fig-rstudio-cloud-new-project-button)
+1. From your homepage, click on the New Project button in the top right of the screen (@fig-rstudio-cloud-new-project-button)
 
   ![The New Project Button in RStudio Cloud](../img/rstudio_cloud_new_project_button.png){#fig-rstudio-cloud-new-project-button}
 
-2. In the drop-down menu, click on the option that says "New Project from Git Repository" (Fig. @fig-rstudio-cloud-new-project-menu).
+2. In the drop-down menu, click on the option that says "New Project from Git Repository" (@fig-rstudio-cloud-new-project-menu).
 
   ![The menu of different ways to create a new project.](../img/rstudio_cloud_new_project_menu.png){#fig-rstudio-cloud-new-project-menu}
     
-3. In the pop-up window, paste in the URL (web address) of the GitHub repository that you wish to open in RStudio (Fig. @fig-rstudio-cloud-github-project-modal).
+3. In the pop-up window, paste in the URL (web address) of the GitHub repository that you wish to open in RStudio (@fig-rstudio-cloud-github-project-modal).
 
   ![An example of the kind of GitHub repository URL (web address) you need to type in.](../img/rstudio_cloud_github_repo_modal.png){#fig-rstudio-cloud-github-project-modal}
 
@@ -21,15 +21,15 @@
 
 1. Click on the New Project option in the Files dropdown menu).
 
-2. In the New Project wizard that pops up, click on the option that says "Version Control" (Fig. @fig-rstudio-new_project-wizard-1)
+2. In the New Project wizard that pops up, click on the option that says "Version Control" (@fig-rstudio-new_project-wizard-1)
 
   ![Step 1 of RStudio's New Project wizard.](../img/rstudio_new_project_wizard_1_type.png){#fig-rstudio-new_project-wizard-1}
 
-3. On the next page of the wizard, click on the "Git" option (Fig. @fig-rstudio-new_project-wizard-2)
+3. On the next page of the wizard, click on the "Git" option (@fig-rstudio-new_project-wizard-2)
 
   ![Step 2 of RStudio's New Project wizard.](../img/rstudio_new_project_wizard_2_git.png){#fig-rstudio-new_project-wizard-2}
 
-3. On the final page of the wizard (Fig. @fig-rstudio-new_project-wizard-3), fill in the details for the GitHub repository you wish to "clone" (i.e. download), and where to download it to:
+3. On the final page of the wizard (@fig-rstudio-new_project-wizard-3), fill in the details for the GitHub repository you wish to "clone" (i.e. download), and where to download it to:
 
   ![Step 3 of RStudio's New Project wizard.](../img/rstudio_new_project_wizard_3_github_details.png){#fig-rstudio-new_project-wizard-3}
   
