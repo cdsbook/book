@@ -44,3 +44,7 @@ source("prechapter.R")
 {{< include ../../src/snippets/r_programming_functions.Rmd >}}
 
 
+## Packages
+
+{{< include ../../src/snippets/r_programming_packages.Rmd >}}
+

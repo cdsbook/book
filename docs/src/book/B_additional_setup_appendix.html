@@ -263,13 +263,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Index</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Index</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -305,8 +305,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-rstudio-github-linux-connection" id="toc-sec-rstudio-github-linux-connection" class="nav-link active" data-scroll-target="#sec-rstudio-github-linux-connection"><span class="header-section-number">B.1</span> Connecting RStudio to GitHub on Linux</a></li>
-  <li><a href="#sec-vscode-setup-appendix" id="toc-sec-vscode-setup-appendix" class="nav-link" data-scroll-target="#sec-vscode-setup-appendix"><span class="header-section-number">B.2</span> VS Code IDE Set-up</a></li>
+  <li><a href="#how-to-clone-a-github-repository-into-rstudio" id="toc-how-to-clone-a-github-repository-into-rstudio" class="nav-link active" data-scroll-target="#how-to-clone-a-github-repository-into-rstudio"><span class="header-section-number">B.1</span> How to clone a GitHub repository into RStudio</a>
+  <ul class="collapse">
+  <li><a href="#in-rstudio-cloud" id="toc-in-rstudio-cloud" class="nav-link" data-scroll-target="#in-rstudio-cloud"><span class="header-section-number">B.1.1</span> In RStudio Cloud</a></li>
+  <li><a href="#in-rstudio-desktop" id="toc-in-rstudio-desktop" class="nav-link" data-scroll-target="#in-rstudio-desktop"><span class="header-section-number">B.1.2</span> In RStudio Desktop</a></li>
+  </ul></li>
+  <li><a href="#sec-rstudio-github-linux-connection" id="toc-sec-rstudio-github-linux-connection" class="nav-link" data-scroll-target="#sec-rstudio-github-linux-connection"><span class="header-section-number">B.2</span> Connecting RStudio to GitHub on Linux</a></li>
+  <li><a href="#sec-vscode-setup-appendix" id="toc-sec-vscode-setup-appendix" class="nav-link" data-scroll-target="#sec-vscode-setup-appendix"><span class="header-section-number">B.3</span> VS Code IDE Set-up</a></li>
   </ul>
 </nav>
     </div>
@@ -330,8 +335,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="sec-rstudio-github-linux-connection" class="level2" data-number="B.1">
-<h2 data-number="B.1" class="anchored" data-anchor-id="sec-rstudio-github-linux-connection"><span class="header-section-number">B.1</span> Connecting RStudio to GitHub on Linux</h2>
+<section id="how-to-clone-a-github-repository-into-rstudio" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="how-to-clone-a-github-repository-into-rstudio"><span class="header-section-number">B.1</span> How to clone a GitHub repository into RStudio</h2>
+<section id="in-rstudio-cloud" class="level3" data-number="B.1.1">
+<h3 data-number="B.1.1" class="anchored" data-anchor-id="in-rstudio-cloud"><span class="header-section-number">B.1.1</span> In RStudio Cloud</h3>
+<ol type="1">
+<li>From your homepage, click on the New Project button in the top right of the screen (Fig. <a href="#fig-rstudio-cloud-new-project-button">Figure&nbsp;<span>B.1</span></a>)</li>
+</ol>
+<div id="fig-rstudio-cloud-new-project-button" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_cloud_new_project_button.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.1: The New Project Button in RStudio Cloud</figcaption><p></p>
+</figure>
+</div>
+<ol start="2" type="1">
+<li>In the drop-down menu, click on the option that says “New Project from Git Repository” (Fig. <a href="#fig-rstudio-cloud-new-project-menu">Figure&nbsp;<span>B.2</span></a>).</li>
+</ol>
+<div id="fig-rstudio-cloud-new-project-menu" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_cloud_new_project_menu.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.2: The menu of different ways to create a new project.</figcaption><p></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>In the pop-up window, paste in the URL (web address) of the GitHub repository that you wish to open in RStudio (Fig. <a href="#fig-rstudio-cloud-github-project-modal">Figure&nbsp;<span>B.3</span></a>).</li>
+</ol>
+<div id="fig-rstudio-cloud-github-project-modal" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_cloud_github_repo_modal.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.3: An example of the kind of GitHub repository URL (web address) you need to type in.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="in-rstudio-desktop" class="level3" data-number="B.1.2">
+<h3 data-number="B.1.2" class="anchored" data-anchor-id="in-rstudio-desktop"><span class="header-section-number">B.1.2</span> In RStudio Desktop</h3>
+<ol type="1">
+<li><p>Click on the New Project option in the Files dropdown menu).</p></li>
+<li><p>In the New Project wizard that pops up, click on the option that says “Version Control” (Fig. <a href="#fig-rstudio-new_project-wizard-1">Figure&nbsp;<span>B.4</span></a>)</p></li>
+</ol>
+<div id="fig-rstudio-new_project-wizard-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_new_project_wizard_1_type.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.4: Step 1 of RStudio’s New Project wizard.</figcaption><p></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>On the next page of the wizard, click on the “Git” option (Fig. <a href="#fig-rstudio-new_project-wizard-2">Figure&nbsp;<span>B.5</span></a>)</li>
+</ol>
+<div id="fig-rstudio-new_project-wizard-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_new_project_wizard_2_git.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.5: Step 2 of RStudio’s New Project wizard.</figcaption><p></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li>On the final page of the wizard (Fig. <a href="#fig-rstudio-new_project-wizard-3">Figure&nbsp;<span>B.6</span></a>), fill in the details for the GitHub repository you wish to “clone” (i.e.&nbsp;download), and where to download it to:</li>
+</ol>
+<div id="fig-rstudio-new_project-wizard-3" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_new_project_wizard_3_github_details.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.6: Step 3 of RStudio’s New Project wizard.</figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li><p>In the first field (“Repository URL”) copy-and-paste the web address of the GitHub repository’s homepage.</p></li>
+<li><p>The second field will be the name of the folder created on your computer to hold all the files you are downloading from the GitHub repository. It may auto-fill with the repository’s name - you can also type something in, or change it to a different folder name if you prefer.</p></li>
+<li><p>The third field is the name of the parent folder that will hold the folder above. I would recommend organizing related projects (e.g.&nbsp;the projects from this book) in a single parent folder so that they are easy to find. If you click “Browse” you can choose or create a parent folder to hold all your project folders.</p></li>
+</ul>
+<p>Then click “Create Project”.</p>
+</section>
+</section>
+<section id="sec-rstudio-github-linux-connection" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="sec-rstudio-github-linux-connection"><span class="header-section-number">B.2</span> Connecting RStudio to GitHub on Linux</h2>
 <ul>
 <li><p>First, go to RStudio and open the tab in the left hand pane called <em>Terminal</em>. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to “Tools &gt; Terminal &gt; New Terminal”.</p>
 <p>In this terminal, set your GitHub username by running this line, making sure to <em>replace your name</em> inside the quotation marks:</p>
@@ -359,8 +434,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>(If you ever need to replace the token, just run <code>gitcreds::gitcreds_set()</code> in the RStudio Console again.)</p></li>
 </ul>
 </section>
-<section id="sec-vscode-setup-appendix" class="level2" data-number="B.2">
-<h2 data-number="B.2" class="anchored" data-anchor-id="sec-vscode-setup-appendix"><span class="header-section-number">B.2</span> VS Code IDE Set-up</h2>
+<section id="sec-vscode-setup-appendix" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="sec-vscode-setup-appendix"><span class="header-section-number">B.3</span> VS Code IDE Set-up</h2>
 
 
 </section>

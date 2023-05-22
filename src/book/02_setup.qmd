@@ -21,7 +21,7 @@ The most popular IDE for the R programming language is called *RStudio*, and the
 
 [^formerly_rstudio]: Formerly known as RStudio Cloud.
 
-[^02_setup-1]: At the time of writing, you get 20 hours per month for free, after which you have to pay.
+[^02_setup-1]: At the time of writing, you get 25 hours per month for free, after which you have to pay.
 
 These two versions are functionally equivalent, so the only things you really have to decide is how averse you are to paying money and whether you can install software on the computer you are using.
 
@@ -99,7 +99,16 @@ If you are installing RStudio Desktop on your computer, then you should follow t
     
     ![RStudio](../img/rstudio_overview.png){#fig-rstudio-overview}
 
-4. One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.
+4. Next we need to install a program called \latex (this will turn our files containing R code into nicely formatted PDFs).
+
+    To do this, open RStudio. There should be a pane on the left called "Console". In this Console, copy and paste the following two lines and hit enter to run them:
+
+    ```r
+    install.packages("tinytex")
+    tinytex::install_tinytex()
+    ```
+
+5. One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.
 
     __Windows and Mac users:__ 
     
@@ -112,9 +121,9 @@ If you are installing RStudio Desktop on your computer, then you should follow t
     __Linux users:__ See the instructions in Appendix @sec-rstudio-github-linux-connection.
 
 
-### Option 2: Create an account at Posit Cloud
+### Option 2: Create an online RStudio account at Posit Cloud
 
-Got to [https://posit.cloud/](https://posit.cloud/) and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.
+Got to [https://posit.cloud/](https://posit.cloud/) and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours of online RStudio access per month before they ask you to pay.
 
 To connect your GitHub account, click on your profile name/icon in the top right of the posit.cloud homepage, and then on the *Authentication* page.
 

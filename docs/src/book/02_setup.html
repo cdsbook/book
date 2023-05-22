@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -230,13 +264,13 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Index</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Index</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -278,7 +312,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#step-2-set-up-rstudio" id="toc-step-2-set-up-rstudio" class="nav-link" data-scroll-target="#step-2-set-up-rstudio"><span class="header-section-number">2.4</span> Step 2: Set up RStudio</a>
   <ul class="collapse">
   <li><a href="#sec-rstudio-desktop-installation" id="toc-sec-rstudio-desktop-installation" class="nav-link" data-scroll-target="#sec-rstudio-desktop-installation"><span class="header-section-number">2.4.1</span> Option 1: Install RStudio Desktop on your computer</a></li>
-  <li><a href="#option-2-create-an-account-at-posit-cloud" id="toc-option-2-create-an-account-at-posit-cloud" class="nav-link" data-scroll-target="#option-2-create-an-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an account at Posit Cloud</a></li>
+  <li><a href="#option-2-create-an-online-rstudio-account-at-posit-cloud" id="toc-option-2-create-an-online-rstudio-account-at-posit-cloud" class="nav-link" data-scroll-target="#option-2-create-an-online-rstudio-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an online RStudio account at Posit Cloud</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -342,7 +376,7 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 <p>Later in this chapter I will give instructions for getting each of these options up and running.</p>
-<p>There are also other IDEs that you can use to write R code. A popular general IDE is VS Code, which can be used to write in any different programming language. The downside is that it lacks a lot of R specific features that you can find in RStudio. However, instructions to get set-up with VS Code are provided in an Appendix: <a href="B_additional_setup_appendix.html#sec-vscode-setup-appendix"><span>Section&nbsp;B.2</span></a>.</p>
+<p>There are also other IDEs that you can use to write R code. A popular general IDE is VS Code, which can be used to write in any different programming language. The downside is that it lacks a lot of R specific features that you can find in RStudio. However, instructions to get set-up with VS Code are provided in an Appendix: <a href="B_additional_setup_appendix.html#sec-vscode-setup-appendix"><span>Section&nbsp;B.3</span></a>.</p>
 </section>
 <section id="version-control" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="version-control"><span class="header-section-number">2.2</span> Version control</h2>
@@ -385,6 +419,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Note that RStudio Desktop is free, but Posit (the company that created RStudio) also offers several paid versions, so make sure you get the free RStudio Desktop version.</p>
 <p>After you have installed RStudio, you should be able to start the program, which should look like this:</p>
 <img src="../img/rstudio_overview.png" id="fig-rstudio-overview" class="img-fluid" alt="RStudio"></li>
+<li><p>Next we need to install a program called (this will turn our files containing R code into nicely formatted PDFs).</p>
+<p>To do this, open RStudio. There should be a pane on the left called “Console”. In this Console, copy and paste the following two lines and hit enter to run them:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tinytex"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.</p>
 <p><strong>Windows and Mac users:</strong></p>
 <ul>
@@ -392,12 +430,12 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Then go to the <em>Git</em> tab of the Options pop-up and type in your name (either your full name or your GitHub username) and the <strong>same</strong> email you used to register for GitHub (it is important that these emails match), and then click Save.</p></li>
 <li><p>Finally, you can also go to the <em>Editors</em> tab in the options and pick RStudio as your default editor (this is optional, since we won’t need to use GitHub Desktop ever again in this book!).</p></li>
 </ul>
-<p><strong>Linux users:</strong> See the instructions in Appendix <a href="B_additional_setup_appendix.html#sec-rstudio-github-linux-connection"><span>Section&nbsp;B.1</span></a>.</p></li>
+<p><strong>Linux users:</strong> See the instructions in Appendix <a href="B_additional_setup_appendix.html#sec-rstudio-github-linux-connection"><span>Section&nbsp;B.2</span></a>.</p></li>
 </ol>
 </section>
-<section id="option-2-create-an-account-at-posit-cloud" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="option-2-create-an-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an account at Posit Cloud</h3>
-<p>Got to <a href="https://posit.cloud/">https://posit.cloud/</a> and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours per month before they ask you to pay.</p>
+<section id="option-2-create-an-online-rstudio-account-at-posit-cloud" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="option-2-create-an-online-rstudio-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an online RStudio account at Posit Cloud</h3>
+<p>Got to <a href="https://posit.cloud/">https://posit.cloud/</a> and create an account. You can sign up for the free plan, which at the time of writing includes 25 hours of online RStudio access per month before they ask you to pay.</p>
 <p>To connect your GitHub account, click on your profile name/icon in the top right of the posit.cloud homepage, and then on the <em>Authentication</em> page.</p>
 <p>Find the line on this page where it says GitHub, and <em>slowly</em> click any unchecked checkboxes (wait a couple of seconds between each checkbox in case a prompt appears).</p>
 <p>Some of the checkboxes may open up new webpages taking you to GitHub, which will ask you to verify that you want to authorize Posit to access your GitHub account. Make sure you agree all of these, otherwise you might not be able to edit code on GitHub.</p>
@@ -409,7 +447,7 @@ ul.task-list li input[type="checkbox"] {
 <hr>
 <ol>
 <li id="fn1"><p>Formerly known as RStudio Cloud.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>At the time of writing, you get 20 hours per month for free, after which you have to pay.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>At the time of writing, you get 25 hours per month for free, after which you have to pay.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Bear in mind that RStudio Cloud can only be used if you are connected to the internet, so if you want to work somewhere without internet then you will need to install RStudio Desktop. Also, RStudio Desktop will ultimately provide you with more flexibility.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

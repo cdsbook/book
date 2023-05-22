@@ -1,0 +1,41 @@
+Functions are clearly useful - we can save a lot of time and effort by writing our code once as a function, and then just calling that function whenever we need to do that thing.
+
+Of course, we can save even more time by not writing the function ourselves but instead using a function that somebody else has written which does what we want.
+
+In R (as in many other programming languages) we can import collections of functions (and other useful things, such as datasets) that other people have written. These collections are called *packages*.
+
+### Installing packages
+
+By default R will come with several useful packages installed. You can which ones are currently installed by going to the *Packages* tab of the bottom right pane in RStudio.
+
+To install a new package, either:
+
+* Click on the *Install* button in the Packages tab, and type the name of the package you want into to the pop-up that appears.
+
+* Go to the RStudio Console and type in (making sure to replace the name of the package you want inside the quotes!):
+
+    ```r
+    install.packages("some_package_name")
+    ```
+    
+    For example, to install a package called the `tidyverse` (which we will be using for much of this book), you would run:
+
+    ```r
+    install.packages("tidyverse")
+    ```
+    
+    Having gone through this chapter, this code should hopefully make some sense! `install.packages()` is a function (built-in to the core R programmin language), and `"tidyverse"` is a character string that we are passing as the argument to that function.
+    
+Note that it can take some time to install a package (e.g. the `tidyverse` package can take 10-15 minutes to install!), so it's worth checking to see if it is already installed before you waste a lot of time.
+
+### Loading packages
+
+A package only needs to be installed to your computer once.
+
+However, you need to load the functions and other objects from that package in every R session that you wish to use them (because they will not automatically be available to R even after you have installed them).
+
+To load a package we use the `library()` function. For example, to load the `tidyverse` package, you would run:
+
+```r
+library(tidyverse)
+```

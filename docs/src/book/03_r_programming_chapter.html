@@ -266,13 +266,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Index</span></a>
+ <span class="menu-text">References</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/end_index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">Index</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -340,6 +340,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#re-useable-code-functions" id="toc-re-useable-code-functions" class="nav-link" data-scroll-target="#re-useable-code-functions"><span class="header-section-number">3.7.1</span> Re-useable code = functions</a></li>
   <li><a href="#how-the-hypotenuse-function-works" id="toc-how-the-hypotenuse-function-works" class="nav-link" data-scroll-target="#how-the-hypotenuse-function-works"><span class="header-section-number">3.7.2</span> How the <code>hypotenuse</code> function works</a></li>
+  </ul></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">3.8</span> Packages</a>
+  <ul class="collapse">
+  <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">3.8.1</span> Installing packages</a></li>
+  <li><a href="#loading-packages" id="toc-loading-packages" class="nav-link" data-scroll-target="#loading-packages"><span class="header-section-number">3.8.2</span> Loading packages</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -771,6 +776,7 @@ Note
 </section>
 <section id="how-r-works" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="how-r-works"><span class="header-section-number">3.4</span> How R works</h2>
+<!-- TODO: Sidebar here about Grace Hopper and the invention of programming languages (plus bugs, Arlington park, and the Queen of Code documentary from 538) -->
 <p>R is an <em>interpreted programming language</em>.</p>
 <p>That is a fancy way of saying that R runs (i.e.&nbsp;“interprets”) every line of code one at a time.</p>
 <p>So far we have written a line of code and then run it. In a couple of exercises you may have run multiple lines of code where one line depended on a result from a previous line. However, R completely finished running the first line before moving onto the next one.</p>
@@ -1068,6 +1074,33 @@ Calculate the area of a rectangle.
 Passing variables, & making copies, modifying within function, & global variables
 
 -->
+</section>
+</section>
+<section id="packages" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="packages"><span class="header-section-number">3.8</span> Packages</h2>
+<p>Functions are clearly useful - we can save a lot of time and effort by writing our code once as a function, and then just calling that function whenever we need to do that thing.</p>
+<p>Of course, we can save even more time by not writing the function ourselves but instead using a function that somebody else has written which does what we want.</p>
+<p>In R (as in many other programming languages) we can import collections of functions (and other useful things, such as datasets) that other people have written. These collections are called <em>packages</em>.</p>
+<section id="installing-packages" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="installing-packages"><span class="header-section-number">3.8.1</span> Installing packages</h3>
+<p>By default R will come with several useful packages installed. You can which ones are currently installed by going to the <em>Packages</em> tab of the bottom right pane in RStudio.</p>
+<p>To install a new package, either:</p>
+<ul>
+<li><p>Click on the <em>Install</em> button in the Packages tab, and type the name of the package you want into to the pop-up that appears.</p></li>
+<li><p>Go to the RStudio Console and type in (making sure to replace the name of the package you want inside the quotes!):</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"some_package_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For example, to install a package called the <code>tidyverse</code> (which we will be using for much of this book), you would run:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Having gone through this chapter, this code should hopefully make some sense! <code>install.packages()</code> is a function (built-in to the core R programmin language), and <code>"tidyverse"</code> is a character string that we are passing as the argument to that function.</p></li>
+</ul>
+<p>Note that it can take some time to install a package (e.g.&nbsp;the <code>tidyverse</code> package can take 10-15 minutes to install!), so it’s worth checking to see if it is already installed before you waste a lot of time.</p>
+</section>
+<section id="loading-packages" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="loading-packages"><span class="header-section-number">3.8.2</span> Loading packages</h3>
+<p>A package only needs to be installed to your computer once.</p>
+<p>However, you need to load the functions and other objects from that package in every R session that you wish to use them (because they will not automatically be available to R even after you have installed them).</p>
+<p>To load a package we use the <code>library()</code> function. For example, to load the <code>tidyverse</code> package, you would run:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>
