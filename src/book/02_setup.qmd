@@ -108,17 +108,17 @@ If you are installing RStudio Desktop on your computer, then you should follow t
     tinytex::install_tinytex()
     ```
 
-5. One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully.
+<!-- 5. One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully. -->
 
-    __Windows and Mac users:__ 
-    
-    * Download GitHub Desktop. Then open it, and go through these menu options: "File > Options > Accounts", and click the button sign in to GitHub. If you have two-factor authentication enabled on your account, you will need to use it here.
+<!--     __Windows and Mac users:__  -->
 
-    * Then go to the _Git_ tab of the Options pop-up and type in your name (either your full name or your GitHub username) and the __same__ email you used to register for GitHub (it is important that these emails match), and then click Save.
+<!--     * Download GitHub Desktop. Then open it, and go through these menu options: "File > Options > Accounts", and click the button sign in to GitHub. If you have two-factor authentication enabled on your account, you will need to use it here. -->
 
-    * Finally, you can also go to the _Editors_ tab in the options and pick RStudio as your default editor (this is optional, since we won't need to use GitHub Desktop ever again in this book!).
-  
-    __Linux users:__ See the instructions in Appendix @sec-rstudio-github-linux-connection.
+<!--     * Then go to the _Git_ tab of the Options pop-up and type in your name (either your full name or your GitHub username) and the __same__ email you used to register for GitHub (it is important that these emails match), and then click Save. -->
+
+<!--     * Finally, you can also go to the _Editors_ tab in the options and pick RStudio as your default editor (this is optional, since we won't need to use GitHub Desktop ever again in this book!). -->
+
+<!--     __Linux users:__ See the instructions in Appendix @sec-rstudio-github-linux-connection. -->
 
 
 ### Option 2: Create an online RStudio account at Posit Cloud
@@ -130,3 +130,61 @@ To connect your GitHub account, click on your profile name/icon in the top right
 Find the line on this page where it says GitHub, and *slowly* click any unchecked checkboxes (wait a couple of seconds between each checkbox in case a prompt appears).
 
 Some of the checkboxes may open up new webpages taking you to GitHub, which will ask you to verify that you want to authorize Posit to access your GitHub account. Make sure you agree all of these, otherwise you might not be able to edit code on GitHub.
+
+
+## Step 3: Connect RStudio to GitHub {#sec-rstudio-github-connection}
+
+* First, go to RStudio (or launch a new empty RStudio project if you are using the online RStudio at posit.cloud) and open the tab in the left hand pane called *Terminal*. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to "Tools > Terminal > New Terminal".
+  
+  In this terminal, set your GitHub username by running this line, making sure to _replace your name_ inside the quotation marks:
+  
+  ```bash
+  git config --global user.name "Your Name Here"
+  ```
+  
+  Then run this commend, again making sure to *replace the email* inside the quotation marks with the same email you used to sign up for GitHub:
+  
+  ```bash
+  git config --global user.email "you@emailHost.com"
+  ```
+  
+  I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details - otherwise you will be typing them in a lot).
+  
+  ```bash
+  git config --global credential.helper store
+  ```
+
+* Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:
+
+  ```r
+  install.packages("usethis","gitcreds")
+  ```
+  
+  then this line (which will open a GitHub web page - see below for what to fill in)
+  
+  ```r
+  usethis::create_github_token()
+  ```
+  
+  <!-- ToDo: Add screenshot of GitHub token page. -->
+  
+  On the token webpage that appears, make sure that you are creating a "Classic token", and not a "Fine-grained" token. Then you will need to set the following options:
+  
+  * In the *Note* field, write something that indicates where this token will be used, e.g. `RStudio`.
+  * For the expiration date, pick a date about in the future after which you will no longer need the token. E.g. if you are following these instructions for a class, pick a date after the end of the semester.
+  
+    You should *not* select no expiration date - that is a security risk.
+  
+  You can leave all the checked *scopes* as the defaults, and then scroll down to the green *Generate token* button at the bottom of the webpage and click it.
+  
+  The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). **You will never see this token again after you leave this page**, so don't close the webpage until you have finished this section, or you will have to create an entirely new token.
+  
+* Return to the Console tab in RStudio, and run this line:
+
+  ```r
+  gitcreds::gitcreds_set()
+  ```
+  
+  At the prompt, copy and paste the token from GitHub and click enter.
+  
+  (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio Console again.)
