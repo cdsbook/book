@@ -425,12 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tinytex"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<!-- 5. One last step is to store your GitHub account details in RStudio. There are a few steps to this, so follow along carefully. -->
-<!--     __Windows and Mac users:__  -->
-<!--     * Download GitHub Desktop. Then open it, and go through these menu options: "File > Options > Accounts", and click the button sign in to GitHub. If you have two-factor authentication enabled on your account, you will need to use it here. -->
-<!--     * Then go to the _Git_ tab of the Options pop-up and type in your name (either your full name or your GitHub username) and the __same__ email you used to register for GitHub (it is important that these emails match), and then click Save. -->
-<!--     * Finally, you can also go to the _Editors_ tab in the options and pick RStudio as your default editor (this is optional, since we won't need to use GitHub Desktop ever again in this book!). -->
-<!--     __Linux users:__ See the instructions in Appendix @sec-rstudio-github-linux-connection. -->
+<p>Once you have done this, proceed to <a href="#sec-rstudio-github-connection"><span>Section&nbsp;2.5</span></a> to connect GitHub to RStudio.</p>
 </section>
 <section id="option-2-create-an-online-rstudio-account-at-posit-cloud" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="option-2-create-an-online-rstudio-account-at-posit-cloud"><span class="header-section-number">2.4.2</span> Option 2: Create an online RStudio account at Posit Cloud</h3>
@@ -451,17 +446,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details - otherwise you will be typing them in a lot).</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper store</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>,<span class="st">"gitcreds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"usethis"</span>,<span class="st">"gitcreds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>then this line (which will open a GitHub web page - see below for what to fill in)</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ToDo: Add screenshot of GitHub token page. -->
-<p>On the token webpage that appears, make sure that you are creating a “Classic token”, and not a “Fine-grained” token. Then you will need to set the following options:</p>
+<p>On the token webpage that appears, <strong>make sure that you are creating a “Classic token”, and not a “Fine-grained” token</strong>. Then you will need to set the following options:</p>
 <ul>
 <li><p>In the <em>Note</em> field, write something that indicates where this token will be used, e.g.&nbsp;<code>RStudio</code>.</p></li>
 <li><p>For the expiration date, pick a date about in the future after which you will no longer need the token. E.g. if you are following these instructions for a class, pick a date after the end of the semester.</p>
 <p>You should <em>not</em> select no expiration date - that is a security risk.</p></li>
 </ul>
-<p>You can leave all the checked <em>scopes</em> as the defaults, and then scroll down to the green <em>Generate token</em> button at the bottom of the webpage and click it.</p>
+<p>You can leave all the checked <em>scopes</em> as the defaults (you need the first set of <em>repo</em> scopes), and then scroll down to the green <em>Generate token</em> button at the bottom of the webpage and click it.</p>
 <p>The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). <strong>You will never see this token again after you leave this page</strong>, so don’t close the webpage until you have finished this section, or you will have to create an entirely new token.</p></li>
 <li><p>Return to the Console tab in RStudio, and run this line:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
