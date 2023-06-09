@@ -104,7 +104,7 @@ b <- 2 + 4
 <!-- End tutorial version -->
 
 The second line of code should not print out any output when it runs. 
-This is because assignment has no "result" in the same way that a math expression does, so there is nothing to print out.
+This is because assigning the result of an expression to a variable has no "result" in itself. For example, in math $2+2$ is $4$, but the expression $b = 2 + 2$ does *not* return $4$ directly (but somebody somewhere is hopefully keeping track of the fact that $b$ is now equivalent to $4$).
 
 If you want to see the data that is stored in a variable, you can put the name of the variable on a line by itself:
 
@@ -122,8 +122,8 @@ c <- 3
 c
 ```
 
-The other implication of this is that if you calculate something in R and do not assign the result to a variable then it will be printed out ***and then forgotten***. 
-So remember: if you calculate something important in R that you will need in the future, make sure that you store it in a variable.
+The other implication of this is that if you calculate something in R and *do not* assign the result to a variable then it will be printed out ***and then forgotten***. 
+So remember: if you calculate something important in R that you will need in the future, make sure that you store that result in a variable.
 
 <!-- Book version -->
 
@@ -166,7 +166,7 @@ cat('<div id="what_is_b-hint">
 ')
 ```
 
-```{r what_is_b-solution, eval=is_tutorial}
+```{r what_is_b-solution, eval=is_tutorial, echo=FALSE}
 b
 ```
 
@@ -247,6 +247,9 @@ a <- 2 + 4
 a <- (2 + 4)
 ```
 
-<!-- TODO: Add exercise -->
+<!-- 
+TODO: Add exercises 
+e.g. remove parentheses from over parenthesized expression
+-->
 
 

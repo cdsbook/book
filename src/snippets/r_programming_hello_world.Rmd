@@ -1,5 +1,7 @@
 It is a long-standing tradition that your first program in any new programming language should simply display the message "Hello, World!".
 
+<!-- TODO: video: programming as recipe -->
+
 In R we can use the `print()` *function* to display a piece of data (such as the text *Hello, World!*).
 
 For example, we can run this line of code in R:

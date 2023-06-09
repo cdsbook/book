@@ -1,3 +1,0 @@
-TODO
-
-* Expressions and how they are evaluated. Lines and files.

@@ -105,15 +105,15 @@ Once you have successfully edited the program, click on the "Next Topic" button 
 ```
 
 
-## More about data
+## Boolean data
 
 ```{r, child=paste0(here(),"/src/snippets/r_programming_data_2.Rmd")}
 ```
 
 
-## Expressions and how they are evaluated
+## Vectors
 
-```{r, child=paste0(here(),"/src/snippets/r_programming_evaluation.Rmd")}
+```{r, child=paste0(here(),"/src/snippets/r_programming_vectors.Rmd")}
 ```
 
 

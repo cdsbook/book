@@ -1,0 +1,167 @@
+### Boolean data revisted
+
+At the start of this chapter we mentioned that there is a type of data in R, called Boolean data, that can have one of two values: `TRUE` or `FALSE`.
+
+We can ask R questions that have a true or false answer, for example: "Does the variable `x` hold the number 3?" or "Is 10 greater than 9?"
+
+We do this with *Boolean operators*:
+
+| Operator  | Example  | Result  |
+|:---------:|:--------:|:-------:|
+| `<`       | `10 < 9` | `FALSE` |
+| `>`       | `10 > 9` | `TRUE`  |
+| `==`      | `x == 3` | `FALSE` |
+
+For example:
+
+```{r, include=TRUE, echo=TRUE}
+10 < 9
+```
+
+Here R returns the value `FALSE` when it evaluates this expression, because 10 is obviously not less than 9.
+
+> __Combining comparisons__
+>
+> Sometimes we want to know if one datum is greater than **or** equal
+> to another. You can use the Boolean operators `>=` for such a comparison, or
+> `<=` to see if something is *less than or equal to* another.
+
+Just as with numeric data, we can store a Boolean value in a variable, e.g. `d <- FALSE` or `e <- 10 < 9`. (Remember that assignment always happens last, after we have evaluated the expression on the right-hand side.)
+
+<!-- TODO: put exercises into their own section -->
+
+### The `<` and `>` operators
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+**Exercise: Try it yourself:** What do you get if you run `10 < 9` in the RStudio Console?
+
+Can you change one of the numbers so that this expression returns `TRUE`?
+
+Then change the `>` to a `<` operator (i.e. reverse its direction). 
+What is the result now?
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `<` operator does.
+
+Do you get a number back (like the previous operators), or a different type of data?
+
+Then change the `<` to a `>` operator (i.e. reverse its direction). What is the result now?
+</p>
+")
+```
+
+```{r operators_inequality, eval=is_tutorial, exercise=TRUE, echo=is_tutorial}
+4 > 3
+```
+
+```{r operators_inequality_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the > operator do?",
+  answer("Returns the modulus (the remainder after dividing one number by another)."),
+  answer("Calculates an exponential (raises one number to the power of the second."),
+  answer("Evaluates an equality (whether one number is equal to another)."),
+  answer("Evaluates an inequality (whether one number is bigger or smaller than another).", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+### The `==` operators
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Let's try another Boolean operator. What do you get if you run `8 == 10`?
+What about `8 == 8`?
+
+What do you think the `==` operator does?
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `==` operator does.
+
+Then try changing one of the numbers and rerunning the code.
+</p>
+")
+```
+
+```{r operators_equality, eval=is_tutorial, exercise=TRUE, echo=is_tutorial}
+4 == 4
+```
+
+```{r operators_equality_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the == operator do?",
+  answer("Returns the modulus (the remainder after dividing one number by another)."),
+  answer("Calculates an exponential (raises one number to the power of the second."),
+  answer("Evaluates an equality (whether one number is equal to another).", correct = TRUE),
+  answer("Evaluates an inequality (whether one number is bigger or smaller than another)."),
+  allow_retry = TRUE
+)
+```
+
+
+> __Combining comparisons__
+>
+> Sometimes we want to know if one datum is greater than **or** equal
+> to another. You can use the Boolean operators `>=` for such a comparison, or
+> `<=` to see if something is *less than or equal to* another.
+
+
+
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Assign the value `TRUE` to a variable called `d`.
+:::
+")
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Assign the value `TRUE` to a variable called `d`.
+</p>
+')
+```
+
+```{r d_is_true, eval=is_tutorial, exercise=TRUE}
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="d_is_true-hint">
+<p class="comment">
+**Hint:** Try using `<-` to assign a Boolean value to a variable called `d`
+</p>
+</div>
+')
+```
+
+```{r d_is_true-solution, eval=is_tutorial}
+ d <- TRUE
+```
+
+```{r d_is_true-check, eval=is_tutorial, echo=F}
+grade_code(":)")
+```
+

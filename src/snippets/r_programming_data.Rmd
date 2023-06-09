@@ -8,20 +8,36 @@ This is the magic of programming languages! They allow us to write commands in (
 
 R allows us to work with several "higher-level" types of data. These **data types** include:
 
+* the **numeric** data type holds numbers such as `42` or `-12.5` or `0`. Unlike text, numbers are written *without* quotation marks around them.
+
 * the **character** data type holds text (i.e. letters, symbols, and the characters that represent numbers). We need to put the text inside quotation marks so that R knows where the text starts and ends: `"this is character data"`.
 
   * Note: in other programming languages this datatype is sometimes known as a "character string" or just a "string".
-
-* the **numeric** data type holds numbers such as `0` or `12.5` (i.e. both integers (whole numbers) and decimals). Unlike text, numbers are written *without* quotation marks around them.
 
 * the **Boolean** data type holds a value that is either `TRUE` or `FALSE`. (This is sometimes also referred to as the logical data type.)
 
 <!-- Book version -->
 
+```{r character-data-book-exercise, eval=is_book, echo=F, results='asis'}
+cat('::: {.exercise}
+**Exercise:** What data type is `"Introduction to Computing and Data for Scientists"`?
+:::')
+```
+
 ```{r numeric-data-book-exercise, eval=is_book, echo=F, results='asis'}
 cat('::: {.exercise}
 **Exercise:** Type the number 2 into the RStudio console. Hit the <Enter> key to run this line of code. What do you get back?
 :::')
+```
+
+```{r boolean-data-book-exercise, eval=is_book, echo=F, results='asis'}
+cat(':::: {.exercise}
+**Exercise:** What data type is `FALSE`? In the RStudio Console, type in `typeof(FALSE)`, and hit the <ENTER> key to run this line of code. What do you get back?
+
+::: {.info-box .callout-tip}
+`typeof()` tells us the data type of any data we put inside the brackets. (Technically it is a *function* - we will learn more about these soon.)
+:::
+::::')
 ```
 
 <!-- End book version -->

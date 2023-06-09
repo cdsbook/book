@@ -1,0 +1,66 @@
+### Combining different data into lists
+
+TODO: section moved from first R chapter - needs rewriting
+
+So far we have looked at pieces of data by themselves:
+
+```{r, echo=TRUE}
+a <- 1
+b <- "Hello!"
+c <- TRUE
+print(a)
+print(b)
+print(c)
+```
+
+But what about if we want to combine multiple pieces of data together?
+
+R includes several types of *container* that can hold multiple pieces of data. We can then refer to that container by a single variable. For example, instead of the three variables above, we can create a **list** object that holds all three values:
+
+```{r, echo=TRUE}
+l <- list(1, "Hello!", TRUE)
+l
+```
+
+We create a list using `list()`. Every value in the list goes inside the parentheses, separated by commas.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Create a list holding 4 values (in this order): 10, "z", FALSE, -0.1*10
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Create a list holding 4 values (in this order): 10, "z", FALSE, -0.1*10
+</p>')
+```
+
+```{r create_a_list, eval=is_tutorial, exercise=TRUE}
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="create_a_list-hint">
+<p class="comment">
+**Hint:** No need to save this list to a variable...
+</p>
+</div>')
+```
+
+```{r create_a_list-solution, eval=is_tutorial}
+list(10, "z", FALSE, -0.1*10)
+```
+
+```{r create_a_list-check, eval=is_tutorial, echo=F}
+grade_code(":)")
+```
+
+<!-- End book -->

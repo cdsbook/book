@@ -29,14 +29,14 @@ source("prechapter.R")
 {{< include ../../src/snippets/r_programming_how_it_works.Rmd >}}
 
 
-## More about data
+## Boolean data
 
-{{< include ../../src/snippets/r_programming_data_2.Rmd >}}
+{{< include ../../src/snippets/r_programming_boolean_data.Rmd >}}
 
 
-## Expressions and how they are evaluated
+## Vectors
 
-{{< include ../../src/snippets/r_programming_evaluation.Rmd >}}
+{{< include ../../src/snippets/r_programming_vectors.Rmd >}}
 
 
 ## Functions

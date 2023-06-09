@@ -1,0 +1,28 @@
+---
+title: "Your First R Program"
+author: "Dominic White"
+format: revealjs
+---
+
+## Running R code in the interactive tutorial
+
+TODO: video of the interactive tutorial and running code.
+
+::: {.notes}
+If you are watching this video as part of an interactive tutorial, then you will be able to run code for exercises from within the tutorial itself.
+
+You will see a box like the one above for the exercise at the end of this section. To run the code, click the green "Play" button in the top right corner.
+:::
+
+## Interactive tutorials vs. the textbook
+
+TODO: screenshot of textbook exercise for comparison.
+
+::: {.notes}
+Each interactive tutorial will have a corresponding chapter of the text book, that contains the same content and exercises.
+
+However, you cannot write and run code from within the online textbook. You should try to learn the material through the interactive tutorials instead.
+
+The textbook makes a good reference after you have completed the interactive tutorial, and 
+:::
+

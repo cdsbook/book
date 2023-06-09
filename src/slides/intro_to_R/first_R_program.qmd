@@ -6,24 +6,26 @@ format: revealjs
 
 ## Running R code in the *Console*
 
-TODO: Screenshot of RStudio.
+TODO: Screenshot or video of RStudio.
 
 ::: {.notes}
-We run R code by writing a line of code in a window called the Console, and then pressing Enter on our keyboards when we have reached the end of the line.
-
-R will then interpret the code that you have written and convert it into electrical signals that your computer can understand.
-
 If you have installed RStudio, then when you open the software you will see that it contains a pane called the *Console*. This allows us to write and run R code from within RStudio.
 
 The top of the Console starts with some information about the version of R that you are running. Below that is a greater-than symbol, with a blinking cursor. We call this the prompt, and we can write code after it.
+
+<Write some code, e.g. 2+2>
+
+We can run a line of R code in the Console by pressing Enter on our keyboards when we have reached the end of the line.
 :::
 
-## Running R code in the interactive tutorial
+## What happens when you run code?
+
+TODO: stylized pic of computer internals, running 2+2
 
 ::: {.notes}
-If you are using the interactive tutorial version of this chapter, then you will be able to run code for exercises from within the tutorial itself.
+R will then interpret the code that you have written and convert it into electrical signals that your computer can understand.
 
-You will see a box like the one above for the exercise at the end of this section. To run the code, click the green "Play" button in the top right corner.
+It will then convert the result of those computer signals back into an output that you can understand, and display it on your screen.
 :::
 
 ## Your first program
@@ -47,5 +49,7 @@ When we're done, we can press the Enter key on our keyboard. R will immediately 
 ## How does this program work?
 
 
+
 ## How this program can go wrong
+
 

@@ -59,6 +59,8 @@ The `tidyverse` collection of packages that we have been using add a new version
 
 {{< include ../../src/snippets/r_programming2_vectors.Rmd >}}
 
+{{< include ../../src/snippets/r_programming2_lists.Rmd >}}
+
 {{< include ../../src/snippets/r_programming2_tibbles.Rmd >}}
 
 ## Functions
