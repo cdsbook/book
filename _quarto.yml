@@ -58,7 +58,7 @@ book:
       # 37 Output: Apps
       # 38 Output: Software
     - src/book/references.qmd
-    - src/book/end_index.qmd
+    # - src/book/end_index.qmd
   appendices:
   - src/book/A_faqs_appendix.qmd
   - src/book/B_additional_setup_appendix.qmd

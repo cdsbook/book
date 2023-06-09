@@ -12,3 +12,6 @@ format:
       - text: |
           \usepackage{makeidx}
           \makeindex
+    include-after-body: 
+      text: |
+        \printindex
