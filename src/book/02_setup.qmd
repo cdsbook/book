@@ -99,7 +99,7 @@ If you are installing RStudio Desktop on your computer, then you should follow t
     
     ![RStudio](../img/rstudio_overview.png){#fig-rstudio-overview}
 
-4. Next we need to install a program called \latex (this will turn our files containing R code into nicely formatted PDFs).
+4. Next we need to install a program called \LaTeX (pronounced "lay-tek" - this will turn our files containing R code into nicely formatted PDFs).
 
     To do this, open RStudio. There should be a pane on the left called "Console". In this Console, copy and paste the following two lines and hit enter to run them:
 

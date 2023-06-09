@@ -21,6 +21,8 @@ Basically we want to know how to apply computers and data to solve real world pr
 
 There are problems in the world that we could choose to address with computers and data. In this book we will focus on problems from the natural and social sciences (i.e. physics, biology, economics, psychology, etc.).
 
+<!-- TODO: Venn diagrams of CS and DS using mermaid.js, or just inkscape -->
+
 ## Why this book?
 
 Many books on these topics (particularly data science) are interested in business problems. Businesses are typically concerned with learning about the future, typically in the interest of making more profit tomorrow.
