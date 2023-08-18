@@ -5,6 +5,66 @@ Box plots (also called box-and-whisker plots) visualize not only the distributio
 TODO: replace with my own image that I know I own copyright of.
 
 ```{r}
+set.seed(42)
+x <- c(rnorm(100, 20, 3), rnorm(5, 20, 6))
+arrow_df <- tibble(
+  x_start = c(median(x), quantile(x)[2]-1.1, quantile(x)[4]+1.1, 12,        30),
+  x_end   = c(median(x), quantile(x)[2],     quantile(x)[4],     11.1,      30.9),
+  y_start = c(1.7,       1.7,                1.7,                1.5,       1.5),
+  y_end   = c(1.45,      1.45,               1.45,               1.1,       1.1),
+  label   = c("Median", "25th Percentile",   "75th Percentile",  "Outlier", "Outlier")
+)
+ggplot() +
+  geom_boxplot(aes(
+    x, 
+    ""
+    ),
+    fill = "lightblue") +
+  labs(
+    x = "x-axis = range of plotted variable", 
+    y = "",
+    title = "Parts of a box plot") +
+  theme_minimal() +
+  geom_segment(
+    aes(x = x_start, y = y_start, xend = x_end, yend = y_end),
+    data = arrow_df, 
+    arrow = arrow(length = unit(0.2, "cm"), type="closed")
+    ) +
+  geom_text(
+    aes(x = x_start, y = y_start + 0.05, label = label),
+    data = arrow_df
+  ) +
+  geom_brace( # upper whisker
+    aes(
+      c(
+        quantile(x)[4]+0.1,
+        27.1 #1.5*IQR(x)+quantile(x)[4]
+        ), 
+      c(0.59, 0.5)), 
+    rotate = 180,
+    inherit.data=FALSE
+    ) +
+  geom_brace( # lower whisker
+    aes(
+      c(
+        quantile(x)[2] - 0.1,
+        quantile(x)[2] - 1.5*IQR(x) +0.2
+        ), 
+      c(0.59, 0.5)), 
+    rotate = 180,
+    inherit.data=FALSE
+    ) +
+  geom_segment( # This arrow forces the y axis to extend high enough
+    aes(x = 11, y = 1.9, xend = 11, yend = 1.45), 
+    color = "white",
+    arrow = arrow(length = unit(0.2, "cm"), type="closed")
+    ) +
+  annotate("text", x = 24.5, y = 0.45, label = "Upper \"whisker\"") +
+  annotate("text", x = 15.0, y = 0.45, label = "Lower \"whisker\"")
+```
+
+
+```{r}
 knitr::include_graphics("../img/boxplot.png")
 ```
 
@@ -16,11 +76,17 @@ We create a box plot using the `geom_boxplot` geom function. There are two requi
 ```{r}
 diamonds %>%
   ggplot() +
-  geom_boxplot(mapping = aes(x = cut, y = price))
+  geom_boxplot(mapping = aes(x = price))
 ```
 
+One slightly strange feature of the default box plot is that `ggplot` will put some meaningless numbers on the y-axis. We can get rid of these by mapping the `y` aesthetic to an empty character string:
 
-You might have spotted a problem here: what if we only want to create one box plot rather that breaking down the variable into a different box plot for each category of `x`? In this case, we need to provide a character string to `x` instead of a variable name - however, despite the fact that x is a fixed value, it still goes inside the `aes` function...
+```{r}
+ggplot(data = diamonds) +
+  geom_boxplot(mapping = aes(x = price, y = ""))
+```
+
+This still leaves us with an unnecessary y axis label, but we can also get rid of that with the `labs()` function.
 
 <!-- Book version -->
 

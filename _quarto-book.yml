@@ -6,8 +6,10 @@ format:
     documentclass: scrreprt
     toc: true
     toc-depth: 2
-    execute:
-      cache: true
+    code-block-bg: E9ECEF
+    code-block-border-left: B1B4B7
+    # execute:
+    #   cache: true
     include-in-header:
       - text: |
           \usepackage{makeidx}

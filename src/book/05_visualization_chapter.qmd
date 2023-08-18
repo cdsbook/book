@@ -1,49 +1,49 @@
----
-execute:
-  freeze: auto
----
-
 # Visualizing Data
 
 ```{r setup, include=FALSE}
+#| results: "asis"
+#| echo: false
+
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(lubridate))
+insert_status_callout("incomplete")
 ```
 
 In this chapter we will learn how to make simple graphs using R.
 
-## Visualization principles
+## The Good, the Bad, and the Ugly
 
-{{< include ../../src/snippets/visualization_principles.Rmd >}}
+{{< include ../../src/snippets/visualization_overview.Rmd >}}
 
 
-## Data Overview
+## Data in R
 
 {{< include ../../src/snippets/visualization_data.Rmd >}}
 
 
-## The `plot()` function
+## One numerical variable: histograms 
 
-TBD
+{{< include ../../src/snippets/visualization_histograms.Rmd >}}
 
-## One variable: histograms and bar charts
 
-TBD
+## One categorical variable: bar charts
+
+{{< include ../../src/snippets/visualization_bar_charts.Rmd >}}
+
 
 ## Two variables: scatter plots
 
-TBD
+{{< include ../../src/snippets/visualization_scatter_plots.Rmd >}}
+
 
 ## Trends: line graphs
 
-TBD
+{{< include ../../src/snippets/visualization_line_graphs.Rmd >}}
 
-## Importance of visualization
 
-{{< include ../../src/snippets/visualization_anscombe_example.Rmd >}}
+## Best practices for graphs {#sec-visualization-best-practices}
 
-## Improving your graphs
-
-TBD
+{{< include ../../src/snippets/visualization_best_practices.Rmd >}}
 
 

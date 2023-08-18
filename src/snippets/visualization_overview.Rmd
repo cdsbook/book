@@ -1,0 +1,39 @@
+This video will introduce you to the importance of visualization in data science, and how it can be used effectively (or ineffectively).
+
+:::{.callout-caution}
+TODO: New video.
+:::
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tHEVRahx0WE?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/ETyT0aRqt6tHspWXcGyumEgBG6K79TUuaN0mWTLsaiOySA?e=KkfEsO)
+
+
+There are many ways that we can visualize the same data. These pictures of data are called "graphs". Some of these ways *may* be good, but many of them *will* be bad.
+
+> A picture is worth thousand words...
+
+...and a good graph is clearer than a table of data.
+
+In pre-modern times, our ancestors did not have to worry about tables of data (or words). But they did have to interpret patterns in what they saw.
+
+We are stuck with the same brains, and so while a column of numbers doesn't mean much, if we can transform that column into a picture then patterns can become much clearer.
+
+Why create graphs?
+
+* To quickly understand patterns in the data.
+* To spot problems in the data (outliers, or checking that data makes sense with your expectations)
+
+### Example: Challenger Disaster
+
+In 1985 the space shuttle Challenger exploded shortly after launch, killing all the astronauts on-board. An investigation found that this was probably because a rubber seal had become too cold and brittle, due to cold weather on the launch day.
+
+The investigation also found that although the managers and engineers knew that this was a potential issue, they had decided to go ahead with the launch anyway. But the engineers presented their concerns to their managers in the form of tables of numbers like this. Would you have looked at this and thought "Clearly we should not launch today?"
+
+![Table of O-ring damage presented to NASA by Morton Thiokol's engineers](../img/pcssca_vol4_p671.png 'Table of O-ring damage')
+
+Visualization expert Edward Tufte suggested that clearer methods of presenting the data, such as a graph like this one, could have made a stronger case for delaying the launch:
+
+```{r, child="../../src/snippets/visualization_challenger_disaster.Rmd"}
+```
+

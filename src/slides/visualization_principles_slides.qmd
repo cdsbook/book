@@ -1,0 +1,162 @@
+---
+title: "Why visualize?"
+subtitle: "From: Introduction to Computation and Data for Scientists"
+author: "Dominic White"
+format: 
+  revealjs:
+    df-print: paged
+    smaller: true
+---
+
+```{r setup}
+#| echo: FALSE
+source("common_slides_setup.R")
+```
+
+
+## The end goal of science is communication {.smaller}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+> Nothing in science has any value to society if it is not communicated, and scientists are beginning to learn their social obligations.
+>
+> *- Anne Roe, *The Making of a Scientist *(1953)*
+:::
+
+::: {.column width="40%"}
+![](img/Anne-Roe-wikipedia.jpg 'Picture of Anne Roe')
+:::
+
+::::
+
+
+::: notes
+One of the defining features of modern science is that scientists have to communicate their findings. In fact this is what makes science work - it's only by putting your ideas out there that other scientists can review them and critique and improve on them.
+
+But we don't just need to tell other scientists what we've found - we also need to tell non-scientists. After all, one of the goals of science is to improve life for society as a whole. 
+
+This is quite nicely summed up in this quote from scientist Anne Roe: "Nothing in science has any value to society if it is not communicated, and scientists are beginning to learn their social obligations."
+
+Now that was written 70 years ago, and while there is a lot of effort in modern times to popularize science, I would argue that this is still an important skill that each generation of scientists needs to learn.
+:::
+
+## Raw data is hard to communicate
+
+Is it easy to tell how whether the number of pedestrians dying in traffic accidents in the USA is increasing or decreasing?
+
+```{r}
+#| echo: FALSE
+ped_deaths <- tibble(
+  Year = 2020:1994,
+  `Pedestrian deaths` = c(6516,	6272,	6374,	6075,	6080,	5494,	4910,	4779,	4818,	4457,	4302,	4109,	4414,	4699,	4795,	4892,	4675,	4774,	4851,	4901,	4763,	4939,	5228,	5321,	5449,	5584,	5489)
+)
+ped_deaths
+```
+
+::: aside
+Source: National Highway Traffic Safety Administration
+:::
+
+::: notes
+Much of modern science revolves around collecting and analyzing data. Unfortunately, raw data is often a bit hard to understand. Here's a table showing the number of pedestrian deaths in the USA each year. These are people who died in some kind of traffic accident.
+
+It's a bit hard to spot any meaningful trends when we just have a table of raw numbers like this.
+
+Sure, we could do through, row by row, and try to remember all the numbers of previous rows, but the human brain just isn't designed to work that way.
+:::
+
+## Visualizations (can) help
+
+> A picture tells a thousand words.
+
+Or in our case:
+
+> A graph tells a thousand rows of data.
+
+::: notes
+But what the brain is good at is looking at images and pictures.
+
+There's a famous saying from the newspaper business that "A picture tells a thousand words.", or in other words, you can write a long article about some story, but a powerful image can often communicate the story just as effectively.
+
+As scientists we can hook into that strength of the human brain by converting our data into pictures.
+
+A picture of data is called a graph, and we are going to spend some time learning not only how to create graphs, but also how to pick the best type of graph to communicate what you want to show.
+:::
+
+## Pedestrian deaths visualized
+
+A graph can make patterns in data obvious:
+
+```{r}
+ped_deaths |>
+  ggplot(aes(Year, `Pedestrian deaths`)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "US Pedestrian Deaths in Traffic Accidents")
+```
+
+::: notes
+We can covert our table of US pedestrian deaths per year into a graph, and suddenly that data becomes meaningful.
+
+We can see that deaths were declining throughout the 90s and the noughties, and then around 2009 to 2010 the trend changed. The number of pedestrians dying on America's rows has been growing ever since.
+:::
+
+## Example: Challenger Disaster
+
+In 1985 the space shuttle Challenger exploded shortly after launch, killing all the astronauts on-board. An investigation found that this was probably because a rubber seal had become too cold and brittle, due to cold weather on the launch day.
+
+The investigation also found that although the managers and engineers knew that this was a potential issue, they had decided to go ahead with the launch anyway.
+
+Why?
+
+::: notes
+Let's consider another example, where better communication of data might have averted a disaster.
+
+That disaster was the explosion of the space shuttle Challenger in 1985. Afterwards there was a big investigation into why this had happened, and one of the findings was that the failure had probably originated with a rubber seal in part of the rocket.
+
+It was very cold on the day of the launch, and as you may know, rubber can become very brittle when it gets cold.
+
+But the investigation also found that the NASA ground crew had known about this issue. The company that engineered the rubber seals had expressed its concern about this to NASA, and pointed out in previous shuttle launches the seals had become progressively more damaged on colder launch days.
+
+Ultimately NASA decided to go ahead. I don't want to second guess there decision - after all, launching yourself into space on what is essentially a bomb full of rocket fuel is always going to be risky and part of their job is to decide when the risks are acceptable.
+
+But we can look at how the data about the seals was presented, and whether that method of communication clearly illustrated the problem.
+:::
+
+## How they communicated their data
+
+The engineers presented their concerns to their managers in the form of tables of numbers like this. Would you have looked at this and thought "Clearly we should not launch today?"
+
+![](img/pcssca_vol4_p671.png 'Table of O-ring damage')
+
+::: aside
+Source: Report of the Presidential Commission on the Space Shuttle Challenger Accident, Volume 4, p. 671
+:::
+
+::: notes
+It turns out that the data was presented in tables like this. This doesn't include the temperature information which was presented in a different location, along with some additional bullet point notes recommending that the launch not go ahead if the temperature was lower than 53 degrees Fahrenheit.
+
+Even to people working on the shuttle every day, who would have been intimately familiar with its engineering, its hard to see the magnitude of the problem here.
+:::
+
+## An alternative visualization
+
+{{< include ../../src/snippets/visualization_challenger_disaster.Rmd >}}
+
+::: aside
+Based on an alternative graph suggested by visualization expert Edward Tufte.
+:::
+
+::: notes
+After the disaster and the inquiry, an expert in data visualization called Edward Tufte suggested that the problem would have been much clearer if it had been presented in a graph like this one.
+
+Now we can see that damage is clearly increasing at lower temperatures, and also that that the forecasted temperature on the morning of the Challenger launch was way way lower than anything previously in the dataset.
+:::
+
+
+```{r outro}
+#| echo: FALSE
+#| results: "asis"
+source("common_end_slide.R")
+```

@@ -1,0 +1,22 @@
+---
+execute:
+  freeze: auto
+---
+
+# More Data Wrangling
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+## Combining dataframes
+
+Sometimes a dataset might be split across multiple tables of data (i.e. multiple dataframes). We may wish to join these datasets back together into a single dataset.
+
+### Stacking rows or columns
+
+* `bind_rows()`
+* `bind_cols()`
+
+

@@ -1,0 +1,11 @@
+---
+execute:
+  freeze: auto
+---
+
+# Loading Data {#sec-loading-data-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+```

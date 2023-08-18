@@ -1,0 +1,26 @@
+
+
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
+tufte_data <- tibble(
+  flight = c("51-C", "41-B", "61-C", "41-C", "1", "6", "51-A", "51-D", "5", "3", "2", "9", "41-D", "51-G", "7", "8", "51-B", "61-A", "51-I", "61-B", "41-G", "51-J", "4", "51-F"),
+  temperature = c(51,57,58,63,66,67,67,67,68,69,70,70,70,70,72,73,75,76,76,76,78,79,80,81),
+  damage = c(11,4,4,2,0,0,0,0,0,0,4,0,0,4,0,0,0,0,0,0,0,0,NA,0)
+)
+tufte_data %>%
+  ggplot(aes(temperature, damage)) +
+  geom_point() +
+  geom_smooth() +
+  annotate("rect", xmin = 26, xmax = 29, ymin = 0, ymax = 15, alpha = .2, fill = "red") +
+  annotate("segment",  x = 35, xend = 28, y = 6, yend = 3, size = 1, arrow = arrow()) +
+  annotate("text", x = 40, y = 8, label = "Temperature forecast\non morning of\nChallenger disaster") +
+  xlim(20,90) +
+  labs(
+    x = "temperature at launch (Fahrenheit)",
+    y = "amount of damage to seal",
+    title = "Rubber seal damage versus temperature in previous shuttle launches"
+    ) +
+  theme_minimal()
+```

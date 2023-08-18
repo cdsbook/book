@@ -64,7 +64,7 @@ If you already have a GitHub account, then proceed to step 2.
 
 If not, then go to https://github.com and create a **free** account. A few suggestions:
 
-* If you have any interest in working in tech in the future, then pick something vaguely professional as your GitHub username. You don't want to have to explain to a future employer why your GitHub username is `squeaky_boi69`. Think of your GitHub profile as the the programming equivalent of your LinkedIn profile.
+* If you have any interest in working in tech in the future, then pick something vaguely professional as your GitHub username. You don't want to have to explain to a future employer why your GitHub username is `squeaky_boi`. Think of your GitHub profile as the the programming equivalent of your LinkedIn profile.
 
 * GitHub will ask if you want to upgrade to a fancy paid account when you register, but you should stick with the free account which has everything we need.
 

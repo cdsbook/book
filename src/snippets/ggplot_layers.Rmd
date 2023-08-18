@@ -1,27 +1,29 @@
-The `ggplot2` package gets its name because it s based on a concept called the *Grammar of Graphics* (hence **gg**plot...). This is a fascinating topic that we unfortunately don't have the time to dive into, but the key idea is that **all data visualizations can be described using a common set of terms and ideas** (i.e. a "grammar").
+The `ggplot2` package gets its name because it's based on a concept called the *Grammar of Graphics* (hence **gg**plot...). This is a fascinating topic that we will learn more about later in this book, but the key idea is that **all data visualizations can be described using a common set of terms and ideas** (i.e. a "grammar"). The terms of this grammar correspond to the functions and their parameters in the `ggplot2` package. 
 
 One of the most important parts of this grammar are the layers that we can add to a graph.
 
-For example, the `ggplot()` function by itself just creates a blank canvas:
+For example, the `ggplot()` function by itself just creates a blank canvas, i.e. the base layer of the graph:
 
 ```{r, echo=TRUE, warning=FALSE}
 ggplot(data = starwars)
 ```
 
-To actually get something interesting on this graph, we need to take the __data__ and __map__ it to some __geometric__ shape.
+We can then add layers (created by other functions) by combining them with the `+` operator.
 
-For example, if we wanted to map the `height` column of the `starwars` dataset to the geometric shape of a histograms bars, we could use this code:
+To get some kind of graph layer we need to take the __data__ and __map__ it to a __geometric__ shape.
+
+For example, if we wanted to map the `height` column of the `starwars` dataset to the geometric shape of a histogram's bars, we could use this code:
 
 `geom_histogram(mapping = aes(x = height))`
 
 A few things to note:
 
-* The `geom_histogram()` functions is an example of what we call a *geom function* (each of which specifies a different type of geometry).
-* Geom functions have a parameter called `mapping` which, unsurprisingly, tells R how to convert a column of data into a pretty layer.
+* The `geom_histogram()` function is an example of what we call a *geom function* (each geom function specifies a different type of geometric shape).
+* Geom functions have a parameter called `mapping` which tells R how to convert a column of data into a layer.
 * The argument that we pass to the `mapping` parameter is a function called `aes()` (this is short for "aesthetic"). Inside the `aes()` function we need to specify any parts of the histogram's appearance that are determined by a column in the dataset.
   * In our example the x-axis of the histogram needs to show the `height` variable.
 
-We then add this layer to the canvas created by `ggplot()`. How do we add things together in R? With the addition operator `+` of course!
+We then add this layer to the canvas created by `ggplot()` with the addition operator, `+`.
 
 And so our final code looks like this:
 

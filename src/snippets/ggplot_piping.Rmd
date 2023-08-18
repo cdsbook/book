@@ -1,6 +1,6 @@
-One advantage of `ggplot()` over `qplot()` is that we can pipe a dataframe to `ggplot()` because the first parameter of ggplot() is the dataset to be used.
+One advantage of `ggplot()` over `plot()` is that we can pipe a dataframe to `ggplot()` because the first parameter of ggplot() is the dataset to be used.
 
-So instead of explicity passing the `starwars` dataframe to the `data` parameter:
+So instead of explicitly passing the `starwars` dataframe to the `data` parameter:
 
 ```r
 ggplot(data = starwars) + ...
@@ -22,4 +22,4 @@ some_dataset %>%
   ggplot() + geom_FUNCTION(...)
 ```
 
-
+Note how we use pipes to connect a series of sequential data wrangling steps leading up to `ggplot()`, but then after `ggplot()` we have to switch to the `+` operator because we are then adding layers together. Don't try to pipe the output of `ggplot()` on to a geom function because it won't work (because we are trying to combine things in the graph, not work on the output of the previous function).

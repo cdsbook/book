@@ -43,6 +43,26 @@ knitr::include_graphics("../img/resid-vs-pred.png")
 ```
 ````
 
+### Callout blocks
+
+* note (blue, icon = info i circle)
+* warning (orange, icon = triangle hazard exclamation)
+* important (red, icon = info i circle)
+* tip (green, icon = lightbulb)
+* caution (orange, icon = construction cone)
+
+Example:
+
+```
+::: {.callout-tip collapse="true"}
+## Tip with Title
+
+This is an example of a callout with a title.
+:::
+```
+
+Note that to output a block like this from a code chunk, that chunk needs the `results = "asis"` option (RMarkdown) or the `#| results: "asis"` option (Quarto).
+
 ### Indexing
 
 Add `\index{entry}` in text at places you want an index. Alternatively:
@@ -52,4 +72,8 @@ Add `\index{entry}` in text at places you want an index. Alternatively:
 * `\index{Greeting|see {hello, Peter}}` to cross-reference a sub-entry.
 
 More: https://en.wikibooks.org/wiki/LaTeX/Indexing
+
+### Highlighting with `flair`
+
+Only in html outputs, and doesn't currently work with Quarto: https://r-for-educators.github.io/flair/index.html
 

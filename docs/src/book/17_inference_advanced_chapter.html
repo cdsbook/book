@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Computing and Data for Scientists - 13&nbsp; More Statistics</title>
+<title>An Introduction to Computing and Data for Scientists - 14&nbsp; More Statistics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
 <link href="../../src/book/18_modeling_advanced_chapter.html" rel="next">
-<link href="../../src/book/14_reproducibility_chapter.html" rel="prev">
+<link href="../../src/book/15_loading_data_chapter.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/11_more_r_chapter.html">Advanced Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/17_inference_advanced_chapter.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/11_more_r_chapter.html">Advanced Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/17_inference_advanced_chapter.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,14 +232,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,29 +306,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#statistical-inference-review" id="toc-statistical-inference-review" class="nav-link active" data-scroll-target="#statistical-inference-review"><span class="header-section-number">13.1</span> Statistical Inference Review</a>
+  <li><a href="#statistical-inference-review" id="toc-statistical-inference-review" class="nav-link active" data-scroll-target="#statistical-inference-review"><span class="header-section-number">14.1</span> Statistical Inference Review</a>
   <ul class="collapse">
-  <li><a href="#video-overview" id="toc-video-overview" class="nav-link" data-scroll-target="#video-overview"><span class="header-section-number">13.1.1</span> Video overview</a></li>
-  <li><a href="#test-your-understanding" id="toc-test-your-understanding" class="nav-link" data-scroll-target="#test-your-understanding"><span class="header-section-number">13.1.2</span> Test your understanding</a></li>
-  <li><a href="#supplementary-reading" id="toc-supplementary-reading" class="nav-link" data-scroll-target="#supplementary-reading"><span class="header-section-number">13.1.3</span> Supplementary reading</a></li>
-  <li><a href="#code-review" id="toc-code-review" class="nav-link" data-scroll-target="#code-review"><span class="header-section-number">13.1.4</span> Code review</a></li>
+  <li><a href="#video-overview" id="toc-video-overview" class="nav-link" data-scroll-target="#video-overview"><span class="header-section-number">14.1.1</span> Video overview</a></li>
+  <li><a href="#test-your-understanding" id="toc-test-your-understanding" class="nav-link" data-scroll-target="#test-your-understanding"><span class="header-section-number">14.1.2</span> Test your understanding</a></li>
+  <li><a href="#supplementary-reading" id="toc-supplementary-reading" class="nav-link" data-scroll-target="#supplementary-reading"><span class="header-section-number">14.1.3</span> Supplementary reading</a></li>
+  <li><a href="#code-review" id="toc-code-review" class="nav-link" data-scroll-target="#code-review"><span class="header-section-number">14.1.4</span> Code review</a></li>
   </ul></li>
-  <li><a href="#one-sided-vs.-two-sided-tests" id="toc-one-sided-vs.-two-sided-tests" class="nav-link" data-scroll-target="#one-sided-vs.-two-sided-tests"><span class="header-section-number">13.2</span> One-sided vs.&nbsp;two-sided tests</a>
+  <li><a href="#one-sided-vs.-two-sided-tests" id="toc-one-sided-vs.-two-sided-tests" class="nav-link" data-scroll-target="#one-sided-vs.-two-sided-tests"><span class="header-section-number">14.2</span> One-sided vs.&nbsp;two-sided tests</a>
   <ul class="collapse">
-  <li><a href="#video-overview-1" id="toc-video-overview-1" class="nav-link" data-scroll-target="#video-overview-1"><span class="header-section-number">13.2.1</span> Video overview</a></li>
-  <li><a href="#or-2" id="toc-or-2" class="nav-link" data-scroll-target="#or-2"><span class="header-section-number">13.2.2</span> 1 or 2?</a></li>
+  <li><a href="#video-overview-1" id="toc-video-overview-1" class="nav-link" data-scroll-target="#video-overview-1"><span class="header-section-number">14.2.1</span> Video overview</a></li>
+  <li><a href="#or-2" id="toc-or-2" class="nav-link" data-scroll-target="#or-2"><span class="header-section-number">14.2.2</span> 1 or 2?</a></li>
   </ul></li>
-  <li><a href="#effect-sizes" id="toc-effect-sizes" class="nav-link" data-scroll-target="#effect-sizes"><span class="header-section-number">13.3</span> Effect sizes</a>
+  <li><a href="#effect-sizes" id="toc-effect-sizes" class="nav-link" data-scroll-target="#effect-sizes"><span class="header-section-number">14.3</span> Effect sizes</a>
   <ul class="collapse">
-  <li><a href="#video-overview-2" id="toc-video-overview-2" class="nav-link" data-scroll-target="#video-overview-2"><span class="header-section-number">13.3.1</span> Video overview</a></li>
+  <li><a href="#video-overview-2" id="toc-video-overview-2" class="nav-link" data-scroll-target="#video-overview-2"><span class="header-section-number">14.3.1</span> Video overview</a></li>
   </ul></li>
-  <li><a href="#resampling-with-permutations-versus-bootstraps" id="toc-resampling-with-permutations-versus-bootstraps" class="nav-link" data-scroll-target="#resampling-with-permutations-versus-bootstraps"><span class="header-section-number">13.4</span> Resampling with permutations versus bootstraps</a></li>
-  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">13.5</span> Confidence intervals</a>
+  <li><a href="#resampling-with-permutations-versus-bootstraps" id="toc-resampling-with-permutations-versus-bootstraps" class="nav-link" data-scroll-target="#resampling-with-permutations-versus-bootstraps"><span class="header-section-number">14.4</span> Resampling with permutations versus bootstraps</a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">14.5</span> Confidence intervals</a>
   <ul class="collapse">
-  <li><a href="#video-overview-3" id="toc-video-overview-3" class="nav-link" data-scroll-target="#video-overview-3"><span class="header-section-number">13.5.1</span> Video overview</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">13.5.2</span> Questions</a></li>
+  <li><a href="#video-overview-3" id="toc-video-overview-3" class="nav-link" data-scroll-target="#video-overview-3"><span class="header-section-number">14.5.1</span> Video overview</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions"><span class="header-section-number">14.5.2</span> Questions</a></li>
   </ul></li>
-  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">13.6</span> Further reading</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">14.6</span> Further reading</a></li>
   </ul>
 </nav>
     </div>
@@ -331,7 +337,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></h1>
 </div>
 
 
@@ -346,17 +352,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="statistical-inference-review" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="statistical-inference-review"><span class="header-section-number">13.1</span> Statistical Inference Review</h2>
-<section id="video-overview" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="video-overview"><span class="header-section-number">13.1.1</span> Video overview</h3>
+<section id="statistical-inference-review" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="statistical-inference-review"><span class="header-section-number">14.1</span> Statistical Inference Review</h2>
+<section id="video-overview" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="video-overview"><span class="header-section-number">14.1.1</span> Video overview</h3>
 <p>This video reviews the inference material covered in the first module.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pVAxez7pA1M?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="https://drive.google.com/file/d/1uQMSTvCp1sWsH2OY1nLfUjpXaHKgRK6s/view?usp=sharing">PDF</a></p>
 </section>
-<section id="test-your-understanding" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="test-your-understanding"><span class="header-section-number">13.1.2</span> Test your understanding</h3>
+<section id="test-your-understanding" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="test-your-understanding"><span class="header-section-number">14.1.2</span> Test your understanding</h3>
 <!--
 Other questions to add:
 * What is observed statistic
@@ -392,8 +398,8 @@ Other questions to add:
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="supplementary-reading" class="level3" data-number="13.1.3">
-<h3 data-number="13.1.3" class="anchored" data-anchor-id="supplementary-reading"><span class="header-section-number">13.1.3</span> Supplementary reading</h3>
+<section id="supplementary-reading" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="supplementary-reading"><span class="header-section-number">14.1.3</span> Supplementary reading</h3>
 <p>These two chapters provide a good review of the original statistical inference material that we covered in the first inference module. You should review them before starting this week’s assignment:</p>
 <ul>
 <li>Statistical Inference via Data Science by Chester Ismay and Albert Kim (available online at: https://moderndive.com/)
@@ -404,8 +410,8 @@ Other questions to add:
 </ul>
 <p>On a lighter note, you can get an animated explanation of a hypothesis test with alpacas here: https://www.jwilber.me/permutationtest/</p>
 </section>
-<section id="code-review" class="level3" data-number="13.1.4">
-<h3 data-number="13.1.4" class="anchored" data-anchor-id="code-review"><span class="header-section-number">13.1.4</span> Code review</h3>
+<section id="code-review" class="level3" data-number="14.1.4">
+<h3 data-number="14.1.4" class="anchored" data-anchor-id="code-review"><span class="header-section-number">14.1.4</span> Code review</h3>
 <p>In the first inference module, we used the <code>infer</code> package to simulate the null distribution.</p>
 <p>We ran 10,000 random <em>permutations</em> to shuffle up the values of the response and explanatory variables. This random shuffling ensures that we simulate a distribution where there is no relationship between the two variables.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&lt;</span>DATAFRAME<span class="sc">&gt;</span> <span class="sc">%&gt;%</span></span>
@@ -424,16 +430,16 @@ Other questions to add:
 -->
 </section>
 </section>
-<section id="one-sided-vs.-two-sided-tests" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="one-sided-vs.-two-sided-tests"><span class="header-section-number">13.2</span> One-sided vs.&nbsp;two-sided tests</h2>
-<section id="video-overview-1" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="video-overview-1"><span class="header-section-number">13.2.1</span> Video overview</h3>
+<section id="one-sided-vs.-two-sided-tests" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="one-sided-vs.-two-sided-tests"><span class="header-section-number">14.2</span> One-sided vs.&nbsp;two-sided tests</h2>
+<section id="video-overview-1" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="video-overview-1"><span class="header-section-number">14.2.1</span> Video overview</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/krwRh7G6FPI?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="https://drive.google.com/file/d/1EqzByiMEvi9V9MfPQ9XsLT-wcSkU69Fq/view?usp=sharing">PDF</a></p>
 </section>
-<section id="or-2" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="or-2"><span class="header-section-number">13.2.2</span> 1 or 2?</h3>
+<section id="or-2" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="or-2"><span class="header-section-number">14.2.2</span> 1 or 2?</h3>
 <!--
 Questions to add:
 * Writing alternative hypotheses for 1 and 2 sides
@@ -455,10 +461,10 @@ Questions to add:
 </div>
 </section>
 </section>
-<section id="effect-sizes" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="effect-sizes"><span class="header-section-number">13.3</span> Effect sizes</h2>
-<section id="video-overview-2" class="level3" data-number="13.3.1">
-<h3 data-number="13.3.1" class="anchored" data-anchor-id="video-overview-2"><span class="header-section-number">13.3.1</span> Video overview</h3>
+<section id="effect-sizes" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="effect-sizes"><span class="header-section-number">14.3</span> Effect sizes</h2>
+<section id="video-overview-2" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="video-overview-2"><span class="header-section-number">14.3.1</span> Video overview</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/o7oJPQMUS6A?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="https://drive.google.com/file/d/1Ysg-oR6FLpuJ2OQ9ArzPNLvakImMgpBP/view?usp=sharing">PDF</a></p>
@@ -468,20 +474,20 @@ Questions to add:
 -->
 </section>
 </section>
-<section id="resampling-with-permutations-versus-bootstraps" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="resampling-with-permutations-versus-bootstraps"><span class="header-section-number">13.4</span> Resampling with permutations versus bootstraps</h2>
+<section id="resampling-with-permutations-versus-bootstraps" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="resampling-with-permutations-versus-bootstraps"><span class="header-section-number">14.4</span> Resampling with permutations versus bootstraps</h2>
 <p>Coming soon.</p>
 </section>
-<section id="confidence-intervals" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">13.5</span> Confidence intervals</h2>
-<section id="video-overview-3" class="level3" data-number="13.5.1">
-<h3 data-number="13.5.1" class="anchored" data-anchor-id="video-overview-3"><span class="header-section-number">13.5.1</span> Video overview</h3>
+<section id="confidence-intervals" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">14.5</span> Confidence intervals</h2>
+<section id="video-overview-3" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="video-overview-3"><span class="header-section-number">14.5.1</span> Video overview</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/iDxp6DHMHcc?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="https://drive.google.com/file/d/11eyvzCjS_M-owi_6Ry3WH0_5sqk5Y009/view?usp=sharing">PDF</a></p>
 </section>
-<section id="questions" class="level3" data-number="13.5.2">
-<h3 data-number="13.5.2" class="anchored" data-anchor-id="questions"><span class="header-section-number">13.5.2</span> Questions</h3>
+<section id="questions" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="questions"><span class="header-section-number">14.5.2</span> Questions</h3>
 <!--
 Extra questions?
 -->
@@ -505,8 +511,8 @@ Extra questions?
 </div>
 </section>
 </section>
-<section id="further-reading" class="level2" data-number="13.6">
-<h2 data-number="13.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">13.6</span> Further reading</h2>
+<section id="further-reading" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">14.6</span> Further reading</h2>
 <p>If you wish to do further reading on <em>bootstrapping</em> and <em>confidence intervals</em>, here are some online book chapters on the topic. (They cover the same material, so pick the one that makes the most sense to you.)</p>
 <ul>
 <li>Statistical Inference via Data Science by Chester Ismay and Albert Kim
@@ -758,13 +764,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/book/14_reproducibility_chapter.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span>
+      <a href="../../src/book/15_loading_data_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../src/book/18_modeling_advanced_chapter.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

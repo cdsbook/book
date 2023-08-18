@@ -1,11 +1,44 @@
-An alternative to the boxplot is the violin plot. This combines aspects of the histogram and boxplot into a single graph.
+Another graph that shows the distribution of a single variable is the violin plot. This combines aspects of the histogram and box plot into a single graph.
 
-The code for a violin plot is almost identical to the code or a boxplot - we just use the `geom_violin()` geom function:
-
-
+The code for a violin plot is almost identical to the code or a box plot - we just use the `geom_violin()` geom function:
 
 ```{r, echo=TRUE}
 diamonds %>%
   ggplot() +
-  geom_violin(mapping = aes(x = "price", y = price))
+  geom_violin(mapping = aes(x = depth, y = ""))
 ```
+
+How do we interpret a violin plot? Like a histogram, the height (in the direction of the y-axis) of the violin tells us how many observations fall in that part of the graph. However, note that the height is *mirrored* - i.e. it extends both up and down (rather than just up from the x-axis, like in a histogram).
+
+To the similarities between a histogram and violin plot clearer, we can overlay our violin plot and our histogram of `depth`:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+diamonds %>%
+  ggplot(mapping = aes(x = depth)) +
+  geom_histogram(aes(y = after_stat(density))) +
+  geom_violin(aes(y=1), position = position_nudge(y = -1), alpha = 0.5) +
+  labs(x = "depth of diamond (%)", y = "density of observations") +
+  theme(axis.text.y = element_blank(),axis.ticks.y = element_blank())
+```
+
+We can see that the the violin is widest where the histogram's bins are also tallest (around depth = 62). You can think of the violin's border as a line joining the tops of each of the histograms bins.^[violin_density]
+
+^[violin_density]: Note that a violin plot shows the *density* of observations (which is kind of like the fraction of observations in that part of the graph), whereas a histogram shows the count. I have scaled down the histogram's y-axis in this plot so that it overlaps the violin more closely.
+
+One nice thing about the violin plot is that it shows us the long thin tails of the data, whereas the histogram's bins are so small in the tails that they are invisible.
+
+We can do a similar comparison of the violin plot with a box plot:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+diamonds %>%
+  ggplot(mapping = aes(x = depth)) +
+  geom_boxplot() +
+  geom_violin(aes(y=1), position = position_nudge(y = -1), alpha = 0.5) +
+  labs(x = "depth of diamond (%)", y = "density of observations") +
+  theme(axis.text.y = element_blank(),axis.ticks.y = element_blank())
+```
+
+Again we see a lot of similarity:
+
+* The box of the box plot (the middle 50% of observations) corresponds with the widest part of the violin plot.
+* The violin's tails extend as far as the most extreme outliers in the box plot.

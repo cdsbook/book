@@ -1,0 +1,20 @@
+When we have two or more variables, we often want to see how these variables covary, i.e. how does the distribution of one variable differ at different values of another variable.
+
+If we have two continuous variables, then we usually visualize their *covariation* with a **scatter plot**. You have probably seen graphs like tis before, in which we draw dots at meeting points of $x$ and $y$ values.
+
+In R, we can create simple scatter plots with the `plot()` function, such as this graph of mass vs. weight of Star Wars characters:
+
+```{r}
+plot(x = starwars$height, y = starwars$mass)
+```
+
+* Note the two parameters that we pass arguments to, `x` and `y`, for the columns of data that we want to plot on the *x* and *y* axes respectively.
+
+* When we talk about a scatter plot of "A vs. B", by convention *A* is the variable that we are plotting on the y-axis. I.e. we would say that the graph above shows "mass vs height", not "height vs. mass".
+
+* A final convention is that the x-axis contains the variable which we think probably explains the other one. I.e. I think it makes sense to think as height causing changes in mass, not mass causing changing in height, since an increase in height tends to make you weigh more. However, as middle age has taught me, an increase in mass does not necessarily lead to a change in height...
+
+
+<!-- TODO: Exercises
+
+-->

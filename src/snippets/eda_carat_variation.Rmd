@@ -1,8 +1,37 @@
-
-
 With graphs, we want to visualize the distribution of a variable.
 
-Two good graphs for visualizing the distributions of one continuous variable are histograms and boxplots. (You might also want to look up density plots and violin plots on the ["What graph should I plot" cheatsheet](https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing).)
+One good graph for visualizing the distributions of one continuous variable is a histogram.
+
+We have already learned how to create `ggplot` histograms using the `geom_histogram()` layer. For example, this code would create a histogram of the `price` column from the `diamonds` dataframe:
+
+```{r, eval=FALSE}
+ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(x = price))
+```
+
+
+
+Both of these graphs show the same distribution, just in different ways:
+
+```{r, include=FALSE}
+h <- ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(x = depth)) +
+  xlim(40,80) +
+  labs(x="depth of diamond (%)")
+b <- ggplot(data = diamonds) +
+  geom_boxplot(mapping = aes(x = depth)) +
+  xlim(40,80) +
+  labs(x="depth of diamond (%)",y="")
+ggarrange(h,b,ncol=1,align = "v",labels=c("a)", "b)"),heights = c(2,1))
+```
+
+<!-- TODO
+How to interpret shape of histogram.
+How to interpret boxplot.
+Comparison of the two.
+-->
+
+
 
 <!-- Book version -->
 

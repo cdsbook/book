@@ -1,6 +1,6 @@
-We refer to this combination of the `mapping` parameter and its `aes()` argument as an *aesthetic mapping*, which is a fancy way of saying how do figure out how to convert columns of the dataset into some visual representation.
+We refer to this combination of the `mapping` parameter and its `aes()` argument as an *aesthetic mapping*, which is a fancy way of saying how we convert columns of the dataset into some visual representation.
 
-But not every part of a graph is determined by data in the dataset. For example, there is no column in the `starwars` dataset that tells us how many bins this histogram should have. Instead we need to specify that number ourself, with another piece of data (i.e. the number of bins).
+But not every part of a graph is determined by data in the dataset. For example, there is no column in the `starwars` dataset that tells us how many bins this histogram should have. Instead we need to specify that number ourselves, with another piece of data (i.e. the number of bins).
 
 Since this number is not in the dataset, it is not an aesthetic mapping. Therefore we specify the number of bins as an argument of the `geom_histogram()` function, and not of the `aes()` function, like so:
 

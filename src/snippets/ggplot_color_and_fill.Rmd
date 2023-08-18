@@ -1,0 +1,77 @@
+Sometimes we wish to highlight different categories of data in a graph. There are different ways that qwe could do this, but a common solution is to use color.
+
+For example, let's say that we want to investigate the relationship between mass versus height again, but also look at how it varies between genders.
+
+The `starwars` dataframe conveniently contains a categorical `gender` column that tells us this information:
+
+```{r}
+starwars |>
+  select(name, mass, height, gender) |>
+  head()
+```
+
+
+We can add an additional aesthetic mapping to our scatter plot from the previous section, which will map the `gender` column to the *color* aesthetic of the scatter point layer:
+
+```{r, warning=FALSE}
+ggplot(data = starwars) +
+  geom_point(
+    mapping = aes(x = height, y = mass, color = gender)
+  )
+```
+
+
+<!-- 
+TODO: get `flair` package working with Quarto and pdf output
+
+```{r} -->
+<!-- decorate(' -->
+
+<!-- ggplot(data = starwars) + -->
+<!--   geom_point( -->
+<!--     mapping = aes(x = height, y = mass, color = sex) -->
+<!--   ) -->
+
+<!-- ' -->
+<!-- ) %>%  -->
+<!--   flair("color = sex") -->
+
+<!-- ``` -->
+
+
+Similarly we can also color histograms - however the `color` parameter colors the outside of shapes:
+
+```{r}
+ggplot(data = starwars) +
+  geom_histogram(mapping = aes(x = height, color = gender))
+```
+
+This graph is hard to interpret. It would be easier if we could color inside the shapes - fortunately we can do this using the `fill` parameter instead of `color`:
+
+```{r}
+ggplot(data = starwars) +
+  geom_histogram(mapping = aes(x = height, fill = gender))
+```
+
+Note that this still goes inside the `aes()` function, because we are still mapping the `gender` column, just now to the *fill* aesthetic.
+
+One other thing to note is that, by default, `ggplot2` will stack bars of different colors on top of each other. However, this makes it hard to compare the relative heights of the bars, in direct contravention of the graphing guidelines that we learned in @sec-visualization-best-practices.
+
+Thus what we need to do is to change the position of the bars so that each bin's bars overlap. We will also need to make them transparent so that we can see through to the bars behind. We can do this with the `position` and `alpha` parameters:
+
+```{r}
+ggplot(data = starwars) +
+  geom_histogram(
+    mapping = aes(x = height, fill = gender),
+    position = "identity",
+    alpha = 0.4
+    )
+```
+
+A few things to note:
+
+* We set `position = "identity"` to cause the bars to all start at the x-axis.
+* We set `alpha = 0.4` to make the bars 40% transparent. You can set `alpha` anywhere from `1` (completely opaque) to `0` (completely transparent, i.e. invisible). Usually a value between 0.2-0.4 works well.
+* Both `"identity"` and `0.4` are values, not columns of the dataframe, so we need to supply these two new parameters to the geom function instead of the `aes()` function (i.e. we are *not* creating any aesthetic mapping to the data in `starwars` with these settings).
+
+It is actually getting a little hard to interpret some of the overlapping bars in the plot above, because when too many colors overlap we get an indistinguishable grey mess. Coloring histograms woks best when we have only two (or maybe three) categories. More categories than that and we need to start considering whether a different type of graph might communicate the patterns in the data more clearly.

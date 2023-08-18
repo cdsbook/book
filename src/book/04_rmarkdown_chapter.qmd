@@ -3,11 +3,42 @@ execute:
   freeze: auto
 ---
 
-# Literate Programming
+# Literate Programming & Reproducibility
 
-RMarkdown and Quarto
+```{r setup}
+#| results: "asis"
+#| echo: false
 
-Reproducibility
+source("prechapter.R")
+insert_status_callout("incomplete")
+```
+
+## The Scientific Method
+
+Why don't we still believe that the sun is the chariot wheel of the ancient Greek god Apollo as he drives across the sky?
+
+Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?
+
+The answer, in case you haven't guessed, is science. There are many different fields of science, and each field has different techniques and ways of conducting their investigations. However the unifying feature is that all scientists share a set of rules for how that game of science is played, which is called the scientific method.
+
+There is not actually a single universally agreed upon definition of what the scientific method actually is, but broadly speaking it follows these principles:
+
+1. A scientific theory or hypothesis must make predictions about how the world behaves.
+
+2. We test these theories by doing experiments that have the ability to disprove them.
+
+3. We can only choose between theories based on the outcomes of these experiments.
+
+What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people's behavior.
+
+In the 21st century, a unifying feature of all of these scientists is that they are probably using computers to analyze their data or run experiments. The scientific method tells us very little about how we should go about using computers, so let us consider how we might do so.
+
+## Reproducibility and replicability
+
+## How reproducible is modern science?
+
+## What we can do
+
 
 * Open Science Foundation: https://osf.io/
   * Includes replication studies, e.g.

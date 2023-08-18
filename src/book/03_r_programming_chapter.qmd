@@ -1,7 +1,16 @@
+---
+execute:
+  freeze: auto
+---
+
 # Introduction to R
 
-```{r setup, include=FALSE}
+```{r setup}
+#| results: "asis"
+#| echo: false
+
 source("prechapter.R")
+insert_status_callout("draft")
 ```
 
 {{< include ../../src/snippets/r_programming_hello_world.Rmd >}}

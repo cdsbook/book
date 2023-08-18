@@ -60,7 +60,8 @@ Note: Skipped over the slice function here
 {{< include ../../src/snippets/wrangling_mutate.Rmd >}}
 
 
-## Grouping and summarizing
+
+## Grouping and summarizing {#sec-wrangling-groupby-summarize}
 
 {{< include ../../src/snippets/wrangling_group_summarize.Rmd >}}
 

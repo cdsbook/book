@@ -1,0 +1,111 @@
+We have seen three different plots that can visualize the distribution of a single continuous variable. Here's a comparison:
+
+```{r, include=FALSE}
+h <- ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(x = depth)) +
+  xlim(40,80) +
+  labs(x="depth of diamond (%)")
+b <- ggplot(data = diamonds) +
+  geom_boxplot(mapping = aes(x = depth, y="")) +
+  xlim(40,80) +
+  labs(x="depth of diamond (%)",y="")
+v <- ggplot(data = diamonds) +
+  geom_violin(mapping = aes(x = depth, y = "")) +
+  xlim(40,80) +
+  labs(x="depth of diamond (%)",y="density")
+ggarrange(h,b,v,ncol=1,align = "v",labels=c("a)", "b)", "c)"),heights = c(2,2,2))
+```
+
+What conclusions can we draw from these graphs? First, we can describe the center of the distribution. In this particular example, each of the plots shows a very similar center (around 62%), but this won't necessarily be the case because each graph shows the center in a different way. Secondly we can describe the shape, which in this case is unimodal and relatively symmetric.
+
+Here is how different distribution shapes will look in the three types of plots:
+
+```{r}
+set.seed(42)
+n <- 1000
+df <- tibble(
+  left = rbeta(n, 10, 1),
+  right = rbeta(n, 1, 10),
+  symm = rnorm(n, 0.5, 0.5),
+  multi = c(rnorm(n/2, 5), rnorm(n/2, 10))
+)
+
+h_left <- ggplot(data = df) +
+  geom_histogram(mapping = aes(x = left), bins = 10) +
+  labs(x="", y="", title="Left skew") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+b_left <- ggplot(data = df) +
+  geom_boxplot(mapping = aes(x = left, y="")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+v_left <- ggplot(data = df) +
+  geom_violin(mapping = aes(x = left, y = "")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+
+h_symm <- ggplot(data = df) +
+  geom_histogram(mapping = aes(x = symm), bins = 10) +
+  labs(x="", y="", title="Symmetric") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+b_symm <- ggplot(data = df) +
+  geom_boxplot(mapping = aes(x = symm, y="")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+v_symm <- ggplot(data = df) +
+  geom_violin(mapping = aes(x = symm, y = "")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+
+h_right <- ggplot(data = df) +
+  geom_histogram(mapping = aes(x = right), bins = 10) +
+  labs(x="",y="", title="Right skew") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+b_right <- ggplot(data = df) +
+  geom_boxplot(mapping = aes(x = right, y="")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+v_right <- ggplot(data = df) +
+  geom_violin(mapping = aes(x = right, y = "")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+
+h_multi <- ggplot(data = df) +
+  geom_histogram(mapping = aes(x = multi), bins = 10) +
+  labs(x="",y="", title="Bimodal") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+b_multi <- ggplot(data = df) +
+  geom_boxplot(mapping = aes(x = multi, y="")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+v_multi <- ggplot(data = df) +
+  geom_violin(mapping = aes(x = multi, y = "")) +
+  labs(x="",y="") +
+  theme(axis.ticks = element_blank(), axis.text = element_blank())
+
+ggarrange(
+  h_left, h_symm, h_right, h_multi,
+  b_left, b_symm, b_right, b_multi,
+  v_left, v_symm, v_right, v_multi,
+  ncol = 4,
+  nrow = 3,
+  align = "v"
+  # labels=c("a)", "b)", "c)"), 
+  # heights = c(2,2,2)
+  )
+```
+
+
+Which plot should you use? That's going to depend on the data, and what you want to explore or communicate about it. Box plots, for example, are good for showing outliers and are the only one of the three plots that shows an exact central statistic (the median), whereas histograms or violin plots present a more fine-grained view of the shape of the distribution. The following table shows a comparison:
+
+| Type of graph | Center | Other notes |
+|---------------|--------|-------------|
+| Histogram     | Bin with the most observations | |
+| Box plot       | Median | Shows outliers, but not modality |
+| Violin plot   | Greatest density | |
+
+It's often a good idea to make a variety of different graphs exploring the same thing to see if you can get a different view on the data. When you come to present your data, you can pick one of those graphs that best communicates what you want to show.
+
+
+
+
+

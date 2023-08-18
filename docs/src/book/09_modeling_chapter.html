@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -234,14 +234,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
       </ul>
@@ -258,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -335,7 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></h1>
+<h1 class="title"><span id="sec-modeling-chapter" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></h1>
 </div>
 
 
@@ -377,6 +383,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 TODO:
 - quiz questions on this
 -->
+<!-- TODO: add examples of linear correlations vs. nonlinear, vs pure randomness (also, show how randomness is more clumpy that we normally think of).
+
+-->
 </section>
 </section>
 <section id="creating-models-in-r" class="level2" data-number="9.2">
@@ -391,7 +400,7 @@ TODO:
 <h3 data-number="9.2.2" class="anchored" data-anchor-id="lets-create-a-linear-model"><span class="header-section-number">9.2.2</span> Let’s create a linear model</h3>
 <p>Let’s create your first linear model in R, using a simulated dataset called <code>sim_df</code>.</p>
 <p>This is what the first few rows of the dataset look like:</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/unnamed-chunk-1_e72a09bf7a4269bb70b6ad7819237e61">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
@@ -406,7 +415,7 @@ TODO:
 </div>
 </div>
 <p>As you can see, there are two variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Here’s what they look like:</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/unnamed-chunk-2_10ab14565b95589b725aff38e3f25e43">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -428,17 +437,17 @@ TODO:
 <p class="comment3">
 Fill in the blanks in the lm function with the two variables, <code>y</code> and <code>x</code>, and the dataframe <code>sim_df</code>.
 </p>
-<div class="cell" data-exercise="true">
+<div class="cell" data-exercise="true" data-hash="09_modeling_chapter_cache/html/hclgfwuhnrvyquge_cba1fefe0f1d08ef917a8665d61d716e">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(_____ <span class="sc">~</span> _______, <span class="at">data =</span> _____)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/hclgfwuhnrvyquge-hint-1_407a0b52f76585f4a95021a0f56f34fb">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># hint text</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">"Make sure to get the variables in the right order!"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/hclgfwuhnrvyquge-solution_ec883fc8a55a08c2a54eb750ad832179">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/hclgfwuhnrvyquge-check_82a037858ffcec7fd5e063c387b448bf">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="comment3">
@@ -463,19 +472,19 @@ Fill in the blanks in the lm function with the two variables, <code>y</code> and
 <p class="comment3">
 Replace the blank with the correct function to report the coefficients.
 </p>
-<div class="cell" data-exercise="true" data-exercise.setup="create_model">
+<div class="cell" data-exercise="true" data-exercise.setup="create_model" data-hash="09_modeling_chapter_cache/html/hojasacuvjabzyjp_674e02e2b8a8e8ecc72d0398810e6281">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/hojasacuvjabzyjp-solution_a23655e77158b39c9ac5bac80db6b3f2">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/hojasacuvjabzyjp-check_a596410ed1cc7b42ad1987a0a4e7ef13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/lm_slope_quiz_36048217386dbf2c69d4a4ea6519f990">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the slope of the linear model?"</span>,</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.27"</span>),</span>
@@ -483,7 +492,7 @@ Replace the blank with the correct function to report the coefficients.
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/lm_intercept_quiz_94681eaabd4be5f1bb750472ab3071fe">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the intercept of the linear model?"</span>,</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.27"</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
@@ -496,7 +505,7 @@ Replace the blank with the correct function to report the coefficients.
 <h3 data-number="9.3.3" class="anchored" data-anchor-id="r2-how-good-is-your-model"><span class="header-section-number">9.3.3</span> <span class="math inline">\(R^2\)</span>: how good is your model?</h3>
 <p>So we’ve reported the slope and intercept: however, these don’t tell us about how well the model fits the data, i.e.&nbsp;how close the points are to the model’s line.</p>
 <p>For example, you could have a steep slope (suggesting that a change in <span class="math inline">\(x\)</span> is correlated with a big change in <span class="math inline">\(y\)</span>), but the points could be scattered a long way from the line (i.e.&nbsp;large residuals). For example, consider these two graphs:</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/unnamed-chunk-3_da850de8dbc729dbebca17ef12044b82">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
@@ -509,7 +518,7 @@ Replace the blank with the correct function to report the coefficients.
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
@@ -523,20 +532,20 @@ Replace the blank with the correct function to report the coefficients.
 <p class="comment3">
 Fill in the blank with the correct function to report the <span class="math inline">\(R^2\)</span> value of your model.
 </p>
-<div class="cell" data-exercise="true" data-exercise.setup="create_model">
+<div class="cell" data-exercise="true" data-exercise.setup="create_model" data-hash="09_modeling_chapter_cache/html/pejquogcchrafyyt_7368482cafcfb4192e4d2bc0ae8f3bf9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-exercise.setup="create_model">
+<div class="cell" data-exercise.setup="create_model" data-hash="09_modeling_chapter_cache/html/pejquogcchrafyyt-solution_145c8221c55b70fa1a4f50914b15d01a">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/pejquogcchrafyyt-check_e4a2a6e6c4c435c2269f9faec1808076">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll note that <code>glance</code> reports a whole bunch of statistics. We only care about the first column, <code>r.squared</code>, and can ignore the rest.</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/rsquared_quiz_904959ba8ce7ef1055d239e3c8199a46">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the R-squared value of your model?"</span>,</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.935"</span>, <span class="at">correct=</span><span class="cn">TRUE</span>),</span>
@@ -573,7 +582,7 @@ Fill in the blank with the correct function to report the <span class="math inli
 <section id="linearity" class="level3" data-number="9.4.2">
 <h3 data-number="9.4.2" class="anchored" data-anchor-id="linearity"><span class="header-section-number">9.4.2</span> Linearity</h3>
 <p>For a simple regression with one explanatory variable, we can see whether there is a linear relationship by plotting a scatter plot with the model line. For example, compare these two plots:</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/unnamed-chunk-4_a6cb58d7796a5fa36622db784e119fab">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">20</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
@@ -586,7 +595,7 @@ Fill in the blank with the correct function to report the <span class="math inli
 <span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
@@ -625,7 +634,7 @@ TODO: use coef() function to get model coefficients.
 <p class="comment3">
 Use this new <code>sim_model_df</code> dataframe to create histogram of the <code>resid</code> column (fill in the correct geom function and the <code>resid</code> column name in the appropriate blanks).
 </p>
-<div class="cell" data-exercise="true" data-exercise.setup="create_model">
+<div class="cell" data-exercise="true" data-exercise.setup="create_model" data-hash="09_modeling_chapter_cache/html/yopfnelideskkmld_2a9dc30558d60ec37dd39b7a3ce56519">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sim_model_df <span class="ot">&lt;-</span> sim_df <span class="sc">%&gt;%</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(sim_model)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -633,7 +642,7 @@ Use this new <code>sim_model_df</code> dataframe to create histogram of the <cod
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ________), <span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/yopfnelideskkmld-solution_836c343c66fa973d9d9019e6687058fe">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sim_model_df <span class="ot">&lt;-</span> sim_df <span class="sc">%&gt;%</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_residuals</span>(sim_model)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -641,7 +650,7 @@ Use this new <code>sim_model_df</code> dataframe to create histogram of the <cod
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> resid), <span class="at">bins =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/yopfnelideskkmld-check_fd5e4ca4f9a3672664739c867bc0eaff">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -664,7 +673,7 @@ Use this new <code>sim_model_df</code> dataframe to create histogram of the <cod
 </ul>
 <p>The linear model also assumes that this normal distribution is the same in all parts of the model (i.e.&nbsp;at both high and low value of <span class="math inline">\(x\)</span>).</p>
 <p>For example, in this model, we can clearly see that the variation in the residuals <em>is not constant</em> - this is a violation of this third assumption of the linear model:</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/unnamed-chunk-5_d7e24164712d6fd0b9811ba3023d40c5">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">46</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
@@ -673,7 +682,7 @@ Use this new <code>sim_model_df</code> dataframe to create histogram of the <cod
 <span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decreasing variation in points"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
@@ -682,19 +691,19 @@ Use this new <code>sim_model_df</code> dataframe to create histogram of the <cod
 <p>In the graph above, the points on the right lie much closer to the line: i.e.&nbsp;the residuals will be smaller.</p>
 <p>For simple linear models like this (with only a single explanatory variable <span class="math inline">\(x\)</span>), we can get a reasonable idea of the variability of the residuals just by looking at a scatter plot of the model, as above.</p>
 <p>For comparison, here is the model you fit earlier:</p>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/unnamed-chunk-6_a7734545fddfe388f82429b396e6770e">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+<pre><code>`geom_smooth()` using formula 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
 <p><img src="09_modeling_chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="09_modeling_chapter_cache/html/assumption_3_quiz_c8c36b19656b96d1725616b23a2b83a7">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Does your model (as shown above) satisfy the linear model's assumption of constant variability of residuals?"</span>,</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Yes, the model satisfies this assumption."</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>

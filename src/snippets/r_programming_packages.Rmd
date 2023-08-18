@@ -4,7 +4,7 @@ Of course, we can save even more time by not writing the function ourselves but 
 
 In R (as in many other programming languages) we can import collections of functions (and other useful things, such as datasets) that other people have written. These collections are called *packages*.
 
-### Installing packages
+### Installing packages {#sec-installing-packages}
 
 By default R will come with several useful packages installed. You can which ones are currently installed by going to the *Packages* tab of the bottom right pane in RStudio.
 
@@ -24,7 +24,7 @@ To install a new package, either:
     install.packages("tidyverse")
     ```
     
-    Having gone through this chapter, this code should hopefully make some sense! `install.packages()` is a function (built-in to the core R programmin language), and `"tidyverse"` is a character string that we are passing as the argument to that function.
+    Having gone through this chapter, this code should hopefully make some sense! `install.packages()` is a function (built-in to the core R programming language), and `"tidyverse"` is a character string that we are passing as the argument to that function.
     
 Note that it can take some time to install a package (e.g. the `tidyverse` package can take 10-15 minutes to install!), so it's worth checking to see if it is already installed before you waste a lot of time.
 

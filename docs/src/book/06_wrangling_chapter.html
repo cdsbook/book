@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,14 +232,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,7 +345,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-mutate-function" id="toc-the-mutate-function" class="nav-link" data-scroll-target="#the-mutate-function"><span class="header-section-number">6.9.1</span> The <code>mutate</code> function</a></li>
   <li><a href="#end-year" id="toc-end-year" class="nav-link" data-scroll-target="#end-year"><span class="header-section-number">6.9.2</span> End year</a></li>
   </ul></li>
-  <li><a href="#grouping-and-summarizing" id="toc-grouping-and-summarizing" class="nav-link" data-scroll-target="#grouping-and-summarizing"><span class="header-section-number">6.10</span> Grouping and summarizing</a>
+  <li><a href="#sec-wrangling-groupby-summarize" id="toc-sec-wrangling-groupby-summarize" class="nav-link" data-scroll-target="#sec-wrangling-groupby-summarize"><span class="header-section-number">6.10</span> Grouping and summarizing</a>
   <ul class="collapse">
   <li><a href="#the-group_by-and-summarize-functions" id="toc-the-group_by-and-summarize-functions" class="nav-link" data-scroll-target="#the-group_by-and-summarize-functions"><span class="header-section-number">6.10.1</span> The <code>group_by</code> and <code>summarize</code> functions</a></li>
   <li><a href="#practice" id="toc-practice" class="nav-link" data-scroll-target="#practice"><span class="header-section-number">6.10.2</span> Practice</a></li>
@@ -407,9 +413,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- TODO: change the dataset -->
 <p>For the first part of this chapter we will be using a dataset of US presidents. This dataset is stored in a variable called <code>presidential</code>.</p>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-1_23ce1f6122051b85d59e4ed53ee6206f">
 <div class="exercise">
 <p>Use <code>head()</code> function to check some of the contents of the <code>presidential</code> dataframe. (The <code>head()</code> function prints the first six rows of a dataframe.)</p>
 <p>Run <code>head(presidential)</code> in the R Console and examine the output.</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -434,19 +442,21 @@ quiz (number of rows, columns, what does each observation represent, etc.)
 <section id="a-simple-select" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="a-simple-select"><span class="header-section-number">6.4.2</span> A simple <code>select()</code></h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-4_0a9b6d615fe6038c565129c6726b5d8f">
 <div class="exercise">
 <p>Exercise TBM</p>
 </div>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
-<div class="cell" data-exercise="true">
+<div class="cell" data-exercise="true" data-hash="06_wrangling_chapter_cache/html/ques3_6d054a5d7be7d3f076e2cfa819923829">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace the blank with the name of the column</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, _____)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/ques3-solution_9370de9dfd7298690c2888e39f696a6e">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/ques3-check_f8fc5626d0c15b5e4848cca360feb40a">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grade_code</span>(<span class="st">"Nice work!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- End tutorial -->
@@ -455,8 +465,10 @@ quiz (number of rows, columns, what does each observation represent, etc.)
 <h3 data-number="6.4.3" class="anchored" data-anchor-id="selecting-multiple-columns"><span class="header-section-number">6.4.3</span> Selecting multiple columns</h3>
 <p>We can put as many column names as we want into the <code>select</code> function, separating each by a comma.</p>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-7_2a9a62c1d4d0e29224ce95fc3a898e07">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -466,7 +478,7 @@ quiz (number of rows, columns, what does each observation represent, etc.)
 <h3 data-number="6.4.4" class="anchored" data-anchor-id="selecting-a-range"><span class="header-section-number">6.4.4</span> Selecting a range</h3>
 <p>In R, the range operator, <code>:</code> (the colon punctuation symbol) indicates a range.</p>
 <p>For example, this code create a vector of all the integer numbers in the range of 1-10:</p>
-<div class="cell">
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-9_c85e4fa6094ead75a65135ac65f0c933">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
@@ -477,8 +489,10 @@ quiz (number of rows, columns, what does each observation represent, etc.)
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(presidential, name<span class="sc">:</span>end)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This selects all sequential columns from <code>name</code> to <code>end</code> (which in this case is <code>name</code>, <code>start</code>, and <code>end</code>).</p>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-10_95e55ebfc8235136d13de65f90b415b5">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -505,8 +519,10 @@ TODO
 <section id="arrange-practice" class="level3" data-number="6.5.2">
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="arrange-practice"><span class="header-section-number">6.5.2</span> Arrange practice</h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-12_a8164dcd593a5b9023d9be9e5f00bdbe">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -533,8 +549,10 @@ TODO
 <section id="piping-practice" class="level3" data-number="6.6.2">
 <h3 data-number="6.6.2" class="anchored" data-anchor-id="piping-practice"><span class="header-section-number">6.6.2</span> Piping practice</h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-14_3459164d61580ddc47388a68c98bae8f">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -566,8 +584,10 @@ Note: Skipped over the slice function here
 <h3 data-number="6.7.2" class="anchored" data-anchor-id="boolean-logic-quiz"><span class="header-section-number">6.7.2</span> Boolean logic quiz</h3>
 <p>You are already a little familiar with Boolean operators from the Introduction to R tutorial, so let’s refresh our memories with a quick quiz.</p>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-16_4c988ea87904465add4b2e0003416a46">
 <div class="exercise">
 <p>Quiz TBA</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -586,8 +606,10 @@ Note: Skipped over the slice function here
 <section id="some-practice" class="level3" data-number="6.8.2">
 <h3 data-number="6.8.2" class="anchored" data-anchor-id="some-practice"><span class="header-section-number">6.8.2</span> Some practice</h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-17_df9f88fb0d3925313943f4bc8aca183e">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -595,8 +617,10 @@ Note: Skipped over the slice function here
 <section id="filtering-with-multiple-conditions" class="level3" data-number="6.8.3">
 <h3 data-number="6.8.3" class="anchored" data-anchor-id="filtering-with-multiple-conditions"><span class="header-section-number">6.8.3</span> Filtering with multiple conditions</h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-19_b9e2d265c535eaa2ead3bbbe89315332">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -614,16 +638,18 @@ Note: Skipped over the slice function here
 <section id="end-year" class="level3" data-number="6.9.2">
 <h3 data-number="6.9.2" class="anchored" data-anchor-id="end-year"><span class="header-section-number">6.9.2</span> End year</h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-21_ce932860d89aab76f89113861f9ec004">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
 <!-- End tutorial -->
 </section>
 </section>
-<section id="grouping-and-summarizing" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="grouping-and-summarizing"><span class="header-section-number">6.10</span> Grouping and summarizing</h2>
+<section id="sec-wrangling-groupby-summarize" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="sec-wrangling-groupby-summarize"><span class="header-section-number">6.10</span> Grouping and summarizing</h2>
 <section id="the-group_by-and-summarize-functions" class="level3" data-number="6.10.1">
 <h3 data-number="6.10.1" class="anchored" data-anchor-id="the-group_by-and-summarize-functions"><span class="header-section-number">6.10.1</span> The <code>group_by</code> and <code>summarize</code> functions</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5UOC4b2_G8s?rel=0" frameborder="0" allowfullscreen="">
@@ -633,8 +659,10 @@ Note: Skipped over the slice function here
 <section id="practice" class="level3" data-number="6.10.2">
 <h3 data-number="6.10.2" class="anchored" data-anchor-id="practice"><span class="header-section-number">6.10.2</span> Practice</h3>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-23_f7ad1af2f53a1eda6c463b93a8f75f89">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -743,8 +771,10 @@ TODO:
 </table>
 <p>The data in both dataframes is the same, but we have changed the <em>shape</em> of the dataframe by converting columns into rows.</p>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-25_52d67cf8a9965adf1d1b1d60c11a071c">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->
@@ -845,8 +875,10 @@ TODO:
 </tbody>
 </table>
 <!-- Book version -->
+<div class="cell" data-hash="06_wrangling_chapter_cache/html/unnamed-chunk-27_00185e694fa5dff442704ad3d53e870d">
 <div class="exercise">
 <p>Exercise TBM</p>
+</div>
 </div>
 <!-- End book -->
 <!-- Tutorial version -->

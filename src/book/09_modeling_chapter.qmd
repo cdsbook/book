@@ -3,7 +3,7 @@ execute:
   freeze: auto
 ---
 
-# Modeling
+# Modeling {#sec-modeling-chapter}
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
@@ -24,6 +24,9 @@ sim_df <- tibble(x, y)
 
 {{< include ../../src/snippets/modeling_basic_correlation_not_causation.Rmd >}}
 
+<!-- TODO: add examples of linear correlations vs. nonlinear, vs pure randomness (also, show how randomness is more clumpy that we normally think of).
+
+-->
 
 
 ## Creating models in R

@@ -1,16 +1,18 @@
----
-execute:
-  freeze: auto
----
+
+<!-- --- -->
+<!-- execute: -->
+<!--   freeze: auto -->
+<!-- --- -->
 
 # Graphs with `ggplot`
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+# suppressPackageStartupMessages(library(flair))
 ```
 
-## From `qplot()` to `ggplot() + ...`
+## From `plot()` to `ggplot() + ...`
 
 {{< include ../../src/snippets/ggplot_introduction.Rmd >}}
 
@@ -25,9 +27,14 @@ suppressPackageStartupMessages(library(tidyverse))
 {{< include ../../src/snippets/ggplot_aesthetic_mappings.Rmd >}}
 
 
-## Scatter plots with `ggplot()`
+## Scatter plots with `ggplot()` {#sec-ggplot-scatter-plots}
 
 {{< include ../../src/snippets/ggplot_scatter_plots.Rmd >}}
+
+
+## Color and fill
+
+{{< include ../../src/snippets/ggplot_color_and_fill.Rmd >}}
 
 
 ## Piping to `ggplot()`

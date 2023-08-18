@@ -1,10 +1,16 @@
+If you have two continuous variables, such as `price` and `carat` in the `diamonds` dataset, then a scatter plot is generally a good method of examining their covariation.
 
+We learned how to create `ggplot` scatter plots using the `geom_point()` function in @sec-ggplot-scatter-plots. Here, for example, is what a scatter plot of `price` vs. `carat` looks like:
 
-If you have two continuous variables, such as `price` and `carat` in the `diamonds` dataset, then a scatter plot is generally a good method of examining their covariation:
+```{r, echo=FALSE}
+ggplot(diamonds) +
+  geom_point(aes(carat,price)) +
+  labs(x = "size (carats)", y = "price ($)", title = "Price vs. size of diamonds")
+```
 
 <!-- Book version -->
 
-TODO: book exercises
+TODO: book exercises: recreate that plot using ggplot()
 
 <!-- End book -->
 
@@ -37,31 +43,41 @@ gradethis::grade_code()
 
 We can see several things about this graph:
 
-* There's obviously a positive relationship between these two variables.
-* It's hard to tell the density of the points (i.e. where most of the points fall), because in many places all the point overlap in a blog.
+* There's obviously a positive relationship between these two variables: larger diamonds also tend to be more expensive.
+
+* There don't seem to be any diamonds in the dataset worth more than about $18,000. However, a quick Google search tells us that such diamonds definitely exist! We are missing an entire segment of data in the more exclusive part of the diamond market. This tells us that we need to be careful if we want to do any statistical analysis of this data. 
+
+* It's hard to tell the density of the points (i.e. where most of the points fall), because in many places all the points overlap in a blob.
 
 We have a several options to show density.
 
 * We could make the points transparent with the `alpha` parameter. Then dense regions would be darker (because there would be many overlapping transparent points). For example, with `alpha = 0.1`:
 
-  ```{r, echo = TRUE}
-  diamonds %>%
-    ggplot() +
-    geom_point(mapping = aes(x = carat, y = price), alpha=0.1) +
-    labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
-  ```
+    ```{r, echo = TRUE}
+    diamonds %>%
+      ggplot() +
+      geom_point(mapping = aes(x = carat, y = price), alpha=0.1) +
+      labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
+    ```
 
-* We can also create a heat map, which is a colored grid where the intensity of the color represents a value on a scale - in this case, the color represents the density. This uses the `geom_bin2d` geom function:
+    This graph is pretty interesting, because we can see a banding pattern at rounder values of the `carat` variable, e.g. 1.5, 2. It seems strange to have these jumps, and this is likely an *artefact* of the way the data is recorded, i.e. diamond appraisers are more likely to round a the diamond size to 0 or 1 decimal places.^[diamond-size-rounding]
+    
+    ^[diamond-size-rounding]: And the fact that there are no points on the left of these bands compared to the right suggests that either we are missing a bunch of diamonds on the small side of each of these thresholds (which seems unlikely), or that diamond sizes are being rounded up. If we were suspicious people, we might start to ask why jewellers might prefer to round diamond sizes up instead of down...
 
-  ```{r, echo = TRUE}
-  diamonds %>%
-    ggplot() +
-    geom_bin2d(mapping = aes(x = carat, y = price)) +
-    labs(title = "Heat map of dimond price vs size", y = "price ($)", x = "size (carats)")
-  ```
+* We can also create a heat map, using the `geom_bin2d()` geom function, which is a colored grid where the intensity of the color represents a value on a scale - in this case, the color represents the number of observations (i.e. diamonds) that fall in that grid square.
+
+    ```{r, echo = TRUE}
+    diamonds %>%
+      ggplot() +
+      geom_bin2d(mapping = aes(x = carat, y = price)) +
+      labs(title = "Heat map of dimond price vs size", y = "price ($)", x = "size (carats)")
+    ```
   
-  This is essentially a 2-dimensional histogram. Each square is like a bar in a univariate histogram. In this heat map, the color represents the "height" of the 2-dimensional bin, i.e. how many diamonds fall into each cell of the heat map's grid.
+    This is essentially a 2-dimensional histogram. Each grid square is like a bin in a regular histogram. In this heat map, the color represents the "height" of the 2-dimensional bin, i.e. how many diamonds fall into each cell of the heat map's grid.
+  
+    This graph also shows that small and cheap diamonds are by far the most common (the light blue grid squares).
 
-<!-- Todo
-Have students recreate this graph
+<!-- Todo:
+ - Pros and cons of scatter plots vs heatmaps: good if high density, but mask the actual location of points. Prefer a scatter plot unless most of the scatter plot is occupied by overlapping points. Create an extreme examples comparison of a low density scatter plot vs heatmap (where heatmap shows very little), and a high density one with some actual shape that is masked by the density of points.
+ - Exercises: Have students recreate these graphs.
 -->

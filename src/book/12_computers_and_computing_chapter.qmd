@@ -1,0 +1,11 @@
+---
+execute:
+  freeze: auto
+---
+
+# Computers and Computing
+
+
+Vectorization vs loops.
+
+Computational complexity (simple intro).

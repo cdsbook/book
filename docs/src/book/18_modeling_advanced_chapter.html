@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Computing and Data for Scientists - 14&nbsp; More Models</title>
+<title>An Introduction to Computing and Data for Scientists - 15&nbsp; More Models</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -109,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/11_more_r_chapter.html">Advanced Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/18_modeling_advanced_chapter.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/11_more_r_chapter.html">Advanced Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/18_modeling_advanced_chapter.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -170,7 +170,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -234,14 +234,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
       </ul>
@@ -258,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,31 +308,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#models-in-more-dimensions" id="toc-models-in-more-dimensions" class="nav-link active" data-scroll-target="#models-in-more-dimensions"><span class="header-section-number">14.1</span> Models in more dimensions</a>
+  <li><a href="#models-in-more-dimensions" id="toc-models-in-more-dimensions" class="nav-link active" data-scroll-target="#models-in-more-dimensions"><span class="header-section-number">15.1</span> Models in more dimensions</a>
   <ul class="collapse">
-  <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables"><span class="header-section-number">14.1.1</span> Multiple explanatory variables</a></li>
-  <li><a href="#but-what-does-that-look-like" id="toc-but-what-does-that-look-like" class="nav-link" data-scroll-target="#but-what-does-that-look-like"><span class="header-section-number">14.1.2</span> But what does that look like?</a></li>
+  <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables"><span class="header-section-number">15.1.1</span> Multiple explanatory variables</a></li>
+  <li><a href="#but-what-does-that-look-like" id="toc-but-what-does-that-look-like" class="nav-link" data-scroll-target="#but-what-does-that-look-like"><span class="header-section-number">15.1.2</span> But what does that look like?</a></li>
   </ul></li>
-  <li><a href="#multiple-regression-in-r" id="toc-multiple-regression-in-r" class="nav-link" data-scroll-target="#multiple-regression-in-r"><span class="header-section-number">14.2</span> Multiple regression in R</a>
+  <li><a href="#multiple-regression-in-r" id="toc-multiple-regression-in-r" class="nav-link" data-scroll-target="#multiple-regression-in-r"><span class="header-section-number">15.2</span> Multiple regression in R</a>
   <ul class="collapse">
-  <li><a href="#lm-with-multiple-explanatory-variables" id="toc-lm-with-multiple-explanatory-variables" class="nav-link" data-scroll-target="#lm-with-multiple-explanatory-variables"><span class="header-section-number">14.2.1</span> <code>lm()</code> with multiple explanatory variables</a></li>
-  <li><a href="#create-a-multiple-regression-model" id="toc-create-a-multiple-regression-model" class="nav-link" data-scroll-target="#create-a-multiple-regression-model"><span class="header-section-number">14.2.2</span> Create a multiple regression model</a></li>
+  <li><a href="#lm-with-multiple-explanatory-variables" id="toc-lm-with-multiple-explanatory-variables" class="nav-link" data-scroll-target="#lm-with-multiple-explanatory-variables"><span class="header-section-number">15.2.1</span> <code>lm()</code> with multiple explanatory variables</a></li>
+  <li><a href="#create-a-multiple-regression-model" id="toc-create-a-multiple-regression-model" class="nav-link" data-scroll-target="#create-a-multiple-regression-model"><span class="header-section-number">15.2.2</span> Create a multiple regression model</a></li>
   </ul></li>
-  <li><a href="#interaction-terms" id="toc-interaction-terms" class="nav-link" data-scroll-target="#interaction-terms"><span class="header-section-number">14.3</span> Interaction terms</a>
+  <li><a href="#interaction-terms" id="toc-interaction-terms" class="nav-link" data-scroll-target="#interaction-terms"><span class="header-section-number">15.3</span> Interaction terms</a>
   <ul class="collapse">
-  <li><a href="#independence-and-interaction" id="toc-independence-and-interaction" class="nav-link" data-scroll-target="#independence-and-interaction"><span class="header-section-number">14.3.1</span> Independence and interaction</a></li>
+  <li><a href="#independence-and-interaction" id="toc-independence-and-interaction" class="nav-link" data-scroll-target="#independence-and-interaction"><span class="header-section-number">15.3.1</span> Independence and interaction</a></li>
   </ul></li>
-  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions"><span class="header-section-number">14.4</span> Testing assumptions</a>
+  <li><a href="#testing-assumptions" id="toc-testing-assumptions" class="nav-link" data-scroll-target="#testing-assumptions"><span class="header-section-number">15.4</span> Testing assumptions</a>
   <ul class="collapse">
-  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">14.4.1</span> Linearity</a></li>
-  <li><a href="#constant-variability" id="toc-constant-variability" class="nav-link" data-scroll-target="#constant-variability"><span class="header-section-number">14.4.2</span> Constant variability</a></li>
-  <li><a href="#nearly-normal-residuals" id="toc-nearly-normal-residuals" class="nav-link" data-scroll-target="#nearly-normal-residuals"><span class="header-section-number">14.4.3</span> Nearly-normal residuals</a></li>
-  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">14.4.4</span> Independent Observations</a></li>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">15.4.1</span> Linearity</a></li>
+  <li><a href="#constant-variability" id="toc-constant-variability" class="nav-link" data-scroll-target="#constant-variability"><span class="header-section-number">15.4.2</span> Constant variability</a></li>
+  <li><a href="#nearly-normal-residuals" id="toc-nearly-normal-residuals" class="nav-link" data-scroll-target="#nearly-normal-residuals"><span class="header-section-number">15.4.3</span> Nearly-normal residuals</a></li>
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">15.4.4</span> Independent Observations</a></li>
   </ul></li>
-  <li><a href="#hypothesis-tests-for-models" id="toc-hypothesis-tests-for-models" class="nav-link" data-scroll-target="#hypothesis-tests-for-models"><span class="header-section-number">14.5</span> Hypothesis tests for models</a>
+  <li><a href="#hypothesis-tests-for-models" id="toc-hypothesis-tests-for-models" class="nav-link" data-scroll-target="#hypothesis-tests-for-models"><span class="header-section-number">15.5</span> Hypothesis tests for models</a>
   <ul class="collapse">
-  <li><a href="#linear-models-and-hypothesis-tests" id="toc-linear-models-and-hypothesis-tests" class="nav-link" data-scroll-target="#linear-models-and-hypothesis-tests"><span class="header-section-number">14.5.1</span> Linear models and hypothesis tests</a></li>
-  <li><a href="#p-values-of-individual-variables" id="toc-p-values-of-individual-variables" class="nav-link" data-scroll-target="#p-values-of-individual-variables"><span class="header-section-number">14.5.2</span> p-values of individual variables</a></li>
+  <li><a href="#linear-models-and-hypothesis-tests" id="toc-linear-models-and-hypothesis-tests" class="nav-link" data-scroll-target="#linear-models-and-hypothesis-tests"><span class="header-section-number">15.5.1</span> Linear models and hypothesis tests</a></li>
+  <li><a href="#p-values-of-individual-variables" id="toc-p-values-of-individual-variables" class="nav-link" data-scroll-target="#p-values-of-individual-variables"><span class="header-section-number">15.5.2</span> p-values of individual variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -336,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></h1>
 </div>
 
 
@@ -351,10 +357,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="models-in-more-dimensions" class="level2" data-number="14.1">
-<h2 data-number="14.1" class="anchored" data-anchor-id="models-in-more-dimensions"><span class="header-section-number">14.1</span> Models in more dimensions</h2>
-<section id="multiple-explanatory-variables" class="level3" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="multiple-explanatory-variables"><span class="header-section-number">14.1.1</span> Multiple explanatory variables</h3>
+<section id="models-in-more-dimensions" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="models-in-more-dimensions"><span class="header-section-number">15.1</span> Models in more dimensions</h2>
+<section id="multiple-explanatory-variables" class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="multiple-explanatory-variables"><span class="header-section-number">15.1.1</span> Multiple explanatory variables</h3>
 <p>In our previous module on linear models, we considered what is called <em>simple linear regression</em>: a linear model with just one explanatory variable, <span class="math inline">\(x\)</span>:</p>
 <p><span class="math inline">\(y = m \times x + c\)</span></p>
 <p>which we created using the <code>lm</code> function.</p>
@@ -366,8 +372,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>there is still just a single intercept, <span class="math inline">\(c\)</span></li>
 </ul>
 </section>
-<section id="but-what-does-that-look-like" class="level3" data-number="14.1.2">
-<h3 data-number="14.1.2" class="anchored" data-anchor-id="but-what-does-that-look-like"><span class="header-section-number">14.1.2</span> But what does that look like?</h3>
+<section id="but-what-does-that-look-like" class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="but-what-does-that-look-like"><span class="header-section-number">15.1.2</span> But what does that look like?</h3>
 <p>We can pretty easily plot <span class="math inline">\(y\)</span> vs a single explanatory variable <span class="math inline">\(x\)</span>. In this case, a linear model is just a best-fit line through the data:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
@@ -439,10 +445,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>However, as we shall see, our inability to plot high dimensional linear models makes it impossible to assess the linear model’s assumptions by plotting the original data. Instead we will create alternative plots that reduce each assumption down to a 2D graph.</p>
 </section>
 </section>
-<section id="multiple-regression-in-r" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="multiple-regression-in-r"><span class="header-section-number">14.2</span> Multiple regression in R</h2>
-<section id="lm-with-multiple-explanatory-variables" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="lm-with-multiple-explanatory-variables"><span class="header-section-number">14.2.1</span> <code>lm()</code> with multiple explanatory variables</h3>
+<section id="multiple-regression-in-r" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="multiple-regression-in-r"><span class="header-section-number">15.2</span> Multiple regression in R</h2>
+<section id="lm-with-multiple-explanatory-variables" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="lm-with-multiple-explanatory-variables"><span class="header-section-number">15.2.1</span> <code>lm()</code> with multiple explanatory variables</h3>
 <p>Recall that the first argument of the <code>lm</code> function was a formula. We create an R formula by:</p>
 <ul>
 <li>removing the constant coefficients</li>
@@ -498,8 +504,8 @@ TODO
 - actual code exercises on this
 -->
 </section>
-<section id="create-a-multiple-regression-model" class="level3" data-number="14.2.2">
-<h3 data-number="14.2.2" class="anchored" data-anchor-id="create-a-multiple-regression-model"><span class="header-section-number">14.2.2</span> Create a multiple regression model</h3>
+<section id="create-a-multiple-regression-model" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="create-a-multiple-regression-model"><span class="header-section-number">15.2.2</span> Create a multiple regression model</h3>
 <!-- 
 TODO
 - switch to a smaller dataset that does not take so long to generate graphs
@@ -530,10 +536,10 @@ TODO
 -->
 </section>
 </section>
-<section id="interaction-terms" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="interaction-terms"><span class="header-section-number">14.3</span> Interaction terms</h2>
-<section id="independence-and-interaction" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="independence-and-interaction"><span class="header-section-number">14.3.1</span> Independence and interaction</h3>
+<section id="interaction-terms" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="interaction-terms"><span class="header-section-number">15.3</span> Interaction terms</h2>
+<section id="independence-and-interaction" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="independence-and-interaction"><span class="header-section-number">15.3.1</span> Independence and interaction</h3>
 <p>So far we have assumed that each term is independent: i.e.&nbsp;each one contributes to the response variable <span class="math inline">\(y\)</span> a separate amount proportional to its coefficient.</p>
 <p>However, it is possible for variables to <em>interact</em> with each other:</p>
 <p><span class="math inline">\(y = m_1 x_1 + m_2 x_2 + m_3 x_1 x_2 + c\)</span></p>
@@ -550,10 +556,10 @@ TODO
 -->
 </section>
 </section>
-<section id="testing-assumptions" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="testing-assumptions"><span class="header-section-number">14.4</span> Testing assumptions</h2>
-<section id="linearity" class="level3" data-number="14.4.1">
-<h3 data-number="14.4.1" class="anchored" data-anchor-id="linearity"><span class="header-section-number">14.4.1</span> Linearity</h3>
+<section id="testing-assumptions" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="testing-assumptions"><span class="header-section-number">15.4</span> Testing assumptions</h2>
+<section id="linearity" class="level3" data-number="15.4.1">
+<h3 data-number="15.4.1" class="anchored" data-anchor-id="linearity"><span class="header-section-number">15.4.1</span> Linearity</h3>
 <p>By definition, a linear model’s predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e.&nbsp;true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables.</p>
 <p>In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a <em>scatter plot</em> of the observed response variable vs the predicted response variable.</p>
 <!--
@@ -599,8 +605,8 @@ TODO
 </div>
 <p>We can see from this plot that while there is definitely a relationship, it is slightly non-linear. This is a violation of the linearity assumption.</p>
 </section>
-<section id="constant-variability" class="level3" data-number="14.4.2">
-<h3 data-number="14.4.2" class="anchored" data-anchor-id="constant-variability"><span class="header-section-number">14.4.2</span> Constant variability</h3>
+<section id="constant-variability" class="level3" data-number="15.4.2">
+<h3 data-number="15.4.2" class="anchored" data-anchor-id="constant-variability"><span class="header-section-number">15.4.2</span> Constant variability</h3>
 <p>To assess constant variability of the residuals, we can just plot the residuals (on the y-axis) vs the predicted response variable (x-axis): a <em>residuals vs predicted plot</em>.</p>
 <p>Again, this graph will always have just two dimensions, regardless of how many explanatory variables are in our model, and so it is ideal for assessing this assumption.</p>
 <p>In this graph, our reference line should be a horizontal line plotted at <span class="math inline">\(y = 0\)</span>, because the residuals should be distributed around zero in all parts of the model.</p>
@@ -647,8 +653,8 @@ TODO:
 - have questions asking students to interpret different assumptions plots
 -->
 </section>
-<section id="nearly-normal-residuals" class="level3" data-number="14.4.3">
-<h3 data-number="14.4.3" class="anchored" data-anchor-id="nearly-normal-residuals"><span class="header-section-number">14.4.3</span> Nearly-normal residuals</h3>
+<section id="nearly-normal-residuals" class="level3" data-number="15.4.3">
+<h3 data-number="15.4.3" class="anchored" data-anchor-id="nearly-normal-residuals"><span class="header-section-number">15.4.3</span> Nearly-normal residuals</h3>
 <p>We could plot a histogram of the residuals to see if they are normally distributed.</p>
 <p>However, it is often hard to interpret the “normality” of a histogram. Instead, a much better method is to create a Quantile-Quantile (Q-Q) plot. This video from Stat Quest gives an excellent overview of what a Q-Q plot is:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/okjYjClSjOg?rel=0" frameborder="0" allowfullscreen="">
@@ -680,8 +686,8 @@ TODO:
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="independent-observations" class="level3" data-number="14.4.4">
-<h3 data-number="14.4.4" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">14.4.4</span> Independent Observations</h3>
+<section id="independent-observations" class="level3" data-number="15.4.4">
+<h3 data-number="15.4.4" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">15.4.4</span> Independent Observations</h3>
 <p>Coming soon.</p>
 <!--
 TODO
@@ -690,10 +696,10 @@ TODO
 -->
 </section>
 </section>
-<section id="hypothesis-tests-for-models" class="level2" data-number="14.5">
-<h2 data-number="14.5" class="anchored" data-anchor-id="hypothesis-tests-for-models"><span class="header-section-number">14.5</span> Hypothesis tests for models</h2>
-<section id="linear-models-and-hypothesis-tests" class="level3" data-number="14.5.1">
-<h3 data-number="14.5.1" class="anchored" data-anchor-id="linear-models-and-hypothesis-tests"><span class="header-section-number">14.5.1</span> Linear models and hypothesis tests</h3>
+<section id="hypothesis-tests-for-models" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="hypothesis-tests-for-models"><span class="header-section-number">15.5</span> Hypothesis tests for models</h2>
+<section id="linear-models-and-hypothesis-tests" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="linear-models-and-hypothesis-tests"><span class="header-section-number">15.5.1</span> Linear models and hypothesis tests</h3>
 <p>You may remember from our first modeling module that the <code>tidy</code> function reported a p-value for the model and for each explanatory variable. See the <code>p.value</code> columns in both of these examples:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data=</span>sim_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -726,8 +732,8 @@ TODO
 <p>We continue to use our regular significance threshold, <span class="math inline">\(\alpha = 0.05\)</span>. In this case, we can reject our null hypothesis (that there is no relationship).</p>
 <p>However, hypothesis testing only tells us the probability that there is a relationship, or not. If there is a relationship, it doesn’t tell us how good it is, i.e.&nbsp;how well our model fits the data. For this, we need to continue to use the <span class="math inline">\(R^2\)</span> value, as well as our graphs to check the 3 main assumptions of the linear model.</p>
 </section>
-<section id="p-values-of-individual-variables" class="level3" data-number="14.5.2">
-<h3 data-number="14.5.2" class="anchored" data-anchor-id="p-values-of-individual-variables"><span class="header-section-number">14.5.2</span> p-values of individual variables</h3>
+<section id="p-values-of-individual-variables" class="level3" data-number="15.5.2">
+<h3 data-number="15.5.2" class="anchored" data-anchor-id="p-values-of-individual-variables"><span class="header-section-number">15.5.2</span> p-values of individual variables</h3>
 <p>The <code>tidy()</code> function also reports a p-value for each variable in the model.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
@@ -1016,12 +1022,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../../src/book/17_inference_advanced_chapter.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../../src/book/32_databases_chapter.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

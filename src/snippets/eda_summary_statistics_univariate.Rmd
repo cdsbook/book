@@ -1,88 +1,34 @@
-<!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
+For a continuous variable, we can calculate a few statistics (a number representative of other numbers) to summarize the:
 
-If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories:
+1. center (i.e. mean, or median), &
 
-```r
-dataframe %>%
-  group_by(categorical_variable) %>%
-  summarize(
-    count = n(),
-    proportion = n() / nrow(.),
-    percentage = 100 * proportion
-  )
-```
-
-Notes on this code:
-
-  * the `n()` function returns the number of rows. It does not need an argument.
-  * the `nrow()` function also calculates the number of rows, but needs an argument (a variable who's rows it should count).
-  * the `.` argument inside `nrow` is used to refer to the original `dataframe` that we piped in.
-
-<!-- Book version -->
-
-TODO: book exercises
-
-<!-- End book -->
-
-<!-- Tutorial version -->
-
-<p class="comment3">
-Calculate summary statistics for the categorical `cut` column of the `diamonds` dataframe.
-</p>
-
-```{r lwsyhxxvndkapsgg, exercise = TRUE, eval=is_tutorial, echo=FALSE}
-# Replace the blanks, following the template above
-diamonds %>%
-  group_by(____) %>%
-  _____(
-    count = n(),
-    proportion = ______,
-    _____ = _______
-  )
-```
-
-```{r lwsyhxxvndkapsgg-hint-1, eval=is_tutorial, echo=FALSE}
-# hint text
-"You will need to fill in the categorical variable to group by, the `summarize` function, and the three expressions inside the summarize function"
-```
-
-```{r lwsyhxxvndkapsgg-solution, eval=is_tutorial, echo=FALSE}
-# solution code
-diamonds %>%
-  group_by(cut) %>%
-  summarize(
-    count = n(),
-    proportion = n() / nrow(.),
-    percentage = 100 * proportion
-  )
-```
-
-```{r lwsyhxxvndkapsgg-check, eval=is_tutorial, echo=FALSE}
-# check code
-gradethis::grade_code()
-```
-
-<!-- End tutorial -->
-
-For a continuous variable, we typically use a few statistics (a number representative of other numbers) to summarize the:
-
-1. center (i.e. mean, median, mode), &
-
-2. spread (e.g. the standard deviation, the range, the interquartile range, etc.)
+2. spread (e.g. the standard deviation, the range, the interquartile range, the minimum and maximum, etc.)
 
 of a distribution.
+
+An easy way to do this is with the `summarize()` function that we learned about in @sec-wrangling-groupby-summarize.
 
 ```r
 dataframe %>%
   summarize(
     mean    = mean(continuous_variable),
     median  = median(continuous_variable),
-    std.dev = sd(continuous_variable),
+    std_dev = sd(continuous_variable),
     iqr     = IQR(continuous_variable),
     min     = min(continuous_variable),
     max     = max(continuous_variable)
   )
 ```
+
+<!-- TODO: comments on interpreting these statistics:
+- center: are the mean and median similar to each other (especially relative to the spread), or do they indicate a skewed distribution? >median indicates a left skew, <median indicates a right skew.
+
+- what is the std. dev., and how is it calculated.
+- use vs the IQR.
+- Things to look for with the min & max: outliers, weird values indicative of coding errors.
+
+Also: use of `na.rm = TRUE`
+-->
 
 <!-- Book version -->
 
@@ -173,3 +119,80 @@ gradethis::grade_code()
 ```
 
 <!-- End tutorial -->
+
+
+<!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
+
+If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories. To do this we will first `group_by()` the categorical variable in question:
+
+```r
+dataframe %>%
+  group_by(categorical_variable) %>%
+  summarize(
+    count = n(),
+    proportion = n() / nrow(.),
+    percentage = 100 * proportion
+  )
+```
+
+Notes on this code:
+
+  * the `n()` function returns the number of rows *within each group*. It does not need an argument.
+  
+  * the `nrow()` function also calculates the number of rows, but needs an argument (a variable whose rows it should count).
+    
+    * the `.` argument inside `nrow` is used to refer to the original `dataframe` that we piped in.
+    
+    Thus `nrow(.)` will give us the total number of rows in the original dataframe (ignoring the groups that we created).
+    
+<!-- 
+TODO: Interpretation
+- 
+-->
+
+<!-- Book version -->
+
+TODO: book exercises
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+<p class="comment3">
+Calculate summary statistics for the categorical `cut` column of the `diamonds` dataframe.
+</p>
+
+```{r lwsyhxxvndkapsgg, exercise = TRUE, eval=is_tutorial, echo=FALSE}
+# Replace the blanks, following the template above
+diamonds %>%
+  group_by(____) %>%
+  _____(
+    count = n(),
+    proportion = ______,
+    _____ = _______
+  )
+```
+
+```{r lwsyhxxvndkapsgg-hint-1, eval=is_tutorial, echo=FALSE}
+# hint text
+"You will need to fill in the categorical variable to group by, the `summarize` function, and the three expressions inside the summarize function"
+```
+
+```{r lwsyhxxvndkapsgg-solution, eval=is_tutorial, echo=FALSE}
+# solution code
+diamonds %>%
+  group_by(cut) %>%
+  summarize(
+    count = n(),
+    proportion = n() / nrow(.),
+    percentage = 100 * proportion
+  )
+```
+
+```{r lwsyhxxvndkapsgg-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+<!-- End tutorial -->
+

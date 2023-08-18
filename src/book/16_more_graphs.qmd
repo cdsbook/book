@@ -1,0 +1,8 @@
+<!--
+* Correlation heatmaps
+* Also EDA plots for multiple categorical variables as alternatives to dot plots.
+* Customizing ggplot
+* Themes, code chunk captions
+* Publication ready plots: ggpubr (themes and ggarrange)
+-->
+

@@ -1,11 +1,15 @@
-So far we have created graphs with the `qplot()` function from the `ggplot2` package.
+So far we have created graphs with base R[^baseR] functions like `plot()` and `hist()`.
 
-However `qplot()` is just a **q**uick plotting function that allows us to make simple graphs. To get access to all the visualization features of the `ggplot2` package, we will need to learn the proper way to create `ggplot` graphs.
+[^baseR]: I.e. functions that come as part of R, and don't need to be imported from an extra package.
 
-For example, instead of using `qplot()` to create a histogram:
+However the graphs created via these functions are not very visually appealing. It also becomes difficult to create more complex graphs, and the ways to do so are not very intuitive.
+
+In this chapter we will learn how to use alternative graphing functions from the `ggplot2` package. This is a core part of the `tidyverse`, just like the `dplyr` and `tidyr` packages that we learned about for data wrangling.
+
+For example, instead of using `hist()` to create a histogram:
 
 ```{r, echo=TRUE, warning=FALSE}
-qplot(x = height, bins = 30, data = starwars)
+hist(x = starwars$height, breaks = 10, data = starwars)
 ```
 
 ...we will use an alternative pair of functions, `ggplot()` and `geom_histogram()`, like this:
@@ -14,10 +18,10 @@ qplot(x = height, bins = 30, data = starwars)
 ggplot(data = starwars) +
   geom_histogram(
     mapping = aes(x = height),
-    bins = 30
+    bins = 10
   )
 ```
 
-As you can see, the histograms are exactly the same. However, we've avoided this way of creating graphs up until now, because we've been trying to keep our code as simple as possible. 
+As you can see, the histograms are very similar the same. However, we've avoided this way of creating graphs up until now, because we've been trying to keep our code as simple as possible. 
 
 Now we need to make the trade of slightly more complicated code in exchange for much better graphs. So let's jump in and see how and why this works.

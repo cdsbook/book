@@ -1,0 +1,9 @@
+
+
+Nice tables:
+
+* `gtsummary` package: https://hal.ird.fr/ird-03883594
+
+Latex templates for common journal submission styles
+
+Custom Latex templates.

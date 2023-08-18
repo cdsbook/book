@@ -2,7 +2,7 @@ For this tutorial, we will be using the `diamonds` dataset, which is automatical
 
 This means that you just need to run `library(ggplot2)` or `library(tidyverse)` (the `tidyverse` meta-package includes `ggplot2`), and the diamonds dataset will be available for you to use.
 
-In the real world, loading data tends to be a much messier task (a topic for another day).
+In the real world, loading data tends to be a much messier task (a topic for another day: @sec-loading-data-chapter).
 
 #### Check the dataset's documentation
 

@@ -8,14 +8,17 @@ execute:
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(ggbrace))
+suppressPackageStartupMessages(library(corrr))
 ```
 
 ## What is EDA?
 
 <!--
-TODO: Acknowledgements (Peng book, R4DS, NIST handbook, Seltman book)
+TODO: References & further reading (Peng book, R4DS, NIST handbook, Seltman book)
 
-TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
+TODO: Add labels to graphs (mentioned in earlier ggplot chapter)
 -->
 
 ### Exploratory Data Analysis (EDA)
@@ -86,11 +89,15 @@ TODO: Think about adding labels to graphs (mentioned in earlier ggplot chapter)
 
 {{< include ../../src/snippets/eda_violin_plot.Rmd >}}
 
-TODO: Include a comparison of histogram, boxplot, and violins (all in the same plot, aligned for cmparison).
+
+### Describing distributions
+
+{{< include ../../src/snippets/eda_describing_distributions.Rmd >}}
+
 
 ## Multivariate covariation
 
-When we have multiple variables we want to understand how their variation is related: this is called **covariation**.
+When we have multiple variables, we want to understand how their variation is related: this is called **covariation**.
 
 <!--
 ### Non-graphical (i.e. summary statistics)
@@ -100,30 +107,47 @@ See:
 - mathematical covariance (and relationship to R-squared) + graphical interpretation with heat map (correlation plot)
 -->
 
+
 ### Co-variation with summary statistics
 
-__TODO__
+{{< include ../../src/snippets/eda_summary_statistics_multivariate.Rmd >}}
 
-### Graphical
+
+### Visualizing two continuous variables
 
 {{< include ../../src/snippets/eda_covariation_scatter_plot.Rmd >}}
 
 
-### Coloring and faceting by categorical variables
+### Visualizing continuous and categorical variables
 
-__TODO__
+{{< include ../../src/snippets/eda_covariation_continuous_and_categorical.Rmd >}}
 
-<!--
 
-TODO:
-Faceting... since its in the quiz...
+### Visualizing multiple categorical variables
 
+{{< include ../../src/snippets/eda_covariation_dot_plot.Rmd >}}
+
+### The importance of EDA
+
+{{< include ../../src/snippets/eda_anscombes_quartet.Rmd >}}
+
+<!-- TODO:
+Also talk about the artefacts and patterns in the diamonds dataset:
+
+* price vs carat in the scatter plots. How this might limit future analyses. Plot a comparison of the best fit line that you would get from diamonds price-size relationship with and without the missing upper part, e.g. two scatter plots side by side with trend lines.
+* missing poor color and small diamonds in colored frequency polygons -> highlight possibly "missing" diamonds. How this skewed our box plots to give J diamonds a higher median price!
+
+How it helps to know something about the area of diamonds to interpret these patterns, and thus how data analysis skills are most useful when paired with domain knowledge of the area in question.
 -->
 
-
 ## Your turn
+
+<!-- TODO: skip? replace with general book exercises, but omit from tutorial? -->
 
 ### Do some EDA
 
 {{< include ../../src/snippets/eda_outro.Rmd >}}
+
+<!-- TODO: Convert outro ^ into an EDA checklist summarizing the previous sections -->
+
 

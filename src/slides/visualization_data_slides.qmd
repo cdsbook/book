@@ -1,0 +1,55 @@
+---
+title: "Why visualize?"
+subtitle: "From: Introduction to Computation and Data for Scientists"
+author: "Dominic White"
+format: 
+  revealjs:
+    df-print: paged
+    smaller: true
+---
+
+```{r setup}
+#| echo: FALSE
+source("common_slides_setup.R")
+```
+
+## Dataframes
+
+In R, a table of data is called a *dataframe*.
+
+Dataframes can be assigned to variables. Let's image we have this simple table stored in a variable called `df`:
+
+```{r}
+df <- data.frame(x_coords = c(1,3), y_coords = c(2,4))
+df
+```
+
+::: notes
+Each row is an observation of some thing.
+:::
+
+## Dataframe columns
+
+* Columns contain a measurement of some attribute.
+* Columns are also called variables.
+* In R, a column is just a vector.
+
+We can extract a column using the `$` operator:
+
+```{r}
+#| echo: true
+df$x_coords
+```
+
+## Types of variable: continuous
+
+## Types of variable: discrete
+
+## Types of variable: categorical
+
+
+```{r outro}
+#| echo: FALSE
+#| results: "asis"
+source("common_end_slide.R")
+```

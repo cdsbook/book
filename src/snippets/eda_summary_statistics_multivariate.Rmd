@@ -1,0 +1,61 @@
+How can we boil the covariation of two or more variables down to a single number?[^covariation_stats]
+
+^[covariation_stats]: We will think about this more in @sec-modeling-chapter.
+
+With continuous variables, we can calculate a statistic that measure the correlation. There are various such *correlation coefficients*, but the key idea is that they indicate how much of the variation in different variables is shared.
+
+One such number is Pearson's correlation coefficient, which varies between -1 and 1. 
+
+<!-- TODO: add mathematical details to appendix -->
+
+```{r}
+set.seed(41)
+df <- tibble(
+  x = 1:10,
+  `Perfect positive correlation` = x,
+  `Perfect negative correlation` = 10-x,
+  `Weak correlation` = runif(10,0,10)
+)
+cor_df <- correlate(df) |>
+  select(name = term, coef = x) |>
+  filter(name != "x")
+df |>
+  pivot_longer(cols = `Perfect positive correlation`:`Weak correlation`) |>
+  mutate(
+    name = factor(name, levels = c("Perfect positive correlation", "Weak correlation", "Perfect negative correlation"))
+  ) |>
+  ggplot() +
+  geom_point(aes(x,value)) +
+  geom_text(aes(x = 5, y = 0, label = paste("correlation =",round(coef,3))), data = cor_df) +
+  facet_wrap(~name)
+```
+
+To calculate *pairwise* correlations between columns in a dataframe, we can use the `correlate()` function from the `corrr` package. For example, we can look at the correlations between the `carat`, `depth`, and `price` columns of the `diamonds` dataframe:
+
+```{r}
+diamonds |>
+  select(carat, depth, price) |>
+  correlate()
+```
+
+We can see that there is a strong positive correlation of about 0.92 between `carat` and `price` (unsurprisingly!), but a weak relationship between the other two pairs of variables. 
+
+Note that each correlation is reported twice in the table above. We can remove these unnecessary duplications by piping this output dataframe of `correlate()` onto the `shave()` function (also from the `corrr` package), which will just keep one half of the correlations.
+
+We can also make the output a little prettier by piping the output dataframe of `shave()` onto a third function called `fashion()`, which will round the long correlation coefficients for us to just two decimal places:
+
+```{r}
+diamonds |>
+  select(carat, depth, price) |>
+  correlate() |>
+  shave() |>
+  fashion()
+```
+
+<!-- 
+ToDo: Exercises
+-->
+
+<!-- TODO: 
+continuous & categorical: group_by then summarize (note that we cannot group_by a continuous variable...)
+categorical variables: counts (cross-tabulation?) and categorical correlation coefficients -> add mathematical details to appendix -->

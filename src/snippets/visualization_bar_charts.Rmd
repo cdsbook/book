@@ -1,0 +1,52 @@
+<!-- TODO: video 
+
+topics:
+- comparing the counts in difference categories
+
+-->
+
+We can also visualize the distribution of a categorical variable. We gain use a graph with bars, but whereas in a histogram we had to divide the x-axis into bins, we now have existing categories in the variable.
+
+We can visualize the distribution by showing the number of values in each category (the *frequency* of each category).
+
+To see how, let's pick the `sex` variable from the `starwars` dataframe. Here's what the first few rows looked like:
+
+```{r, echo = FALSE}
+knitr::kable(
+starwars |>
+  select(name, sex) |>
+  head()
+)
+```
+
+The first thing we need to do is count the number of values of each sex in the `sex` column. We can do this with the `table()` function:
+
+```{r}
+table(starwars$sex)
+```
+
+We can then use the `barplot()` function to make a bar graph of those frequencies:
+
+```{r}
+h <- table(starwars$sex)
+barplot(h)
+```
+
+Note that saving the table to a variable (which we have called `h`) is optional - we could instead nest the `table()` function inside the `barplot()` function like this:
+
+```r
+barplot(table(starwars$sex))
+```
+
+:::{.callout-tip}
+<!-- TODO: move this to data wrangling chapter -->
+### Nesting vs sequential functions
+
+When should you nest functions and when should you run them sequentially?
+
+In general, nested functions can be harder to read. It's fine if you only have two or three, but nesting more than that results in a lot of parentheses and arguments that are hard to sort out.
+
+We can instead run each function one at a time, and save the output in a new variable. However, if we only want to use that variable once (in the next function), then we end up creating a lot of variables that we don't really need.
+
+In the next chapter we will learn about a new operator (called a *pipe*) that will allow us to run functions sequentially and avoid creating lots of intermediate variables.
+:::

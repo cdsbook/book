@@ -29,7 +29,7 @@ book:
       # 12 Computing and Computers
       # 13 More Data Wrangling
       - src/book/14_reproducibility_chapter.qmd
-      # 15 Loading Data
+      - src/book/15_loading_data_chapter.qmd
       # 16 More Graphs
       - src/book/17_inference_advanced_chapter.qmd
       - src/book/18_modeling_advanced_chapter.qmd
@@ -63,10 +63,16 @@ book:
   - src/book/A_faqs_appendix.qmd
   - src/book/B_additional_setup_appendix.qmd
     # - appendix_further_reading.qmd
+    # - appendix_mathematical_detals.qmd
     # - appendix_IDEs.qmd
     # - appendix_git_github.qmd
 
 bibliography: references.bib
+
+# knitr:
+#   opts_chunk:
+#     attr-output: "style='color: red;'""
+#     class-output: "chunkoutput"
 
 # format:
 #   pdf:

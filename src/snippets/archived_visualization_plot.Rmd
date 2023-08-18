@@ -1,0 +1,21 @@
+
+<!-- TODO: Video introduction to plot() function -->
+
+The R programming language comes with a function called `plot()` which we can use to make graphs.
+
+For example, we could plot the points (1,2) and (3,4):
+
+```{r}
+x_coords <- c(1,3)
+y_coords <- c(2,4)
+plot(x = x_coords, y = y_coords)
+```
+
+Take a look at the arguments we have passed to that function:
+
+* There is an `x` parameter, to which we have passed a vector of the x-axis coordinates (i.e. $x=1$ for the first point, and $x=2$ for the second point).
+
+* Similarly, we have passed a vector of the two y-axis coordinates to the the `y` parameter.
+
+
+We will revisit scatter plots soon, but first, let's talk about how we can organize and describe the data that we want to plot.

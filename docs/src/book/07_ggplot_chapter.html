@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -232,14 +232,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,7 +262,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -300,12 +306,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#from-qplot-to-ggplot-..." id="toc-from-qplot-to-ggplot-..." class="nav-link active" data-scroll-target="#from-qplot-to-ggplot-..."><span class="header-section-number">7.1</span> From <code>qplot()</code> to <code>ggplot() + ...</code></a></li>
+  <li><a href="#from-plot-to-ggplot-..." id="toc-from-plot-to-ggplot-..." class="nav-link active" data-scroll-target="#from-plot-to-ggplot-..."><span class="header-section-number">7.1</span> From <code>plot()</code> to <code>ggplot() + ...</code></a></li>
   <li><a href="#graphs-as-layers-and-transformations" id="toc-graphs-as-layers-and-transformations" class="nav-link" data-scroll-target="#graphs-as-layers-and-transformations"><span class="header-section-number">7.2</span> Graphs as layers and transformations</a></li>
   <li><a href="#aesthetic-mappings-and-other-parameters" id="toc-aesthetic-mappings-and-other-parameters" class="nav-link" data-scroll-target="#aesthetic-mappings-and-other-parameters"><span class="header-section-number">7.3</span> Aesthetic mappings and other parameters</a></li>
-  <li><a href="#scatter-plots-with-ggplot" id="toc-scatter-plots-with-ggplot" class="nav-link" data-scroll-target="#scatter-plots-with-ggplot"><span class="header-section-number">7.4</span> Scatter plots with <code>ggplot()</code></a></li>
-  <li><a href="#piping-to-ggplot" id="toc-piping-to-ggplot" class="nav-link" data-scroll-target="#piping-to-ggplot"><span class="header-section-number">7.5</span> Piping to <code>ggplot()</code></a></li>
-  <li><a href="#labeling-graphs" id="toc-labeling-graphs" class="nav-link" data-scroll-target="#labeling-graphs"><span class="header-section-number">7.6</span> Labeling graphs</a></li>
+  <li><a href="#sec-ggplot-scatter-plots" id="toc-sec-ggplot-scatter-plots" class="nav-link" data-scroll-target="#sec-ggplot-scatter-plots"><span class="header-section-number">7.4</span> Scatter plots with <code>ggplot()</code></a></li>
+  <li><a href="#color-and-fill" id="toc-color-and-fill" class="nav-link" data-scroll-target="#color-and-fill"><span class="header-section-number">7.5</span> Color and fill</a></li>
+  <li><a href="#piping-to-ggplot" id="toc-piping-to-ggplot" class="nav-link" data-scroll-target="#piping-to-ggplot"><span class="header-section-number">7.6</span> Piping to <code>ggplot()</code></a></li>
+  <li><a href="#labeling-graphs" id="toc-labeling-graphs" class="nav-link" data-scroll-target="#labeling-graphs"><span class="header-section-number">7.7</span> Labeling graphs</a></li>
   </ul>
 </nav>
     </div>
@@ -329,55 +336,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="from-qplot-to-ggplot-..." class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="from-qplot-to-ggplot-..."><span class="header-section-number">7.1</span> From <code>qplot()</code> to <code>ggplot() + ...</code></h2>
-<p>So far we have created graphs with the <code>qplot()</code> function from the <code>ggplot2</code> package.</p>
-<p>However <code>qplot()</code> is just a <strong>q</strong>uick plotting function that allows us to make simple graphs. To get access to all the visualization features of the <code>ggplot2</code> package, we will need to learn the proper way to create <code>ggplot</code> graphs.</p>
-<p>For example, instead of using <code>qplot()</code> to create a histogram:</p>
-<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-1_a20be6873a002adcf02fbea3e7160ff3">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> height, <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">data =</span> starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- --- -->
+<!-- execute: -->
+<!--   freeze: auto -->
+<!-- --- -->
+<section id="from-plot-to-ggplot-..." class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="from-plot-to-ggplot-..."><span class="header-section-number">7.1</span> From <code>plot()</code> to <code>ggplot() + ...</code></h2>
+<p>So far we have created graphs with base R<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> functions like <code>plot()</code> and <code>hist()</code>.</p>
+<p>However the graphs created via these functions are not very visually appealing. It also becomes difficult to create more complex graphs, and the ways to do so are not very intuitive.</p>
+<p>In this chapter we will learn how to use alternative graphing functions from the <code>ggplot2</code> package. This is a core part of the <code>tidyverse</code>, just like the <code>dplyr</code> and <code>tidyr</code> packages that we learned about for data wrangling.</p>
+<p>For example, instead of using <code>hist()</code> to create a histogram:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-1_a259cc2e21af7b4ada68481df7865049">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="at">x =</span> starwars<span class="sc">$</span>height, <span class="at">breaks =</span> <span class="dv">10</span>, <span class="at">data =</span> starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>…we will use an alternative pair of functions, <code>ggplot()</code> and <code>geom_histogram()</code>, like this:</p>
-<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-2_73b0cf0062175c56c35e44ff89b33181">
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-2_f85adac6ffad4bbc129daa446befacce">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">30</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">10</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>As you can see, the histograms are exactly the same. However, we’ve avoided this way of creating graphs up until now, because we’ve been trying to keep our code as simple as possible.</p>
+<p>As you can see, the histograms are very similar the same. However, we’ve avoided this way of creating graphs up until now, because we’ve been trying to keep our code as simple as possible.</p>
 <p>Now we need to make the trade of slightly more complicated code in exchange for much better graphs. So let’s jump in and see how and why this works.</p>
 </section>
 <section id="graphs-as-layers-and-transformations" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="graphs-as-layers-and-transformations"><span class="header-section-number">7.2</span> Graphs as layers and transformations</h2>
-<p>The <code>ggplot2</code> package gets its name because it s based on a concept called the <em>Grammar of Graphics</em> (hence <strong>gg</strong>plot…). This is a fascinating topic that we unfortunately don’t have the time to dive into, but the key idea is that <strong>all data visualizations can be described using a common set of terms and ideas</strong> (i.e.&nbsp;a “grammar”).</p>
+<p>The <code>ggplot2</code> package gets its name because it’s based on a concept called the <em>Grammar of Graphics</em> (hence <strong>gg</strong>plot…). This is a fascinating topic that we will learn more about later in this book, but the key idea is that <strong>all data visualizations can be described using a common set of terms and ideas</strong> (i.e.&nbsp;a “grammar”). The terms of this grammar correspond to the functions and their parameters in the <code>ggplot2</code> package.</p>
 <p>One of the most important parts of this grammar are the layers that we can add to a graph.</p>
-<p>For example, the <code>ggplot()</code> function by itself just creates a blank canvas:</p>
+<p>For example, the <code>ggplot()</code> function by itself just creates a blank canvas, i.e.&nbsp;the base layer of the graph:</p>
 <div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-3_07369143e51d76219cb582cb030e5aa3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>To actually get something interesting on this graph, we need to take the <strong>data</strong> and <strong>map</strong> it to some <strong>geometric</strong> shape.</p>
-<p>For example, if we wanted to map the <code>height</code> column of the <code>starwars</code> dataset to the geometric shape of a histograms bars, we could use this code:</p>
+<p>We can then add layers (created by other functions) by combining them with the <code>+</code> operator.</p>
+<p>To get some kind of graph layer we need to take the <strong>data</strong> and <strong>map</strong> it to a <strong>geometric</strong> shape.</p>
+<p>For example, if we wanted to map the <code>height</code> column of the <code>starwars</code> dataset to the geometric shape of a histogram’s bars, we could use this code:</p>
 <p><code>geom_histogram(mapping = aes(x = height))</code></p>
 <p>A few things to note:</p>
 <ul>
-<li>The <code>geom_histogram()</code> functions is an example of what we call a <em>geom function</em> (each of which specifies a different type of geometry).</li>
-<li>Geom functions have a parameter called <code>mapping</code> which, unsurprisingly, tells R how to convert a column of data into a pretty layer.</li>
+<li>The <code>geom_histogram()</code> function is an example of what we call a <em>geom function</em> (each geom function specifies a different type of geometric shape).</li>
+<li>Geom functions have a parameter called <code>mapping</code> which tells R how to convert a column of data into a layer.</li>
 <li>The argument that we pass to the <code>mapping</code> parameter is a function called <code>aes()</code> (this is short for “aesthetic”). Inside the <code>aes()</code> function we need to specify any parts of the histogram’s appearance that are determined by a column in the dataset.
 <ul>
 <li>In our example the x-axis of the histogram needs to show the <code>height</code> variable.</li>
 </ul></li>
 </ul>
-<p>We then add this layer to the canvas created by <code>ggplot()</code>. How do we add things together in R? With the addition operator <code>+</code> of course!</p>
+<p>We then add this layer to the canvas created by <code>ggplot()</code> with the addition operator, <code>+</code>.</p>
 <p>And so our final code looks like this:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -394,8 +407,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="aesthetic-mappings-and-other-parameters" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="aesthetic-mappings-and-other-parameters"><span class="header-section-number">7.3</span> Aesthetic mappings and other parameters</h2>
-<p>We refer to this combination of the <code>mapping</code> parameter and its <code>aes()</code> argument as an <em>aesthetic mapping</em>, which is a fancy way of saying how do figure out how to convert columns of the dataset into some visual representation.</p>
-<p>But not every part of a graph is determined by data in the dataset. For example, there is no column in the <code>starwars</code> dataset that tells us how many bins this histogram should have. Instead we need to specify that number ourself, with another piece of data (i.e.&nbsp;the number of bins).</p>
+<p>We refer to this combination of the <code>mapping</code> parameter and its <code>aes()</code> argument as an <em>aesthetic mapping</em>, which is a fancy way of saying how we convert columns of the dataset into some visual representation.</p>
+<p>But not every part of a graph is determined by data in the dataset. For example, there is no column in the <code>starwars</code> dataset that tells us how many bins this histogram should have. Instead we need to specify that number ourselves, with another piece of data (i.e.&nbsp;the number of bins).</p>
 <p>Since this number is not in the dataset, it is not an aesthetic mapping. Therefore we specify the number of bins as an argument of the <code>geom_histogram()</code> function, and not of the <code>aes()</code> function, like so:</p>
 <div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-5_19993f23379943aea4fa21dfb431cf3c">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
@@ -414,8 +427,8 @@ TODO:
 Illustrating position and identity
 -->
 </section>
-<section id="scatter-plots-with-ggplot" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="scatter-plots-with-ggplot"><span class="header-section-number">7.4</span> Scatter plots with <code>ggplot()</code></h2>
+<section id="sec-ggplot-scatter-plots" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec-ggplot-scatter-plots"><span class="header-section-number">7.4</span> Scatter plots with <code>ggplot()</code></h2>
 <p>Hopefully you are beginning to see that the <code>ggplot()</code> syntax uses many of the same parameters as <code>qplot()</code>, just in different places.</p>
 <p>We can create a scatter plot by switching to a geom function called <code>geom_point()</code> and passing an additional column to the <code>aes()</code> function to go on the <code>y</code> axis:</p>
 <div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-6_e10c6fbc79c8fae818fcaf63714749c4">
@@ -428,37 +441,178 @@ Illustrating position and identity
 </div>
 </div>
 </section>
-<section id="piping-to-ggplot" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="piping-to-ggplot"><span class="header-section-number">7.5</span> Piping to <code>ggplot()</code></h2>
-<p>One advantage of <code>ggplot()</code> over <code>qplot()</code> is that we can pipe a dataframe to <code>ggplot()</code> because the first parameter of ggplot() is the dataset to be used.</p>
-<p>So instead of explicity passing the <code>starwars</code> dataframe to the <code>data</code> parameter:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>…we could write this:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This might not seem like much, but it does mean that we can put the graphing functions at the end of a series of piped functions that transform and wrangle our dataset, for example:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>some_dataset <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(...) <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(...) <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_FUNCTION</span>(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="color-and-fill" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="color-and-fill"><span class="header-section-number">7.5</span> Color and fill</h2>
+<p>Sometimes we wish to highlight different categories of data in a graph. There are different ways that qwe could do this, but a common solution is to use color.</p>
+<p>For example, let’s say that we want to investigate the relationship between mass versus height again, but also look at how it varies between genders.</p>
+<p>The <code>starwars</code> dataframe conveniently contains a categorical <code>gender</code> column that tells us this information:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-7_89b51ce8b993abadad408b905e1d6d38">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass, height, gender) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  name            mass height gender   
+  &lt;chr&gt;          &lt;dbl&gt;  &lt;int&gt; &lt;chr&gt;    
+1 Luke Skywalker    77    172 masculine
+2 C-3PO             75    167 masculine
+3 R2-D2             32     96 masculine
+4 Darth Vader      136    202 masculine
+5 Leia Organa       49    150 feminine 
+6 Owen Lars        120    178 masculine</code></pre>
+</div>
+</div>
+<p>We can add an additional aesthetic mapping to our scatter plot from the previous section, which will map the <code>gender</code> column to the <em>color</em> aesthetic of the scatter point layer:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-8_90899d6a632fbb33f111d2a5a3aab675">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">color =</span> gender)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<!-- 
+TODO: get `flair` package working with Quarto and pdf output
+
+```tnr -->
+<!-- decorate(' -->
+<!-- ggplot(data = starwars) + -->
+<!--   geom_point( -->
+<!--     mapping = aes(x = height, y = mass, color = sex) -->
+<!--   ) -->
+<!-- ' -->
+<!-- ) %>%  -->
+<!--   flair("color = sex") -->
+<!-- ``` -->
+<p>Similarly we can also color histograms - however the <code>color</code> parameter colors the outside of shapes:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-9_97f5c2fae21e56e72a1ea9ce68da98d4">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">color =</span> gender))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph is hard to interpret. It would be easier if we could color inside the shapes - fortunately we can do this using the <code>fill</code> parameter instead of <code>color</code>:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-10_676734b558338155ba4100717d17ea01">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">fill =</span> gender))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Note that this still goes inside the <code>aes()</code> function, because we are still mapping the <code>gender</code> column, just now to the <em>fill</em> aesthetic.</p>
+<p>One other thing to note is that, by default, <code>ggplot2</code> will stack bars of different colors on top of each other. However, this makes it hard to compare the relative heights of the bars, in direct contravention of the graphing guidelines that we learned in <a href="05_visualization_chapter.html#sec-visualization-best-practices"><span>Section&nbsp;5.7</span></a>.</p>
+<p>Thus what we need to do is to change the position of the bars so that each bin’s bars overlap. We will also need to make them transparent so that we can see through to the bars behind. We can do this with the <code>position</code> and <code>alpha</code> parameters:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-11_322ff9878b2d35cef6f3c54ed9ee6ee1">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">fill =</span> gender),</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"identity"</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.4</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>A few things to note:</p>
+<ul>
+<li>We set <code>position = "identity"</code> to cause the bars to all start at the x-axis.</li>
+<li>We set <code>alpha = 0.4</code> to make the bars 40% transparent. You can set <code>alpha</code> anywhere from <code>1</code> (completely opaque) to <code>0</code> (completely transparent, i.e.&nbsp;invisible). Usually a value between 0.2-0.4 works well.</li>
+<li>Both <code>"identity"</code> and <code>0.4</code> are values, not columns of the dataframe, so we need to supply these two new parameters to the geom function instead of the <code>aes()</code> function (i.e.&nbsp;we are <em>not</em> creating any aesthetic mapping to the data in <code>starwars</code> with these settings).</li>
+</ul>
+<p>It is actually getting a little hard to interpret some of the overlapping bars in the plot above, because when too many colors overlap we get an indistinguishable grey mess. Coloring histograms woks best when we have only two (or maybe three) categories. More categories than that and we need to start considering whether a different type of graph might communicate the patterns in the data more clearly.</p>
 </section>
-<section id="labeling-graphs" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="labeling-graphs"><span class="header-section-number">7.6</span> Labeling graphs</h2>
+<section id="piping-to-ggplot" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="piping-to-ggplot"><span class="header-section-number">7.6</span> Piping to <code>ggplot()</code></h2>
+<p>One advantage of <code>ggplot()</code> over <code>plot()</code> is that we can pipe a dataframe to <code>ggplot()</code> because the first parameter of ggplot() is the dataset to be used.</p>
+<p>So instead of explicitly passing the <code>starwars</code> dataframe to the <code>data</code> parameter:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…we could write this:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This might not seem like much, but it does mean that we can put the graphing functions at the end of a series of piped functions that transform and wrangle our dataset, for example:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>some_dataset <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(...) <span class="sc">%&gt;%</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(...) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> <span class="fu">geom_FUNCTION</span>(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Note how we use pipes to connect a series of sequential data wrangling steps leading up to <code>ggplot()</code>, but then after <code>ggplot()</code> we have to switch to the <code>+</code> operator because we are then adding layers together. Don’t try to pipe the output of <code>ggplot()</code> on to a geom function because it won’t work (because we are trying to combine things in the graph, not work on the output of the previous function).</p>
+</section>
+<section id="labeling-graphs" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="labeling-graphs"><span class="header-section-number">7.7</span> Labeling graphs</h2>
 <p><em>TODO: This was moved from EDA and needs updating to be consistent with chapter</em></p>
 <p>It is good practice to label all the graphs we create. We can do this by adding the <code>labs()</code> function to a graph:</p>
-<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-7_5d0216b1fb53686a3a013654ab1c7a4a">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">"price"</span>, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Violin plot of price"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-12_ab36a72da76a398b7c94416b6c44b67a">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Mass vs. height of Star Wars characters"</span>, </span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"mass (kg)"</span>, </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"height (cm)"</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 28 rows containing missing values (`geom_point()`).</code></pre>
+</div>
 <div class="cell-output-display">
-<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notice how:</p>
 <ul>
 <li>the <code>labs()</code> function is a separate function that we add on to the graph as a separate layer with the <code>+</code> operator</li>
-<li>inside the <code>labs()</code> function, we can supply an argument to the <code>title</code> parameter to change the title, and the <code>y</code> (and <code>x</code>) arguments to change the labels on those axes.</li>
+<li>inside the <code>labs()</code> function, we can supply an argument to the <code>title</code> parameter to change the title, and the <code>y</code> and <code>x</code> arguments to change the labels on those axes.
+<ul>
+<li>A good title should succinctly describe what is being plotted on the graph.</li>
+<li>Axis labels should indicate what the variable is, and what units it is measured in.</li>
+</ul></li>
+</ul>
+<p>We can also update any legend label as well by providing the same parameter name that we used in the <code>aes()</code> function. For example, with <code>fill</code>:</p>
+<div class="cell" data-hash="07_ggplot_chapter_cache/html/unnamed-chunk-13_1c497aafa788296eaa0a276c00c06f1c">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">fill =</span> gender),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"identity"</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.4</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Histogram of heights of Star Wars characters"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"height (cm)"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Gender of character"</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="07_ggplot_chapter_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<ul>
+<li>Note that I have left the default <code>count</code> label on the y-axis of this histogram, since that is a perfectly adequate name and has no units.</li>
+<li>In the title I have explicitly called out that this is a histogram, since there are other types of graphs that also use bars and so we can make it clear to any viewer what is going on here. (There was no need to do anything similar in the previous scatter plot, since it was clearly a scatter plot an is unlikely to be confused with a different type of graph.)</li>
 </ul>
 <!-- Book version -->
 <p>TODO: book exercises</p>
@@ -470,6 +624,12 @@ Using the <code>labs()</code> function, add a title and y-axis label to the boxp
 <!-- End tutorial -->
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>I.e. functions that come as part of R, and don’t need to be imported from an extra package.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->

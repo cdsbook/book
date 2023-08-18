@@ -66,6 +66,8 @@
 
 # Output: Software
 
+* Package creation demo of a package containing a ggplot compatible heat map geom function
+
 <!-- Appendices -->
 
 # Appendix: Further Reading

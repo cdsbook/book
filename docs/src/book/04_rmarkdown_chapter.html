@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Computing and Data for Scientists - 4&nbsp; Literate Programming</title>
+<title>An Introduction to Computing and Data for Scientists - 4&nbsp; Literate Programming &amp; Reproducibility</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -73,7 +73,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/04_rmarkdown_chapter.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/04_rmarkdown_chapter.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,7 +134,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -198,14 +198,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
       </ul>
@@ -222,7 +228,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -262,14 +268,23 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link active" data-scroll-target="#the-scientific-method"><span class="header-section-number">4.1</span> The Scientific Method</a></li>
+  <li><a href="#reproducibility-and-replicability" id="toc-reproducibility-and-replicability" class="nav-link" data-scroll-target="#reproducibility-and-replicability"><span class="header-section-number">4.2</span> Reproducibility and replicability</a></li>
+  <li><a href="#how-reproducible-is-modern-science" id="toc-how-reproducible-is-modern-science" class="nav-link" data-scroll-target="#how-reproducible-is-modern-science"><span class="header-section-number">4.3</span> How reproducible is modern science?</a></li>
+  <li><a href="#what-we-can-do" id="toc-what-we-can-do" class="nav-link" data-scroll-target="#what-we-can-do"><span class="header-section-number">4.4</span> What we can do</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></h1>
 </div>
 
 
@@ -284,8 +299,43 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>RMarkdown and Quarto</p>
-<p>Reproducibility</p>
+<div class="cell" data-hash="04_rmarkdown_chapter_cache/html/setup_a1d832e9bce5a8ead1717504884d9a1c">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter is in an early draft form, and is incomplete.</p>
+</div>
+</div>
+</div>
+<section id="the-scientific-method" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">4.1</span> The Scientific Method</h2>
+<p>Why don’t we still believe that the sun is the chariot wheel of the ancient Greek god Apollo as he drives across the sky?</p>
+<p>Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?</p>
+<p>The answer, in case you haven’t guessed, is science. There are many different fields of science, and each field has different techniques and ways of conducting their investigations. However the unifying feature is that all scientists share a set of rules for how that game of science is played, which is called the scientific method.</p>
+<p>There is not actually a single universally agreed upon definition of what the scientific method actually is, but broadly speaking it follows these principles:</p>
+<ol type="1">
+<li><p>A scientific theory or hypothesis must make predictions about how the world behaves.</p></li>
+<li><p>We test these theories by doing experiments that have the ability to disprove them.</p></li>
+<li><p>We can only choose between theories based on the outcomes of these experiments.</p></li>
+</ol>
+<p>What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people’s behavior.</p>
+<p>In the 21st century, a unifying feature of all of these scientists is that they are probably using computers to analyze their data or run experiments. The scientific method tells us very little about how we should go about using computers, so let us consider how we might do so.</p>
+</section>
+<section id="reproducibility-and-replicability" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="reproducibility-and-replicability"><span class="header-section-number">4.2</span> Reproducibility and replicability</h2>
+</section>
+<section id="how-reproducible-is-modern-science" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="how-reproducible-is-modern-science"><span class="header-section-number">4.3</span> How reproducible is modern science?</h2>
+</section>
+<section id="what-we-can-do" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="what-we-can-do"><span class="header-section-number">4.4</span> What we can do</h2>
 <ul>
 <li>Open Science Foundation: https://osf.io/
 <ul>
@@ -298,6 +348,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
