@@ -1,8 +1,116 @@
-### Video introduction
-
 This video will introduce you to the concept of *models*, and in particular the *linear model* (which you may already be familiar with as a *line of best fit*).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/yeKA0m8M8Dc?rel=0" frameborder="0" allowfullscreen></iframe>
 
 Slides: [PDF](https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing)
+
+
+
+The real world is complicated. There are many moving pieces, all interacting with each other.
+
+As scientists, we want to understand these interactions. We want to be able to describe the real world as a theory.
+
+Unfortunately the real world is so complicated that we cannot possibly comprehend all of the interactions at once. Therefore our theoretical description of the world has to be a simplified version. We call these simplified theories "__*models*__".
+
+Often (as scientists) we would like our models to be mathematical.
+
+One common type of mathematical model is called the __*linear model*__. You have probably encountered this before, although possibly under a different name, such as __*linear regression*__ or a __*line of best fit*__.
+
+What a linear model means is that if we have two variables,^[multiple-regression] then we can simplify their relationship to a straight line:
+
+^[multiple-regression]: Or, as we will see later, more than two variables...
+
+```{r, echo=FALSE}
+#| echo: false
+scatter_plot <- sim_df %>%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  ylim(0,25) +
+  labs(
+    title = "These 10 points fall roughtly in a line..."
+  )
+lin_plot <- sim_df %>%
+  ggplot(aes(x,y)) +
+  geom_point() + 
+  geom_smooth(method="lm", se=FALSE) +
+  ylim(0,25) +
+  labs(
+    title = "...represented by a linear model."
+  )
+
+ggarrange(
+  scatter_plot,
+  lin_plot,
+  ncol = 2,
+  nrow = 1,
+  align = "h"
+  )
+```
+
+The line of this linear model is simpler that the table of data, because we can represent it with just two numbers: the slope and the intercept.
+
+In other words, we can model the relationship between the variable on the $y$ axis and the variable on the $x$ axis as a mathematical relationship:
+
+$$
+y = ax + b
+$$
+where $a$ is the slope of the line ($a$ increases as the slope gets steeper) and $b$ is the value at which the line intercepts the $y$-axis.
+
+We can represent any two dimensional straight line with just these two numbers $a$ and $b$. You could have millions of data points instead of, but the linear model representation of will still only need two numbers.
+
+We call this relationship *linear* because as $x$ goes up by 1, $y$ goes up by $a$. If $x$ goes up by 2, then $y$ goes up by $2a$. It doesn't matter how much we change $x$, $y$ will change by a constantly proportional amount (given by the slope). Put simply, a line through the data will be a straight line.
+
+Now, we will lose some information if we simplify our data down to a linear model. As we can see from graphs above, the points do not fall exactly on the line, but some distance from it. So there is clearly something else going on in the world that is affecting the y and x variables which we have not measured. We are often interested in quantifying how strong this *correlation* is.
+
+We can have a linear relationship even though the data is poorly correlated. I.e. the points can be spread out and far from the line, even though the relationship is still linear.
+
+Sometimes the easiest way to determine whether a relationship is linear is to ask the opposite question: "Is the relationship *non-linear*?" A non-linear relationship will have curves to it:
+
+```{r, echo=FALSE}
+#| echo: false
+
+set.seed(42)
+lin_corr <- sim_df %>%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) +
+  ylim(0,25) +
+  labs(
+    y = "Good correlation",
+    title = "Linear"
+  )
+lin_badcorr <- sim_df %>%
+  ggplot(aes(x,2*x + rnorm(10, 0, 5))) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) +
+  # ylim(0,25) +
+  labs(
+    y = "Poor correlation"
+  )
+nonlin_cor <- sim_df %>%
+  ggplot(aes(x,x^2 + rnorm(10, 0, 5))) +
+  geom_point() +
+  geom_smooth(se=FALSE, span = 2) +
+  # ylim(0,25) +
+  labs(
+    y = "",
+    title = "Non-linear"
+  )
+nonlin_badcor <- sim_df %>%
+  ggplot(aes(x, x^2 + rnorm(10, 0, 20))) +
+  geom_point() +
+  geom_smooth(se=FALSE, span = 2) +
+  # ylim(0,25) +
+  labs(
+    y = ""
+  )
+ggarrange(
+  lin_corr, nonlin_cor,
+  lin_badcorr, nonlin_badcor,
+  ncol = 2,
+  nrow = 2
+)
+```
+
+
 

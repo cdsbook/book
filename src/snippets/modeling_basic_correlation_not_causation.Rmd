@@ -4,20 +4,22 @@ A common saying when working with models is that "correlation does not imply cau
 
 When we create a linear model (e.g. a line of best fit), we have 2 variables:
 
-* $y$, the response variable
+* $y$, which we call the response variable, and
 * $x$, the explanatory variable
 
-We are implicitly saying that the values of $x$ *explain* the values of $y$, or alternatively that the $y$ variable *responds* to changes in $x$. This language implies that $x$ is directly causing $y$, and not the other way around.
+We are implicitly saying that the values of $x$ *explain* the values of $y$, or conversely that the $y$ variable *responds* to changes in $x$. This language implies that $x$ is directly causing $y$, and not the other way around.
 
 However...
 
-The linear model cannot actually tell us which variable is causing changes in the other (**causation**). Just because we decide to call one variable $y$ and the other $x$, does not mean that is the direction of effect in the real world.
+The linear model cannot actually tell us which variable is causing changes in the other (**causation**). Just because we decide to call one variable $y$ and the other $x$, does not mean that is necessarily the direction of effect in the real world.
 
-For example, taller people generally weigh more, but there is nothing stopping us from making height the response variable (y), even though most people would say that it makes no sense that your weight *causes* your height.
+For example, taller people generally weigh more, but there is nothing stopping us from making height the response variable (y), even though most people would say that it makes no sense that your weight *causes* your height. Regardless of whether we make height the $x$ or $y$ variable, the most we can say in our interpretation is that height and weight are correlated.
 
-In fact, none of the variables in your model could directly *cause* a change in the other. For example, there might be a third variable (that's not in your model) that actually causes the change in your model.
+Let me emphasize that again in more general terms: even if there seems to be a linear relationship between two variables, we cannot definitively say that one causes the change in the other - only that they are **correlated**.
 
-Therefore, even if there seems to be a straight line relationship between two variables, we cannot definitively say that once causes the change in the other - only that they are **correlated**.
+Even when we have a correlation, it's possible that none of the variables in your model are directly *causing* a change in the other. There might be other variables (that are not in our model) that actually cause the change in the modeled variables. To return to our height vs. weight example: both height and weight might be affected by diet, yet we have not included diet in our model. Imagine a world in which better^[calorie-caveat] diet is the only thing causing increases in both height and weight, and so making correlated - however (in this contrived example) one is not causing the changes in the other.
+
+^[calorie-caveat]: Or, at least, more calorific...
 
 <!--
 TODO:
