@@ -57,5 +57,7 @@ ToDo: Exercises
 -->
 
 <!-- TODO: 
-continuous & categorical: group_by then summarize (note that we cannot group_by a continuous variable...)
-categorical variables: counts (cross-tabulation?) and categorical correlation coefficients -> add mathematical details to appendix -->
+ - continuous & categorical: group_by then summarize (note that we cannot group_by a continuous variable...)
+- categorical variables: counts (cross-tabulation?) and categorical correlation coefficients -> add mathematical details to appendix 
+- possibly create a flow chart of options - i.e. what to do if you have X continuous variables and Y categorical?
+-->

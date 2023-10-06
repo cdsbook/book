@@ -1,9 +1,16 @@
-Let's create your first linear model in R, using a simulated dataset called `sim_df`.
+Let's create your first linear model in R, using a simulated[^define-simulated] dataset called `sim_df`.
 
-This is what the first few rows of the dataset look like:
+<!-- TODO: convert to a real dataset -->
+
+[^define-simulated]: A simulated dataset contains made-up values, usually generated randomly by a computer, rather than observations collected from real life.
+
+This is what the first few rows of the simulated dataset stored in the `sim_df` variable look like:
 
 ```{r}
-sim_df %>% head()
+#| echo: false
+sim_df %>% 
+  head() %>%
+  kableExtra::kable()
 ```
 
 As you can see, there are two variables, $x$ and $y$. Here's what they look like:
@@ -16,7 +23,7 @@ sim_df %>%
 
 This looks like a pretty good candidate for a linear model, so let's create one.
 
-We'll do that with the `lm` function. The general syntax of this function is:
+We'll do that with the `lm()` function. The general syntax of this function is:
 
 ```r
 lm(response ~ explanatory, data = _______)
@@ -28,31 +35,62 @@ lm(response ~ explanatory, data = _______)
 <div class="comment2">
 What's going on with `response ~ explanatory`? This is what's know as an R *formula*.
 
-The mathematical forumla for a linear model is $y=mx+c$. In R, we would write this as `y ~ x`: i.e. we replace $=$ with `~`, and we only include the actual variables. From this, R infers that we want to estimate the model's coefficients (the slope, $m$, and the intercept, $c$).
+The mathematical formula for a linear model is $y=ax+b$. In R, we would write this as `y ~ x`: i.e. we replace $=$ with `~`, and we only include the actual variables. From this, R infers that we want to estimate the model's coefficients (the slope, $a$, and the intercept, $b$).
 </div>
 
-<p class="comment3">
-Fill in the blanks in the lm function with the two variables, `y` and `x`, and the dataframe `sim_df`.
-</p>
 
-```{r hclgfwuhnrvyquge, exercise = TRUE, warning=FALSE, message=FALSE, eval=is_tutorial}
+<!-- Book version -->
+
+```{r, eval=is_webbook, results='asis'}
+#| echo: false
+q_slope <- fitb("a")
+cat(
+  "<p>Exercise: In the linear model formula $y = ax + b$,</p>",
+  "* The slope is represented by", q_slope
+)
+```
+<!--
+TODO: add book exercises
+```{r, eval=is_book, echo=FALSE, results = 'asis'}
+cat('
+:::{.exercise}
+Exercises TBD
+:::
+')
+```
+-->
+
+<!-- End book -->
+
+
+<!-- Tutorial version -->
+
+
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
+cat('<p class="comment3">
+Fill in the blanks in the `lm()` function with the two variables, `y` and `x`, from our simulated dataset as well as the name of the dataframe, `sim_df`.
+</p>')
+```
+
+```{r hclgfwuhnrvyquge, exercise = TRUE, warning=FALSE, message=FALSE, eval=is_tutorial, echo=FALSE}
 sim_model <- lm(_____ ~ _______, data = _____)
 ```
 
-```{r hclgfwuhnrvyquge-hint-1, eval=is_tutorial}
+```{r hclgfwuhnrvyquge-hint-1, eval=is_tutorial, echo=FALSE}
 # hint text
 "Make sure to get the variables in the right order!"
 ```
 
-```{r hclgfwuhnrvyquge-solution, eval=is_tutorial}
+```{r hclgfwuhnrvyquge-solution, eval=is_tutorial, echo=FALSE}
 sim_model <- lm(y ~ x, data = sim_df)
 ```
 
-```{r hclgfwuhnrvyquge-check, warning=FALSE, message=FALSE, eval=is_tutorial}
+```{r hclgfwuhnrvyquge-check, warning=FALSE, message=FALSE, eval=is_tutorial, echo=FALSE}
 grade_code()
 ```
 
+<!-- End tutorial -->
 
 <div class="comment3">
-**Note**: Unfortunately the `lm` function is a part of the core R programming language that predates the `tidyverse` packages. Unlike the tidyverse functions, the first argument of `lm` is the formula, not the dataframe. Therefore, you cannot pipe a dataframe to `lm`, because pipe inserts the dataframe into the first argument position (which will cause an error).
+**Note**: Unfortunately the `lm()` function is a part of the core R programming language that predates the `tidyverse` packages. Unlike the tidyverse functions, the first argument of `lm()` is the formula, not the data frame. Therefore, you cannot pipe a data frame to `lm()`, because pipe inserts the data frame into the first argument position (which will cause an error).
 </div>

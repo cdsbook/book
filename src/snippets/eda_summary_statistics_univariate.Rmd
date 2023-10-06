@@ -32,15 +32,17 @@ Also: use of `na.rm = TRUE`
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: book exercises -->
 
 <!-- End book -->
 
 <!-- Tutorial version -->
 
-<p class="comment3">
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Calculate summary statistics the 6 summary statistics listed above for the continuous variable `carat` from the `diamonds` dataframe.
-<p>
+<p>')
+```
 
 ```{r rsrzqnjqelsdcbxe, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 # Fill in the blanks:
@@ -79,15 +81,17 @@ In our original question, we were interested in two variables: size (i.e. `carat
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: book exercises -->
 
 <!-- End book -->
 
 <!-- Tutorial version -->
 
-<p class="comment3">
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Repeat your summary statistics calculation for the continuous variable `price`.
-<p>
+<p>')
+```
 
 ```{r cybpzfzntosxuqtr, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 # One big blank to fill in this time!
@@ -123,7 +127,7 @@ gradethis::grade_code()
 
 <!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
 
-If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories. To do this we will first `group_by()` the categorical variable in question:
+If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories. To do this we will first use the `group_by()` to create groups of the same variable that we want to summarize:
 
 ```r
 dataframe %>%
@@ -152,15 +156,17 @@ TODO: Interpretation
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: book exercises -->
 
 <!-- End book -->
 
 <!-- Tutorial version -->
 
-<p class="comment3">
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Calculate summary statistics for the categorical `cut` column of the `diamonds` dataframe.
-</p>
+</p>')
+```
 
 ```{r lwsyhxxvndkapsgg, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 # Replace the blanks, following the template above

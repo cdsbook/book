@@ -13,6 +13,8 @@ How do we interpret a violin plot? Like a histogram, the height (in the directio
 To the similarities between a histogram and violin plot clearer, we can overlay our violin plot and our histogram of `depth`:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#| echo: false
+#| warning: false
 diamonds %>%
   ggplot(mapping = aes(x = depth)) +
   geom_histogram(aes(y = after_stat(density))) +
@@ -30,6 +32,8 @@ One nice thing about the violin plot is that it shows us the long thin tails of 
 We can do a similar comparison of the violin plot with a box plot:
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+#| echo: false
+#| warning: false
 diamonds %>%
   ggplot(mapping = aes(x = depth)) +
   geom_boxplot() +

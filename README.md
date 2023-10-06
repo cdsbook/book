@@ -77,3 +77,9 @@ More: https://en.wikibooks.org/wiki/LaTeX/Indexing
 
 Only in html outputs, and doesn't currently work with Quarto: https://r-for-educators.github.io/flair/index.html
 
+### Online Book exercises
+
+`webexercises` package: https://psyteachr.github.io/webexercises/
+
+Conditional execution by output type: https://community.rstudio.com/t/set-options-conditional-on-output-formats-in-quarto/168989/2
+

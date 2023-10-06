@@ -1,16 +1,19 @@
----
-execute:
-  freeze: auto
----
-
 # Modeling {#sec-modeling-chapter}
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
-library(ggpubr)
-library(modelr)
-library(broom)
+suppressPackageStartupMessages(library(ggpubr))
+suppressPackageStartupMessages(library(modelr))
+suppressPackageStartupMessages(library(broom))
+suppressPackageStartupMessages(library(plotly))
+suppressPackageStartupMessages(library(webexercises))
+
+add_to_quarto(
+  quarto_dir = ".",
+  include_dir = "docs/site_libs",
+  output_format = c("html")
+)
 
 set.seed(42)
 x <- 1:10 + rnorm(10, 0, 0.5)
@@ -40,17 +43,27 @@ sim_df <- tibble(x, y)
 
 ### Let's create a linear model
 
-{{< include ../../src/snippets/modeling_basic_lm_usage.Rmd >}}
-
-
-## Fitting models
-
 {{< include ../../src/snippets/modeling_basic_fitting_video.Rmd >}}
+
+{{< include ../../src/snippets/modeling_basic_lm_usage.Rmd >}}
 
 
 ### Your model's coefficients
 
 {{< include ../../src/snippets/modeling_basic_coefficients.Rmd >}}
+
+<!-- 
+TODO: use coef() function to get model coefficients, and then inline code if you want to talk about them in the text as opposed to manually writing in the number - this helps to avoid typos and errors. 
+-->
+
+
+### More than one explanatory variable
+
+{{< include ../../src/snippets/modeling_basic_multiple_explanatory_variables.Rmd >}}
+
+{{< include ../../src/snippets/modeling_basic_lm_multiple_regression.Rmd >}}
+
+{{< include ../../src/snippets/modeling_basic_diamonds_multiple_example.Rmd >}}
 
 
 ### $R^2$: how good is your model?
@@ -63,7 +76,8 @@ sim_df <- tibble(x, y)
 {{< include ../../src/snippets/modeling_basic_rsquared_goodness.Rmd >}}
 
 
-## Model assumptions
+## Testing our assumptions
+
 
 ### Assumptions of the linear model
 
@@ -74,21 +88,15 @@ sim_df <- tibble(x, y)
 
 {{< include ../../src/snippets/modeling_basic_assumptions_linearity.Rmd >}}
 
-<!-- TODO: visualizing models and trend lines in general - always show the underlying data points to avoid misleading
-
-TODO: use coef() function to get model coefficients.
--->
-
-
-### Nearly normal residuals
-
-{{< include ../../src/snippets/modeling_basic_assumptions_normal_residuals.Rmd >}}
-
 
 ### Constant variability of residuals
 
 {{< include ../../src/snippets/modeling_basic_assumptions_constant_variability.Rmd >}}
 
+
+### Nearly normal residuals
+
+{{< include ../../src/snippets/modeling_basic_assumptions_normal_residuals.Rmd >}}
 
 
 ### Independent observations

@@ -2,7 +2,7 @@ With graphs, we want to visualize the distribution of a variable.
 
 One good graph for visualizing the distributions of one continuous variable is a histogram.
 
-We have already learned how to create `ggplot` histograms using the `geom_histogram()` layer. For example, this code would create a histogram of the `price` column from the `diamonds` dataframe:
+We have already learned how to create `ggplot` histograms using the `geom_histogram()` layer (in @sec-ggplot-histogram-layer). For example, this code would create a histogram of the `price` column from the `diamonds` dataframe:
 
 ```{r, eval=FALSE}
 ggplot(data = diamonds) +
@@ -13,7 +13,9 @@ ggplot(data = diamonds) +
 
 Both of these graphs show the same distribution, just in different ways:
 
-```{r, include=FALSE}
+```{r, echo=FALSE, warning=FALSE}
+#| echo: false
+#| warning: false
 h <- ggplot(data = diamonds) +
   geom_histogram(mapping = aes(x = depth)) +
   xlim(40,80) +
@@ -35,15 +37,17 @@ Comparison of the two.
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: book exercises -->
 
 <!-- End book -->
 
 <!-- Tutorial version -->
 
-<p class="comment3">
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Create a histogram of the `carat` variable.
-</p>
+</p>')
+```
 
 ```{r fahlctbqxqfcqwpn, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 diamonds %>%
@@ -75,15 +79,17 @@ One thing you might note is that the distribution is not very smooth. To make it
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: book exercises -->
 
 <!-- End book -->
 
 <!-- Tutorial version -->
 
-<p class="comment3">
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Create another histogram of the `carat` variable, but this time set the `binwidth` parameter to 0.01
-</p>
+</p>')
+```
 
 ```{r lqdlcrkzyiczdqtn, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 diamonds %>%

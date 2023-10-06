@@ -8,7 +8,7 @@ Slides: [PDF](https://drive.google.com/file/d/155Z3Zs3AUjg6We5IotAexY_bdpFGDDvA)
 
 <!-- Book version -->
 
-```{r, eval=is_book, echo=F, results = 'asis'}
+```{r, eval=is_book, echo=FALSE, results = 'asis'}
 cat('
 :::{.exercise}
 Exercise TBM
@@ -20,9 +20,9 @@ Exercise TBM
 
 <!-- Tutorial version -->
 
-```{r, eval=is_tutorial, echo=F, results = 'asis', eval=is_tutorial}
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
 cat('<p class="comment3">
-Using `mutate`, create a new column called `end_year` that holds the year a president left office. (This will simply be the year from the `end` column, which you can get with the `year(...)` function as in the video.)
+Using `mutate()`, create a new column called `end_year` that holds the year a president left office. (This will simply be the year from the `end` column, which you can get with the `year(...)` function as in the video.)
 </p>')
 ```
 

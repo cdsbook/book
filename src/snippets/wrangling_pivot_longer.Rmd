@@ -36,7 +36,7 @@ The data in both dataframes is the same, but we have changed the *shape* of the 
 
 <!-- Book version -->
 
-```{r, eval=is_book, echo=F, results = 'asis'}
+```{r, eval=is_book, echo=FALSE, results = 'asis'}
 cat('
 :::{.exercise}
 Exercise TBM
@@ -48,7 +48,7 @@ Exercise TBM
 
 <!-- Tutorial version -->
 
-```{r, eval=is_tutorial, echo=F, results = 'asis'}
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis'}
 cat('<p class="comment3">
 Fill in the 4 blanks to achieve the reshaping operation described above.
 </p>')

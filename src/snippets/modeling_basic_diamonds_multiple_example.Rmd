@@ -3,6 +3,7 @@
 <!-- 
 TODO
 - switch to a smaller dataset that does not take so long to generate graphs
+  - later note: does this make sense now that has been readded back into the initial modeling chapter? Ideally this chapter would share a unified dataset.
 -->
 
 Let's create a linear model from the `diamonds` dataset.
@@ -12,25 +13,32 @@ The `diamonds` dataset is included as part of the `ggplot2` package and contains
 * the `price` variable will be our response variable (i.e. y)
 * the `carat` and `depth` variables will be our explanatory variables
 
-<p class="comment3">
-Fill in the blanks to create this linear model.
-</p>
+<!-- Book version -->
 
-```{r kovzhddvrmedbxrc, exercise = TRUE, eval=is_tutorial}
+<!-- TODO: Add exercises -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
+cat('<p class="comment3">
+Fill in the blanks to create this linear model.
+</p>')
+```
+
+```{r kovzhddvrmedbxrc, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 diamonds_model <- lm(_____ ~ _______ + _______, data = _______)
 ```
 
-```{r kovzhddvrmedbxrc-solution, eval=is_tutorial}
+```{r kovzhddvrmedbxrc-solution, eval=is_tutorial, echo=FALSE}
 diamonds_model <- lm(price ~ carat + depth, data = diamonds)
 ```
 
-```{r kovzhddvrmedbxrc-check, eval=is_tutorial}
+```{r kovzhddvrmedbxrc-check, eval=is_tutorial, echo=FALSE}
 # check code
 gradethis::grade_code()
 ```
 
-<!--
-TODO
-- section on categorical explanatory variables?
-- section on confounding (builds on previous tutorial's correlation vs causation)
--->
+
+<!-- End tutorial -->

@@ -6,20 +6,22 @@ $y = m \times x + c$
 
 which we created using the `lm` function.
 
-However, we can technically have as many explanatory variables in our model as we like! (But we can only ever have a single response variable, $y$) For example, this model has *two explanatory variables*, called $x_1$ and $x_2$ to differentiate them:
+However, we can technically have as many explanatory variables in our model as we like! (But we can only ever have a single response variable, $y$) For example, this model has *two explanatory variables*, called $x_1$ and $x_2$ (we use the subscripts 1 and 2 to tell them apart):
 
 $y = m_1 \times x_1 + m_2 \times x_2 + c$
 
 Note:
 
-* each explanatory variable gets its own coefficient ($m_1$ and $m_2$)
-* there is still just a single intercept, $c$
+* Each explanatory variable gets its own coefficient ($m_1$ and $m_2$) - note how the number mathces the number of the explanatory variable. If we added another explanatory variable, we would call it $x_3$ and it would have a coefficient $m_3$, and so on. (In theory, there is no limit on the number of explanatory variables we can include in a single linear model.)
+* There is still just a single intercept, $c$. It doesn't matter how many explanatory variables we add, we can only have one intercept (because we will only have one y-axis, which the model will only cross at one place).
+
+
 
 ### But what does that look like?
 
 We can pretty easily plot $y$ vs a single explanatory variable $x$. In this case, a linear model is just a best-fit line through the data:
 
-```{r}
+```{r, echo=FALSE, warning=FALSE}
 set.seed(42)
 x <- 1:10 + rnorm(10, 0, 0.5)
 y <- 2*x + rnorm(10, 0, 1)
@@ -32,7 +34,9 @@ sim_df %>%
 
 But what does a linear model look like in higher dimensions?
 
-```{r, warning=FALSE, eval=is_tutorial}
+```{r, warning=FALSE, echo=FALSE}
+#| echo: false
+#| warning: false
 # Code adapted from https://chart-studio.plotly.com/~diego898/122/_3d-plane-of-best-fit-through-generated-dummy-data/#code
 trace1 <- list(
   uid = "5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b", 
@@ -81,8 +85,8 @@ p <- layout(p, scene=layout$scene, title=layout$title, margin=layout$margin)
 p
 ```
 
-As you can see, in three dimensions we have a *plane* of best fit rather than a line (note: you should be able to zoom and rotate the 3D graph).
+As you can see, in three dimensions we have a *plane* of best fit rather than a line (note: you should be able to click-and-drag to rotate the 3D graph).
 
-In fact, we can have more than 2 explanatory variables. Although we can't realistically visualize 4 or more dimensions, you can think of a high dimensional linear model as a high dimensional plane: a *hyperplane*.
+But what about if we have 3 explanatory variables? Then our model would exist in 4-D space! I don't know if you've ever tried to imagine what things look like in four dimensions, but it's kind of impossible. And, of course, the more explanatory variables we add, the more dimensions this "space" has. However, it turns out that in this high dimensional "hyperspace", the linear model is still the equivalent of a flat surface which we would call a "hyperplane".
 
-However, as we shall see, our inability to plot high dimensional linear models makes it impossible to assess the linear model's assumptions by plotting the original data. Instead we will create alternative plots that reduce each assumption down to a 2D graph.
+The fact that we can't visualize these high dimensional spaces (even the 3-D graph above is hard to understand) means that we need some way of plotting them in just 2 dimensions. We want to plot our model because its the easiest way of telling whether the model is an appropriate summary of the data. For example, we don't want to plot a linear model if there is a non-linear relationship (i.e. if the data has a curved pattern).

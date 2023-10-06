@@ -16,18 +16,20 @@ Often (as scientists) we would like our models to be mathematical.
 
 One common type of mathematical model is called the __*linear model*__. You have probably encountered this before, although possibly under a different name, such as __*linear regression*__ or a __*line of best fit*__.
 
-What a linear model means is that if we have two variables,^[multiple-regression] then we can simplify their relationship to a straight line:
+What a linear model means is that if we have two variables,[^multiple-regression] then we can simplify their relationship to a straight line:
 
-^[multiple-regression]: Or, as we will see later, more than two variables...
+[^multiple-regression]: Or, as we will see later, more than two variables...
 
 ```{r, echo=FALSE}
 #| echo: false
+#| message: false
+#| warning: false
 scatter_plot <- sim_df %>%
   ggplot(aes(x,y)) +
   geom_point() +
   ylim(0,25) +
   labs(
-    title = "These 10 points fall roughtly in a line..."
+    title = "These 10 points fall roughly in a line"
   )
 lin_plot <- sim_df %>%
   ggplot(aes(x,y)) +
@@ -58,16 +60,18 @@ where $a$ is the slope of the line ($a$ increases as the slope gets steeper) and
 
 We can represent any two dimensional straight line with just these two numbers $a$ and $b$. You could have millions of data points instead of, but the linear model representation of will still only need two numbers.
 
-We call this relationship *linear* because as $x$ goes up by 1, $y$ goes up by $a$. If $x$ goes up by 2, then $y$ goes up by $2a$. It doesn't matter how much we change $x$, $y$ will change by a constantly proportional amount (given by the slope). Put simply, a line through the data will be a straight line.
+We call this relationship *linear* because as $x$ goes up by 1, $y$ goes up by $a$. If $x$ goes up by 2, then $y$ goes up by $2a$. It doesn't matter how much we change $x$, $y$ will change by a constantly proportional amount (i.e. $a$). Put simply, a line through the data will be a straight line.
 
 Now, we will lose some information if we simplify our data down to a linear model. As we can see from graphs above, the points do not fall exactly on the line, but some distance from it. So there is clearly something else going on in the world that is affecting the y and x variables which we have not measured. We are often interested in quantifying how strong this *correlation* is.
 
-We can have a linear relationship even though the data is poorly correlated. I.e. the points can be spread out and far from the line, even though the relationship is still linear.
+There can be a linear relationship even if the data is poorly correlated. I.e. the points can be spread out and far from the line, even though the relationship is still linear.
 
 Sometimes the easiest way to determine whether a relationship is linear is to ask the opposite question: "Is the relationship *non-linear*?" A non-linear relationship will have curves to it:
 
 ```{r, echo=FALSE}
 #| echo: false
+#| message: false
+#| warning: false
 
 set.seed(42)
 lin_corr <- sim_df %>%
@@ -80,7 +84,10 @@ lin_corr <- sim_df %>%
     title = "Linear"
   )
 lin_badcorr <- sim_df %>%
-  ggplot(aes(x,2*x + rnorm(10, 0, 5))) +
+  mutate(
+    temp_y = 2*x + rnorm(10, 0, 5)
+  ) %>%
+  ggplot(aes(x,temp_y)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE) +
   # ylim(0,25) +
@@ -112,5 +119,19 @@ ggarrange(
 )
 ```
 
+#### Some linear model terminology
 
+<!--
+TODO: 
+- add terminology on describing correlations
+- mention the word "residual" here?
+-->
 
+When we create a simple linear model (e.g. a line of best fit) like the ones above, we have 2 variables:
+
+* The variable on the $y$-axis, which we call the **response variable**.
+* The $x-axis$ variable, the explanatory variable
+
+These names ("response" and "explanatory") seem to imply that the values of $x$ *explain* the values of $y$, or conversely that the $y$ variable *responds* to changes in $x$. In other words, we seem to be saying that a change in $x$ is directly causing the change in $y$, and not the other way around.
+
+However...

@@ -1,96 +1,41 @@
 project:
   type: book
-  # output-dir: _book
   preview:
     browser: false
-
 book:
-  title: "An Introduction to Computing and Data for Scientists"
-  subtitle: "With R"
-  author: "Dominic White"
+  title: An Introduction to Computing and Data for Scientists
+  subtitle: With R
+  author: Dominic White
   date: today
   chapters:
-    - index.qmd
-    - src/book/01_intro.qmd
-    - part: "Basic Topics"
-      chapters:
-      - src/book/02_setup.qmd
-      - src/book/03_r_programming_chapter.qmd
-      - src/book/04_rmarkdown_chapter.qmd
-      - src/book/05_visualization_chapter.qmd
-      - src/book/06_wrangling_chapter.qmd
-      - src/book/07_ggplot_chapter.qmd
-      - src/book/08_eda_chapter.qmd
-      - src/book/09_modeling_chapter.qmd
-      - src/book/10_inference_chapter.qmd
-    - part: "Advanced Topics"
-      chapters:
-      - src/book/11_more_r_chapter.qmd
-      # 12 Computing and Computers
-      # 13 More Data Wrangling
-      - src/book/14_reproducibility_chapter.qmd
-      - src/book/15_loading_data_chapter.qmd
-      # 16 More Graphs
-      - src/book/17_inference_advanced_chapter.qmd
-      - src/book/18_modeling_advanced_chapter.qmd
-      # 19 Causality
-      # 20 Simulation
-      # - src/book/21_prediction_chapter.qmd
-      # 22 Concurrent Programming
-      # 23 Interfacing with C++
-    - part: "Scientific Data"
-      chapters:
-      # 24 Image Data
-      # 25 Text Data
-      # 26 Time Series
-      # 27 Signal Processing
-      # 28 Online Data
-      # 29 Geospatial Data
-      # 30 Bioinformatic Data
-      # 31 Network Data
-      - src/book/32_databases_chapter.qmd
-      # 33 Big Data
-    # - part: "Outputs"
-      # chapters:
-      # 34 Output: Papers
-      # 35 Output: Webpages
-      # 36 Output: Dashboards
-      # 37 Output: Apps
-      # 38 Output: Software
-    - src/book/references.qmd
-    # - src/book/end_index.qmd
+  - index.qmd
+  - src/book/01_intro.qmd
+  - part: Basic Topics
+    chapters:
+    - src/book/02_setup.qmd
+    - src/book/03_r_programming_chapter.qmd
+    - src/book/04_rmarkdown_chapter.qmd
+    - src/book/05_visualization_chapter.qmd
+    - src/book/06_wrangling_chapter.qmd
+    - src/book/07_ggplot_chapter.qmd
+    - src/book/08_eda_chapter.qmd
+    - src/book/09_modeling_chapter.qmd
+    - src/book/10_inference_chapter.qmd
+  - part: Advanced Topics
+    chapters:
+    - src/book/11_more_r_chapter.qmd
+    - src/book/14_reproducibility_chapter.qmd
+    - src/book/15_loading_data_chapter.qmd
+    - src/book/17_inference_advanced_chapter.qmd
+    - src/book/18_modeling_advanced_chapter.qmd
+  - part: Scientific Data
+    chapters: 
+    - src/book/32_databases_chapter.qmd
+  - src/book/references.qmd
   appendices:
   - src/book/A_faqs_appendix.qmd
   - src/book/B_additional_setup_appendix.qmd
-    # - appendix_further_reading.qmd
-    # - appendix_mathematical_detals.qmd
-    # - appendix_IDEs.qmd
-    # - appendix_git_github.qmd
-
 bibliography: references.bib
-
-# knitr:
-#   opts_chunk:
-#     attr-output: "style='color: red;'""
-#     class-output: "chunkoutput"
-
-# format:
-#   pdf:
-#     documentclass: scrreprt
-#     # reference-location: margin
-#     # citation-location: margin
-#     # include-before-body:
-#     #   - text: |
-#     #     
-#     # geometry:
-#     #   - top=2in
-#     #   - left=2in
-#   html:
-#     theme: cosmo
-#     output_dir: docs
-#   # epub:
-#   #   cover-image: cover.png
-
 profile:
   group: 
     - [book, website]

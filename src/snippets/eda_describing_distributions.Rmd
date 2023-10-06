@@ -1,6 +1,8 @@
 We have seen three different plots that can visualize the distribution of a single continuous variable. Here's a comparison:
 
-```{r, include=FALSE}
+```{r, echo=FALSE, warning=FALSE}
+#| echo: false
+#| warning: false
 h <- ggplot(data = diamonds) +
   geom_histogram(mapping = aes(x = depth)) +
   xlim(40,80) +
@@ -20,7 +22,9 @@ What conclusions can we draw from these graphs? First, we can describe the cente
 
 Here is how different distribution shapes will look in the three types of plots:
 
-```{r}
+```{r, echo=FALSE, warning=FALSE}
+#| echo: false
+#| warning: false
 set.seed(42)
 n <- 1000
 df <- tibble(
@@ -89,8 +93,6 @@ ggarrange(
   ncol = 4,
   nrow = 3,
   align = "v"
-  # labels=c("a)", "b)", "c)"), 
-  # heights = c(2,2,2)
   )
 ```
 

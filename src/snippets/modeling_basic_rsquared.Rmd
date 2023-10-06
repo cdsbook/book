@@ -47,7 +47,7 @@ sim_model %>%
 gradethis::grade_code()
 ```
 
-You'll note that `glance` reports a whole bunch of statistics. We only care about the first column, `r.squared`, and can ignore the rest.
+You'll note that `glance()` reports a whole bunch of statistics. We only care about the first column, `r.squared`, and can ignore the rest.
 
 ```{r rsquared_quiz, eval=is_tutorial}
 question(

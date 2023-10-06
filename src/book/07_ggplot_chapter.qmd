@@ -17,7 +17,7 @@ suppressPackageStartupMessages(library(tidyverse))
 {{< include ../../src/snippets/ggplot_introduction.Rmd >}}
 
 
-## Graphs as layers and transformations
+## Graphs as layers and transformations {#sec-ggplot-histogram-layer}
 
 {{< include ../../src/snippets/ggplot_layers.Rmd >}}
 

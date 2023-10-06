@@ -1,6 +1,12 @@
-For a simple regression with one explanatory variable, we can see whether there is a linear relationship by plotting a scatter plot with the model line. For example, compare these two plots:
+### The assumption of linearity
 
-```{r}
+By far the most important important assumption that we make when we fit a linear model to some data is that there is actually a linear relationship between the response and explanatory variables!
+
+If we have a simple linear model with just one explanatory variable, then we easily see whether the relationship is linear or non-linear (i.e. curved):
+
+```{r, echo=FALSE, warning=FALSE}
+#| echo: false
+#| warning: false
 set.seed(42)
 x1 <- 1:20 + rnorm(20, 0, 0.5) 
 x2 <- 1:20 + rnorm(20, 0, 0.5)
@@ -14,10 +20,88 @@ tibble(x, y, series) %>%
   facet_wrap(~ series)
 ```
 
-In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious *non-linear* trend, and that data violates this assumption of the linear model.
+In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious curved (*non-linear*) trend, and so that data violates this assumption of the linear model.
 
 <!--
 TODO:
 - Add a quiz/code question here asking students to interpret their own graph
 - Add quiz questions of other graphs that are harder to interpret
 -->
+
+When we have a linear model with more explanatory variables, then we cannot plot the original data to see whether there is a curve. Fortunately, there is a 2-D graph we can create for any linear model, 
+
+By definition, a linear model's predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e. true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables. <!-- TODO: this needs explaining better, ideally also with a video -->
+
+In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a *scatter plot* of the observed response variable vs. the predicted response variable.
+
+<!--
+TODO
+- need to explain the above two paragraphs better, ideally with pictures and also a video.
+-->
+
+We call this an *observed vs predicted* plot (with observed on the *y*-axis, predicted on the *x*-axis). Because these values are essentially the same number (or would be if the model went through every data point exactly), we should expect these variables to fall on a line with a slope of 1 and an intercept of 0. We will add such a reference line to our plot for comparison.
+
+Before we can do so, we need to calculate the predicted values. We can easily create a column of predicted values using the `augment()` function from the `broom` package, which adds a column called `.fitted` to a dataframe using a model (such as the `diamonds_model` that you created earlier with the `lm` function):
+
+```{r, echo=FALSE}
+diamonds_model <- lm(price ~ carat + depth, data = diamonds)
+```
+
+```{r, echo = TRUE}
+diamonds_plus_preds <- augment(diamonds_model, diamonds)
+```
+
+(Note that the `augment()` function also adds a column called `.resid` which contains the residuals.)
+
+<!-- 
+TODO: have some examples here of models that do and don't meet this assumption, especially with outliers, randomly patchy data (like the blood pressure dataset), and tight vs. loosely correlated data) 
+
+Also important to show the code for how to create this graph.
+-->
+
+<!-- Book version -->
+
+<!-- TODO: Add exercises -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
+cat('<div class="comment3">
+Using the new `diamonds_plus_preds` data frame, fill in the *3* blanks to create an *observed vs predicted* plot by:
+
+* plotting the true (observed) response variable, `price`, on the y axis, and the model\'s predictions, `.fitted`, on the x axis
+* adding a reference line using the `geom_abline` function with a slope of 1 and an intercept of 0.
+</div>')
+```
+
+```{r add_diamond_predictions, eval=is_tutorial, echo=FALSE}
+diamonds_model <- lm(price ~ carat + depth, data = diamonds)
+diamonds_plus_preds <- augment(diamonds_model, diamonds)
+```
+
+```{r xwquzrffbtcvubwf, exercise = TRUE, exercise.setup = "add_diamond_predictions", eval=is_tutorial, echo=FALSE}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = _____, y = _____)) +
+  geom_abline(slope = 1, intercept = ___, color = "red")
+```
+
+```{r xwquzrffbtcvubwf-solution, eval=is_tutorial, echo=FALSE}
+diamonds_plus_preds %>%
+  ggplot() +
+  geom_point(mapping = aes(x = .fitted, y = price)) +
+  geom_abline(slope = 1, intercept = 0, color = "red")
+```
+
+```{r xwquzrffbtcvubwf-check, eval=is_tutorial, echo=FALSE}
+# check code
+gradethis::grade_code()
+```
+
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
+cat('We can see from this plot that while there is definitely a relationship, it is slightly non-linear. This is a violation of the linearity assumption.')
+```
+
+<!-- End tutorial -->

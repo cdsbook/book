@@ -11,3 +11,12 @@ The linear model makes these assumptions:
 4. **Independent observations**: Each observation (i.e. each $(x,y)$ point) was generated independently from the others.
 
 These might seem a little complicated, but they all make some intuitive sense when you think about what they mean, so let's go through them one-by-one.
+
+<!-- 
+TODO: 
+- were residuals covered properly earlier in the book?
+- was a normal distribution covered before?
+- explain pred and resid if not already done
+- show use of augment() function to add pred and resid columns.
+-->
+

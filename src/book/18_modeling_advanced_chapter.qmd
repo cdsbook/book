@@ -18,39 +18,38 @@ y <- 2*x + rnorm(10, 0, 1)
 sim_df <- tibble(x, y)
 ```
 
-## Models in more dimensions
+<!-- ## Models in more dimensions -->
 
-{{< include ../../src/snippets/modeling2_multiple_explanatory_variables.Rmd >}}
+<!-- {{< include ../../src/snippets/modeling2_multiple_explanatory_variables.Rmd >}} -->
 
 
-## Multiple regression in R
+<!-- ## Multiple regression in R -->
 
-{{< include ../../src/snippets/modeling2_lm_multiple_regression.Rmd >}}
+<!-- {{< include ../../src/snippets/modeling2_lm_multiple_regression.Rmd >}} -->
 
-{{< include ../../src/snippets/modeling2_diamonds_multiple_example.Rmd >}}
+<!-- {{< include ../../src/snippets/modeling2_diamonds_multiple_example.Rmd >}} -->
+
+
+<!-- ## Interaction terms -->
+
+<!-- {{< include ../../src/snippets/modeling2_interaction.Rmd >}} -->
+
+
+<!-- ## Testing assumptions -->
+
+<!-- {{< include ../../src/snippets/modeling2_linearity_assumption.Rmd >}} -->
+
+<!-- {{< include ../../src/snippets/modeling2_constant_variability_assumption.Rmd >}} -->
+
+<!-- {{< include ../../src/snippets/modeling2_normal_residuals_assumption.Rmd >}} -->
+
+<!-- {{< include ../../src/snippets/modeling2_independence_assumption.Rmd >}} -->
+
 
 
 ## Interaction terms
 
 {{< include ../../src/snippets/modeling2_interaction.Rmd >}}
-
-
-## Testing assumptions
-
-{{< include ../../src/snippets/modeling2_linearity_assumption.Rmd >}}
-
-{{< include ../../src/snippets/modeling2_constant_variability_assumption.Rmd >}}
-
-{{< include ../../src/snippets/modeling2_normal_residuals_assumption.Rmd >}}
-
-{{< include ../../src/snippets/modeling2_independence_assumption.Rmd >}}
-
-<!--
-TODO
-- quiz questions on assumptions
-- code questions on assumptions
--->
-
 
 ## Hypothesis tests for models
 
@@ -61,10 +60,15 @@ TODO
 <!-- 
 
 TODO:
+- section on categorical explanatory variables?
+- section on confounding (builds on previous tutorial's correlation vs causation)
+
+- scaling variables? polynomial terms?
 
 ## Confidence intervals for models
 
 * Use geom_smooth with method="lm" and show the se
+  * visualizing models and trend lines in general - always show the underlying data points to avoid misleading -> the geom_smooth() function would be a good place to bring this up, since it's where the mistake usually happens
 
 ## Non-linear response variables
 

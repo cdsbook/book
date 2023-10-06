@@ -1,6 +1,12 @@
 is_book = TRUE
 is_tutorial = FALSE
 
+if(knitr::is_html_output()) {
+  is_webbook = TRUE
+} else{
+  is_webbook = FALSE
+}
+
 # knitr::opts_chunk$set(echo = TRUE, class.output="shadebox")
 
 insert_status_callout <- function(chapter_status = c("incomplete", "draft", "complete")) {

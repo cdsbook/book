@@ -1,36 +1,91 @@
 We usually want to report the slope and intercept of a linear model. The slope is especially useful to report, because it indicates how much $y$ changes as $x$ changes.
 
-We can report the model coefficients with the `tidy()` function from the `broom` package. The syntax is like this:
+* If we have a slope of 1, then this means that as $x$ increases, $y$ increases by the same amount (i.e. a ratio of 1).
+* If we have a slope of 3, then as $x$ increases, $y$ increases by three times that value (e.g. if $x$ increases by 10, $y$ increases by $3 \times 10 = 30$).
+* A slope of $0$ means that $x$ and $y$ are uncorrelated, i.e. as $x$ increases, the value of $y$ is not affected (on average). (We can still have variation in the $y$ variable - it's just that such variation seems to be entirely unconnected to changes in the $x$ variable).
+
+<!--
+TODO: graphs showing different slopes, corresponding to the three bullet point examples above, and include fig references back to this graph.
+-->
+
+The intercept is the point at which the line of our linear model intersects the $y$-axis. This is the value of the response variable when the explanatory variable is 0.
+
+We can report the model's coefficients with the `tidy()` function from the `broom` package. The syntax is like this:
+
+```r
+tidy(your_model)
+```
+
+or equivalently
 
 ```r
 your_model %>%
   tidy()
 ```
 
-<p class="comment3">
-Replace the blank with the correct function to report the coefficients.
-</p>
+if you prefer to pipe the linear model in (the `your_model` variable above refers to the output of the `lm()` function).
 
-```{r create_model, include=FALSE, eval=is_tutorial}
+For example, here is the table of coefficients for the model we were trying to create in the previous section:
+
+```{r}
 sim_model <- lm(y ~ x, data = sim_df)
-```
 
-```{r hojasacuvjabzyjp, exercise = TRUE, exercise.setup="create_model", eval=is_tutorial}
-sim_model %>%
-  _______()
-```
-
-```{r hojasacuvjabzyjp-solution, eval=is_tutorial}
 sim_model %>%
   tidy()
 ```
 
-```{r hojasacuvjabzyjp-check, eval=is_tutorial}
+The important column here (for our current purposes) is the *estimate* column. This tells us that the `lm()` function estimates the intercept to be `r coef(sim_model)["(Intercept)"]` and the slope to be `r coef(sim_model)["x"]`.
+
+Note that although the intercept row is called `(Intercept)`, the slope row is named after the explanatory variable, `x`. As we shall see in the next section, we can have more than one explanatory variable in a single model, and this helps us keep track of the slope associated with each one.
+
+<!-- TODO: show an example of creating the `tidy()` output table, and then how to interpret the numbers in it (since the column names are kind of weird).
+-->
+
+
+<!-- Book version -->
+
+<!--
+TODO: add book exercises
+```{r, eval=is_book, echo=FALSE, results = 'asis'}
+cat('
+:::{.exercise}
+Exercises TBD
+:::
+')
+```
+-->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
+cat('<p class="comment3">
+Replace the blank with the correct function to report the coefficients.
+</p>')
+```
+
+```{r create_model, include=FALSE, eval=is_tutorial, echo=FALSE}
+sim_model <- lm(y ~ x, data = sim_df)
+```
+
+```{r hojasacuvjabzyjp, exercise = TRUE, exercise.setup="create_model", eval=is_tutorial, echo=FALSE}
+sim_model %>%
+  _______()
+```
+
+```{r hojasacuvjabzyjp-solution, eval=is_tutorial, echo=FALSE}
+sim_model %>%
+  tidy()
+```
+
+```{r hojasacuvjabzyjp-check, eval=is_tutorial, echo=FALSE}
 # check code
 gradethis::grade_code()
 ```
 
-```{r lm_slope_quiz, eval=is_tutorial}
+```{r lm_slope_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "What is the slope of the linear model?",
   answer("1.27"),
@@ -39,7 +94,7 @@ question(
 )
 ```
 
-```{r lm_intercept_quiz, eval=is_tutorial}
+```{r lm_intercept_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "What is the intercept of the linear model?",
   answer("1.27", correct = TRUE),
@@ -47,3 +102,5 @@ question(
   allow_retry = TRUE
 )
 ```
+
+<!-- End tutorial -->

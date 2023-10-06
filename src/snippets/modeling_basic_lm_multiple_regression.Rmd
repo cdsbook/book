@@ -15,23 +15,32 @@ becomes
 
 The same principle applies to multiple explanatory variables:
 
-
 $y = m_1 x_1 + m_2 x_2 + c$
 
 becomes
 
 `y ~ x1 + x2`
 
-<p class="comment3">
+<!-- Book version -->
+
+<!-- TODO: Add exercises -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis', eval=is_tutorial}
+cat('<p class="comment3">
 For each of the following questions, identify the correct R formula (or original linear model equation). Some questions assume that the data is in a data frame called `df`.
-</p>
+</p>')
+```
 
 <!--
 TODO:
 - include feedback on these question
 -->
 
-```{r formula1_quiz, eval=is_tutorial}
+```{r formula1_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "What is the correct R formula for this equation: ${Price} = m_1 \\times {Bedrooms} + m_2 \\times {Sqft} + c$ ?",
   answer("`y ~ x1 + x2`"),
@@ -42,7 +51,7 @@ question(
 )
 ```
 
-```{r formula2_quiz, eval=is_tutorial}
+```{r formula2_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "What is the equation behind this R formula: `cost ~ labor + goods` ?",
   answer("$y = m_1 x_1 + m_2 x_2 + c$"),
@@ -53,7 +62,7 @@ question(
 )
 ```
 
-```{r formula3_quiz, eval=is_tutorial}
+```{r formula3_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "How would you create this linear model in R? ${Price} = m_1 \\times {Bedrooms} + m_2 \\times {Sqft} + c$",
   answer("`lm(Price ~ Bedrooms + Sqft, data = df)`", correct = TRUE),
@@ -68,3 +77,5 @@ question(
 TODO
 - actual code exercises on this
 -->
+
+<!-- End tutorial -->

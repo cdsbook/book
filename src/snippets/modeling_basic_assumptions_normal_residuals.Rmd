@@ -1,63 +1,55 @@
+## Nearly normal residuals
+
 The best linear model is the one that has the smallest sum of the squared residuals. We don't need to worry too much about the mathematics behind this - however, you should be aware that the math does make the simplifying assumption that the residuals have a *normal* distribution (more or less).
 
 The normal distribution is a bell-shaped distribution:
 
-TODO: add image of normal distribution
+<!-- TODO: add image of normal distribution -->
 
 <!-- ```{r} -->
 <!-- knitr::include_graphics("images/Normal_Distribution_NIST.gif") -->
 <!-- ``` -->
 
-We can plot a histogram of the residuals and see if that has a (more or less) normal distribution:
+We can plot a histogram of the residuals and see if that has a (more or less) normal distribution. However, it is often hard to interpret the "normality" of a histogram just by looking at it, since there are many different types of unimodal symmetric distribution.
 
-TODO: add image of histogram of normal distribution
+Instead, a much better method is to create a Quantile-Quantile (Q-Q) plot. This video from Stat Quest gives an excellent overview of what a Q-Q plot is:
 
-<!-- ```{r} -->
-<!-- knitr::include_graphics("images/hist_normal_dist_wikipedia.png") -->
-<!-- ``` -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/okjYjClSjOg?rel=0" frameborder="0" allowfullscreen></iframe>
 
-To do that, we will need to:
+<!-- TODO: new video -->
 
-1) Calculate a new column in our dataframe holding the residuals.
-2) Plot the residuals.
+Q-Q plots are so useful that the `ggplot2` package already contains geom functions for creating them.
 
+We can use the `diamonds_plus_preds` data frame to create a Q-Q plot (with both points and a reference line):
 
-This starter code calculates the residuals using your model and a useful function called `add_residuals`. The new dataframe (with an additional column called `resid` to hold the residuals), has been saved in a new variable called `sim_model_df`.
-
-<p class="comment3">
-Use this new `sim_model_df` dataframe to create histogram of the `resid` column (fill in the correct geom function and the `resid` column name in the appropriate blanks).
-</p>
-
-```{r yopfnelideskkmld, exercise = TRUE, exercise.setup="create_model", eval=is_tutorial}
-sim_model_df <- sim_df %>%
-  add_residuals(sim_model)
-
-sim_model_df %>%
+```{r, echo = TRUE}
+diamonds_plus_preds %>%
   ggplot() +
-  _______(mapping = aes(x = ________), bins = 5)
+  geom_qq(mapping = aes(sample = .resid))+
+  geom_qq_line(mapping = aes(sample = .resid))
 ```
 
-```{r yopfnelideskkmld-solution, eval=is_tutorial}
-sim_model_df <- sim_df %>%
-  add_residuals(sim_model)
+<!-- TODO:
+Examples of met vs. violated graphs, with comparison to the original model (points and line) as well as what the corresponding histogram of residuals looks like.
+-->
 
-sim_model_df %>%
-  ggplot() +
-  geom_histogram(mapping = aes(x = resid), bins = 5)
+<!-- Book version -->
+
+<!-- TODO: Add exercises -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r qqplot_question, eval=is_tutorial, echo=FALSE}
+question(
+  "Does this model satisfy the assumption of nearly-normal residuals?",
+  answer("Yes"),
+  answer("No", correct = TRUE),
+  answer("Can't say one way or the other"),
+  incorrect = "To satisfy this assumption, the majority of the points should fall very close to the line."
+  )
 ```
 
-```{r yopfnelideskkmld-check, eval=is_tutorial}
-# check code
-gradethis::grade_code()
-```
+<!-- End tutorial -->
 
-As you can see, our histogram does not look like a perfectly normal distribution - however, the randomly simulated `sim_df` dataframe was created with normal residuals! 
-
-This is the challenge of working with random data: it will rarely look "perfect". This is why we say that we only expect *nearly* normal residuals to satisfy this condition. 
-
-In your graph, there does appear to be a roughly normal distribution (of course, it's easy to say that when we know it should be!): 
-
-* There's a single higher peak in the middle.
-* The heights of the bins decrease on either side.
-* There seem to be a similar number of residuals on either side of the central peak (i.e. the distribution is symmetric).
-* Although the left-most bin is higher than we might expect, this can be explained as just a quirk of the data (remember that all data is a little bit random), especially as this dataset is small (such random variation tends to get "averaged out" as the number of data points increases).

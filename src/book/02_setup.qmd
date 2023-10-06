@@ -85,7 +85,7 @@ If you are installing RStudio Desktop on your computer, then you should follow t
 
     * __Windows__: download and install R from the *.exe* installer on this page: [https://cran.rstudio.com/bin/windows/base/](https://cran.rstudio.com/bin/windows/base/)
   
-      Then _also_ install RTools from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g. if you installed R v__4.2__.3 then you will need to install RTools v.__4.2__): [https://cran.rstudio.com/bin/windows/Rtools/](https://cran.rstudio.com/bin/windows/Rtools/)
+      Then _also_ install RTools from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g. if you installed R v4.2.3 then you will need to install RTools v4.2 [i.e. the same first two digits]): [https://cran.rstudio.com/bin/windows/Rtools/](https://cran.rstudio.com/bin/windows/Rtools/)
     
     * __Mac__: download and install R from the appropriate *.pkg* installer for your version of macOS on this page: [https://cran.rstudio.com/bin/macosx/](https://cran.rstudio.com/bin/macosx/)
   
@@ -122,6 +122,8 @@ Some of the checkboxes may open up new webpages taking you to GitHub, which will
 
 
 ## Step 3: Connect RStudio to GitHub {#sec-rstudio-github-connection}
+
+<!-- TODO: this mostly applies to RStudio Desktop, so move under step 1 above. Move token creation to Step 1, on GitHub setup, since both people will need that. -->
 
 * First, go to RStudio (or launch a new empty RStudio project if you are using the online RStudio at posit.cloud) and open the tab in the left hand pane called *Terminal*. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to "Tools > Terminal > New Terminal".
   
