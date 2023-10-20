@@ -19,18 +19,25 @@ book:
     - src/book/06_wrangling_chapter.qmd
     - src/book/07_ggplot_chapter.qmd
     - src/book/08_eda_chapter.qmd
-    - src/book/09_modeling_chapter.qmd
-    - src/book/10_inference_chapter.qmd
+    - src/book/09_computing_chapter.qmd
+    - src/book/10_modeling_chapter.qmd
+    - src/book/11_inference_chapter.qmd
   - part: Advanced Topics
     chapters:
-    - src/book/11_more_r_chapter.qmd
     - src/book/14_reproducibility_chapter.qmd
     - src/book/15_loading_data_chapter.qmd
+    # 16 More graphs
     - src/book/17_inference_advanced_chapter.qmd
     - src/book/18_modeling_advanced_chapter.qmd
+    # 21 Prediction
   - part: Scientific Data
     chapters: 
+    # 28 Online data
+    # 29 Geospatial data
     - src/book/32_databases_chapter.qmd
+  # - part: Outputs
+    # 34 Papers
+    # 35 Dashboards
   - src/book/references.qmd
   appendices:
   - src/book/A_faqs_appendix.qmd
