@@ -3,11 +3,18 @@ execute:
   freeze: auto
 ---
 
-# Modeling for Prediction
+# Prediction {#sec-prediction-chapter}
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+
+add_to_quarto(
+  quarto_dir = ".",
+  include_dir = "docs/site_libs",
+  output_format = c("html")
+)
 ```
 
 

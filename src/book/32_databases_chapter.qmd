@@ -3,11 +3,18 @@ execute:
   freeze: auto
 ---
 
-# Databases
+# Databases {#sec-databases-chapter}
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+
+add_to_quarto(
+  quarto_dir = ".",
+  include_dir = "docs/site_libs",
+  output_format = c("html")
+)
 ```
 
 ## Relational data

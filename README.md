@@ -81,5 +81,8 @@ Only in html outputs, and doesn't currently work with Quarto: https://r-for-educ
 
 `webexercises` package: https://psyteachr.github.io/webexercises/
 
+
+
+
 Conditional execution by output type: https://community.rstudio.com/t/set-options-conditional-on-output-formats-in-quarto/168989/2
 

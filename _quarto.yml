@@ -29,15 +29,30 @@ book:
     # 16 More graphs
     - src/book/17_inference_advanced_chapter.qmd
     - src/book/18_modeling_advanced_chapter.qmd
-    # 21 Prediction
+    # 19 Causality
+    # 20 Simulation
+    #- src/book/21_prediction_chapter.qmd
+    - src/book/22_deep_learning_chapter.qmd
+    # 23 Concurrent Programming
+    # 24 High Performance Computing
   - part: Scientific Data
     chapters: 
-    # 28 Online data
-    # 29 Geospatial data
-    - src/book/32_databases_chapter.qmd
+    # 25 Image data
+    # 26 Text data
+    # 27 Time Series
+    # 28 Signal Processing
+    # 29 Online data
+    # 30 Geospatial data
+    # 31 Bioinformatic data
+    # 32 Network data
+    - src/book/32_databases_chapter.qmd # ->> 33
+    # 34 Big data
   # - part: Outputs
-    # 34 Papers
-    # 35 Dashboards
+    # 35 Papers
+    # 36 Webpages
+    # 37 Dashboards
+    # 38 Apps
+    # 39 Software
   - src/book/references.qmd
   appendices:
   - src/book/A_faqs_appendix.qmd

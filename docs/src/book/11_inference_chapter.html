@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.313">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Computing and Data for Scientists - 10&nbsp; Inference</title>
+<title>An Introduction to Computing and Data for Scientists - 11&nbsp; Inference</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../src/book/11_more_r_chapter.html" rel="next">
-<link href="../../src/book/09_modeling_chapter.html" rel="prev">
+<link href="../../src/book/14_reproducibility_chapter.html" rel="next">
+<link href="../../src/book/10_modeling_chapter.html" rel="prev">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -57,7 +57,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -74,10 +75,10 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/10_inference_chapter.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/11_inference_chapter.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -164,14 +165,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/09_modeling_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  <a href="../../src/book/09_computing_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/10_inference_chapter.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  <a href="../../src/book/10_modeling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_inference_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
   </div>
 </li>
       </ul>
@@ -185,12 +192,6 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/11_more_r_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
-  </div>
-</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
@@ -215,6 +216,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/22_deep_learning_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Deep Learning</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -229,7 +236,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -273,20 +280,25 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-inference" id="toc-what-is-inference" class="nav-link active" data-scroll-target="#what-is-inference"><span class="header-section-number">10.1</span> What is inference?</a></li>
-  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions"><span class="header-section-number">10.2</span> Distributions</a>
+  <li><a href="#what-is-inference" id="toc-what-is-inference" class="nav-link active" data-scroll-target="#what-is-inference"><span class="header-section-number">11.1</span> What is inference?</a>
   <ul class="collapse">
-  <li><a href="#data-sampling" id="toc-data-sampling" class="nav-link" data-scroll-target="#data-sampling"><span class="header-section-number">10.2.1</span> Data sampling</a></li>
-  <li><a href="#quantifying-data-distributions" id="toc-quantifying-data-distributions" class="nav-link" data-scroll-target="#quantifying-data-distributions"><span class="header-section-number">10.2.2</span> Quantifying data distributions</a></li>
-  <li><a href="#probability-mass-functions" id="toc-probability-mass-functions" class="nav-link" data-scroll-target="#probability-mass-functions"><span class="header-section-number">10.2.3</span> Probability mass functions</a></li>
+  <li><a href="#probability-versus-inference" id="toc-probability-versus-inference" class="nav-link" data-scroll-target="#probability-versus-inference"><span class="header-section-number">11.1.1</span> Probability versus inference</a></li>
   </ul></li>
-  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">10.3</span> Hypothesis testing</a>
+  <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions"><span class="header-section-number">11.2</span> Distributions</a>
   <ul class="collapse">
-  <li><a href="#gender-discrimination-case-study" id="toc-gender-discrimination-case-study" class="nav-link" data-scroll-target="#gender-discrimination-case-study"><span class="header-section-number">10.3.1</span> Gender discrimination case study</a></li>
-  <li><a href="#a-hypothesis-test-as-a-court-trial" id="toc-a-hypothesis-test-as-a-court-trial" class="nav-link" data-scroll-target="#a-hypothesis-test-as-a-court-trial"><span class="header-section-number">10.3.2</span> A hypothesis test as a court trial</a></li>
-  <li><a href="#a-manual-simulation-of-the-gender-discrimination-experiment" id="toc-a-manual-simulation-of-the-gender-discrimination-experiment" class="nav-link" data-scroll-target="#a-manual-simulation-of-the-gender-discrimination-experiment"><span class="header-section-number">10.3.3</span> A manual simulation of the gender discrimination experiment</a></li>
-  <li><a href="#simulating-the-gender-discrimination-experiment-in-r" id="toc-simulating-the-gender-discrimination-experiment-in-r" class="nav-link" data-scroll-target="#simulating-the-gender-discrimination-experiment-in-r"><span class="header-section-number">10.3.4</span> Simulating the gender discrimination experiment in R</a></li>
-  <li><a href="#one-sided-hypothesis-tests-using-infer" id="toc-one-sided-hypothesis-tests-using-infer" class="nav-link" data-scroll-target="#one-sided-hypothesis-tests-using-infer"><span class="header-section-number">10.3.5</span> One-sided hypothesis tests using infer</a></li>
+  <li><a href="#data-sampling" id="toc-data-sampling" class="nav-link" data-scroll-target="#data-sampling"><span class="header-section-number">11.2.1</span> Data sampling</a></li>
+  <li><a href="#sampling-strategies-and-how-it-can-go-wrong" id="toc-sampling-strategies-and-how-it-can-go-wrong" class="nav-link" data-scroll-target="#sampling-strategies-and-how-it-can-go-wrong"><span class="header-section-number">11.2.2</span> Sampling strategies and how it can go wrong</a></li>
+  <li><a href="#population-wide-censuses" id="toc-population-wide-censuses" class="nav-link" data-scroll-target="#population-wide-censuses"><span class="header-section-number">11.2.3</span> Population-wide censuses</a></li>
+  <li><a href="#quantifying-data-distributions" id="toc-quantifying-data-distributions" class="nav-link" data-scroll-target="#quantifying-data-distributions"><span class="header-section-number">11.2.4</span> Quantifying data distributions</a></li>
+  <li><a href="#probability-mass-functions" id="toc-probability-mass-functions" class="nav-link" data-scroll-target="#probability-mass-functions"><span class="header-section-number">11.2.5</span> Probability mass functions</a></li>
+  </ul></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing"><span class="header-section-number">11.3</span> Hypothesis testing</a>
+  <ul class="collapse">
+  <li><a href="#gender-discrimination-case-study" id="toc-gender-discrimination-case-study" class="nav-link" data-scroll-target="#gender-discrimination-case-study"><span class="header-section-number">11.3.1</span> Gender discrimination case study</a></li>
+  <li><a href="#a-hypothesis-test-as-a-court-trial" id="toc-a-hypothesis-test-as-a-court-trial" class="nav-link" data-scroll-target="#a-hypothesis-test-as-a-court-trial"><span class="header-section-number">11.3.2</span> A hypothesis test as a court trial</a></li>
+  <li><a href="#a-manual-simulation-of-the-gender-discrimination-experiment" id="toc-a-manual-simulation-of-the-gender-discrimination-experiment" class="nav-link" data-scroll-target="#a-manual-simulation-of-the-gender-discrimination-experiment"><span class="header-section-number">11.3.3</span> A manual simulation of the gender discrimination experiment</a></li>
+  <li><a href="#simulating-the-gender-discrimination-experiment-in-r" id="toc-simulating-the-gender-discrimination-experiment-in-r" class="nav-link" data-scroll-target="#simulating-the-gender-discrimination-experiment-in-r"><span class="header-section-number">11.3.4</span> Simulating the gender discrimination experiment in R</a></li>
+  <li><a href="#one-sided-hypothesis-tests-using-infer" id="toc-one-sided-hypothesis-tests-using-infer" class="nav-link" data-scroll-target="#one-sided-hypothesis-tests-using-infer"><span class="header-section-number">11.3.5</span> One-sided hypothesis tests using infer</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -296,7 +308,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Inference</span></h1>
+<h1 class="title"><span id="sec-inference-chapter" class="quarto-section-identifier"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></span></h1>
 </div>
 
 
@@ -315,31 +327,54 @@ ul.task-list li input[type="checkbox"] {
 TODO:
  - add in more, better quizzes and exercises throughout!
 -->
-<section id="what-is-inference" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="what-is-inference"><span class="header-section-number">10.1</span> What is inference?</h2>
-<blockquote class="blockquote">
-<p>Statistical inference is the process of using data analysis to deduce properties of an underlying distribution of probability. Inferential statistical analysis infers properties of a population, for example by testing hypotheses and deriving estimates.</p>
-<p><em>Source: <a href="https://en.wikipedia.org/wiki/Statistical_inference">Wikipedia</a></em></p>
-</blockquote>
-<p>What does the above definition mean in simple terms?</p>
-<p>The world around us is an uncertain, random place. Take the heights of the students in this class: you all have a wide range of heights - some taller, some shorter.</p>
-<p>We could plot a histogram of your heights - we would call this graph a <em>distribution</em> of your heights, and we could <em>infer</em> various things about it, e.g.&nbsp;the mean.</p>
-<p>This process of going from raw measurements (e.g.&nbsp;of heights) to properties of the distribution that those measurements came from is called <em>statistical inference</em>.</p>
+<section id="what-is-inference" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="what-is-inference"><span class="header-section-number">11.1</span> What is inference?</h2>
+<p>The world is an uncertain place. If you look outside in the morning and notice dark clouds, then you might <em>infer</em> that it is likely to rain that day.</p>
+<p>In this chapter we will be learning about statistical inference, which is the idea that if we collect some data from the real world, then we can use it to <em>infer</em> other facts about the world (such as the processes that generated that data, or the population that our observations came from).</p>
+<section id="probability-versus-inference" class="level3" data-number="11.1.1">
+<h3 data-number="11.1.1" class="anchored" data-anchor-id="probability-versus-inference"><span class="header-section-number">11.1.1</span> Probability versus inference</h3>
+<p>When things are uncertain, we often talk about the probability that an event will occur (such as the high probability that it might rain on a cloudy day, or the low probability that the Washington Wizards will win the NBA Championship this year).</p>
+<p>Mathematically, probability is about making predictions about the future. If we know the probability of different events or observations, then we can predict the likelihood of different outcomes. If I tell you that I have a fair coin, you know that there is a 50% chance of either heads or tails, and so you can calculate the probability of getting 6 heads if I flip the coin 10 times.</p>
+<p>By contrast, statistical inference is about the understanding the past. In inference we are typically given a sample of data, but we don’t know exactly how the data was generated. This is how things tend to work in both real life and in science. You observe that I get 6 heads from 10 coin flips, but you don’t know if the coin was fair or not. Inference allows you to calculate the likelihood that the coin was fair.</p>
+<p>Thus we need to know a little bit about probability to do statistical inference. Fortunately, everything we need to know for this chapter is fairly intuitive:</p>
+<ul>
+<li><p>A probability has to be between 0 and 1. A probability of 0.5 means that something happens half of the time; a probability of 1 means that it happens all of the time!</p></li>
+<li><p>In informal settings (such as weather forecasts) we sometimes talk about probabilities as percentages. You can multiply a probability by 100 to get it as a percentage. For example, a probability of 0.5 is equivalent to a 50% chance that something will happen.</p></li>
+</ul>
 </section>
-<section id="distributions" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="distributions"><span class="header-section-number">10.2</span> Distributions</h2>
-<section id="data-sampling" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="data-sampling"><span class="header-section-number">10.2.1</span> Data sampling</h3>
+</section>
+<section id="distributions" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="distributions"><span class="header-section-number">11.2</span> Distributions</h2>
+<section id="data-sampling" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="data-sampling"><span class="header-section-number">11.2.1</span> Data sampling</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VYChbNddUkM?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="https://drive.google.com/file/d/1qInq4DXzYsHjmnw2lVu_ffVrAUuzN5ko/view?usp=sharing">PDF</a></p>
-<!--
-TODO:
- - Add a separate section with some additional explanation of correlation vs. causation
--->
+<p>Before we can do any inference, we need to be clear on (1) what data we are using to make our inferences, and (2) what other data those inferences then apply to.</p>
+<p>Typically we analyze a <strong>sample</strong> of data (e.g.&nbsp;a group of people, or a series of coin flips). This sample is either:</p>
+<ol type="i">
+<li><p>Drawn from a <strong>population</strong> of all possible observations (e.g.&nbsp;our sample of people is drawn from a larger population of people).</p></li>
+<li><p>Generated by some <strong>random process</strong> (such as flipping a coin).</p></li>
+</ol>
+<!-- TODO: footnote that processes and populations are kind of the same thing -->
+<p>We then use the sample to make inferences about the population or process.</p>
+<p>We also need to distinguish between statistics that we calculate from the sample, and the true value of that statistic from in the total population. If I collect heights from a sample of people, I can then calculate a statistic such as the mean - we would call this the sample mean. However, there is also a population mean that is probably different, since we might have slightly more tall or short people in our sample than in the total population.</p>
+<p>When we collect samples, we always hope that our sample is <em>representative</em> of the broader population. If it is, then we should be able to make accurate inferences.</p>
 </section>
-<section id="quantifying-data-distributions" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="quantifying-data-distributions"><span class="header-section-number">10.2.2</span> Quantifying data distributions</h3>
+<section id="sampling-strategies-and-how-it-can-go-wrong" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="sampling-strategies-and-how-it-can-go-wrong"><span class="header-section-number">11.2.2</span> Sampling strategies and how it can go wrong</h3>
+<p>The best way to create a sample is to first decide what your population is, and then randomly sample members of that population.</p>
+<p>If you are interested in the entire population of the USA, for example, then you would want to put every American’s name in a (virtual) hat, and then draw a sample of those names.</p>
+<p>Of course, there are problems with this! You might not know everyone in your population, and you might not be able to collect data from every member of the sample (for example, it’s usually unethical to force people to take part in a survey against their will). If your sample is not completely random, then it is unlikely to be representative of the population.</p>
+<p>The alternative approach is to start with the sample that you have, and calculate the largest population that we can generalize to. Let’s image we measure the heights 100 male students sampled randomly at George Mason University.</p>
+<p>Common sampling biases: * self-selected * convenience</p>
+<p>Many statistical analyses have gone astray when they generalize to a broader population that they should have done.</p>
+</section>
+<section id="population-wide-censuses" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="population-wide-censuses"><span class="header-section-number">11.2.3</span> Population-wide censuses</h3>
+</section>
+<section id="quantifying-data-distributions" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="quantifying-data-distributions"><span class="header-section-number">11.2.4</span> Quantifying data distributions</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BL5Bt-nI22k?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/data_distributions_01_quantifying_data_distributions.pdf">PDF</a></p>
@@ -348,41 +383,41 @@ TODO:
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/data_distributions_02_quantifying_data_distributions_in_r.pdf">PDF</a></p>
 <p>Fill in the ellipses (<code>...</code>) to create a boxplot of the <code>Sepal.Length</code> variable from the <code>iris</code> dataset.</p>
 </section>
-<section id="probability-mass-functions" class="level3" data-number="10.2.3">
-<h3 data-number="10.2.3" class="anchored" data-anchor-id="probability-mass-functions"><span class="header-section-number">10.2.3</span> Probability mass functions</h3>
+<section id="probability-mass-functions" class="level3" data-number="11.2.5">
+<h3 data-number="11.2.5" class="anchored" data-anchor-id="probability-mass-functions"><span class="header-section-number">11.2.5</span> Probability mass functions</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xbLim5imqe4?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/data_distributions_03_probability_mass_functions.pdf">PDF</a></p>
 </section>
 </section>
-<section id="hypothesis-testing" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">10.3</span> Hypothesis testing</h2>
-<section id="gender-discrimination-case-study" class="level3" data-number="10.3.1">
-<h3 data-number="10.3.1" class="anchored" data-anchor-id="gender-discrimination-case-study"><span class="header-section-number">10.3.1</span> Gender discrimination case study</h3>
+<section id="hypothesis-testing" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="hypothesis-testing"><span class="header-section-number">11.3</span> Hypothesis testing</h2>
+<section id="gender-discrimination-case-study" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="gender-discrimination-case-study"><span class="header-section-number">11.3.1</span> Gender discrimination case study</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/EL9bbzblRq8?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/inference_and_simulation_01_gender_discrimination_case_study.pdf">PDF</a></p>
 </section>
-<section id="a-hypothesis-test-as-a-court-trial" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="a-hypothesis-test-as-a-court-trial"><span class="header-section-number">10.3.2</span> A hypothesis test as a court trial</h3>
+<section id="a-hypothesis-test-as-a-court-trial" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="a-hypothesis-test-as-a-court-trial"><span class="header-section-number">11.3.2</span> A hypothesis test as a court trial</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LzsLhuxYiMs?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/inference_and_simulation_02_a_hypothesis_test_as_a_court_trial.pdf">PDF</a></p>
 </section>
-<section id="a-manual-simulation-of-the-gender-discrimination-experiment" class="level3" data-number="10.3.3">
-<h3 data-number="10.3.3" class="anchored" data-anchor-id="a-manual-simulation-of-the-gender-discrimination-experiment"><span class="header-section-number">10.3.3</span> A manual simulation of the gender discrimination experiment</h3>
+<section id="a-manual-simulation-of-the-gender-discrimination-experiment" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="a-manual-simulation-of-the-gender-discrimination-experiment"><span class="header-section-number">11.3.3</span> A manual simulation of the gender discrimination experiment</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hjVjAzuMRDM?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/inference_and_simulation_03_a_manual_simulation_of_the_gender_discrimination_experiment.pdf">PDF</a></p>
 </section>
-<section id="simulating-the-gender-discrimination-experiment-in-r" class="level3" data-number="10.3.4">
-<h3 data-number="10.3.4" class="anchored" data-anchor-id="simulating-the-gender-discrimination-experiment-in-r"><span class="header-section-number">10.3.4</span> Simulating the gender discrimination experiment in R</h3>
+<section id="simulating-the-gender-discrimination-experiment-in-r" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="simulating-the-gender-discrimination-experiment-in-r"><span class="header-section-number">11.3.4</span> Simulating the gender discrimination experiment in R</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8wQ-uU611vI?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="http://sp19-001.cds101.com/doc/inference_and_simulation_04_simulating_the_gender_discrimination_experiment_in_r.pdf">PDF</a></p>
 </section>
-<section id="one-sided-hypothesis-tests-using-infer" class="level3" data-number="10.3.5">
-<h3 data-number="10.3.5" class="anchored" data-anchor-id="one-sided-hypothesis-tests-using-infer"><span class="header-section-number">10.3.5</span> One-sided hypothesis tests using infer</h3>
+<section id="one-sided-hypothesis-tests-using-infer" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="one-sided-hypothesis-tests-using-infer"><span class="header-section-number">11.3.5</span> One-sided hypothesis tests using infer</h3>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YmeQ9ThQw9M?rel=0" frameborder="0" allowfullscreen="">
 </iframe>
 <p>Slides: <a href="https://drive.google.com/file/d/1SUewphETMnIvzhbXoKK5mXQXhRxpLxhv/view?usp=sharing">PDF</a></p>
@@ -833,13 +868,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/book/09_modeling_chapter.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modeling</span></span>
+      <a href="../../src/book/10_modeling_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/book/11_more_r_chapter.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">More about R</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/book/14_reproducibility_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
