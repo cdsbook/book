@@ -49,7 +49,7 @@ However, the human brain is very good at this type of task! This inspired comput
 
 The human brain (and nervous system) is composed of long cells called *neurons*. Each neuron has lots of arms that connect to other neuron cells. Electrical pulses travel up and down these arms, and based on the signals that each neuron receives, it then sends its own signal on to other neurons.
 
-```{r}
+```{r, echo=FALSE}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Blausen_0657_MultipolarNeuron.png/640px-Blausen_0657_MultipolarNeuron.png")
 ```
 
