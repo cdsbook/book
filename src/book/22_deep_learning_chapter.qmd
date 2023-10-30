@@ -4,8 +4,9 @@
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(webexercises))
-suppressPackageStartupMessages(library(tensorflow))
-suppressPackageStartupMessages(library(keras))
+library(torch)
+library(torchvision)
+library(luz)
 
 add_to_quarto(
   quarto_dir = ".",
@@ -13,27 +14,28 @@ add_to_quarto(
   output_format = c("html")
 )
 
-mnist <- dataset_mnist()
-train_images <- mnist$train$x
-train_labels <- mnist$train$y
-test_images <- mnist$test$x
-test_labels <- mnist$test$y
+options(torch.threshold_call_gc = 500)
 
 drop_prefix <- function(s) {
   return( str_extract(s, "\\d+"))
 }
 
-visualize_image <- function(image_number, .data = train_images, .labels = train_labels) {
-  .data[image_number,,] %>% 
-    as_tibble() %>%
-    rename_with(drop_prefix, everything()) %>%
-    mutate(r = row_number(), .before = `1`)%>%
+visualize_image <- function(x){
+  batch$x[x] %>%
+    torch_reshape(shape = c(28,28)) %>%
+    as_array() %>%
+    as.data.frame() %>%
+    rename_with(drop_prefix, everything())  %>%
+    mutate(r = row_number(), .before = `1`) %>%
     pivot_longer(cols = matches("\\d+"), names_to = "c") %>%
-    mutate(c = as.integer(c)) %>%
+    mutate(
+      c= as.integer(c),
+      value = as.integer(value*255)
+      ) %>%
     ggplot() +
       geom_tile(aes(x = c, y = -r, fill = value)) +
       scale_fill_gradient(low="white", high="black") +
-      labs(title = str_c("Label: ", train_labels[image_number]))
+      labs(title = str_c("Label: ", as_array(batch$y[x]) - 1), fill="Intensity", x = "", y = "")
 }
 ```
 
@@ -78,40 +80,38 @@ In subsequent sections we will learn more about all of these pieces, such as:
 
 ## Deep learning in R
 
-We will use two packages to create deep learning models: `tensorflow` and `keras`.
+We will be using a package called `torch` to create neural networks. `torch` is the R version of a machine learning software library called *PyTorch*, which was originally developed by Facebook for their AI research.
 
-* `tensorflow` is an R package that allows to run a piece of software called TensorFlow that was developed by Google to run neural networks.
+We will also be using two additional packages:
 
-* `keras` is an R package that provides a friendlier interface to TensorFlow.
+* `torchvision` is an R package that contains helpful code (and datasets) for working with images.
+
+* `luz` is an R package that provides lots of helpful functions to make training `torch` neural networks much easier.
+
+
+
 
 ## The MNIST dataset
 
-As an example, we will use the MNIST dataset, which is a famous dataset containing pictures of numbers such as this one:
+As an example, we will use the MNIST dataset, which is a famous dataset containing pictures of numbers from 0 to 9, such as this one:
 
 ```{r, echo=FALSE}
+train_ds <- mnist_dataset(
+  "images", 
+  download = TRUE,
+  transform = . %>%
+    transform_to_tensor() %>%
+    torch_flatten()
+  )
+train_dl <- dataloader(
+  train_ds, 
+  batch_size = 32
+  )
+batch <- train_dl$.iter()$.next()
 visualize_image(1)
 ```
 
-The MNIST dataset can be downloaded using `dataset_mnist()` function from the `keras` package, e.g.
-
-```{r, eval=FALSE}
-mnist <- dataset_mnist()
-```
-
-The MNIST dataset is already divided into training and test sets (of 60,000 and 10,000 images respectively). Each image comes with a label telling us what digit is in the image. 
-
-All of these are stored in the `mnist` variable we created above. To make our lives easier, we will split all of the training and test images and labels into 4 separate variables:
-
-```{r, eval=FALSE}
-train_images <- mnist$train$x
-train_labels <- mnist$train$y
-test_images <- mnist$test$x
-test_labels <- mnist$test$y
-```
-
-## Images as inputs
-
-Before we build our model, we need to understand how data is stored in images.
+Before we can build our model, we need to understand how data is stored in digital images.
 
 Digital images are composed of small squares called pixels. Each pixel has a single color.
 
@@ -123,144 +123,253 @@ For example, this image shows the intensities in each of the pixels of one of th
 
 Each pixel in our image will be an input to the model. Since there are 28 by 28 pixels in each images, then we will need $28 \times 28 = 512$ input nodes in any artificial neural network that we create.
 
-## Defining a neural network shape
+There are 60,000 training images in the MNIST dataset, and an additional 10,000 test images.
 
-The following code defines the shape of an artificial neural network that we will be able to train on the MNIST dataset.
+## Data in `torch`
 
-```{r}
-first_model <- keras_model_sequential(input_shape = 28*28) %>%
-    layer_dense(units = 512, activation = "relu") %>%
-    layer_dense(units = 10, activation = "softmax")
-```
+The `torch` package comes with its own concept of a *dataset*, that is different to previous R datasets that we have worked with.
 
-* We start our code with the `keras_model_sequential()` function to indicate that we will be creating a neural network composed of a series of layers. The `input_shape` parameter indicated how many inputs nodes we will need.
-
-* Then we pipe to each of the layers that we wish to add on to the neural network, which are created with the `layer_dense()` function.
-
-  * The first is our only hidden layer. We have chosen to have 512 nodes (`units`) in this layer.
-  * Finally we add a layer of `10` nodes which will be out output layer. We need 10 output nodes because we wish to predict 10 different categories (i.e. the digits 0, 1, 2, ..., 9). Each node will contain the probability that one of those 10 digits is in the image. Our prediction will be the digit that has the highest probability.
-
-What about the `activation` parameters in the layer functions?
-
-Fundamentally, each node in the just contains a linear model (i.e. a linear combination of all the inputs from the previous layer)! However, the relationship between image pixel intensities and the digits 0-9 is non-linear. Therefore we convert each node's linear prediction into a non-linear prediction. 
-
-We did something very similar with logistic regression (where we used the sigmoid function to convert from a linear output to a response between 0 and 1). Here we are using a function called a "Rectified Linear Activation function" or relu for short. You don't need to understand the details of the relu activation for this module, but there are many good tutorial or videos about it on the internet if you want to learn more (such as [this article](https://builtin.com/machine-learning/relu-activation-function)).
-
-The final layer uses a different activation function called `"softmax"`. This just ensures that all the 10 probabilities of the 10 output nodes all add up to 1.
-
-
-## Compiling the model
-
-Before we can train a Keras model, we need to do an additional step called *compilation*. In this step we state all the information about *how* the model is to be trained.
-
-To do this, we use the `compile()` function from the `keras` package:
+Fortunately the MNIST dataset is already built-in to the `torchvision` package, and so there is a handy function called `mnist_dataset()` that we can use to load it from our computer's hard drive (or download it, if this is the first time running the function):
 
 ```{r}
-compile(
-  first_model,
-  optimizer = "rmsprop",
-  loss = "sparse_categorical_crossentropy",
-  metrics = "accuracy"
+train_ds <- mnist_dataset(
+  "images", 
+  download = TRUE,
+  transform = . %>%
+    transform_to_tensor() %>%
+    torch_flatten()
   )
 ```
 
-We will not worry too much about these details here, but briefly:
+If you are looking to modify the `mnist_dataset()` function, then note a few things:
 
-* The `optimizer` parameter tells Keras what algorithm to use to fit the model to the training data.
-* The `loss` parameter tells Keras what function to use determine how bad the model is at each step of the optimization process.
-* The `metrics` parameter controls what information will be reported back to us as the model is optimized.
+* The first argument, `"images"` is the name of the folder where the data will be stored.
+* `download = TRUE` means that the dataset will be downloaded if it can't be found in the *images* folder.
+* The `transform` parameter tells `torch` how to load each image. Here we are converting each image to a *tensor* (a 28x28 grid of numbers), and then flattening that grid into one long 1x784 row of numbers. (So that we can treat each image like the row of a dataframe with 784 columns [one column for each pixel]).
 
-Note that we do **not** assign the output of the `compile()` function to a new variable. This is one of the rare cases in R where the input variable (`first_model`) will be modified automatically to contain these extra parameters.
+The training dataset loaded above contains the 60,000 training images. We can also use the `mnist_dataset()` function to load the 10,000 testing images. Note that everything is the same, except that we have added the `train = FALSE` argument to the function:
+
+```{r}
+test_ds <- mnist_dataset(
+  "images",
+  download = TRUE,
+  train = FALSE,
+  transform = . %>%
+    transform_to_tensor() %>%
+    torch_flatten()
+)
+```
+
+
+## `torch` dataloaders
+
+There's an extra step to stetting up our data in `torch` so that it's ready for our model: we need to create *dataloaders*.
+
+Since deep learning datasets are often large, we cannot fit all the data into the computer's memory at once. Instead, `torch` will load the data in *batches*, tune the neural network to that batch, and then repeat on the next batch of data. Loading batches of data is the job of a *dataloader*, which we need to create with the `dataloader()` function:
+
+```{r}
+train_dl <- dataloader(
+  train_ds, 
+  batch_size = 32,
+  shuffle = TRUE
+  )
+```
+
+Note:
+* The first argument is a `torch` dataset - here we are using the training `train_ds` dataset.
+* We specify that we want to load the images in batches of 32 images at a time.
+* We will also shuffle up the training images when we load them (this will help with training our model in a future step).
+
+## Splitting the dataset for training and validation
+
+```{r, echo=FALSE, include=FALSE}
+train_ds <- dataset_subset(train_ds, indices=1:1024)
+valid_ds <- dataset_subset(train_ds, indices=1025:1536)
+test_ds <- dataset_subset(test_ds, indices=1:512)
+```
+
+Recall <!--from Chapter @sec-prediction-chapter--> that it's a good idea to split our training set into training and validation data, so that we can tune the model's hyperparameters without overfitting to the test dataset.
+
+Instead of cross-validation, we will simply take a fixed subset of the training images to be the validation set, which we can do with the `dataset_subset()` function from the `torch` package. Here we are selecting the last 10000 images to be our validation set:
+
+```r
+train_ds <- dataset_subset(train_ds, indices=1:50000)
+valid_ds <- dataset_subset(train_ds, indices=50001:60000)
+```
+
+<!-- TODO: justify this choice instead of using cross-validation. Maybe add example cross validation code later? -->
+
+Now we need to recreate the training dataloader `train_dl` on the reduced `train_ds` dataset as well as creating a new dataloader for the data in the validation subset:
+
+```{r}
+train_dl <- dataloader(
+  train_ds, 
+  batch_size = 32,
+  shuffle = TRUE
+  )
+
+valid_dl <- dataloader(
+  valid_ds,
+  batch_size = 32
+  )
+```
+
+Note that we do not need to shuffle the images for the validation set, because we are not using those to train the model (and the order doesn't matter when we are just using images to see how accurate the model is).
+
+
+## Inspecting the data
+
+One of the tricky parts of creating a deep learning model is making sure that you get the right number of nodes in each layer. Do do that, we need to understand the dimensions of our input data.
+
+The dataloaders will convert batches of 32 images at a time into something called a *tensor*. This is essentially a table of numbers. We can use the following code to see the dimensions of the first batch of training data:
+
+```{r}
+batch <- train_dl$.iter()$.next()
+batch[[1]]$size()
+```
+
+The tensor is 32 by 784 - in other words, 32 rows (each representing one of the images in the batch) and 784 columns (each representing a pixel in one of those 28x28 images).
+
+## Visualizing an image
+
+It's sometimes helpful to look at a few of the training images to get an idea of the data that they contain. Here we are using a custom function called `visualize_image()` which takes a number from 1-32 (corresponding to one of the images in the batch from the training set), and shows it:
+
+```{r}
+visualize_image(1)
+```
+
+## Creating the network
+
+Finally we are ready to define the shape of our network. We know that we need 784 inputs to the model (one for each pixel), and 10 outputs at the end (one for each of the 10 digits we are trying to predict).
+
+To create the model, we use the `nn_module()` function. Here we are creating a model with a single hidden layer of 256 nodes:
+
+```{r}
+net <- nn_module(
+  "onelayer",
+  initialize = function() {
+    self$net <- nn_sequential(
+      nn_linear(784,256),
+      nn_relu(),
+      nn_linear(256,10)
+    )
+  },
+  forward = function(x) {
+    self$net(x)
+  }
+)
+```
+
+* The first argument is just a name for the network (this could be any character string).
+* The second parameter, `initialize` is passed a new function in which we define the network's layers. The key steps here are inside the `nn_sequential()` function. With the code:
+
+    ```r
+    nn_linear(784,256),
+    nn_relu(),
+    nn_linear(256,10)
+    ```
+    
+    i. we first define the hidden layer of 256 nodes (each of which gets 784 inputs) with the `nn_linear()` function,
+    
+    ii. we then use a function `nn_relu()` which is called an activation function (we should put an activation function after every hidden layer),
+    
+    iii. and finally the last nn_linear() layer creates the 10 output nodes (each of which takes as input the 256 outputs of the previous hidden layer).
+    
+What's going on with these "linear" nodes and the "activation function"?
+
+Fundamentally, each node in the hidden layer just contains a linear model (i.e. a linear combination of all its inputs)! However, the relationship between image pixel intensities and the digits 0-9 is non-linear. Therefore we convert each node's linear output into a non-linear output. 
+
+We did something very similar with logistic regression (where we used the sigmoid function to convert from a linear output to a response between 0 and 1). Here we are using a function called a "Rectified Linear Activation function" or *relu* for short. You don't need to understand the details of the relu activation for this module, but there are many good tutorial or videos about it on the internet if you want to learn more (such as [this article](https://builtin.com/machine-learning/relu-activation-function)).
+
+## Set-up the model
+
+Next we can use the `setup()` function from the `luz` package to define how we wish to train this model. Note that we pipe in the `net` that we created in the previous section.
+
+```{r}
+model <- net %>%
+  setup(
+    loss = nn_cross_entropy_loss(), 
+    optimizer = optim_adam, 
+    metrics = list(
+      luz_metric_accuracy()
+    )
+  )
+```
+
+* `loss` defines how we wish to measure the model's error (how wrong it's predictions are). This is the score that we will attempt to reduce as we train the model on batches of 32 images at a time.
+
+* `optimizer` sets the algorithm to train the neural network on each batch. We are using an optimizer called the *Adam optimizer* which generally works well for most neural networks.
+
+* `metrics` defines any additional scores that we wish to calculate during the training process - here we are telling R to report the accuracy as well.
 
 ## Training the model
 
-Our model will take in 784 pixels at a time. Unfortunately, the `train_images` variable does not contain rows of 784 pixels. We can find it's dimensions with the `dim()` function:
+At last we are ready to train the model!
 
-```{r}
-dim(train_images)
+We can use the `fit()` function (also from the `luz` package) to quickly define the training process to run:
+
+```r
+fitted <- model %>% 
+  fit(
+    train_dl, 
+    epochs = 10,
+    valid_data = valid_dl,
+    verbose = TRUE
+    )
 ```
 
-Each image is currently stored as a grid of 28x28 pixels. We can **reshape** (or "flatten") each of these images into a single row of 784 pixels using the `array_reshape()` function
-
-```{r}
-train_x <- array_reshape(train_images, c(60000, 28 * 28))
+```{r, include=FALSE}
+fitted <- model %>% 
+  fit(
+    train_dl, 
+    epochs = 10,
+    # valid_data = valid_dl,
+    verbose = TRUE
+    )
 ```
 
-(You could check the new dimensions by running `dim(train_x)`.)
 
-To improve the process of fitting the model, we also want to **rescale** the grayscale intensities from integers between 0 and 255 to decimals between 0 and 1. We can do this by dividing by 255, e.g.
+* The first two arguments are (1) the `model` that we created from the `setup()` function, and (2) the training dataloader `train_dl` to generate batches of 32 training images.
+
+* Then we specify that we want to run the model for 10 *epochs*. An epoch is one training cycle over all of the training images. Since we are training the model by incrementally improving it on all of the images, we will want to go over the entire dataset multiple times to keep improving the model.
+
+<!-- Might want to earlier mention the idea of gradient descent vs exact solutions for model training. -->
+
+* We also specify a validation dataset here, by passing the `valid_dl` dataloader to the `valid_data` parameter.
+
+* Finally, `verbose = TRUE` means that the function will print out the results of the training as it goes (when you run the function, you should see these either below the code chunk or in the Console).
+
+## Assess the training history
+
+We can use the `plot()` function on the output of the `fit()` function to create a *ggplot2* graph showing how the loss and the accuracy change over the epochs that we trained the model for:
 
 ```{r}
-train_x <- train_x / 255
+plot(fitted)
 ```
 
-Finally we are ready to fit the neural network to the images in this new `train_x` variable. We do this with the `fit()` function:
+
+
+## Testing
+
+Our last step is to test our best model on the test set.
+
+First we need to write a new dataloader for the test data (which we will do in the same way as we created the validation dataloader):
 
 ```{r}
-history <- fit(
-  first_model,
-  x = train_x, 
-  y = train_labels,
-  batch_size = 128, 
-  epochs = 10,
-  validation_split = 0.2
+test_dl <- dataloader(
+  test_ds, 
+  batch_size = 32
   )
 ```
 
-* The first three arguments are the model that we just compiled, the input training images, and the labels that we are trying to predict.
-
-* Since images are large, we cannot fit the model to all of them at once (otherwise your computer will run out of memory). Instead we fit the model to batches of images. In this case we are gradually improving the model on 128 images at a time (out of the 60,000 images in the training set) with `batch = 128`.
-
-* Since we are adjusting the model parameters each time we fit to a new batch of 128 images, we will cycle through all 60,000 images more than once. The total number of cycles is set by the `epochs` parameter.
-
-* Just like when we were training simpler models, we also want to use cross-validation to get an idea of how good out model is on data that was not used for training it. We can cross validate on 20% of the data by passing `validation_split = 0.2` to the `fit()` function.
-
-Note that we do assign the output of the `fit()` function to a new variable (here we are calling it `history`).
-
-## Interpreting 
-
-We saved the output of the `fit()` function into the `history` variable. We can pass this to the `plot()` function to get a ggplot2 graph of how the neural network improved with each epoch of training:
+Then we can use the `evaluate()` function to calculate the loss and accuracy on that test data:
 
 ```{r}
-plot(history)
+evaluate(fitted, test_dl)
 ```
 
-## Predictions on the test set
+<!-- Memory and GPU -->
 
-Recall that we never use the reserved test set for training a model. Instead we adjust our hyper-parameters and retrain on the testing set, using cross-validation to identify the model that seems to have the best generalization error.
-
-Once we are satisfied, we can see how well our best model does on the test set.
-
-First we need to rescale and reshape the test images (just like we did for the training images):
-
-```{r}
-test_x <- array_reshape(test_images, c(10000, 28 * 28))
-test_x <- test_x / 255
-```
-
-Next we can make predictions on the new `test_x` variable with the `predict()` function:
-
-```{r}
-predictions <- predict(first_model, test_x, batch_size = 128) %>% 
-  k_argmax() %>%
-  as.vector()
-```
-
-* Again, we do this in batches because images take up a lot of computer memory.
-
-* The `predict()` function will return 10 probabilities for each image, However we only care about which digit has the highest probability, so we pipe to the `k_argmax()` function which digit has the highest probability. 
-
-<!-- TODO: might need better explanation of how indexes work here -->
-
-* The output of `k_argmax()` is Keras's equivalent of a vector (called a "tensor") so we will convert this back to an R vector with the `as.vector()` function.
-
-Finally we can calculate what fraction of our 10,000 test images we predicted correctly:
-
-```{r}
-sum(predictions == test_labels) / 10000
-```
-
-* `predictions == test_labels` returns a Boolean vector that is true if our prediction was correct.
-* `sum()` adds up the number of correct predictions (since a `TRUE` is equivalent to 1, whereas a `FALSE` is equalivalent to 0).
-* We divide by 10,000 to get the fraction that are correct.
-
+<!-- ```{r} -->
+<!-- gc() -->
+<!-- ``` -->

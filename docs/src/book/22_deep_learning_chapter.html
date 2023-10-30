@@ -319,12 +319,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#what-is-deep-learning" id="toc-what-is-deep-learning" class="nav-link active" data-scroll-target="#what-is-deep-learning"><span class="header-section-number">16.1</span> What is Deep Learning?</a></li>
   <li><a href="#deep-learning-in-r" id="toc-deep-learning-in-r" class="nav-link" data-scroll-target="#deep-learning-in-r"><span class="header-section-number">16.2</span> Deep learning in R</a></li>
   <li><a href="#the-mnist-dataset" id="toc-the-mnist-dataset" class="nav-link" data-scroll-target="#the-mnist-dataset"><span class="header-section-number">16.3</span> The MNIST dataset</a></li>
-  <li><a href="#images-as-inputs" id="toc-images-as-inputs" class="nav-link" data-scroll-target="#images-as-inputs"><span class="header-section-number">16.4</span> Images as inputs</a></li>
-  <li><a href="#defining-a-neural-network-shape" id="toc-defining-a-neural-network-shape" class="nav-link" data-scroll-target="#defining-a-neural-network-shape"><span class="header-section-number">16.5</span> Defining a neural network shape</a></li>
-  <li><a href="#compiling-the-model" id="toc-compiling-the-model" class="nav-link" data-scroll-target="#compiling-the-model"><span class="header-section-number">16.6</span> Compiling the model</a></li>
-  <li><a href="#training-the-model" id="toc-training-the-model" class="nav-link" data-scroll-target="#training-the-model"><span class="header-section-number">16.7</span> Training the model</a></li>
-  <li><a href="#interpreting" id="toc-interpreting" class="nav-link" data-scroll-target="#interpreting"><span class="header-section-number">16.8</span> Interpreting</a></li>
-  <li><a href="#predictions-on-the-test-set" id="toc-predictions-on-the-test-set" class="nav-link" data-scroll-target="#predictions-on-the-test-set"><span class="header-section-number">16.9</span> Predictions on the test set</a></li>
+  <li><a href="#data-in-torch" id="toc-data-in-torch" class="nav-link" data-scroll-target="#data-in-torch"><span class="header-section-number">16.4</span> Data in <code>torch</code></a></li>
+  <li><a href="#torch-dataloaders" id="toc-torch-dataloaders" class="nav-link" data-scroll-target="#torch-dataloaders"><span class="header-section-number">16.5</span> <code>torch</code> dataloaders</a></li>
+  <li><a href="#splitting-the-dataset-for-training-and-validation" id="toc-splitting-the-dataset-for-training-and-validation" class="nav-link" data-scroll-target="#splitting-the-dataset-for-training-and-validation"><span class="header-section-number">16.6</span> Splitting the dataset for training and validation</a></li>
+  <li><a href="#inspecting-the-data" id="toc-inspecting-the-data" class="nav-link" data-scroll-target="#inspecting-the-data"><span class="header-section-number">16.7</span> Inspecting the data</a></li>
+  <li><a href="#visualizing-an-image" id="toc-visualizing-an-image" class="nav-link" data-scroll-target="#visualizing-an-image"><span class="header-section-number">16.8</span> Visualizing an image</a></li>
+  <li><a href="#creating-the-network" id="toc-creating-the-network" class="nav-link" data-scroll-target="#creating-the-network"><span class="header-section-number">16.9</span> Creating the network</a></li>
+  <li><a href="#set-up-the-model" id="toc-set-up-the-model" class="nav-link" data-scroll-target="#set-up-the-model"><span class="header-section-number">16.10</span> Set-up the model</a></li>
+  <li><a href="#training-the-model" id="toc-training-the-model" class="nav-link" data-scroll-target="#training-the-model"><span class="header-section-number">16.11</span> Training the model</a></li>
+  <li><a href="#assess-the-training-history" id="toc-assess-the-training-history" class="nav-link" data-scroll-target="#assess-the-training-history"><span class="header-section-number">16.12</span> Assess the training history</a></li>
+  <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing"><span class="header-section-number">16.13</span> Testing</a></li>
   </ul>
 </nav>
     </div>
@@ -385,42 +389,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deep-learning-in-r" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="deep-learning-in-r"><span class="header-section-number">16.2</span> Deep learning in R</h2>
-<p>We will use two packages to create deep learning models: <code>tensorflow</code> and <code>keras</code>.</p>
+<p>We will be using a package called <code>torch</code> to create neural networks. <code>torch</code> is the R version of a machine learning software library called <em>PyTorch</em>, which was originally developed by Facebook for their AI research.</p>
+<p>We will also be using two additional packages:</p>
 <ul>
-<li><p><code>tensorflow</code> is an R package that allows to run a piece of software called TensorFlow that was developed by Google to run neural networks.</p></li>
-<li><p><code>keras</code> is an R package that provides a friendlier interface to TensorFlow.</p></li>
+<li><p><code>torchvision</code> is an R package that contains helpful code (and datasets) for working with images.</p></li>
+<li><p><code>luz</code> is an R package that provides lots of helpful functions to make training <code>torch</code> neural networks much easier.</p></li>
 </ul>
 </section>
 <section id="the-mnist-dataset" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="the-mnist-dataset"><span class="header-section-number">16.3</span> The MNIST dataset</h2>
-<p>As an example, we will use the MNIST dataset, which is a famous dataset containing pictures of numbers such as this one:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-2_c2f6ce12ede7ee49e8aeeeb735368203">
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
-Using compatibility `.name_repair`.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
-</div>
+<p>As an example, we will use the MNIST dataset, which is a famous dataset containing pictures of numbers from 0 to 9, such as this one:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-2_1c861996b5af17800e43bb4f04e004d0">
 <div class="cell-output-display">
 <p><img src="22_deep_learning_chapter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The MNIST dataset can be downloaded using <code>dataset_mnist()</code> function from the <code>keras</code> package, e.g.</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-3_e897e6ed9b7600bfba532ef5954a72f4">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mnist <span class="ot">&lt;-</span> <span class="fu">dataset_mnist</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The MNIST dataset is already divided into training and test sets (of 60,000 and 10,000 images respectively). Each image comes with a label telling us what digit is in the image.</p>
-<p>All of these are stored in the <code>mnist</code> variable we created above. To make our lives easier, we will split all of the training and test images and labels into 4 separate variables:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-4_29fc5775b3eba442fafa6256bbf5c157">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_images <span class="ot">&lt;-</span> mnist<span class="sc">$</span>train<span class="sc">$</span>x</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>train_labels <span class="ot">&lt;-</span> mnist<span class="sc">$</span>train<span class="sc">$</span>y</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>test_images <span class="ot">&lt;-</span> mnist<span class="sc">$</span>test<span class="sc">$</span>x</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>test_labels <span class="ot">&lt;-</span> mnist<span class="sc">$</span>test<span class="sc">$</span>y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="images-as-inputs" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="images-as-inputs"><span class="header-section-number">16.4</span> Images as inputs</h2>
-<p>Before we build our model, we need to understand how data is stored in images.</p>
+<p>Before we can build our model, we need to understand how data is stored in digital images.</p>
 <p>Digital images are composed of small squares called pixels. Each pixel has a single color.</p>
 <p>The MNIST images are 28 pixels wide and 28 pixels high. They are <em>greyscale</em> images, which means that each pixel has a single color that is somewhere on the spectrum from white to black. There are 256 possible shades on this spectrum, each represented by an integer number from 0 (white) to 255 (black).</p>
 <p>For example, this image shows the intensities in each of the pixels of one of the MNIST images:</p>
@@ -431,155 +415,206 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was genera
 </figure>
 </div>
 <p>Each pixel in our image will be an input to the model. Since there are 28 by 28 pixels in each images, then we will need <span class="math inline">\(28 \times 28 = 512\)</span> input nodes in any artificial neural network that we create.</p>
+<p>There are 60,000 training images in the MNIST dataset, and an additional 10,000 test images.</p>
 </section>
-<section id="defining-a-neural-network-shape" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="defining-a-neural-network-shape"><span class="header-section-number">16.5</span> Defining a neural network shape</h2>
-<p>The following code defines the shape of an artificial neural network that we will be able to train on the MNIST dataset.</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-5_7918f991ebe3f8a8b7a9a1f7535f0459">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>first_model <span class="ot">&lt;-</span> <span class="fu">keras_model_sequential</span>(<span class="at">input_shape =</span> <span class="dv">28</span><span class="sc">*</span><span class="dv">28</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">512</span>, <span class="at">activation =</span> <span class="st">"relu"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">10</span>, <span class="at">activation =</span> <span class="st">"softmax"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="data-in-torch" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="data-in-torch"><span class="header-section-number">16.4</span> Data in <code>torch</code></h2>
+<p>The <code>torch</code> package comes with its own concept of a <em>dataset</em>, that is different to previous R datasets that we have worked with.</p>
+<p>Fortunately the MNIST dataset is already built-in to the <code>torchvision</code> package, and so there is a handy function called <code>mnist_dataset()</code> that we can use to load it from our computer’s hard drive (or download it, if this is the first time running the function):</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-3_8337c1ca4d3f6cdf2badef830eb3d485">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>train_ds <span class="ot">&lt;-</span> <span class="fu">mnist_dataset</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"images"</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">download =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> . <span class="sc">%&gt;%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transform_to_tensor</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">torch_flatten</span>()</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>If you are looking to modify the <code>mnist_dataset()</code> function, then note a few things:</p>
 <ul>
-<li><p>We start our code with the <code>keras_model_sequential()</code> function to indicate that we will be creating a neural network composed of a series of layers. The <code>input_shape</code> parameter indicated how many inputs nodes we will need.</p></li>
-<li><p>Then we pipe to each of the layers that we wish to add on to the neural network, which are created with the <code>layer_dense()</code> function.</p>
-<ul>
-<li>The first is our only hidden layer. We have chosen to have 512 nodes (<code>units</code>) in this layer.</li>
-<li>Finally we add a layer of <code>10</code> nodes which will be out output layer. We need 10 output nodes because we wish to predict 10 different categories (i.e.&nbsp;the digits 0, 1, 2, …, 9). Each node will contain the probability that one of those 10 digits is in the image. Our prediction will be the digit that has the highest probability.</li>
-</ul></li>
+<li>The first argument, <code>"images"</code> is the name of the folder where the data will be stored.</li>
+<li><code>download = TRUE</code> means that the dataset will be downloaded if it can’t be found in the <em>images</em> folder.</li>
+<li>The <code>transform</code> parameter tells <code>torch</code> how to load each image. Here we are converting each image to a <em>tensor</em> (a 28x28 grid of numbers), and then flattening that grid into one long 1x784 row of numbers. (So that we can treat each image like the row of a dataframe with 784 columns [one column for each pixel]).</li>
 </ul>
-<p>What about the <code>activation</code> parameters in the layer functions?</p>
-<p>Fundamentally, each node in the just contains a linear model (i.e.&nbsp;a linear combination of all the inputs from the previous layer)! However, the relationship between image pixel intensities and the digits 0-9 is non-linear. Therefore we convert each node’s linear prediction into a non-linear prediction.</p>
-<p>We did something very similar with logistic regression (where we used the sigmoid function to convert from a linear output to a response between 0 and 1). Here we are using a function called a “Rectified Linear Activation function” or relu for short. You don’t need to understand the details of the relu activation for this module, but there are many good tutorial or videos about it on the internet if you want to learn more (such as <a href="https://builtin.com/machine-learning/relu-activation-function">this article</a>).</p>
-<p>The final layer uses a different activation function called <code>"softmax"</code>. This just ensures that all the 10 probabilities of the 10 output nodes all add up to 1.</p>
-</section>
-<section id="compiling-the-model" class="level2" data-number="16.6">
-<h2 data-number="16.6" class="anchored" data-anchor-id="compiling-the-model"><span class="header-section-number">16.6</span> Compiling the model</h2>
-<p>Before we can train a Keras model, we need to do an additional step called <em>compilation</em>. In this step we state all the information about <em>how</em> the model is to be trained.</p>
-<p>To do this, we use the <code>compile()</code> function from the <code>keras</code> package:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-6_d7453188c00e5d55c6fb953d8ea3e085">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">compile</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  first_model,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">optimizer =</span> <span class="st">"rmsprop"</span>,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">loss =</span> <span class="st">"sparse_categorical_crossentropy"</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">metrics =</span> <span class="st">"accuracy"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The training dataset loaded above contains the 60,000 training images. We can also use the <code>mnist_dataset()</code> function to load the 10,000 testing images. Note that everything is the same, except that we have added the <code>train = FALSE</code> argument to the function:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-4_d4dabc722cc82ff7ea75c25dcf59607a">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>test_ds <span class="ot">&lt;-</span> <span class="fu">mnist_dataset</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"images"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">download =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">train =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">transform =</span> . <span class="sc">%&gt;%</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">transform_to_tensor</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">torch_flatten</span>()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>We will not worry too much about these details here, but briefly:</p>
-<ul>
-<li>The <code>optimizer</code> parameter tells Keras what algorithm to use to fit the model to the training data.</li>
-<li>The <code>loss</code> parameter tells Keras what function to use determine how bad the model is at each step of the optimization process.</li>
-<li>The <code>metrics</code> parameter controls what information will be reported back to us as the model is optimized.</li>
-</ul>
-<p>Note that we do <strong>not</strong> assign the output of the <code>compile()</code> function to a new variable. This is one of the rare cases in R where the input variable (<code>first_model</code>) will be modified automatically to contain these extra parameters.</p>
 </section>
-<section id="training-the-model" class="level2" data-number="16.7">
-<h2 data-number="16.7" class="anchored" data-anchor-id="training-the-model"><span class="header-section-number">16.7</span> Training the model</h2>
-<p>Our model will take in 784 pixels at a time. Unfortunately, the <code>train_images</code> variable does not contain rows of 784 pixels. We can find it’s dimensions with the <code>dim()</code> function:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-7_c354733c3e410bae76c3e80062f28734">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(train_images)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="torch-dataloaders" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="torch-dataloaders"><span class="header-section-number">16.5</span> <code>torch</code> dataloaders</h2>
+<p>There’s an extra step to stetting up our data in <code>torch</code> so that it’s ready for our model: we need to create <em>dataloaders</em>.</p>
+<p>Since deep learning datasets are often large, we cannot fit all the data into the computer’s memory at once. Instead, <code>torch</code> will load the data in <em>batches</em>, tune the neural network to that batch, and then repeat on the next batch of data. Loading batches of data is the job of a <em>dataloader</em>, which we need to create with the <code>dataloader()</code> function:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-5_395a9f07ca3181253587c43ca26ede53">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>train_dl <span class="ot">&lt;-</span> <span class="fu">dataloader</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  train_ds, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch_size =</span> <span class="dv">32</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">shuffle =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note: * The first argument is a <code>torch</code> dataset - here we are using the training <code>train_ds</code> dataset. * We specify that we want to load the images in batches of 32 images at a time. * We will also shuffle up the training images when we load them (this will help with training our model in a future step).</p>
+</section>
+<section id="splitting-the-dataset-for-training-and-validation" class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="splitting-the-dataset-for-training-and-validation"><span class="header-section-number">16.6</span> Splitting the dataset for training and validation</h2>
+<p>Recall from Chapter <span class="quarto-unresolved-ref">?sec-prediction-chapter</span> that it’s a good idea to split our training set into training and validation data, so that we can tune the model’s hyperparameters without overfitting to the test dataset.</p>
+<p>Instead of cross-validation, we will simply take a fixed subset of the training images to be the validation set, which we can do with the <code>dataset_subset()</code> function from the <code>torch</code> package. Here we are selecting the last 10000 images to be our validation set:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>train_ds <span class="ot">&lt;-</span> <span class="fu">dataset_subset</span>(train_ds, <span class="at">indices=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">50000</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>valid_ds <span class="ot">&lt;-</span> <span class="fu">dataset_subset</span>(train_ds, <span class="at">indices=</span><span class="dv">50001</span><span class="sc">:</span><span class="dv">60000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: justify this choice instead of using cross-validation. Maybe add example cross validation code later? -->
+<p>Now we need to recreate the training dataloader <code>train_dl</code> on the reduced <code>train_ds</code> dataset as well as creating a new dataloader for the data in the validation subset:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-7_9e3f3cd892bdc3547599fcfd867e379d">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>train_dl <span class="ot">&lt;-</span> <span class="fu">dataloader</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  train_ds, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch_size =</span> <span class="dv">32</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">shuffle =</span> <span class="cn">TRUE</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>valid_dl <span class="ot">&lt;-</span> <span class="fu">dataloader</span>(</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  valid_ds,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch_size =</span> <span class="dv">32</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we do not need to shuffle the images for the validation set, because we are not using those to train the model (and the order doesn’t matter when we are just using images to see how accurate the model is).</p>
+</section>
+<section id="inspecting-the-data" class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="inspecting-the-data"><span class="header-section-number">16.7</span> Inspecting the data</h2>
+<p>One of the tricky parts of creating a deep learning model is making sure that you get the right number of nodes in each layer. Do do that, we need to understand the dimensions of our input data.</p>
+<p>The dataloaders will convert batches of 32 images at a time into something called a <em>tensor</em>. This is essentially a table of numbers. We can use the following code to see the dimensions of the first batch of training data:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-8_14a4eb30c9947435e868643a1421c3c0">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>batch <span class="ot">&lt;-</span> train_dl<span class="sc">$</span><span class="fu">.iter</span>()<span class="sc">$</span><span class="fu">.next</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>batch[[<span class="dv">1</span>]]<span class="sc">$</span><span class="fu">size</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 60000    28    28</code></pre>
+<pre><code>[1]  32 784</code></pre>
 </div>
 </div>
-<p>Each image is currently stored as a grid of 28x28 pixels. We can <strong>reshape</strong> (or “flatten”) each of these images into a single row of 784 pixels using the <code>array_reshape()</code> function</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-8_74bdca97fbe129a47418f6bdd8e06d95">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>train_x <span class="ot">&lt;-</span> <span class="fu">array_reshape</span>(train_images, <span class="fu">c</span>(<span class="dv">60000</span>, <span class="dv">28</span> <span class="sc">*</span> <span class="dv">28</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>(You could check the new dimensions by running <code>dim(train_x)</code>.)</p>
-<p>To improve the process of fitting the model, we also want to <strong>rescale</strong> the grayscale intensities from integers between 0 and 255 to decimals between 0 and 1. We can do this by dividing by 255, e.g.</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-9_c84b735b0d6b4c3eed045f73deda62aa">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>train_x <span class="ot">&lt;-</span> train_x <span class="sc">/</span> <span class="dv">255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Finally we are ready to fit the neural network to the images in this new <code>train_x</code> variable. We do this with the <code>fit()</code> function:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-10_1d396cefd4cce6c8a5f0259e448e86d2">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> <span class="fu">fit</span>(</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  first_model,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_x, </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_labels,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch_size =</span> <span class="dv">128</span>, </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> <span class="dv">10</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Epoch 1/10
-375/375 - 2s - loss: 0.2959 - accuracy: 0.9151 - val_loss: 0.1590 - val_accuracy: 0.9555 - 2s/epoch - 4ms/step
-Epoch 2/10
-375/375 - 1s - loss: 0.1231 - accuracy: 0.9645 - val_loss: 0.1027 - val_accuracy: 0.9687 - 1s/epoch - 3ms/step
-Epoch 3/10
-375/375 - 1s - loss: 0.0810 - accuracy: 0.9757 - val_loss: 0.0878 - val_accuracy: 0.9741 - 1s/epoch - 3ms/step
-Epoch 4/10
-375/375 - 1s - loss: 0.0580 - accuracy: 0.9834 - val_loss: 0.0902 - val_accuracy: 0.9724 - 1s/epoch - 3ms/step
-Epoch 5/10
-375/375 - 1s - loss: 0.0438 - accuracy: 0.9871 - val_loss: 0.0854 - val_accuracy: 0.9753 - 1s/epoch - 3ms/step
-Epoch 6/10
-375/375 - 1s - loss: 0.0331 - accuracy: 0.9906 - val_loss: 0.0778 - val_accuracy: 0.9772 - 1s/epoch - 3ms/step
-Epoch 7/10
-375/375 - 1s - loss: 0.0246 - accuracy: 0.9933 - val_loss: 0.0776 - val_accuracy: 0.9779 - 1s/epoch - 3ms/step
-Epoch 8/10
-375/375 - 1s - loss: 0.0188 - accuracy: 0.9954 - val_loss: 0.0758 - val_accuracy: 0.9784 - 1s/epoch - 3ms/step
-Epoch 9/10
-375/375 - 1s - loss: 0.0135 - accuracy: 0.9967 - val_loss: 0.0767 - val_accuracy: 0.9794 - 1s/epoch - 3ms/step
-Epoch 10/10
-375/375 - 1s - loss: 0.0102 - accuracy: 0.9977 - val_loss: 0.0775 - val_accuracy: 0.9796 - 1s/epoch - 3ms/step</code></pre>
-</div>
-</div>
-<ul>
-<li><p>The first three arguments are the model that we just compiled, the input training images, and the labels that we are trying to predict.</p></li>
-<li><p>Since images are large, we cannot fit the model to all of them at once (otherwise your computer will run out of memory). Instead we fit the model to batches of images. In this case we are gradually improving the model on 128 images at a time (out of the 60,000 images in the training set) with <code>batch = 128</code>.</p></li>
-<li><p>Since we are adjusting the model parameters each time we fit to a new batch of 128 images, we will cycle through all 60,000 images more than once. The total number of cycles is set by the <code>epochs</code> parameter.</p></li>
-<li><p>Just like when we were training simpler models, we also want to use cross-validation to get an idea of how good out model is on data that was not used for training it. We can cross validate on 20% of the data by passing <code>validation_split = 0.2</code> to the <code>fit()</code> function.</p></li>
-</ul>
-<p>Note that we do assign the output of the <code>fit()</code> function to a new variable (here we are calling it <code>history</code>).</p>
+<p>The tensor is 32 by 784 - in other words, 32 rows (each representing one of the images in the batch) and 784 columns (each representing a pixel in one of those 28x28 images).</p>
 </section>
-<section id="interpreting" class="level2" data-number="16.8">
-<h2 data-number="16.8" class="anchored" data-anchor-id="interpreting"><span class="header-section-number">16.8</span> Interpreting</h2>
-<p>We saved the output of the <code>fit()</code> function into the <code>history</code> variable. We can pass this to the <code>plot()</code> function to get a ggplot2 graph of how the neural network improved with each epoch of training:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-11_d0ef11b3bc629e31ba991060dd4e84d3">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="visualizing-an-image" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="visualizing-an-image"><span class="header-section-number">16.8</span> Visualizing an image</h2>
+<p>It’s sometimes helpful to look at a few of the training images to get an idea of the data that they contain. Here we are using a custom function called <code>visualize_image()</code> which takes a number from 1-32 (corresponding to one of the images in the batch from the training set), and shows it:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-9_32c8f34583b168bad03f8afe3b34ee34">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visualize_image</span>(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="22_deep_learning_chapter_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="22_deep_learning_chapter_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
-<section id="predictions-on-the-test-set" class="level2" data-number="16.9">
-<h2 data-number="16.9" class="anchored" data-anchor-id="predictions-on-the-test-set"><span class="header-section-number">16.9</span> Predictions on the test set</h2>
-<p>Recall that we never use the reserved test set for training a model. Instead we adjust our hyper-parameters and retrain on the testing set, using cross-validation to identify the model that seems to have the best generalization error.</p>
-<p>Once we are satisfied, we can see how well our best model does on the test set.</p>
-<p>First we need to rescale and reshape the test images (just like we did for the training images):</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-12_7786c896fc27c0d8fdd272b41e20c457">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>test_x <span class="ot">&lt;-</span> <span class="fu">array_reshape</span>(test_images, <span class="fu">c</span>(<span class="dv">10000</span>, <span class="dv">28</span> <span class="sc">*</span> <span class="dv">28</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>test_x <span class="ot">&lt;-</span> test_x <span class="sc">/</span> <span class="dv">255</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="creating-the-network" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="creating-the-network"><span class="header-section-number">16.9</span> Creating the network</h2>
+<p>Finally we are ready to define the shape of our network. We know that we need 784 inputs to the model (one for each pixel), and 10 outputs at the end (one for each of the 10 digits we are trying to predict).</p>
+<p>To create the model, we use the <code>nn_module()</code> function. Here we are creating a model with a single hidden layer of 256 nodes:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-10_1052cf1d5c9114be45d943c25a013dc9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>net <span class="ot">&lt;-</span> <span class="fu">nn_module</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"onelayer"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">initialize =</span> <span class="cf">function</span>() {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    self<span class="sc">$</span>net <span class="ot">&lt;-</span> <span class="fu">nn_sequential</span>(</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nn_linear</span>(<span class="dv">784</span>,<span class="dv">256</span>),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nn_relu</span>(),</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nn_linear</span>(<span class="dv">256</span>,<span class="dv">10</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  },</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">forward =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    self<span class="sc">$</span><span class="fu">net</span>(x)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Next we can make predictions on the new <code>test_x</code> variable with the <code>predict()</code> function:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-13_b2ca95f16e2f7e860c1bbc95aa34c468">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">predict</span>(first_model, test_x, <span class="at">batch_size =</span> <span class="dv">128</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">k_argmax</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.vector</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>The first argument is just a name for the network (this could be any character string).</p></li>
+<li><p>The second parameter, <code>initialize</code> is passed a new function in which we define the network’s layers. The key steps here are inside the <code>nn_sequential()</code> function. With the code:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nn_linear</span>(<span class="dv">784</span>,<span class="dv">256</span>),</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nn_relu</span>(),</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">nn_linear</span>(<span class="dv">256</span>,<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="i">
+<li><p>we first define the hidden layer of 256 nodes (each of which gets 784 inputs) with the <code>nn_linear()</code> function,</p></li>
+<li><p>we then use a function <code>nn_relu()</code> which is called an activation function (we should put an activation function after every hidden layer),</p></li>
+<li><p>and finally the last nn_linear() layer creates the 10 output nodes (each of which takes as input the 256 outputs of the previous hidden layer).</p></li>
+</ol></li>
+</ul>
+<p>What’s going on with these “linear” nodes and the “activation function”?</p>
+<p>Fundamentally, each node in the hidden layer just contains a linear model (i.e.&nbsp;a linear combination of all its inputs)! However, the relationship between image pixel intensities and the digits 0-9 is non-linear. Therefore we convert each node’s linear output into a non-linear output.</p>
+<p>We did something very similar with logistic regression (where we used the sigmoid function to convert from a linear output to a response between 0 and 1). Here we are using a function called a “Rectified Linear Activation function” or <em>relu</em> for short. You don’t need to understand the details of the relu activation for this module, but there are many good tutorial or videos about it on the internet if you want to learn more (such as <a href="https://builtin.com/machine-learning/relu-activation-function">this article</a>).</p>
+</section>
+<section id="set-up-the-model" class="level2" data-number="16.10">
+<h2 data-number="16.10" class="anchored" data-anchor-id="set-up-the-model"><span class="header-section-number">16.10</span> Set-up the model</h2>
+<p>Next we can use the <code>setup()</code> function from the <code>luz</code> package to define how we wish to train this model. Note that we pipe in the <code>net</code> that we created in the previous section.</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-11_81e1f426e6dfae28f66bdb4787f4b44e">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> net <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setup</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="fu">nn_cross_entropy_loss</span>(), </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> optim_adam, </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">luz_metric_accuracy</span>()</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p><code>loss</code> defines how we wish to measure the model’s error (how wrong it’s predictions are). This is the score that we will attempt to reduce as we train the model on batches of 32 images at a time.</p></li>
+<li><p><code>optimizer</code> sets the algorithm to train the neural network on each batch. We are using an optimizer called the <em>Adam optimizer</em> which generally works well for most neural networks.</p></li>
+<li><p><code>metrics</code> defines any additional scores that we wish to calculate during the training process - here we are telling R to report the accuracy as well.</p></li>
+</ul>
+</section>
+<section id="training-the-model" class="level2" data-number="16.11">
+<h2 data-number="16.11" class="anchored" data-anchor-id="training-the-model"><span class="header-section-number">16.11</span> Training the model</h2>
+<p>At last we are ready to train the model!</p>
+<p>We can use the <code>fit()</code> function (also from the <code>luz</code> package) to quickly define the training process to run:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fitted <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    train_dl, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">epochs =</span> <span class="dv">10</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">valid_data =</span> valid_dl,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">verbose =</span> <span class="cn">TRUE</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>The first two arguments are (1) the <code>model</code> that we created from the <code>setup()</code> function, and (2) the training dataloader <code>train_dl</code> to generate batches of 32 training images.</p></li>
+<li><p>Then we specify that we want to run the model for 10 <em>epochs</em>. An epoch is one training cycle over all of the training images. Since we are training the model by incrementally improving it on all of the images, we will want to go over the entire dataset multiple times to keep improving the model.</p></li>
+</ul>
+<!-- Might want to earlier mention the idea of gradient descent vs exact solutions for model training. -->
+<ul>
+<li><p>We also specify a validation dataset here, by passing the <code>valid_dl</code> dataloader to the <code>valid_data</code> parameter.</p></li>
+<li><p>Finally, <code>verbose = TRUE</code> means that the function will print out the results of the training as it goes (when you run the function, you should see these either below the code chunk or in the Console).</p></li>
+</ul>
+</section>
+<section id="assess-the-training-history" class="level2" data-number="16.12">
+<h2 data-number="16.12" class="anchored" data-anchor-id="assess-the-training-history"><span class="header-section-number">16.12</span> Assess the training history</h2>
+<p>We can use the <code>plot()</code> function on the output of the <code>fit()</code> function to create a <em>ggplot2</em> graph showing how the loss and the accuracy change over the epochs that we trained the model for:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-13_7525981763008b93efa464282bf76605">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="22_deep_learning_chapter_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="testing" class="level2" data-number="16.13">
+<h2 data-number="16.13" class="anchored" data-anchor-id="testing"><span class="header-section-number">16.13</span> Testing</h2>
+<p>Our last step is to test our best model on the test set.</p>
+<p>First we need to write a new dataloader for the test data (which we will do in the same way as we created the validation dataloader):</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-14_25c552b154cba5fc3d77dbeb249bec48">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_dl <span class="ot">&lt;-</span> <span class="fu">dataloader</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  test_ds, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch_size =</span> <span class="dv">32</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then we can use the <code>evaluate()</code> function to calculate the loss and accuracy on that test data:</p>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-15_8b05dc8887df14177810a95f8d2a231e">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">evaluate</span>(fitted, test_dl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>79/79 - 0s - 134ms/epoch - 2ms/step</code></pre>
+<pre><code>A `luz_module_evaluation`
+── Results ─────────────────────────────────────────────────────────────────────
+loss: 0.4138
+acc: 0.875</code></pre>
 </div>
 </div>
-<ul>
-<li><p>Again, we do this in batches because images take up a lot of computer memory.</p></li>
-<li><p>The <code>predict()</code> function will return 10 probabilities for each image, However we only care about which digit has the highest probability, so we pipe to the <code>k_argmax()</code> function which digit has the highest probability.</p></li>
-</ul>
-<!-- TODO: might need better explanation of how indexes work here -->
-<ul>
-<li>The output of <code>k_argmax()</code> is Keras’s equivalent of a vector (called a “tensor”) so we will convert this back to an R vector with the <code>as.vector()</code> function.</li>
-</ul>
-<p>Finally we can calculate what fraction of our 10,000 test images we predicted correctly:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-14_a66881760063e61987372fa3c93d00b5">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(predictions <span class="sc">==</span> test_labels) <span class="sc">/</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9812</code></pre>
-</div>
-</div>
-<ul>
-<li><code>predictions == test_labels</code> returns a Boolean vector that is true if our prediction was correct.</li>
-<li><code>sum()</code> adds up the number of correct predictions (since a <code>TRUE</code> is equivalent to 1, whereas a <code>FALSE</code> is equalivalent to 0).</li>
-<li>We divide by 10,000 to get the fraction that are correct.</li>
-</ul>
+<!-- Memory and GPU -->
+<!-- ```{r} -->
+<!-- gc() -->
+<!-- ``` -->
 
 
 </section>
