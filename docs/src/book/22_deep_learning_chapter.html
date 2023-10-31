@@ -463,7 +463,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="splitting-the-dataset-for-training-and-validation" class="level2" data-number="16.6">
 <h2 data-number="16.6" class="anchored" data-anchor-id="splitting-the-dataset-for-training-and-validation"><span class="header-section-number">16.6</span> Splitting the dataset for training and validation</h2>
-<p>Recall from Chapter <span class="quarto-unresolved-ref">?sec-prediction-chapter</span> that it’s a good idea to split our training set into training and validation data, so that we can tune the model’s hyperparameters without overfitting to the test dataset.</p>
+<p>Recall <!--from Chapter @sec-prediction-chapter--> that it’s a good idea to split our training set into training and validation data, so that we can tune the model’s hyperparameters without overfitting to the test dataset.</p>
 <p>Instead of cross-validation, we will simply take a fixed subset of the training images to be the validation set, which we can do with the <code>dataset_subset()</code> function from the <code>torch</code> package. Here we are selecting the last 10000 images to be our validation set:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>train_ds <span class="ot">&lt;-</span> <span class="fu">dataset_subset</span>(train_ds, <span class="at">indices=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">50000</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>valid_ds <span class="ot">&lt;-</span> <span class="fu">dataset_subset</span>(train_ds, <span class="at">indices=</span><span class="dv">50001</span><span class="sc">:</span><span class="dv">60000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -584,33 +584,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="assess-the-training-history" class="level2" data-number="16.12">
 <h2 data-number="16.12" class="anchored" data-anchor-id="assess-the-training-history"><span class="header-section-number">16.12</span> Assess the training history</h2>
 <p>We can use the <code>plot()</code> function on the output of the <code>fit()</code> function to create a <em>ggplot2</em> graph showing how the loss and the accuracy change over the epochs that we trained the model for:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-13_7525981763008b93efa464282bf76605">
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-13_28210e1c43838e2d1aa595220c33f81e">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fitted)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-14_ed6142993ebf10c970b7ad4f732187c0">
 <div class="cell-output-display">
-<p><img src="22_deep_learning_chapter_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="./img/deep_learning_acc-loss_plot.png" class="img-fluid" style="width:100.0%"></p>
 </div>
 </div>
+<p>The left hand column of graphs show how the good the model’s predictions were on the training data (at the end of every epoch of improving the model). The right hand graphs show the same metrics, but on the validation data.</p>
+<p>Remember that the <em>accuracy</em> is the fraction of images that the model predicts correctly (so a high number is better). The <em>loss</em> is the opposite - it’s a measure of how many predictions the model gets wrong (so we want it to decrease).</p>
+<p>These graphs can tell us about two things:</p>
+<ol type="1">
+<li>Generalization error.</li>
+<li>Overfitting.</li>
+</ol>
+<p><strong>Generalization error:</strong> Remember that because we train the model on the training data, it is optimized to predict the correct labels for the training data. However, this is likely to be an overestimate of how good the the model is, since of course it’s going to be good at predicting the stuff it learned how to predict. The real test is whether it can also make good predictions on data is has never seen before, such as the validation dataset.</p>
+<p>We can compare how well the model <em>generalizes</em> by comparing the metrics between the training and validation datasets. Usually the model will do slightly worse on the validation set, but as long as they are similar then this is a sign that our model is able to make good predictions on new data (we would say that it generalizes well, or has low generalization error).</p>
+<p>In the plots above, we can see that the losses and accuracies are similar, and so we have a low generalization error.</p>
+<p><strong>Overfitting:</strong> Neural networks are so powerful that they can sometimes fit the training data too well. If we keep on training for more epochs, then the model is likely to get increasingly good at predicting the training data. However, it will plateau or even get worse at predicting data that it hasn’t seen before (such as the validation data).</p>
+<p>When the plots above show that the validation metrics are plateauing or declining, even though performance on the training data is still improving, then we say that the model is starting to <strong>overfit</strong> the training data.</p>
+<p>(Typically we want to stop training after just enough epochs to get the best performance on the validation data, without overfitting to the training data.)</p>
 </section>
 <section id="testing" class="level2" data-number="16.13">
 <h2 data-number="16.13" class="anchored" data-anchor-id="testing"><span class="header-section-number">16.13</span> Testing</h2>
 <p>Our last step is to test our best model on the test set.</p>
 <p>First we need to write a new dataloader for the test data (which we will do in the same way as we created the validation dataloader):</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-14_25c552b154cba5fc3d77dbeb249bec48">
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-15_e2e006722ad1b96d2a6b81703c8f44d3">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>test_dl <span class="ot">&lt;-</span> <span class="fu">dataloader</span>(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  test_ds, </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">batch_size =</span> <span class="dv">32</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then we can use the <code>evaluate()</code> function to calculate the loss and accuracy on that test data:</p>
-<div class="cell" data-hash="22_deep_learning_chapter_cache/html/unnamed-chunk-15_8b05dc8887df14177810a95f8d2a231e">
+<div class="cell" data-hash="22_deep_learning_chapter_cache/html/dl-evaluate_fca8e71e8f4cae12a5ec7bc77cf8ccfe">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">evaluate</span>(fitted, test_dl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>A `luz_module_evaluation`
-── Results ─────────────────────────────────────────────────────────────────────
-loss: 0.4138
-acc: 0.875</code></pre>
 </div>
-</div>
+<!-- TODO: fix why the evaluate code chunk isn't working when building the book (with a pointer error)? -->
 <!-- Memory and GPU -->
 <!-- ```{r} -->
 <!-- gc() -->

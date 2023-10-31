@@ -183,9 +183,9 @@ Note:
 ## Splitting the dataset for training and validation
 
 ```{r, echo=FALSE, include=FALSE}
-train_ds <- dataset_subset(train_ds, indices=1:1024)
-valid_ds <- dataset_subset(train_ds, indices=1025:1536)
-test_ds <- dataset_subset(test_ds, indices=1:512)
+train_ds <- dataset_subset(train_ds, indices=1:50000)
+valid_ds <- dataset_subset(train_ds, indices=50001:60000)
+# test_ds <- dataset_subset(test_ds, indices=1:512)
 ```
 
 Recall <!--from Chapter @sec-prediction-chapter--> that it's a good idea to split our training set into training and validation data, so that we can tune the model's hyperparameters without overfitting to the test dataset.
@@ -343,11 +343,34 @@ fitted <- model %>%
 
 We can use the `plot()` function on the output of the `fit()` function to create a *ggplot2* graph showing how the loss and the accuracy change over the epochs that we trained the model for:
 
-```{r}
+```{r, eval=FALSE}
 plot(fitted)
 ```
 
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("./img/deep_learning_acc-loss_plot.png")
+```
 
+The left hand column of graphs show how the good the model's predictions were on the training data (at the end of every epoch of improving the model). The right hand graphs show the same metrics, but on the validation data.
+
+Remember that the *accuracy* is the fraction of images that the model predicts correctly (so a high number is better). The *loss* is the opposite - it's a measure of how many predictions the model gets wrong (so we want it to decrease).
+
+These graphs can tell us about two things:
+
+1. Generalization error.
+2. Overfitting.
+
+**Generalization error:** Remember that because we train the model on the training data, it is optimized to predict the correct labels for the training data. However, this is likely to be an overestimate of how good the the model is, since of course it's going to be good at predicting the stuff it learned how to predict. The real test is whether it can also make good predictions on data is has never seen before, such as the validation dataset.
+
+We can compare how well the model *generalizes* by comparing the metrics between the training and validation datasets. Usually the model will do slightly worse on the validation set, but as long as they are similar then this is a sign that our model is able to make good predictions on new data (we would say that it generalizes well, or has low generalization error).
+
+In the plots above, we can see that the losses and accuracies are similar, and so we have a low generalization error.
+
+**Overfitting:** Neural networks are so powerful that they can sometimes fit the training data too well. If we keep on training for more epochs, then the model is likely to get increasingly good at predicting the training data. However, it will plateau or even get worse at predicting data that it hasn't seen before (such as the validation data).
+
+When the plots above show that the validation metrics are plateauing or declining, even though performance on the training data is still improving, then we say that the model is starting to **overfit** the training data.
+
+(Typically we want to stop training after just enough epochs to get the best performance on the validation data, without overfitting to the training data.)
 
 ## Testing
 
@@ -364,9 +387,11 @@ test_dl <- dataloader(
 
 Then we can use the `evaluate()` function to calculate the loss and accuracy on that test data:
 
-```{r}
+```{r dl-evaluate, eval=FALSE}
 evaluate(fitted, test_dl)
 ```
+
+<!-- TODO: fix why the evaluate code chunk isn't working when building the book (with a pointer error)? -->
 
 <!-- Memory and GPU -->
 
