@@ -183,9 +183,8 @@ Note:
 ## Splitting the dataset for training and validation
 
 ```{r, echo=FALSE, include=FALSE}
-train_ds <- dataset_subset(train_ds, indices=1:50000)
-valid_ds <- dataset_subset(train_ds, indices=50001:60000)
-# test_ds <- dataset_subset(test_ds, indices=1:512)
+train_ds <- dataset_subset(train_ds, indices=10001:59999)
+valid_ds <- dataset_subset(train_ds, indices=1:10000)
 ```
 
 Recall <!--from Chapter @sec-prediction-chapter--> that it's a good idea to split our training set into training and validation data, so that we can tune the model's hyperparameters without overfitting to the test dataset.
@@ -323,7 +322,7 @@ fitted <- model %>%
   fit(
     train_dl, 
     epochs = 10,
-    # valid_data = valid_dl,
+    valid_data = valid_dl,
     verbose = TRUE
     )
 ```
@@ -338,6 +337,23 @@ fitted <- model %>%
 * We also specify a validation dataset here, by passing the `valid_dl` dataloader to the `valid_data` parameter.
 
 * Finally, `verbose = TRUE` means that the function will print out the results of the training as it goes (when you run the function, you should see these either below the code chunk or in the Console).
+
+::: {.callout-tip collapse="true"}
+## For Mac users
+
+If you have a recent-ish Mac with an M1 or M2 chip, then the code above will generate an error because the GPU (graphics) part of those chips are not yet fully supported by the `torch` package.
+
+To get it to run, you will need to force your code to run on the CPU part of the chip (i.e. on the regular processor). To do this you will need to create a `torch` *accelerator* using the `accelerator()` function, and then pass that accelerator to the `fit()` function, e.g.
+
+```r
+acc <- accelerator(cpu=TRUE)
+fitted <- model %>% 
+  fit(
+    ...,
+    accelerator = acc
+    )
+```
+:::
 
 ## Assess the training history
 
@@ -387,9 +403,21 @@ test_dl <- dataloader(
 
 Then we can use the `evaluate()` function to calculate the loss and accuracy on that test data:
 
-```{r dl-evaluate, eval=FALSE}
+```{r dl-evaluate}
 evaluate(fitted, test_dl)
 ```
+
+::: {.callout-tip collapse="true"}
+## For Mac users
+
+As with the `fit()` function, if you have a Mac with an M1 or M2 chip, then you will also need to pass your accelerator to the `evaluate()` function, e.g.
+
+```r
+evaluate(fitted, test_dl, accelerator = acc)
+```
+
+(Here we are using the same accelerator that we used previously.)
+:::
 
 <!-- TODO: fix why the evaluate code chunk isn't working when building the book (with a pointer error)? -->
 
