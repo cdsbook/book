@@ -22,13 +22,42 @@ add_to_quarto(
 
 {{< include ../../src/snippets/prediction_intro.Rmd >}}
 
+<!-- TODO: switch to carat or modelr workflow? -->
 
 ## Data splits
 
 {{< include ../../src/snippets/prediction_data_splits.Rmd >}}
 
+<!-- 
+TODO:
+- more about hyperparameters?
 
-## Logistic regression
+## Feature engineering (aka data wrangling)
+-->
+
+
+
+## Linear models for prediction
+
+
+## Logistic regression for categorical predictions
 
 {{< include ../../src/snippets/prediction_logistic_regression.Rmd >}}
+
+<!-- 
+
+TODO:
+## Random Forests 
+(categorical and continuous; feature importance)
+
+## Gradient descent vs exact solution?
+
+## Training metrics -> accuracy vs cross-entropy
+
+## Over-fitting vs. under-fitting
++ regularization
+
+Bias vs accuracy?
+-->
+
 

@@ -41,6 +41,9 @@
   
   Then click "Create Project".
 
+<!-- TODO:
+
+This section doesn't seem to be needed anymore, since it's now back in the main setup instructions?
 
 ## Connecting RStudio to GitHub on Linux {#sec-rstudio-github-linux-connection}
 
@@ -76,7 +79,7 @@
   usethis::create_github_token()
   ```
   
-  <!-- ToDo: Add screenshot of GitHub token page. -->
+  <!-- ToDo: Add screenshot of GitHub token page. ->
   
   On the token webpage that appears, make sure that you are creating a "Classic token", and not a "Fine-grained" token. Then you will need to set the following options:
   
@@ -99,4 +102,63 @@
   
   (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio Console again.)
 
+-->
+
+## Stage, commit and push from RStudio to GitHub {#sec-stage-commit-push}
+
+If you are working on a Git-enabled project in RStudio, then you can periodically make checkpoints as you make progress on your work. Git refers to these checkpoints as __*commits*__, and we refer to this process in general as *version control*.
+
+If your RStudio project is using Git for version control, then the top-right pane of RStudio will contain a *Git* tab. 
+
+:::{.callout-tip collapse="true" title="Help: I don't see the Git tab..."}
+If you do not see the Git tab, but you are expecting to see it, then either:
+
+* The most likely cause is that you do not have the correct Project open in RStudio (check the current project in the top-right corner of RStudio, and then open the correct one).
+
+* You do not have the Git software installed. This needs to be installed separately to RStudio Desktop, as we did in @sec-rstudio-desktop-installation of this book. If you already have Git installed, then is is possible that...
+
+* In rare cases, RStudio can sometimes not find where Git is installed on your system. This can sometimes happen after a software or operating system update on a computer. The way to fix this is by manually telling RStudio where to find Git on your computer. To do this, first locate the path to the Git program on your computer, and then open up the `Tools > Global Options` settings of RStudio and in the `Git/SVN` section, put this path in the `Git executable` box.
+
+:::
+
+The first thing to remember is that you can only make a new commit if you have made changes to at least one of the Project's files since the last commit. In addition, the changes to those files need to be saved to the hard drive (because Git cannot detect the changes otherwise).
+
+**Step 1: Stage files.** In the Git tab check the *Staged* checkbox next to any modified file that you wish to add to the next commit (@fig-rstudio-git-stage).
+
+![The Git tab in RStudio with a staged file](../img/rstudio_git_tab_and_stage.png){#fig-rstudio-git-stage}
+
+<!-- TODO:
+
+Warning about staged vs. partially staged - tick vs. blue square
+-->
+
+**Step 2: Make the commit.**: Make the commit (i.e. the checkpoint) by clicking the *Commit* button in the Git tab. A pop-up will appear. In the *Commit message* box, write a short message that briefly summarizes the changes that you made (@fig-rstudio-git-stage). Then click the "Commit" button below the message box. 
+
+<!-- TODO:
+Add warning about amending commit...
+-->
+
+![The commit pop-up dialog](../img/rstudio_git_commit_popup.png){#fig-rstudio-git-commit}
+
+Assuming everything worked correctly, you should see another message appear that will include the commit message you just wrote along with the number of files you staged, and the number of "insertions" and "deletions" (i.e. the number of lines that you modified in those staged since they were last committed). @fig-rstudio-successful-commit shows an example of what such a message looks like.
+
+![A successful commit message](../img/rstudio_git_commit_success.png){#fig-rstudio-successful-commit}
+
+You may see a different message, which probably means that the commit didn't happen successfully.
+
+* If you get a message that says that Git doesn't know who you are, and asks you to set your name and email, then you did not finish setting up RStudio as detailed in @sec-rstudio-github-connection. To fix this, re-run the first two commands from that section (the two commands that begin `git config ...`). Then try to commit your work again.
+
+**Step 3: Push the commit to GitHub.**
+
+Finally, we need to upload the new commit to GitHub (because it currently only exists in RStudio - thus GitHub is out-of-date, so we need to force it to sync with the new version of the project in RStudio). Git refers to this process as *Pushing*.
+
+In the top of either the Git tab or the commit pop-up is a upwards-pointing green arrow labelled Push. Click this to send your work back to Github. It should just work (without asking for your Github username or password), in which case you should see a message like @fig-rstudio-successful-push .
+
+![A successful push message](../img/rstudio_git_push_success.png){#fig-rstudio-successful-push}
+If you instead get asked for your GitHub username and password, then this means that RStudio does not have a valid Personal Access Token for GitHub. To fix this, repeat the second half of the setup instructions in @fig-rstudio-successful-commit, starting with this line: `install.packages(c("usethis","gitcreds"))`.
+
 ## VS Code IDE Set-up {#sec-vscode-setup-appendix}
+
+:::{.callout-warning}
+Section coming soon.
+:::

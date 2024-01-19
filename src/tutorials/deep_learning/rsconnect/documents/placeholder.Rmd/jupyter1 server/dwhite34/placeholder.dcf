@@ -1,0 +1,13 @@
+name: placeholder
+title: placeholder
+username: dwhite34
+account: dwhite34
+server: jupyter1 server
+hostUrl: https://jupyter1.cos.gmu.edu/__api__
+appId: 16
+bundleId: 52
+url: https://jupyter1.cos.gmu.edu/content/16/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: deep_learning_files/figure-html/unnamed-chunk-1-1.png|deep_learning_files/figure-html/unnamed-chunk-11-1.png|deep_learning_files/figure-html/unnamed-chunk-2-1.png|deep_learning_files/figure-html/unnamed-chunk-3-1.png|deep_learning_files/figure-html/unnamed-chunk-4-1.png|deep_learning.html|deep_learning.Rmd|img/Blausen_0657_MultipolarNeuron.png|placeholder.html

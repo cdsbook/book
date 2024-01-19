@@ -85,7 +85,9 @@ This still leaves us with an unnecessary y axis label, but we can also get rid o
 
 <!-- Book version -->
 
-<!-- TODO: book exercises -->
+<!-- TODO: 
+book exercises on ggplot box plot
+-->
 
 <!-- End book -->
 

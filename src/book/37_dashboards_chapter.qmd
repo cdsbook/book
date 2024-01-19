@@ -1,0 +1,20 @@
+# Dashboards {#sec-dashboards-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* Static dashboards (dynamic, with servers, in apps chapter)
+* principles of dashboard design
+* Package for sharing data among widgets.
+* plotly (also in webpages chapter)
+-->

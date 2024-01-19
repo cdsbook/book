@@ -54,7 +54,9 @@ Here are three example residual vs predicted plots (with purple guide lines show
 * The middle graph violates this assumption because the variability of the residuals increases as the predicted values increase.
 * The third graph also violates this assumption, because the variation above and below the line is not consistent (this pattern arises because there is not a linear relationship between the response and explanatory variables - the residual vs predicted plot can also be used to examine the first assumption of linearity).
 
-<!-- TODO: create my own version of this -->
+<!-- TODO: 
+create illustration of resid vs pred plot
+-->
 
 ```{r, out.width = "600px"}
 knitr::include_graphics("../img/resid-vs-pred.png")
@@ -75,7 +77,9 @@ knitr::include_graphics("../img/resid-vs-pred.png")
 
 <!-- Book version -->
 
-<!-- TODO: Add exercises -->
+<!-- TODO: 
+Add book exercises on resid vs pred plots
+-->
 
 <!-- End book -->
 

@@ -20,7 +20,8 @@ dataframe %>%
   )
 ```
 
-<!-- TODO: comments on interpreting these statistics:
+<!-- TODO: 
+comments on interpreting these statistics:
 - center: are the mean and median similar to each other (especially relative to the spread), or do they indicate a skewed distribution? >median indicates a left skew, <median indicates a right skew.
 
 - what is the std. dev., and how is it calculated.
@@ -32,7 +33,9 @@ Also: use of `na.rm = TRUE`
 
 <!-- Book version -->
 
-<!-- TODO: book exercises -->
+<!-- TODO: 
+book exercises on continuous summary statistics
+-->
 
 <!-- End book -->
 
@@ -81,7 +84,9 @@ In our original question, we were interested in two variables: size (i.e. `carat
 
 <!-- Book version -->
 
-<!-- TODO: book exercises -->
+<!-- TODO: 
+book exercises continuous summary statistics of `price`
+-->
 
 <!-- End book -->
 
@@ -125,7 +130,9 @@ gradethis::grade_code()
 <!-- End tutorial -->
 
 
-<!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
+<!-- TODO: 
+convert to single summarize here for univariate summary statistics. Move group_by() to covariation section 
+-->
 
 If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories. To do this we will first use the `group_by()` to create groups of the same variable that we want to summarize:
 
@@ -149,14 +156,16 @@ Notes on this code:
     
     Thus `nrow(.)` will give us the total number of rows in the original dataframe (ignoring the groups that we created).
     
-<!-- 
-TODO: Interpretation
+<!-- TODO: 
+Interpretation of categorical summary statistics
 - 
 -->
 
 <!-- Book version -->
 
-<!-- TODO: book exercises -->
+<!-- TODO: 
+book exercises categorical summary statistics
+-->
 
 <!-- End book -->
 

@@ -4,9 +4,16 @@
 
 Link to slides: [PDF](https://drive.google.com/file/d/1ui9_U0d0lgNyl1psulAigETQPV5UDdv8/view?usp=sharing)
 
-### Test yourself
 
-```{r terminology-1_quiz}
+<!-- Book version -->
+
+<!-- TODO exercises -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r terminology-1_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "In a predictive model, what is a feature?",
   answer("An explanatory variable, $x$", correct = TRUE),
@@ -17,3 +24,4 @@ question(
 )
 ```
 
+<!-- End tutorial -->

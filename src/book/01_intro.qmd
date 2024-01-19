@@ -3,10 +3,11 @@ execute:
   freeze: auto
 ---
 
-# Introduction
+# Introduction {#sec-introduction-chapter}
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
+insert_status_callout("incomplete")
 ```
 
 ## What are the computational and data sciences?
@@ -23,11 +24,16 @@ There are problems in the world that we could choose to address with computers a
 
 <!-- TODO: Venn diagrams of CS and DS using mermaid.js, or just inkscape -->
 
+## Generating data versus analyzing data
+
+<!-- TODO: running experiments vs analyzing the outcomes --> 
+Coming soon...
+
 ## Why this book?
 
-Many books on these topics (particularly data science) are interested in business problems. Businesses are typically concerned with learning about the future, typically in the interest of making more profit tomorrow.
+Many books on these topics (particularly data science) are interested in business problems. Businesses are typically concerned with learning about the future (typically so that they can increase their profits).
 
-There is nothing inherently wrong with this, and indeed scientists are sometimes interested in predicting the future as well. However scientists are more generally interested in the broader goal of understanding *how* the world works. W
+There is nothing inherently wrong with this, and indeed scientists are sometimes interested in predicting the future as well. However scientists are more generally interested in the broader goal of understanding *how* the world works.
 
 Although scientists and business people have to worry about many of the same problems when dealing with computers and data, our different end goals mean that we put more emphasis on different parts of the process.
 

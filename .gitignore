@@ -5,9 +5,13 @@ _book
 _bookdown_files
 _freeze
 docs/*.pdf
+notes.txt
 src/book/**_files/
 src/book/**_cache/
 src/tutorials/**/*.html
+test.html
+test.qmd
+test_files/
 
 # RStudio
 *.Rproj

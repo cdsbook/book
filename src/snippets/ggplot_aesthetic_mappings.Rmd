@@ -14,8 +14,7 @@ ggplot(data = starwars) +
 
 Do you see how the `geom_histogram()` function has two parameters, `mapping` and `bins`, whereas the `aes()` function has a single parameter (`x`)?
 
-<!--
-TODO:
+<!-- TODO:
 ### Histograms with `ggplot()`
 Illustrating position and identity
 -->

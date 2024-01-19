@@ -23,7 +23,9 @@ diamonds %>%
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: 
+book exercises on head() and tail()
+-->
 
 <!-- End book -->
 

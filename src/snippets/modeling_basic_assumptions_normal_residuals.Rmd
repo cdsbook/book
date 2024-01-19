@@ -1,5 +1,7 @@
 ## Nearly normal residuals
 
+<!-- Related to conditional means. Plot the normal variation along the model line. -->
+
 The best linear model is the one that has the smallest sum of the squared residuals. We don't need to worry too much about the mathematics behind this - however, you should be aware that the math does make the simplifying assumption that the residuals have a *normal* distribution (more or less).
 
 The normal distribution is a bell-shaped distribution:

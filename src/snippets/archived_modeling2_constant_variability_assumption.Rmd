@@ -50,7 +50,6 @@ For comparison, here are three example residual vs predicted plots (with purple 
 knitr::include_graphics("../img/resid-vs-pred.png")
 ```
 
-<!--
-TODO:
+<!-- TODO:
 - have questions asking students to interpret different assumptions plots
 -->

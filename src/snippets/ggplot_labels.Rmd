@@ -1,5 +1,7 @@
 
-*TODO: This was moved from EDA and needs updating to be consistent with chapter*
+<!-- TODO: 
+ggplot labs() section was moved from EDA and needs updating to be consistent with chapter
+-->
 
 It is good practice to label all the graphs we create. We can do this by adding the `labs()` function to a graph:
 
@@ -45,7 +47,9 @@ ggplot(data = starwars) +
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: 
+book exercises on labs()
+-->
 
 <!-- End book -->
 

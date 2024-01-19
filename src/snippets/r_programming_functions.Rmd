@@ -1,8 +1,16 @@
+<!-- TODO:
+video intro to R functions
+-->
+
 Perhaps, keen mathematician that you are, you want to calculate the length of the hypotenuse of a triangle. Dredging up memories of early math classes, you will doubtless recall Pythagoras’s theorem that the hypotenuse (the long side) of triangle is given by:
 
-$c = \sqrt{a^2 + b^2}$
+$$c = \sqrt{a^2 + b^2}$$
 
 ($c$ is the hypotenuse [long side] and $a$ and $b$ are the short sides.)
+
+<!-- TODO:
+include picture of a right angled triangle
+-->
 
 <!-- Book version -->
 
@@ -170,11 +178,15 @@ grade_conditions(
 
 <!-- End tutorial -->
 
-### How the `hypotenuse` function works
+### How our `hypotenuse()` function works
 
 There are a few things to note about this code:
 
-* We tell R that we are creating a reusable function using the `function` keyword.
+<!-- TODO:
+add a footnote about keywords (reserved words in R with special meanings, can't be used for other things). Maybe include more on them in the advanced R section?
+-->
+
+* We tell R that we are creating a reusable function using the `function` *keyword*.
 * `function` is followed by parentheses `(...)` that contain **parameters**. Parameters are the names that we give to the input data to the function.
   * For example, above we created two parameters: `a` and `b`
   * You can have as many parameters as you want in a function, from zero on up. They must be separated by commas.
@@ -185,6 +197,10 @@ There are a few things to note about this code:
 * When we want to run the code, we write the function name followed by parentheses, with any arguments inside the parentheses (separated by commas)
 
 <!-- Book version -->
+
+<!-- TODO:
+Add webexercises solution boxes below
+-->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat('
@@ -236,8 +252,7 @@ grade_conditions(
 
 <!-- End tutorial -->
 
-<!--
-TODO
+<!-- TODO:
 
 ### Create your own functions
 or
@@ -252,8 +267,3 @@ Passing variables, & making copies, modifying within function, & global variable
 
 -->
 
-```{r, eval=is_tutorial, echo=F, results = 'asis'}
-cat("### The End!
-
-That's all for this tutorial, folks!")
-```

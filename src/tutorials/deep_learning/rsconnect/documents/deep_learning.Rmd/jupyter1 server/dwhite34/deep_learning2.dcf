@@ -1,0 +1,13 @@
+name: deep_learning2
+title: deep_learning
+username: dwhite34
+account: dwhite34
+server: jupyter1 server
+hostUrl: https://jupyter1.cos.gmu.edu/__api__
+appId: 15
+bundleId: 46
+url: https://jupyter1.cos.gmu.edu/content/15/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: deep_learning_files/figure-html/unnamed-chunk-1-1.png|deep_learning_files/figure-html/unnamed-chunk-11-1.png|deep_learning_files/figure-html/unnamed-chunk-2-1.png|deep_learning_files/figure-html/unnamed-chunk-3-1.png|deep_learning_files/figure-html/unnamed-chunk-4-1.png|deep_learning.html

@@ -6,29 +6,31 @@ Okay, now we know about data.
 
 But data by itself is not especially useful. It just sits there until you *do something* to it. There are many ways of doing things to data, but some of the simplest are **operators**.
 
-Operators *operate* on data. You may not have heard the name *operator* before, but you are already familiar with many operators, such as `+` and `-` for adding and subtracting numbers.
+Operators *operate* on data. You may not have heard the name *operator* before, but you are already familiar with many common mathematical operators, such as `+` and `-` for adding and subtracting numbers.
 
 <!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
-:::{.exercise}
-**Exercise: Try it yourself:** Try entering a number after the `>` in the Console (e.g. 1), then Enter, and see what happens.
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (Try it yourself):** Try entering a number after the `>` in the Console (e.g. 1), then Enter, and see what happens.
 :::
 
 When you hit enter, the R interpreter reads in the line, evaluates it, and returns the answer. In this case, you entered 1, so the computer thinks 'Hey, it’s a 1! Wow, a one! The result of 1 is… drum roll, please… 1!' and returns the result of this **expression**, which is a one.
 
 Cool! But not, I confess, particularly useful. Let’s fix that: next we'll add two numbers together. 
 
-:::{.exercise}
+:::{.exercise .callout-note appearance='simple' icon=false}
 At the prompt, enter two numbers separated by a plus sign, +
+
+For example:
 
 `> 1 + 1`
 
 What do you get?
 :::
 
-(Note that I've left the Console's `>` prompt in the example code above, but I will leave it out in future.)
+(Note that I've left the Console's `>` prompt in the example code above, but I will leave it out in future examples.)
 ")
 ```
 
@@ -76,46 +78,23 @@ Here are some of the operators available to us in R:
 Some of these might seem obvious, while others might be unfamiliar. 
 In this section's exercises we will go through them all and figure out what they do.
 
-### Which operator goes first?
 
-Just like in normal math, we can do sums in R with multiple operators:
-
-```r
-3 + 5 / 5 * 3 ^ 2
-```
-
-In such a case, which operation do we do first?
-
-Again, just like in regular math, some operations are always done before others. For example, all multiplication and division will be done before any addition or subtraction.
-
-> **F.Y.I.**
->
-> The order in which operators are calculated is known as *operator precedence*, and you can find the precedence of any operator here: https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html
-
-We can change the order of operations with parentheses: `(` and `)`. For example
-
-```r
-2 + 2 * 5 = 12
-```
-
-whereas
-
-```r
-(2 + 2) * 5 = 20
-```
-
-<!-- TODO: Convert Exercises to section -->
-
-### The `-` operator
 
 <!-- Book version -->
 ```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+   "Adds two numbers together.",
+   answer = "Subtracts one number from another.",
+   "Multiplies two numbers together.",
+   "Divides one number by another."
+)
 cat("
-:::{.exercise}
-**Exercise:** In the R Console, type `5 - 2` and hit enter to run the line of code.
+:::{.callout-note appearance='simple' icon=false}
+**Exercise (the `-` operator):** In the R Console, type `5 - 2` and hit enter to run the line of code. (You probably have a good idea of what `-` does, but try changing the numbers just to make sure!)
 
-You probably have a good idea of what `-` does, but try changing the numbers
-just to make sure!
+What does `-` do?",
+longmcq(opts_p),
+"
 :::
 ")
 ```
@@ -141,17 +120,22 @@ question("What does the - operator do?",
 )
 ```
 
-
-### The `*` operator
-
 <!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  "Adds two numbers together.",
+  "Subtracts one number from another.",
+  answer  = "Multiplies two numbers together.",
+  "Divides one number by another."
+)
 cat("
-:::{.exercise}
-In the R Console, type `3 * 2` and hit enter to run the line of code.
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (the `*` operator):** In the R Console, type `3 * 2` and hit enter to run the line of code.
 
-What does `*` do?
+What does `*` do?",
+longmcq(opts_p),
+"
 :::
 ")
 ```
@@ -180,16 +164,22 @@ question("What does the * operator do?",
 ```
 
 
-### The `/` operator
-
 <!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  "Adds two numbers together.",
+  "Subtracts one number from another.",
+  "Multiplies two numbers together.",
+  answer  = "Divides one number by another."
+)
 cat("
-:::{.exercise}
-In the R Console, type `3 / 2` and hit enter to run the line of code.
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (The `/` operator):** In the R Console, type `3 / 2` and hit enter to run the line of code.
 
-What does `/` do? Just to be sure, try some other numbers.
+What does `/` do? (Just to be sure, try some other numbers.)",
+longmcq(opts_p),
+"
 :::
 ")
 ```
@@ -218,16 +208,22 @@ question("What does the / operator do?",
 ```
 
 
-### The `^` operator
-
 <!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  "Returns the modulus (the remainder after dividing one number by another).",
+  answer = "Calculates an exponential (raises one number to the power of the second).",
+  "Evaluates an equality (whether one number is equal to another).",
+  "Evaluates an inequality (whether one number is bigger or smaller than another)."
+)
 cat("
-:::{.exercise}
-In the R Console, type `3 ^ 2` and hit enter to run the line of code.
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (The `^` operator):**In the R Console, type `3 ^ 2` and hit enter to run the line of code.
 
-What does `^` do? Try some other numbers like `2 ^ 3` or `16 ^ 0.5`
+What does `^` do? (Hint: Try some other numbers, like `2 ^ 3` or `16 ^ 0.5`)",
+longmcq(opts_p),
+"
 :::
 ")
 ```
@@ -262,15 +258,22 @@ question("What does the ^ operator do?",
 <!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  answer = "Returns the modulus (the integer remainder after dividing one number by another).",
+  "Calculates an exponential (raises one number to the power of the second).",
+  "Evaluates an equality (whether one number is equal to another).",
+  "Evaluates an inequality (whether one number is bigger or smaller than another)."
+)
 cat("
-:::{.exercise}
-Next up, a slightly trickier one, type `3 %% 2` and hit enter to run the line of code.
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (The `%` operator):** Next up, a slightly trickier one. Type `3 %% 2` and hit enter to run the line of code.
 
-What does `%%` do? You will probably have to try some other numbers to figure 
-this one out.
+What does `%%` do? You will probably have to try some other numbers to figure this one out.
 
-If you have difficulty try also dividing the same numbers. E.g. try both 
-`9 %% 4` and `9 / 4`.
+If you have difficulty, try also dividing the same numbers. E.g. try both 
+`9 %% 4` and `9 / 4`.",
+longmcq(opts_p),
+"
 :::
 ")
 ```
@@ -284,15 +287,13 @@ Run this code chunk to figure out what the `%%` operator does (play around with 
 ")
 ```
 
-
-
 ```{r operators_modulo, eval=is_tutorial, exercise=TRUE, echo=FALSE}
 5 %% 3
 ```
 
 ```{r operators_modulo_quiz, eval=is_tutorial, echo=FALSE}
 question("What does the %% operator do?",
-  answer("Returns the modulus (the remainder after dividing one number by another).", correct = TRUE),
+  answer("Returns the modulus (the integer remainder after dividing one number by another).", correct = TRUE),
   answer("Calculates an exponential (raises one number to the power of the second."),
   answer("Evaluates an equality (whether one number is equal to another)."),
   answer("Evaluates an inequality (whether one number is bigger or smaller than another)."),
@@ -301,21 +302,63 @@ question("What does the %% operator do?",
 ```
 
 
+### Which operator goes first?
 
+\index{precendence}
+\index{order|see {precedence}}
+
+Just like in normal math, we can do sums in R with multiple operators:
+
+```r
+3 + 5 / 5 * 3 ^ 2
+```
+
+In such a case, which operation do we do first?
+
+Again, just like in regular math, some operations are always done before others. For example, all multiplication and division will be done before any addition or subtraction.
+
+> **F.Y.I.**
+>
+> The order in which operators are calculated is known as *operator precedence*, and you can find the precedence of any operator here: [https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html)
+
+We can change the order of operations with parentheses: `(` and `)`. For example
+
+```r
+2 + 2 * 5 = 12
+```
+
+whereas
+
+```r
+(2 + 2) * 5 = 20
+```
 
 <!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
+precendence_answer <- fitb(c("(3 + 5) / (5 * 2) ^ 2", "(3 + 5) / ((5 * 2) ^ 2)"), ignore_ws = TRUE, width = "20")
 cat("
-:::{.exercise}
-Modify this R code
+::::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise:** Modify this R code
 
 `3 + 5 / 5 * 2 ^ 2`
 
-so that it performs the calculation $\frac{3 + 5}{(5 \times 2) ^ 2}$.
+so that it performs the calculation $\\frac{3 + 5}{(5 \\times 2) ^ 2}$.
 
+Answer:",
+fitb(
+  c(
+    "(3 + 5) / (5 * 2) ^ 2", 
+    "(3 + 5) / ((5 * 2) ^ 2)"
+    ), 
+  ignore_ws = TRUE, 
+  width = "20"
+  ),
+"
+:::{.callout-tip collapse=true title='Expand for hint'}
 When correct, you should get the answer 0.08.
 :::
+::::
 ")
 ```
 
@@ -323,7 +366,7 @@ When correct, you should get the answer 0.08.
 
 ```{r, eval=is_tutorial, echo=F, results = 'asis'}
 cat("<p class='comment3'>
-Modify the expression below so that it performs this calculation $\frac{3 + 5}{(5 \times 2) ^ 2}$.
+Modify the expression below so that it performs this calculation $\frac{3 + 5}{(5 \times 2) ^ 2}$ .
 </p>
 ")
 ```

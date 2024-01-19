@@ -1,0 +1,19 @@
+# Simulation {#sec-simulation-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* System dynamic/compartment type models
+* Deterministic vs. random
+* Agent based models
+-->

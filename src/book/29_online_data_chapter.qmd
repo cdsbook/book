@@ -1,0 +1,18 @@
+# Online Data {#sec-online-data-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* APIs: json, other formats
+* Web scraping: See `rvest` and `polite` packages.
+-->

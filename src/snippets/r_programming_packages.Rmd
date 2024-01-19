@@ -39,3 +39,8 @@ To load a package we use the `library()` function. For example, to load the `tid
 ```r
 library(tidyverse)
 ```
+
+<!-- TODO:
+add exercises on R packages (installing and loading)
+-->
+

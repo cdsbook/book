@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,40 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -90,8 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -111,7 +76,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/A_faqs_appendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="../../src/book/B_additional_setup_appendix.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -192,14 +157,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/09_computing_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_modeling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/11_inference_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
   </div>
 </li>
       </ul>
@@ -216,31 +193,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/16_more_graphs_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Graphs</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/20_simulation_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/21_prediction_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Prediction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/22_deep_learning_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Deep Learning</span></span></a>
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Deep Learning</span></span></a>
   </div>
 </li>
       </ul>
@@ -256,8 +251,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/32_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  <a href="../../src/book/25_images_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Image Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/26_text_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Text Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/27_time_series_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Time Series Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/29_online_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Online Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/30_geospatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geospatial Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/33_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Outputs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/35_papers_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Papers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/36_webpages_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Webpages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/37_dashboards_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
   </div>
 </li>
       </ul>
@@ -270,13 +324,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
@@ -306,7 +360,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#in-rstudio-cloud" id="toc-in-rstudio-cloud" class="nav-link" data-scroll-target="#in-rstudio-cloud"><span class="header-section-number">B.1.1</span> In RStudio Cloud</a></li>
   <li><a href="#in-rstudio-desktop" id="toc-in-rstudio-desktop" class="nav-link" data-scroll-target="#in-rstudio-desktop"><span class="header-section-number">B.1.2</span> In RStudio Desktop</a></li>
   </ul></li>
-  <li><a href="#sec-rstudio-github-linux-connection" id="toc-sec-rstudio-github-linux-connection" class="nav-link" data-scroll-target="#sec-rstudio-github-linux-connection"><span class="header-section-number">B.2</span> Connecting RStudio to GitHub on Linux</a></li>
+  <li><a href="#sec-stage-commit-push" id="toc-sec-stage-commit-push" class="nav-link" data-scroll-target="#sec-stage-commit-push"><span class="header-section-number">B.2</span> Stage, commit and push from RStudio to GitHub</a></li>
   <li><a href="#sec-vscode-setup-appendix" id="toc-sec-vscode-setup-appendix" class="nav-link" data-scroll-target="#sec-vscode-setup-appendix"><span class="header-section-number">B.3</span> VS Code IDE Set-up</a></li>
   </ul>
 </nav>
@@ -341,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-rstudio-cloud-new-project-button" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_cloud_new_project_button.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;B.1: The New Project Button in RStudio Cloud</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.1: The New Project Button in RStudio Cloud</figcaption><p></p>
 </figure>
 </div>
 <ol start="2" type="1">
@@ -350,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-rstudio-cloud-new-project-menu" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_cloud_new_project_menu.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;B.2: The menu of different ways to create a new project.</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.2: The menu of different ways to create a new project.</figcaption><p></p>
 </figure>
 </div>
 <ol start="3" type="1">
@@ -359,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-rstudio-cloud-github-project-modal" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_cloud_github_repo_modal.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;B.3: An example of the kind of GitHub repository URL (web address) you need to type in.</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.3: An example of the kind of GitHub repository URL (web address) you need to type in.</figcaption><p></p>
 </figure>
 </div>
 </section>
@@ -372,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-rstudio-new_project-wizard-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_new_project_wizard_1_type.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;B.4: Step 1 of RStudio’s New Project wizard.</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.4: Step 1 of RStudio’s New Project wizard.</figcaption><p></p>
 </figure>
 </div>
 <ol start="3" type="1">
@@ -381,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-rstudio-new_project-wizard-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_new_project_wizard_2_git.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;B.5: Step 2 of RStudio’s New Project wizard.</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.5: Step 2 of RStudio’s New Project wizard.</figcaption><p></p>
 </figure>
 </div>
 <ol start="3" type="1">
@@ -390,7 +444,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="fig-rstudio-new_project-wizard-3" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_new_project_wizard_3_github_details.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;B.6: Step 3 of RStudio’s New Project wizard.</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.6: Step 3 of RStudio’s New Project wizard.</figcaption><p></p>
 </figure>
 </div>
 <ul>
@@ -399,39 +453,148 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>The third field is the name of the parent folder that will hold the folder above. I would recommend organizing related projects (e.g.&nbsp;the projects from this book) in a single parent folder so that they are easy to find. If you click “Browse” you can choose or create a parent folder to hold all your project folders.</p></li>
 </ul>
 <p>Then click “Create Project”.</p>
+<!-- TODO:
+
+This section doesn't seem to be needed anymore, since it's now back in the main setup instructions?
+
+## Connecting RStudio to GitHub on Linux {#sec-rstudio-github-linux-connection}
+
+* First, go to RStudio and open the tab in the left hand pane called *Terminal*. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to "Tools > Terminal > New Terminal".
+    
+  In this terminal, set your GitHub username by running this line, making sure to _replace your name_ inside the quotation marks:
+  
+  ```bash
+  git config --global user.name "Your Name Here"
+  ```
+  
+  Then run this commend, again making sure to *replace the email* inside the quotation marks with the same email you used to sign up for GitHub:
+  
+  ```bash
+  git config --global user.email "you@emailHost.com"
+  ```
+  
+  I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details - otherwise you will be typing them in a lot).
+  
+  ```bash
+  git config --global credential.helper store
+  ```
+
+* Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:
+
+  ```r
+  install.packages("usethis","gitcreds")
+  ```
+  
+  then this line (which will open a GitHub web page - see below for what to fill in)
+  
+  ```r
+  usethis::create_github_token()
+  ```
+  
+  <!-- ToDo: Add screenshot of GitHub token page. ->
+  
+  On the token webpage that appears, make sure that you are creating a "Classic token", and not a "Fine-grained" token. Then you will need to set the following options:
+  
+  * In the *Note* field, write something that indicates where this token will be used, e.g. `RStudio`.
+  * For the expiration date, pick a date about in the future after which you will no longer need the token. E.g. if you are following these instructions for a class, pick a date after the end of the semester.
+  
+    You should *not* select no expiration date - that is a security risk.
+  
+  You can leave all the checked *scopes* as the defaults, and then scroll down to the green *Generate token* button at the bottom of the webpage and click it.
+  
+  The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). **You will never see this token again after you leave this page**, so don't close the webpage until you have finished this section, or you will have to create an entirely new token.
+  
+* Return to the Console tab in RStudio, and run this line:
+
+  ```r
+  gitcreds::gitcreds_set()
+  ```
+  
+  At the prompt, copy and paste the token from GitHub and click enter.
+  
+  (If you ever need to replace the token, just run `gitcreds::gitcreds_set()` in the RStudio Console again.)
+
+-->
 </section>
 </section>
-<section id="sec-rstudio-github-linux-connection" class="level2" data-number="B.2">
-<h2 data-number="B.2" class="anchored" data-anchor-id="sec-rstudio-github-linux-connection"><span class="header-section-number">B.2</span> Connecting RStudio to GitHub on Linux</h2>
+<section id="sec-stage-commit-push" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="sec-stage-commit-push"><span class="header-section-number">B.2</span> Stage, commit and push from RStudio to GitHub</h2>
+<p>If you are working on a Git-enabled project in RStudio, then you can periodically make checkpoints as you make progress on your work. Git refers to these checkpoints as <strong><em>commits</em></strong>, and we refer to this process in general as <em>version control</em>.</p>
+<p>If your RStudio project is using Git for version control, then the top-right pane of RStudio will contain a <em>Git</em> tab.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Help: I don't see the Git tab...">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Help: I don’t see the Git tab…
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>If you do not see the Git tab, but you are expecting to see it, then either:</p>
 <ul>
-<li><p>First, go to RStudio and open the tab in the left hand pane called <em>Terminal</em>. If you do not see a Terminal tab, then you can create one from the top menu of RStudio Desktop by going to “Tools &gt; Terminal &gt; New Terminal”.</p>
-<p>In this terminal, set your GitHub username by running this line, making sure to <em>replace your name</em> inside the quotation marks:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Your Name Here"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Then run this commend, again making sure to <em>replace the email</em> inside the quotation marks with the same email you used to sign up for GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"you@emailHost.com"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I would also recommend running one final line in the Terminal (this will enable your computer to store your GitHub login details - otherwise you will be typing them in a lot).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> credential.helper store</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Then go to the Console tab (which should be next to the Terminal), and copy and paste these lines of R code one at a time:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>,<span class="st">"gitcreds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>then this line (which will open a GitHub web page - see below for what to fill in)</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- ToDo: Add screenshot of GitHub token page. -->
-<p>On the token webpage that appears, make sure that you are creating a “Classic token”, and not a “Fine-grained” token. Then you will need to set the following options:</p>
+<li><p>The most likely cause is that you do not have the correct Project open in RStudio (check the current project in the top-right corner of RStudio, and then open the correct one).</p></li>
+<li><p>You do not have the Git software installed. This needs to be installed separately to RStudio Desktop, as we did in <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a> of this book. If you already have Git installed, then is is possible that…</p></li>
+<li><p>In rare cases, RStudio can sometimes not find where Git is installed on your system. This can sometimes happen after a software or operating system update on a computer. The way to fix this is by manually telling RStudio where to find Git on your computer. To do this, first locate the path to the Git program on your computer, and then open up the <code>Tools &gt; Global Options</code> settings of RStudio and in the <code>Git/SVN</code> section, put this path in the <code>Git executable</code> box.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p>The first thing to remember is that you can only make a new commit if you have made changes to at least one of the Project’s files since the last commit. In addition, the changes to those files need to be saved to the hard drive (because Git cannot detect the changes otherwise).</p>
+<p><strong>Step 1: Stage files.</strong> In the Git tab check the <em>Staged</em> checkbox next to any modified file that you wish to add to the next commit (<a href="#fig-rstudio-git-stage">Figure&nbsp;<span>B.7</span></a>).</p>
+<div id="fig-rstudio-git-stage" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_git_tab_and_stage.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.7: The Git tab in RStudio with a staged file</figcaption><p></p>
+</figure>
+</div>
+<!-- TODO:
+
+Warning about staged vs. partially staged - tick vs. blue square
+-->
+<p><strong>Step 2: Make the commit.</strong>: Make the commit (i.e.&nbsp;the checkpoint) by clicking the <em>Commit</em> button in the Git tab. A pop-up will appear. In the <em>Commit message</em> box, write a short message that briefly summarizes the changes that you made (<a href="#fig-rstudio-git-stage">Figure&nbsp;<span>B.7</span></a>). Then click the “Commit” button below the message box.</p>
+<!-- TODO:
+Add warning about amending commit...
+-->
+<div id="fig-rstudio-git-commit" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_git_commit_popup.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.8: The commit pop-up dialog</figcaption><p></p>
+</figure>
+</div>
+<p>Assuming everything worked correctly, you should see another message appear that will include the commit message you just wrote along with the number of files you staged, and the number of “insertions” and “deletions” (i.e.&nbsp;the number of lines that you modified in those staged since they were last committed). <a href="#fig-rstudio-successful-commit">Figure&nbsp;<span>B.9</span></a> shows an example of what such a message looks like.</p>
+<div id="fig-rstudio-successful-commit" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="../img/rstudio_git_commit_success.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;B.9: A successful commit message</figcaption><p></p>
+</figure>
+</div>
+<p>You may see a different message, which probably means that the commit didn’t happen successfully.</p>
 <ul>
-<li><p>In the <em>Note</em> field, write something that indicates where this token will be used, e.g.&nbsp;<code>RStudio</code>.</p></li>
-<li><p>For the expiration date, pick a date about in the future after which you will no longer need the token. E.g. if you are following these instructions for a class, pick a date after the end of the semester.</p>
-<p>You should <em>not</em> select no expiration date - that is a security risk.</p></li>
+<li>If you get a message that says that Git doesn’t know who you are, and asks you to set your name and email, then you did not finish setting up RStudio as detailed in <a href="02_setup.html#sec-rstudio-github-connection"><span>Section&nbsp;2.5</span></a>. To fix this, re-run the first two commands from that section (the two commands that begin <code>git config ...</code>). Then try to commit your work again.</li>
 </ul>
-<p>You can leave all the checked <em>scopes</em> as the defaults, and then scroll down to the green <em>Generate token</em> button at the bottom of the webpage and click it.</p>
-<p>The next page that appears will display a token, a random series of letters and numbers that is basically a temporary password that you can use to authorize a restricted set of activities on your GitHub account (without having to share your master password with RStudio). <strong>You will never see this token again after you leave this page</strong>, so don’t close the webpage until you have finished this section, or you will have to create an entirely new token.</p></li>
-<li><p>Return to the Console tab in RStudio, and run this line:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>At the prompt, copy and paste the token from GitHub and click enter.</p>
-<p>(If you ever need to replace the token, just run <code>gitcreds::gitcreds_set()</code> in the RStudio Console again.)</p></li>
-</ul>
+<p><strong>Step 3: Push the commit to GitHub.</strong></p>
+<p>Finally, we need to upload the new commit to GitHub (because it currently only exists in RStudio - thus GitHub is out-of-date, so we need to force it to sync with the new version of the project in RStudio). Git refers to this process as <em>Pushing</em>.</p>
+<p>In the top of either the Git tab or the commit pop-up is a upwards-pointing green arrow labelled Push. Click this to send your work back to Github. It should just work (without asking for your Github username or password), in which case you should see a message like <span class="quarto-unresolved-ref">?fig-rstudio-successful-push</span>.</p>
+<p><img src="../img/rstudio_git_push_success.png" id="fig-rstudio-successful-push" class="img-fluid" alt="A successful push message"> If you instead get asked for your GitHub username and password, then this means that RStudio does not have a valid Personal Access Token for GitHub. To fix this, repeat the second half of the setup instructions in <a href="#fig-rstudio-successful-commit">Figure&nbsp;<span>B.9</span></a>, starting with this line: <code>install.packages(c("usethis","gitcreds"))</code>.</p>
 </section>
 <section id="sec-vscode-setup-appendix" class="level2" data-number="B.3">
 <h2 data-number="B.3" class="anchored" data-anchor-id="sec-vscode-setup-appendix"><span class="header-section-number">B.3</span> VS Code IDE Set-up</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Section coming soon.</p>
+</div>
+</div>
 
 
 </section>

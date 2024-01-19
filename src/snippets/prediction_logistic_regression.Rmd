@@ -4,9 +4,15 @@
 
 Link to slides: [PDF](https://drive.google.com/file/d/12V_i-IHLMI32UQMJoLwVRrCmgt_6_h0w/view?usp=sharing)
 
-### Test yourself
+<!-- Book version -->
 
-```{r glm_quiz, eval=is_tutorial}
+<!-- TODO exercises -->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r glm_quiz, eval=is_tutorial, echo=FALSE}
 question(
   "What type of link function should you use to map a linear model to a binary response (i.e. logistic regression)? I.e. what is the `family` argument of the `glm()` function?",
   answer("binary"),

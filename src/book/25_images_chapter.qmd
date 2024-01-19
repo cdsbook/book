@@ -1,0 +1,20 @@
+# Image Data {#sec-images-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* image data structure (pixels, bit depth, colors/layers)
+* viewing images in R
+* basic, traditional image analysis/enhancements
+* CNNs
+-->

@@ -1,3 +1,7 @@
+<!-- TODO:
+intro video on vectors in R
+-->
+
 So far we have looked at pieces of data by themselves:
 
 ```{r, echo=TRUE}
@@ -20,6 +24,10 @@ c(1,2,3)
 *All the data in a vector must be the same type of data*. For example, a vector could contain all numbers, or all characters, but not a mix of the two.
 
 <!-- Book version -->
+
+<!-- TODO:
+Add webexercises solution below
+-->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat('
@@ -60,11 +68,13 @@ grade_code(":)")
 
 <!-- End tutorial -->
 
-> You might be wondering what the numbers in square brackets at the start of each line in the output mean? E.g. `[1]`
->
-> These tell us where abouts in the vector we are. The number indicates the position in the vector of the first element displayed on that line.
->
-> For example, the `[1]` at the start of the line (before "Introduction") shows that "Introduction" is the first element in this vector.
+:::{.callout-tip}
+You might be wondering what the numbers in square brackets at the start of each line in the output mean? E.g. `[1]`
+
+These tell us whereabouts in the vector we are. The number indicates the position in the vector of the first element displayed on that line.
+
+For example, the `[1]` at the start of the line (before "Introduction") shows that "Introduction" is the first element in this vector.
+:::
 
 #### Operations on vectors
 
@@ -78,6 +88,10 @@ v1 + v2
 As you can see, the individual elements are added together.
 
 <!-- Book version -->
+
+<!-- TODO:
+Add webexercises solution below
+-->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat('
@@ -132,7 +146,7 @@ cat('<div id="vector_broadcasting-hint">
 ```{r vector_broadcasting_quiz, eval=is_tutorial, echo=FALSE}
 question("What happens when you add two vectors of different lengths?",
   answer("The 2 elements of v3 are added to the first 2 elements of v4, and the rest of v4 is unchanged."),
-  answer("v4 is repeated to match the length of v3 before they are added.", correct=TRUE, message="This is called 'recycling', and is not what you might expect. It can cause bugs in R programs if the programmer (i.e. you) thinks that two vectors are the same length when they are not."),
+  answer("v4 is repeated to match the length of v3 before they are added.", correct=TRUE, message="This is called 'recycling'. Since it is not what you might intuitively expect to happen, it can cause bugs in R programs if the programmer (i.e. you) is not carefully keeping track of vector lengths."),
   answer("R guesses values for the remaining values of v3 so that the two vectors are the same length."),
   allow_retry = TRUE
 )

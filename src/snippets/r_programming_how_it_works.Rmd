@@ -1,5 +1,5 @@
-<!-- 
-TODO: video: 
+<!-- TODO: 
+basic video on how R interprets a line of code: 
 * extend recipe analogy from hello world section
 * Compiled: interactivity (creative recipe - possibly making it up rather than following a pre-defined recipe) vs speed (optimizing recipe steps)
 -->
@@ -14,7 +14,9 @@ When R *interprets* a line of code, it figures out how to convert your human-rea
 
 Because R is interpreted line-by-line, it is an ideal programming language for exploring and analyzing scientific data, where we typically figure out what to do next as we go along!
 
-* TODO: Expressions and how they are evaluated. Lines and files.
+<!-- TODO: 
+Expressions and how they are evaluated. Lines and files.
+-->
 
 We will soon be learning how to write multiple lines of R code in a file and then run them from the file. However, even when R runs code from a file, it still figures out how to run it one line at a time.
 

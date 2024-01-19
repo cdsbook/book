@@ -12,7 +12,7 @@ As scientists, we want to understand these interactions. We want to be able to d
 
 Unfortunately the real world is so complicated that we cannot possibly comprehend all of the interactions at once. Therefore our theoretical description of the world has to be a simplified version. We call these simplified theories "__*models*__".
 
-Often (as scientists) we would like our models to be mathematical.
+Often (as scientists) we would like our models to be mathematical, because we want to know *exactly* how much two things are related to each other.
 
 One common type of mathematical model is called the __*linear model*__. You have probably encountered this before, although possibly under a different name, such as __*linear regression*__ or a __*line of best fit*__.
 
@@ -37,7 +37,7 @@ lin_plot <- sim_df %>%
   geom_smooth(method="lm", se=FALSE) +
   ylim(0,25) +
   labs(
-    title = "...represented by a linear model."
+    title = "...represented here by a linear model."
   )
 
 ggarrange(
@@ -49,7 +49,7 @@ ggarrange(
   )
 ```
 
-The line of this linear model is simpler that the table of data, because we can represent it with just two numbers: the slope and the intercept.
+This linear model's line is simpler that the original dataset of 10 data points, because we can represent it with just two numbers: the slope and the intercept.
 
 In other words, we can model the relationship between the variable on the $y$ axis and the variable on the $x$ axis as a mathematical relationship:
 
@@ -58,15 +58,19 @@ y = ax + b
 $$
 where $a$ is the slope of the line ($a$ increases as the slope gets steeper) and $b$ is the value at which the line intercepts the $y$-axis.
 
-We can represent any two dimensional straight line with just these two numbers $a$ and $b$. You could have millions of data points instead of, but the linear model representation of will still only need two numbers.
+We can represent any two dimensional straight line with just these two numbers $a$ and $b$. You could have millions of data points instead of just 10, but the linear model representation will still only need two numbers.
 
-We call this relationship *linear* because as $x$ goes up by 1, $y$ goes up by $a$. If $x$ goes up by 2, then $y$ goes up by $2a$. It doesn't matter how much we change $x$, $y$ will change by a constantly proportional amount (i.e. $a$). Put simply, a line through the data will be a straight line.
+We call this relationship *linear* because as $x$ goes up by 1, the $y$ value of the line always goes up by $a$ (the slope). In other words, the slope tells us how much the *y* value changes as the *x* value increases by 1. Since the line is linear, it's $y$ will always increase by the same amount ($a$) regardless or whether $x$ increases from $0$ to $1$ or from $99$ to $100$.
 
-Now, we will lose some information if we simplify our data down to a linear model. As we can see from graphs above, the points do not fall exactly on the line, but some distance from it. So there is clearly something else going on in the world that is affecting the y and x variables which we have not measured. We are often interested in quantifying how strong this *correlation* is.
+If $x$ goes up by 2, then $y$ goes up by $2a$. It doesn't matter how much we change $x$, $y$ will change by a constantly proportional amount.
 
-There can be a linear relationship even if the data is poorly correlated. I.e. the points can be spread out and far from the line, even though the relationship is still linear.
+Now, we will lose some information if we simplify our data down to a linear model. As we can see from graphs above, the points do not fall exactly on the line, but some distance from it. So there are clearly other things going on in the world which we have not measured that affect the $y$ and $x$ variables.
 
-Sometimes the easiest way to determine whether a relationship is linear is to ask the opposite question: "Is the relationship *non-linear*?" A non-linear relationship will have curves to it:
+## Describing linear relationships
+
+#### Linear versus non-linear
+
+The opposite of a linear relationship is a non-linear relationship, which you can see in the underlying data on the right in this figure. Non-linear basically means *"there's a curve"* in the data.
 
 ```{r, echo=FALSE}
 #| echo: false
@@ -74,52 +78,92 @@ Sometimes the easiest way to determine whether a relationship is linear is to as
 #| warning: false
 
 set.seed(42)
+x <- runif(30, -7, 10)
+y <- 2*x + rnorm(10, 0, 1)
+sim_df <- tibble(x, y)
 lin_corr <- sim_df %>%
   ggplot(aes(x,y)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE) +
-  ylim(0,25) +
+  # ylim(0,25) +
   labs(
-    y = "Good correlation",
+    y = "y",
     title = "Linear"
+  )
+nonlin_cor <- sim_df %>%
+  ggplot(mapping = aes(x,x^4 + rnorm(10, 0, 10 * x^2 ))) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE, span = 2) +
+  # ylim(0,25) +
+  labs(
+    y = "",
+    title = "Non-linear"
+  )
+ggarrange(
+  lin_corr, nonlin_cor,
+  ncol = 2,
+  nrow = 1
+)
+```
+
+Mathematically, there is nothing that stops us we can still create a linear model for non-linear data! Unfortunately, it doesn't do a very good job of capturing the underlying relationship between $x$ and $y$. It's on you, the human operating the machine, to make sure that you only use a linear model if there is actually a linear relationship in the data. Later in this chapter, we will see how we can assess whether this is the case for any dataset.
+
+
+#### Correlation
+
+<!-- Reproduce something similar? https://en.wikipedia.org/wiki/Correlation#/media/File:Correlation_examples2.svg -->
+
+Consider these two different sets of data:
+
+```{r, echo=FALSE}
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(43)
+lin_corr <- sim_df %>%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm", se=FALSE) +
+  # ylim(0,25) +
+  labs(
+    title = "Good correlation",
   )
 lin_badcorr <- sim_df %>%
   mutate(
-    temp_y = 2*x + rnorm(10, 0, 5)
+    temp_y = 2*x + rnorm(10, 0, 15)
   ) %>%
   ggplot(aes(x,temp_y)) +
   geom_point() +
   geom_smooth(method="lm", se=FALSE) +
   # ylim(0,25) +
   labs(
-    y = "Poor correlation"
-  )
-nonlin_cor <- sim_df %>%
-  ggplot(aes(x,x^2 + rnorm(10, 0, 5))) +
-  geom_point() +
-  geom_smooth(se=FALSE, span = 2) +
-  # ylim(0,25) +
-  labs(
-    y = "",
-    title = "Non-linear"
-  )
-nonlin_badcor <- sim_df %>%
-  ggplot(aes(x, x^2 + rnorm(10, 0, 20))) +
-  geom_point() +
-  geom_smooth(se=FALSE, span = 2) +
-  # ylim(0,25) +
-  labs(
+    title = "Poor correlation",
     y = ""
   )
 ggarrange(
-  lin_corr, nonlin_cor,
-  lin_badcorr, nonlin_badcor,
+  lin_corr,
+  lin_badcorr,
   ncol = 2,
-  nrow = 2
+  nrow = 1
 )
 ```
 
-#### Some linear model terminology
+There is a linear relationship in both of these plots! In both cases, the y values seem to increase by a constant amount (on average) as the x values increase by a constant amount. 
+
+The difference is that the points in the left hand plot are much more closely clustered around the line than on the right. More formally we would say that the left hand *y* is *strongly* __correlated__ with *x*, whereas in the right hand side graph there is a *weak* __correlation__.
+
+When you are new to linear relationships, it can be easy to mistake a weak correlation for a non-linear relationship. The best way to be sure is to ask yourself:
+
+> Is there an obvious curved trend to the underlying data?
+
+This is the same as asking *is there a non-linear relationship*? If the answer is *no*, then, by a process of elimination, there is either a linear relationship (or no correlation at all, as we will see in the next section).
+
+#### Positive, negative, or no correlation?
+
+
+
+#### Other linear model terminology
 
 <!--
 TODO: 

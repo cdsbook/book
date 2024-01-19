@@ -1,0 +1,19 @@
+# Geospatial Data {#sec-geospatial-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* 3D landscape ggplot graphs.
+-->
+
+

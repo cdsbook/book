@@ -20,21 +20,21 @@ insert_status_callout <- function(chapter_status = c("incomplete", "draft", "com
       ":::\n"
    ))
   } else if (chapter_status == "draft") {
-    cat("
-      :::{.callout-warning}
-      ## Warning
-      
-      This chapter is a draft, and may be updated soon.
-      :::
-    ")
+    cat(paste0(
+    ":::{.callout-warning}\n",
+    "## Warning\n",
+    "\n",
+    "This chapter is a draft, and may be updated soon.\n",
+    ":::\n"
+    ))
   } else if (chapter_status == "complete") {
-    cat("
-      :::{.callout-tip}
-      ## Complete
-      
-      This chapter has been completed.
-      :::
-    ")
+    cat(paste0(
+      ":::{.callout-tip}\n",
+      "## Complete\n",
+      "\n",
+      "This chapter has been completed.\n",
+      ":::\n"
+    ))
   }
   
 }

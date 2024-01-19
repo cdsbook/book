@@ -1,3 +1,7 @@
+<!-- TODO:
+video overview of R variable creation
+-->
+
 So far we have learnt how to combine data to get different results.
 
 We can do multiple separate calculations by putting each one on a separate line. When R reads your code, it treats everything on one line as a single expression that is separate from other lines:
@@ -16,6 +20,10 @@ What if we wish to save the result of a calculation so that we can reuse it in a
 In this case, we need to store the result in a **variable**.
 
 <!-- Book version -->
+
+<!-- TODO:
+add a hint showing where the environment is in RStudio via a screenshot. Might be helpful to also add this screenshot to the tutorial version as well.
+-->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
@@ -231,6 +239,8 @@ grade_result(
 
 ### When does assignment happen
 
+\index{precendence}
+
 `<-` is an operator, just like `+` or `*`. As such, it has a *precedence*: it will happen before some operators but after others.
 
 However, it turns out that the `<-` precedence is [extremely low](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html) - i.e. it will happen after the result of all the other operators on that line of code have been calculated.
@@ -247,9 +257,8 @@ a <- 2 + 4
 a <- (2 + 4)
 ```
 
-<!-- 
-TODO: Add exercises 
-e.g. remove parentheses from over parenthesized expression
+<!-- TODO: 
+Add exercises e.g. remove parentheses from over parenthesized expression; split line of code over multiple lines.
 -->
 
 

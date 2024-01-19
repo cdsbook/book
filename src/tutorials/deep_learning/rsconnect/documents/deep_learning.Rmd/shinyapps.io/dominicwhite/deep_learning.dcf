@@ -1,0 +1,12 @@
+name: deep_learning
+title: deep_learning
+username: dominicwhite
+account: dominicwhite
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 10338273
+bundleId: 7862640
+url: https://dominicwhite.shinyapps.io/deep_learning/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

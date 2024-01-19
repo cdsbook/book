@@ -24,16 +24,20 @@ suppressPackageStartupMessages(library(tidyverse))
 
 {{< include ../../src/snippets/inference2_effect_sizes.Rmd >}}
 
-
+<!--
 ## Resampling with permutations versus bootstraps
 
 Coming soon.
-
+-->
 
 ## Confidence intervals
 
 {{< include ../../src/snippets/inference2_confidence_intervals.Rmd >}}
 
+
+<!-- TODO
+Bonferoni correction
+-->
 
 ## Further reading
 

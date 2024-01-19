@@ -16,8 +16,7 @@ It is very easy to add interaction terms to a linear model. For example, the for
 
 As you can see, we just add an asterisk `*` between variables that we wish to have an interaction between.
 
-<!--
-TODO
+<!-- TODO:
 - graphs showing curved(?) slope of interaction model
 - quiz on interactions
 - also general polynomial terms?

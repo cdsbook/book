@@ -1,0 +1,60 @@
+---
+title: "Deep Learning tutorial"
+tutorial:
+  version: 0.1
+output:
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+---
+
+<style>
+p.comment {
+background-color: #EDBB99;
+padding: 10px;
+border: 1px solid black;
+font-style: italic;
+}
+</style>
+
+<style>
+p.comment1 {
+background-color: #A2D9CE;
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment2 {
+background-color: #EDBB99; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+<style>
+p.comment3 {
+background-color: #FDFEFE; 
+padding: 10px;
+border: 1px solid black;
+}
+</style>
+
+
+```{r setup, include=FALSE, context="setup"}
+library(tidyverse)
+library(learnr)
+library(gradethis)
+# library(checkr)
+library(sortable)
+library(diffobj)
+# library(flair)
+# library(listviewer)
+```
+
+
+## Tutorial not currently available
+
+Please see the textbook version of this tutorial at: https://cdsbook.github.io/book/src/book/22_deep_learning_chapter.html

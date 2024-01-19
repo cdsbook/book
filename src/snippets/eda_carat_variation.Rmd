@@ -27,7 +27,7 @@ b <- ggplot(data = diamonds) +
 ggarrange(h,b,ncol=1,align = "v",labels=c("a)", "b)"),heights = c(2,1))
 ```
 
-<!-- TODO
+<!-- TODO:
 How to interpret shape of histogram.
 How to interpret boxplot.
 Comparison of the two.
@@ -37,7 +37,9 @@ Comparison of the two.
 
 <!-- Book version -->
 
-<!-- TODO: book exercises -->
+<!-- TODO: 
+ggplot histogram book exercises 
+-->
 
 <!-- End book -->
 
@@ -79,7 +81,9 @@ One thing you might note is that the distribution is not very smooth. To make it
 
 <!-- Book version -->
 
-<!-- TODO: book exercises -->
+<!-- TODO: 
+ggplot histogram bins book exercises 
+-->
 
 <!-- End book -->
 

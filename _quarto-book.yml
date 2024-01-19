@@ -2,14 +2,13 @@ project:
   output-dir: _book
 
 format:
+# can change to docx
   pdf:
     documentclass: scrreprt
     toc: true
     toc-depth: 2
     code-block-bg: E9ECEF
     code-block-border-left: B1B4B7
-    # execute:
-    #   cache: true
     include-in-header:
       - text: |
           \usepackage{makeidx}

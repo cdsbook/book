@@ -107,7 +107,7 @@ Once you have successfully edited the program, click on the "Next Topic" button 
 
 ## Boolean data
 
-```{r, child=paste0(here(),"/src/snippets/r_programming_data_2.Rmd")}
+```{r, child=paste0(here(),"/src/snippets/r_programming_boolean_data.Rmd")}
 ```
 
 
@@ -120,6 +120,12 @@ Once you have successfully edited the program, click on the "Next Topic" button 
 ## Functions
 
 ```{r, child=paste0(here(),"/src/snippets/r_programming_functions.Rmd")}
+```
+
+
+## Packages
+
+```{r, child=paste0(here(),"/src/snippets/r_programming_packages.Rmd")}
 ```
 
 

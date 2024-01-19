@@ -5,6 +5,14 @@ execute:
 
 # Setup
 
+```{r setup}
+#| results: "asis"
+#| echo: false
+
+source("prechapter.R")
+insert_status_callout("draft")
+```
+
 In this book we will be writing code using various tools that allow us to make programming easier and more reproducible, namely code editing software and version control software.
 
 ## Code editors

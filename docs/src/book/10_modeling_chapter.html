@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.313">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>An Introduction to Computing and Data for Scientists - 10&nbsp; Modeling</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../src/book/11_inference_chapter.html" rel="next">
+<link href="../../src/book/09_computing_chapter.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.10.1/plotly.js"></script>
+<script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../include/webex.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/10_modeling_chapter.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">An Introduction to Computing and Data for Scientists</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/01_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Basic Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/02_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/03_r_programming_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/05_visualization_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/06_wrangling_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Wrangling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/07_ggplot_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Graphs with <code>ggplot</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/08_eda_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis and Scientific Discovery</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/09_computing_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">More about R</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/10_modeling_chapter.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/11_inference_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Advanced Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/14_reproducibility_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/15_loading_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Loading Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/16_more_graphs_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">More Graphs</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/17_inference_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">More Statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/18_modeling_advanced_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">More Models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/20_simulation_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/21_prediction_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Prediction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/22_deep_learning_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Deep Learning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Scientific Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/25_images_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Image Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/26_text_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Text Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/27_time_series_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Time Series Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/29_online_data_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Online Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/30_geospatial_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geospatial Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/33_databases_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Outputs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/35_papers_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Papers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/36_webpages_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Webpages</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/37_dashboards_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/A_faqs_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../src/book/B_additional_setup_appendix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Additional Software Set-up</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-a-model" id="toc-what-is-a-model" class="nav-link active" data-scroll-target="#what-is-a-model"><span class="header-section-number">10.1</span> What is a model</a></li>
+  <li><a href="#describing-linear-relationships" id="toc-describing-linear-relationships" class="nav-link" data-scroll-target="#describing-linear-relationships"><span class="header-section-number">10.2</span> Describing linear relationships</a>
+  <ul class="collapse">
+  <li><a href="#correlation-does-not-imply-causation" id="toc-correlation-does-not-imply-causation" class="nav-link" data-scroll-target="#correlation-does-not-imply-causation"><span class="header-section-number">10.2.1</span> “Correlation does not imply causation”</a></li>
+  </ul></li>
+  <li><a href="#creating-models-in-r" id="toc-creating-models-in-r" class="nav-link" data-scroll-target="#creating-models-in-r"><span class="header-section-number">10.3</span> Creating models in R</a>
+  <ul class="collapse">
+  <li><a href="#lets-create-a-linear-model" id="toc-lets-create-a-linear-model" class="nav-link" data-scroll-target="#lets-create-a-linear-model"><span class="header-section-number">10.3.1</span> Let’s create a linear model</a></li>
+  <li><a href="#your-models-coefficients" id="toc-your-models-coefficients" class="nav-link" data-scroll-target="#your-models-coefficients"><span class="header-section-number">10.3.2</span> Your model’s coefficients</a></li>
+  <li><a href="#categorical-explanatory-variables" id="toc-categorical-explanatory-variables" class="nav-link" data-scroll-target="#categorical-explanatory-variables"><span class="header-section-number">10.3.3</span> Categorical explanatory variables</a></li>
+  <li><a href="#more-than-one-explanatory-variable" id="toc-more-than-one-explanatory-variable" class="nav-link" data-scroll-target="#more-than-one-explanatory-variable"><span class="header-section-number">10.3.4</span> More than one explanatory variable</a></li>
+  <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables"><span class="header-section-number">10.3.5</span> Multiple explanatory variables</a></li>
+  <li><a href="#but-what-does-that-look-like" id="toc-but-what-does-that-look-like" class="nav-link" data-scroll-target="#but-what-does-that-look-like"><span class="header-section-number">10.3.6</span> But what does that look like?</a></li>
+  <li><a href="#lm-with-multiple-explanatory-variables" id="toc-lm-with-multiple-explanatory-variables" class="nav-link" data-scroll-target="#lm-with-multiple-explanatory-variables"><span class="header-section-number">10.3.7</span> <code>lm()</code> with multiple explanatory variables</a></li>
+  <li><a href="#create-a-multiple-regression-model" id="toc-create-a-multiple-regression-model" class="nav-link" data-scroll-target="#create-a-multiple-regression-model"><span class="header-section-number">10.3.8</span> Create a multiple regression model</a></li>
+  <li><a href="#r2-how-good-is-your-model" id="toc-r2-how-good-is-your-model" class="nav-link" data-scroll-target="#r2-how-good-is-your-model"><span class="header-section-number">10.3.9</span> <span class="math inline">\(R^2\)</span>: how good is your model?</a></li>
+  <li><a href="#whats-a-good-r2" id="toc-whats-a-good-r2" class="nav-link" data-scroll-target="#whats-a-good-r2"><span class="header-section-number">10.3.10</span> What’s a good <span class="math inline">\(R^2\)</span>?</a></li>
+  </ul></li>
+  <li><a href="#testing-our-assumptions" id="toc-testing-our-assumptions" class="nav-link" data-scroll-target="#testing-our-assumptions"><span class="header-section-number">10.4</span> Testing our assumptions</a>
+  <ul class="collapse">
+  <li><a href="#assumptions-of-the-linear-model" id="toc-assumptions-of-the-linear-model" class="nav-link" data-scroll-target="#assumptions-of-the-linear-model"><span class="header-section-number">10.4.1</span> Assumptions of the linear model</a></li>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">10.4.2</span> Linearity</a></li>
+  <li><a href="#the-assumption-of-linearity" id="toc-the-assumption-of-linearity" class="nav-link" data-scroll-target="#the-assumption-of-linearity"><span class="header-section-number">10.4.3</span> The assumption of linearity</a></li>
+  <li><a href="#constant-variability-of-residuals" id="toc-constant-variability-of-residuals" class="nav-link" data-scroll-target="#constant-variability-of-residuals"><span class="header-section-number">10.4.4</span> Constant variability of residuals</a></li>
+  <li><a href="#constant-variability" id="toc-constant-variability" class="nav-link" data-scroll-target="#constant-variability"><span class="header-section-number">10.4.5</span> Constant variability</a></li>
+  <li><a href="#nearly-normal-residuals" id="toc-nearly-normal-residuals" class="nav-link" data-scroll-target="#nearly-normal-residuals"><span class="header-section-number">10.4.6</span> Nearly normal residuals</a></li>
+  </ul></li>
+  <li><a href="#nearly-normal-residuals-1" id="toc-nearly-normal-residuals-1" class="nav-link" data-scroll-target="#nearly-normal-residuals-1"><span class="header-section-number">10.5</span> Nearly normal residuals</a>
+  <ul class="collapse">
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">10.5.1</span> Independent observations</a></li>
+  <li><a href="#independent-observations-1" id="toc-independent-observations-1" class="nav-link" data-scroll-target="#independent-observations-1"><span class="header-section-number">10.5.2</span> Independent Observations</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-modeling-chapter" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-a-model" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="what-is-a-model"><span class="header-section-number">10.1</span> What is a model</h2>
+<p>This video will introduce you to the concept of <em>models</em>, and in particular the <em>linear model</em> (which you may already be familiar with as a <em>line of best fit</em>).</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/yeKA0m8M8Dc?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing">PDF</a></p>
+<p>The real world is complicated. There are many moving pieces, all interacting with each other.</p>
+<p>As scientists, we want to understand these interactions. We want to be able to describe the real world as a theory.</p>
+<p>Unfortunately the real world is so complicated that we cannot possibly comprehend all of the interactions at once. Therefore our theoretical description of the world has to be a simplified version. We call these simplified theories “<strong><em>models</em></strong>”.</p>
+<p>Often (as scientists) we would like our models to be mathematical, because we want to know <em>exactly</em> how much two things are related to each other.</p>
+<p>One common type of mathematical model is called the <strong><em>linear model</em></strong>. You have probably encountered this before, although possibly under a different name, such as <strong><em>linear regression</em></strong> or a <strong><em>line of best fit</em></strong>.</p>
+<p>What a linear model means is that if we have two variables,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> then we can simplify their relationship to a straight line:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-1_bc1269f194bb651bd381533967aa8e7a">
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This linear model’s line is simpler that the original dataset of 10 data points, because we can represent it with just two numbers: the slope and the intercept.</p>
+<p>In other words, we can model the relationship between the variable on the <span class="math inline">\(y\)</span> axis and the variable on the <span class="math inline">\(x\)</span> axis as a mathematical relationship:</p>
+<p><span class="math display">\[
+y = ax + b
+\]</span> where <span class="math inline">\(a\)</span> is the slope of the line (<span class="math inline">\(a\)</span> increases as the slope gets steeper) and <span class="math inline">\(b\)</span> is the value at which the line intercepts the <span class="math inline">\(y\)</span>-axis.</p>
+<p>We can represent any two dimensional straight line with just these two numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. You could have millions of data points instead of just 10, but the linear model representation will still only need two numbers.</p>
+<p>We call this relationship <em>linear</em> because as <span class="math inline">\(x\)</span> goes up by 1, the <span class="math inline">\(y\)</span> value of the line always goes up by <span class="math inline">\(a\)</span> (the slope). In other words, the slope tells us how much the <em>y</em> value changes as the <em>x</em> value increases by 1. Since the line is linear, it’s <span class="math inline">\(y\)</span> will always increase by the same amount (<span class="math inline">\(a\)</span>) regardless or whether <span class="math inline">\(x\)</span> increases from <span class="math inline">\(0\)</span> to <span class="math inline">\(1\)</span> or from <span class="math inline">\(99\)</span> to <span class="math inline">\(100\)</span>.</p>
+<p>If <span class="math inline">\(x\)</span> goes up by 2, then <span class="math inline">\(y\)</span> goes up by <span class="math inline">\(2a\)</span>. It doesn’t matter how much we change <span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span> will change by a constantly proportional amount.</p>
+<p>Now, we will lose some information if we simplify our data down to a linear model. As we can see from graphs above, the points do not fall exactly on the line, but some distance from it. So there are clearly other things going on in the world which we have not measured that affect the <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> variables.</p>
+</section>
+<section id="describing-linear-relationships" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="describing-linear-relationships"><span class="header-section-number">10.2</span> Describing linear relationships</h2>
+<section id="linear-versus-non-linear" class="level4" data-number="10.2.0.1">
+<h4 data-number="10.2.0.1" class="anchored" data-anchor-id="linear-versus-non-linear"><span class="header-section-number">10.2.0.1</span> Linear versus non-linear</h4>
+<p>The opposite of a linear relationship is a non-linear relationship, which you can see in the underlying data on the right in this figure. Non-linear basically means <em>“there’s a curve”</em> in the data.</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-2_18c20b6c836ac076ad080340536752d1">
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Mathematically, there is nothing that stops us we can still create a linear model for non-linear data! Unfortunately, it doesn’t do a very good job of capturing the underlying relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. It’s on you, the human operating the machine, to make sure that you only use a linear model if there is actually a linear relationship in the data. Later in this chapter, we will see how we can assess whether this is the case for any dataset.</p>
+</section>
+<section id="correlation" class="level4" data-number="10.2.0.2">
+<h4 data-number="10.2.0.2" class="anchored" data-anchor-id="correlation"><span class="header-section-number">10.2.0.2</span> Correlation</h4>
+<!-- Reproduce something similar? https://en.wikipedia.org/wiki/Correlation#/media/File:Correlation_examples2.svg -->
+<p>Consider these two different sets of data:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-3_8aba89b9beec777006280ae60f4473ef">
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>There is a linear relationship in both of these plots! In both cases, the y values seem to increase by a constant amount (on average) as the x values increase by a constant amount.</p>
+<p>The difference is that the points in the left hand plot are much more closely clustered around the line than on the right. More formally we would say that the left hand <em>y</em> is <em>strongly</em> <strong>correlated</strong> with <em>x</em>, whereas in the right hand side graph there is a <em>weak</em> <strong>correlation</strong>.</p>
+<p>When you are new to linear relationships, it can be easy to mistake a weak correlation for a non-linear relationship. The best way to be sure is to ask yourself:</p>
+<blockquote class="blockquote">
+<p>Is there an obvious curved trend to the underlying data?</p>
+</blockquote>
+<p>This is the same as asking <em>is there a non-linear relationship</em>? If the answer is <em>no</em>, then, by a process of elimination, there is either a linear relationship (or no correlation at all, as we will see in the next section).</p>
+</section>
+<section id="positive-negative-or-no-correlation" class="level4" data-number="10.2.0.3">
+<h4 data-number="10.2.0.3" class="anchored" data-anchor-id="positive-negative-or-no-correlation"><span class="header-section-number">10.2.0.3</span> Positive, negative, or no correlation?</h4>
+</section>
+<section id="other-linear-model-terminology" class="level4" data-number="10.2.0.4">
+<h4 data-number="10.2.0.4" class="anchored" data-anchor-id="other-linear-model-terminology"><span class="header-section-number">10.2.0.4</span> Other linear model terminology</h4>
+<!--
+TODO: 
+- add terminology on describing correlations
+- mention the word "residual" here?
+-->
+<p>When we create a simple linear model (e.g.&nbsp;a line of best fit) like the ones above, we have 2 variables:</p>
+<ul>
+<li>The variable on the <span class="math inline">\(y\)</span>-axis, which we call the <strong>response variable</strong>.</li>
+<li>The <span class="math inline">\(x-axis\)</span> variable, the explanatory variable</li>
+</ul>
+<p>These names (“response” and “explanatory”) seem to imply that the values of <span class="math inline">\(x\)</span> <em>explain</em> the values of <span class="math inline">\(y\)</span>, or conversely that the <span class="math inline">\(y\)</span> variable <em>responds</em> to changes in <span class="math inline">\(x\)</span>. In other words, we seem to be saying that a change in <span class="math inline">\(x\)</span> is directly causing the change in <span class="math inline">\(y\)</span>, and not the other way around.</p>
+<p>However…</p>
+</section>
+<section id="correlation-does-not-imply-causation" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="correlation-does-not-imply-causation"><span class="header-section-number">10.2.1</span> “Correlation does not imply causation”</h3>
+<p>A common saying when working with models is that “correlation does not imply causation”. <em>What does this mean?</em></p>
+<p>The linear model cannot actually tell us which variable is causing changes in the other (<strong>causation</strong>). Just because we decide to call one variable the “response” and the other “explanatory”, does not mean that is necessarily the direction of effect in the real world.</p>
+<p>For example, taller people generally weigh more, but there is nothing stopping us from creating a linear model in which height is the response variable (y), even though most people would say that it makes no sense to say that your weight <em>causes</em> your height.</p>
+<p>Since we have picked which variable is the “response” before creating the linear model, it would be circular for us to then claim that the linear model shows that the explanatory variable is causing the response. Of course it seems to be showing that, because we told it to show it! The linear model (which is fundamentally a fairly simple mathematical formula) has no way of detecting the true causal relationships that exist in the real world.</p>
+<p>To summarize in more general terms: even if there seems to be a linear relationship between two variables, we cannot definitively say that one causes the change in the other - only that they are <strong>correlated</strong>.</p>
+<p>Even when we have a correlation, it’s possible that neither of the variables in your model is directly <em>causing</em> a change in the other. There might be other variables (that are not in our model) that actually cause the change in both of the modeled variables. To return to our height vs.&nbsp;weight example: the variation in both height and weight might be caused by diet (or genetics), yet we have not included diet (or genetics) as a variable in our model. Imagine a world in which better<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> diet causes all of the variation in people’s height and weight. A linear model of height and weight would show a strong correlation - however (in this contrived example) neither is causing the changes in the other since both are ultimately being determined by another factor which we have not analyzed.</p>
+<p><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>: Or, at least, more calorific…</p>
+<!--
+TODO:
+- quiz questions on this
+-->
+<!-- TODO: 
+
+- DONE: ~~add examples of linear correlations vs. nonlinear, ~~
+- vs pure randomness (also, show how randomness is more clumpy that we normally think of).
+
+-->
+</section>
+</section>
+<section id="creating-models-in-r" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="creating-models-in-r"><span class="header-section-number">10.3</span> Creating models in R</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FSoPzQLfUKw?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing">PDF (same as before)</a></p>
+<section id="lets-create-a-linear-model" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="lets-create-a-linear-model"><span class="header-section-number">10.3.1</span> Let’s create a linear model</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/kCIg9qiNsMA?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<p>Slides: <a href="https://drive.google.com/file/d/1WeYmoYPQaVRZXJyxxTCbeRQ7XdCazFCn/view?usp=sharing">PDF (same as before)</a></p>
+<p>Let’s create your first linear model in R, using a simulated<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> dataset called <code>sim_df</code>.</p>
+<!-- TODO: convert to a real dataset -->
+<p>This is what the first few rows of the simulated dataset stored in the <code>sim_df</code> variable look like:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-4_6615e3a196b35aa0aaae4c32120943b2">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: right;" data-quarto-table-cell-role="th">x</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">8.551703</td>
+<td style="text-align: right;">17.739356</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">8.930282</td>
+<td style="text-align: right;">17.576311</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">-2.135628</td>
+<td style="text-align: right;">-6.927711</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7.117610</td>
+<td style="text-align: right;">11.794752</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3.909674</td>
+<td style="text-align: right;">9.139461</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1.824631</td>
+<td style="text-align: right;">3.342624</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>As you can see, there are two variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Here’s what they look like:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-5_8af701d18031ed32f0c92b5dfd6adf58">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This looks like a pretty good candidate for a linear model, so let’s create one.</p>
+<p>We’ll do that with the <code>lm()</code> function. The general syntax of this function is:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(response <span class="sc">~</span> explanatory, <span class="at">data =</span> _______)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><code>response</code> and <code>explanatory</code> are the column names of those two variables.</li>
+<li>The <code>data</code> parameter expects the dataframe containing those columns.</li>
+</ul>
+<div class="comment2">
+<p>What’s going on with <code>response ~ explanatory</code>? This is what’s know as an R <em>formula</em>.</p>
+<p>The mathematical formula for a linear model is <span class="math inline">\(y=ax+b\)</span>. In R, we would write this as <code>y ~ x</code>: i.e.&nbsp;we replace <span class="math inline">\(=\)</span> with <code>~</code>, and we only include the actual variables. From this, R infers that we want to estimate the model’s coefficients (the slope, <span class="math inline">\(a\)</span>, and the intercept, <span class="math inline">\(b\)</span>).</p>
+</div>
+<!-- Book version -->
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-6_cdae12b6a01a8dfdd01af228e4d0f599">
+<p>
+Exercise: In the linear model formula <span class="math inline">\(y = ax + b\)</span>,
+</p>
+<ul>
+<li>The slope is represented by <input class="webex-solveme nospaces" size="1" data-answer="[&quot;a&quot;]"></li>
+</ul>
+</div>
+<!--
+TODO: add book exercises
+::: {.cell hash='10_modeling_chapter_cache/html/unnamed-chunk-7_f447b11de6a8ab568f895eff040ca312'}
+
+:::{.exercise}
+Exercises TBD
+:::
+:::
+-->
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<div class="comment3">
+<p><strong>Note</strong>: Unfortunately the <code>lm()</code> function is a part of the core R programming language that predates the <code>tidyverse</code> packages. Unlike the tidyverse functions, the first argument of <code>lm()</code> is the formula, not the data frame. Therefore, you cannot pipe a data frame to <code>lm()</code>, because pipe inserts the data frame into the first argument position (which will cause an error).</p>
+</div>
+</section>
+<section id="your-models-coefficients" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="your-models-coefficients"><span class="header-section-number">10.3.2</span> Your model’s coefficients</h3>
+<p>We usually want to report the slope and intercept of a linear model. The slope is especially useful to report, because it indicates how much <span class="math inline">\(y\)</span> changes as <span class="math inline">\(x\)</span> changes.</p>
+<ul>
+<li>If we have a slope of 1, then this means that as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> increases by the same amount (i.e.&nbsp;a ratio of 1).</li>
+<li>If we have a slope of 3, then as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> increases by three times that value (e.g.&nbsp;if <span class="math inline">\(x\)</span> increases by 10, <span class="math inline">\(y\)</span> increases by <span class="math inline">\(3 \times 10 = 30\)</span>).</li>
+<li>A slope of <span class="math inline">\(0\)</span> means that <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are uncorrelated, i.e.&nbsp;as <span class="math inline">\(x\)</span> increases, the value of <span class="math inline">\(y\)</span> is not affected (on average). (We can still have variation in the <span class="math inline">\(y\)</span> variable - it’s just that such variation seems to be entirely unconnected to changes in the <span class="math inline">\(x\)</span> variable).</li>
+</ul>
+<!--
+TODO: graphs showing different slopes, corresponding to the three bullet point examples above, and include fig references back to this graph.
+-->
+<p>The intercept is the point at which the line of our linear model intersects the <span class="math inline">\(y\)</span>-axis. This is the value of the response variable when the explanatory variable is 0.</p>
+<p>We can report the model’s coefficients with the <code>tidy()</code> function from the <code>broom</code> package. The syntax is like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(your_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or equivalently</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>if you prefer to pipe the linear model in (the <code>your_model</code> variable above refers to the output of the <code>lm()</code> function).</p>
+<p>For example, here is the table of coefficients for the model we were trying to create in the previous section:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-9_8ad2db05978f9161bdfcc21e33c099aa">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim_df)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  term        estimate std.error statistic  p.value
+  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+1 (Intercept)  -0.0750    0.345     -0.217 8.29e- 1
+2 x             1.95      0.0577    33.7   3.22e-24</code></pre>
+</div>
+</div>
+<p>The important column here (for our current purposes) is the <em>estimate</em> column. This tells us that the <code>lm()</code> function estimates the intercept to be -0.0749858 and the slope to be 1.9468815.</p>
+<p>Note that although the intercept row is called <code>(Intercept)</code>, the slope row is named after the explanatory variable, <code>x</code>. As we shall see in the next section, we can have more than one explanatory variable in a single model, and this helps us keep track of the slope associated with each one.</p>
+
+<!-- TODO: show an example of creating the `tidy()` output table, and then how to interpret the numbers in it (since the column names are kind of weird).
+-->
+<!-- Book version -->
+<!--
+TODO: add book exercises
+::: {.cell hash='10_modeling_chapter_cache/html/unnamed-chunk-10_cfbb4d3a428f912e9d12a76d7e9c8e52'}
+
+:::{.exercise}
+Exercises TBD
+:::
+:::
+-->
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<!-- 
+TODO: use coef() function to get model coefficients, and then inline code if you want to talk about them in the text as opposed to manually writing in the number - this helps to avoid typos and errors. 
+-->
+</section>
+<section id="categorical-explanatory-variables" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="categorical-explanatory-variables"><span class="header-section-number">10.3.3</span> Categorical explanatory variables</h3>
+</section>
+<section id="more-than-one-explanatory-variable" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="more-than-one-explanatory-variable"><span class="header-section-number">10.3.4</span> More than one explanatory variable</h3>
+</section>
+<section id="multiple-explanatory-variables" class="level3" data-number="10.3.5">
+<h3 data-number="10.3.5" class="anchored" data-anchor-id="multiple-explanatory-variables"><span class="header-section-number">10.3.5</span> Multiple explanatory variables</h3>
+<p>In our previous module on linear models, we considered what is called <em>simple linear regression</em>: a linear model with just one explanatory variable, <span class="math inline">\(x\)</span>:</p>
+<p><span class="math inline">\(y = m \times x + c\)</span></p>
+<p>which we created using the <code>lm</code> function.</p>
+<p>However, we can technically have as many explanatory variables in our model as we like! (But we can only ever have a single response variable, <span class="math inline">\(y\)</span>) For example, this model has <em>two explanatory variables</em>, called <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> (we use the subscripts 1 and 2 to tell them apart):</p>
+<p><span class="math inline">\(y = m_1 \times x_1 + m_2 \times x_2 + c\)</span></p>
+<p>Note:</p>
+<ul>
+<li>Each explanatory variable gets its own coefficient (<span class="math inline">\(m_1\)</span> and <span class="math inline">\(m_2\)</span>) - note how the number mathces the number of the explanatory variable. If we added another explanatory variable, we would call it <span class="math inline">\(x_3\)</span> and it would have a coefficient <span class="math inline">\(m_3\)</span>, and so on. (In theory, there is no limit on the number of explanatory variables we can include in a single linear model.)</li>
+<li>There is still just a single intercept, <span class="math inline">\(c\)</span>. It doesn’t matter how many explanatory variables we add, we can only have one intercept (because we will only have one y-axis, which the model will only cross at one place).</li>
+</ul>
+</section>
+<section id="but-what-does-that-look-like" class="level3" data-number="10.3.6">
+<h3 data-number="10.3.6" class="anchored" data-anchor-id="but-what-does-that-look-like"><span class="header-section-number">10.3.6</span> But what does that look like?</h3>
+<p>We can pretty easily plot <span class="math inline">\(y\)</span> vs a single explanatory variable <span class="math inline">\(x\)</span>. In this case, a linear model is just a best-fit line through the data:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-12_b20831bbb6fa320b62bd4f8109ed5a79">
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>But what does a linear model look like in higher dimensions?</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-13_e0d5c3ed69149747e4b7613f3617a420">
+<div class="cell-output-display">
+<div id="htmlwidget-2a8e9539872343d5916c" style="width:100%;height:464px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a8e9539872343d5916c">{"x":{"visdat":{"204d1f30287a":["function () ","plotlyVisDat"]},"cur_data":"204d1f30287a","attrs":{"204d1f30287a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"uid":"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b","mode":"markers","name":"Data","type":"scatter3d","x":[3.88202617298383,-0.362741165987138,-0.854095739301725,1.32638589668703,-0.461584604814709,1.94362118564929,-1.60205765560675,-0.401780936208262,-0.977277879876411,0.378162519602174,-0.302302750575336,-0.747454811440758,-0.187183850025834,0.318727652943021,-1.53624368627722,0.400157208367223,-0.826438538659014,-0.742165020406442,0.706573168191948,0.900826486954187,-0.578849664764415,-0.208298755577995,0.681594518281627,0.802456395796395,0.77749035583191,-1.54477109677761,0.969396708158011,0.6764332949465,1.78587049390584,1.54301459540674,0.0561653422297454,-0.212740280213969,-0.359553161540541,-1.23482582035365,0.15634896910398,0.410598501938372,-0.155010093090834,1.20237984878441,0.401989363444702,-1.07993150836342,0.922206671566527,-0.689549777750201,-0.171546331222248,0.0875512413851909,1.89588917603058,-0.663478286362107,1.84926372847934,0.333674327374267,-1.37495129341802,1.46935876990029,0.0174791590250567,-1.18063218412241,0.267050869349183,1.11701628809585,1.45427350696298,2.24089319920146,-0.149634540327671,0.906044658275385,-1.1680934977412,-0.651025593300147,-1.98079646822393,-0.438074301611186,0.844362976401547,1.22244507038243,0.635031436892106,0.386902497859262,-0.205158263765801,0.128982910757411,1.33652794943639,1.95077539523179,1.48051479143442,0.31694261192485,-2.22340315222443,1.71334272164937,0.302471897739781,0.121675016492828,-1.42001793717898,0.439391701264537,-0.179924835812351,-0.684810090940313,-1.09940079058419,-0.151357208297698,-0.437820044744434,0.051945395796139,-1.09306150873051,0.40746183624111,0.539249191291817,1.91006495309903,0.428331870530418,0.653618595440361,0.944479486990414,0.0318305582743512,1.92953205381699,-1.45436567459876,0.462782255525774,0.823504153963731,0.976639036483713,-1.34775906114245,0.0521650792609744,-1.72628260233168],"y":[3.88202617298383,-0.634322093680964,0.313067701650901,0.298238174206056,-1.31590741051152,-1.17312340511416,0.625231451027187,0.177426142253753,1.86755799014997,0.154947425696916,-0.387326817407952,-0.413618980759747,0.0457585173014461,0.920858823780819,0.46566243973046,1.76405234596766,-0.74475482204844,0.864436198859506,0.356366397174402,-1.16514984078336,-0.870797149181882,0.576590816614941,-1.03424284178446,-0.26800337095138,-1.25279536004993,-1.00021534738956,-1.27048499848573,-0.635846078378881,0.0105000207208205,-0.739562996391313,-0.311552532127373,-1.61389784755795,-0.672460447775951,1.1394006845433,-0.347912149326153,-0.103218851793558,0.947251967773748,1.23029068072772,0.12691209270362,1.12663592210651,0.61407937034608,-0.803409664173841,0.523276660531754,0.949420806925761,1.4882521937956,-0.0984525244254323,-0.435153551721637,0.443863232745426,-0.353993911253484,1.53277921435846,-0.455532503517343,-0.510805137568873,-1.29285690972345,-0.912822225444159,0.144043571160878,0.978737984105739,-0.694567859731365,1.86755896042657,-0.0392828182274956,0.856830611902691,-0.887785747630113,-0.509652181751653,-1.22543551883017,-0.40317694697318,0.166673495372529,-0.895466561193676,1.49407907315761,0.729090562177537,2.16323594928069,-1.70627019062501,1.92294202648038,1.1880297923523,-0.643618402832891,-0.0682416053246312,0.0665172223831679,0.761037725146993,-1.04855296506709,-1.49125759270561,1.17877957115965,0.402341641177549,0.376425531155629,0.950088417525589,-1.1474686524111,-0.907298364383242,0.396006712661645,0.672294757012435,-0.769916074445316,-0.861225685054703,-0.0281822283386549,-2.55298981583408,2.38314477486394,-0.674332660657376,-0.498032450692305,2.26975462398761,-1.63019834696604,0.771790551213667,0.20827497807686,1.88315069705625,-1.10438333942845,-0.813146282044454],"z":[0.601414875305009,52.7649368002489,28.8301819439438,-52.7519412117855,-116.763251813566,-185.652779873292,166.926645302627,-32.7400441868645,200.354754382641,84.0711483909933,-388.735187515356,44.1641313590487,124.127664727862,11.3349895075826,137.753196929298,69.9338586409836,30.2334680473319,165.099923498895,132.691909463663,-206.11535605234,26.9973221941661,365.617426613482,-31.7849002234694,-165.834345944098,-146.277319109397,10.2106153904905,-50.8736167922411,-110.51610451998,-114.910597286598,-9.21107841525168,-12.3454962165698,-150.209633463559,-81.6021418991762,62.3772564029097,71.2915984442432,-79.8684789824688,72.6845550810986,75.9565128378878,-31.4455733793576,282.679079892168,-80.04878296553,-34.8773784402263,80.0106052206387,70.59644155587,36.8809004884179,-20.9603918832432,-215.601926932042,56.0292688175183,-39.2216858113509,109.194987315797,-92.3869459545954,-75.303411116867,-130.22720888849,-185.373157147355,105.226655861241,14.144545758253,2.92427324891582,1.16690163644435,121.878382838342,-46.941774325196,-50.0108395525938,-26.1670963009976,-6.07923977317353,-84.7611095980838,110.216363671291,-224.15927360347,186.410503323366,7.16968259250105,102.772097504716,-21.5817241380168,308.876886811525,229.413891066956,-5.20635835532203,83.9845870497286,-62.8785240564784,5.92850888270871,-235.179797223615,-258.927045561524,24.7504683819619,-112.633397599701,39.8357153926154,143.738763884351,-142.567103088046,-60.8802993940848,123.968741605005,76.2560481769906,-37.4958834727863,-162.463015575813,-20.6489203550743,-280.806208383408,201.029851268245,-72.2588583176328,35.0495561626435,270.534727279486,-193.103820805791,114.099913466429,-88.8687157083858,282.071569269954,-79.0750769257736,-154.610866200649],"marker":{"size":2,"opacity":0.9},"inherit":true},"204d1f30287a.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"uid":"f606e49f-bb1b-4d74-acc9-a9d80027e663","name":"Plane of Best Fit","type":"surface","x":[[-3,-3,-3,-3,-3,-3,-3],[-2,-2,-2,-2,-2,-2,-2],[-1,-1,-1,-1,-1,-1,-1],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3]],"y":[[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3]],"z":[[-168.765935922114,-82.743180149586,3.27957562294235,89.3023313954707,175.325087167999,261.347842940527,347.370598713056],[-198.58607018108,-112.563314408552,-26.5405586360232,59.4821971365052,145.504952909034,231.527708681562,317.55046445409],[-228.406204440045,-142.383448667517,-56.3606928949887,29.6620628775397,115.684818650068,201.707574422596,287.730330195125],[-258.226338699011,-172.203582926483,-86.1808271539542,-0.158071381425801,85.8646843911026,171.887440163631,257.910195936159],[-288.046472957976,-202.023717185448,-116.00096141292,-29.9782056403913,56.0445501321371,142.067305904665,228.090061677194],[-317.866607216942,-231.843851444414,-145.821095671885,-59.7983398993568,26.2244158731716,112.2471716457,198.269927418228],[-347.686741475907,-261.663985703379,-175.641229930851,-89.6184741583223,-3.59571838579394,82.4270373867344,168.449793159263]],"opacity":0.7,"showscale":false,"colorscale":"Greys","inherit":true}},"layout":{"margin":{"b":10,"l":0,"t":100,"r":0},"scene":{"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"x2"}},"zaxis":{"title":{"text":"y"}}},"title":{"text":"3D Plane of Best Fit Through 2 Explanatory Variables"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"uid":"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b","mode":"markers","name":"Data","type":"scatter3d","x":[3.88202617298383,-0.362741165987138,-0.854095739301725,1.32638589668703,-0.461584604814709,1.94362118564929,-1.60205765560675,-0.401780936208262,-0.977277879876411,0.378162519602174,-0.302302750575336,-0.747454811440758,-0.187183850025834,0.318727652943021,-1.53624368627722,0.400157208367223,-0.826438538659014,-0.742165020406442,0.706573168191948,0.900826486954187,-0.578849664764415,-0.208298755577995,0.681594518281627,0.802456395796395,0.77749035583191,-1.54477109677761,0.969396708158011,0.6764332949465,1.78587049390584,1.54301459540674,0.0561653422297454,-0.212740280213969,-0.359553161540541,-1.23482582035365,0.15634896910398,0.410598501938372,-0.155010093090834,1.20237984878441,0.401989363444702,-1.07993150836342,0.922206671566527,-0.689549777750201,-0.171546331222248,0.0875512413851909,1.89588917603058,-0.663478286362107,1.84926372847934,0.333674327374267,-1.37495129341802,1.46935876990029,0.0174791590250567,-1.18063218412241,0.267050869349183,1.11701628809585,1.45427350696298,2.24089319920146,-0.149634540327671,0.906044658275385,-1.1680934977412,-0.651025593300147,-1.98079646822393,-0.438074301611186,0.844362976401547,1.22244507038243,0.635031436892106,0.386902497859262,-0.205158263765801,0.128982910757411,1.33652794943639,1.95077539523179,1.48051479143442,0.31694261192485,-2.22340315222443,1.71334272164937,0.302471897739781,0.121675016492828,-1.42001793717898,0.439391701264537,-0.179924835812351,-0.684810090940313,-1.09940079058419,-0.151357208297698,-0.437820044744434,0.051945395796139,-1.09306150873051,0.40746183624111,0.539249191291817,1.91006495309903,0.428331870530418,0.653618595440361,0.944479486990414,0.0318305582743512,1.92953205381699,-1.45436567459876,0.462782255525774,0.823504153963731,0.976639036483713,-1.34775906114245,0.0521650792609744,-1.72628260233168],"y":[3.88202617298383,-0.634322093680964,0.313067701650901,0.298238174206056,-1.31590741051152,-1.17312340511416,0.625231451027187,0.177426142253753,1.86755799014997,0.154947425696916,-0.387326817407952,-0.413618980759747,0.0457585173014461,0.920858823780819,0.46566243973046,1.76405234596766,-0.74475482204844,0.864436198859506,0.356366397174402,-1.16514984078336,-0.870797149181882,0.576590816614941,-1.03424284178446,-0.26800337095138,-1.25279536004993,-1.00021534738956,-1.27048499848573,-0.635846078378881,0.0105000207208205,-0.739562996391313,-0.311552532127373,-1.61389784755795,-0.672460447775951,1.1394006845433,-0.347912149326153,-0.103218851793558,0.947251967773748,1.23029068072772,0.12691209270362,1.12663592210651,0.61407937034608,-0.803409664173841,0.523276660531754,0.949420806925761,1.4882521937956,-0.0984525244254323,-0.435153551721637,0.443863232745426,-0.353993911253484,1.53277921435846,-0.455532503517343,-0.510805137568873,-1.29285690972345,-0.912822225444159,0.144043571160878,0.978737984105739,-0.694567859731365,1.86755896042657,-0.0392828182274956,0.856830611902691,-0.887785747630113,-0.509652181751653,-1.22543551883017,-0.40317694697318,0.166673495372529,-0.895466561193676,1.49407907315761,0.729090562177537,2.16323594928069,-1.70627019062501,1.92294202648038,1.1880297923523,-0.643618402832891,-0.0682416053246312,0.0665172223831679,0.761037725146993,-1.04855296506709,-1.49125759270561,1.17877957115965,0.402341641177549,0.376425531155629,0.950088417525589,-1.1474686524111,-0.907298364383242,0.396006712661645,0.672294757012435,-0.769916074445316,-0.861225685054703,-0.0281822283386549,-2.55298981583408,2.38314477486394,-0.674332660657376,-0.498032450692305,2.26975462398761,-1.63019834696604,0.771790551213667,0.20827497807686,1.88315069705625,-1.10438333942845,-0.813146282044454],"z":[0.601414875305009,52.7649368002489,28.8301819439438,-52.7519412117855,-116.763251813566,-185.652779873292,166.926645302627,-32.7400441868645,200.354754382641,84.0711483909933,-388.735187515356,44.1641313590487,124.127664727862,11.3349895075826,137.753196929298,69.9338586409836,30.2334680473319,165.099923498895,132.691909463663,-206.11535605234,26.9973221941661,365.617426613482,-31.7849002234694,-165.834345944098,-146.277319109397,10.2106153904905,-50.8736167922411,-110.51610451998,-114.910597286598,-9.21107841525168,-12.3454962165698,-150.209633463559,-81.6021418991762,62.3772564029097,71.2915984442432,-79.8684789824688,72.6845550810986,75.9565128378878,-31.4455733793576,282.679079892168,-80.04878296553,-34.8773784402263,80.0106052206387,70.59644155587,36.8809004884179,-20.9603918832432,-215.601926932042,56.0292688175183,-39.2216858113509,109.194987315797,-92.3869459545954,-75.303411116867,-130.22720888849,-185.373157147355,105.226655861241,14.144545758253,2.92427324891582,1.16690163644435,121.878382838342,-46.941774325196,-50.0108395525938,-26.1670963009976,-6.07923977317353,-84.7611095980838,110.216363671291,-224.15927360347,186.410503323366,7.16968259250105,102.772097504716,-21.5817241380168,308.876886811525,229.413891066956,-5.20635835532203,83.9845870497286,-62.8785240564784,5.92850888270871,-235.179797223615,-258.927045561524,24.7504683819619,-112.633397599701,39.8357153926154,143.738763884351,-142.567103088046,-60.8802993940848,123.968741605005,76.2560481769906,-37.4958834727863,-162.463015575813,-20.6489203550743,-280.806208383408,201.029851268245,-72.2588583176328,35.0495561626435,270.534727279486,-193.103820805791,114.099913466429,-88.8687157083858,282.071569269954,-79.0750769257736,-154.610866200649],"marker":{"color":"rgba(31,119,180,1)","size":2,"opacity":0.9,"line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"colorbar":{"title":"","ticklen":2},"colorscale":"Greys","showscale":false,"uid":"f606e49f-bb1b-4d74-acc9-a9d80027e663","name":"Plane of Best Fit","type":"surface","x":[[-3,-3,-3,-3,-3,-3,-3],[-2,-2,-2,-2,-2,-2,-2],[-1,-1,-1,-1,-1,-1,-1],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3]],"y":[[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3]],"z":[[-168.765935922114,-82.743180149586,3.27957562294235,89.3023313954707,175.325087167999,261.347842940527,347.370598713056],[-198.58607018108,-112.563314408552,-26.5405586360232,59.4821971365052,145.504952909034,231.527708681562,317.55046445409],[-228.406204440045,-142.383448667517,-56.3606928949887,29.6620628775397,115.684818650068,201.707574422596,287.730330195125],[-258.226338699011,-172.203582926483,-86.1808271539542,-0.158071381425801,85.8646843911026,171.887440163631,257.910195936159],[-288.046472957976,-202.023717185448,-116.00096141292,-29.9782056403913,56.0445501321371,142.067305904665,228.090061677194],[-317.866607216942,-231.843851444414,-145.821095671885,-59.7983398993568,26.2244158731716,112.2471716457,198.269927418228],[-347.686741475907,-261.663985703379,-175.641229930851,-89.6184741583223,-3.59571838579394,82.4270373867344,168.449793159263]],"opacity":0.7,"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<p>As you can see, in three dimensions we have a <em>plane</em> of best fit rather than a line (note: you should be able to click-and-drag to rotate the 3D graph).</p>
+<p>But what about if we have 3 explanatory variables? Then our model would exist in 4-D space! I don’t know if you’ve ever tried to imagine what things look like in four dimensions, but it’s kind of impossible. And, of course, the more explanatory variables we add, the more dimensions this “space” has. However, it turns out that in this high dimensional “hyperspace”, the linear model is still the equivalent of a flat surface which we would call a “hyperplane”.</p>
+<p>The fact that we can’t visualize these high dimensional spaces (even the 3-D graph above is hard to understand) means that we need some way of plotting them in just 2 dimensions. We want to plot our model because its the easiest way of telling whether the model is an appropriate summary of the data. For example, we don’t want to plot a linear model if there is a non-linear relationship (i.e.&nbsp;if the data has a curved pattern).</p>
+</section>
+<section id="lm-with-multiple-explanatory-variables" class="level3" data-number="10.3.7">
+<h3 data-number="10.3.7" class="anchored" data-anchor-id="lm-with-multiple-explanatory-variables"><span class="header-section-number">10.3.7</span> <code>lm()</code> with multiple explanatory variables</h3>
+<p>Recall that the first argument of the <code>lm</code> function was a formula. We create an R formula by:</p>
+<ul>
+<li>removing the constant coefficients</li>
+<li>replacing the <span class="math inline">\(=\)</span> sign with <code>~</code> (~ means “is related to”)</li>
+</ul>
+<p>For example,</p>
+<p><span class="math inline">\(y = m x + c\)</span></p>
+<p>becomes</p>
+<p><code>y ~ x</code></p>
+<p>The same principle applies to multiple explanatory variables:</p>
+<p><span class="math inline">\(y = m_1 x_1 + m_2 x_2 + c\)</span></p>
+<p>becomes</p>
+<p><code>y ~ x1 + x2</code></p>
+<!-- Book version -->
+<!-- TODO: Add exercises -->
+<!-- End book -->
+<!-- Tutorial version -->
+<!--
+TODO:
+- include feedback on these question
+-->
+<!--
+TODO
+- actual code exercises on this
+-->
+<!-- End tutorial -->
+</section>
+<section id="create-a-multiple-regression-model" class="level3" data-number="10.3.8">
+<h3 data-number="10.3.8" class="anchored" data-anchor-id="create-a-multiple-regression-model"><span class="header-section-number">10.3.8</span> Create a multiple regression model</h3>
+<!-- 
+TODO
+- switch to a smaller dataset that does not take so long to generate graphs
+  - later note: does this make sense now that has been readded back into the initial modeling chapter? Ideally this chapter would share a unified dataset.
+-->
+<p>Let’s create a linear model from the <code>diamonds</code> dataset.</p>
+<p>The <code>diamonds</code> dataset is included as part of the <code>ggplot2</code> package and contains observations about the properties of thousands of diamonds. We are going to use three variables from the dataset:</p>
+<ul>
+<li>the <code>price</code> variable will be our response variable (i.e.&nbsp;y)</li>
+<li>the <code>carat</code> and <code>depth</code> variables will be our explanatory variables</li>
+</ul>
+<!-- Book version -->
+<!-- TODO: Add exercises -->
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+<section id="r2-how-good-is-your-model" class="level3" data-number="10.3.9">
+<h3 data-number="10.3.9" class="anchored" data-anchor-id="r2-how-good-is-your-model"><span class="header-section-number">10.3.9</span> <span class="math inline">\(R^2\)</span>: how good is your model?</h3>
+<p>So we’ve reported the slope and intercept: however, these don’t tell us about how well the model fits the data, i.e.&nbsp;how close the points are to the model’s line.</p>
+<p>For example, you could have a steep slope (suggesting that a change in <span class="math inline">\(x\)</span> is correlated with a big change in <span class="math inline">\(y\)</span>), but the points could be scattered a long way from the line (i.e.&nbsp;large residuals). For example, consider these two graphs:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-16_456ddb2a648fb2455fceecf4f8e02c01">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, x2)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">3</span>), <span class="dv">2</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>series <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Low slope, large scatter"</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">"Steep slope, low scatter"</span>, <span class="dv">10</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y, series) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can use a statistic called <span class="math inline">\(R^2\)</span> (R-squared). You can think of <span class="math inline">\(R^2\)</span> as <em>the % of the variation in <span class="math inline">\(y\)</span> that is explained by the explanatory variable, <span class="math inline">\(x\)</span></em>.</p>
+<p><span class="math inline">\(R^2\)</span> varies between 0 and 1. 1 means that the model explains all the variation: i.e.&nbsp;the points fall exactly on the line of best fit! As the points get further from the line, <span class="math inline">\(R^2\)</span> will decrease.</p>
+<p>We can report the <span class="math inline">\(R^2\)</span> by piping a model to the <code>glance()</code> function.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p class="comment3">
+Fill in the blank with the correct function to report the <span class="math inline">\(R^2\)</span> value of your model.
+</p>
+<div class="cell" data-exercise="true" data-exercise.setup="create_model" data-hash="10_modeling_chapter_cache/html/pejquogcchrafyyt_b058620f8ad07f442cccf1c5fababbf3">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-exercise.setup="create_model" data-hash="10_modeling_chapter_cache/html/pejquogcchrafyyt-solution_722963b2ac4ef274025b8d588b0dddb5">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/pejquogcchrafyyt-check_b89db6f7512c12a8ab52b5bcb86691f1">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You’ll note that <code>glance()</code> reports a whole bunch of statistics. We only care about the first column, <code>r.squared</code>, and can ignore the rest.</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/rsquared_quiz_b60a22df5eae890d14d3595c56eb962e">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the R-squared value of your model?"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.935"</span>, <span class="at">correct=</span><span class="cn">TRUE</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.926"</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.52"</span>),</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"114"</span>),</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="whats-a-good-r2" class="level3" data-number="10.3.10">
+<h3 data-number="10.3.10" class="anchored" data-anchor-id="whats-a-good-r2"><span class="header-section-number">10.3.10</span> What’s a good <span class="math inline">\(R^2\)</span>?</h3>
+<p>We can use the <span class="math inline">\(R^2\)</span> to determine how “good” a model is. However, what value of <span class="math inline">\(R^2\)</span> is “good”?</p>
+<p>It turns out that the answer to this question varies widely between different areas of science.</p>
+<p>In physics, we often collect data from simple systems where data can be collected very accurately, so physicists expect high <span class="math inline">\(R^2\)</span> values in their experiments. For example, if you are measuring the speed of an object, there will be only one or two variables that will affect the speed, so you should get a very good correlation. Physical variable are generally easy to predict.</p>
+<p>In contrast, the social sciences (e.g.&nbsp;psychology or economics) will accept lower <span class="math inline">\(R^2\)</span> values, because there social systems are very complex with a huge number of interacting variables. For example, you could measure the effect of a good night’s sleep on students’ exam results the next day, but there are going to ge a lot of other things that affect how well a student does (such as how much they studied). As a result, even if sleep and exam results are related, the correlation will be very weak. Psychologists may be quite happy with <span class="math inline">\(R^2\)</span> values of less than 0.5 (i.e.&nbsp;50%).</p>
+<p>For the purposes of this class, you can think of an <span class="math inline">\(R^2\)</span> &gt; 0.5 as good, an <span class="math inline">\(R^2\)</span> &gt; 0.25 as okay, and an <span class="math inline">\(R^2\)</span> &gt; 0.1 as weak.</p>
+</section>
+</section>
+<section id="testing-our-assumptions" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="testing-our-assumptions"><span class="header-section-number">10.4</span> Testing our assumptions</h2>
+<section id="assumptions-of-the-linear-model" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="assumptions-of-the-linear-model"><span class="header-section-number">10.4.1</span> Assumptions of the linear model</h3>
+<p>All models make assumptions - that’s how they are able to simplify complexity.</p>
+<p>The linear model makes these assumptions:</p>
+<ol type="1">
+<li><p><strong>Linearity</strong>: we assume that there is a linear relationship between the response and explanatory variables (i.e.&nbsp;that they fall more or less along a straight line).</p></li>
+<li><p><strong>Nearly normal residuals</strong>: the residuals are normally distributed around the model line.</p></li>
+<li><p><strong>Constant variation of residuals</strong>: the variation in residual size (above and below the model line) is similar in all parts of the model.</p></li>
+<li><p><strong>Independent observations</strong>: Each observation (i.e.&nbsp;each <span class="math inline">\((x,y)\)</span> point) was generated independently from the others.</p></li>
+</ol>
+<p>These might seem a little complicated, but they all make some intuitive sense when you think about what they mean, so let’s go through them one-by-one.</p>
+<!-- 
+TODO: 
+- were residuals covered properly earlier in the book?
+- was a normal distribution covered before?
+- explain pred and resid if not already done
+- show use of augment() function to add pred and resid columns.
+-->
+</section>
+<section id="linearity" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="linearity"><span class="header-section-number">10.4.2</span> Linearity</h3>
+</section>
+<section id="the-assumption-of-linearity" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="the-assumption-of-linearity"><span class="header-section-number">10.4.3</span> The assumption of linearity</h3>
+<p>By far the most important important assumption that we make when we fit a linear model to some data is that there is actually a linear relationship between the response and explanatory variables!</p>
+<p>If we have a simple linear model with just one explanatory variable, then we easily see whether the relationship is linear or non-linear (i.e.&nbsp;curved):</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-17_789afc0d9f5df079cf7cfd298c2ee265">
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious curved (<em>non-linear</em>) trend, and so that data violates this assumption of the linear model.</p>
+<!-- TODO:
+- Add a quiz/code question here asking students to interpret their own graph
+- Add quiz questions of other graphs that are harder to interpret
+-->
+<p>When we have a linear model with more explanatory variables, then we cannot plot the original data to see whether there is a curve. Fortunately, there is a 2-D graph we can create for any linear model,</p>
+<p>By definition, a linear model’s predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e.&nbsp;true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables. <!-- TODO: 
+linear nature of model predictions in n-dimensional space needs better explanation, ideally also with a video 
+--></p>
+<p>In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a <em>scatter plot</em> of the observed response variable vs.&nbsp;the predicted response variable.</p>
+<!-- TODO:
+- need to explain the above two paragraphs better, ideally with pictures and also a video.
+-->
+<p>We call this an <em>observed vs predicted</em> plot (with observed on the <em>y</em>-axis, predicted on the <em>x</em>-axis). Because these values are essentially the same number (or would be if the model went through every data point exactly), we should expect these variables to fall on a line with a slope of 1 and an intercept of 0. We will add such a reference line to our plot for comparison.</p>
+<p>Before we can do so, we need to calculate the predicted values. We can easily create a column of predicted values using the <code>augment()</code> function from the <code>broom</code> package, which adds a column called <code>.fitted</code> to a dataframe using a model (such as the <code>diamonds_model</code> that you created earlier with the <code>lm</code> function):</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-19_ccc4d897e19b68325d74c6fad27095fa">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(diamonds_model, diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>(Note that the <code>augment()</code> function also adds a column called <code>.resid</code> which contains the residuals.)</p>
+<!-- 
+TODO: have some examples here of models that do and don't meet this assumption, especially with outliers, randomly patchy data (like the blood pressure dataset), and tight vs. loosely correlated data) 
+
+Also important to show the code for how to create this graph.
+-->
+<!-- Book version -->
+<!-- TODO: Add exercises -->
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+</section>
+<section id="constant-variability-of-residuals" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="constant-variability-of-residuals"><span class="header-section-number">10.4.4</span> Constant variability of residuals</h3>
+</section>
+<section id="constant-variability" class="level3" data-number="10.4.5">
+<h3 data-number="10.4.5" class="anchored" data-anchor-id="constant-variability"><span class="header-section-number">10.4.5</span> Constant variability</h3>
+<p>The residuals of a linear model are arranged above and below the line. As we saw in the previous section, this arrangement should look similar to a normal distribution, i.e.</p>
+<ul>
+<li>most residuals will be small (close to the line)</li>
+<li>a few residuals will be large</li>
+</ul>
+<p>The linear model also assumes that this normal distribution is the same in all parts of the model (i.e.&nbsp;at both high and low value of <span class="math inline">\(x\)</span>).</p>
+<p>For example, in this model, we can clearly see that the variation in the residuals <em>is not constant</em> - this is a violation of this third assumption of the linear model:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-22_2a79973425bfdf21dbd851d77e387c79">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">46</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decreasing variation in points"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>In the graph above, the points on the right lie much closer to the line: i.e.&nbsp;the residuals will be smaller.</p>
+<p>For simple linear models like this (with only a single explanatory variable <span class="math inline">\(x\)</span>), we can get a reasonable idea of the variability of the residuals just by looking at a scatter plot of the model, as above.</p>
+<p>For comparison, here is the model you fit earlier:</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-23_6cbc7e367fd816ddac800517aac087b2">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/assumption_3_quiz_b5dcb3bc16913ac7a8f3a3a7725a1161">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Does your model (as shown above) satisfy the linear model's assumption of constant variability of residuals?"</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Yes, the model satisfies this assumption."</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"No, the model violates this condition."</span>),</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>But as with the previous assumption of linearity we can’t plot the original model in a two dimensional screen or page if we have more than one explanatory variable.</p>
+<p>Fortunately there is another that we can make for any type of model! This is a <em>residuals vs predicted plot</em>, which has the residuals (on the y-axis) vs the predicted response variable (x-axis). This graph will also always have just two dimensions, regardless of how many explanatory variables are in our model, and so it is ideal for assessing this assumption.</p>
+<p>In this graph, our reference line should be a horizontal line plotted at <span class="math inline">\(y = 0\)</span>, because the residuals should be distributed around zero in all parts of the model.</p>
+<p>Here are three example residual vs predicted plots (with purple guide lines showing the variability):</p>
+<ul>
+<li>The left-most plot shows constant variability of the residuals above and below the line.</li>
+<li>The middle graph violates this assumption because the variability of the residuals increases as the predicted values increase.</li>
+<li>The third graph also violates this assumption, because the variation above and below the line is not consistent (this pattern arises because there is not a linear relationship between the response and explanatory variables - the residual vs predicted plot can also be used to examine the first assumption of linearity).</li>
+</ul>
+<!-- TODO: 
+create illustration of resid vs pred plot
+-->
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-24_ebf01efd1975178b6c8f27e14aebf170">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../img/resid-vs-pred.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="../img/resid-vs-pred.png" class="img-fluid" width="600"></p>
+</div>
+</div>
+<!-- TODO:
+- use geom_smooth() to create a trend line?
+- is there a function that will plot the approximate upper and lower boundaries of this data?
+
+- also show examples of meeting vs violating the assumption.
+
+- mention "heteroskedasticity"
+
+- mention that the linear model is reasonably robust to violations of this assumption
+
+- have questions asking students to interpret different assumptions plots
+-->
+<!-- Book version -->
+<!-- TODO: 
+Add book exercises on resid vs pred plots
+-->
+<!-- End book -->
+<!-- Tutorial version -->
+<div class="cell" data-exercise="true" data-exercise.setup="add_pred_and_resid" data-hash="10_modeling_chapter_cache/html/zjheaqgdmjiltikc_12a909de87fa65e98dfb55f2c340fd48">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ______, <span class="at">y =</span> ______)) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> ____, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/zjheaqgdmjiltikc-solution_ea5b894395067a58d167d71cc615bb3c">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/zjheaqgdmjiltikc-check_b2fca5f9406125d3a226fd3e99e074b8">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- End tutorial -->
+</section>
+<section id="nearly-normal-residuals" class="level3" data-number="10.4.6">
+<h3 data-number="10.4.6" class="anchored" data-anchor-id="nearly-normal-residuals"><span class="header-section-number">10.4.6</span> Nearly normal residuals</h3>
+</section>
+</section>
+<section id="nearly-normal-residuals-1" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="nearly-normal-residuals-1"><span class="header-section-number">10.5</span> Nearly normal residuals</h2>
+<!-- Related to conditional means. Plot the normal variation along the model line. -->
+<p>The best linear model is the one that has the smallest sum of the squared residuals. We don’t need to worry too much about the mathematics behind this - however, you should be aware that the math does make the simplifying assumption that the residuals have a <em>normal</em> distribution (more or less).</p>
+<p>The normal distribution is a bell-shaped distribution:</p>
+<!-- TODO: add image of normal distribution -->
+<!-- ```{r} -->
+<!-- knitr::include_graphics("images/Normal_Distribution_NIST.gif") -->
+<!-- ``` -->
+<p>We can plot a histogram of the residuals and see if that has a (more or less) normal distribution. However, it is often hard to interpret the “normality” of a histogram just by looking at it, since there are many different types of unimodal symmetric distribution.</p>
+<p>Instead, a much better method is to create a Quantile-Quantile (Q-Q) plot. This video from Stat Quest gives an excellent overview of what a Q-Q plot is:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/okjYjClSjOg?rel=0" frameborder="0" allowfullscreen="">
+</iframe>
+<!-- TODO: new video -->
+<p>Q-Q plots are so useful that the <code>ggplot2</code> package already contains geom functions for creating them.</p>
+<p>We can use the <code>diamonds_plus_preds</code> data frame to create a Q-Q plot (with both points and a reference line):</p>
+<div class="cell" data-hash="10_modeling_chapter_cache/html/unnamed-chunk-27_c7374fdb4aed1776781061ebd375c2fe">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> .resid))<span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> .resid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<!-- TODO:
+Examples of met vs. violated graphs, with comparison to the original model (points and line) as well as what the corresponding histogram of residuals looks like.
+-->
+<!-- Book version -->
+<!-- TODO: Add exercises -->
+<!-- End book -->
+<!-- Tutorial version -->
+<!-- End tutorial -->
+<section id="independent-observations" class="level3" data-number="10.5.1">
+<h3 data-number="10.5.1" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">10.5.1</span> Independent observations</h3>
+</section>
+<section id="independent-observations-1" class="level3" data-number="10.5.2">
+<h3 data-number="10.5.2" class="anchored" data-anchor-id="independent-observations-1"><span class="header-section-number">10.5.2</span> Independent Observations</h3>
+<p>The fourth (and final) assumption of the linear model is that all the observations (data points) were generated <em>independently</em>.</p>
+<p>We will not worry to much about this assumption in this course, as the datasets we give you will have independent observations (for the most part).</p>
+<p>But what does it mean for observations to be <em>non-independent</em>?</p>
+<p>Consider the stock market: we could have a dataset that contains measurements of a company’s stock price at the end of each day. However these observations are not independent. A stock price will rise or fall, but this change will be <em>from the previous observation</em>. I.e. if the stock ends day 1 at 100, it will probably end day 2 pretty close to 100. Therefore, the data points are not independent.</p>
+<p>For comparison, think about measuring the height of all the students in this class: one student’s height does not affect anyone else’s height, so these observations are all independent. (Assuming that none of the students are related to each other!)</p>
+<!-- TODO: 
+add quiz 
+-->
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Or, as we will see later, more than two variables…<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>calorie-caveat<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>calorie-caveat<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>A simulated dataset contains made-up values, usually generated randomly by a computer, rather than observations collected from real life.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../src/book/09_computing_chapter.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">More about R</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../src/book/11_inference_chapter.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

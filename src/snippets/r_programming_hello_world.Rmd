@@ -1,6 +1,6 @@
 It is a long-standing tradition that your first program in any new programming language should simply display the message "Hello, World!".
 
-<!-- TODO: video: programming as recipe -->
+<!-- TODO: video: "first R program" which is hello world overview -->
 
 In R we can use the `print()` *function* to display a piece of data (such as the text *Hello, World!*).
 
@@ -23,12 +23,14 @@ We will learn more about the different parts of this code in this chapter, but b
 
 * `print(...)` is a **function**: it is a recipe that takes some input ingredients (which we list between the parentheses after the function's name), and does something with them.
 * `"Hello, World!"` is a *string* of characters (and other symbols, such as `!`). A **character string** is a type of data that computers can work with. Here we are supplying it as the input argument to the `print()` recipe.
+
+When you hit *Enter*, R figures out how to covert this code into a series of electrical currents that your computer's processor can understand. The result comes back as another series of electrical currents, which R then figures out how to convert back into something that a human can understand.
 :::
 
 <!-- Book code -->
 
 ```{r hello-world-exercise-book, echo=F, eval=is_book, results = 'asis'}
-cat("::: {.exercise}
+cat("::: {.exercise .callout-note appearance='simple' icon=false}
 
 **Exercise: Try it yourself:** Open up RStudio and copy or type the line of code into the RStudio Console pane (see Fig. @fig-rstudio-overview-console).
 
@@ -50,7 +52,10 @@ Congratulations! You just ran your first program in R.
 <!-- Tutorial code -->
 
 ```{r hello-world-exercise-instructions-tutorial, echo=F, eval=is_tutorial, results = 'asis'}
-cat('<p class="comment3"><b>Exercise:</b> Run the simple program in the code section below (click on *Run Code*). The output of the program will be displayed below the code section. Then edit the text inside the `print()` function to the correct text (*Hello, World!*), and try running the code again. Once it displays the correct statement, click the *Submit Answer* button.<br><br>(If a yellow box appears warning you that your answer is "invisible", don\'t worry. You can safely ignore this.)
+cat('<p class="comment3">
+<b>Exercise:</b> Run the simple program in the code section below (click on *Run Code*). The output of the program will be displayed below the code section. Then edit the text inside the `print()` function to the correct text (*Hello, World!*), and try running the code again. Once it displays the correct statement, click the *Submit Answer* button.
+<br><br>
+(If a yellow box appears warning you that your answer is "invisible", don\'t worry. You can safely ignore this.)
 </p>')
 ```
 
@@ -81,15 +86,23 @@ gradethis::grade_code("You just ran your first program! Don't worry, things will
 
 <!-- End tutorial -->
 
+<!-- TODO:
+::: {.info-box .callout-tip}
+**Programming vs. cooking**
+
+
+:::
+-->
+
 <!-- Book code -->
 
 ```{r rerun-console-exercise-book, echo=F, eval=is_book, results = 'asis'}
-cat(':::: {.exercise}
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
 
-**Exercise:** Try to edit the line in the Console containing the `print("Hello, World!")` command that you just ran. Can you change it?
+**Exercise:** Try to edit the line in the Console containing the `print("Hello, World!")` command that you just ran. Can you change it to print out something else?
 
-:::{.callout-note}
-Once you have pressed <Enter> to run a line of code in the Console, you cannot go back and change it. To modify it, you will need to re-type out the code at the empty prompt at the bottom of the Console (below the output of the last line of code that you ran).
+:::{.callout-tip}
+Once you have pressed <Enter> to run a line of code in the Console, you cannot go back and change it. To modify it, you will need to re-type out the code at the empty prompt at the bottom of the Console (below the output of the last line of code that you ran). You cannot edit a line of code in the Console that has already been run.
 :::
 
 It can get tedious to rewrite the code you have already run in the Console. However, click at the new (empty) Console prompt, and press the Up arrow on your keyboard. RStudio should autofill the prompt with the previous line of code from your history.
@@ -99,7 +112,3 @@ Modify this line to print out a different sentence, and rerun your new code.
 ```
 
 <!-- End book -->
-
-<!-- Tutorial code -->
-<!-- skipped -->
-<!-- End tutorial -->

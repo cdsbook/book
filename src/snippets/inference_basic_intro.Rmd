@@ -1,11 +1,17 @@
-> Statistical inference is the process of using data analysis to deduce properties of an underlying distribution of probability. Inferential statistical analysis infers properties of a population, for example by testing hypotheses and deriving estimates.
->
-> *Source: [Wikipedia](https://en.wikipedia.org/wiki/Statistical_inference)*
+The world is an uncertain place. If you look outside in the morning and notice dark clouds, then you might *infer* that it is likely to rain that day.
 
-What does the above definition mean in simple terms?
+In this chapter we will be learning about statistical inference, which is the idea that if we collect some data from the real world, then we can use it to *infer* other facts about the world (such as the processes that generated that data, or the population that our observations came from).
 
-The world around us is an uncertain, random place. Take the heights of the students in this class: you all have a wide range of heights - some taller, some shorter. 
+### Probability versus inference
 
-We could plot a histogram of your heights - we would call this graph a *distribution* of your heights, and we could *infer* various things about it, e.g. the mean.
+When things are uncertain, we often talk about the probability that an event will occur (such as the high probability that it might rain on a cloudy day, or the low probability that the Washington Wizards will win the NBA Championship this year).
 
-This process of going from raw measurements (e.g. of heights) to properties of the distribution that those measurements came from is called *statistical inference*.
+Mathematically, probability is about making predictions about the future. If we know the probability of different events or observations, then we can predict the likelihood of different outcomes. If I tell you that I have a fair coin, you know that there is a 50% chance of either heads or tails, and so you can calculate the probability of getting 6 heads if I flip the coin 10 times.
+
+By contrast, statistical inference is about the understanding the past. In inference we are typically given a sample of data, but we don't know exactly how the data was generated. This is how things tend to work in both real life and in science. You observe that I get 6 heads from 10 coin flips, but you don't know if the coin was fair or not. Inference allows you to calculate the likelihood that the coin was fair.
+
+Thus we need to know a little bit about probability to do statistical inference. Fortunately, everything we need to know for this chapter is fairly intuitive:
+
+* A probability has to be between 0 and 1. A probability of 0.5 means that something happens half of the time; a probability of 1 means that it happens all of the time!
+
+* In informal settings (such as weather forecasts) we sometimes talk about probabilities as percentages. You can multiply a probability by 100 to get it as a percentage. For example, a probability of 0.5 is equivalent to a 50% chance that something will happen.

@@ -1,0 +1,12 @@
+name: deep_learning
+title: deep_learning
+username: dwhite34
+account: dwhite34
+server: jupyter1 server
+hostUrl: https://jupyter1.cos.gmu.edu/__api__
+appId: 14
+bundleId: 51
+url: https://jupyter1.cos.gmu.edu/content/14/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

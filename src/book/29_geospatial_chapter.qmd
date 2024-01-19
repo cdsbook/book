@@ -1,3 +1,0 @@
-# Geospatial Data
-
-* 3D landscape ggplot graphs.

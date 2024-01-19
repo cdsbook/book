@@ -1,0 +1,22 @@
+# Time Series Data {#sec-time-series-chapter}
+
+<!-- And longitudinal data? -->
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* Line graphs
+* "Longitudinal data" vs. time series
+* ARIMA type models for seasonality
+* regression for longitudinal data?
+-->

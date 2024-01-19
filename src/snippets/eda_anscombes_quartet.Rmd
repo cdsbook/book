@@ -56,7 +56,9 @@ Visualization allows us to detect:
 
 <!-- Book version -->
 
-TODO exercises
+<!-- TODO:
+Anscombe's quartet book exercises
+-->
 
 <!-- End book -->
 

@@ -21,8 +21,9 @@ ggplot(data = starwars) +
 ```
 
 
-<!-- 
-TODO: get `flair` package working with Quarto and pdf output
+<!-- TODO: 
+get `flair` package working with Quarto and pdf output
+-->
 
 ```{r} -->
 <!-- decorate(' -->

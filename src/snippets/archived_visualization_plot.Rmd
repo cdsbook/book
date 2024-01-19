@@ -1,5 +1,7 @@
 
-<!-- TODO: Video introduction to plot() function -->
+<!-- TODO: 
+Video introduction to plot() function 
+-->
 
 The R programming language comes with a function called `plot()` which we can use to make graphs.
 

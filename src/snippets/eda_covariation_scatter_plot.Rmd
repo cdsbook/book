@@ -10,7 +10,9 @@ ggplot(diamonds) +
 
 <!-- Book version -->
 
-TODO: book exercises: recreate that plot using ggplot()
+<!-- TODO: 
+book exercises: recreate that plot using ggplot()
+-->
 
 <!-- End book -->
 

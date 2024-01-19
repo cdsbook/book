@@ -8,34 +8,79 @@ This is the magic of programming languages! They allow us to write commands in (
 
 R allows us to work with several "higher-level" types of data. These **data types** include:
 
-* the **numeric** data type holds numbers such as `42` or `-12.5` or `0`. Unlike text, numbers are written *without* quotation marks around them.
+* the **numeric** data type holds numbers such as `42` or `-12.5` or `0`. Unlike text, numbers are written *without* quotation marks around them. R sometimes refers to numbers as "integers" (if they are whole numbers) or "doubles" (if it is storing a number in a way that could handle decimals, since this (historically) takes up twice the amount of computer memory as an integer).
 
 * the **character** data type holds text (i.e. letters, symbols, and the characters that represent numbers). We need to put the text inside quotation marks so that R knows where the text starts and ends: `"this is character data"`.
 
   * Note: in other programming languages this datatype is sometimes known as a "character string" or just a "string".
 
-* the **Boolean** data type holds a value that is either `TRUE` or `FALSE`. (This is sometimes also referred to as the logical data type.)
+* the **Boolean** data type holds a value that is either `TRUE` or `FALSE`. (This is sometimes also referred to as the "logical" data type.)
 
 <!-- Book version -->
 
 ```{r character-data-book-exercise, eval=is_book, echo=F, results='asis'}
-cat('::: {.exercise}
-**Exercise:** What data type is `"Introduction to Computing and Data for Scientists"`?
+answer_opts <- c(
+  "numeric",
+  answer = "character",
+  "Boolean"
+)
+q_character_data <- mcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `"Introduction to Computing and Data for Scientists"`?',
+q_character_data,
+'
 :::')
 ```
 
 ```{r numeric-data-book-exercise, eval=is_book, echo=F, results='asis'}
-cat('::: {.exercise}
-**Exercise:** Type the number 2 into the RStudio console. Hit the <Enter> key to run this line of code. What do you get back?
+answer_opts <- c(
+  answer = "numeric",
+  "character",
+  "Boolean"
+)
+q_numeric_data <- mcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `2`?',
+q_numeric_data,
+'
 :::')
 ```
 
 ```{r boolean-data-book-exercise, eval=is_book, echo=F, results='asis'}
-cat(':::: {.exercise}
-**Exercise:** What data type is `FALSE`? In the RStudio Console, type in `typeof(FALSE)`, and hit the <ENTER> key to run this line of code. What do you get back?
+answer_opts <- c(
+  "numeric",
+  "character",
+  answer = "Boolean"
+)
+q_boolean_data <- mcq(answer_opts)
+answer_abbr_opts <- c("character", "double", answer = "logical")
+q_r_bool_abbrv <- mcq(answer_abbr_opts)
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `FALSE`?', q_boolean_data,
+'
+
+*Follow-up:* In the RStudio Console, type in `typeof(FALSE)`, and hit the <ENTER> key to run this line of code. What do you get back?', 
+'
 
 ::: {.info-box .callout-tip}
-`typeof()` tells us the data type of any data we put inside the brackets. (Technically it is a *function* - we will learn more about these soon.)
+`typeof()` is another function. Whereas the `print()` function displayed simply displayed its own input, `typeof()` returns the data type of its input.
+:::
+::::')
+```
+
+```{r character-number-data-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "numeric",
+  answer = "character",
+  "Boolean"
+)
+q_character_number_data <- mcq(answer_opts)
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `""5"`?', q_character_number_data,
+'
+
+::: {.info-box .callout-tip collapse="true" title="Explanation"}
+As far as R is concerned, `5` and `"5"` are different types of data! `5` is a number whereas `"5"` is the character of the number.
 :::
 ::::')
 ```
@@ -66,6 +111,15 @@ learnr::question('What data type is `FALSE`?',
 learnr::question('What data type is `42`?',
   answer("Numeric.", correct = TRUE),
   answer("Character."),
+  answer("Boolean."),
+  allow_retry = TRUE
+)
+```
+
+```{r character_number_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+learnr::question('What data type is `"42"`?',
+  answer("Numeric."),
+  answer("Character.", correct = TRUE, message = 'Because "42" is inside quotation marks, it is not a numerical data but actually a string of two characters (the character "4" and the character "2"!'),
   answer("Boolean."),
   allow_retry = TRUE
 )

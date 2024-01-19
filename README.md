@@ -51,7 +51,7 @@ knitr::include_graphics("../img/resid-vs-pred.png")
 * tip (green, icon = lightbulb)
 * caution (orange, icon = construction cone)
 
-Example:
+Example (note that this will collapse the tip):
 
 ```
 ::: {.callout-tip collapse="true"}
@@ -63,6 +63,7 @@ This is an example of a callout with a title.
 
 Note that to output a block like this from a code chunk, that chunk needs the `results = "asis"` option (RMarkdown) or the `#| results: "asis"` option (Quarto).
 
+
 ### Indexing
 
 Add `\index{entry}` in text at places you want an index. Alternatively:
@@ -73,16 +74,33 @@ Add `\index{entry}` in text at places you want an index. Alternatively:
 
 More: https://en.wikibooks.org/wiki/LaTeX/Indexing
 
+
 ### Highlighting with `flair`
 
 Only in html outputs, and doesn't currently work with Quarto: https://r-for-educators.github.io/flair/index.html
+
 
 ### Online Book exercises
 
 `webexercises` package: https://psyteachr.github.io/webexercises/
 
 
+### Footnotes
 
+From the Quarto documentation:
+
+```
+Here is a footnote reference,[^1] and another.[^longnote]
+
+[^1]: Here is the footnote.
+
+[^longnote]: Here's one with multiple blocks.
+
+    Subsequent paragraphs are indented to show that they
+belong to the previous footnote.
+```
+
+### Conditional execution for different formats
 
 Conditional execution by output type: https://community.rstudio.com/t/set-options-conditional-on-output-formats-in-quarto/168989/2
 

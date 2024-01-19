@@ -6,7 +6,9 @@ With continuous variables, we can calculate a statistic that measure the correla
 
 One such number is Pearson's correlation coefficient, which varies between -1 and 1. 
 
-<!-- TODO: add mathematical details to appendix -->
+<!-- TODO: 
+add mathematical details to appendix 
+-->
 
 ```{r}
 set.seed(41)
@@ -52,8 +54,8 @@ diamonds |>
   fashion()
 ```
 
-<!-- 
-ToDo: Exercises
+<!-- TODO: 
+Exercises on correlation summary statistics
 -->
 
 <!-- TODO: 

@@ -26,13 +26,19 @@ Here R returns the value `FALSE` when it evaluates this expression, because 10 i
 > to another. You can use the Boolean operators `>=` for such a comparison, or
 > `<=` to see if something is *less than or equal to* another.
 
-Just as with numeric data, we can store a Boolean value in a variable, e.g. `d <- FALSE` or `e <- 10 < 9`. (Remember that assignment always happens last, after we have evaluated the expression on the right-hand side.)
+Just as with numeric data, we can store a Boolean value in a variable, e.g. `d <- FALSE` or `e <- 10 < 9`. (Remember that this assignment to a variable always happens last, after we have evaluated the expression on the right-hand side of the `<-` operator.)
 
-<!-- TODO: put exercises into their own section -->
+<!-- TODO: 
+put exercises into their own section 
+-->
 
 ### The `<` and `>` operators
 
 <!-- Book version -->
+
+<!-- TODO:
+add webexercises answer boxes to the exercise below
+-->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
@@ -78,6 +84,10 @@ question("What does the > operator do?",
 
 <!-- Book version -->
 
+<!-- TODO:
+add webexercises answer boxes to the exercise below
+-->
+
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
 :::{.exercise}
@@ -88,6 +98,8 @@ What do you think the `==` operator does?
 :::
 ")
 ```
+
+<!-- End book
 
 <!-- Tutorial version -->
 
@@ -114,6 +126,8 @@ question("What does the == operator do?",
 )
 ```
 
+<!-- End tutorial -->
+
 
 > __Combining comparisons__
 >
@@ -125,6 +139,10 @@ question("What does the == operator do?",
 
 
 <!-- Book version -->
+
+<!-- TODO:
+add a webexercises answer box to the exercise below
+-->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
@@ -165,3 +183,4 @@ cat('<div id="d_is_true-hint">
 grade_code(":)")
 ```
 
+<!-- End tutorial -->

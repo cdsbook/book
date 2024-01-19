@@ -12,7 +12,9 @@ From our previous explorations, it there is a positive relationship between `pri
 
 <!-- Book version -->
 
-TODO: book exercises
+<!-- TODO: 
+book exercises on EDA
+-->
 
 <!-- End book -->
 

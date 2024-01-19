@@ -1,0 +1,21 @@
+# Text Data {#sec-text-chapter}
+
+```{r setup, include=FALSE}
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+```
+
+::: {.callout-tip}
+## Under Construction
+
+This chapter is not yet complete.
+:::
+
+<!--
+* characters as numbers
+* how R stores character data
+* words to vectors
+* sentiment analysis
+* RNNs
+-->

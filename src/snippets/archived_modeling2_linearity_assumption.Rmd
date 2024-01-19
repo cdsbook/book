@@ -4,8 +4,7 @@ By definition, a linear model's predictions (for the response variable) will all
 
 In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a *scatter plot* of the observed response variable vs the predicted response variable.
 
-<!--
-TODO
+<!-- TODO
 - need to explain this more thoroughly, ideally with a picture
 -->
 

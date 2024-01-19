@@ -57,6 +57,9 @@ TODO: use coef() function to get model coefficients, and then inline code if you
 -->
 
 
+### Categorical explanatory variables
+
+
 ### More than one explanatory variable
 
 {{< include ../../src/snippets/modeling_basic_multiple_explanatory_variables.Rmd >}}

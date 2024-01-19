@@ -1,7 +1,7 @@
 project:
   type: book
   preview:
-    browser: false
+    browser: true
 book:
   title: An Introduction to Computing and Data for Scientists
   subtitle: With R
@@ -26,33 +26,35 @@ book:
     chapters:
     - src/book/14_reproducibility_chapter.qmd
     - src/book/15_loading_data_chapter.qmd
-    # 16 More graphs
+    - src/book/16_more_graphs_chapter.qmd
     - src/book/17_inference_advanced_chapter.qmd
     - src/book/18_modeling_advanced_chapter.qmd
     # 19 Causality
-    # 20 Simulation
-    #- src/book/21_prediction_chapter.qmd
+    - src/book/20_simulation_chapter.qmd
+    - src/book/21_prediction_chapter.qmd
     - src/book/22_deep_learning_chapter.qmd
     # 23 Concurrent Programming
     # 24 High Performance Computing
   - part: Scientific Data
     chapters: 
-    # 25 Image data
-    # 26 Text data
-    # 27 Time Series
+    - src/book/25_images_chapter.qmd
+    - src/book/26_text_chapter.qmd
+    - src/book/27_time_series_chapter.qmd
     # 28 Signal Processing
-    # 29 Online data
-    # 30 Geospatial data
+    - src/book/29_online_data_chapter.qmd
+    - src/book/30_geospatial_chapter.qmd
     # 31 Bioinformatic data
     # 32 Network data
-    - src/book/32_databases_chapter.qmd # ->> 33
+    - src/book/33_databases_chapter.qmd
     # 34 Big data
-  # - part: Outputs
-    # 35 Papers
-    # 36 Webpages
-    # 37 Dashboards
+  - part: Outputs
+    chapters:
+    - src/book/35_papers_chapter.qmd
+    - src/book/36_webpages_chapter.qmd
+    - src/book/37_dashboards_chapter.qmd
     # 38 Apps
     # 39 Software
+    # 40 Presentations and posters
   - src/book/references.qmd
   appendices:
   - src/book/A_faqs_appendix.qmd

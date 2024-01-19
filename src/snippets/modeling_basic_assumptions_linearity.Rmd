@@ -22,20 +22,21 @@ tibble(x, y, series) %>%
 
 In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious curved (*non-linear*) trend, and so that data violates this assumption of the linear model.
 
-<!--
-TODO:
+<!-- TODO:
 - Add a quiz/code question here asking students to interpret their own graph
 - Add quiz questions of other graphs that are harder to interpret
 -->
 
 When we have a linear model with more explanatory variables, then we cannot plot the original data to see whether there is a curve. Fortunately, there is a 2-D graph we can create for any linear model, 
 
-By definition, a linear model's predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e. true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables. <!-- TODO: this needs explaining better, ideally also with a video -->
+By definition, a linear model's predictions (for the response variable) will all fall on a flat line/plane/hyperplane. Therefore, if the observed (i.e. true) values of the response variable are linearly related to the explanatory variables, they will also be linearly related to the predicted response variables. 
+<!-- TODO: 
+linear nature of model predictions in n-dimensional space needs better explanation, ideally also with a video 
+-->
 
 In other words, no matter how many dimensions in our original model, we can always create a 2D plot to examine the assumption of linearity! We just have to create a *scatter plot* of the observed response variable vs. the predicted response variable.
 
-<!--
-TODO
+<!-- TODO:
 - need to explain the above two paragraphs better, ideally with pictures and also a video.
 -->
 

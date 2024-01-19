@@ -15,32 +15,48 @@ insert_status_callout("incomplete")
 
 ## The Scientific Method
 
-Why don't we still believe that the sun is the chariot wheel of the ancient Greek god Apollo as he drives across the sky?
+Why don't we still believe that the sun is the flaming chariot wheel of the ancient Greek god Apollo as he drives across the sky each day? Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?
 
-Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?
+The answer, in case you haven't guessed, is science. Science is the reason that human progress has exploded since the scientific revolution of the 16th and 17th centuries. And science offers our best path forwards for making future progress and confronting the challenges that we will inevitably face in the coming centuries.
 
-The answer, in case you haven't guessed, is science. There are many different fields of science, and each field has different techniques and ways of conducting their investigations. However the unifying feature is that all scientists share a set of rules for how that game of science is played, which is called the scientific method.
+We can think of science as a game: humanity versus the unknown. Each field of science (biology, physics, psychology, etc.) is like a team in this great game. And just like regular sports teams, each scientific field uses slightly different tactics to play the game, because the type of *thing* that a scientist studies influences how they can go about experimenting on it.[^conventions]
 
-There is not actually a single universally agreed upon definition of what the scientific method actually is, but broadly speaking it follows these principles:
+[^conventions]: For example, a microbiologist can grow bacteria in petri dishes in a lab and do pretty much whatever they want experimentally, whereas a psychologist studying human behaviour is much more constrained by what is ethically acceptable to do to other humans.
 
-1. A scientific theory or hypothesis must make predictions about how the world behaves.
+Despite the range of techniques used by different scientists, and the conventions followed by different scientific fields, all scientists agree on the rules of the game itself. This shared set of rules is called the *scientific method*.
 
-2. We test these theories by doing experiments that have the ability to disprove them.
+Actually, that's a simplification. There is not actually a single universally agreed upon definition of what the scientific method actually is, but broadly speaking it follows these principles:
 
-3. We can only choose between theories based on the outcomes of these experiments.
+1. A scientific theory or hypothesis must make *testable predictions* about how the world behaves.
 
-What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people's behavior.
+2. We test each theory by doing experiments that have *the ability to disprove that theory*.
 
-In the 21st century, a unifying feature of all of these scientists is that they are probably using computers to analyze their data or run experiments. The scientific method tells us very little about how we should go about using computers, so let us consider how we might do so.
+3. We can only choose between theories based on the outcomes of these experiments.[^choosing-theories]
+
+[^choosing-theories]: If all of your experiments suggest that a theory is wrong, you can't decide to stick with it just because you like it for some other reason. For example, let's say that you hypothesize that all cows are blue. When you start finding non-blue cows in the real world, you can't claim that your theory is still correct because blue is your favorite color.
+
+What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people's behavior or the growth of economies.
+
+In the 21st century, a unifying feature of all of these scientists is that they are using computers to analyze their data or run experiments. The scientific method tells us nothing about how we should use computers, only that whatever we do needs to adhere to the principles outlined above.
+
+<!-- In the ??? -->
+
+The scientific method tells us very little about how we should go about using computers, so let's consider how we might do so.
 
 ## Reproducibility and replicability
+
+As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else).
+
+<!-- This means that if I do an experiment that is  -->
 
 ## How reproducible is modern science?
 
 ## What we can do
 
-
+<!--
 * Open Science Foundation: https://osf.io/
   * Includes replication studies, e.g.
     * Cancer Biology reproducibility project: https://osf.io/collections/rpcb/discover e.g. https://osf.io/nbryi/
     * Psychology reproducibility project: https://osf.io/ezcuj/wiki/home/
+    
+-->
