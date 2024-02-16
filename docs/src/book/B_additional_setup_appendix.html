@@ -577,7 +577,7 @@ Add warning about amending commit...
 </ul>
 <p><strong>Step 3: Push the commit to GitHub.</strong></p>
 <p>Finally, we need to upload the new commit to GitHub (because it currently only exists in RStudio - thus GitHub is out-of-date, so we need to force it to sync with the new version of the project in RStudio). Git refers to this process as <em>Pushing</em>.</p>
-<p>In the top of either the Git tab or the commit pop-up is a upwards-pointing green arrow labelled Push. Click this to send your work back to Github. It should just work (without asking for your Github username or password), in which case you should see a message like <span class="quarto-unresolved-ref">?fig-rstudio-successful-push</span>.</p>
+<p>In the top of either the Git tab or the commit pop-up is a upwards-pointing green arrow labelled Push. Click this to send your work back to Github. It should just work (without asking for your Github username or password), in which case you should see a message like <span class="quarto-unresolved-ref">?fig-rstudio-successful-push</span> .</p>
 <p><img src="../img/rstudio_git_push_success.png" id="fig-rstudio-successful-push" class="img-fluid" alt="A successful push message"> If you instead get asked for your GitHub username and password, then this means that RStudio does not have a valid Personal Access Token for GitHub. To fix this, repeat the second half of the setup instructions in <a href="#fig-rstudio-successful-commit">Figure&nbsp;<span>B.9</span></a>, starting with this line: <code>install.packages(c("usethis","gitcreds"))</code>.</p>
 </section>
 <section id="sec-vscode-setup-appendix" class="level2" data-number="B.3">

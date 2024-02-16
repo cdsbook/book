@@ -397,13 +397,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#starting-eda" id="toc-starting-eda" class="nav-link" data-scroll-target="#starting-eda"><span class="header-section-number">8.2</span> Starting EDA</a>
   <ul class="collapse">
-  <li><a href="#a-first-steps-eda-checklist" id="toc-a-first-steps-eda-checklist" class="nav-link" data-scroll-target="#a-first-steps-eda-checklist"><span class="header-section-number">8.2.1</span> A “first steps” EDA checklist</a></li>
-  <li><a href="#formulate-your-question" id="toc-formulate-your-question" class="nav-link" data-scroll-target="#formulate-your-question"><span class="header-section-number">8.2.2</span> Formulate your question</a></li>
-  <li><a href="#load-the-data-and-read-the-documentation" id="toc-load-the-data-and-read-the-documentation" class="nav-link" data-scroll-target="#load-the-data-and-read-the-documentation"><span class="header-section-number">8.2.3</span> Load the data and read the documentation</a></li>
-  <li><a href="#get-an-overview-of-the-data" id="toc-get-an-overview-of-the-data" class="nav-link" data-scroll-target="#get-an-overview-of-the-data"><span class="header-section-number">8.2.4</span> Get an overview of the data</a></li>
-  <li><a href="#look-at-the-first-and-last-rows-of-your-dataframe" id="toc-look-at-the-first-and-last-rows-of-your-dataframe" class="nav-link" data-scroll-target="#look-at-the-first-and-last-rows-of-your-dataframe"><span class="header-section-number">8.2.5</span> Look at the first and last rows of your dataframe</a></li>
-  <li><a href="#make-sure-that-the-data-makes-sense" id="toc-make-sure-that-the-data-makes-sense" class="nav-link" data-scroll-target="#make-sure-that-the-data-makes-sense"><span class="header-section-number">8.2.6</span> Make sure that the data makes sense</a></li>
-  <li><a href="#start-the-eda-cycle" id="toc-start-the-eda-cycle" class="nav-link" data-scroll-target="#start-the-eda-cycle"><span class="header-section-number">8.2.7</span> Start the EDA cycle</a></li>
+  <li><a href="#understand-your-why" id="toc-understand-your-why" class="nav-link" data-scroll-target="#understand-your-why"><span class="header-section-number">8.2.1</span> Understand your why</a></li>
+  <li><a href="#understand-the-dataset" id="toc-understand-the-dataset" class="nav-link" data-scroll-target="#understand-the-dataset"><span class="header-section-number">8.2.2</span> Understand the dataset</a></li>
+  <li><a href="#start-the-eda-cycle" id="toc-start-the-eda-cycle" class="nav-link" data-scroll-target="#start-the-eda-cycle"><span class="header-section-number">8.2.3</span> Start the EDA cycle</a></li>
   </ul></li>
   <li><a href="#univariate-variation" id="toc-univariate-variation" class="nav-link" data-scroll-target="#univariate-variation"><span class="header-section-number">8.3</span> Univariate variation</a>
   <ul class="collapse">
@@ -452,7 +448,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="8.1" class="anchored" data-anchor-id="what-is-eda"><span class="header-section-number">8.1</span> What is EDA?</h2>
 <!--
 TODO: References & further reading (Peng book, R4DS, NIST handbook, Seltman book)
-
+      * Peng: https://bookdown.org/rdpeng/exdata/exploratory-data-analysis-checklist.html
+      
 TODO: Add labels to graphs (mentioned in earlier ggplot chapter)
 -->
 <section id="exploratory-data-analysis-eda" class="level3" data-number="8.1.1">
@@ -477,33 +474,38 @@ TODO: Add labels to graphs (mentioned in earlier ggplot chapter)
 <p>Hopefully you are now convinced why graphing data is important. But what type of graphs should you create?</p>
 <p>The rest of this tutorial will go through different types of graphs, but here are some general concepts to bear in mind:</p>
 <ul>
-<li><p>We can broadly divide EDA into two types: univariate and multivariate</p>
+<li><p>We can broadly divide EDA into two types: <em>univariate</em> and <em>multivariate</em></p>
 <ul>
 <li><p>Univariate, or “one variable”, analysis looks at the <strong>variation</strong> within a single variable’s values. Our goal here is to understand the distribution of this variable.</p></li>
-<li><p>Multivariate (i.e.&nbsp;“many variables”) refers to analysis of 2 or more variables where we want to examine the <strong>covariance</strong> between variables. In other words, how does one variable change in response to changes in another.</p></li>
+<li><p>Multivariate (i.e.&nbsp;“many variables”) refers to analysis of 2 or more variables where we want to examine the <strong>covariance</strong> between those variables. In other words, how does one variable change in response to changes in another?</p></li>
 </ul></li>
 <li><p>As a general principle, you should do univariate EDA first before multivariate EDA.</p></li>
 <li><p>We have put together a flow chart to help you pick the right type of graph for particular types of data and analysis goals: <a href="https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing">available as a PDF here</a>.</p></li>
 </ul>
+<!-- TODO:
+move cheatsheet and link as a file and PDF within this GitHub repo or organization.
+
+Add links to appropriate textbook chapter section to the cheatsheet as well.
+-->
 </section>
 </section>
 <section id="starting-eda" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="starting-eda"><span class="header-section-number">8.2</span> Starting EDA</h2>
-<section id="a-first-steps-eda-checklist" class="level3" data-number="8.2.1">
-<h3 data-number="8.2.1" class="anchored" data-anchor-id="a-first-steps-eda-checklist"><span class="header-section-number">8.2.1</span> A “first steps” EDA checklist</h3>
-<p>Here’s a checklist of things to check when you begin EDA on a dataset.</p>
+<p>When you begin EDA on a dataset, it’s a good idea to proceed in the following order:</p>
 <ol type="1">
-<li><p>Formulate your question</p></li>
-<li><p>Load the data and check the dataset’s documentation</p></li>
-<li><p>Get an overview of the data</p></li>
-<li><p>Look at the first and last rows of your dataframe</p></li>
-<li><p>Make sure the data makes sense</p></li>
-<li><p>Start the EDA cycle.</p></li>
+<li><p>Understand why you are exploring the data.</p></li>
+<li><p>Make sure you understand the dataset.</p></li>
 </ol>
-<p>Based on: <a href="https://bookdown.org/rdpeng/exdata/exploratory-data-analysis-checklist.html">Exploratory Data Analysis, Chapter 4</a>, a free online book by Roger Peng, a professor of biostatistics at Johns Hopkins University.</p>
-</section>
-<section id="formulate-your-question" class="level3" data-number="8.2.2">
-<h3 data-number="8.2.2" class="anchored" data-anchor-id="formulate-your-question"><span class="header-section-number">8.2.2</span> Formulate your question</h3>
+<ol type="i">
+<li><p>Load the data and check the dataset’s documentation.</p></li>
+<li><p>Look at the first and last rows of your dataframe.</p></li>
+<li><p>Make sure the data makes sense.</p></li>
+</ol>
+<ol start="3" type="1">
+<li>Start the EDA cycle.</li>
+</ol>
+<section id="understand-your-why" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="understand-your-why"><span class="header-section-number">8.2.1</span> Understand your why</h3>
 <p>It’s generally a good idea to go into EDA with a question in mind.</p>
 <p>The question doesn’t have to be perfect - indeed, you might well decide that the question can be improved after you’ve explored the data.</p>
 <p>However, having a question in mind allows us to focus our EDA and not get distracted by the huge number of possibilities that we can explore with a single dataset.</p>
@@ -520,24 +522,55 @@ TODO: Add labels to graphs (mentioned in earlier ggplot chapter)
 <p>What is the effect of the size of a diamond on its price?</p>
 </blockquote>
 <p>This is a better starting place that a broader question such as “What factors influence diamond prices?” Where would we start with such a question? Not only would we want data on the physical characteristics of diamonds, but probably also on the global supply of diamonds, the controls imposed by diamond cartels, the effect of advertizing to make diamonds seem exclusive, popular campaigns against blood diamonds… we could spend all day just thinking about the question, and never get to the actual EDA!</p>
-<p>Common types of EDA questions are: * What is the distribution of a variable? * What are the relationships between two or more variables? * Are there outliers? * Are there any unusual patterns or artefacts in our data that might reduce its usefulness?</p>
+<p>Common types of EDA questions are:</p>
+<ul>
+<li><p>What is the distribution of a variable?</p></li>
+<li><p>What are the relationships between two or more variables?</p></li>
+<li><p>Are there outliers?</p></li>
+<li><p>Are there any unusual patterns or artefacts in our data that might reduce its usefulness?</p></li>
+</ul>
 </section>
-<section id="load-the-data-and-read-the-documentation" class="level3" data-number="8.2.3">
-<h3 data-number="8.2.3" class="anchored" data-anchor-id="load-the-data-and-read-the-documentation"><span class="header-section-number">8.2.3</span> Load the data and read the documentation</h3>
+<section id="understand-the-dataset" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="understand-the-dataset"><span class="header-section-number">8.2.2</span> Understand the dataset</h3>
+<section id="load-the-data-and-read-the-documentation" class="level4" data-number="8.2.2.1">
+<h4 data-number="8.2.2.1" class="anchored" data-anchor-id="load-the-data-and-read-the-documentation"><span class="header-section-number">8.2.2.1</span> Load the data and read the documentation</h4>
 <p>For this tutorial, we will be using the <code>diamonds</code> dataset, which is automatically loaded with the <code>ggplot2</code> graphing package.</p>
 <p>This means that you just need to run <code>library(ggplot2)</code> or <code>library(tidyverse)</code> (the <code>tidyverse</code> meta-package includes <code>ggplot2</code>), and the diamonds dataset will be available for you to use.</p>
 <p>In the real world, loading data tends to be a much messier task (a topic for another day: <a href="15_loading_data_chapter.html"><span>Chapter&nbsp;13</span></a>).</p>
-<section id="check-the-datasets-documentation" class="level4" data-number="8.2.3.1">
-<h4 data-number="8.2.3.1" class="anchored" data-anchor-id="check-the-datasets-documentation"><span class="header-section-number">8.2.3.1</span> Check the dataset’s documentation</h4>
+</section>
+<section id="check-the-datasets-documentation" class="level4" data-number="8.2.2.2">
+<h4 data-number="8.2.2.2" class="anchored" data-anchor-id="check-the-datasets-documentation"><span class="header-section-number">8.2.2.2</span> Check the dataset’s documentation</h4>
 <p>Most datasets come with documentation describing the data that they contain.</p>
 <p>In R, most datasets that come as part of a package have some kind of documentation page. In RStudio, you can bring this up by running <code>?name_of_dataset</code> in the console, e.g.&nbsp;<code>?diamonds</code>. That won’t work in this tutorial, but you can also see the <code>diamonds</code> documentation page online here: <a href="https://ggplot2.tidyverse.org/reference/diamonds.html">https://ggplot2.tidyverse.org/reference/diamonds.html</a></p>
 </section>
-</section>
-<section id="get-an-overview-of-the-data" class="level3" data-number="8.2.4">
-<h3 data-number="8.2.4" class="anchored" data-anchor-id="get-an-overview-of-the-data"><span class="header-section-number">8.2.4</span> Get an overview of the data</h3>
+<section id="get-an-overview-of-the-data" class="level4" data-number="8.2.2.3">
+<h4 data-number="8.2.2.3" class="anchored" data-anchor-id="get-an-overview-of-the-data"><span class="header-section-number">8.2.2.3</span> Get an overview of the data</h4>
 <p>We can use the <code>glimpse</code> function to get a compact overview of a dataframe.</p>
 <p>Note: the <code>glimpse</code> function is a modern “tidyverse” version of an older R function called <code>str</code>.</p>
 <!-- Book version -->
+<!-- TODO:
+improve book exercises on glimpse()
+-->
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-1_f1261b18efb56c2e5a0739e755253cce">
+<p>We can understand use the <code>glimpse()</code> function by passing a dataframe as the argument to the function.</p>
+</div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-2_ac07353e5884d4fdccdc3468e53ef762">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 53,940
+Columns: 10
+$ carat   &lt;dbl&gt; 0.23, 0.21, 0.23, 0.29, 0.31, 0.24, 0.24, 0.26, 0.22, 0.23, 0.…
+$ cut     &lt;ord&gt; Ideal, Premium, Good, Premium, Good, Very Good, Very Good, Ver…
+$ color   &lt;ord&gt; E, E, E, I, J, J, I, H, E, H, J, J, F, J, E, E, I, J, J, J, I,…
+$ clarity &lt;ord&gt; SI2, SI1, VS1, VS2, SI2, VVS2, VVS1, SI1, VS2, VS1, SI1, VS1, …
+$ depth   &lt;dbl&gt; 61.5, 59.8, 56.9, 62.4, 63.3, 62.8, 62.3, 61.9, 65.1, 59.4, 64…
+$ table   &lt;dbl&gt; 55, 61, 65, 58, 58, 57, 57, 55, 61, 61, 55, 56, 61, 54, 62, 58…
+$ price   &lt;int&gt; 326, 326, 327, 334, 335, 336, 336, 337, 337, 338, 339, 340, 34…
+$ x       &lt;dbl&gt; 3.95, 3.89, 4.05, 4.20, 4.34, 3.94, 3.95, 4.07, 3.87, 4.00, 4.…
+$ y       &lt;dbl&gt; 3.98, 3.84, 4.07, 4.23, 4.35, 3.96, 3.98, 4.11, 3.78, 4.05, 4.…
+$ z       &lt;dbl&gt; 2.43, 2.31, 2.31, 2.63, 2.75, 2.48, 2.47, 2.53, 2.49, 2.39, 2.…</code></pre>
+</div>
+</div>
 <!-- End book -->
 <!-- Tutorial version -->
 <p class="comment3">
@@ -545,12 +578,12 @@ Run the <code>glimpse</code> function to get an overview of the columns in the <
 </p>
 <!-- End tutorial -->
 </section>
-<section id="look-at-the-first-and-last-rows-of-your-dataframe" class="level3" data-number="8.2.5">
-<h3 data-number="8.2.5" class="anchored" data-anchor-id="look-at-the-first-and-last-rows-of-your-dataframe"><span class="header-section-number">8.2.5</span> Look at the first and last rows of your dataframe</h3>
+<section id="look-at-the-first-and-last-rows-of-your-dataframe" class="level4" data-number="8.2.2.4">
+<h4 data-number="8.2.2.4" class="anchored" data-anchor-id="look-at-the-first-and-last-rows-of-your-dataframe"><span class="header-section-number">8.2.2.4</span> Look at the first and last rows of your dataframe</h4>
 <p>Sometimes dataset creators start with grand intentions, but motivation or reality gets in the way. Because of this, the data at the top of datasets often looks great. However, the last rows in the dataset may contain incomplete or problematic data that got added on at the end.</p>
 <p>We can examine both the first and last rows of the dataset with the <code>head</code> and <code>tail</code> functions respectively. The syntax of these functions is <code>head(dataset_name)</code>, e.g.:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-1_cfc9668435f400353e16497f86cd60a4">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-4_075d91146b686b82238cab87751f8b81">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 10
   carat cut       color clarity depth table price     x     y     z
@@ -564,8 +597,8 @@ Run the <code>glimpse</code> function to get an overview of the columns in the <
 </div>
 </div>
 <p>to display 6 rows from the top (or bottom) of the dataset. We can change the number of rows to display with the second argument:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-2_e2d13763cb7039e13fe86f6610f92ec3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-5_f95d587b0fd0b4b16a28d02cd343c842">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(diamonds, <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10 × 10
    carat cut       color clarity depth table price     x     y     z
@@ -583,22 +616,21 @@ Run the <code>glimpse</code> function to get an overview of the columns in the <
 </div>
 </div>
 <p>We could also rewrite the previous code chunk using the pipe operator:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-3_755ec967e474e6526fa3b4ca9c065062">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-6_277feb96697219db30685b95d2bf0b3d">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+book exercises on head() and tail()
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Use the <code>tail</code> function to display the <strong>last 8 rows</strong> of the diamonds dataframe. Note that this code uses the pipe operator <code>%&gt;%</code> to supply the first.
-</p>
 <!-- End tutorial -->
-<p>As you can see, the <code>diamonds</code> data is actually pretty nice at both the top and the bottom (as you might hope for an “offical” ggplot dataset). The example datasets that come with packages are often nice like this - unfortunately real-world data is usually less friendly.</p>
+<p>As you can see, the <code>diamonds</code> data contains complete and nicely formatted data at both the top and the bottom, as you might hope for an “offical” dataset provided with the <code>ggplot2</code> package. The example datasets that come with packages are often nice like this - unfortunately real-world data is usually less user-friendly.</p>
 </section>
-<section id="make-sure-that-the-data-makes-sense" class="level3" data-number="8.2.6">
-<h3 data-number="8.2.6" class="anchored" data-anchor-id="make-sure-that-the-data-makes-sense"><span class="header-section-number">8.2.6</span> Make sure that the data makes sense</h3>
+<section id="make-sure-that-the-data-makes-sense" class="level4" data-number="8.2.2.5">
+<h4 data-number="8.2.2.5" class="anchored" data-anchor-id="make-sure-that-the-data-makes-sense"><span class="header-section-number">8.2.2.5</span> Make sure that the data makes sense</h4>
 <p>We expect certain things about our dataset to be true:</p>
 <ul>
 <li>Does the dataset have the correct number of rows and columns?</li>
@@ -617,8 +649,9 @@ Use the <code>tail</code> function to display the <strong>last 8 rows</strong> o
 </ul></li>
 </ul>
 </section>
-<section id="start-the-eda-cycle" class="level3" data-number="8.2.7">
-<h3 data-number="8.2.7" class="anchored" data-anchor-id="start-the-eda-cycle"><span class="header-section-number">8.2.7</span> Start the EDA cycle</h3>
+</section>
+<section id="start-the-eda-cycle" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="start-the-eda-cycle"><span class="header-section-number">8.2.3</span> Start the EDA cycle</h3>
 <p>Now that you’ve verified the data, you can start on the EDA process.</p>
 <p>As a reminder, we usually want to <em>start with univariate analysis</em> of each variable separately. Programs and data are both complicated, so it is always a good idea to start small and simple, and add in complexity gradually.</p>
 <p>If we do the opposite and start complicated, it is easy to make small mistakes and assumptions which might make our final conclusions wrong!</p>
@@ -635,16 +668,17 @@ Use the <code>tail</code> function to display the <strong>last 8 rows</strong> o
 </ol>
 <p>of a distribution.</p>
 <p>An easy way to do this is with the <code>summarize()</code> function that we learned about in <a href="06_wrangling_chapter.html#sec-wrangling-groupby-summarize"><span>Section&nbsp;6.10</span></a>.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean    =</span> <span class="fu">mean</span>(continuous_variable),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median  =</span> <span class="fu">median</span>(continuous_variable),</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">std_dev =</span> <span class="fu">sd</span>(continuous_variable),</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr     =</span> <span class="fu">IQR</span>(continuous_variable),</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min     =</span> <span class="fu">min</span>(continuous_variable),</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max     =</span> <span class="fu">max</span>(continuous_variable)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<!-- TODO: comments on interpreting these statistics:
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean    =</span> <span class="fu">mean</span>(continuous_variable),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">median  =</span> <span class="fu">median</span>(continuous_variable),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">std_dev =</span> <span class="fu">sd</span>(continuous_variable),</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">iqr     =</span> <span class="fu">IQR</span>(continuous_variable),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">min     =</span> <span class="fu">min</span>(continuous_variable),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">max     =</span> <span class="fu">max</span>(continuous_variable)</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: 
+comments on interpreting these statistics:
 - center: are the mean and median similar to each other (especially relative to the spread), or do they indicate a skewed distribution? >median indicates a left skew, <median indicates a right skew.
 
 - what is the std. dev., and how is it calculated.
@@ -654,31 +688,31 @@ Use the <code>tail</code> function to display the <strong>last 8 rows</strong> o
 Also: use of `na.rm = TRUE`
 -->
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+book exercises on continuous summary statistics
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Calculate summary statistics the 6 summary statistics listed above for the continuous variable <code>carat</code> from the <code>diamonds</code> dataframe.
-</p><p>
 <!-- End tutorial -->
-</p><p>In our original question, we were interested in two variables: size (i.e.&nbsp;<code>carat</code>) and <code>price</code>. We should therefore calculate summary statistics for the <code>price</code> variable as well</p>
+<p>In our original question, we were interested in two variables: size (i.e.&nbsp;<code>carat</code>) and <code>price</code>. We should therefore calculate summary statistics for the <code>price</code> variable as well</p>
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+book exercises continuous summary statistics of `price`
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Repeat your summary statistics calculation for the continuous variable <code>price</code>.
-</p><p>
 <!-- End tutorial -->
-<!-- TODO: start with single summarize here for univariate. Move group_by() to covariation section -->
-</p><p>If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories. To do this we will first <code>group_by()</code> the categorical variable in question:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorical_variable) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion =</span> <span class="fu">n</span>() <span class="sc">/</span> <span class="fu">nrow</span>(.),</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="dv">100</span> <span class="sc">*</span> proportion</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: 
+convert to single summarize here for univariate summary statistics. Move group_by() to covariation section 
+-->
+<p>If a variable is categorical, we can summarize it by looking at the proportions of observations in different categories. To do this we will first use the <code>group_by()</code> to create groups of the same variable that we want to summarize:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dataframe <span class="sc">%&gt;%</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorical_variable) <span class="sc">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">n</span>(),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">proportion =</span> <span class="fu">n</span>() <span class="sc">/</span> <span class="fu">nrow</span>(.),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">percentage =</span> <span class="dv">100</span> <span class="sc">*</span> proportion</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notes on this code:</p>
 <ul>
 <li><p>the <code>n()</code> function returns the number of rows <em>within each group</em>. It does not need an argument.</p></li>
@@ -688,41 +722,45 @@ Repeat your summary statistics calculation for the continuous variable <code>pri
 </ul>
 <p>Thus <code>nrow(.)</code> will give us the total number of rows in the original dataframe (ignoring the groups that we created).</p></li>
 </ul>
-<!-- 
-TODO: Interpretation
+<!-- TODO: 
+Interpretation of categorical summary statistics
 - 
 -->
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+book exercises categorical summary statistics
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Calculate summary statistics for the categorical <code>cut</code> column of the <code>diamonds</code> dataframe.
-</p>
 <!-- End tutorial -->
 </section>
 <section id="graphical-analysis-of-carat" class="level3" data-number="8.3.2">
 <h3 data-number="8.3.2" class="anchored" data-anchor-id="graphical-analysis-of-carat"><span class="header-section-number">8.3.2</span> Graphical analysis of <code>carat</code></h3>
 <p>With graphs, we want to visualize the distribution of a variable.</p>
 <p>One good graph for visualizing the distributions of one continuous variable is a histogram.</p>
-<p>We have already learned how to create <code>ggplot</code> histograms using the <code>geom_histogram()</code> layer. For example, this code would create a histogram of the <code>price</code> column from the <code>diamonds</code> dataframe:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-4_48557f95b0800a377c61ac6332c5f8f0">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>We have already learned how to create <code>ggplot</code> histograms using the <code>geom_histogram()</code> layer (in <a href="07_ggplot_chapter.html#sec-ggplot-histogram-layer"><span>Section&nbsp;7.2</span></a>). For example, this code would create a histogram of the <code>depth</code> column from the <code>diamonds</code> dataframe:</p>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-11_7ec074ba9396751eb5f4e9657342c7d3">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Both of these graphs show the same distribution, just in different ways:</p>
-<!-- TODO
+<p>However, there are other types of graph that can also be used to visualize a distribution, such as a <em>box plot</em>.</p>
+<p>In the following picture, we can see how these graphs show the same distribution, just in different ways:</p>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-12_6a4016966689da8a3d18fd186f7ba5e0">
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<!-- TODO:
 How to interpret shape of histogram.
 How to interpret boxplot.
 Comparison of the two.
 -->
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+ggplot histogram book exercises 
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Create a histogram of the <code>carat</code> variable.
-</p>
 <!-- End tutorial -->
 <p>Plots of distributions show common versus less common values of a variable. This allows us to answer questions like:</p>
 <ul>
@@ -732,12 +770,11 @@ Create a histogram of the <code>carat</code> variable.
 </ul>
 <p>One thing you might note is that the distribution is not very smooth. To make it smoother, we could increase the size of the bins. However, to see what’s going on with this distribution, let’s <em>decrease</em> the bin size.</p>
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+ggplot histogram bins book exercises 
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Create another histogram of the <code>carat</code> variable, but this time set the <code>binwidth</code> parameter to 0.01
-</p>
 <!-- End tutorial -->
 <p>Interesting! There’s an odd sawtooth pattern to this data that suggests several clusters to the data. This pattern raises several interesting questions:</p>
 <ul>
@@ -749,131 +786,67 @@ Create another histogram of the <code>carat</code> variable, but this time set t
 <h3 data-number="8.3.3" class="anchored" data-anchor-id="price-visualization"><span class="header-section-number">8.3.3</span> <code>price</code> visualization</h3>
 <p>We also want to look a the distribution of the <code>price</code> variable. Let’s do that with a new type of graph: the box plot.</p>
 <p>Box plots (also called box-and-whisker plots) visualize not only the distribution but also show several summary statistics:</p>
-<p>TODO: replace with my own image that I know I own copyright of.</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-6_bf635820f5fffdd45adff1fe56079853">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">20</span>, <span class="dv">3</span>), <span class="fu">rnorm</span>(<span class="dv">5</span>, <span class="dv">20</span>, <span class="dv">6</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>arrow_df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_start =</span> <span class="fu">c</span>(<span class="fu">median</span>(x), <span class="fu">quantile</span>(x)[<span class="dv">2</span>]<span class="sc">-</span><span class="fl">1.1</span>, <span class="fu">quantile</span>(x)[<span class="dv">4</span>]<span class="sc">+</span><span class="fl">1.1</span>, <span class="dv">12</span>,        <span class="dv">30</span>),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">x_end   =</span> <span class="fu">c</span>(<span class="fu">median</span>(x), <span class="fu">quantile</span>(x)[<span class="dv">2</span>],     <span class="fu">quantile</span>(x)[<span class="dv">4</span>],     <span class="fl">11.1</span>,      <span class="fl">30.9</span>),</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_start =</span> <span class="fu">c</span>(<span class="fl">1.7</span>,       <span class="fl">1.7</span>,                <span class="fl">1.7</span>,                <span class="fl">1.5</span>,       <span class="fl">1.5</span>),</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">y_end   =</span> <span class="fu">c</span>(<span class="fl">1.45</span>,      <span class="fl">1.45</span>,               <span class="fl">1.45</span>,               <span class="fl">1.1</span>,       <span class="fl">1.1</span>),</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">label   =</span> <span class="fu">c</span>(<span class="st">"Median"</span>, <span class="st">"25th Percentile"</span>,   <span class="st">"75th Percentile"</span>,  <span class="st">"Outlier"</span>, <span class="st">"Outlier"</span>)</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    x, </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">""</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"x-axis = range of plotted variable"</span>, </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Parts of a box plot"</span>) <span class="sc">+</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>(</span>
-<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x_start, <span class="at">y =</span> y_start, <span class="at">xend =</span> x_end, <span class="at">yend =</span> y_end),</span>
-<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> arrow_df, </span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"cm"</span>), <span class="at">type=</span><span class="st">"closed"</span>)</span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(</span>
-<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> x_start, <span class="at">y =</span> y_start <span class="sc">+</span> <span class="fl">0.05</span>, <span class="at">label =</span> label),</span>
-<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> arrow_df</span>
-<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_brace</span>( <span class="co"># upper whisker</span></span>
-<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
-<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quantile</span>(x)[<span class="dv">4</span>]<span class="sc">+</span><span class="fl">0.1</span>,</span>
-<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>        <span class="fl">27.1</span> <span class="co">#1.5*IQR(x)+quantile(x)[4]</span></span>
-<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>        ), </span>
-<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="fl">0.59</span>, <span class="fl">0.5</span>)), </span>
-<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">rotate =</span> <span class="dv">180</span>,</span>
-<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.data=</span><span class="cn">FALSE</span></span>
-<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_brace</span>( <span class="co"># lower whisker</span></span>
-<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
-<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(</span>
-<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quantile</span>(x)[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">0.1</span>,</span>
-<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a>        <span class="fu">quantile</span>(x)[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(x) <span class="sc">+</span><span class="fl">0.2</span></span>
-<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a>        ), </span>
-<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="fl">0.59</span>, <span class="fl">0.5</span>)), </span>
-<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">rotate =</span> <span class="dv">180</span>,</span>
-<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit.data=</span><span class="cn">FALSE</span></span>
-<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>( <span class="co"># This arrow forces the y axis to extend high enough</span></span>
-<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">11</span>, <span class="at">y =</span> <span class="fl">1.9</span>, <span class="at">xend =</span> <span class="dv">11</span>, <span class="at">yend =</span> <span class="fl">1.45</span>), </span>
-<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"white"</span>,</span>
-<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">arrow =</span> <span class="fu">arrow</span>(<span class="at">length =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"cm"</span>), <span class="at">type=</span><span class="st">"closed"</span>)</span>
-<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
-<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">24.5</span>, <span class="at">y =</span> <span class="fl">0.45</span>, <span class="at">label =</span> <span class="st">"Upper </span><span class="sc">\"</span><span class="st">whisker</span><span class="sc">\"</span><span class="st">"</span>) <span class="sc">+</span></span>
-<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">"text"</span>, <span class="at">x =</span> <span class="fl">15.0</span>, <span class="at">y =</span> <span class="fl">0.45</span>, <span class="at">label =</span> <span class="st">"Lower </span><span class="sc">\"</span><span class="st">whisker</span><span class="sc">\"</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-15_b65e5a398d73a90d562973f7ad3f8dd5">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-7_562f0dfd648de074f095320d40f21a7f">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../img/boxplot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="../img/boxplot.png" class="img-fluid"></p>
-</div>
-</div>
-<p>We create a box plot using the <code>geom_boxplot</code> geom function. There are two required aesthetic mappings in a box plot (note that in <code>ggplot</code> the orientation of the boxplot is rotated 90 degrees):</p>
+<p>We create a box plot using the <code>geom_boxplot</code> geom function. There are two required aesthetic mappings in a box plot (note that in <code>ggplot</code> the orientation of the box plot is rotated 90 degrees):</p>
 <ul>
 <li><code>x</code> should be a categorical variable to create different box plots for.</li>
 <li><code>y</code> is the variable that we want to show the distribution of.</li>
 </ul>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-8_2a0bb22103f5411d2d712df52703354f">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-16_ed184eec311e7886ef82c26cec671068">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>One slightly strange feature of the default box plot is that <code>ggplot</code> will put some meaningless numbers on the y-axis. We can get rid of these by mapping the <code>y</code> aesthetic to an empty character string:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-9_3ca20e0b1fb62e9e607c796c07e5a11b">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-17_4ec8cd70d01cd8e83150309f5b84471a">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">y =</span> <span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>This still leaves us with an unnecessary y axis label, but we can also get rid of that with the <code>labs()</code> function.</p>
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+book exercises on ggplot box plot
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Create a single box plot of the <code>price</code> variable by providing the string <code>"price"</code> as the argument to the <code>x</code> parameter.
-</p>
 <!-- End tutorial -->
 </section>
 <section id="violin-plots" class="level3" data-number="8.3.4">
 <h3 data-number="8.3.4" class="anchored" data-anchor-id="violin-plots"><span class="header-section-number">8.3.4</span> Violin plots</h3>
 <p>Another graph that shows the distribution of a single variable is the violin plot. This combines aspects of the histogram and box plot into a single graph.</p>
 <p>The code for a violin plot is almost identical to the code or a box plot - we just use the <code>geom_violin()</code> geom function:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-10_64f0cc2d93dbd0758f35eda93d6ec115">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-19_9819a560e6fd0b5108bd1845e89ae913">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> depth, <span class="at">y =</span> <span class="st">""</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>How do we interpret a violin plot? Like a histogram, the height (in the direction of the y-axis) of the violin tells us how many observations fall in that part of the graph. However, note that the height is <em>mirrored</em> - i.e.&nbsp;it extends both up and down (rather than just up from the x-axis, like in a histogram).</p>
 <p>To the similarities between a histogram and violin plot clearer, we can overlay our violin plot and our histogram of <code>depth</code>:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-11_1f3faa93b82ce1610ed9a72e8bd3e383">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-20_b25cecf2e33f9a2c48d853a5b0b2e172">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We can see that the the violin is widest where the histogram’s bins are also tallest (around depth = 62). You can think of the violin’s border as a line joining the tops of each of the histograms bins.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>: Note that a violin plot shows the <em>density</em> of observations (which is kind of like the fraction of observations in that part of the graph), whereas a histogram shows the count. I have scaled down the histogram’s y-axis in this plot so that it overlaps the violin more closely.</p>
 <p>One nice thing about the violin plot is that it shows us the long thin tails of the data, whereas the histogram’s bins are so small in the tails that they are invisible.</p>
 <p>We can do a similar comparison of the violin plot with a box plot:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-12_6ae7572effe88f004996f0d5af800b5b">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-21_94ed23d2623005416ea118939c032163">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Again we see a lot of similarity:</p>
@@ -885,82 +858,16 @@ Create a single box plot of the <code>price</code> variable by providing the str
 <section id="describing-distributions" class="level3" data-number="8.3.5">
 <h3 data-number="8.3.5" class="anchored" data-anchor-id="describing-distributions"><span class="header-section-number">8.3.5</span> Describing distributions</h3>
 <p>We have seen three different plots that can visualize the distribution of a single continuous variable. Here’s a comparison:</p>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-22_7afa6da5e2ef4615b3f2592bea822d97">
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>What conclusions can we draw from these graphs? First, we can describe the center of the distribution. In this particular example, each of the plots shows a very similar center (around 62%), but this won’t necessarily be the case because each graph shows the center in a different way. Secondly we can describe the shape, which in this case is unimodal and relatively symmetric.</p>
 <p>Here is how different distribution shapes will look in the three types of plots:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-14_8482479d397b69a39479d0ac146d7021">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">left =</span> <span class="fu">rbeta</span>(n, <span class="dv">10</span>, <span class="dv">1</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">right =</span> <span class="fu">rbeta</span>(n, <span class="dv">1</span>, <span class="dv">10</span>),</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">symm =</span> <span class="fu">rnorm</span>(n, <span class="fl">0.5</span>, <span class="fl">0.5</span>),</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">multi =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(n<span class="sc">/</span><span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">rnorm</span>(n<span class="sc">/</span><span class="dv">2</span>, <span class="dv">10</span>))</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>h_left <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> left), <span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Left skew"</span>) <span class="sc">+</span></span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>b_left <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> left, <span class="at">y=</span><span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>v_left <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> left, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>h_symm <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> symm), <span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>, <span class="at">y=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Symmetric"</span>) <span class="sc">+</span></span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>b_symm <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> symm, <span class="at">y=</span><span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>v_symm <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> symm, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>h_right <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> right), <span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Right skew"</span>) <span class="sc">+</span></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>b_right <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> right, <span class="at">y=</span><span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>v_right <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> right, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>h_multi <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> multi), <span class="at">bins =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>, <span class="at">title=</span><span class="st">"Bimodal"</span>) <span class="sc">+</span></span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>b_multi <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> multi, <span class="at">y=</span><span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>v_multi <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df) <span class="sc">+</span></span>
-<span id="cb14-58"><a href="#cb14-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> multi, <span class="at">y =</span> <span class="st">""</span>)) <span class="sc">+</span></span>
-<span id="cb14-59"><a href="#cb14-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">""</span>,<span class="at">y=</span><span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb14-60"><a href="#cb14-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb14-61"><a href="#cb14-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-62"><a href="#cb14-62" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(</span>
-<span id="cb14-63"><a href="#cb14-63" aria-hidden="true" tabindex="-1"></a>  h_left, h_symm, h_right, h_multi,</span>
-<span id="cb14-64"><a href="#cb14-64" aria-hidden="true" tabindex="-1"></a>  b_left, b_symm, b_right, b_multi,</span>
-<span id="cb14-65"><a href="#cb14-65" aria-hidden="true" tabindex="-1"></a>  v_left, v_symm, v_right, v_multi,</span>
-<span id="cb14-66"><a href="#cb14-66" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">4</span>,</span>
-<span id="cb14-67"><a href="#cb14-67" aria-hidden="true" tabindex="-1"></a>  <span class="at">nrow =</span> <span class="dv">3</span>,</span>
-<span id="cb14-68"><a href="#cb14-68" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">"v"</span></span>
-<span id="cb14-69"><a href="#cb14-69" aria-hidden="true" tabindex="-1"></a>  <span class="co"># labels=c("a)", "b)", "c)"), </span></span>
-<span id="cb14-70"><a href="#cb14-70" aria-hidden="true" tabindex="-1"></a>  <span class="co"># heights = c(2,2,2)</span></span>
-<span id="cb14-71"><a href="#cb14-71" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-23_7e8b2b558741511deeeb40d98923a196">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Which plot should you use? That’s going to depend on the data, and what you want to explore or communicate about it. Box plots, for example, are good for showing outliers and are the only one of the three plots that shows an exact central statistic (the median), whereas histograms or violin plots present a more fine-grained view of the shape of the distribution. The following table shows a comparison:</p>
@@ -1005,45 +912,25 @@ See:
 -->
 <section id="co-variation-with-summary-statistics" class="level3" data-number="8.4.1">
 <h3 data-number="8.4.1" class="anchored" data-anchor-id="co-variation-with-summary-statistics"><span class="header-section-number">8.4.1</span> Co-variation with summary statistics</h3>
-<p>How can we boil the covariation of two or more variables down to a single number?[^covariation_stats]</p>
-<p><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>: We will think about this more in <a href="10_modeling_chapter.html"><span>Chapter&nbsp;10</span></a>.</p>
+<p>How can we boil the covariation of two or more variables down to a single number?<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>With continuous variables, we can calculate a statistic that measure the correlation. There are various such <em>correlation coefficients</em>, but the key idea is that they indicate how much of the variation in different variables is shared.</p>
 <p>One such number is Pearson’s correlation coefficient, which varies between -1 and 1.</p>
-<!-- TODO: add mathematical details to appendix -->
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-15_419633b820a1c068c1ea1c4501d25b52">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">41</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Perfect positive correlation</span><span class="st">`</span> <span class="ot">=</span> x,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Perfect negative correlation</span><span class="st">`</span> <span class="ot">=</span> <span class="dv">10</span><span class="sc">-</span>x,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Weak correlation</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">runif</span>(<span class="dv">10</span>,<span class="dv">0</span>,<span class="dv">10</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>cor_df <span class="ot">&lt;-</span> <span class="fu">correlate</span>(df) <span class="sc">|&gt;</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">name =</span> term, <span class="at">coef =</span> x) <span class="sc">|&gt;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">!=</span> <span class="st">"x"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Correlation computed with
-• Method: 'pearson'
-• Missing treated using: 'pairwise.complete.obs'</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">Perfect positive correlation</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">Weak correlation</span><span class="st">`</span>) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">factor</span>(name, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Perfect positive correlation"</span>, <span class="st">"Weak correlation"</span>, <span class="st">"Perfect negative correlation"</span>))</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,value)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">"correlation ="</span>,<span class="fu">round</span>(coef,<span class="dv">3</span>))), <span class="at">data =</span> cor_df) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<!-- TODO: 
+add mathematical details to appendix 
+-->
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-24_b8fe56942437b3d9f9135286ae8ea7b1">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<!-- TODO:
+define pairwise below?
+-->
 <p>To calculate <em>pairwise</em> correlations between columns in a dataframe, we can use the <code>correlate()</code> function from the <code>corrr</code> package. For example, we can look at the correlations between the <code>carat</code>, <code>depth</code>, and <code>price</code> columns of the <code>diamonds</code> dataframe:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-16_7a536a85b3cf016a6fc3af54798cf285">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carat, depth, price) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-25_a7dbf72b4ef15981dd9d829f71856187">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carat, depth, price) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Correlation computed with
 • Method: 'pearson'
@@ -1061,12 +948,12 @@ See:
 <p>We can see that there is a strong positive correlation of about 0.92 between <code>carat</code> and <code>price</code> (unsurprisingly!), but a weak relationship between the other two pairs of variables.</p>
 <p>Note that each correlation is reported twice in the table above. We can remove these unnecessary duplications by piping this output dataframe of <code>correlate()</code> onto the <code>shave()</code> function (also from the <code>corrr</code> package), which will just keep one half of the correlations.</p>
 <p>We can also make the output a little prettier by piping the output dataframe of <code>shave()</code> onto a third function called <code>fashion()</code>, which will round the long correlation coefficients for us to just two decimal places:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-17_22b12fc30bc9b0efab5d395af9302cfe">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carat, depth, price) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shave</span>() <span class="sc">|&gt;</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-26_99fed1eade458d460032c64fe6a8c957">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(carat, depth, price) <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">correlate</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shave</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fashion</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Correlation computed with
 • Method: 'pearson'
@@ -1079,29 +966,30 @@ See:
 3 price   .92  -.01      </code></pre>
 </div>
 </div>
-<!-- 
-ToDo: Exercises
+<!-- TODO: 
+Exercises on correlation summary statistics
 -->
 <!-- TODO: 
-continuous & categorical: group_by then summarize (note that we cannot group_by a continuous variable...)
-categorical variables: counts (cross-tabulation?) and categorical correlation coefficients -> add mathematical details to appendix -->
+ - continuous & categorical: group_by then summarize (note that we cannot group_by a continuous variable...)
+- categorical variables: counts (cross-tabulation?) and categorical correlation coefficients -> add mathematical details to appendix 
+- possibly create a flow chart of options - i.e. what to do if you have X continuous variables and Y categorical?
+-->
 </section>
 <section id="visualizing-two-continuous-variables" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="visualizing-two-continuous-variables"><span class="header-section-number">8.4.2</span> Visualizing two continuous variables</h3>
 <p>If you have two continuous variables, such as <code>price</code> and <code>carat</code> in the <code>diamonds</code> dataset, then a scatter plot is generally a good method of examining their covariation.</p>
 <p>We learned how to create <code>ggplot</code> scatter plots using the <code>geom_point()</code> function in <a href="07_ggplot_chapter.html#sec-ggplot-scatter-plots"><span>Section&nbsp;7.4</span></a>. Here, for example, is what a scatter plot of <code>price</code> vs.&nbsp;<code>carat</code> looks like:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-18_acdf07f7a7c1fcc50152486eddc1e14a">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-27_0ab6b85bdd6017e89cd23b074f0266b0">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <!-- Book version -->
-<p>TODO: book exercises: recreate that plot using ggplot()</p>
+<!-- TODO: 
+book exercises: recreate that plot using ggplot()
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p class="comment3">
-Create a scatter plot with <code>price</code> on the y-axis and <code>carat</code> on the x-axis.
-</p>
 <!-- End tutorial -->
 <p>We can see several things about this graph:</p>
 <ul>
@@ -1112,21 +1000,29 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 <p>We have a several options to show density.</p>
 <ul>
 <li><p>We could make the points transparent with the <code>alpha</code> parameter. Then dense regions would be darker (because there would be many overlapping transparent points). For example, with <code>alpha = 0.1</code>:</p>
-<p>::: {.cell hash=‘08_eda_chapter_cache/html/unnamed-chunk-19_901b8e5c8936b21da3724a2138a26c64’}</p>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), <span class="at">alpha=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter plot of dimond price vs size"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>, <span class="at">x =</span> <span class="st">"size (carats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output-display} <img src="08_eda_chapter_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"> ::: :::</p>
-<p>This graph is pretty interesting, because we can see a banding pattern at rounder values of the <code>carat</code> variable, e.g.&nbsp;1.5, 2. It seems strange to have these jumps, and this is likely an <em>artefact</em> of the way the data is recorded, i.e.&nbsp;diamond appraisers are more likely to round a the diamond size to 0 or 1 decimal places.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<p><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>: And the fact that there are no points on the left of these bands compared to the right suggests that either we are missing a bunch of diamonds on the small side of each of these thresholds (which seems unlikely), or that diamond sizes are being rounded up. If we were suspicious people, we might start to ask why jewellers might prefer to round diamond sizes up instead of down…</p></li>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-29_2c327f0fc7b669e3d597ae1b744c292b">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price), <span class="at">alpha=</span><span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Scatter plot of dimond price vs size"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>, <span class="at">x =</span> <span class="st">"size (carats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph is pretty interesting, because we can see a banding pattern at rounder values of the <code>carat</code> variable, e.g.&nbsp;1.5, 2. It seems strange to have these jumps, and this is likely an <em>artefact</em> of the way the data is recorded, i.e.&nbsp;diamond appraisers are more likely to round a the diamond size to 0 or 1 decimal places.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p></li>
+</ul>
+<p><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>: And the fact that there are no points on the left of these bands compared to the right suggests that either we are missing a bunch of diamonds on the small side of each of these thresholds (which seems unlikely), or that diamond sizes are being rounded up. If we were suspicious people, we might start to ask why jewelers might prefer to round diamond sizes up instead of down…</p>
+<ul>
 <li><p>We can also create a heat map, using the <code>geom_bin2d()</code> geom function, which is a colored grid where the intensity of the color represents a value on a scale - in this case, the color represents the number of observations (i.e.&nbsp;diamonds) that fall in that grid square.</p>
-<p>::: {.cell hash=‘08_eda_chapter_cache/html/unnamed-chunk-20_c24096aa5e09844b79f05c2f608d9d1b’}</p>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heat map of dimond price vs size"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>, <span class="at">x =</span> <span class="st">"size (carats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>::: {.cell-output-display} <img src="08_eda_chapter_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"> ::: :::</p>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-30_8867c88808bfabca354ca24100ed12a3">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heat map of dimond price vs size"</span>, <span class="at">y =</span> <span class="st">"price ($)"</span>, <span class="at">x =</span> <span class="st">"size (carats)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>This is essentially a 2-dimensional histogram. Each grid square is like a bin in a regular histogram. In this heat map, the color represents the “height” of the 2-dimensional bin, i.e.&nbsp;how many diamonds fall into each cell of the heat map’s grid.</p>
 <p>This graph also shows that small and cheap diamonds are by far the most common (the light blue grid squares).</p></li>
 </ul>
@@ -1139,44 +1035,60 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 <h3 data-number="8.4.3" class="anchored" data-anchor-id="visualizing-continuous-and-categorical-variables"><span class="header-section-number">8.4.3</span> Visualizing continuous and categorical variables</h3>
 <p>With a mix of continuous and categorical variables, the general strategy is to graph the continuous variable(s) and then break the graph down into separate parts by the categorical variable(s).</p>
 <p>For example, say you had one continuous variable and one categorical variable. We can graph the single continuous variable, using one of the graph types appropriate for a single continuous variable such as a histogram, box plot, or violin plot, and then break that graph into different pieces using the categorical variable.</p>
-<p>For example, let’s say we want to visualize the relationship between <code>color</code> and <code>price</code> of our diamonds. One way to break our graphs down in discrete pieces is using the <code>fill</code> aesthetic to add colors to the inside of our shapes:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-22_8141d9fd70fc9fda9f805d37af955bb8">
+<p>For example, let’s say we want to visualize the relationship between <code>color</code> and <code>price</code> of our diamonds. One way to break our graphs down in discrete pieces is using the <code>fill</code> aesthetic to add colors to the inside of our shapes, as in this example code:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> color))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Depending on what type of plot you are making, this will break it into different colored categories like this:</p>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-31_c20bf3b2eae9598dae52c64e4bf6e73d">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Note that colors are randomly assigned by <code>ggplot</code> (i.e.&nbsp;these are not the actual colors of the diamonds). We can see, however, that there does seem to be a small effect of color on price: although most of the distributions overlap, the center of some color categories occurs at higher prices than others. This leads to a strange conclusion: the diamond color categories range from the best coloring (“D”) to the worst coloring (“J”), just from our graphs above it almost looks like the worst colored diamonds have higher prices.</p>
-<p>The graphs above using the previously ignored y-axis of the box plot and violin plot to create separate boxes and violins. We can actually achieve the same effect without color<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> by mapping the categorical variable to the <code>y</code> aesthetic instead of the <code>fill</code> aesthetic:</p>
+<p>Note that colors are randomly assigned by the <code>ggplot</code> package (i.e.&nbsp;these are not the actual colors of the diamonds).</p>
+<p>We can see that there does seem to be a small effect of color on price: although most of the distributions overlap, the center of some color categories occurs at higher prices than others. This leads to a strange conclusion: the diamond color categories range from the best coloring (“D”) to the worst coloring (“J”), just from our graphs above it almost looks like the worst colored diamonds have higher prices.</p>
+<p>The graphs above using the previously ignored y-axis of the box plot and violin plot to create separate boxes and violins. We can actually achieve the same effect without color<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> by mapping the categorical variable to the <code>y</code> aesthetic instead of the <code>fill</code> aesthetic, e.g.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>... <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_...</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">y =</span> color)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>: Useful if you are restricted to black and white.</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-23_52240718590bee500bf2c83c413c17a3">
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-32_dbd94311cde26a71db1a3edef87c1c0d">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Unfortunately we cannot do this with our histogram because it already uses the y-axis for the count. The other problem with the default colored histogram is that each color is stacked on top of the colors beneath it. Unfortunately this violates one of the principles of visualization that we previously learned about, which is that if we are using length (i.e.&nbsp;height of bins) to communicate information, then we ideally want those lengths to start at the same point. If, as in the histogram above, the bins all start in different positions, then we have to mentally try to move the bins, and then it becomes very hard to figure out what is going on. For example it is almost impossible to see the distribution differences in the histogram that are readily apparent in the box plots and violin plots.</p>
+<p>Unfortunately we cannot do this with our histogram because it already uses the y-axis for the count.</p>
+<p>The other problem with the default colored histogram is that each color is stacked on top of the colors beneath it. Unfortunately this violates one of the principles of visualization that we previously learned about, which is that if we are using length (i.e.&nbsp;height of bins) to communicate information, then we ideally want those lengths to start at the same point. If, as in the histogram above, the bins all start in different positions, then we have to mentally try to move the bins, and then it becomes very hard to figure out what is going on. For example it is almost impossible to see the distribution differences in the histogram that are readily apparent in the box plots and violin plots.</p>
 <p>We have two strategies to fix this:</p>
 <ol type="1">
-<li><p>We can add the <code>position = "identity"</code> argument to the <code>geom_histogram()</code> function to start all the colored bins from the x-axis, and then because the different colors will all overlap we will also need to add the <code>alpha</code> parameter to make them transparent.</p></li>
-<li><p>Instead of solid bars, we can just connect the top of each bin with lines. This type of graph is called a <em>frequency polygon</em>, and can be created with the <code>geom_freqpoly()</code> geom function.</p></li>
-</ol>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-24_02c7e1dda7205ef97f1791cdf1f4072c">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> color), <span class="at">bins =</span> <span class="dv">15</span>)</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>ho <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> color), </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">15</span>,</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"identity"</span>,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>fp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">color =</span> color), <span class="at">bins =</span> <span class="dv">15</span>)</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ggarrange</span>(h,ho,fp, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">common.legend =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>We can add the <code>position = "identity"</code> argument to the <code>geom_histogram()</code> function to start all the colored bins from the x-axis, and then because the different colors will all overlap we will also need to add the <code>alpha</code> parameter to make them transparent, e.g.</p>
+<!-- TODO:
+explain alpha? or reference back to ggplot chapter?
+-->
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-33_2076ef6ea8cf28cbf537668b5ce52696">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">fill =</span> color),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">bins =</span> <span class="dv">15</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">position =</span> <span class="st">"identity"</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="fl">0.3</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid" width="672"></p>
+</div>
+</div></li>
+<li><p>Instead of solid bars, we can just connect the top of each bin with lines. This type of graph is called a <em>frequency polygon</em>, and can be created with the <code>geom_freqpoly()</code> geom function (used almost identically to the <code>geom_histogram()</code> function except that we set <code>color</code> instead of <code>fill</code>), e.g.:</p>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-34_b6dfd15b349ba445c290fde9a1518418">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> diamonds) <span class="sc">+</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price, <span class="at">color =</span> color), <span class="at">bins =</span> <span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid" width="672"></p>
+</div>
+</div></li>
+</ol>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-35_669d58c20ff7f7f9639f6960907d970e">
+<div class="cell-output-display">
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>As we can see, the overlapping histogram has so many colors that it is a muddy mess! In my experience this muddle of colors is unavoidable if you have more than two categories, so colored overlapping histograms should usually only be used if you have two categories (or if you have categories that do not overlap much along the x-axis). By comparison, the difference between diamond types are definitely easier to spot in the frequency polygon.</p>
@@ -1185,51 +1097,55 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 <h4 data-number="8.4.3.1" class="anchored" data-anchor-id="faceting"><span class="header-section-number">8.4.3.1</span> Faceting</h4>
 <p>Another strategy for breaking our graph up by a categorical variable is to split it into sub-plots. In <code>ggplot</code> speak this is called “faceting”. We do this by adding an additional faceting function to the end of our graph code.</p>
 <p>We can add the <code>facet_wrap()</code> function to any ggplot graph to facet over a single categorical variable. This will create a separate sub-plot (“facet”) for each category in that categorical variable. For example, to facet our histogram of diamond prices over the <code>cut</code> variable:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-25_6285d4cfc9a91a8c9686594b9f1b32a8">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price), <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-36_3663ed04cf2b46057047307b601c93bb">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> price), <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-36-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Note how we passed the argument <code>~ cut</code> to <code>facet_wrap()</code> to tell it what categorical variable to facet over? You must include the squiggly <code>~</code> symbol before the faceting variable’s name in the <code>facet_wrap()</code> function, otherwise you will get an error.</p>
+<p>Note how we passed the argument <code>~ cut</code> to <code>facet_wrap()</code> to tell it what categorical variable to facet over? You must include the squiggly <code>~</code> symbol before the faceting variable’s name in the <code>facet_wrap()</code> function, otherwise you will get an error. The <code>~</code> symbol is called a <em>“tilde”</em>.</p>
 </section>
 <section id="adding-more-variables" class="level4" data-number="8.4.3.2">
 <h4 data-number="8.4.3.2" class="anchored" data-anchor-id="adding-more-variables"><span class="header-section-number">8.4.3.2</span> Adding more variables</h4>
 <p>To add more variables, you can combine the different aesthetics and functions. Typically each variable you want to visualize will need to be mapped to its own aesthetic or facet.</p>
 <p>For example, if we wanted to visualize two continuous variables and two categorical variables, then we could first map the continuous variables to the x- and y-axes of a scatter plot, and then map one of the categorical variables to the color parameter and facet over the second categorical variable.</p>
 <p>Just bear in mind that the more information you cram into a graph, the harder it will become to interpret. Here is a plot of the covariation between the <code>price</code>, <code>carat</code>, <code>color</code>, and <code>cut</code> variables from the <code>diamonds</code> dataframe:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-26_c8dc10aadeb5cf4ab9ea6084d12351b2">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">color =</span> color)) <span class="sc">+</span></span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut) <span class="sc">+</span></span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Effect of color, cut, and size on diamond price"</span>,</span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"size (carats)"</span>,</span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"price (USD)"</span></span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-37_2c461c1df5e87bd101080bf145a571d0">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>diamonds <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price, <span class="at">color =</span> color)) <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> cut) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Effect of color, cut, and size on diamond price"</span>,</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"size (carats)"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"price (USD)"</span></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 </section>
 <section id="visualizing-multiple-categorical-variables" class="level3" data-number="8.4.4">
 <h3 data-number="8.4.4" class="anchored" data-anchor-id="visualizing-multiple-categorical-variables"><span class="header-section-number">8.4.4</span> Visualizing multiple categorical variables</h3>
-<p>TODO</p>
+<!-- TODO:
+section on dot plots.
+
+Better yet, faceted bar graphs.
+-->
 </section>
 <section id="the-importance-of-eda" class="level3" data-number="8.4.5">
 <h3 data-number="8.4.5" class="anchored" data-anchor-id="the-importance-of-eda"><span class="header-section-number">8.4.5</span> The importance of EDA</h3>
 <p>Visualization is a vital part of exploratory data analysis and we need to pair it with summary statistics to make sure that we are not being fooled by those statistics.</p>
 <p>Consider Anscombe’s quartet, a series of 4 small datasets (each has 11 observations of an <em>x</em> and a <em>y</em> variable).</p>
 <p>Here’s one of the datasets:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-27_d859f6405651e5ad8f7a2860f2b136e0">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="sc">%&gt;%</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1, y1) <span class="sc">%&gt;%</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-38_545ad7d819acfa3a4d9656fa2f3b5eed">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1, y1) <span class="sc">%&gt;%</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x1    y1
 1  10  8.04
@@ -1246,10 +1162,10 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 </div>
 </div>
 <p>Here’s another:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-28_29405f846d2665a8bf5756b76c769baa">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x2, y2) <span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-39_8492ee7ba9f88fb57699abf12ec73fce">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="sc">%&gt;%</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x2, y2) <span class="sc">%&gt;%</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">11</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   x2   y2
 1  10 9.14
@@ -1266,16 +1182,7 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 </div>
 </div>
 <p>The numbers seem pretty similar, right? In fact, the summary statistics are identical:</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-29_d6c909e3d37b635efd25bfdc06c00217">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="sc">%&gt;%</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(x1<span class="sc">:</span>y4) <span class="sc">%&gt;%</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">index =</span> <span class="fu">row_number</span>(x1)) <span class="sc">%&gt;%</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(x1<span class="sc">:</span>y4, <span class="at">key=</span><span class="st">"column"</span>, <span class="at">value=</span><span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(column) <span class="sc">%&gt;%</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(value),</span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">standard.deviation =</span> <span class="fu">sd</span>(value)</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-40_77d8383fa44233a340730f3a5d975b3e">
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 3
   column  mean standard.deviation
@@ -1292,17 +1199,9 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 </div>
 <p>The mean (center) and standard deviation (variation) is the same for all 4 <em>x</em>’s, and all 4 <em>y</em>’s.</p>
 <p>But, if we plot the four distributions…</p>
-<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-30_0ac70ce9529d2a5971f593375c150b77">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>anscombe <span class="sc">%&gt;%</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">index =</span> <span class="fu">row_number</span>(x1)) <span class="sc">%&gt;%</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gather</span>(x1<span class="sc">:</span>y4, <span class="at">key=</span><span class="st">"column"</span>, <span class="at">value=</span><span class="st">"value"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate</span>(column, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"dimension"</span>, <span class="st">"dataset"</span>), <span class="at">sep=</span><span class="fu">c</span>(<span class="dv">1</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from=</span>dimension, <span class="at">values_from=</span>value) <span class="sc">%&gt;%</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>dataset, <span class="at">ncol=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-hash="08_eda_chapter_cache/html/unnamed-chunk-41_f42b9608c6021ed12044edc696434afe">
 <div class="cell-output-display">
-<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid" width="672"></p>
+<p><img src="08_eda_chapter_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Visualization allows us to detect:</p>
@@ -1313,7 +1212,9 @@ Create a scatter plot with <code>price</code> on the y-axis and <code>carat</cod
 <li>spot problems that might exist in the data</li>
 </ul>
 <!-- Book version -->
-<p>TODO exercises</p>
+<!-- TODO:
+Anscombe's quartet book exercises
+-->
 <!-- End book -->
 <!-- Tutorial version -->
 <!-- End tutorial -->
@@ -1332,18 +1233,25 @@ How it helps to know something about the area of diamonds to interpret these pat
 <!-- TODO: skip? replace with general book exercises, but omit from tutorial? -->
 <section id="do-some-eda" class="level3" data-number="8.5.1">
 <h3 data-number="8.5.1" class="anchored" data-anchor-id="do-some-eda"><span class="header-section-number">8.5.1</span> Do some EDA</h3>
+<!-- TODO:
+convert to book erxercises section?
+-->
 <p>There are all kinds of other graphs we can plot.</p>
-<p>In the code cells below, experiment on your own with some exploratory data analysis of the <code>diamonds</code> dataset.</p>
-<p>From our previous explorations, it there is a positive relationship between <code>price</code> and <code>carat</code>; in other words, as one variable increases, so does the other. However:</p>
+<p>It’s time for you to experiment on your own with some exploratory data analysis of the <code>diamonds</code> dataset.</p>
+<p>From our previous explorations, there is a positive relationship between <code>price</code> and <code>carat</code>; in other words, as one variable increases, so does the other. However:</p>
 <ul>
 <li><p>the relationship was not perfect: there seemed to be some uneven scatter. What other variables might be influencing this relationship?</p></li>
 <li><p>relatedly, what other variables are related to price (&amp; what is the variation within those other variables by themselves)?</p></li>
 </ul>
 <!-- Book version -->
-<p>TODO: book exercises</p>
+<!-- TODO: 
+book exercises on EDA
+-->
 <!-- End book -->
 <!-- Tutorial version -->
-<p>In the following code boxes, play around with some EDA of your own. You might find it helpful to look at the <a href="https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing">“What graph should I plot” cheatsheet</a> for inspiration, and remember that you can always Google a geom function (or ask an instructor) to get more information on how to use it.</p>
+<!-- TODO:
+What graph spreadsheet link needs fixing here too (see notes from start of chapter)
+-->
 <!-- End tutorial -->
 <!-- TODO: Convert outro ^ into an EDA checklist summarizing the previous sections -->
 
@@ -1355,7 +1263,7 @@ How it helps to know something about the area of diamonds to interpret these pat
 <ol>
 <li id="fn1"><p>violin_density<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>violin_density<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>covariation_stats<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>We will think about this more in <a href="10_modeling_chapter.html"><span>Chapter&nbsp;10</span></a>.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>diamond-size-rounding<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>diamond-size-rounding<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>no-color-bw<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
