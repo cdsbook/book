@@ -1,10 +1,12 @@
-
+<!-- TODO:
+convert to book erxercises section?
+-->
 
 There are all kinds of other graphs we can plot.
 
-In the code cells below, experiment on your own with some exploratory data analysis of the `diamonds` dataset.
+It's time for you to experiment on your own with some exploratory data analysis of the `diamonds` dataset.
 
-From our previous explorations, it there is a positive relationship between `price` and `carat`; in other words, as one variable increases, so does the other. However:
+From our previous explorations, there is a positive relationship between `price` and `carat`; in other words, as one variable increases, so does the other. However:
 
 * the relationship was not perfect: there seemed to be some uneven scatter. What other variables might be influencing this relationship?
 
@@ -20,7 +22,15 @@ book exercises on EDA
 
 <!-- Tutorial version -->
 
+```{r, eval=is_tutorial, results='asis', echo=FALSE}
+cat('
 In the following code boxes, play around with some EDA of your own. You might find it helpful to look at the ["What graph should I plot" cheatsheet](https://drive.google.com/file/d/1zsedQ9kHFtxhFE3R99PQ1a_yTTamJu3e/view?usp=sharing) for inspiration, and remember that you can always Google a geom function (or ask an instructor) to get more information on how to use it.
+')
+```
+
+<!-- TODO:
+What graph spreadsheet link needs fixing here too (see notes from start of chapter)
+-->
 
 ```{r dmscqgizgqobassd, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 

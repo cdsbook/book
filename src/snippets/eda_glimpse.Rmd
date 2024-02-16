@@ -6,9 +6,32 @@ Note: the `glimpse` function is a modern "tidyverse" version of an older R funct
 
 <!-- Book version -->
 
+<!-- TODO:
+improve book exercises on glimpse()
+-->
+
+```{r, eval=is_book, echo=FALSE, results='asis'}
+cat('
+We can understand use the `glimpse()` function by passing a dataframe as the argument to the function.
+')
+```
+
+```{r, eval=is_book}
+glimpse(diamonds)
+```
+
+
 <!-- End book -->
 
 <!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=FALSE, results='asis'}
+cat('
+<p class="comment3">
+Run the `glimpse()` function to get an overview of the columns in the `diamonds` dataset.
+</p>
+')
+```
 
 <p class="comment3">
 Run the `glimpse` function to get an overview of the columns in the `diamonds` dataset.

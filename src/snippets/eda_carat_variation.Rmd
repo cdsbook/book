@@ -2,16 +2,16 @@ With graphs, we want to visualize the distribution of a variable.
 
 One good graph for visualizing the distributions of one continuous variable is a histogram.
 
-We have already learned how to create `ggplot` histograms using the `geom_histogram()` layer (in @sec-ggplot-histogram-layer). For example, this code would create a histogram of the `price` column from the `diamonds` dataframe:
+We have already learned how to create `ggplot` histograms using the `geom_histogram()` layer (in @sec-ggplot-histogram-layer). For example, this code would create a histogram of the `depth` column from the `diamonds` dataframe:
 
 ```{r, eval=FALSE}
 ggplot(data = diamonds) +
-  geom_histogram(mapping = aes(x = price))
+  geom_histogram(mapping = aes(x = depth))
 ```
 
+However, there are other types of graph that can also be used to visualize a distribution, such as a *box plot*.
 
-
-Both of these graphs show the same distribution, just in different ways:
+In the following picture, we can see how these graphs show the same distribution, just in different ways:
 
 ```{r, echo=FALSE, warning=FALSE}
 #| echo: false
@@ -45,7 +45,7 @@ ggplot histogram book exercises
 
 <!-- Tutorial version -->
 
-```{r, eval=is_tutorial, echo=F, results = 'asis'}
+```{r, eval=is_tutorial, echo=FALSE, results = 'asis'}
 cat('<p class="comment3">
 Create a histogram of the `carat` variable.
 </p>')
@@ -91,7 +91,7 @@ ggplot histogram bins book exercises
 
 ```{r, eval=is_tutorial, echo=F, results = 'asis'}
 cat('<p class="comment3">
-Create another histogram of the `carat` variable, but this time set the `binwidth` parameter to 0.01
+Create another histogram of the `carat` variable, but this time set the `binwidth` parameter to 0.01.
 </p>')
 ```
 

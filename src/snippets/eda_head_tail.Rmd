@@ -30,10 +30,12 @@ book exercises on head() and tail()
 <!-- End book -->
 
 <!-- Tutorial version -->
-
-<p class="comment3">
+```{r, eval=is_tutorial, results='asis', echo=FALSE}
+cat('<p class="comment3">
 Use the `tail` function to display the **last 8 rows** of the diamonds dataframe. Note that this code uses the pipe operator `%>%` to supply the first.
 </p>
+')
+```
 
 ```{r cqimxllkpywvjfns, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 # Replace the blanks with either a function name, or a number
@@ -54,4 +56,4 @@ gradethis::grade_code()
 
 <!-- End tutorial -->
 
-As you can see, the `diamonds` data is actually pretty nice at both the top and the bottom (as you might hope for an "offical" ggplot dataset). The example datasets that come with packages are often nice like this - unfortunately real-world data is usually less friendly.
+As you can see, the `diamonds` data contains complete and nicely formatted data at both the top and the bottom, as you might hope for an "offical" dataset provided with the `ggplot2` package. The example datasets that come with packages are often nice like this - unfortunately real-world data is usually less user-friendly.

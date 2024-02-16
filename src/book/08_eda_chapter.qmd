@@ -1,8 +1,3 @@
----
-execute:
-  freeze: auto
----
-
 # Exploratory Data Analysis and Scientific Discovery
 
 ```{r setup, include=FALSE}
@@ -17,7 +12,8 @@ suppressPackageStartupMessages(library(corrr))
 
 <!--
 TODO: References & further reading (Peng book, R4DS, NIST handbook, Seltman book)
-
+      * Peng: https://bookdown.org/rdpeng/exdata/exploratory-data-analysis-checklist.html
+      
 TODO: Add labels to graphs (mentioned in earlier ggplot chapter)
 -->
 
@@ -33,32 +29,32 @@ TODO: Add labels to graphs (mentioned in earlier ggplot chapter)
 
 ## Starting EDA
 
-### A "first steps" EDA checklist
-
-{{< include ../../src/snippets/eda_checklist.Rmd >}}
+{{< include ../../src/snippets/eda_starting_steps.Rmd >}}
 
 
-### Formulate your question
+### Understand your why
 
 {{< include ../../src/snippets/eda_questions.Rmd >}}
 
 
-### Load the data and read the documentation
+### Understand the dataset
+
+#### Load the data and read the documentation
 
 {{< include ../../src/snippets/eda_load_data.Rmd >}}
 
 
-### Get an overview of the data
+#### Get an overview of the data
 
 {{< include ../../src/snippets/eda_glimpse.Rmd >}}
 
 
-### Look at the first and last rows of your dataframe
+#### Look at the first and last rows of your dataframe
 
 {{< include ../../src/snippets/eda_head_tail.Rmd >}}
 
 
-### Make sure that the data makes sense
+#### Make sure that the data makes sense
 
 {{< include ../../src/snippets/eda_sanity_check.Rmd >}}
 

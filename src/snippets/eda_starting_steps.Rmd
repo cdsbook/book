@@ -1,0 +1,13 @@
+When you begin EDA on a dataset, it's a good idea to proceed in the following order:
+
+1. Understand why you are exploring the data.
+
+2. Make sure you understand the dataset.
+
+  i. Load the data and check the dataset's documentation.
+
+  ii. Look at the first and last rows of your dataframe.
+
+  iii. Make sure the data makes sense.
+
+3. Start the EDA cycle.

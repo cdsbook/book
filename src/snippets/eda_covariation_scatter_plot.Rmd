@@ -2,7 +2,7 @@ If you have two continuous variables, such as `price` and `carat` in the `diamon
 
 We learned how to create `ggplot` scatter plots using the `geom_point()` function in @sec-ggplot-scatter-plots. Here, for example, is what a scatter plot of `price` vs. `carat` looks like:
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 ggplot(diamonds) +
   geom_point(aes(carat,price)) +
   labs(x = "size (carats)", y = "price ($)", title = "Price vs. size of diamonds")
@@ -18,9 +18,13 @@ book exercises: recreate that plot using ggplot()
 
 <!-- Tutorial version -->
 
+```{r, eval=is_tutorial, echo=FALSE, results='asis'}
+cat('
 <p class="comment3">
 Create a scatter plot with `price` on the y-axis and `carat` on the x-axis.
 </p>
+')
+```
 
 ```{r kfxhpnqgmtclqbkt, exercise = TRUE, eval=is_tutorial, echo=FALSE}
 diamonds %>%
@@ -55,29 +59,29 @@ We have a several options to show density.
 
 * We could make the points transparent with the `alpha` parameter. Then dense regions would be darker (because there would be many overlapping transparent points). For example, with `alpha = 0.1`:
 
-    ```{r, echo = TRUE}
-    diamonds %>%
-      ggplot() +
-      geom_point(mapping = aes(x = carat, y = price), alpha=0.1) +
-      labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
-    ```
+  ```{r, echo = TRUE}
+  diamonds %>%
+    ggplot() +
+    geom_point(mapping = aes(x = carat, y = price), alpha=0.1) +
+    labs(title = "Scatter plot of dimond price vs size", y = "price ($)", x = "size (carats)")
+  ```
 
-    This graph is pretty interesting, because we can see a banding pattern at rounder values of the `carat` variable, e.g. 1.5, 2. It seems strange to have these jumps, and this is likely an *artefact* of the way the data is recorded, i.e. diamond appraisers are more likely to round a the diamond size to 0 or 1 decimal places.^[diamond-size-rounding]
+  This graph is pretty interesting, because we can see a banding pattern at rounder values of the `carat` variable, e.g. 1.5, 2. It seems strange to have these jumps, and this is likely an *artefact* of the way the data is recorded, i.e. diamond appraisers are more likely to round a the diamond size to 0 or 1 decimal places.^[diamond-size-rounding]
     
-    ^[diamond-size-rounding]: And the fact that there are no points on the left of these bands compared to the right suggests that either we are missing a bunch of diamonds on the small side of each of these thresholds (which seems unlikely), or that diamond sizes are being rounded up. If we were suspicious people, we might start to ask why jewellers might prefer to round diamond sizes up instead of down...
+^[diamond-size-rounding]: And the fact that there are no points on the left of these bands compared to the right suggests that either we are missing a bunch of diamonds on the small side of each of these thresholds (which seems unlikely), or that diamond sizes are being rounded up. If we were suspicious people, we might start to ask why jewelers might prefer to round diamond sizes up instead of down...
 
 * We can also create a heat map, using the `geom_bin2d()` geom function, which is a colored grid where the intensity of the color represents a value on a scale - in this case, the color represents the number of observations (i.e. diamonds) that fall in that grid square.
 
-    ```{r, echo = TRUE}
-    diamonds %>%
-      ggplot() +
-      geom_bin2d(mapping = aes(x = carat, y = price)) +
-      labs(title = "Heat map of dimond price vs size", y = "price ($)", x = "size (carats)")
-    ```
+  ```{r, echo = TRUE}
+  diamonds %>%
+    ggplot() +
+    geom_bin2d(mapping = aes(x = carat, y = price)) +
+    labs(title = "Heat map of dimond price vs size", y = "price ($)", x = "size (carats)")
+  ```
   
-    This is essentially a 2-dimensional histogram. Each grid square is like a bin in a regular histogram. In this heat map, the color represents the "height" of the 2-dimensional bin, i.e. how many diamonds fall into each cell of the heat map's grid.
+  This is essentially a 2-dimensional histogram. Each grid square is like a bin in a regular histogram. In this heat map, the color represents the "height" of the 2-dimensional bin, i.e. how many diamonds fall into each cell of the heat map's grid.
   
-    This graph also shows that small and cheap diamonds are by far the most common (the light blue grid squares).
+  This graph also shows that small and cheap diamonds are by far the most common (the light blue grid squares).
 
 <!-- Todo:
  - Pros and cons of scatter plots vs heatmaps: good if high density, but mask the actual location of points. Prefer a scatter plot unless most of the scatter plot is occupied by overlapping points. Create an extreme examples comparison of a low density scatter plot vs heatmap (where heatmap shows very little), and a high density one with some actual shape that is masked by the density of points.

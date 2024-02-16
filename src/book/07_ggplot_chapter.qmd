@@ -34,6 +34,10 @@ suppressPackageStartupMessages(library(tidyverse))
 
 ## Color and fill
 
+<!-- TODO:
+Is this the best place for this section? Or is it redundant with similar content in the EDA chapter?
+-->
+
 {{< include ../../src/snippets/ggplot_color_and_fill.Rmd >}}
 
 

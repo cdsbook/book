@@ -1,16 +1,16 @@
 How can we boil the covariation of two or more variables down to a single number?[^covariation_stats]
 
-^[covariation_stats]: We will think about this more in @sec-modeling-chapter.
+[^covariation_stats]: We will think about this more in @sec-modeling-chapter.
 
 With continuous variables, we can calculate a statistic that measure the correlation. There are various such *correlation coefficients*, but the key idea is that they indicate how much of the variation in different variables is shared.
 
-One such number is Pearson's correlation coefficient, which varies between -1 and 1. 
+One such number is Pearson's correlation coefficient, which varies between -1 and 1.
 
 <!-- TODO: 
 add mathematical details to appendix 
 -->
 
-```{r}
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 set.seed(41)
 df <- tibble(
   x = 1:10,
@@ -31,6 +31,10 @@ df |>
   geom_text(aes(x = 5, y = 0, label = paste("correlation =",round(coef,3))), data = cor_df) +
   facet_wrap(~name)
 ```
+
+<!-- TODO:
+define pairwise below?
+-->
 
 To calculate *pairwise* correlations between columns in a dataframe, we can use the `correlate()` function from the `corrr` package. For example, we can look at the correlations between the `carat`, `depth`, and `price` columns of the `diamonds` dataframe:
 

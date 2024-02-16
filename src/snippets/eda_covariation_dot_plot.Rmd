@@ -1,3 +1,5 @@
 <!-- TODO:
-section on dot plots
+section on dot plots.
+
+Better yet, faceted bar graphs.
 -->

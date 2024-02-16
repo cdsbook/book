@@ -2,18 +2,14 @@ With a mix of continuous and categorical variables, the general strategy is to g
 
 For example, say you had one continuous variable and one categorical variable. We can graph the single continuous variable, using one of the graph types appropriate for a single continuous variable such as a histogram, box plot, or violin plot, and then break that graph into different pieces using the categorical variable.
 
-For example, let's say we want to visualize the relationship between `color` and `price` of our diamonds. One way to break our graphs down in discrete pieces is using the `fill` aesthetic to add colors to the inside of our shapes:
+For example, let's say we want to visualize the relationship between `color` and `price` of our diamonds. One way to break our graphs down in discrete pieces is using the `fill` aesthetic to add colors to the inside of our shapes, as in this example code:
 
-```{r, echo=FALSE, fig.show='hide'}
+```r
 ggplot(data = diamonds) +
-  geom_histogram(mapping = aes(x = price, fill = color), bins = 15)
-
-ggplot(data = diamonds) +
-  geom_boxplot(mapping = aes(x = price, fill = color))
-
-ggplot(data = diamonds) +
-  geom_violin(mapping = aes(x = price, y="", fill = color))
+  geom_...(mapping = aes(x = price, fill = color))
 ```
+
+Depending on what type of plot you are making, this will break it into different colored categories like this:
 
 ```{r, echo=FALSE}
 h <- ggplot(data = diamonds) +
@@ -28,9 +24,18 @@ v <- ggplot(data = diamonds) +
 ggarrange(h,b,v, ncol = 3, nrow = 1, common.legend = TRUE)
 ```
 
-Note that colors are randomly assigned by `ggplot` (i.e. these are not the actual colors of the diamonds). We can see, however, that there does seem to be a small effect of color on price: although most of the distributions overlap, the center of some color categories occurs at higher prices than others. This leads to a strange conclusion: the diamond color categories range from the best coloring ("D") to the worst coloring ("J"), just from our graphs above it almost looks like the worst colored diamonds have higher prices.
+Note that colors are randomly assigned by the `ggplot` package (i.e. these are not the actual colors of the diamonds). 
 
-The graphs above using the previously ignored y-axis of the box plot and violin plot to create separate boxes and violins. We can actually achieve the same effect without color^[no-color-bw] by mapping the categorical variable to the `y` aesthetic instead of the `fill` aesthetic:
+We can see that there does seem to be a small effect of color on price: although most of the distributions overlap, the center of some color categories occurs at higher prices than others. This leads to a strange conclusion: the diamond color categories range from the best coloring ("D") to the worst coloring ("J"), just from our graphs above it almost looks like the worst colored diamonds have higher prices.
+
+The graphs above using the previously ignored y-axis of the box plot and violin plot to create separate boxes and violins. We can actually achieve the same effect without color^[no-color-bw] by mapping the categorical variable to the `y` aesthetic instead of the `fill` aesthetic, e.g.
+
+```r
+... +
+  geom_...(
+    mapping = aes(x = price, y = color)
+  )
+```
 
 ^[no-color-bw]: Useful if you are restricted to black and white.
 
@@ -44,15 +49,36 @@ v <- ggplot(data = diamonds) +
 ggarrange(b,v, ncol = 2, nrow = 1)
 ```
 
-Unfortunately we cannot do this with our histogram because it already uses the y-axis for the count. The other problem with the default colored histogram is that each color is stacked on top of the colors beneath it. Unfortunately this violates one of the principles of visualization that we previously learned about, which is that if we are using length (i.e. height of bins) to communicate information, then we ideally want those lengths to start at the same point. If, as in the histogram above, the bins all start in different positions, then we have to mentally try to move the bins, and then it becomes very hard to figure out what is going on. For example it is almost impossible to see the distribution differences in the histogram that are readily apparent in the box plots and violin plots.
+Unfortunately we cannot do this with our histogram because it already uses the y-axis for the count. 
+
+The other problem with the default colored histogram is that each color is stacked on top of the colors beneath it. Unfortunately this violates one of the principles of visualization that we previously learned about, which is that if we are using length (i.e. height of bins) to communicate information, then we ideally want those lengths to start at the same point. If, as in the histogram above, the bins all start in different positions, then we have to mentally try to move the bins, and then it becomes very hard to figure out what is going on. For example it is almost impossible to see the distribution differences in the histogram that are readily apparent in the box plots and violin plots.
 
 We have two strategies to fix this:
 
-1. We can add the `position = "identity"` argument to the `geom_histogram()` function to start all the colored bins from the x-axis, and then because the different colors will all overlap we will also need to add the `alpha` parameter to make them transparent.
+1. We can add the `position = "identity"` argument to the `geom_histogram()` function to start all the colored bins from the x-axis, and then because the different colors will all overlap we will also need to add the `alpha` parameter to make them transparent, e.g.
 
-2. Instead of solid bars, we can just connect the top of each bin with lines. This type of graph is called a *frequency polygon*, and can be created with the `geom_freqpoly()` geom function.
+   <!-- TODO:
+   explain alpha? or reference back to ggplot chapter?
+   -->
 
-```{r}
+   ```{r, fig.show=FALSE, message=FALSE, warning=FALSE}
+   ggplot(data = diamonds) +
+     geom_histogram(
+       mapping = aes(x = price, fill = color),
+       bins = 15,
+       position = "identity",
+       alpha = 0.3
+     )
+   ```
+
+2. Instead of solid bars, we can just connect the top of each bin with lines. This type of graph is called a *frequency polygon*, and can be created with the `geom_freqpoly()` geom function (used almost identically to the `geom_histogram()` function except that we set `color` instead of `fill`), e.g.:
+
+   ```{r, fig.show=FALSE, message=FALSE, warning=FALSE}
+   ggplot(data = diamonds) +
+     geom_freqpoly(mapping = aes(x = price, color = color), bins = 15)
+   ```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
 h <- ggplot(data = diamonds) +
   geom_histogram(mapping = aes(x = price, fill = color), bins = 15)
 
@@ -87,7 +113,7 @@ diamonds |>
   facet_wrap(~ cut)
 ```
 
-Note how we passed the argument `~ cut` to `facet_wrap()` to tell it what categorical variable to facet over? You must include the squiggly `~` symbol before the faceting variable's name in the `facet_wrap()` function, otherwise you will get an error.
+Note how we passed the argument `~ cut` to `facet_wrap()` to tell it what categorical variable to facet over? You must include the squiggly `~` symbol before the faceting variable's name in the `facet_wrap()` function, otherwise you will get an error. The `~` symbol is called a *"tilde"*.
 
 #### Adding more variables
 
@@ -97,7 +123,7 @@ For example, if we wanted to visualize two continuous variables and two categori
 
 Just bear in mind that the more information you cram into a graph, the harder it will become to interpret. Here is a plot of the covariation between the `price`, `carat`, `color`, and `cut` variables from the `diamonds` dataframe:
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 diamonds |>
   ggplot() +
   geom_point(mapping = aes(x = carat, y = price, color = color)) +
@@ -108,5 +134,4 @@ diamonds |>
     y = "price (USD)"
   )
 ```
-
 

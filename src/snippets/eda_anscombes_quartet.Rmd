@@ -20,7 +20,7 @@ anscombe %>%
 
 The numbers seem pretty similar, right? In fact, the summary statistics are identical:
 
-```{r}
+```{r, echo=FALSE}
 anscombe %>%
   select(x1:y4) %>%
   mutate(index = row_number(x1)) %>%
@@ -36,7 +36,7 @@ The mean (center) and standard deviation (variation) is the same for all 4 *x*'s
 
 But, if we plot the four distributions...
 
-```{r}
+```{r, echo=FALSE}
 anscombe %>%
   mutate(index = row_number(x1)) %>%
   gather(x1:y4, key="column", value="value") %>%
