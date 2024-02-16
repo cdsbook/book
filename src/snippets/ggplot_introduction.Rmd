@@ -22,6 +22,6 @@ ggplot(data = starwars) +
   )
 ```
 
-As you can see, the histograms are very similar the same. However, we've avoided this way of creating graphs up until now, because we've been trying to keep our code as simple as possible. 
+As you can see, the shape of the histograms are very similar. However, we've avoided this way of creating graphs up until now, because we've been trying to keep our code as simple as possible. 
 
 Now we need to make the trade of slightly more complicated code in exchange for much better graphs. So let's jump in and see how and why this works.

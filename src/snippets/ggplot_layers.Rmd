@@ -27,15 +27,7 @@ We then add this layer to the canvas created by `ggplot()` with the addition ope
 
 And so our final code looks like this:
 
-```r
+```{r, warning=FALSE, message=FALSE, fig.show='hide'}
 ggplot(data = starwars) +
   geom_histogram(mapping = aes(x = height))
-```
-
-```{r, warning=FALSE}
-ggplot(data = starwars) +
-  geom_histogram(
-    mapping = aes(x = height),
-    bins = 30
-  )
 ```

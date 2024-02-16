@@ -25,7 +25,9 @@ ggplot(data = starwars) +
 get `flair` package working with Quarto and pdf output
 -->
 
-```{r} -->
+
+
+<!-- ```{r} -->
 <!-- decorate(' -->
 
 <!-- ggplot(data = starwars) + -->
@@ -42,14 +44,14 @@ get `flair` package working with Quarto and pdf output
 
 Similarly we can also color histograms - however the `color` parameter colors the outside of shapes:
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(data = starwars) +
   geom_histogram(mapping = aes(x = height, color = gender))
 ```
 
 This graph is hard to interpret. It would be easier if we could color inside the shapes - fortunately we can do this using the `fill` parameter instead of `color`:
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(data = starwars) +
   geom_histogram(mapping = aes(x = height, fill = gender))
 ```
@@ -60,7 +62,7 @@ One other thing to note is that, by default, `ggplot2` will stack bars of differ
 
 Thus what we need to do is to change the position of the bars so that each bin's bars overlap. We will also need to make them transparent so that we can see through to the bars behind. We can do this with the `position` and `alpha` parameters:
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
 ggplot(data = starwars) +
   geom_histogram(
     mapping = aes(x = height, fill = gender),
