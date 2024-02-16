@@ -24,7 +24,7 @@ Q-Q plots are so useful that the `ggplot2` package already contains geom functio
 
 We can use the `diamonds_plus_preds` data frame to create a Q-Q plot (with both points and a reference line):
 
-```{r, echo = TRUE}
+```{r diamonds-qqplot-example, echo = TRUE}
 diamonds_plus_preds %>%
   ggplot() +
   geom_qq(mapping = aes(sample = .resid))+

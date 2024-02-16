@@ -2,6 +2,12 @@
 
 ...i.e. frequently encountered problems and how to fix them.
 
+<!-- TODO
+VPN issues... possibly better for the website
+- https://answers.uillinois.edu/illinois/page.php?id=63520
+- https://kb.mit.edu/confluence/display/mitcontrib/Cisco+Anyconnect+Manual+uninstall+Mac+OS
+-->
+
 ## RStudio
 
 ### RStudio error: Error occurred during transmission

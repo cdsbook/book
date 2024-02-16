@@ -1,3 +1,7 @@
+---
+prefer-html: true # need to go through and remove html from PDF
+---
+
 # Modeling {#sec-modeling-chapter}
 
 ```{r setup, include=FALSE}
