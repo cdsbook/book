@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.313">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,7 +91,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -111,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/A_faqs_appendix.html">Appendices</a></li><li class="breadcrumb-item"><a href="../../src/book/A_faqs_appendix.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Frequently Asked Questions</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -390,11 +391,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#rstudio" id="toc-rstudio" class="nav-link active" data-scroll-target="#rstudio"><span class="header-section-number">A.1</span> RStudio</a>
+  <li><a href="#sec-faqs-software-setup" id="toc-sec-faqs-software-setup" class="nav-link active" data-scroll-target="#sec-faqs-software-setup"><span class="header-section-number">A.1</span> Software setup</a>
   <ul class="collapse">
-  <li><a href="#rstudio-error-error-occurred-during-transmission" id="toc-rstudio-error-error-occurred-during-transmission" class="nav-link" data-scroll-target="#rstudio-error-error-occurred-during-transmission"><span class="header-section-number">A.1.1</span> RStudio error: Error occurred during transmission</a></li>
+  <li><a href="#git-is-no-longer-installed-on-my-computer" id="toc-git-is-no-longer-installed-on-my-computer" class="nav-link" data-scroll-target="#git-is-no-longer-installed-on-my-computer"><span class="header-section-number">A.1.1</span> Git is no longer installed on my computer</a></li>
   </ul></li>
-  <li><a href="#cannot-push-to-github-authentication-failed" id="toc-cannot-push-to-github-authentication-failed" class="nav-link" data-scroll-target="#cannot-push-to-github-authentication-failed"><span class="header-section-number">A.2</span> Cannot push to GitHub: “Authentication failed”</a></li>
+  <li><a href="#working-with-git-and-github" id="toc-working-with-git-and-github" class="nav-link" data-scroll-target="#working-with-git-and-github"><span class="header-section-number">A.2</span> Working with Git and GitHub</a>
+  <ul class="collapse">
+  <li><a href="#cannot-push-to-github-password-authentication-was-removed" id="toc-cannot-push-to-github-password-authentication-was-removed" class="nav-link" data-scroll-target="#cannot-push-to-github-password-authentication-was-removed"><span class="header-section-number">A.2.1</span> Cannot push to GitHub: “Password authentication was removed”</a></li>
+  <li><a href="#cannot-push-to-github-updates-were-rejected" id="toc-cannot-push-to-github-updates-were-rejected" class="nav-link" data-scroll-target="#cannot-push-to-github-updates-were-rejected"><span class="header-section-number">A.2.2</span> Cannot push to GitHub: “Updates were rejected”</a></li>
+  <li><a href="#the-git-tab-is-missing-in-rstudio" id="toc-the-git-tab-is-missing-in-rstudio" class="nav-link" data-scroll-target="#the-git-tab-is-missing-in-rstudio"><span class="header-section-number">A.2.3</span> The Git tab is missing in RStudio</a></li>
+  </ul></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">A.3</span> Packages</a>
   <ul class="collapse">
   <li><a href="#installing-an-older-version-of-a-package" id="toc-installing-an-older-version-of-a-package" class="nav-link" data-scroll-target="#installing-an-older-version-of-a-package"><span class="header-section-number">A.3.1</span> Installing an older version of a package</a></li>
@@ -424,49 +430,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <p>…i.e.&nbsp;frequently encountered problems and how to fix them.</p>
 <!-- TODO
-VPN issues... possibly better for the website
+VPN issues... possibly better for Blackboard/Canvas
 - https://answers.uillinois.edu/illinois/page.php?id=63520
 - https://kb.mit.edu/confluence/display/mitcontrib/Cisco+Anyconnect+Manual+uninstall+Mac+OS
 -->
-<section id="rstudio" class="level2" data-number="A.1">
-<h2 data-number="A.1" class="anchored" data-anchor-id="rstudio"><span class="header-section-number">A.1</span> RStudio</h2>
-<section id="rstudio-error-error-occurred-during-transmission" class="level3" data-number="A.1.1">
-<h3 data-number="A.1.1" class="anchored" data-anchor-id="rstudio-error-error-occurred-during-transmission"><span class="header-section-number">A.1.1</span> RStudio error: Error occurred during transmission</h3>
-<p>If you get this error message when logging into the GMU RStudio Server:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/rstudio-error-occurred-during-transmission.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">RStudio error message: Error occurred during transmission</figcaption><p></p>
-</figure>
-</div>
-<p>Solution</p>
-<ul>
-<li>Go to https://rstudio.cos.gmu.edu/home</li>
-<li>Click the “Quit” button (near the top of the page)</li>
-<li>Then you should be able to reopen a project.</li>
-</ul>
+<section id="sec-faqs-software-setup" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="sec-faqs-software-setup"><span class="header-section-number">A.1</span> Software setup</h2>
+<section id="git-is-no-longer-installed-on-my-computer" class="level3" data-number="A.1.1">
+<h3 data-number="A.1.1" class="anchored" data-anchor-id="git-is-no-longer-installed-on-my-computer"><span class="header-section-number">A.1.1</span> Git is no longer installed on my computer</h3>
+<p>This sometimes happens on Macs after updating the MacOS operating system. You should re-install Git by repeating the first item from <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a>. Then restart RStudio</p>
+<!-- ### RStudio error: Error occurred during transmission -->
+<!-- If you get this error message when logging into the GMU RStudio Server: -->
+<!-- ![RStudio error message: Error occurred during transmission](img/rstudio-error-occurred-during-transmission.png) -->
+<!-- Solution -->
+<!-- * Go to https://rstudio.cos.gmu.edu/home -->
+<!-- * Click the "Quit" button (near the top of the page) -->
+<!-- * Then you should be able to reopen a project. -->
 </section>
 </section>
-<section id="cannot-push-to-github-authentication-failed" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="cannot-push-to-github-authentication-failed"><span class="header-section-number">A.2</span> Cannot push to GitHub: “Authentication failed”</h2>
+<section id="working-with-git-and-github" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="working-with-git-and-github"><span class="header-section-number">A.2</span> Working with Git and GitHub</h2>
+<!-- TODO: 
+
+### Cannot make a commit
+Need to set name and email
+
+-->
+<section id="cannot-push-to-github-password-authentication-was-removed" class="level3" data-number="A.2.1">
+<h3 data-number="A.2.1" class="anchored" data-anchor-id="cannot-push-to-github-password-authentication-was-removed"><span class="header-section-number">A.2.1</span> Cannot push to GitHub: “Password authentication was removed”</h3>
 <p>You might find yourself with an error like this when you try to clone a repository from GitHub into RStudio, or push commits back to GitHub:</p>
+<!-- TODO: get a screenshot of this error -->
 <pre><code>remote: Support for password authentication was removed on August 13, 2021.
 remote: Please see https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories#cloning-with-https-urls for information on currently recommended modes of authentication.
 fatal: Authentication failed for 'https://github.com/mason-cds101/final-project-dominicwhite/'</code></pre>
-<p>This usually means that either:</p>
+<p>This usually means that you have one of the following problems with your GitHub Personal Access Token:</p>
 <ol type="1">
-<li><p>You have not correctly created and set your GitHub token (as per the instructions in step 4 Section <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a>). If this is the first time you are trying to clone from or push to GitHub, this is probably the reason.</p></li>
-<li><p>Your previous token has expired, and you will need to create a new one and store it in RStudio. If your token used to allow you to clone from and push to GitHub but has suddenly stopped working, then this is probably the reason.</p></li>
+<li><p><em>Incorrect token</em>: You have not correctly created and set your GitHub token (as per the instructions in step 4 of <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a>). If this is the first time you are trying to clone from or push to GitHub, this is probably the reason.</p>
+<p>Make sure that:</p>
+<ul>
+<li>Your token is the “Classic” token type, <em>not</em> the Fine-grained type.</li>
+<li>When you create your token, you give it permission to access and modify your repositories by clicking the “Repo”check-box in the list of Scopes.</li>
+</ul></li>
+<li><p><em>Missing token</em>: If you are using the online version of RStudio at https://posit.cloud, you will need to repeat the commands to store your GitHub token every time you want to Push code from a new project.</p></li>
+<li><p><em>Expired token</em>: Your previous token has expired, and you will need to create a new one and store it in RStudio. If your token used to allow you to clone from and push to GitHub but has suddenly stopped working, then this is probably the reason.</p></li>
 </ol>
-<p>In both cases, repeat Step 4 in Section <a href="02_setup.html#sec-rstudio-desktop-installation"><span>Section&nbsp;2.4.1</span></a>.</p>
+<p>__Solution:__In all cases, to fix the problem you should re-run the following three lines of R code in from <a href="02_setup.html#sec-rstudio-github-connection"><span>Section&nbsp;2.5</span></a> in the RStudio Console to create a new GitHub token and then store that new token in RStudio (if it asks what you want to do, such as setting a new token, type in the number of the option you want in the Console and then hit enter). Make sure to do this exactly as described in <a href="02_setup.html#sec-rstudio-github-connection"><span>Section&nbsp;2.5</span></a></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"usethis"</span>,<span class="st">"gitcreds"</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="cannot-push-to-github-updates-were-rejected" class="level3" data-number="A.2.2">
+<h3 data-number="A.2.2" class="anchored" data-anchor-id="cannot-push-to-github-updates-were-rejected"><span class="header-section-number">A.2.2</span> Cannot push to GitHub: “Updates were rejected”</h3>
+<p>Sometimes an error like the following occurs when trying to push to GitHub.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../img/rstudio_git_push_rejected.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">RStudio error message when Pushing: Updates where rejected</figcaption>
+</figure>
+</div>
+<p>What this means is that you have somehow ended up with extra commits in the version of the project on Github that you do not have in the version in RStudio. (This can happen if you do things like manually uploading files to a GitHub repository without going through RStudio, or editing files on GitHub via the website instead of in RStudio. Both of these actions create a new commit on GitHub, but since commits are not automatically synced, they will not be in RStudio.)</p>
+<p>To fix this, you will need to download the new commits from GitHub to RStudio. This is called “Pulling” (since it is the opposite of Pushing). There is a button in the Git tab or pop-up in RStudio labelled <em>Pull</em> with a blue downwards arrow icon. Click this to Pull the changes from GitHub-only commits into RStudio, and then try to Push again to send your RStudio-only commits to GitHub.</p>
+</section>
+<section id="the-git-tab-is-missing-in-rstudio" class="level3" data-number="A.2.3">
+<h3 data-number="A.2.3" class="anchored" data-anchor-id="the-git-tab-is-missing-in-rstudio"><span class="header-section-number">A.2.3</span> The Git tab is missing in RStudio</h3>
+<p>This typically occurs for one of two reasons: * <em>Most common reason:</em> you don’t have a project open in RStudio Desktop, or the project you do have open is not a Git-enabled project (probably because you created a new blank RStudio project instead). If you are trying to working on a project from this book and you created it in RStudio by cloning a GitHub repository, then it should be automatically Git-enabled. Try re-opening the RStudio project associated with the code. In RStudio Desktop, you can see the current project in the top-right, and change it by clicking there. At https://posit.cloud, you can change the project by going back to your homepage where all the projects are listed. * Less commonly, this happens in RStudio Desktop because Git is not installed (or RStudio can’t find it). Try either re-installing Git, or looking at the FAQs in the <a href="#sec-faqs-software-setup"><span>Section&nbsp;A.1</span></a> section for reasons why Git might be missing.</p>
+</section>
 </section>
 <section id="packages" class="level2" data-number="A.3">
 <h2 data-number="A.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">A.3</span> Packages</h2>
 <section id="installing-an-older-version-of-a-package" class="level3" data-number="A.3.1">
 <h3 data-number="A.3.1" class="anchored" data-anchor-id="installing-an-older-version-of-a-package"><span class="header-section-number">A.3.1</span> Installing an older version of a package</h3>
 <p>To install an older version of a package (e.g.&nbsp;the <code>lmvar</code> package), you can run these two lines of code, making sure to replace the name of the package and the version that you want to install:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(remotes)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_version</span>(<span class="st">"lmvar"</span>, <span class="at">version =</span> <span class="st">"1.5.2"</span>, <span class="at">repos =</span> <span class="st">"http://cran.us.r-project.org"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">require</span>(remotes)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install_version</span>(<span class="st">"lmvar"</span>, <span class="at">version =</span> <span class="st">"1.5.2"</span>, <span class="at">repos =</span> <span class="st">"http://cran.us.r-project.org"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

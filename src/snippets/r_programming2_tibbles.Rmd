@@ -15,15 +15,31 @@ tibble(
 ```
 
 Note that:
+
 * if the vector is stored in a variable, the variable name will be the column name (e.g. column `b`)
+
 * you can override the column name by using `new_name = the_vector` as we did for the 1st and 3rd columns
+
 * if you do not, you may get an unusual column name, e.g. the 2nd column
 
-<p class="comment3">
+<!-- Book version -->
+
+<!-- TODO 
+-->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Fill in the blanks to create a tibble with the column names: `student`, `grade`, `pass` (in that order)
 </p>
+')
+```
 
-```{r fjvsmmyysjpaxqmf, exercise = TRUE, eval=is_tutorial}
+```{r fjvsmmyysjpaxqmf, exercise = TRUE, echo=FALSE, eval=is_tutorial}
 student <- c("Daphne", "Ed", "Frankie")
 col_3 <- c(TRUE, TRUE, FALSE)
 g <- c("A", "C", "F")
@@ -35,17 +51,17 @@ tibble(
   )
 ```
 
-```{r fjvsmmyysjpaxqmf-hint-1, eval=is_tutorial}
+```{r fjvsmmyysjpaxqmf-hint-1, echo=FALSE, echo=FALSE, eval=is_tutorial}
 # hint text
 ""
 ```
 
-```{r fjvsmmyysjpaxqmf-hint-2, eval=is_tutorial}
+```{r fjvsmmyysjpaxqmf-hint-2, echo=FALSE, echo=FALSE, eval=is_tutorial}
 # hint text
 ""
 ```
 
-```{r fjvsmmyysjpaxqmf-solution, eval=is_tutorial}
+```{r fjvsmmyysjpaxqmf-solution, echo=FALSE, eval=is_tutorial}
 # solution code
 student <- c("Daphne", "Ed", "Frankie")
 col_3 <- c(TRUE, TRUE, FALSE)
@@ -58,8 +74,9 @@ tibble(
   )
 ```
 
-```{r fjvsmmyysjpaxqmf-check, eval=is_tutorial}
+```{r fjvsmmyysjpaxqmf-check, echo=FALSE, eval=is_tutorial}
 # check code
 gradethis::grade_code()
 ```
 
+<!-- End tutorial -->

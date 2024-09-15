@@ -61,18 +61,54 @@ What about this code?
   y <- TRUE
 ```
 
+<!-- Begin book -->
+
+```{r invalid-statement-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "The statement is valid",
+  answer = "The statement is invalid",
+  "Run, but return the value 3 and store `TRUE` in y",
+  "Run, but return the value 2 and store `TRUE` in y",
+  "Give an error that the variable `y` does not exist in the environment",
+  answer = "Give an error that `2 + y` is not a variable"
+  # message = "This is technically one line of code: `2 + y <- TRUE`. However the left-hand side of `<-` must be a variable, but `2 + y` is not a variable, so this will not run"
+)
+q_invalid_data <- longmcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** Is this a valid R statement that will run successfully, or will it give an error?',
+q_invalid_data,
+'
+:::
+
+')
+
+# txt <- paste0("```{r}\n",
+#       "2+2",
+#       "\n```", sep = "")
+# pander::pander(txt)
+# hide("Hint")
+# cat('Test')
+# unhide()
+```
+
+<!-- End book -->
+
+
+<!-- Begin tutorial -->
+
 ```{r multiline-1, echo=FALSE, eval=is_tutorial}
 question("The code chunk above will:",
   answer("Run, but return the value 3 and store `TRUE` in y"),
   answer("Run, but return the value 2 and store `TRUE` in y"),
   answer("Give an error that the variable `y` does not exist in the environment"),
-  answer("Statement"),
   answer("Give an error that `2 + y` is not a variable", correct = TRUE, message = "This is technically one line of code: `2 + y <- TRUE`. However the left-hand side of `<-` must be a variable, but `2 + y` is not a variable, so this will"),
   allow_retry = TRUE,
   random_answer_order = TRUE,
   incorrect = "What would the code look like if you formatted it all on a single line?"
 )
 ```
+
+<!-- End tutorial -->
 
 What about this code chunk?
 
@@ -84,6 +120,28 @@ some_dataset %>%
   )
 ```
 
+<!-- Begin book -->
+
+````{r valid-statement-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "It will run just fine",
+  answer = "There will be an error in the `mutate` function",
+  #correct = TRUE, message = "We have forgotten a pipe operator after the `filter` function! Therefore, R will evaluate the first two lines, but treat the `mutate` function as a separate expression - however `mutate` never gets a dataset input, which is the required first argument of the function, so it will generate an error."),
+  "There will be an error in the `filter` function"
+)
+q_valid_data <- longmcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** Is this a valid R statement that will run successfully, or will it give an error?',
+q_valid_data,
+'
+:::')
+````
+
+<!-- End book -->
+
+
+<!-- Begin tutorial -->
+
 ```{r multiline-2, echo=FALSE, eval=is_tutorial}
 question("The code chunk above will:",
   answer("Run just fine"),
@@ -94,3 +152,5 @@ question("The code chunk above will:",
   incorrect = "How does R know whether it has reached the end of an expression or it should continue to look on the next line?"
 )
 ```
+
+<!-- End tutorial -->

@@ -1,18 +1,23 @@
 ---
 execute:
-  freeze: auto
+  freeze: false
+  cache: false
 ---
 
-# More about R
+# More about R {#sec-r-computation-chapter}
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
+
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+insert_status_callout("draft")
 ```
 
 ## Welcome
 
-This chapter/tutorial will start with a refresher on basic programming in R (from Module 1: variables, data types, functions), and then introduce some additional programming concepts such as control flow and loops.
+This chapter/tutorial will start with a refresher on basic programming in R (refer back to @sec-intro-r-programming-chapter), and then introduce some additional programming concepts such as control flow and loops.
 
 {{< include ../../src/snippets/r_programming2_intro.Rmd >}}
 

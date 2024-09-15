@@ -10,25 +10,54 @@ c(1,2,3,4,5)
 1:5
 ```
 
+<!-- Book version -->
 
-<p class="comment3">
+<!-- TODO 
+example code from first R programming chapter:
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Run these two lines of code in the RStudio Console and see what result you get.
+
+`a <- 2 + 2`
+
+`5 * a`
+
+Then take a look at the *Environment* tab in the top-right pane of RStudio. 
+Do you see a __variable__ called `a`? 
+Does it hold the value calculated in the first line of code or the second?
+:::
+")
+```
+-->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
 Create a vector of all the integer numbers from 2 to 250.
 </p>
+')
+```
 
-```{r aiwkmkcqayvrufhf, exercise = TRUE, eval=is_tutorial}
+```{r aiwkmkcqayvrufhf, eval=is_tutorial, echo=F, exercise=TRUE}
 
 ```
 
-```{r aiwkmkcqayvrufhf-hint-1, eval=is_tutorial}
+```{r aiwkmkcqayvrufhf-hint-1, eval=is_tutorial, echo=FALSE}
 # hint text
 "Try using the `:` operator"
 ```
 
-```{r aiwkmkcqayvrufhf-solution, eval=is_tutorial}
+```{r aiwkmkcqayvrufhf-solution, eval=is_tutorial, echo=FALSE}
 2:250
 ```
 
-```{r aiwkmkcqayvrufhf-check, eval=is_tutorial}
+```{r aiwkmkcqayvrufhf-check, eval=is_tutorial, echo=FALSE}
 # check code
 gradethis::grade_code()
 ```
@@ -40,39 +69,39 @@ There are several other useful things to remember about vectors:
 
 * You can combine two vectors into a single vector with the `c()` function:
 
-    ```{r, echo=TRUE}
-    x <- 1:3
-    y <- 4:6
+  ```{r, echo=TRUE}
+  x <- 1:3
+  y <- 4:6
     
-    c(y, x)
-    ```
+  c(y, x)
+  ```
 
 * You can *extract* a single value from a vector by **indexing** into the vector with square brackets `[...]` and the position of item that you want:
 
-    ```{r, echo=TRUE}
-    x <- 101:110
+  ```{r, echo=TRUE}
+  x <- 101:110
     
-    x[5]
-    ```
+  x[5]
+  ```
 
 * You can change any value in a vector with square brackets and the assignment operator:
 
-    ```{r, echo=TRUE}
-    x <- 1:5
-    x[2] <- 42
-    
-    x
-    ```
+  ```{r, echo=TRUE}
+  x <- 1:5
+  x[2] <- 42
+  
+  x
+  ```
 
 * You can even extend a vector by one element by assigning to a position 1 higher than it's current length:
 
-    ```{r, echo=TRUE}
-    x <- 1:5
-    x[6] <- 42
+  ```{r, echo=TRUE}
+  x <- 1:5
+  x[6] <- 42
     
-    x
-    ```
+  x
+  ```
 
-<!--
+<!-- TODO: 
 Add exercises
 -->

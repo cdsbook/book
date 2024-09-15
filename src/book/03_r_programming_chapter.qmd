@@ -7,7 +7,7 @@ execute:
   cache: false
 ---
 
-# Introduction to R
+# Introduction to R {#sec-intro-r-programming-chapter}
 
 ```{r setup}
 #| echo: false

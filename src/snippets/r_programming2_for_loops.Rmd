@@ -12,9 +12,15 @@ for(thing in many_things){
 }
 ```
 
-For example, you could loop through a vector of numbers, and print out each number:
+<!-- Tutorial version -->
 
-```{r wyfjiaqcdwwcrasz, exercise = is_tutorial}
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('For example, you could loop through a vector of numbers, and print out each number:
+')
+```
+
+```{r wyfjiaqcdwwcrasz, , exercise = TRUE, echo=FALSE, eval=is_tutorial}
 for(x in 1:10){
   print(x)
 }
@@ -43,13 +49,28 @@ gradethis::grade_code()
 ```
 -->
 
+<!-- End tutorial -->
+
 Note that on each **iteration** of the loop we update the variable `x` (or whatever you choose to call it) and that variable can be used in the code inside the for loop's code block `{...}`
 
-<p class="comment3">
-Fill in the blank in the *if* statement's condition so that only *even* numbers are printed out. (Remember that an even number divided by 2 will have have a remainder of 0.)
-</p>
+<!-- Book version -->
 
-```{r yrmkqxvwpawfdzeo, exercise = TRUE, eval=is_tutorial}
+<!-- TODO 
+-->
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Fill in the blank in the *if* statement\'s condition so that only *even* numbers are printed out. (Remember that an even number divided by 2 will have have a remainder of 0.)
+</p>
+')
+```
+
+```{r yrmkqxvwpawfdzeo, exercise = TRUE, echo=FALSE, eval=is_tutorial}
 for(x in 1:10){
   if(_____){
     print(x)
@@ -57,17 +78,17 @@ for(x in 1:10){
 }
 ```
 
-```{r yrmkqxvwpawfdzeo-hint-1, eval=is_tutorial}
+```{r yrmkqxvwpawfdzeo-hint-1, echo=FALSE, eval=is_tutorial}
 # hint text
 ""
 ```
 
-```{r yrmkqxvwpawfdzeo-hint-2, eval=is_tutorial}
+```{r yrmkqxvwpawfdzeo-hint-2, echo=FALSE, eval=is_tutorial}
 # hint text
 ""
 ```
 
-```{r yrmkqxvwpawfdzeo-solution, eval=is_tutorial}
+```{r yrmkqxvwpawfdzeo-solution, echo=FALSE, eval=is_tutorial}
 # solution code
 for(x in 1:10){
   if(x %% 2 == 0){
@@ -76,7 +97,7 @@ for(x in 1:10){
 }
 ```
 
-```{r yrmkqxvwpawfdzeo-check, eval=is_tutorial}
+```{r yrmkqxvwpawfdzeo-check, echo=FALSE, eval=is_tutorial}
 # check code
 gradethis::grade_code()
 ```

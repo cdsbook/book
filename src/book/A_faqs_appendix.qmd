@@ -1,30 +1,51 @@
+---
+toc: true
+toc-depth: 3
+---
+
 # Frequently Asked Questions
 
 ...i.e. frequently encountered problems and how to fix them.
 
 <!-- TODO
-VPN issues... possibly better for the website
+VPN issues... possibly better for Blackboard/Canvas
 - https://answers.uillinois.edu/illinois/page.php?id=63520
 - https://kb.mit.edu/confluence/display/mitcontrib/Cisco+Anyconnect+Manual+uninstall+Mac+OS
 -->
 
-## RStudio
+## Software setup {#sec-faqs-software-setup}
 
-### RStudio error: Error occurred during transmission
+### Git is no longer installed on my computer
 
-If you get this error message when logging into the GMU RStudio Server:
+This sometimes happens on Macs after updating the MacOS operating system. You should re-install Git by repeating the first item from @sec-rstudio-desktop-installation. Then restart RStudio
 
-![RStudio error message: Error occurred during transmission](img/rstudio-error-occurred-during-transmission.png)
+<!-- ### RStudio error: Error occurred during transmission -->
 
-Solution
+<!-- If you get this error message when logging into the GMU RStudio Server: -->
 
-* Go to https://rstudio.cos.gmu.edu/home
-* Click the "Quit" button (near the top of the page)
-* Then you should be able to reopen a project.
+<!-- ![RStudio error message: Error occurred during transmission](img/rstudio-error-occurred-during-transmission.png) -->
 
-## Cannot push to GitHub: "Authentication failed"
+<!-- Solution -->
+
+<!-- * Go to https://rstudio.cos.gmu.edu/home -->
+<!-- * Click the "Quit" button (near the top of the page) -->
+<!-- * Then you should be able to reopen a project. -->
+
+
+## Working with Git and GitHub
+
+<!-- TODO: 
+
+### Cannot make a commit
+Need to set name and email
+
+-->
+
+### Cannot push to GitHub: "Password authentication was removed"
 
 You might find yourself with an error like this when you try to clone a repository from GitHub into RStudio, or push commits back to GitHub:
+
+<!-- TODO: get a screenshot of this error -->
 
 ```
 remote: Support for password authentication was removed on August 13, 2021.
@@ -32,13 +53,42 @@ remote: Please see https://docs.github.com/en/get-started/getting-started-with-g
 fatal: Authentication failed for 'https://github.com/mason-cds101/final-project-dominicwhite/'
 ```
 
-This usually means that either:
+This usually means that you have one of the following problems with your GitHub Personal Access Token:
 
-1. You have not correctly created and set your GitHub token (as per the instructions in step 4 Section @sec-rstudio-desktop-installation). If this is the first time you are trying to clone from or push to GitHub, this is probably the reason.
+1. *Incorrect token*: You have not correctly created and set your GitHub token (as per the instructions in step 4 of @sec-rstudio-desktop-installation). If this is the first time you are trying to clone from or push to GitHub, this is probably the reason.
 
-2. Your previous token has expired, and you will need to create a new one and store it in RStudio. If your token used to allow you to clone from and push to GitHub but has suddenly stopped working, then this is probably the reason. 
+   Make sure that:
+   
+   * Your token is the "Classic" token type, *not* the Fine-grained type.
+   * When you create your token, you give it permission to access and modify your repositories by clicking the "Repo"check-box in the list of Scopes.
 
-In both cases, repeat Step 4 in Section @sec-rstudio-desktop-installation.
+2. *Missing token*: If you are using the online version of RStudio at https://posit.cloud, you will need to repeat the commands to store your GitHub token every time you want to Push code from a new project.
+
+3. *Expired token*: Your previous token has expired, and you will need to create a new one and store it in RStudio. If your token used to allow you to clone from and push to GitHub but has suddenly stopped working, then this is probably the reason.
+
+__Solution:__In all cases, to fix the problem you should re-run the following three lines of R code in from @sec-rstudio-github-connection in the RStudio Console to create a new GitHub token and then store that new token in RStudio (if it asks what you want to do, such as setting a new token, type in the number of the option you want in the Console and then hit enter). Make sure to do this exactly as described in @sec-rstudio-github-connection
+   
+```r
+install.packages(c("usethis","gitcreds"))
+usethis::create_github_token()
+gitcreds::gitcreds_set()
+```
+
+### Cannot push to GitHub: "Updates were rejected"
+
+Sometimes an error like the following occurs when trying to push to GitHub.
+
+![RStudio error message when Pushing: Updates where rejected](../img/rstudio_git_push_rejected.png)
+
+What this means is that you have somehow ended up with extra commits in the version of the project on Github that you do not have in the version in RStudio. (This can happen if you do things like manually uploading files to a GitHub repository without going through RStudio, or editing files on GitHub via the website instead of in RStudio. Both of these actions create a new commit on GitHub, but since commits are not automatically synced, they will not be in RStudio.)
+
+To fix this, you will need to download the new commits from GitHub to RStudio. This is called "Pulling" (since it is the opposite of Pushing). There is a button in the Git tab or pop-up in RStudio labelled *Pull* with a blue downwards arrow icon. Click this to Pull the changes from GitHub-only commits into RStudio, and then try to Push again to send your RStudio-only commits to GitHub.
+
+### The Git tab is missing in RStudio
+
+This typically occurs for one of two reasons:
+* *Most common reason:* you don't have a project open in RStudio Desktop, or the project you do have open is not a Git-enabled project (probably because you created a new blank RStudio project instead). If you are trying to working on a project from this book and you created it in RStudio by cloning a GitHub repository, then it should be automatically Git-enabled. Try re-opening the RStudio project associated with the code. In RStudio Desktop, you can see the current project in the top-right, and change it by clicking there. At https://posit.cloud, you can change the project by going back to your homepage where all the projects are listed.
+* Less commonly, this happens in RStudio Desktop because Git is not installed (or RStudio can't find it). Try either re-installing Git, or looking at the FAQs in the @sec-faqs-software-setup section for reasons why Git might be missing.
 
 ## Packages
 
