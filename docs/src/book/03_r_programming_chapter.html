@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,8 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -114,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/03_r_programming_chapter.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction to R</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -416,7 +415,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#the-operators" id="toc-the-operators" class="nav-link" data-scroll-target="#the-operators"><span class="header-section-number">3.6.3</span> The <code>==</code> operators</a></li>
   </ul></li>
   <li><a href="#vectors" id="toc-vectors" class="nav-link" data-scroll-target="#vectors"><span class="header-section-number">3.7</span> Vectors</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">3.8</span> Functions</a>
+  <li><a href="#sec-intro-r-functions" id="toc-sec-intro-r-functions" class="nav-link" data-scroll-target="#sec-intro-r-functions"><span class="header-section-number">3.8</span> Functions</a>
   <ul class="collapse">
   <li><a href="#re-useable-code-functions" id="toc-re-useable-code-functions" class="nav-link" data-scroll-target="#re-useable-code-functions"><span class="header-section-number">3.8.1</span> Re-useable code = functions</a></li>
   <li><a href="#how-our-hypotenuse-function-works" id="toc-how-our-hypotenuse-function-works" class="nav-link" data-scroll-target="#how-our-hypotenuse-function-works"><span class="header-section-number">3.8.2</span> How our <code>hypotenuse()</code> function works</a></li>
@@ -505,7 +504,7 @@ Tip
 <div id="fig-rstudio-overview-console" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_overview_console.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.1: How to find the RStudio Console</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.1: How to find the RStudio Console</figcaption><p></p>
 </figure>
 </div>
 <p>Note that you will need to write the code after the <em>prompt</em>, which is the <code>&gt;</code> symbol that starts the lowest line in the Console.</p>
@@ -513,7 +512,7 @@ Tip
 <div id="fig-rstudio-helloworld" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="../img/rstudio_hello_world_output.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;3.2: Running the Hello World program in the RStudio Console</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3.2: Running the Hello World program in the RStudio Console</figcaption><p></p>
 </figure>
 </div>
 <p>Congratulations! You just ran your first program in R.</p>
@@ -743,8 +742,8 @@ Explanation
 <div class="callout-body-container">
 <p><strong>Exercise (the <code>-</code> operator):</strong> In the R Console, type <code>5 - 2</code> and hit enter to run the line of code. (You probably have a good idea of what <code>-</code> does, but try changing the numbers just to make sure!)</p>
 What does <code>-</code> do?
-<div id="radio_LIBHSLVFHE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LIBHSLVFHE" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_LIBHSLVFHE" value="answer"> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_LIBHSLVFHE" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_LIBHSLVFHE" value=""> <span>Divides one number by another.</span></label>
+<div id="radio_QHWQRRZXGO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QHWQRRZXGO" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_QHWQRRZXGO" value="answer"> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_QHWQRRZXGO" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_QHWQRRZXGO" value=""> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -759,8 +758,8 @@ What does <code>-</code> do?
 <div class="callout-body-container">
 <p><strong>Exercise (the <code>*</code> operator):</strong> In the R Console, type <code>3 * 2</code> and hit enter to run the line of code.</p>
 What does <code>*</code> do?
-<div id="radio_BKUYLSNLKA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_BKUYLSNLKA" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_BKUYLSNLKA" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_BKUYLSNLKA" value="answer"> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_BKUYLSNLKA" value=""> <span>Divides one number by another.</span></label>
+<div id="radio_LGRDUNEJBI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LGRDUNEJBI" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_LGRDUNEJBI" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_LGRDUNEJBI" value="answer"> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_LGRDUNEJBI" value=""> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -775,8 +774,8 @@ What does <code>*</code> do?
 <div class="callout-body-container">
 <p><strong>Exercise (The <code>/</code> operator):</strong> In the R Console, type <code>3 / 2</code> and hit enter to run the line of code.</p>
 What does <code>/</code> do? (Just to be sure, try some other numbers.)
-<div id="radio_JBSWRDYSTG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JBSWRDYSTG" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_JBSWRDYSTG" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_JBSWRDYSTG" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_JBSWRDYSTG" value="answer"> <span>Divides one number by another.</span></label>
+<div id="radio_WEOFFVQIZW" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WEOFFVQIZW" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_WEOFFVQIZW" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_WEOFFVQIZW" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_WEOFFVQIZW" value="answer"> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -791,8 +790,8 @@ What does <code>/</code> do? (Just to be sure, try some other numbers.)
 <div class="callout-body-container">
 <p><strong>Exercise (The <code>^</code> operator):</strong>In the R Console, type <code>3 ^ 2</code> and hit enter to run the line of code.</p>
 What does <code>^</code> do? (Hint: Try some other numbers, like <code>2 ^ 3</code> or <code>16 ^ 0.5</code>)
-<div id="radio_RERKKPNCZS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RERKKPNCZS" value=""> <span>Returns the modulus (the remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_RERKKPNCZS" value="answer"> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_RERKKPNCZS" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_RERKKPNCZS" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
+<div id="radio_KJGBYWRRDJ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_KJGBYWRRDJ" value=""> <span>Returns the modulus (the remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_KJGBYWRRDJ" value="answer"> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_KJGBYWRRDJ" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_KJGBYWRRDJ" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
 </div>
 </div>
 </div>
@@ -811,8 +810,8 @@ What does <code>^</code> do? (Hint: Try some other numbers, like <code>2 ^ 3</co
 <p><strong>Exercise (The <code>%</code> operator):</strong> Next up, a slightly trickier one. Type <code>3 %% 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>%%</code> do? You will probably have to try some other numbers to figure this one out.</p>
 If you have difficulty, try also dividing the same numbers. E.g. try both <code>9 %% 4</code> and <code>9 / 4</code>.
-<div id="radio_DBLLAWAOCC" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_DBLLAWAOCC" value="answer"> <span>Returns the modulus (the integer remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_DBLLAWAOCC" value=""> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_DBLLAWAOCC" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_DBLLAWAOCC" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
+<div id="radio_VSIYJVEOHC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_VSIYJVEOHC" value="answer"> <span>Returns the modulus (the integer remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_VSIYJVEOHC" value=""> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_VSIYJVEOHC" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_VSIYJVEOHC" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
 </div>
 </div>
 </div>
@@ -1180,8 +1179,8 @@ Add webexercises solution below
 <!-- End tutorial -->
 </section>
 </section>
-<section id="functions" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="functions"><span class="header-section-number">3.8</span> Functions</h2>
+<section id="sec-intro-r-functions" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="sec-intro-r-functions"><span class="header-section-number">3.8</span> Functions</h2>
 <!-- TODO:
 video intro to R functions
 -->

@@ -70,13 +70,39 @@ The `tidyverse` collection of packages that we have been using add a new version
 
 ## Functions
 
-Coming soon.
+We have been using numerous functions up to this point, all of which have been written by other people. However, back in @sec-intro-r-functions we learned that we can create our own functions. Remember that a function is like a reusable recipe. It takes some inputs, follows a defined set of steps to do something with those inputs, and then returns an output.
 
+In @sec-intro-r-functions we learned that the basic syntax of an R function looks like this:
+
+```r
+function_name <- function(parameter_1, parameter_2, etc.){ # <1>
+  some code to do something                                # <2>
+  some more code if you want it                            # <2>
+  return(output)                                           # <3>
+}                                                          # <4>
+```
+
+1. The first line creates the function almost like a new variable! 
+
+   i. We put the name for the new function (e.g. `function_name`) on the left-hand side of the assignment operator `<-`.
+   ii. Then on the right-hand side of the assignment operator we use the `function` *keyword* to indicate that we are creating a function instead of a normal variable. `function` is immediately followed by parentheses `(...)`.
+   iii. Inside the parentheses we put the names of any parameters that the function will accept as inputs e.g. `parameter_1`. Each parameter name is separated by a comma.
+   iv. We end the line with a curly brace `{`. This indicates that all code after this is part of the function, until we reach a matching closing curly brace `}`.
+
+2. We can then add any code that we want to run inside the function. By default, we indent these lines by two spaces as a helpful visual cue that these lines are part of the function.
+
+3. On the last line of the function's code we can indicate the output that we wish to return from the function by using the `return(...)` function. Whatever we pass as an argument to `return()` will be returned by the original function.
+
+4. Finally, we need to remember to end the function with the closing curly brace `}`.
+   
+
+<!--
 ## Scope and the environment
 
 Coming soon.
 
-<!--
+Function parameters.
+
 Running functions from packages without loading the package...
 -->
 
@@ -123,9 +149,13 @@ Timing?
 Mapping functions?
 -->
 
+<!--
+
 ## Installing R packages
 
 Coming soon.
+
+-->
 
 <!--
 - install.packages()

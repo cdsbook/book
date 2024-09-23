@@ -65,8 +65,6 @@ What about this code?
 
 ```{r invalid-statement-book-exercise, eval=is_book, echo=F, results='asis'}
 answer_opts <- c(
-  "The statement is valid",
-  answer = "The statement is invalid",
   "Run, but return the value 3 and store `TRUE` in y",
   "Run, but return the value 2 and store `TRUE` in y",
   "Give an error that the variable `y` does not exist in the environment",

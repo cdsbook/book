@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.3.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -91,8 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
+    "search-submit-button-title": "Submit"
   }
 }</script>
 
@@ -112,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/09_computing_chapter.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">More about R</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -406,18 +405,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#tibbles" id="toc-tibbles" class="nav-link" data-scroll-target="#tibbles"><span class="header-section-number">9.3.4</span> Tibbles</a></li>
   </ul></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="header-section-number">9.4</span> Functions</a></li>
-  <li><a href="#scope-and-the-environment" id="toc-scope-and-the-environment" class="nav-link" data-scroll-target="#scope-and-the-environment"><span class="header-section-number">9.5</span> Scope and the environment</a></li>
-  <li><a href="#control-flow" id="toc-control-flow" class="nav-link" data-scroll-target="#control-flow"><span class="header-section-number">9.6</span> Control Flow</a>
+  <li><a href="#control-flow" id="toc-control-flow" class="nav-link" data-scroll-target="#control-flow"><span class="header-section-number">9.5</span> Control Flow</a>
   <ul class="collapse">
-  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements"><span class="header-section-number">9.6.1</span> <em>If</em>-statements</a></li>
-  <li><a href="#ifelse-statements" id="toc-ifelse-statements" class="nav-link" data-scroll-target="#ifelse-statements"><span class="header-section-number">9.6.2</span> <em>If/else</em>-statements</a></li>
+  <li><a href="#if-statements" id="toc-if-statements" class="nav-link" data-scroll-target="#if-statements"><span class="header-section-number">9.5.1</span> <em>If</em>-statements</a></li>
+  <li><a href="#ifelse-statements" id="toc-ifelse-statements" class="nav-link" data-scroll-target="#ifelse-statements"><span class="header-section-number">9.5.2</span> <em>If/else</em>-statements</a></li>
   </ul></li>
-  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="header-section-number">9.7</span> Loops</a>
+  <li><a href="#loops" id="toc-loops" class="nav-link" data-scroll-target="#loops"><span class="header-section-number">9.6</span> Loops</a>
   <ul class="collapse">
-  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">9.7.1</span> <em>For</em> loops</a></li>
-  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization"><span class="header-section-number">9.7.2</span> Vectorization</a></li>
+  <li><a href="#for-loops" id="toc-for-loops" class="nav-link" data-scroll-target="#for-loops"><span class="header-section-number">9.6.1</span> <em>For</em> loops</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization"><span class="header-section-number">9.6.2</span> Vectorization</a></li>
   </ul></li>
-  <li><a href="#installing-r-packages" id="toc-installing-r-packages" class="nav-link" data-scroll-target="#installing-r-packages"><span class="header-section-number">9.8</span> Installing R packages</a></li>
   </ul>
 </nav>
     </div>
@@ -526,8 +523,8 @@ Warning
 </div>
 <div class="callout-body-container">
 <strong>Exercise:</strong> Is this a valid R statement that will run successfully, or will it give an error?
-<div id="radio_JJQNBFDJHU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_JJQNBFDJHU" value=""> <span>The statement is valid</span></label><label><input type="radio" autocomplete="off" name="radio_JJQNBFDJHU" value="answer"> <span>The statement is invalid</span></label><label><input type="radio" autocomplete="off" name="radio_JJQNBFDJHU" value=""> <span>Run, but return the value 3 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_JJQNBFDJHU" value=""> <span>Run, but return the value 2 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_JJQNBFDJHU" value=""> <span>Give an error that the variable <code>y</code> does not exist in the environment</span></label><label><input type="radio" autocomplete="off" name="radio_JJQNBFDJHU" value="answer"> <span>Give an error that <code>2 + y</code> is not a variable</span></label>
+<div id="radio_RITEZWXJFZ" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RITEZWXJFZ" value=""> <span>Run, but return the value 3 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_RITEZWXJFZ" value=""> <span>Run, but return the value 2 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_RITEZWXJFZ" value=""> <span>Give an error that the variable <code>y</code> does not exist in the environment</span></label><label><input type="radio" autocomplete="off" name="radio_RITEZWXJFZ" value="answer"> <span>Give an error that <code>2 + y</code> is not a variable</span></label>
 </div>
 </div>
 </div>
@@ -549,8 +546,8 @@ Warning
 </div>
 <div class="callout-body-container">
 <strong>Exercise:</strong> Is this a valid R statement that will run successfully, or will it give an error?
-<div id="radio_ACMHGZAIDA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ACMHGZAIDA" value=""> <span>It will run just fine</span></label><label><input type="radio" autocomplete="off" name="radio_ACMHGZAIDA" value="answer"> <span>There will be an error in the <code>mutate</code> function</span></label><label><input type="radio" autocomplete="off" name="radio_ACMHGZAIDA" value=""> <span>There will be an error in the <code>filter</code> function</span></label>
+<div id="radio_HMZNZKWDIX" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_HMZNZKWDIX" value=""> <span>It will run just fine</span></label><label><input type="radio" autocomplete="off" name="radio_HMZNZKWDIX" value="answer"> <span>There will be an error in the <code>mutate</code> function</span></label><label><input type="radio" autocomplete="off" name="radio_HMZNZKWDIX" value=""> <span>There will be an error in the <code>filter</code> function</span></label>
 </div>
 </div>
 </div>
@@ -751,22 +748,48 @@ Add exercises
 </section>
 <section id="functions" class="level2" data-number="9.4">
 <h2 data-number="9.4" class="anchored" data-anchor-id="functions"><span class="header-section-number">9.4</span> Functions</h2>
-<p>Coming soon.</p>
-</section>
-<section id="scope-and-the-environment" class="level2" data-number="9.5">
-<h2 data-number="9.5" class="anchored" data-anchor-id="scope-and-the-environment"><span class="header-section-number">9.5</span> Scope and the environment</h2>
-<p>Coming soon.</p>
+<p>We have been using numerous functions up to this point, all of which have been written by other people. However, back in <a href="03_r_programming_chapter.html#sec-intro-r-functions"><span>Section&nbsp;3.8</span></a> we learned that we can create our own functions. Remember that a function is like a reusable recipe. It takes some inputs, follows a defined set of steps to do something with those inputs, and then returns an output.</p>
+<p>In <a href="03_r_programming_chapter.html#sec-intro-r-functions"><span>Section&nbsp;3.8</span></a> we learned that the basic syntax of an R function looks like this:</p>
+<div class="sourceCode" id="annotated-cell-19"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-1" class="code-annotation-target"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(parameter_1, parameter_2, etc.){</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-19-2" class="code-annotation-target"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a>  some code to do something</span>
+<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a>  some more code <span class="cf">if</span> you want it</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-19-4" class="code-annotation-target"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-19-5" class="code-annotation-target"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a>}</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-lines="1" data-code-cell="annotated-cell-19" data-code-annotation="1">The first line creates the function almost like a new variable!</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-lines="2,3" data-code-cell="annotated-cell-19" data-code-annotation="2">We can then add any code that we want to run inside the function. By default, we indent these lines by two spaces as a helpful visual cue that these lines are part of the function.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-lines="4" data-code-cell="annotated-cell-19" data-code-annotation="3">On the last line of the function’s code we can indicate the output that we wish to return from the function by using the <code>return(...)</code> function. Whatever we pass as an argument to <code>return()</code> will be returned by the original function.</span>
+</dd>
+<dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-lines="5" data-code-cell="annotated-cell-19" data-code-annotation="4">Finally, we need to remember to end the function with the closing curly brace <code>}</code>.</span>
+</dd>
+</dl>
 <!--
+## Scope and the environment
+
+Coming soon.
+
+Function parameters.
+
 Running functions from packages without loading the package...
 -->
 </section>
-<section id="control-flow" class="level2" data-number="9.6">
-<h2 data-number="9.6" class="anchored" data-anchor-id="control-flow"><span class="header-section-number">9.6</span> Control Flow</h2>
+<section id="control-flow" class="level2" data-number="9.5">
+<h2 data-number="9.5" class="anchored" data-anchor-id="control-flow"><span class="header-section-number">9.5</span> Control Flow</h2>
 <p>Earlier in this tutorial we talked about how R executes one line of code and then moves onto the next.</p>
 <p>But what about if you don’t always want to go to the next line? Maybe want to jump to a different section of code or skip some lines entirely.</p>
 <p>In the first interactive tutorial we mentioned <strong>functions</strong>, which are a way of saving particular lines of code so that they can be re-run. You learned how to <strong>define</strong> a function that had several input <strong>parameters</strong>, and then <strong>call</strong> it when you want to run it by <em>passing</em> values as <strong>arguments</strong> for each parameter. (Yes, there are a lot of words to learn for functions - you should review the first tutorial if this makes no sense!)</p>
-<section id="if-statements" class="level3" data-number="9.6.1">
-<h3 data-number="9.6.1" class="anchored" data-anchor-id="if-statements"><span class="header-section-number">9.6.1</span> <em>If</em>-statements</h3>
+<section id="if-statements" class="level3" data-number="9.5.1">
+<h3 data-number="9.5.1" class="anchored" data-anchor-id="if-statements"><span class="header-section-number">9.5.1</span> <em>If</em>-statements</h3>
 <p>There are also methods of <strong>control flow</strong> for choosing whether to skip a line entirely. We can use an <code>if</code> statement to run one or more lines of code based on the result of a Boolean condition:</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(some_boolean_condition_is_TRUE){</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  run the code inside these curly brackets</span>
@@ -811,8 +834,8 @@ Running functions from packages without loading the package...
 -->
 <!-- End tutorial -->
 </section>
-<section id="ifelse-statements" class="level3" data-number="9.6.2">
-<h3 data-number="9.6.2" class="anchored" data-anchor-id="ifelse-statements"><span class="header-section-number">9.6.2</span> <em>If/else</em>-statements</h3>
+<section id="ifelse-statements" class="level3" data-number="9.5.2">
+<h3 data-number="9.5.2" class="anchored" data-anchor-id="ifelse-statements"><span class="header-section-number">9.5.2</span> <em>If/else</em>-statements</h3>
 <p>Often you may want to do one thing if a condition is TRUE, and something else if it’s not. In this case you can put an <code>else{...}</code> block after the <code>if{...}</code> block:</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(some_boolean_condition_is_TRUE){</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="cn">TRUE</span>, run the code inside these curly brackets</span>
@@ -841,12 +864,12 @@ True and False as 0 and 1
 -->
 </section>
 </section>
-<section id="loops" class="level2" data-number="9.7">
-<h2 data-number="9.7" class="anchored" data-anchor-id="loops"><span class="header-section-number">9.7</span> Loops</h2>
+<section id="loops" class="level2" data-number="9.6">
+<h2 data-number="9.6" class="anchored" data-anchor-id="loops"><span class="header-section-number">9.6</span> Loops</h2>
 <p>Sometimes you want to run a particular piece of code over and over again (after all, do simple things repeatedly is what computers are best at).</p>
 <p>To do this we need to use a <strong>loop</strong>.</p>
-<section id="for-loops" class="level3" data-number="9.7.1">
-<h3 data-number="9.7.1" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">9.7.1</span> <em>For</em> loops</h3>
+<section id="for-loops" class="level3" data-number="9.6.1">
+<h3 data-number="9.6.1" class="anchored" data-anchor-id="for-loops"><span class="header-section-number">9.6.1</span> <em>For</em> loops</h3>
 <p>The most common type of loop in R is the <strong>for loop</strong>.</p>
 <p>The idea behind the for loop is that “<em>for</em> every <em>thing</em> in a <em>group of things</em>, run some code”.</p>
 <p>In R code, we would write this as:</p>
@@ -935,8 +958,7 @@ function (check_env)
         return(legacy_graded(correct = FALSE, message = "No exercise solution provided. Defaulting to _incorrect_."))
     }
     message <- code_feedback(user_code = user_code, solution_code = solution_code_all, 
-        user_env = check_env$.envir_result %||% check_env, solution_env = check_env$.envir_solution %||% 
-            check_env, allow_partial_matching = allow_partial_matching)
+        env = check_env, allow_partial_matching = allow_partial_matching)
     if (is.null(message)) {
         return(legacy_graded(correct = TRUE, message = glue_message(glue_correct %||% 
             gradethis_legacy_options$gradethis.glue_correct, 
@@ -948,8 +970,8 @@ function (check_env)
         .user_code = user_code)
     legacy_graded(correct = FALSE, message = message)
 }
-<bytecode: 0x00000296e3df5100>
-<environment: 0x00000296e3e03f70>
+<bytecode: 0x5bda63767048>
+<environment: 0x5bda6376e0b0>
 ```
 :::
 :::
@@ -962,8 +984,8 @@ function (check_env)
 <!-- End book -->
 <!-- Tutorial version -->
 </section>
-<section id="vectorization" class="level3" data-number="9.7.2">
-<h3 data-number="9.7.2" class="anchored" data-anchor-id="vectorization"><span class="header-section-number">9.7.2</span> Vectorization</h3>
+<section id="vectorization" class="level3" data-number="9.6.2">
+<h3 data-number="9.6.2" class="anchored" data-anchor-id="vectorization"><span class="header-section-number">9.6.2</span> Vectorization</h3>
 <p>When possible, we should try to work on entire vectors at once rather than looping over a vector with for loops.</p>
 <p>This is because R will iterate through a loop one step at a time, whereas it can operate on multiple elements of a vector at the same time, so <strong>vectorized</strong> code is much faster.</p>
 <p>We do not have to worry about this too much, as we are working on small datasets where small speed increases are not noticeable - however, much of the the <code>tidyverse</code> functions we have learned are already optimized to work on vectors.</p>
@@ -977,11 +999,13 @@ Timing?
 
 Mapping functions?
 -->
-</section>
-</section>
-<section id="installing-r-packages" class="level2" data-number="9.8">
-<h2 data-number="9.8" class="anchored" data-anchor-id="installing-r-packages"><span class="header-section-number">9.8</span> Installing R packages</h2>
-<p>Coming soon.</p>
+<!--
+
+## Installing R packages
+
+Coming soon.
+
+-->
 <!--
 - install.packages()
 - installation location
@@ -994,6 +1018,7 @@ Mapping functions?
 -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -57,7 +57,7 @@ Sidebar here about Grace Hopper and the invention of programming languages (plus
 {{< include ../../src/snippets/r_programming_vectors.Rmd >}}
 
 
-## Functions
+## Functions {#sec-intro-r-functions}
 
 {{< include ../../src/snippets/r_programming_functions.Rmd >}}
 
