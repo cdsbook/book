@@ -80,10 +80,75 @@ More: https://en.wikibooks.org/wiki/LaTeX/Indexing
 Only in html outputs, and doesn't currently work with Quarto: https://r-for-educators.github.io/flair/index.html
 
 
-### Online Book exercises
+### Exercises
 
-`webexercises` package: https://psyteachr.github.io/webexercises/
+Provide via functions (see `quarto_tests` project for development) that automatically render appropriately for each output target:
 
+* Web book: `webexercises`
+* PDF: text (plus answers at end of each chapter)
+* Interactive tutorials: `learnr` and `grader`
+
+TODO: implement rendering of all exercise types for PDF & interactive tutorial. Create shared code for formatting hints, explanation, and exercise blocks across exercise types.
+
+#### Exercise examples
+
+Note that all exercise code chunks should contain the options: `echo=FALSE, results='asis'`
+
+True or false:
+
+    ```{r, echo=FALSE, results='asis'}
+    render_true_or_false(
+      "Is it true or false?",
+      TRUE,
+      hints = c("Some test hint"),
+      explanation = "Test expl"
+    )
+    ```
+
+Typed answer:
+
+    ```{r, echo=F, results='asis'}
+    render_blank_answer(
+      "What function creates an empty `ggplot2` graph?",
+      answers = c("ggplot", "ggplot( )"),
+      fitb_options = list(),
+      hints = c("What's the function you always need to start a ggplot graph with?"),
+      explanation = c("We always start a ggplot graph with the `ggplot()` function, and then add other function such as geom functions, onto this.")
+    )
+    ```
+
+Multiple choice:
+
+  ```{r, echo=FALSE, results='asis'}
+  render_multiple_choice(
+    "What about this?", 
+    answers = c(
+      "Answer 1",
+      "Answer 2",
+      answer = "Answer 3",
+      "Answer 4"
+      ), 
+    hints = c("Some hint 1 text", "A second hint", "Even a third hint!"), 
+    "Some explanation about why the correct answer is correct."
+   )
+  ```
+
+Code fill-in-the-blanks (also accepts `hints` vector and `explanation` character string):
+
+    ```{r, echo=FALSE, results='asis'}
+    render_code_blanks(
+      "Some explanation about what to fill in",
+    "df %>%
+      ______() +
+      geom_histogram(mapping = ______(x = ______))",
+      answers = list(
+        list(c("ggplot"), width=10),
+        list(c(answer = "aes", "ggplot", "geom_histogram", "col1")),
+        list("^[a-zA-Z]{3}$", width = 3, regex = TRUE)
+      ),
+      blank_types <- c("fitb", "mcq", "fitb")
+    )
+    ```
 
 ### Footnotes
 
