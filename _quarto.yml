@@ -37,12 +37,12 @@ book:
     # 24 High Performance Computing
   - part: Scientific Data
     chapters: 
-    - src/book/25_images_chapter.qmd
-    - src/book/26_text_chapter.qmd
-    - src/book/27_time_series_chapter.qmd
+    # - src/book/25_images_chapter.qmd
+    # - src/book/26_text_chapter.qmd
+    # - src/book/27_time_series_chapter.qmd
     # 28 Signal Processing
     - src/book/29_online_data_chapter.qmd
-    - src/book/30_geospatial_chapter.qmd
+    # - src/book/30_geospatial_chapter.qmd
     # 31 Bioinformatic data
     # 32 Network data
     - src/book/33_databases_chapter.qmd
@@ -50,7 +50,7 @@ book:
   - part: Outputs
     chapters:
     - src/book/35_papers_chapter.qmd
-    - src/book/36_webpages_chapter.qmd
+    # - src/book/36_webpages_chapter.qmd
     - src/book/37_dashboards_chapter.qmd
     # 38 Apps
     # 39 Software
