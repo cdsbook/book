@@ -19,3 +19,18 @@ becomes
 ```r
 2 + 3
 ```
+
+```{r, echo=FALSE, results='asis'}
+render_blank_answer(
+"What value is assigned to `x` after the following lines of R code have run?
+
+    x <- 2 + 2
+    y <- 5
+    x <- x / y
+",
+  c("0.8"),
+  explanation = "The final line executes the expression on the right of the assignment operator first, retrieving the values of `x` and `y` that we have assigned in the earlier lines (`4` and `5`). The result of that expression, $\\frac{4}{5} = 0.8$ , is then assigned to `x`, overwriting the previous value that was stored in `x`."
+)
+```
+
+Test reference to @exr-test

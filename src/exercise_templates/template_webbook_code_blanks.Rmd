@@ -1,0 +1,74 @@
+
+
+```{r, results="asis", echo=FALSE}
+
+code_parts <- str_split_1(code_template, "______")
+
+hint_text <- ""
+hint_counter <- 1
+for (hint in hints){
+  if (length(hints) > 1) {
+    nhint <- paste0(" ", as.character(hint_counter))
+  } else{
+    nhint <- ""
+  }
+  hint_text <- paste0(
+    hint_text,
+'
+
+::: {.exercise-hint .callout-warning collapse="true" appearance="simple" icon=false title="Hint', nhint,'"}
+
+', hint,
+'
+:::
+
+'
+  )
+  hint_counter <- hint_counter + 1
+}
+
+if (!is.na(explanation)) {
+  explanation_text <- paste0(
+'
+
+::: {.exercise-explanation .callout-tip collapse="true" title="Explanation"}
+
+', explanation,
+'
+:::
+
+'
+  )
+} else{
+  explanation_text <- ""
+}
+
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:**', question_text, "
+
+<div>
+<pre class='r' style='background-color: rgba(233,236,239,.65); padding: 10px;'>
+") 
+
+for (i in 1:length(code_parts)){
+  cat(code_parts[i])
+  if (i < length(code_parts)) {
+    if (blank_types[i] == "fitb"){
+      cat(do.call(fitb, answers[[i]]))
+    } else if (blank_types[i] == "mcq"){
+      cat(do.call(mcq, answers[[i]]))
+    }
+  }
+}
+
+cat("
+</pre>
+</div>
+
+", "\n\n", hint_text, "\n\n",explanation_text, "\n\n",
+'
+::::
+'
+)
+```
+

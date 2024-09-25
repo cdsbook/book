@@ -1,0 +1,16 @@
+```{r, results="asis", echo=FALSE}
+#| results: asis
+cat(
+'
+::: {.exercise .callout-note appearance="simple" icon=false}
+  
+',
+  question_text,
+  "\n\n",
+  modify(answers, function(item){paste0("i. ", item, "\n")}),
+  "
+:::
+"
+)
+```
+

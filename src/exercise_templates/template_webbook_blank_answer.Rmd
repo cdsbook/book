@@ -1,0 +1,53 @@
+
+
+```{r, results="asis", echo=FALSE}
+q <- do.call(fitb, c(list(answers), fitb_options))
+
+hint_text <- ""
+hint_counter <- 1
+for (hint in hints){
+  if (length(hints) > 1) {
+    nhint <- paste0(" ", as.character(hint_counter))
+  } else{
+    nhint <- ""
+  }
+  hint_text <- paste0(
+    hint_text,
+'
+
+::: {.exercise-hint .callout-warning collapse="true" appearance="simple" icon=false title="Hint', nhint,'"}
+
+', hint,
+'
+:::
+
+'
+  )
+  hint_counter <- hint_counter + 1
+}
+
+if (!is.na(explanation)) {
+  explanation_text <- paste0(
+'
+
+::: {.exercise-explanation .callout-tip collapse="true" title="Explanation"}
+
+', explanation,
+'
+:::
+
+'
+  )
+} else{
+  explanation_text <- ""
+}
+
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise {#exr-test}:**', question_text,
+q, "\n\n", hint_text, "\n\n",explanation_text, "\n\n",
+'
+::::
+'
+)
+```
+
