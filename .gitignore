@@ -6,8 +6,11 @@ _bookdown_files
 _freeze
 docs/*.pdf
 notes.txt
+src/book/**.html
 src/book/**_files/
 src/book/**_cache/
+src/book/docs/
+src/book/images/
 src/tutorials/**/*.html
 test.html
 test.qmd
