@@ -3,8 +3,10 @@ is_tutorial = FALSE
 
 if(knitr::is_html_output()) {
   is_webbook = TRUE
+  is_pdf = FALSE
 } else{
   is_webbook = FALSE
+  is_pdf = TRUE
 }
 
 # knitr::opts_chunk$set(echo = TRUE, class.output="shadebox")
@@ -36,5 +38,18 @@ insert_status_callout <- function(chapter_status = c("incomplete", "draft", "com
       ":::\n"
     ))
   }
-  
+}
+
+pdf_dev_comment <- function(todo){
+  cat(
+"
+::: {.callout-caution}
+# TODO
+
+",
+todo,"\n\n",knitr::current_input(),
+"
+
+:::"
+  )
 }
