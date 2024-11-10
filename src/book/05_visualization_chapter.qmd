@@ -26,6 +26,10 @@ In this chapter we will learn how to make simple graphs using R.
 
 {{< include ../../src/snippets/visualization_histograms.Rmd >}}
 
+<!-- TODO:
+
+How to wrap long lines of code
+-->
 
 ## One categorical variable: bar charts
 
