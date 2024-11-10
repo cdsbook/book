@@ -91,9 +91,11 @@ If you are installing RStudio Desktop on your computer, then you should follow t
 
 2. Next you should install R by going to the appropriate page for your operating system:
 
-    * __Windows__: download and install R from the *.exe* installer on this page: [https://cran.rstudio.com/bin/windows/base/](https://cran.rstudio.com/bin/windows/base/)
+    * __Windows__: 
+    
+      i. Download and install R from the *.exe* installer on this page: [https://cran.rstudio.com/bin/windows/base/](https://cran.rstudio.com/bin/windows/base/)
   
-      Then __also install RTools__ from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g. if you installed R v4.2.3 then you will need to install RTools v4.2 [i.e. the same first two digits]): [https://cran.rstudio.com/bin/windows/Rtools/](https://cran.rstudio.com/bin/windows/Rtools/)
+      ii. Then __also install RTools__ from this page (make sure the version number of RTools matches the version number of R that you just installed, e.g. if you installed R v4.2.3 then you will need to install RTools v4.2 [i.e. the same first two digits]): [https://cran.rstudio.com/bin/windows/Rtools/](https://cran.rstudio.com/bin/windows/Rtools/)
     
     * __Mac__: download and install R from the appropriate *.pkg* installer for your version of macOS on this page: [https://cran.rstudio.com/bin/macosx/](https://cran.rstudio.com/bin/macosx/)
   
