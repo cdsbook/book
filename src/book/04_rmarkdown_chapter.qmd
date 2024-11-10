@@ -13,50 +13,208 @@ source("prechapter.R")
 insert_status_callout("incomplete")
 ```
 
-## The Scientific Method
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO: Add 'Quick reference' section at start of chapter with link to RMarkdown cheetsheet
+")
+```
 
-Why don't we still believe that the sun is the flaming chariot wheel of the ancient Greek god Apollo as he drives across the sky each day? Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?
 
-The answer, in case you haven't guessed, is science. Science is the reason that human progress has exploded since the scientific revolution of the 16th and 17th centuries. And science offers our best path forwards for making future progress and confronting the challenges that we will inevitably face in the coming centuries.
+## Literate programming
 
-We can think of science as a game: humanity versus the unknown. Each field of science (biology, physics, psychology, etc.) is like a team in this great game. And just like regular sports teams, each scientific field uses slightly different tactics to play the game, because the type of *thing* that a scientist studies influences how they can go about experimenting on it.[^conventions]
+Traditionally, if you needed to do science on a computer, you ran your analyses in one program, and then copied over any outputs you wanted into a separate document where you wrote your results. 
 
-[^conventions]: For example, a microbiologist can grow bacteria in petri dishes in a lab and do pretty much whatever they want experimentally, whereas a psychologist studying human behaviour is much more constrained by what is ethically acceptable to do to other humans.
+The separation of analysis and communication creates two main problems:
 
-Despite the range of techniques used by different scientists, and the conventions followed by different scientific fields, all scientists agree on the rules of the game itself. This shared set of rules is called the *scientific method*.
+1. Copy errors: it is easy to forget exactly how or when results where generated when there are in a separate place on your computer. Further more, if you update the analyses half way through writing, you need to remember to copy over any of the new outputs into the written document and it's all to easy to miss something.
 
-Actually, that's a simplification. There is not actually a single universally agreed upon definition of what the scientific method actually is, but broadly speaking it follows these principles:
+2. Discourages reproducibility: Typically just the final written document will be shared with other scientists, and not the underlying analyses that generated the results. Although the data/code repositories mentioned in the precious section can help to prevent this, it's an extra step.
 
-1. A scientific theory or hypothesis must make *testable predictions* about how the world behaves.
+One solution is an approach to programming with the fancy name of *literate programming* which just means combining writing and code in the same document. Then you *render* the document, which runs the code and generates the output of any analyses, and embed it within the text.
 
-2. We test each theory by doing experiments that have *the ability to disprove that theory*.
+Having the analyses next to your written interpretation makes it easy for us to verify that we are writing about the analysis we think we are! It also means that your results will automatically be updated to the latest version whenever you compile the document. And finally, you can share this document and (theoretically) any other scientist should be able to compile it and hopefully understand the relationship between your analysis and results more easily.
 
-3. We can only choose between theories based on the outcomes of these experiments.[^choosing-theories]
+Literate programming is not a new idea. It was first suggested by a prominent computer scientist called Donald Knuth in 1984[@knuth_literate_1984]. It didn't immediately take-off, because the early implementations were clunky and significantly harder to use than the usual method of writing code by itself in it's own file.
 
-[^choosing-theories]: If all of your experiments suggest that a theory is wrong, you can't decide to stick with it just because you like it for some other reason. For example, let's say that you hypothesize that all cows are blue. When you start finding non-blue cows in the real world, you can't claim that your theory is still correct because blue is your favorite color.
+However, literate programming has taken strides forwards in the past decade. The R programming language has been a major part of this development, and includes one of the most developed systems for literate programming: **RMarkdown**, which appeared in 2014.
 
-What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people's behavior or the growth of economies.
+Prior to RMarkdown, we typically wrote R code in *source files* that could only contain code (you may encounter these files: they end with the .R extension). RMarkdown is an R package (i.e. an extension to the R language, see @sec-intro-r-functions) that allows sections of R code to be included in text documents.
 
-In the 21st century, a unifying feature of all of these scientists is that they are using computers to analyze their data or run experiments. The scientific method tells us nothing about how we should use computers, only that whatever we do needs to adhere to the principles outlined above.
+Recently, an alternative to RMarkdown has appeared: **Quarto**.
 
-<!-- In the ??? -->
+Quarto is an attempt to expand RMarkdown to support other programming languages and types of input document. As we will see in the rest of this chapter, RMarkdown and Quarto are extremely similar, and you can achieve almost identical results with either system. 
 
-The scientific method tells us very little about how we should go about using computers, so let's consider how we might do so.
+This book is written using literate programming, using a combination of RMarkdown and Quarto files.
 
-## Reproducibility and replicability
+In the next few sections, we will go over how to create and edit RMarkdown and Quarto files. Most of the advice will be the same for each file type. Where the two systems differ, I will highlight this and show you both approaches. I will end the chapter with a more advanced discussion of the differences, in case you are planning a larger project and need to pick between the two (spoiler: it doesn't matter too much).
 
-As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else).
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO: Donald Knuth info box
+")
+```
 
-<!-- This means that if I do an experiment that is  -->
 
-## How reproducible is modern science?
 
-## What we can do
 
-<!--
-* Open Science Foundation: https://osf.io/
-  * Includes replication studies, e.g.
-    * Cancer Biology reproducibility project: https://osf.io/collections/rpcb/discover e.g. https://osf.io/nbryi/
-    * Psychology reproducibility project: https://osf.io/ezcuj/wiki/home/
-    
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO: RMarkdown, Quarto, Formatting, Code chunks
+
+Talk by  Yihui Xie: An anatomy of R Markdown with minimal applications: https://www.youtube.com/watch?v=fiy32LjgGUE
+'it's possible to explain the basic ideas with minimal examples. In this talk, I'll show you the basic process of rendering R Markdown to HTML and LaTeX. After you learn the nuts and bolts, you may be able to create your own favorite output style, especially if you know CSS, JavaScript, and LaTeX techniques'
+")
+```
+
+### Creating RMarkdown/Quarto files in RStudio
+
+RMarkdown files are text files that end in the file extension `.Rmd`. For example, a file called `my_homework.Rmd` in an RMarkdown file. Quarto files are similar, but end with the extension `.qmd`.
+
+We can create both types of files from within RStudio. Click on the *File* menu in the top left of RStudio^[or click the New File icon in the top toolbar], then pick the *New File* option, and then select either:
+
+* *RMarkdown...* to create an RMarkdown file, or
+* *Quarto document...* to create a Quarto file.
+
+When you create new files in this way, RStudio will include some default contents to give an example of how each type of file works. (We will also see how to create empty files, with no default contents.)
+
+Since the results are slightly different, let's look at each filetype in turn.
+
+#### New RMarkdown files
+
+When you create a new RMarkdown file, you will be presented with the following wizard:
+
+{{< placeholder >}}
+*Figure: RMarkdown creation wizard.*
+
+You can accept the defaults in the wizard as shown above, and modify the rest later. Or you can enter a title, author name, and/or date now if you prefer. Click *OK* to create the file (which will contain some default contents).
+
+{{< placeholder >}}
+*Figure: Example default RMarkdown file.*
+
+To create an empty file without any default contents, click the *Create Empty Document* button instead.
+
+The file will automatically be opened in the Editor pane of RStudio.
+
+
+#### New Quarto files
+
+Quarto files come with a similar set-up wizard:
+
+{{< placeholder >}}
+*Figure: Quarto creation wizard.*
+
+Again, it is fine to just click OK with the defaults, but you can put in a title and author name if you like.
+
+I also like to deselect the *Editor* checkbox, but you can easily turn the visual editor on or off once you have created the file (@sec-visual-editor).
+
+If you would like an empty Quarto document without any default contents, click the *Create Empty Document* button instead of *OK*.
+
+The file will automatically be opened in the Editor pane of RStudio.
+
+{{< placeholder >}}
+*Figure: Side-by-side examples of default RMarkdown & Quarto files, with key features highlighted.*
+
+
+### Rendering to an output
+
+Note that the files you create are not saved when you create them. To save them, make sure the file is the current one open in the editor pane and either press the *Save* icon in the top toolbar, or *File > Save* in the top menu, or click anywhere in the open file and then press the {{< kbd Ctrl-S >}} keys at the same time.
+
+To render the saved RMarkdown/Quarto files to an output:
+
+* In RMarkdown, click the *Knit* button at the top of the open file in the Editor pane.
+* In Quarto, click the *Render* button.
+
+In each case, the default output filetype will be created, such as a PDF or a HTML file (a webpage). Later on we'll see change the type of output file you render to in @sec-yaml-header-section.
+
+The rendering process will be shown in the bottom-right pane of RStudio while it happens. Sometimes a problem will occur which prevents the file from rendering. Common reasons for this are covered in the Frequently Encountered Problems section: @sec-common-render-issues.
+
+Once rendering is finished, the file should open up automatically. A PDF will typically open in your computer's default PDF viewer. An HTML output file will open up in your browser. If the output file doesn't open automatically, you can open it manually by clicking on the file in the Files tab in the bottom-right pane of RStudio.
+
+### Text
+
+### Code chunks
+
+### Text formatting (markdown)
+
+### Code chunk formatting
+
+* options
+* names
+
+### Setup code chunks
+
+### Inline code
+
+### Code comments vs. self-documenting code.
+
+### The header section {#sec-yaml-header-section}
+
+* Outputing different file types
+
+### Latex (commands, formulas)
+
+### Visual editor {#sec-visual-editor}
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+Refs:
+
+* https://rstudio.github.io/visual-markdown-editing/
+")
+```
+
+### Frequently encountered problems
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+Move these to the FEPs appendix.
+")
+```
+
+#### RStudio has forgotten my variables
+
+#### My formatting is wonky
+
+#### My document won't render {#sec-common-render-issues}
+
+* Missing dependencies.
+
+* Deciphering error messages.
+  * Run the code chunks interactively.
+    * Make sure you didn't create a variable out of sequence, or delete a code chunk with a variable (try clearing the Environment)
+  * Figuring out the offending code chunk.
+
+* Non ASCII characters.
+
+* Taking too long/crashes
+  * Memory/ large outputs/slow code.
+  
+
+### RMarkdown versus Quarto
+
+Aside from the differences covered above:
+
+RMD has an extensive ecosystem. Quarto can be extended, but seems to be designed to contain most features within the main system (and because it's newer, doesn't have such an ecosystem).
+
+Both can support multi-file projects, e.g. this book, but Quarto knits each file separately, whereas Rmd allows the files to be merged and subsequent files can access the output of code in previous files.
+
+Personally I have found Quarto to be a little less flexible and more prescriptive, but not deal-breakingly so. It has some nice new features that are not standard in RMarkdown, and is being actively developed and improved (whereas RMd is relatively stable at this point). 
+
+This book is written principally in Quarto.
+
+Due to the similarties, its not too hard to switch between them, or even include RMarkdown files within Quarto files (which this book does).
+
+
+
+### Topics covered elsewhere in this book
+
+Links to RMarkdown/Quarto features covered elsewhere in this book:
+* table formatting
+* figure formatting
+* paper templates (latex)
+* outputs
+
+
+### Cheetsheet
+
+RMarkdown cheetsheet
