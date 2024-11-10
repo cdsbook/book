@@ -1,6 +1,6 @@
 ---
 execute:
-  freeze: auto
+  freeze: true
 ---
 
 # Databases {#sec-databases-chapter}

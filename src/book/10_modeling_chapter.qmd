@@ -1,4 +1,7 @@
 ---
+execute:
+  freeze: true
+  cache: true
 prefer-html: true # need to go through and remove html from PDF
 ---
 

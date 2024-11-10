@@ -1,3 +1,9 @@
+---
+execute:
+  freeze: true
+  cache: true
+---
+
 # Deep Learning {#sec-deep-learning-chapter}
 
 ```{r setup, include=FALSE}
@@ -322,7 +328,7 @@ fitted <- model %>%
     )
 ```
 
-```{r, include=FALSE, cache=TRUE}
+```{r, include=FALSE, cache=TRUE, eval=FALSE}
 fitted <- model %>% 
   fit(
     train_dl, 
@@ -369,7 +375,7 @@ plot(fitted)
 ```
 
 ```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("./img/deep_learning_acc-loss_plot.png")
+knitr::include_graphics("../img/deep_learning_acc-loss_plot.png")
 ```
 
 The left hand column of graphs show how the good the model's predictions were on the training data (at the end of every epoch of improving the model). The right hand graphs show the same metrics, but on the validation data.
@@ -408,7 +414,7 @@ test_dl <- dataloader(
 
 Then we can use the `evaluate()` function to calculate the loss and accuracy on that test data:
 
-```{r dl-evaluate}
+```{r dl-evaluate, eval=FALSE}
 evaluate(fitted, test_dl)
 ```
 

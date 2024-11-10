@@ -11,6 +11,7 @@ execute:
 #| results: "asis"
 
 source("prechapter.R")
+source("../../render_exercises.R")
 suppressPackageStartupMessages(library(tidyverse))
 insert_status_callout("draft")
 ```
@@ -81,13 +82,7 @@ function_name <- function(parameter_1, parameter_2, etc.){ # <1>
   return(output)                                           # <3>
 }                                                          # <4>
 ```
-
-1. The first line creates the function almost like a new variable! 
-
-   i. We put the name for the new function (e.g. `function_name`) on the left-hand side of the assignment operator `<-`.
-   ii. Then on the right-hand side of the assignment operator we use the `function` *keyword* to indicate that we are creating a function instead of a normal variable. `function` is immediately followed by parentheses `(...)`.
-   iii. Inside the parentheses we put the names of any parameters that the function will accept as inputs e.g. `parameter_1`. Each parameter name is separated by a comma.
-   iv. We end the line with a curly brace `{`. This indicates that all code after this is part of the function, until we reach a matching closing curly brace `}`.
+1. The first line creates the function almost like a new variable! We put the name for the new function (e.g. `function_name`) on the left-hand side of the assignment operator `<-`. Then on the right-hand side of the assignment operator we use the `function` *keyword* to indicate that we are creating a function instead of a normal variable. `function` is immediately followed by parentheses `(...)`. Inside the parentheses we put the names of any parameters that the function will accept as inputs e.g. `parameter_1`. Each parameter name is separated by a comma. We end the line with a curly brace `{`. This indicates that all code after this is part of the function, until we reach a matching closing curly brace `}`.
 
 2. We can then add any code that we want to run inside the function. By default, we indent these lines by two spaces as a helpful visual cue that these lines are part of the function.
 
