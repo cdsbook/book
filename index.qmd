@@ -1,3 +1,8 @@
-# Preface {.unnumbered}
 
-Preface.
+```{r setup, include=FALSE}
+source("src/book/prechapter.R")
+```
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Figure out how to make chapter 1 the introduction in the ")
+```

@@ -4,15 +4,30 @@ project:
 format:
 # can change to docx
   pdf:
-    documentclass: scrreprt
-    toc: true
-    toc-depth: 2
+    documentclass: krantz
+    classoption: krantz2
+    toc: false
+    # toc-depth: 
+    number-depth: 1
     code-block-bg: E9ECEF
     code-block-border-left: B1B4B7
+    keep-tex: true
+    # template: or template-partials: https://quarto.org/docs/journals/templates.html
+    template-partials: 
+      - before-body.tex
+    execute:
+      cache: true
     include-in-header:
       - text: |
+          \usepackage{amssymb}
+          \usepackage{amsmath}
+          \usepackage{graphicx}
+          \usepackage{subfigure}
+          \usepackage{makeidx}
+          \usepackage{multicol}
           \usepackage{makeidx}
           \makeindex
+# \include{preamble}
     include-after-body: 
       text: |
         \printindex

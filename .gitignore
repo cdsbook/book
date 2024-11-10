@@ -1,10 +1,14 @@
 # Project specific
 *.backup
+**.tex
 /.quarto/
 _book
 _bookdown_files
 _freeze
+_quarto-book.yml
 docs/*.pdf
+krantz.cls
+frontmatter
 notes.txt
 src/book/**.html
 src/book/**_files/
