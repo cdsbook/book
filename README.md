@@ -64,6 +64,14 @@ This is an example of a callout with a title.
 Note that to output a block like this from a code chunk, that chunk needs the `results = "asis"` option (RMarkdown) or the `#| results: "asis"` option (Quarto).
 
 
+### TODO Comments
+
+Add using the `pdf_dev_comment()` function, e.g.
+
+    ```{r, echo=FALSE, results='asis'}
+    pdf_dev_comment("TODO: something that needs doing")
+    ```
+
 ### Indexing
 
 Add `\index{entry}` in text at places you want an index. Alternatively:

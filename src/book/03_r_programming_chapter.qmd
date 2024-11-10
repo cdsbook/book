@@ -25,6 +25,10 @@ insert_status_callout("draft")
 
 ## Data
 
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: mention scientific notation for large (and small) numbers")
+```
+
 {{< include ../../src/snippets/r_programming_data.Rmd >}}
 
 
@@ -40,9 +44,10 @@ insert_status_callout("draft")
 
 ## How R works
 
-<!-- TODO: 
-Sidebar here about Grace Hopper and the invention of programming languages (plus bugs, Arlington park, and the Queen of Code documentary from 538) 
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Sidebar here about Grace Hopper and the invention of programming languages (plus bugs, Arlington park, and the Queen of Code documentary from 538) ")
+```
+
 
 {{< include ../../src/snippets/r_programming_how_it_works.Rmd >}}
 
@@ -61,11 +66,10 @@ Sidebar here about Grace Hopper and the invention of programming languages (plus
 
 {{< include ../../src/snippets/r_programming_functions.Rmd >}}
 
-<!-- TODO:
-Add a section on creating and opening files in RStudio
-
-## Files
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Add a section on creating, opening, and saving files in RStudio. Also cover .R source files, and link back from the RMarkdown chapter. Also cover file systems and how to navigate them (Windows and Mac).
+")
+```
 
 
 ## Packages
