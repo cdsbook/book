@@ -288,38 +288,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/25_images_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Image Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/26_text_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Text Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/27_time_series_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Time Series Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../src/book/29_online_data_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Online Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/30_geospatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geospatial Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Online Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/33_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -336,19 +312,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/35_papers_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Papers</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/36_webpages_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Webpages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Papers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/37_dashboards_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
   </div>
 </li>
       </ul>
@@ -602,7 +572,7 @@ Topics:
 -->
 <p>Let’s use a dataset that is included in the <code>tidyverse</code> R package which contains information about different characters from the Star Wars franchise.</p>
 <!-- TODO: use a more scientific dataset than Star Wars -->
-<p>You can load the dataset in RStudio by loading the <code>tidyverse</code> package (which you installed in <a href="03_r_programming_chapter.html#sec-installing-packages"><span>Section&nbsp;3.9.1</span></a>) by running <code>library(tidyverse)</code>. The dataset will then be available to you as a dataframe stored in an R variable called <code>starwars</code>.</p>
+<p>You can load the dataset in RStudio by loading the <code>tidyverse</code> package (which you installed in <a href="03_r_programming_chapter.html#sec-installing-packages"><span>Section&nbsp;3.10.1</span></a>) by running <code>library(tidyverse)</code>. The dataset will then be available to you as a dataframe stored in an R variable called <code>starwars</code>.</p>
 <p>Here is an example of the data stored in the <code>starwars</code> dataframe: ::: {.cell hash=‘05_visualization_chapter_cache/html/unnamed-chunk-5_069e7b90eee93c4d5945aac111f22bcd’}</p>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -675,6 +645,10 @@ Topics:
 <li><p>However, that shape is obscured in the plot on the left with just three bins. With too few bins, we destroy any fine grained shape in the distribution.</p></li>
 <li><p>It is equally hard to see the overall shape in the right-hand histogram, because there are so many bins that our eyes are distracted by the sharp transitions between neighboring bins. However, these patterns are caused by random variation, i.e.&nbsp;by accidentally having a few more Star Wars characters in one bin.</p></li>
 </ul>
+<!-- TODO:
+
+How to wrap long lines of code
+-->
 </section>
 <section id="one-categorical-variable-bar-charts" class="level2" data-number="5.4">
 <h2 data-number="5.4" class="anchored" data-anchor-id="one-categorical-variable-bar-charts"><span class="header-section-number">5.4</span> One categorical variable: bar charts</h2>

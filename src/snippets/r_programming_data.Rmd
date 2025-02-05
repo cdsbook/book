@@ -16,6 +16,10 @@ R allows us to work with several "higher-level" types of data. These **data type
 
 * the **Boolean** data type holds a value that is either `TRUE` or `FALSE`. (This is sometimes also referred to as the "logical" data type.)
 
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert exercises to render functions")
+```
+
 <!-- Book version -->
 
 ```{r character-data-book-exercise, eval=is_book, echo=F, results='asis'}

@@ -37,9 +37,15 @@ pdf_dev_comment("TODO: mention scientific notation for large (and small) numbers
 {{< include ../../src/snippets/r_programming_operators.Rmd >}}
 
 
-## Storing and reusing results with *variables*
+## Storing and reusing results with *variables* {#sec-r-programming-variables}
 
 {{< include ../../src/snippets/r_programming_variables.Rmd >}}
+
+You can name a variable anything you choose... with certain restrictions. R does not allow variables to begin with a number, such as `100`, or contain spaces within the variable, such as `one hundred`.
+
+Technically you can get around this restriction by putting an invalid variable name inside backticks, for example: `` `100` `` or `` `one hundred` ``.
+
+However, it is generally advisable to avoid naming variables with invalid names, since it will make your life a lot easier if you don't constantly have to include extra backticks. For example, we might replace spaces with underscores: `one_hundred`.
 
 
 ## How R works
@@ -60,6 +66,61 @@ pdf_dev_comment("TODO: Sidebar here about Grace Hopper and the invention of prog
 ## Vectors
 
 {{< include ../../src/snippets/r_programming_vectors.Rmd >}}
+
+
+## Dataframes {#sec-intro-r-dataframes}
+
+In our we often want to work with tables of data you probably encountered the concept of the table before. Typically each column in the table represents some type of measurement, known as a variable (note that the variable represented by a column is different to the R variables we learned about back in @sec-r-programming-variables^[For now I shall try to explicitly indicate whether I am talking about a column variable or a R variable, but as the book progresses I will phase out this distinction and expect the meaning of the word *variable* to be clear from context.]). Each row represents a thing that those measurements were taken from.
+
+For example here's a simple table of data that we might want to analyze in R:
+
+| ID | Measurement A | Measurement B |
+|-----------|--------------|--------------|
+| S1        | 5.2          | 8.1          |
+| S2        | 6.4          | 7.9          |
+
+```{r, echo=FALSE}
+df <- data.frame(
+  `ID` = c("S1", "S2"),
+  `Measurement A` = c(5.2, 6.4),
+  `Measurement B` = c(8.1, 7.9),
+  check.names = FALSE
+)
+```
+
+Just like R has a vectors to store a single series of values, it also contains a structure called a *dataframe* to hold a table of data. In fact, R uses vectors to create dataframes: behind the scenes, each column of a dataframe is stored within a vector.
+
+Dataframes can also be assigned to R variables so that we can store and retrieve them. For the purposes of this section, suppose that the R variable `df` contains a dataframe of the table above. If we run the variable by itself, we will print out the dataframe:
+
+```{r}
+df
+```
+
+R's use of vectors for each column of the dataframe means that each column can only contain one type of data. For example, a column might contain just character strings, or just numbers, but not a mix of the two.
+
+You might ask, how do we retrive the a single column from a dataframe? We will talk more about this in @sec-wrangling-chapter, but for now you should know that there is a very basic method to get a column using the `$` operator. (Once we learn better methods of wrangling dataframes, we will rarely use this, but it's helpful to know.)
+
+In code, we would write the dataframe's variable, followed by a `$`, followed by the column name. There are no spaces between these three things. For example, we could retrieve the `ID` column from `df` as follows:
+
+```{r}
+df$ID
+```
+
+You'll note that this returns a vector of the values in that column.
+
+One last thing to remember about dataframes is that although its columns are not technically R variables in their own right, they do behave a lot like R variables in some ways.
+
+One such similarity is how we have to write the column name in code. We run into the same restrictions on column names that apply to R variable names, e.g. they cannot contain spaces, or start with a number. However, there is no restriction on creating dataframes with column names that violate these rules, so you will often encounter dataframes with column names that cannot be referenced as R variables.
+
+For example, `df` contains two columns that have a space in their column name: `Measurement A` and `Measurement B`. Just as with variables, if we need to reference these columns then we have to wrap the column name in backticks, e.g. `` `Measurement A` ``.
+
+For example, if we wanted to extract the `Measurement B` column as a vector using the `$` operator, we would need to write:
+
+```{r}
+df$`Measurement B`
+```
+
+If you're creating your own R dataframes, it's generally advisable to name the columns in such a way that they don't require violate variable naming rules and require backticks, because this will make your life easier. For example, you could use underscores instead of spaces in the column name.
 
 
 ## Functions {#sec-intro-r-functions}

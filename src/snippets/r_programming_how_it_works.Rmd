@@ -1,8 +1,9 @@
-<!-- TODO: 
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: 
 basic video on how R interprets a line of code: 
 * extend recipe analogy from hello world section
-* Compiled: interactivity (creative recipe - possibly making it up rather than following a pre-defined recipe) vs speed (optimizing recipe steps)
--->
+* Compiled: interactivity (creative recipe - possibly making it up rather than following a pre-defined recipe) vs speed (optimizing recipe steps)")
+```
 
 R is an *interpreted programming language*.
 

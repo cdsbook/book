@@ -28,17 +28,19 @@ Here R returns the value `FALSE` when it evaluates this expression, because 10 i
 
 Just as with numeric data, we can store a Boolean value in a variable, e.g. `d <- FALSE` or `e <- 10 < 9`. (Remember that this assignment to a variable always happens last, after we have evaluated the expression on the right-hand side of the `<-` operator.)
 
-<!-- TODO: 
-put exercises into their own section 
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: 
+put exercises into their own section ")
+```
+
 
 ### The `<` and `>` operators
 
-<!-- Book version -->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: covert exercises to render functions")
+```
 
-<!-- TODO:
-add webexercises answer boxes to the exercise below
--->
+<!-- Book version -->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
@@ -83,10 +85,6 @@ question("What does the > operator do?",
 ### The `==` operators
 
 <!-- Book version -->
-
-<!-- TODO:
-add webexercises answer boxes to the exercise below
--->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("
@@ -139,10 +137,6 @@ question("What does the == operator do?",
 
 
 <!-- Book version -->
-
-<!-- TODO:
-add a webexercises answer box to the exercise below
--->
 
 ```{r, eval=is_book, echo=F, results = 'asis'}
 cat("

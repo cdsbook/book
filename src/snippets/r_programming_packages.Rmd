@@ -26,6 +26,10 @@ To install a new package, either:
     
     Having gone through this chapter, this code should hopefully make some sense! `install.packages()` is a function (built-in to the core R programming language), and `"tidyverse"` is a character string that we are passing as the argument to that function.
     
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Open up an Rmd/Qmd file in RStudio, and click the install button in the yellow banner at the top. Does this also happen in R Scripts?")
+```
+    
 Note that it can take some time to install a package (e.g. the `tidyverse` package can take 10-15 minutes to install!), so it's worth checking to see if it is already installed before you waste a lot of time.
 
 ### Loading packages

@@ -1,16 +1,22 @@
-<!-- TODO:
-video intro to R functions
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO:
+video intro to R functions")
+```
 
-Perhaps, keen mathematician that you are, you want to calculate the length of the hypotenuse of a triangle. Dredging up memories of early math classes, you will doubtless recall Pythagoras’s theorem that the hypotenuse (the long side) of triangle is given by:
+Perhaps, keen mathematician that you are, you want to calculate the length of the hypotenuse of a triangle. Dredging up memories of early math classes, you will doubtless recall Pythagoras’s theorem that the hypotenuse (the long side) of right-angled triangle is given by:
 
 $$c = \sqrt{a^2 + b^2}$$
 
 ($c$ is the hypotenuse [long side] and $a$ and $b$ are the short sides.)
 
-<!-- TODO:
-include picture of a right angled triangle
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO:
+include picture of a right angled triangle")
+```
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert exercises to render functions")
+```
 
 <!-- Book version -->
 
@@ -126,6 +132,9 @@ Then we can use this `hypotenuse` function as many times as we like. For example
 hypotenuse(3, 4)
 ```
 
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert exercises to render functions")
+```
 
 <!-- Book version -->
 
@@ -252,18 +261,14 @@ grade_conditions(
 
 <!-- End tutorial -->
 
-<!-- TODO:
 
-### Create your own functions
-or
-## Additional extra exercises
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Add exercise: have students create a `subtractor` function by modifying `adder()`
 
+Additional exercise ideas:
 
-Return a fixed value.
-
-Calculate the area of a rectangle.
-
-Passing variables, & making copies, modifying within function, & global variables
-
--->
+- Return a fixed value.
+- Calculate the area of a rectangle.
+- Passing variables, & making copies, modifying within function, & global variables")
+```
 

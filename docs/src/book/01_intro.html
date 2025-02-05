@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -271,38 +252,14 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../src/book/25_images_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Image Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/26_text_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Text Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/27_time_series_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Time Series Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../../src/book/29_online_data_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Online Data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/30_geospatial_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Geospatial Data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Online Data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/33_databases_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Databases</span></span></a>
   </div>
 </li>
       </ul>
@@ -319,19 +276,13 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/35_papers_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Papers</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../src/book/36_webpages_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Webpages</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Papers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/37_dashboards_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
   </div>
 </li>
       </ul>
@@ -378,7 +329,13 @@ div.csl-indent {
   <li><a href="#what-are-the-computational-and-data-sciences" id="toc-what-are-the-computational-and-data-sciences" class="nav-link active" data-scroll-target="#what-are-the-computational-and-data-sciences"><span class="header-section-number">1.1</span> What are the computational and data sciences?</a></li>
   <li><a href="#generating-data-versus-analyzing-data" id="toc-generating-data-versus-analyzing-data" class="nav-link" data-scroll-target="#generating-data-versus-analyzing-data"><span class="header-section-number">1.2</span> Generating data versus analyzing data</a></li>
   <li><a href="#why-this-book" id="toc-why-this-book" class="nav-link" data-scroll-target="#why-this-book"><span class="header-section-number">1.3</span> Why this book?</a></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">1.4</span> Reproducibility</a></li>
+  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link" data-scroll-target="#the-scientific-method"><span class="header-section-number">1.4</span> The Scientific Method</a>
+  <ul class="collapse">
+  <li><a href="#reproducibility-and-replicability" id="toc-reproducibility-and-replicability" class="nav-link" data-scroll-target="#reproducibility-and-replicability"><span class="header-section-number">1.4.1</span> Reproducibility and replicability</a></li>
+  <li><a href="#how-reproducible-is-modern-science" id="toc-how-reproducible-is-modern-science" class="nav-link" data-scroll-target="#how-reproducible-is-modern-science"><span class="header-section-number">1.4.2</span> How reproducible is modern science?</a></li>
+  <li><a href="#what-we-can-do" id="toc-what-we-can-do" class="nav-link" data-scroll-target="#what-we-can-do"><span class="header-section-number">1.4.3</span> What we can do</a></li>
+  </ul></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">1.5</span> Reproducibility</a></li>
   </ul>
 </nav>
     </div>
@@ -411,12 +368,9 @@ div.csl-indent {
 </ul>
 <p>Basically we want to know how to apply computers and data to solve real world problems.</p>
 <p>There are problems in the world that we could choose to address with computers and data. In this book we will focus on problems from the natural and social sciences (i.e.&nbsp;physics, biology, economics, psychology, etc.).</p>
-<!-- TODO: Venn diagrams of CS and DS using mermaid.js, or just inkscape -->
 </section>
 <section id="generating-data-versus-analyzing-data" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="generating-data-versus-analyzing-data"><span class="header-section-number">1.2</span> Generating data versus analyzing data</h2>
-<!-- TODO: running experiments vs analyzing the outcomes -->
-<p>Coming soon…</p>
 </section>
 <section id="why-this-book" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="why-this-book"><span class="header-section-number">1.3</span> Why this book?</h2>
@@ -431,17 +385,45 @@ div.csl-indent {
 </ul>
 <p>That’s not to say that a data scientist at a company <em>shouldn’t</em> care about reproducibility, simplicity, and clarity. But if a company can make a million dollars tomorrow with a sexy but complicated and hard-to-reproduce analysis, then they should do so! But this would be bad practice for a scientist.</p>
 </section>
-<section id="reproducibility" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">1.4</span> Reproducibility</h2>
+<section id="the-scientific-method" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">1.4</span> The Scientific Method</h2>
+<p>Why don’t we still believe that the sun is the flaming chariot wheel of the ancient Greek god Apollo as he drives across the sky each day? Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?</p>
+<p>The answer, in case you haven’t guessed, is science. Science is the reason that human progress has exploded since the scientific revolution of the 16th and 17th centuries. And science offers our best path forwards for making future progress and confronting the challenges that we will inevitably face in the coming centuries.</p>
+<p>We can think of science as a game: humanity versus the unknown. Each field of science (biology, physics, psychology, etc.) is like a team in this great game. And just like regular sports teams, each scientific field uses slightly different tactics to play the game, because the type of <em>thing</em> that a scientist studies influences how they can go about experimenting on it.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Despite the range of techniques used by different scientists, and the conventions followed by different scientific fields, all scientists agree on the rules of the game itself. This shared set of rules is called the <em>scientific method</em>.</p>
+<p>Actually, that’s a simplification. There is not actually a single universally agreed upon definition of what the scientific method actually is, but broadly speaking it follows these principles:</p>
+<ol type="1">
+<li><p>A scientific theory or hypothesis must make <em>testable predictions</em> about how the world behaves.</p></li>
+<li><p>We test each theory by doing experiments that have <em>the ability to disprove that theory</em>.</p></li>
+<li><p>We can only choose between theories based on the outcomes of these experiments.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p></li>
+</ol>
+<p>What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people’s behavior or the growth of economies.</p>
+<p>In the 21st century, a unifying feature of all of these scientists is that they are using computers to analyze their data or run experiments. The scientific method tells us nothing about how we should use computers, only that whatever we do needs to adhere to the principles outlined above.</p>
+<!-- In the ??? -->
+<p>The scientific method tells us very little about how we should go about using computers, so let’s consider how we might do so.</p>
+<section id="reproducibility-and-replicability" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="reproducibility-and-replicability"><span class="header-section-number">1.4.1</span> Reproducibility and replicability</h3>
+<p>As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else).</p>
+<!-- This means that if I do an experiment that is  -->
+</section>
+<section id="how-reproducible-is-modern-science" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="how-reproducible-is-modern-science"><span class="header-section-number">1.4.2</span> How reproducible is modern science?</h3>
+</section>
+<section id="what-we-can-do" class="level3" data-number="1.4.3">
+<h3 data-number="1.4.3" class="anchored" data-anchor-id="what-we-can-do"><span class="header-section-number">1.4.3</span> What we can do</h3>
+</section>
+</section>
+<section id="reproducibility" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">1.5</span> Reproducibility</h2>
 <p>The rest of this book is focused on how to use computers and data in ways that are good scientific practice. However, let us take a moment to talk more about the importance of reproducibility.</p>
 <p>Unfortunately, scientists are not rewarded for making sure that their analyses are reproducible, or for checking that they can reproduce the work of other scientists.</p>
-<p>In a recent survey of 1500 scientists <span class="citation" data-cites="baker500ScientistsLift2016">(<a href="references.html#ref-baker500ScientistsLift2016" role="doc-biblioref">Baker 2016</a>)</span>, a shockingly high percentage said that they were unable to reproduce another scientist’s work:</p>
+<p>In a recent survey of 1500 scientists <span class="citation" data-cites="baker500ScientistsLift2016">(<a href="references.html#ref-baker500ScientistsLift2016" role="doc-biblioref"><strong>baker500ScientistsLift2016?</strong></a>)</span>, a shockingly high percentage said that they were unable to reproduce another scientist’s work:</p>
 <div class="cell" data-hash="01_intro_cache/html/fig-failed-reproduction-by-discipline_23ceda0b3c247fce4bb2de5d8c066690">
 <div class="cell-output-display">
 <div id="fig-failed-reproduction-by-discipline" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="01_intro_files/figure-html/fig-failed-reproduction-by-discipline-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: Data from <span class="citation" data-cites="baker500ScientistsLift2016">(<a href="references.html#ref-baker500ScientistsLift2016" role="doc-biblioref">Baker 2016</a>)</span>.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: Data from <span class="citation" data-cites="baker500ScientistsLift2016">(<a href="references.html#ref-baker500ScientistsLift2016" role="doc-biblioref"><strong>baker500ScientistsLift2016?</strong></a>)</span>.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -456,11 +438,11 @@ div.csl-indent {
 <li><p>Sometimes this is for good reasons (e.g.&nbsp;protecting the privacy of the people in the dataset, or not publishing the genetic sequence of a dangerous virus).</p></li>
 <li><p>Other times the reasons might be more self-serving. For example, if you were able to get a large grant of money to do a difficult experiment, you might want to publish several different analyses of the results. Unfortunately there are no prizes for second place in science, and the first person to make a discovery gets the glory. If somebody else publishes a discovery that you were about to publish yourself, then scientists call this getting “scooped”. To avoid getting scooped, you might decide to restrict access to your data until you have published all the analyses of it that you want to.</p>
 <p>You can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an <em>embargo</em> on it. This delays the publication of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.</p></li>
-<li><p>And sometimes scientists don’t have a good reason for not publishing their data/code, except that it wasn’t required of them<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:</p></li>
+<li><p>And sometimes scientists don’t have a good reason for not publishing their data/code, except that it wasn’t required of them<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:</p></li>
 </ul>
 <ul>
 <li><p>In the USA, the federal government has started to require that any science done using its grants has to make data available when results are published.</p></li>
-<li><p>New initiatives like the <a href="https://www.cos.io/">Center for Open Science</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> are promoting the sharing of data and code, for example by creating the <a href="https://osf.io/">Open Science Framework</a><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> for new studies</p></li>
+<li><p>New initiatives like the <a href="https://www.cos.io/">Center for Open Science</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> are promoting the sharing of data and code, for example by creating the <a href="https://osf.io/">Open Science Framework</a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> for new studies</p></li>
 </ul>
 <ul>
 <li>There are now various websites that will permanently archive code and data so that it can be easily shared with other researchers, such as DataDryad and FigShare.</li>
@@ -468,18 +450,15 @@ div.csl-indent {
 </ol>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
-<div id="ref-baker500ScientistsLift2016" class="csl-entry" role="listitem">
-Baker, Monya. 2016. <span>“1,500 Scientists Lift the Lid on Reproducibility.”</span> <em>Nature</em> 533 (7604): 452–54. <a href="https://doi.org/10.1038/533452a">https://doi.org/10.1038/533452a</a>.
-</div>
-</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>This is a problem of both the scientists as well as science as a discpline.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://www.cos.io/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>https://osf.io/<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For example, a microbiologist can grow bacteria in a lab and do pretty much whatever they want experimentally, whereas a psychologist studying human behavior is much more constrained by what is ethically acceptable to do to other humans.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If all of your experiments suggest that a theory is wrong, you can’t decide to stick with it just because you like it for some other reason. For example, let’s say that you hypothesize that all cows are blue. When you start finding non-blue cows in the real world, you can’t claim that your theory is still correct because blue is your favorite color.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>This is a problem of both the scientists as well as science as a discpline.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>https://www.cos.io/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>https://osf.io/<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

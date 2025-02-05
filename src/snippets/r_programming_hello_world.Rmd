@@ -1,6 +1,8 @@
 It is a long-standing tradition that your first program in any new programming language should simply display the message "Hello, World!".
 
-<!-- TODO: video: "first R program" which is hello world overview -->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: video: 'first R program' which is hello world overview")
+```
 
 In R we can use the `print()` *function* to display a piece of data (such as the text *Hello, World!*).
 
@@ -26,6 +28,10 @@ We will learn more about the different parts of this code in this chapter, but b
 
 When you hit *Enter*, R figures out how to covert this code into a series of electrical currents that your computer's processor can understand. The result comes back as another series of electrical currents, which R then figures out how to convert back into something that a human can understand.
 :::
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert following exercises to render functions")
+```
 
 <!-- Book code -->
 
@@ -86,13 +92,10 @@ gradethis::grade_code("You just ran your first program! Don't worry, things will
 
 <!-- End tutorial -->
 
-<!-- TODO:
-::: {.info-box .callout-tip}
-**Programming vs. cooking**
-
-
-:::
--->
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: **Programming vs. cooking** callout block")
+```
+<!-- 
 
 <!-- Book code -->
 
