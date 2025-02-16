@@ -18,18 +18,17 @@ In this book we are concerned with two closely related fields:
 
 * __Data science__ similarly combines statistics (i.e. the mathematical theory of analyzing data) with applied problems.
 
-Basically we want to know how to apply computers and data to solve real world problems.
-
-There are problems in the world that we could choose to address with computers and data. In this book we will focus on problems from the natural and social sciences (i.e. physics, biology, economics, psychology, etc.).
+Basically we want to know how to apply computers and data to investigate scientific questions. In this book we will focus on questions from the natural and social sciences (i.e. physics, biology, economics, psychology, etc.), but the techniques and methods can be applied outside of science, too.
 
 ```{r, echo=FALSE, results='asis'}
 pdf_dev_comment("TODO: Venn diagrams of CS and DS using mermaid.js, or just inkscape")
 ```
 
-## Generating data versus analyzing data
-
 ```{r, echo=FALSE, results='asis'}
-pdf_dev_comment("TODO: running experiments vs analyzing the outcomes")
+pdf_dev_comment("
+TODO: ## Generating data versus analyzing data
+
+running experiments vs analyzing the outcomes")
 ```
 
 ## Why this book?
@@ -74,9 +73,7 @@ Actually, that's a simplification. There is not actually a single universally ag
 
 2. We test each theory by doing experiments that have *the ability to disprove that theory*.
 
-3. We can only choose between theories based on the outcomes of these experiments.[^choosing-theories]
-
-[^choosing-theories]: If all of your experiments suggest that a theory is wrong, you can't decide to stick with it just because you like it for some other reason. For example, let's say that you hypothesize that all cows are blue. When you start finding non-blue cows in the real world, you can't claim that your theory is still correct because blue is your favorite color.
+3. We can only choose between theories based on the outcomes of these experiments.^[If all of your experiments suggest that a theory is wrong, you can't decide to stick with it just because you like it for some other reason. For example, let's say that you hypothesize that all cows are blue. When you start finding non-blue cows in the real world, you can't claim that your theory is still correct because blue is your favorite color.]
 
 What this looks like in practice can vary widely: a biologist could be out in the field observing living organisms or in the laboratory looking at cells; a physicist might be coming up with precise mathematical theories or building a telescope to go into space to observe distant galaxies; an economist might be collecting data about people's behavior or the growth of economies.
 
@@ -88,34 +85,109 @@ The scientific method tells us very little about how we should go about using co
 
 ### Reproducibility and replicability
 
-As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else).
+As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else). And if two scientists conduct the same experiment independently, they should both get evidence that is consistent with that universal truth.
 
-<!-- This means that if I do an experiment that is  -->
+There are two separate concerns when it comes to the repeatability of science.
+
+The first is that if you and I analyze the same data (e.g. we share the same dataset), in the same way, we should arrive at the same result. This is generally called *reproducibility*.
+
+It's also possible for us to obtain our own datasets (e.g. we each run our own experiment, sometimes completely different experiments) with a view to investigating that universal truth. I might measure the Earth's gravitational field by dropping rubber balls out of a second floor window, whereas you might use the speed of a pendulum's swing. However, we should get results that are consistent with each other. This is called *replicability*.
+
+We reproduce analyses; we replicate experiments.^[Except in the minority of scientific fields that define these terms in different, or even opposite, ways.]
 
 ### How reproducible is modern science?
-
-### What we can do
-
-```{r, echo=FALSE, results='asis'}
-pdf_dev_comment("
-* Open Science Foundation: https://osf.io/
-  * Includes replication studies, e.g.
-    * Cancer Biology reproducibility project: https://osf.io/collections/rpcb/discover e.g. https://osf.io/nbryi/
-    * Psychology reproducibility project: https://osf.io/ezcuj/wiki/home/
-* Reproducible computational analyses
-")
-```
-
-
-## Reproducibility
 
 The rest of this book is focused on how to use computers and data in ways that are good scientific practice. However, let us take a moment to talk more about the importance of reproducibility.
 
 Unfortunately, scientists are not rewarded for making sure that their analyses are reproducible, or for checking that they can reproduce the work of other scientists. 
 
-In a recent survey of 1500 scientists [@baker500ScientistsLift2016], a shockingly high percentage said that they were unable to reproduce another scientist's work:
+In a recent survey of 1500 scientists [@baker_1500_2016], a shockingly high percentage said that they were unable to reproduce another scientist's work:
 
-{{< include ../../src/snippets/reproducibility_failures_by_discipline.Rmd >}}
+```{r, include=FALSE}
+library(tidyverse)
+baker_cols <- read_tsv(
+  "../data/Baker_2016_Nature_Reproducibilitysurveyrawdata20160523.txt", 
+  locale=locale(encoding="latin1"),
+  n_max = 2,
+  col_names = FALSE
+  )
+bc_p1 <- baker_cols %>%
+  slice(1) %>%
+  pivot_longer(cols = everything()) %>%
+  fill(value)
+bc_p2 <- baker_cols %>%
+    slice(2) %>%
+    pivot_longer(cols = everything())
+baker_col_names <- full_join(bc_p1, bc_p2, by = c("name" = "name")) %>%
+  mutate(
+    value = if_else(
+      is.na(value.y),
+      value.x,
+      str_c(value.x, ": ", value.y)
+    )
+  ) %>%
+  pluck(4)
+baker_survey_df <- read_tsv(
+  "../data/Baker_2016_Nature_Reproducibilitysurveyrawdata20160523.txt", 
+  col_names = baker_col_names,
+  locale=locale(encoding="latin1"),
+  skip = 2
+  )
+```
+
+```{r, include = FALSE}
+sum_stat <- baker_survey_df %>%
+  select(
+    interest = `Which of the following best describes your area of interest?`,
+    fail_another = `Which, if any, of the following have you done?: Tried and failed to reproduce someone else's experiment`
+  ) %>%
+  group_by(
+    interest, fail_another
+    ) %>%
+  summarize(
+    n = n(),
+    # fail_another = sum(`Which, if any, of the following have you done?: Tried and failed to reproduce someone else's experiment`)
+  ) %>%
+  ungroup() %>%
+  pivot_wider(
+    names_from = fail_another,
+    values_from = n
+  ) %>%
+  rowwise() %>% 
+  mutate(
+    total = sum(No, Yes, `I can't remember`, na.rm=TRUE),
+    yeses = Yes
+  ) %>%
+  pivot_longer(cols = c(No, Yes, `I can't remember`)) %>%
+  mutate(
+    fraction = value/total,
+    yes_fraction = yeses / total
+  ) #%>%
+  # group_by(interest) %>%
+  # mutate(level = )
+sum_stat
+```
+
+```{r, echo=FALSE, warning=FALSE}
+#| label: fig-failed-reproduction-by-discipline
+#| fig-cap: "Data from [@baker_1500_2016]."
+
+sum_stat %>%
+  ggplot() +
+  geom_col(
+    aes(x = reorder(interest, yes_fraction, FUN=mean ), y = 100*fraction, fill=name)
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "top",
+    title = element_text(size=9),
+    legend.spacing = margin(l= 5, r = 5)
+  ) +
+  labs(x = "", y = "Percent", title = "1,500 scientists' answers to 'Have you ever tried and failed to reproduce somebody else's experiment?'", fill = "") +
+  scale_fill_manual(breaks = c("Yes", "I can't remember", "No"), 
+                       values=c("red", "yellow", "green"))
+```
+
 
 Consider how the process of modern science works:
 
@@ -129,21 +201,24 @@ Consider how the process of modern science works:
     
     * Sometimes this is for good reasons (e.g. protecting the privacy of the people in the dataset, or not publishing the genetic sequence of a dangerous virus).
     
-    * Other times the reasons might be more self-serving. For example, if you were able to get a large grant of money to do a difficult experiment, you might want to publish several different analyses of the results. Unfortunately there are no prizes for second place in science, and the first person to make a discovery gets the glory. If somebody else publishes a discovery that you were about to publish yourself, then scientists call this getting "scooped". To avoid getting scooped, you might decide to restrict access to your data until you have published all the analyses of it that you want to.
+    * Other times the reasons might be more self-serving. For example, if you were able to get a large grant of money to conduct a complex experiment, you might want to publish several different analyses of the results. Unfortunately there are no prizes for second place in science, and the first person to make a discovery gets the glory. If somebody else publishes a discovery that you were about to publish yourself, then scientists call this getting "scooped". To avoid getting scooped, you might decide to restrict access to your data until you have published all the analyses of it that you want to.
     
-      You can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an *embargo* on it. This delays the publication of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.
-    
-    * And sometimes scientists don't have a good reason for not publishing their data/code, except that it wasn't required of them[^no_data_note]. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:
-    
-    [^no_data_note]: This is a problem of both the scientists as well as science as a discpline.
-    
-      - In the USA, the federal government has started to require that any science done using its grants has to make data available when results are published.
-      
-      - New initiatives like the [Center for Open Science](https://www.cos.io/)[^csf] are promoting the sharing of data and code, for example by creating the [Open Science Framework](https://osf.io/)[^osf] for new studies
-      
-      [^csf]: https://www.cos.io/
-      [^osf]: https://osf.io/
-      
-      - There are now various websites that will permanently archive code and data so that it can be easily shared with other researchers, such as DataDryad and FigShare.
+    * And sometimes scientists don't have a good reason for not publishing their data/code, except that it wasn't required of them.^[This is a problem of both the scientists, as well as science as a discpline for not holding ourselves to higher standards.]
 
+
+### What we can do
+
+Fortunately science has recognized its reproducibility problem over the past decade, partly due to several major scandals. Since the root cause of the problem is due to misaligned incentives, science has adapted to change these incentives.
+
+For example:
+
+* In the USA, scientists funded by the federal government are typically required to make data available when they publish their results.
+
+* To guarantee publication of your data while preventing another scientist from "scooping" your work, you can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an *embargo* on it. This delays the release of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.
+      
+* New initiatives like the [Center for Open Science](https://www.cos.io/) are promoting the sharing of data and code, for example by creating the [Open Science Framework](https://osf.io/) for new studies.
+      
+* There are now various websites that will permanently archive code and data so that it can be easily shared with other researchers, such as DataDryad and FigShare.
+
+Since this is a book on analyzing data rather than conducting experiments, we will focus on reproducibility rather than replicability.
 

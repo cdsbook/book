@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -327,15 +346,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#what-are-the-computational-and-data-sciences" id="toc-what-are-the-computational-and-data-sciences" class="nav-link active" data-scroll-target="#what-are-the-computational-and-data-sciences"><span class="header-section-number">1.1</span> What are the computational and data sciences?</a></li>
-  <li><a href="#generating-data-versus-analyzing-data" id="toc-generating-data-versus-analyzing-data" class="nav-link" data-scroll-target="#generating-data-versus-analyzing-data"><span class="header-section-number">1.2</span> Generating data versus analyzing data</a></li>
-  <li><a href="#why-this-book" id="toc-why-this-book" class="nav-link" data-scroll-target="#why-this-book"><span class="header-section-number">1.3</span> Why this book?</a></li>
-  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link" data-scroll-target="#the-scientific-method"><span class="header-section-number">1.4</span> The Scientific Method</a>
+  <li><a href="#why-this-book" id="toc-why-this-book" class="nav-link" data-scroll-target="#why-this-book"><span class="header-section-number">1.2</span> Why this book?</a></li>
+  <li><a href="#the-scientific-method" id="toc-the-scientific-method" class="nav-link" data-scroll-target="#the-scientific-method"><span class="header-section-number">1.3</span> The Scientific Method</a>
   <ul class="collapse">
-  <li><a href="#reproducibility-and-replicability" id="toc-reproducibility-and-replicability" class="nav-link" data-scroll-target="#reproducibility-and-replicability"><span class="header-section-number">1.4.1</span> Reproducibility and replicability</a></li>
-  <li><a href="#how-reproducible-is-modern-science" id="toc-how-reproducible-is-modern-science" class="nav-link" data-scroll-target="#how-reproducible-is-modern-science"><span class="header-section-number">1.4.2</span> How reproducible is modern science?</a></li>
-  <li><a href="#what-we-can-do" id="toc-what-we-can-do" class="nav-link" data-scroll-target="#what-we-can-do"><span class="header-section-number">1.4.3</span> What we can do</a></li>
+  <li><a href="#reproducibility-and-replicability" id="toc-reproducibility-and-replicability" class="nav-link" data-scroll-target="#reproducibility-and-replicability"><span class="header-section-number">1.3.1</span> Reproducibility and replicability</a></li>
+  <li><a href="#how-reproducible-is-modern-science" id="toc-how-reproducible-is-modern-science" class="nav-link" data-scroll-target="#how-reproducible-is-modern-science"><span class="header-section-number">1.3.2</span> How reproducible is modern science?</a></li>
+  <li><a href="#what-we-can-do" id="toc-what-we-can-do" class="nav-link" data-scroll-target="#what-we-can-do"><span class="header-section-number">1.3.3</span> What we can do</a></li>
   </ul></li>
-  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">1.5</span> Reproducibility</a></li>
   </ul>
 </nav>
     </div>
@@ -366,14 +383,10 @@ ul.task-list li input[type="checkbox"] {
 <li><p><strong>Computational science</strong> (also called scientific computing) combines computer science (i.e.&nbsp;the theory of how computers work) with applied problems.</p></li>
 <li><p><strong>Data science</strong> similarly combines statistics (i.e.&nbsp;the mathematical theory of analyzing data) with applied problems.</p></li>
 </ul>
-<p>Basically we want to know how to apply computers and data to solve real world problems.</p>
-<p>There are problems in the world that we could choose to address with computers and data. In this book we will focus on problems from the natural and social sciences (i.e.&nbsp;physics, biology, economics, psychology, etc.).</p>
+<p>Basically we want to know how to apply computers and data to investigate scientific questions. In this book we will focus on questions from the natural and social sciences (i.e.&nbsp;physics, biology, economics, psychology, etc.), but the techniques and methods can be applied outside of science, too.</p>
 </section>
-<section id="generating-data-versus-analyzing-data" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="generating-data-versus-analyzing-data"><span class="header-section-number">1.2</span> Generating data versus analyzing data</h2>
-</section>
-<section id="why-this-book" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="why-this-book"><span class="header-section-number">1.3</span> Why this book?</h2>
+<section id="why-this-book" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="why-this-book"><span class="header-section-number">1.2</span> Why this book?</h2>
 <p>Many books on these topics (particularly data science) are interested in business problems. Businesses are typically concerned with learning about the future (typically so that they can increase their profits).</p>
 <p>There is nothing inherently wrong with this, and indeed scientists are sometimes interested in predicting the future as well. However scientists are more generally interested in the broader goal of understanding <em>how</em> the world works.</p>
 <p>Although scientists and business people have to worry about many of the same problems when dealing with computers and data, our different end goals mean that we put more emphasis on different parts of the process.</p>
@@ -385,8 +398,8 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>That’s not to say that a data scientist at a company <em>shouldn’t</em> care about reproducibility, simplicity, and clarity. But if a company can make a million dollars tomorrow with a sexy but complicated and hard-to-reproduce analysis, then they should do so! But this would be bad practice for a scientist.</p>
 </section>
-<section id="the-scientific-method" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">1.4</span> The Scientific Method</h2>
+<section id="the-scientific-method" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="the-scientific-method"><span class="header-section-number">1.3</span> The Scientific Method</h2>
 <p>Why don’t we still believe that the sun is the flaming chariot wheel of the ancient Greek god Apollo as he drives across the sky each day? Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?</p>
 <p>The answer, in case you haven’t guessed, is science. Science is the reason that human progress has exploded since the scientific revolution of the 16th and 17th centuries. And science offers our best path forwards for making future progress and confronting the challenges that we will inevitably face in the coming centuries.</p>
 <p>We can think of science as a game: humanity versus the unknown. Each field of science (biology, physics, psychology, etc.) is like a team in this great game. And just like regular sports teams, each scientific field uses slightly different tactics to play the game, because the type of <em>thing</em> that a scientist studies influences how they can go about experimenting on it.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
@@ -401,29 +414,25 @@ ul.task-list li input[type="checkbox"] {
 <p>In the 21st century, a unifying feature of all of these scientists is that they are using computers to analyze their data or run experiments. The scientific method tells us nothing about how we should use computers, only that whatever we do needs to adhere to the principles outlined above.</p>
 <!-- In the ??? -->
 <p>The scientific method tells us very little about how we should go about using computers, so let’s consider how we might do so.</p>
-<section id="reproducibility-and-replicability" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="reproducibility-and-replicability"><span class="header-section-number">1.4.1</span> Reproducibility and replicability</h3>
-<p>As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else).</p>
-<!-- This means that if I do an experiment that is  -->
+<section id="reproducibility-and-replicability" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="reproducibility-and-replicability"><span class="header-section-number">1.3.1</span> Reproducibility and replicability</h3>
+<p>As scientists we are trying to discover truths about the universe. These truths are universal. If I experience gravity, so should you (and everyone else). And if two scientists conduct the same experiment independently, they should both get evidence that is consistent with that universal truth.</p>
+<p>There are two separate concerns when it comes to the repeatability of science.</p>
+<p>The first is that if you and I analyze the same data (e.g.&nbsp;we share the same dataset), in the same way, we should arrive at the same result. This is generally called <em>reproducibility</em>.</p>
+<p>It’s also possible for us to obtain our own datasets (e.g.&nbsp;we each run our own experiment, sometimes completely different experiments) with a view to investigating that universal truth. I might measure the Earth’s gravitational field by dropping rubber balls out of a second floor window, whereas you might use the speed of a pendulum’s swing. However, we should get results that are consistent with each other. This is called <em>replicability</em>.</p>
+<p>We reproduce analyses; we replicate experiments.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 </section>
-<section id="how-reproducible-is-modern-science" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="how-reproducible-is-modern-science"><span class="header-section-number">1.4.2</span> How reproducible is modern science?</h3>
-</section>
-<section id="what-we-can-do" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="what-we-can-do"><span class="header-section-number">1.4.3</span> What we can do</h3>
-</section>
-</section>
-<section id="reproducibility" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">1.5</span> Reproducibility</h2>
+<section id="how-reproducible-is-modern-science" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="how-reproducible-is-modern-science"><span class="header-section-number">1.3.2</span> How reproducible is modern science?</h3>
 <p>The rest of this book is focused on how to use computers and data in ways that are good scientific practice. However, let us take a moment to talk more about the importance of reproducibility.</p>
 <p>Unfortunately, scientists are not rewarded for making sure that their analyses are reproducible, or for checking that they can reproduce the work of other scientists.</p>
-<p>In a recent survey of 1500 scientists <span class="citation" data-cites="baker500ScientistsLift2016">(<a href="references.html#ref-baker500ScientistsLift2016" role="doc-biblioref"><strong>baker500ScientistsLift2016?</strong></a>)</span>, a shockingly high percentage said that they were unable to reproduce another scientist’s work:</p>
-<div class="cell" data-hash="01_intro_cache/html/fig-failed-reproduction-by-discipline_23ceda0b3c247fce4bb2de5d8c066690">
+<p>In a recent survey of 1500 scientists <span class="citation" data-cites="baker_1500_2016">(<a href="references.html#ref-baker_1500_2016" role="doc-biblioref">Baker 2016</a>)</span>, a shockingly high percentage said that they were unable to reproduce another scientist’s work:</p>
+<div class="cell" data-hash="01_intro_cache/html/fig-failed-reproduction-by-discipline_70807cf3496f952215b27044f0b48a31">
 <div class="cell-output-display">
 <div id="fig-failed-reproduction-by-discipline" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="01_intro_files/figure-html/fig-failed-reproduction-by-discipline-1.png" class="img-fluid figure-img" width="672"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: Data from <span class="citation" data-cites="baker500ScientistsLift2016">(<a href="references.html#ref-baker500ScientistsLift2016" role="doc-biblioref"><strong>baker500ScientistsLift2016?</strong></a>)</span>.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1.1: Data from <span class="citation" data-cites="baker_1500_2016">(<a href="references.html#ref-baker_1500_2016" role="doc-biblioref">Baker 2016</a>)</span>.</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -436,29 +445,38 @@ ul.task-list li input[type="checkbox"] {
 <p>If the experiment is the analysis of an existing dataset, then anyone wishing to reproduce the work will need access to the same data and code. Unfortunately, scientists do not always make their data or code available when they publish their results.</p>
 <ul>
 <li><p>Sometimes this is for good reasons (e.g.&nbsp;protecting the privacy of the people in the dataset, or not publishing the genetic sequence of a dangerous virus).</p></li>
-<li><p>Other times the reasons might be more self-serving. For example, if you were able to get a large grant of money to do a difficult experiment, you might want to publish several different analyses of the results. Unfortunately there are no prizes for second place in science, and the first person to make a discovery gets the glory. If somebody else publishes a discovery that you were about to publish yourself, then scientists call this getting “scooped”. To avoid getting scooped, you might decide to restrict access to your data until you have published all the analyses of it that you want to.</p>
-<p>You can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an <em>embargo</em> on it. This delays the publication of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.</p></li>
-<li><p>And sometimes scientists don’t have a good reason for not publishing their data/code, except that it wasn’t required of them<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Fortunately this attitude is now changing, as science as changed its incentives around reproducibility. For example:</p></li>
-</ul>
-<ul>
-<li><p>In the USA, the federal government has started to require that any science done using its grants has to make data available when results are published.</p></li>
-<li><p>New initiatives like the <a href="https://www.cos.io/">Center for Open Science</a><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> are promoting the sharing of data and code, for example by creating the <a href="https://osf.io/">Open Science Framework</a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> for new studies</p></li>
-</ul>
-<ul>
-<li>There are now various websites that will permanently archive code and data so that it can be easily shared with other researchers, such as DataDryad and FigShare.</li>
+<li><p>Other times the reasons might be more self-serving. For example, if you were able to get a large grant of money to conduct a complex experiment, you might want to publish several different analyses of the results. Unfortunately there are no prizes for second place in science, and the first person to make a discovery gets the glory. If somebody else publishes a discovery that you were about to publish yourself, then scientists call this getting “scooped”. To avoid getting scooped, you might decide to restrict access to your data until you have published all the analyses of it that you want to.</p></li>
+<li><p>And sometimes scientists don’t have a good reason for not publishing their data/code, except that it wasn’t required of them.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p></li>
 </ul></li>
 </ol>
+</section>
+<section id="what-we-can-do" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="what-we-can-do"><span class="header-section-number">1.3.3</span> What we can do</h3>
+<p>Fortunately science has recognized its reproducibility problem over the past decade, partly due to several major scandals. Since the root cause of the problem is due to misaligned incentives, science has adapted to change these incentives.</p>
+<p>For example:</p>
+<ul>
+<li><p>In the USA, scientists funded by the federal government are typically required to make data available when they publish their results.</p></li>
+<li><p>To guarantee publication of your data while preventing another scientist from “scooping” your work, you can restrict data access in responsible ways, typically by publishing the data at the same time as your study but placing an <em>embargo</em> on it. This delays the release of the data, typically by several months or years, until you have had a chance to publish your other analyses, but ensures that it will eventually become available to any other scientists who want to check your work or extend upon it.</p></li>
+<li><p>New initiatives like the <a href="https://www.cos.io/">Center for Open Science</a> are promoting the sharing of data and code, for example by creating the <a href="https://osf.io/">Open Science Framework</a> for new studies.</p></li>
+<li><p>There are now various websites that will permanently archive code and data so that it can be easily shared with other researchers, such as DataDryad and FigShare.</p></li>
+</ul>
+<p>Since this is a book on analyzing data rather than conducting experiments, we will focus on reproducibility rather than replicability.</p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-baker_1500_2016" class="csl-entry" role="listitem">
+Baker, Monya. 2016. <span>“1,500 Scientists Lift the Lid on Reproducibility.”</span> <em>Nature</em> 533 (7604): 452–54. <a href="https://doi.org/10.1038/533452a">https://doi.org/10.1038/533452a</a>.
+</div>
+</div>
+</section>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>For example, a microbiologist can grow bacteria in a lab and do pretty much whatever they want experimentally, whereas a psychologist studying human behavior is much more constrained by what is ethically acceptable to do to other humans.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p>If all of your experiments suggest that a theory is wrong, you can’t decide to stick with it just because you like it for some other reason. For example, let’s say that you hypothesize that all cows are blue. When you start finding non-blue cows in the real world, you can’t claim that your theory is still correct because blue is your favorite color.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>This is a problem of both the scientists as well as science as a discpline.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>https://www.cos.io/<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>https://osf.io/<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Except in the minority of scientific fields that define these terms in different, or even opposite, ways.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>This is a problem of both the scientists, as well as science as a discpline for not holding ourselves to higher standards.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
