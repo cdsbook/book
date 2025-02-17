@@ -3,7 +3,7 @@
 #  freeze: auto
 ---
 
-# Literate Programming & Reproducibility
+# Literate Programming
 
 ```{r setup}
 #| results: "asis"
@@ -18,9 +18,6 @@ pdf_dev_comment("
 TODO: Add 'Quick reference' section at start of chapter with link to RMarkdown cheetsheet
 ")
 ```
-
-
-## Literate programming
 
 Traditionally, if you needed to do science on a computer, you ran your analyses in one program, and then copied over any outputs you wanted into a separate document where you wrote your results. 
 
@@ -66,7 +63,7 @@ Talk by  Yihui Xie: An anatomy of R Markdown with minimal applications: https://
 ")
 ```
 
-### Creating RMarkdown/Quarto files in RStudio
+## RMarkdown and Quarto files
 
 RMarkdown files are text files that end in the file extension `.Rmd`. For example, a file called `my_homework.Rmd` in an RMarkdown file. Quarto files are similar, but end with the extension `.qmd`.
 
@@ -115,7 +112,7 @@ The file will automatically be opened in the Editor pane of RStudio.
 *Figure: Side-by-side examples of default RMarkdown & Quarto files, with key features highlighted.*
 
 
-### Rendering to an output
+## Rendering to an output
 
 Note that the files you create are not saved when you create them. To save them, make sure the file is the current one open in the editor pane and either press the *Save* icon in the top toolbar, or *File > Save* in the top menu, or click anywhere in the open file and then press the {{< kbd Ctrl-S >}} keys at the same time.
 
@@ -136,7 +133,7 @@ TODO: Add try-it-yourself exercises: Try rendering the file.
 ")
 ```
 
-### Text
+## Text
 
 If you look at Fig. X (rmd/qmd side-by-side), you can see that both Quarto and RMarkdown files are divided into two sections. At the top of each file is a *header* section, which begins and ends with a line of three dashes: `---`. This is where we can specify settings for the file, which we will learn more about in @sec-yaml-header-section.
 
@@ -372,7 +369,7 @@ TODO: Add some kind of image that shows list indentation graphically.
 ```
 
 ::: {.callout-note}
-# The importance of lines and spaces
+### The importance of lines and spaces
 
 In general, text on consecutive lines will be bundled up into one line when you render Markdown into another format. For example,
 
@@ -393,7 +390,7 @@ some regular text
 becomes
 
 some regular text
-### Important Heading
+### Important Heading {.unnumbered .unlisted}
 
 Spaces can also affect formatting. 
 
@@ -434,7 +431,7 @@ You can't always tell how the rendered output will look just from the contents o
 :::
 
 
-### Code chunks
+## Code chunks
 
 The great power of RMarkdown and Quarto documents is that we can also include sections of code within the document. These sections are called **code chunks**.
 
@@ -486,7 +483,7 @@ There's a few ways that new R programmers run into errors due to this code chunk
 
 3. You restart RStudio after a break and your most recently written code chunk doesn't work. This is because anything R creates in the Environment is temporary. It will only last for as long as R or RStudio is running on the computer. When you restart RStudio and reopen a Rmd/Qmd file, you will need to re-run any code chunks whose output you need. (It's often easiest to just rerun all the code chunks, which you can do by clicking the "Run" button in the top right of the file editor pane and then selecting the last option to "Run All".)
 
-### Inline code
+## Inline code
 
 We can also include code within paragraphs of text. Let's say you calculated some important number in your analyses, and you want to discuss that number. You could type in the number by hand, but this is prone to errors where the calculated number changes for some reason (maybe you adjust the analysis's code, for example) but then you forget to update the number in the text.
 
@@ -535,17 +532,17 @@ formatting:
 
 
 
-### The header section {#sec-yaml-header-section}
+## The header section {#sec-yaml-header-section}
 
 * Outputting different file types
 
-### Images & plots
+## Images & plots
 
 Images (plus size and floating), and captions & references.
 
 Plots produced by code chunks, and formatting.
 
-### Tables
+## Tables
 
 Markdown tables (& captions + references)
 
@@ -556,9 +553,10 @@ Markdown tables (& captions + references)
 
 Tables produced by code chunks, and formatting.
 
-### Latex (commands, formulas)
+## Math 
 
-### Visual editor {#sec-visual-editor}
+
+## Visual editor {#sec-visual-editor}
 
 ```{r, echo=FALSE, results='asis'}
 pdf_dev_comment("
@@ -568,7 +566,7 @@ Refs:
 ")
 ```
 
-### Frequently encountered problems
+## Frequently encountered problems
 
 ```{r, echo=FALSE, results='asis'}
 pdf_dev_comment("
@@ -576,11 +574,11 @@ Move these to the FEPs appendix.
 ")
 ```
 
-#### RStudio has forgotten my variables
+### RStudio has forgotten my variables
 
-#### My formatting is wonky
+### My formatting is wonky
 
-#### My document won't render {#sec-common-render-issues}
+### My document won't render {#sec-common-render-issues}
 
 * Missing dependencies. R packages, Latex for PDF output.
 
@@ -595,7 +593,7 @@ Move these to the FEPs appendix.
   * Memory/ large outputs/slow code.
   
 
-### RMarkdown versus Quarto
+## RMarkdown versus Quarto
 
 Aside from the differences covered above:
 
@@ -609,13 +607,7 @@ This book is written principally in Quarto.
 
 Due to the similarities, its not too hard to switch between them, or even include RMarkdown files within Quarto files (which this book does).
 
-### How rendering works
-
-
-### Best practices for reproducibility
-
-
-### Topics covered elsewhere in this book
+## Topics covered elsewhere in this book
 
 Links to RMarkdown/Quarto features covered elsewhere in this book:
 * table formatting
@@ -624,7 +616,7 @@ Links to RMarkdown/Quarto features covered elsewhere in this book:
 * outputs
 
 
-### Useful resources
+## Useful resources
 
 RMarkdown cheetsheet
 
