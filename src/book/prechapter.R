@@ -41,7 +41,8 @@ insert_status_callout <- function(chapter_status = c("incomplete", "draft", "com
 }
 
 pdf_dev_comment <- function(todo){
-  cat(
+  if(is_pdf==TRUE){
+    cat(
 "
 ::: {.callout-caution}
 # TODO
@@ -50,6 +51,8 @@ pdf_dev_comment <- function(todo){
 todo,"\n\n",knitr::current_input(),
 "
 
-:::"
-  )
+:::
+"
+    )
+  }
 }

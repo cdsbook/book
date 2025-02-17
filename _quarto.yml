@@ -36,7 +36,7 @@ book:
     # 23 Concurrent Programming
     # 24 High Performance Computing
   - part: Scientific Data
-    chapters: 
+    chapters:
     # - src/book/25_images_chapter.qmd
     # - src/book/26_text_chapter.qmd
     # - src/book/27_time_series_chapter.qmd
@@ -62,4 +62,4 @@ book:
 bibliography: references.bib
 profile:
   group: 
-    - [book, website]
+    - [website, book]

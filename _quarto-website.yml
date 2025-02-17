@@ -1,5 +1,7 @@
 project:
   output-dir: docs
+  # post-render: # uncomment to put all chapter in top directory
+  #   - _flatten_html_output.R
 
 format:
   html:

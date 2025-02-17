@@ -3,13 +3,13 @@ execute:
   freeze: auto
 ---
 
-# Wrangling Data
+# Wrangling Data {#sec-wrangling-chapter}
 
 ```{r setup, include=FALSE}
 source("prechapter.R")
 ```
 
-In this chapter we will learn how to manipulate and transform tables of data.
+In this chapter we will learn how to manipulate and transform tables of data. This is sometimes referred to as "data wrangling". 
 
 ## Wrangling overview
 

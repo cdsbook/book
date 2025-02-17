@@ -1,0 +1,64 @@
+
+
+```{r}
+library(torch)
+library(torchvision)
+library(luz)
+
+train_ds <- mnist_dataset(
+  "images", 
+  download = TRUE,
+  transform = . %>%
+    transform_to_tensor() %>%
+    torch_flatten()
+  )
+
+train_ds <- dataset_subset(train_ds, indices=1:50000)
+valid_ds <- dataset_subset(train_ds, indices=50000:60000)
+
+train_dl <- dataloader(
+  train_ds, 
+  batch_size = 32,
+  shuffle=TRUE
+  )
+valid_dl <- dataloader(
+  train_ds, 
+  batch_size = 32
+  )
+
+net <- nn_module(
+  "onelayer",
+  initialize = function() {
+    self$net <- nn_sequential(
+      nn_linear(784,256),
+      nn_relu(),
+      nn_linear(256,10)
+    )
+  },
+  forward = function(x) {
+    self$net(x)
+  }
+)
+
+model <- net %>%
+  setup(
+    loss = nn_cross_entropy_loss(), 
+    optimizer = optim_adam, 
+    metrics = list(
+      luz_metric_accuracy()
+    )
+  )
+
+fitted <- model %>% 
+  fit(
+    train_dl, 
+    epochs = 10,
+    valid_data = valid_dl,
+    verbose = TRUE
+    )
+```
+
+```{r}
+plot(fitted)
+```
+

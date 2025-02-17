@@ -12,13 +12,19 @@ The book, tutorials, and slides share the same source .Rmd files in the `src` di
 
 ## Building
 
-By default the PDF will be built, using the `book` Quarto profile (`_quarto-book.yml`). To build the website, run:
+By default the web version will be built, using the `website` Quarto profile (`_quarto-book.yml`). To build the book, run:
 
 ```bash
-quarto render --profile website
+quarto render --profile book
 ```
 
 Add the `--cache-refresh` flag to rerun cached code chunks.
+
+To build a single website chapter (although note that it will not include menus, etc., and it will be in the `src/book` folder:
+
+```bash
+quarto render src/book/04_rmarkdown_chapter.qmd --profile website --cache-refresh
+```
 
 Note that this also allows [optional profile content](https://quarto.org/docs/projects/profiles.html#profile-content) via Quarto.
 
@@ -171,6 +177,15 @@ Here is a footnote reference,[^1] and another.[^longnote]
 
     Subsequent paragraphs are indented to show that they
 belong to the previous footnote.
+```
+
+
+Footnotes can also be inline, e.g. from the Quarto docs
+
+```
+Here is an inline note.^[Inlines notes are easier to write,
+since you don't have to pick an identifier and move down to
+type the note.]
 ```
 
 ### Conditional execution for different formats

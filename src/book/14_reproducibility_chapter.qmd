@@ -4,3 +4,28 @@ execute:
 ---
 
 # Reproducibility {#sec-reproducibility-chapter}
+
+
+```{r setup}
+#| echo: false
+#| results: "asis"
+
+source("prechapter.R")
+insert_status_callout("draft")
+```
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO:
+
+Content ideas:
+
+- computational sicence best practices
+- version control
+- archiving data and code
+- not hard-coding variables
+- documentation
+- freezing package & software version requirements
+- keeping a 'lab notebook'
+
+")
+```
