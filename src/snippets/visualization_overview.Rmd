@@ -1,9 +1,5 @@
 This video will introduce you to the importance of visualization in data science, and how it can be used effectively (or ineffectively).
 
-:::{.callout-caution}
-TODO: New video.
-:::
-
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tHEVRahx0WE?rel=0" frameborder="0" allowfullscreen></iframe>
 
 Slides: [PDF](https://gmuedu-my.sharepoint.com/:b:/g/personal/dwhite34_gmu_edu/ETyT0aRqt6tHspWXcGyumEgBG6K79TUuaN0mWTLsaiOySA?e=KkfEsO)

@@ -20,7 +20,123 @@ insert_status_callout("draft")
 
 ## Your First Program
 
-{{< include ../../src/snippets/r_programming_hello_world.Rmd >}}
+It is a long-standing tradition that your first program in any new programming language should simply display the message "Hello, World!".
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: video: 'first R program' which is hello world overview")
+```
+
+In R we can use the `print()` *function* to display a piece of data (such as the text *Hello, World!*).
+
+For example, we can run this line of code in R:
+
+```r
+print("Hello, World!")
+```
+
+And R will return this result:
+
+```{r, echo=FALSE}
+print("Hello, World!")
+```
+
+::: {.info-box .callout-tip}
+**What's happening here?**
+
+We will learn more about the different parts of this code in this chapter, but briefly:
+
+* `print(...)` is a **function**: it is a recipe that takes some input ingredients (which we list between the parentheses after the function's name), and does something with them.
+* `"Hello, World!"` is a *string* of characters (and other symbols, such as `!`). A **character string** is a type of data that computers can work with. Here we are supplying it as the input argument to the `print()` recipe.
+
+When you hit *Enter*, R figures out how to covert this code into a series of electrical currents that your computer's processor can understand. The result comes back as another series of electrical currents, which R then figures out how to convert back into something that a human can understand.
+:::
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert following exercises to render functions")
+```
+
+<!-- Book code -->
+
+```{r hello-world-exercise-book, echo=F, eval=is_book, results = 'asis'}
+cat("::: {.exercise .callout-note appearance='simple' icon=false}
+
+**Exercise: Try it yourself:** Open up RStudio and copy or type the line of code into the RStudio Console pane (see Fig. @fig-rstudio-overview-console).
+
+![How to find the RStudio Console](../img/rstudio_overview_console.png){#fig-rstudio-overview-console}
+
+Note that you will need to write the code after the *prompt*, which is the `>` symbol that starts the lowest line in the Console.
+
+After you have written all the code, press the <Enter> key on your keyboard. This will send your code to the R Console, which will run it and return the output. You should get back the same output as we saw earlier (Fig. @fig-rstudio-helloworld).
+
+![Running the Hello World program in the RStudio Console](../img/rstudio_hello_world_output.png){#fig-rstudio-helloworld}
+
+Congratulations! You just ran your first program in R.
+
+:::")
+```
+
+<!-- End book -->
+
+<!-- Tutorial code -->
+
+```{r hello-world-exercise-instructions-tutorial, echo=F, eval=is_tutorial, results = 'asis'}
+cat('<p class="comment3">
+<b>Exercise:</b> Run the simple program in the code section below (click on *Run Code*). The output of the program will be displayed below the code section. Then edit the text inside the `print()` function to the correct text (*Hello, World!*), and try running the code again. Once it displays the correct statement, click the *Submit Answer* button.
+<br><br>
+(If a yellow box appears warning you that your answer is "invisible", don\'t worry. You can safely ignore this.)
+</p>')
+```
+
+```{r hello-world-exercise-tutorial, eval=is_tutorial, exercise=TRUE, echo=F}
+print("Hello, Student!")
+```
+
+```{r hello-world-exercise-tutorial-hint, echo=F, eval=is_tutorial, results = 'asis'}
+cat('<div id="hello-world-hint-1">
+<p class="comment">
+**Hint:** Enter the correct text inside quotation marks.
+</p>
+</div>
+<div id="hello-world-hint-2">
+<p class="comment">
+**Hint:** Make sure all the words are spelled and capitalized correctly, and the punctuation is correct.
+</p>
+</div>')
+```
+
+```{r hello-world-exercise-tutorial-solution, eval=is_tutorial, echo=F}
+print("Hello, World!")
+```
+
+```{r hello-world-exercise-tutorial-check, eval=is_tutorial, echo=F}
+gradethis::grade_code("You just ran your first program! Don't worry, things will get more interesting soon...")
+```
+
+<!-- End tutorial -->
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: **Programming vs. cooking** callout block")
+```
+<!-- 
+
+<!-- Book code -->
+
+```{r rerun-console-exercise-book, echo=F, eval=is_book, results = 'asis'}
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+
+**Exercise:** Try to edit the line in the Console containing the `print("Hello, World!")` command that you just ran. Can you change it to print out something else?
+
+:::{.callout-tip}
+Once you have pressed <Enter> to run a line of code in the Console, you cannot go back and change it. To modify it, you will need to re-type out the code at the empty prompt at the bottom of the Console (below the output of the last line of code that you ran). You cannot edit a line of code in the Console that has already been run.
+:::
+
+It can get tedious to rewrite the code you have already run in the Console. However, click at the new (empty) Console prompt, and press the Up arrow on your keyboard. RStudio should autofill the prompt with the previous line of code from your history.
+
+Modify this line to print out a different sentence, and rerun your new code.
+::::')
+```
+
+<!-- End book -->
 
 
 ## Data
@@ -29,17 +145,797 @@ insert_status_callout("draft")
 pdf_dev_comment("TODO: mention scientific notation for large (and small) numbers")
 ```
 
-{{< include ../../src/snippets/r_programming_data.Rmd >}}
+The central component of everything we will be doing in R this semester is **data**. Even non-data science programs revolve around data. 
+
+At a very basic level, a computer is just a fancy calculator that adds and subtracts numbers. Even things like words and pictures are stored inside a computer as numbers.
+
+However, we often want to work work with data that is not numbers. For example, in the last section we were able to get R to print out the sentence *Hello, World!* To your computer that was just numbers flowing down wires as electrical signals. But the R programming language took care of converting our instruction into something your computer could understand.
+
+This is the magic of programming languages! They allow us to write commands in (relatively) human-readable instructions, and then take care of translating that into the very unreadable numbers that computers work with.
+
+R allows us to work with several "higher-level" types of data. These **data types** include:
+
+* the **numeric** data type holds numbers such as `42` or `-12.5` or `0`. Unlike text, numbers are written *without* quotation marks around them. R sometimes refers to numbers as "integers" (if they are whole numbers) or "doubles" (if it is storing a number in a way that could handle decimals, since this (historically) takes up twice the amount of computer memory as an integer).
+
+* the **character** data type holds text (i.e. letters, symbols, and the characters that represent numbers). We need to put the text inside quotation marks so that R knows where the text starts and ends: `"this is character data"`.
+
+  * Note: in other programming languages this datatype is sometimes known as a "character string" or just a "string".
+
+* the **Boolean** data type holds a value that is either `TRUE` or `FALSE`. (This is sometimes also referred to as the "logical" data type.)
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert exercises to render functions")
+```
+
+<!-- Book version -->
+
+```{r character-data-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "numeric",
+  answer = "character",
+  "Boolean"
+)
+q_character_data <- mcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `"Introduction to Computing and Data for Scientists"`?',
+q_character_data,
+'
+:::')
+```
+
+```{r numeric-data-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  answer = "numeric",
+  "character",
+  "Boolean"
+)
+q_numeric_data <- mcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `2`?',
+q_numeric_data,
+'
+:::')
+```
+
+```{r boolean-data-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "numeric",
+  "character",
+  answer = "Boolean"
+)
+q_boolean_data <- mcq(answer_opts)
+answer_abbr_opts <- c("character", "double", answer = "logical")
+q_r_bool_abbrv <- mcq(answer_abbr_opts)
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `FALSE`?', q_boolean_data,
+'
+
+*Follow-up:* In the RStudio Console, type in `typeof(FALSE)`, and hit the <ENTER> key to run this line of code. What do you get back?', 
+'
+
+::: {.info-box .callout-tip}
+`typeof()` is another function. Whereas the `print()` function displayed simply displayed its own input, `typeof()` returns the data type of its input.
+:::
+::::')
+```
+
+```{r character-number-data-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "numeric",
+  answer = "character",
+  "Boolean"
+)
+q_character_number_data <- mcq(answer_opts)
+cat(':::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** What data type is `""5"`?', q_character_number_data,
+'
+
+::: {.info-box .callout-tip collapse="true" title="Explanation"}
+As far as R is concerned, `5` and `"5"` are different types of data! `5` is a number whereas `"5"` is the character of the number.
+:::
+::::')
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r character_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+learnr::question('What data type is `"CDS 101"`?',
+  answer("Numeric."),
+  answer("Character.", correct = TRUE),
+  answer("Boolean."),
+  allow_retry = TRUE
+)
+```
+
+```{r logical_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+learnr::question('What data type is `FALSE`?',
+  answer("Numeric."),
+  answer("Character."),
+  answer("Boolean.", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+```{r numeric_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+learnr::question('What data type is `42`?',
+  answer("Numeric.", correct = TRUE),
+  answer("Character."),
+  answer("Boolean."),
+  allow_retry = TRUE
+)
+```
+
+```{r character_number_data_tutorial_quiz, eval=is_tutorial, echo=FALSE}
+learnr::question('What data type is `"42"`?',
+  answer("Numeric."),
+  answer("Character.", correct = TRUE, message = 'Because "42" is inside quotation marks, it is not a numerical data but actually a string of two characters (the character "4" and the character "2"!'),
+  answer("Boolean."),
+  allow_retry = TRUE
+)
+```
+
+<!-- End tutorial version -->
 
 
 ## Operators
 
-{{< include ../../src/snippets/r_programming_operators.Rmd >}}
+### Combining data with operators
+
+\index{operators}
+
+Okay, now we know about data.
+
+But data by itself is not especially useful. It just sits there until you *do something* to it. There are many ways of doing things to data, but some of the simplest are **operators**.
+
+Operators *operate* on data. You may not have heard the name *operator* before, but you are already familiar with many common mathematical operators, such as `+` and `-` for adding and subtracting numbers.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (Try it yourself):** Try entering a number after the `>` in the Console (e.g. 1), then Enter, and see what happens.
+:::
+
+When you hit enter, the R interpreter reads in the line, evaluates it, and returns the answer. In this case, you entered 1, so the computer thinks 'Hey, it’s a 1! Wow, a one! The result of 1 is… drum roll, please… 1!' and returns the result of this **expression**, which is a one.
+
+Cool! But not, I confess, particularly useful. Let’s fix that: next we'll add two numbers together. 
+
+:::{.exercise .callout-note appearance='simple' icon=false}
+At the prompt, enter two numbers separated by a plus sign, +
+
+For example:
+
+`> 1 + 1`
+
+What do you get?
+:::
+
+(Note that I've left the Console's `>` prompt in the example code above, but I will leave it out in future examples.)
+")
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Let's try using the addition operator, `+`, on some numbers to see what happens. Run this code chunk:
+</p>
+")
+```
+
+```{r operators_simple_addition, eval=is_tutorial, echo=F, exercise=TRUE}
+1 + 1
+```
+
+```{r operators_simple_addition-check, eval=is_tutorial, echo=F}
+grade_result(
+  pass_if(~ identical(.result, 2), "Unsuprisingly, the + operator adds two numbers together.")
+)
+```
+
+<!-- End tutorial version -->
+
+Great! Let's move on and investigate operators in more depth...
+
+### Operating on numbers
+
+Heart surgeons operate on hearts, brain surgeons operate on brains. 
+You will be operating on numbers... does that make you a data surgeon?
+
+Here are some of the operators available to us in R:
+
+| Operator  | Example  | Result  |
+|:---------:|:--------:|:-------:|
+| `+`       | `5 + 2`  | `7`     |
+| `-`       | `5 - 2`  | `3`     |
+| `*`       | `5 * 2`  | `10`    |
+| `/`       | `5 / 2`  | `2.5`   |
+| `^`       | `5 ^ 2`  | `25`    |
+| `%%`      | `5 %% 2` | `1`     |
+
+Some of these might seem obvious, while others might be unfamiliar. 
+In this section's exercises we will go through them all and figure out what they do.
+
+
+
+<!-- Book version -->
+```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+   "Adds two numbers together.",
+   answer = "Subtracts one number from another.",
+   "Multiplies two numbers together.",
+   "Divides one number by another."
+)
+cat("
+:::{.callout-note appearance='simple' icon=false}
+**Exercise (the `-` operator):** In the R Console, type `5 - 2` and hit enter to run the line of code. (You probably have a good idea of what `-` does, but try changing the numbers just to make sure!)
+
+What does `-` do?",
+longmcq(opts_p),
+"
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `-` operator does (feel free to play around with the numbers):
+</p>
+")
+```
+
+```{r operators_subtraction, exercise=TRUE, eval=is_tutorial, echo=FALSE}
+5 - 2
+```
+
+```{r operators_subtraction_quiz, echo=FALSE, eval=is_tutorial}
+question("What does the - operator do?",
+  answer("Adds two numbers together."),
+  answer("Subtracts one number from another.", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  "Adds two numbers together.",
+  "Subtracts one number from another.",
+  answer  = "Multiplies two numbers together.",
+  "Divides one number by another."
+)
+cat("
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (the `*` operator):** In the R Console, type `3 * 2` and hit enter to run the line of code.
+
+What does `*` do?",
+longmcq(opts_p),
+"
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `*` operator does (feel free to play around with the numbers):
+</p>
+")
+```
+
+```{r operators_multiplication, eval=is_tutorial, exercise=TRUE, echo=FALSE}
+3 * 2
+```
+
+```{r operators_multiplication_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the * operator do?",
+  answer("Adds two numbers together."),
+  answer("Subtracts one number from another."),
+  answer("Multiplies two numbers together.", correct = TRUE),
+  answer("Divides one number by another."),
+  allow_retry = TRUE
+)
+```
+
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  "Adds two numbers together.",
+  "Subtracts one number from another.",
+  "Multiplies two numbers together.",
+  answer  = "Divides one number by another."
+)
+cat("
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (The `/` operator):** In the R Console, type `3 / 2` and hit enter to run the line of code.
+
+What does `/` do? (Just to be sure, try some other numbers.)",
+longmcq(opts_p),
+"
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `/` operator does (feel free to play around with the numbers):
+</p>
+")
+```
+
+```{r operators_division, eval=is_tutorial, exercise=TRUE, echo=FALSE}
+3 / 2
+```
+
+```{r operators_division_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the / operator do?",
+  answer("Adds two numbers together."),
+  answer("Subtracts one number from another."),
+  answer("Multiplies two numbers together."),
+  answer("Divides one number by another.", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  "Returns the modulus (the remainder after dividing one number by another).",
+  answer = "Calculates an exponential (raises one number to the power of the second).",
+  "Evaluates an equality (whether one number is equal to another).",
+  "Evaluates an inequality (whether one number is bigger or smaller than another)."
+)
+cat("
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (The `^` operator):**In the R Console, type `3 ^ 2` and hit enter to run the line of code.
+
+What does `^` do? (Hint: Try some other numbers, like `2 ^ 3` or `16 ^ 0.5`)",
+longmcq(opts_p),
+"
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `^` operator does (play around with the numbers to see what happens):
+</p>
+")
+```
+
+
+```{r operators_exponent, eval=is_tutorial, exercise=TRUE, echo=FALSE}
+4 ^ 2
+```
+
+```{r operators_exponent_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the ^ operator do?",
+  answer("Returns the modulus (the remainder after dividing one number by another)."),
+  answer("Calculates an exponential (raises one number to the power of the second).", correct = TRUE),
+  answer("Evaluates an equality (whether one number is equal to another)."),
+  answer("Evaluates an inequality (whether one number is bigger or smaller than another)."),
+  allow_retry = TRUE
+)
+```
+
+
+### The `%%` operator
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+opts_p <- c(
+  answer = "Returns the modulus (the integer remainder after dividing one number by another).",
+  "Calculates an exponential (raises one number to the power of the second).",
+  "Evaluates an equality (whether one number is equal to another).",
+  "Evaluates an inequality (whether one number is bigger or smaller than another)."
+)
+cat("
+:::{.exercise .callout-note appearance='simple' icon=false}
+**Exercise (The `%` operator):** Next up, a slightly trickier one. Type `3 %% 2` and hit enter to run the line of code.
+
+What does `%%` do? You will probably have to try some other numbers to figure this one out.
+
+If you have difficulty, try also dividing the same numbers. E.g. try both 
+`9 %% 4` and `9 / 4`.",
+longmcq(opts_p),
+"
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, eval=is_tutorial, echo=F, results = 'asis', echo=FALSE}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `%%` operator does (play around with the numbers to see what happens - for instance, try `4 %% 3` as well as `6 %% 3` and `3 %% 3`):
+</p>
+")
+```
+
+```{r operators_modulo, eval=is_tutorial, exercise=TRUE, echo=FALSE}
+5 %% 3
+```
+
+```{r operators_modulo_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the %% operator do?",
+  answer("Returns the modulus (the integer remainder after dividing one number by another).", correct = TRUE),
+  answer("Calculates an exponential (raises one number to the power of the second."),
+  answer("Evaluates an equality (whether one number is equal to another)."),
+  answer("Evaluates an inequality (whether one number is bigger or smaller than another)."),
+  allow_retry = TRUE
+)
+```
+
+
+### Which operator goes first?
+
+\index{precendence}
+\index{order|see {precedence}}
+
+Just like in normal math, we can do sums in R with multiple operators:
+
+```r
+3 + 5 / 5 * 3 ^ 2
+```
+
+In such a case, which operation do we do first?
+
+Again, just like in regular math, some operations are always done before others. For example, all multiplication and division will be done before any addition or subtraction.
+
+> **F.Y.I.**
+>
+> The order in which operators are calculated is known as *operator precedence*, and you can find the precedence of any operator here: [https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html)
+
+We can change the order of operations with parentheses: `(` and `)`. For example
+
+```r
+2 + 2 * 5 = 12
+```
+
+whereas
+
+```r
+(2 + 2) * 5 = 20
+```
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+precendence_answer <- fitb(c("(3 + 5) / (5 * 2) ^ 2", "(3 + 5) / ((5 * 2) ^ 2)"), ignore_ws = TRUE, width = "20")
+cat("
+::::{.exercise .callout-note appearance='simple' icon=false}
+
+**Exercise:** Modify this R code
+
+`3 + 5 / 5 * 2 ^ 2`
+
+so that it performs the calculation $\\frac{3 + 5}{(5 \\times 2) ^ 2}$.
+
+Answer:",
+fitb(
+  c(
+    "(3 + 5) / (5 * 2) ^ 2", 
+    "(3 + 5) / ((5 * 2) ^ 2)"
+    ), 
+  ignore_ws = TRUE, 
+  width = "20"
+  ),
+"
+:::{.callout-tip collapse=true title='Expand for hint'}
+
+When correct, you should get the answer 0.08.
+
+:::
+
+::::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Modify the expression below so that it performs this calculation $\frac{3 + 5}{(5 \times 2) ^ 2}$ .
+</p>
+")
+```
+
+```{r operators_parentheses, eval=is_tutorial, exercise=TRUE, echo=FALSE}
+3 + 5 / 5 * 2 ^ 2
+```
+
+```{r operators_parentheses-check, eval=is_tutorial, echo=F}
+grade_result(
+  pass_if(~ identical(.result, 0.08), "Looks like you're a parenthesis master!")
+)
+```
+
 
 
 ## Storing and reusing results with *variables* {#sec-r-programming-variables}
 
-{{< include ../../src/snippets/r_programming_variables.Rmd >}}
+<!-- TODO:
+video overview of R variable creation
+-->
+
+So far we have learnt how to combine data to get different results.
+
+We can do multiple separate calculations by putting each one on a separate line. When R reads your code, it treats everything on one line as a single expression that is separate from other lines:
+
+```r
+2 + 2
+5 * 5
+```
+
+This program will have two separate outputs: 4 and 25
+
+However, after these results are shown to us, they are thrown away! All that effort just discarded...
+
+What if we wish to save the result of a calculation so that we can reuse it in a subsequent line?
+
+In this case, we need to store the result in a **variable**.
+
+<!-- Book version -->
+
+<!-- TODO:
+add a hint showing where the environment is in RStudio via a screenshot. Might be helpful to also add this screenshot to the tutorial version as well.
+-->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Run these two lines of code in the RStudio Console and see what result you get.
+
+`a <- 2 + 2`
+
+`5 * a`
+
+Then take a look at the *Environment* tab in the top-right pane of RStudio. 
+Do you see a __variable__ called `a`? 
+Does it hold the value calculated in the first line of code or the second?
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Run these two lines of code and see what result you get.
+</p>
+')
+```
+
+```{r operators_assignment, eval=is_tutorial, echo=F, exercise=TRUE}
+a <- 2 + 2
+5 * a
+```
+
+```{r operators_assignment_quiz, eval=is_tutorial, echo=FALSE}
+question("What has just happened?",
+  answer("The first line calculates 2 + 2 and the second line calculates 5 * 5."),
+  answer("The value 2 was stored in the variable a, and then the value of a was used in the second line."),
+  answer("The result of 2 + 2 was stored in the variable a, and then the value of a was multiplied by 5 in the second line.", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+
+### The "result" of the assignment operator
+
+We store the result of an expression in a variable using the **assignment operator**: `<-`
+
+```r
+variable_name <- value_to_be_stored
+```
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Run these two lines of code in the RStudio Console and see what result you get.
+
+`2 + 3`
+
+`b <- 2 + 4`
+
+If you take another look at the *Environment* tab in the top-right pane of RStudio, you should see another variable called `b`. What value does it hold?
+:::
+")
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+What is the *output* of running an expression with and without assigning it to a variable? Run the two code blocks below.
+</p>
+')
+```
+
+
+```{r sum_without_assignment, eval=is_tutorial, exercise=TRUE}
+2 + 3
+```
+
+```{r sum_with_assignment, eval=is_tutorial, exercise=TRUE}
+b <- 2 + 4
+```
+
+<!-- End tutorial version -->
+
+The second line of code should not print out any output when it runs. 
+This is because assigning the result of an expression to a variable has no "result" in itself. For example, in math $2+2$ is $4$, but the expression $b = 2 + 2$ does *not* return $4$ directly (but somebody somewhere is hopefully keeping track of the fact that $b$ is now equivalent to $4$).
+
+If you want to see the data that is stored in a variable, you can put the name of the variable on a line by itself:
+
+```r
+some_variable
+```
+
+R will evaluate this line: it will ask itself "What is the *result* of `some_variable`", which is just whatever value is stored in that variable.
+
+For example,
+
+```{r}
+c <- 3
+
+c
+```
+
+The other implication of this is that if you calculate something in R and *do not* assign the result to a variable then it will be printed out ***and then forgotten***. 
+So remember: if you calculate something important in R that you will need in the future, make sure that you store that result in a variable.
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Type the name of one of the variables in your Environment tab in the RStudio Console (e.g. `a`), and hit Enter to run it.
+
+Does this return the data that you think is stored in that variable?
+:::
+")
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r what_is_b_setup, eval=is_tutorial, echo=FALSE}
+b <- 6
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Output the value of the variable `b` that you created above.
+</p>
+')
+```
+
+
+```{r what_is_b, eval=is_tutorial, exercise=TRUE, exercise.setup = "what_is_b_setup"}
+```
+
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="what_is_b-hint">
+<p class="comment">
+**Hint:** Try putting the variable `b` on a line by itself...
+</p>
+</div>
+')
+```
+
+```{r what_is_b-solution, eval=is_tutorial, echo=FALSE}
+b
+```
+
+```{r what_is_b-check, eval=is_tutorial, echo=F}
+grade_code(":)")
+```
+
+<!-- End tutorial version -->
+
+### Variables are... variable
+
+Variables get their name because *their value can vary*. We have created the variable `b` that holds the value 6, but we can change the value of `b` and store a completely different value in it!
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Try assigning the value `7` to the variable `b` using the assignment operator `<-`.
+
+Since we already created `b` in an earlier exercise, you should see that its value in the Environment tab updates.
+:::
+")
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Assign the value `7` to to the variable `b`
+</p>
+')
+```
+
+```{r b_is_7, eval=is_tutorial, exercise=TRUE}
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="b_is_7-hint">
+<p class="comment">
+**Hint:** Try using `<-` to assign a value to `b`
+</p>
+</div>
+')
+```
+
+```{r b_is_7-solution, eval=is_tutorial}
+b <- 7
+```
+
+```{r b_is_7-check, eval=is_tutorial, echo=F}
+grade_result(
+  pass_if(function(x) identical(x, 7), "This is a correct message.")
+)
+```
+
+<!-- TODO: weird output needs fixing -->
+
+<!-- End tutorial version-->
+
+### When does assignment happen
+
+\index{precedence}
+
+`<-` is an operator, just like `+` or `*`. As such, it has a *precedence*: it will happen before some operators but after others.
+
+However, it turns out that the `<-` precedence is [extremely low](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html) - i.e. it will happen after the result of all the other operators on that line of code have been calculated.
+
+So, when you write:
+
+```r
+a <- 2 + 4
+```
+
+...you are essentially doing this:
+
+```r
+a <- (2 + 4)
+```
+
+<!-- TODO: 
+Add exercises e.g. remove parentheses from over parenthesized expression; split line of code over multiple lines.
+-->
+
+
 
 You can name a variable anything you choose... with certain restrictions. R does not allow variables to begin with a number, such as `100`, or contain spaces within the variable, such as `one hundred`.
 
@@ -55,17 +951,381 @@ pdf_dev_comment("TODO: Sidebar here about Grace Hopper and the invention of prog
 ```
 
 
-{{< include ../../src/snippets/r_programming_how_it_works.Rmd >}}
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: 
+basic video on how R interprets a line of code: 
+* extend recipe analogy from hello world section
+* Compiled: interactivity (creative recipe - possibly making it up rather than following a pre-defined recipe) vs speed (optimizing recipe steps)")
+```
 
+R is an *interpreted programming language*.
+
+That is a fancy way of saying that R runs (i.e. "interprets") every line of code one at a time.
+
+So far we have written a line of code and then run it. In a couple of exercises you may have run multiple lines of code where one line depended on a result from a previous line. However, R completely finished running the first line before moving onto the next one.
+
+When R *interprets* a line of code, it figures out how to convert your human-readable code into computer-readable instructions (which are a series of 0s and 1s, since a computer is basically a bunch of wires that can either have an electrical current flowing down them (which we denote as 1) or not (0)).
+
+Because R is interpreted line-by-line, it is an ideal programming language for exploring and analyzing scientific data, where we typically figure out what to do next as we go along!
+
+<!-- TODO: 
+Expressions and how they are evaluated. Lines and files.
+-->
+
+We will soon be learning how to write multiple lines of R code in a file and then run them from the file. However, even when R runs code from a file, it still figures out how to run it one line at a time.
+
+::: {.info-box .callout-tip}
+**Compiled Programming Languages**
+
+Not every programming language is interpreted like R. Some are *compiled*. 
+
+This means that you write all your code in a file, and then turn all of it into computer-readable instructions at once. This step is called *compilation* and can take a long time (up to hours for large programs in some languages!). It is typically slower to write programs in a compiled language because of this extra step.
+
+The main advantage of a compiled programming language is that your computer can figure out how to optimize all the lines of code so that they run extremely fast.
+
+Famous examples of compiled programming languages are Java and C++.
+:::
 
 ## Boolean data
 
-{{< include ../../src/snippets/r_programming_boolean_data.Rmd >}}
+### Boolean data revisted
 
+At the start of this chapter we mentioned that there is a type of data in R, called Boolean data, that can have one of two values: `TRUE` or `FALSE`.
+
+We can ask R questions that have a true or false answer, for example: "Does the variable `x` hold the number 3?" or "Is 10 greater than 9?"
+
+We do this with *Boolean operators*:
+
+| Operator  | Example  | Result  |
+|:---------:|:--------:|:-------:|
+| `<`       | `10 < 9` | `FALSE` |
+| `>`       | `10 > 9` | `TRUE`  |
+| `==`      | `x == 3` | `FALSE` |
+
+For example:
+
+```{r, include=TRUE, echo=TRUE}
+10 < 9
+```
+
+Here R returns the value `FALSE` when it evaluates this expression, because 10 is obviously not less than 9.
+
+> __Combining comparisons__
+>
+> Sometimes we want to know if one datum is greater than **or** equal
+> to another. You can use the Boolean operators `>=` for such a comparison, or
+> `<=` to see if something is *less than or equal to* another.
+
+Just as with numeric data, we can store a Boolean value in a variable, e.g. `d <- FALSE` or `e <- 10 < 9`. (Remember that this assignment to a variable always happens last, after we have evaluated the expression on the right-hand side of the `<-` operator.)
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: 
+put exercises into their own section ")
+```
+
+
+### The `<` and `>` operators
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: covert exercises to render functions")
+```
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+**Exercise: Try it yourself:** What do you get if you run `10 < 9` in the RStudio Console?
+
+Can you change one of the numbers so that this expression returns `TRUE`?
+
+Then change the `>` to a `<` operator (i.e. reverse its direction). 
+What is the result now?
+:::
+")
+```
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `<` operator does.
+
+Do you get a number back (like the previous operators), or a different type of data?
+
+Then change the `<` to a `>` operator (i.e. reverse its direction). What is the result now?
+</p>
+")
+```
+
+```{r operators_inequality, eval=is_tutorial, exercise=TRUE, echo=is_tutorial}
+4 > 3
+```
+
+```{r operators_inequality_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the > operator do?",
+  answer("Returns the modulus (the remainder after dividing one number by another)."),
+  answer("Calculates an exponential (raises one number to the power of the second."),
+  answer("Evaluates an equality (whether one number is equal to another)."),
+  answer("Evaluates an inequality (whether one number is bigger or smaller than another).", correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+### The `==` operators
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Let's try another Boolean operator. What do you get if you run `8 == 10`?
+What about `8 == 8`?
+
+What do you think the `==` operator does?
+:::
+")
+```
+
+<!-- End book
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat("<p class='comment3'>
+Run this code chunk to figure out what the `==` operator does.
+
+Then try changing one of the numbers and rerunning the code.
+</p>
+")
+```
+
+```{r operators_equality, eval=is_tutorial, exercise=TRUE, echo=is_tutorial}
+4 == 4
+```
+
+```{r operators_equality_quiz, eval=is_tutorial, echo=FALSE}
+question("What does the == operator do?",
+  answer("Returns the modulus (the remainder after dividing one number by another)."),
+  answer("Calculates an exponential (raises one number to the power of the second."),
+  answer("Evaluates an equality (whether one number is equal to another).", correct = TRUE),
+  answer("Evaluates an inequality (whether one number is bigger or smaller than another)."),
+  allow_retry = TRUE
+)
+```
+
+<!-- End tutorial -->
+
+
+> __Combining comparisons__
+>
+> Sometimes we want to know if one datum is greater than **or** equal
+> to another. You can use the Boolean operators `>=` for such a comparison, or
+> `<=` to see if something is *less than or equal to* another.
+
+
+
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat("
+:::{.exercise}
+Assign the value `TRUE` to a variable called `d`.
+:::
+")
+```
+
+<!-- End book version -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Assign the value `TRUE` to a variable called `d`.
+</p>
+')
+```
+
+```{r d_is_true, eval=is_tutorial, exercise=TRUE}
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="d_is_true-hint">
+<p class="comment">
+**Hint:** Try using `<-` to assign a Boolean value to a variable called `d`
+</p>
+</div>
+')
+```
+
+```{r d_is_true-solution, eval=is_tutorial}
+ d <- TRUE
+```
+
+```{r d_is_true-check, eval=is_tutorial, echo=F}
+grade_code(":)")
+```
+
+<!-- End tutorial -->
 
 ## Vectors
 
-{{< include ../../src/snippets/r_programming_vectors.Rmd >}}
+<!-- TODO:
+intro video on vectors in R
+-->
+
+So far we have looked at pieces of data by themselves:
+
+```{r, echo=TRUE}
+a <- 1
+b <- 2
+c <- 3
+print(a)
+print(b)
+print(c)
+```
+
+But what about if we want to combine multiple pieces of data together?
+
+R includes several types of *container* that can hold multiple pieces of data. We can then refer to that container by a single variable. For example, instead of the three variables above, we can create a **vector** that holds all three values. We create a vector with `c(...)`, putting the objects we want to combine inside the parentheses (and separated by commas):
+
+```{r, echo=TRUE}
+c(1,2,3)
+```
+
+*All the data in a vector must be the same type of data*. For example, a vector could contain all numbers, or all characters, but not a mix of the two.
+
+<!-- Book version -->
+
+<!-- TODO:
+Add webexercises solution below
+-->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Create a vector holding 3 character strings (in this order): "This", "is a", "vector!"
+:::
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Create a vector holding 3 character strings (in this order): "This", "is a", "vector!"
+</p>')
+```
+
+```{r create_a_vector, eval=is_tutorial, exercise=TRUE}
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="create_a_vector">
+<p class="comment">
+**Hint:** No need to save this list to a variable...
+</p>
+</div>')
+```
+
+```{r create_a_vector-solution, eval=is_tutorial}
+c("This", "is a", "vector!")
+```
+
+```{r create_a_vector-check, eval=is_tutorial, echo=F}
+grade_code(":)")
+```
+
+<!-- End tutorial -->
+
+:::{.callout-tip}
+You might be wondering what the numbers in square brackets at the start of each line in the output mean? E.g. `[1]`
+
+These tell us whereabouts in the vector we are. The number indicates the position in the vector of the first element displayed on that line.
+
+For example, the `[1]` at the start of the line (before "Introduction") shows that "Introduction" is the first element in this vector.
+:::
+
+#### Operations on vectors
+
+We can use operators on more complicated data structures just as we did on the simpler data types. For example, we can add 2 vectors together:
+
+```{r, echo=TRUE}
+v1 <- c(1,2,3)
+v2 <- c(4,5,6)
+v1 + v2
+```
+As you can see, the individual elements are added together.
+
+<!-- Book version -->
+
+<!-- TODO:
+Add webexercises solution below
+-->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+What happens if you add two vectors of different lengths? For example, run this code and see what happens:
+:::
+')
+```
+
+```{r, eval=is_book, results = FALSE, warning=FALSE}
+v3 <- c(10, 20, 30, 40, 50)
+v4 <- c(1, 2)
+v3 + v4
+```
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+What happens when you add two `v3` and `v4`?
+
+Firstly, we get a warning `"longer object length is not a multiple of shorter object length"` because `v3` is longer than `v4`. However, a warning doesn\'t stop the code running - it merely tells us that something unexpected might be happening. 
+
+In this particular case, R will do something called *recycling* which repeats the shorter vector over and over until it is the same length as the longer vector. I.e. `v4` will be repeated 2.5 times to become `(1,2,1,2,1)` before adding it to `v3`.
+
+R warns you that this is happening because this may not be what you wanted, especially if you hadn\'t realized that the vecotrs were different lengths.
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+What happens if you add two vectors of different lengths?
+</p>')
+```
+
+```{r vector_broadcasting, eval=is_tutorial, exercise=TRUE}
+v3 <- c(10, 20, 30, 40, 50)
+v4 <- c(1, 2)
+v3 + v4
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="vector_broadcasting-hint">
+<p class="comment">
+**Hint:** Try changing the length of the shorter vector.
+</p>
+</div>')
+```
+
+```{r vector_broadcasting_quiz, eval=is_tutorial, echo=FALSE}
+question("What happens when you add two vectors of different lengths?",
+  answer("The 2 elements of v3 are added to the first 2 elements of v4, and the rest of v4 is unchanged."),
+  answer("v4 is repeated to match the length of v3 before they are added.", correct=TRUE, message="This is called 'recycling'. Since it is not what you might intuitively expect to happen, it can cause bugs in R programs if the programmer (i.e. you) is not carefully keeping track of vector lengths."),
+  answer("R guesses values for the remaining values of v3 so that the two vectors are the same length."),
+  allow_retry = TRUE
+)
+```
+
+<!-- End tutorial -->
 
 
 ## Dataframes {#sec-intro-r-dataframes}
@@ -123,17 +1383,345 @@ df$`Measurement B`
 If you're creating your own R dataframes, it's generally advisable to name the columns in such a way that they don't require violate variable naming rules and require backticks, because this will make your life easier. For example, you could use underscores instead of spaces in the column name.
 
 
-## Functions {#sec-intro-r-functions}
-
-{{< include ../../src/snippets/r_programming_functions.Rmd >}}
 
 ```{r, echo=FALSE, results='asis'}
-pdf_dev_comment("TODO: Add a section on creating, opening, and saving files in RStudio. Also cover .R source files, and link back from the RMarkdown chapter. Also cover file systems and how to navigate them (Windows and Mac).
+pdf_dev_comment("TODO: 
+
+## Source files
+
+Add a new section on creating, opening, and saving files in RStudio. Also cover .R source files, and link back from the RMarkdown chapter. Also cover file systems and how to navigate them (Windows and Mac).
 ")
 ```
+
+## Functions {#sec-intro-r-functions}
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO:
+video intro to R functions")
+```
+
+Perhaps, keen mathematician that you are, you want to calculate the length of the hypotenuse of a triangle. Dredging up memories of early math classes, you will doubtless recall Pythagoras’s theorem that the hypotenuse (the long side) of right-angled triangle is given by:
+
+$$c = \sqrt{a^2 + b^2}$$
+
+($c$ is the hypotenuse [long side] and $a$ and $b$ are the short sides.)
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO:
+include picture of a right angled triangle")
+```
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert exercises to render functions")
+```
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Let’s say we have a triangle where the shorter sides (a & b) are 3 and 4 units long. Can you calculate the length of side c in R using just the operators from the first section?
+
+*Hint #1:* The square root is equal to the 0.5 power of a number: `4 ^ 0.5 = 2`
+
+*Hint #2:* Just like in regular math equations, R will calculate some operators before others. For example it will do all multiplications before any additions. However, just like in regular math, we can change the order of operations by wrapping parts of our calculation in parentheses: `(...)`
+:::
+
+Did you get the answer 5? Fantastic!
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Write one (or more) lines of code that calculates the hypotenuse of a triangle where the short sides have lengths 3 and 4.
+</p>')
+```
+
+```{r hypotenuse_code, exercise=TRUE, eval=is_tutorial}
+
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="hypotenuse_code-hint">
+<p class="comment">
+**Hint:** Remember that the square root is the same as raising a number to the power of $\\sqrt{x} = x^\\frac{1}{2}$, i.e. in R: `x^0.5`.
+</p>
+</div>')
+```
+
+```{r hypotenuse_code-check, eval=is_tutorial, echo=F}
+grade_conditions(
+  pass_if(~ .result == sqrt(10^2 + 20^2))
+)
+```
+
+<!-- End tutorial -->
+
+### Re-useable code = functions
+
+What’s that? Another complaint? You have to write out this long expression every time you need the hypotenuse of a triangle? (No doubt this is a frequent chore in your day-to-day life.)
+
+Again, there is a solution! R allows us to save pieces of code in variables.  Yes, you heard that right: variables don’t just have to store data, they can also store code!
+
+These stored, reusable sections of code are called **functions**.
+
+For example, you could create a function to calculate the sum of two numbers:
+
+    adder <- function(number1, number2) {
+        result <- number1 + number2
+        return(result)
+    }
+
+
+Entering these 4 lines at the console prompt will be slow and error-prone, so let’s try something different.
+
+Click on the "File" menu at the top of RStudio. Select "New File" and then "R Script". A blank editor window should appear in a new pane above the console.
+
+Copy the adder function from the previous page into this empty script. Then press "Control + Alt + R" on your keyboard (simultaneously). This will run the contents of your script all at once.
+
+If successful, you should see that `adder` appears in the Environment pane under a new section called *Functions*.
+
+How do we use our adder function? Go back to the console, and type something like this:
+
+> adder(3, 5)
+
+If your function is working correctly you should get the result of the 2 numbers that you entered inside the braces.
+
+Let's take another look at the adder function to understand what's going on:
+
+    adder <- function(number1, number2) {
+        result <- number1 + number2
+        return(result)
+    }
+
+**Line 1:** The first line creates a new function with the `function` keyword and saves it to the name `adder` using the assignment operator `<-`, just as we did for variables. 
+
+After `function` are a pair of parentheses. Inside these, we put a list of the parameters that the function can take, separated by commas. In this case, our adder function has two paramters (the numbers to add together). We are going to give these numbers the temporary names `number1` and `number2` (creative, I know). We will use these parameter names inside the function to refer to these two numbers.
+
+We end the line with an opening curly bracket `{` to indicate that the code that follows is part of the function.
+
+**Line 2:** This is the meat of our adder function. We add our two number paramters together and store them in a variable called `result`. Its important to note that `result` only exists inside the curly brackets of the adder function (i.e. it vanishes after the function has finished).
+
+**Line 3:** Here we specify what the function is should return: in this case we want to return the `result` variable.
+
+**Line 4:** We signal the end of the function with a closing curly bracket (matching the one from the end of line 1).
+
+You might object (and not without reason) that our `adder` function is a very trivial example. Wouldn't it just be easier to use the `+` operator?
+
+Yes, it would! So let's look at a more complicated function.
+
+We can create a function to calculate the hypotenuse like this:
+
+```{r, echo=TRUE}
+hypotenuse <- function(a, b) {
+  c <- (a^2 + b^2)^0.5
+  return(c)
+}
+```
+
+Then we can use this `hypotenuse` function as many times as we like. For example calculate the hypotenuse of a triangle with sides of length 3 and 4, we would run:
+
+```{r, echo=TRUE}
+hypotenuse(3, 4)
+```
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: convert exercises to render functions")
+```
+
+<!-- Book version -->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Use the `hypotenuse()` function to calculate the area of a triangle with sides of length 3 and 4.
+
+*Hint:* Try changing the numbers inside the parentheses after `hypotenuse`.
+:::
+
+Did you get the answer 5? Fantastic!
+')
+```
+
+<!-- End book -->
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Use the `hypotenuse()` function to calculate the area of a triangle with sides of length 3 and 4.
+</p>')
+```
+
+```{r hypotenuse_definition, eval=is_tutorial}
+hypotenuse <- function(a, b) {
+  c <- (a^2 + b^2)^0.5
+  return(c)
+}
+```
+
+```{r hypotenuse_function, exercise=TRUE, exercise.setup = "hypotenuse_definition", eval=is_tutorial}
+
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="hypotenuse_function-hint">
+<p class="comment">
+**Hint:** Try changing the numbers inside the parentheses after `hypotenuse`
+</p>
+</div>')
+```
+
+```{r hypotenuse_function-check, eval=is_tutorial, echo=F}
+grade_conditions(
+  pass_if(~ .result == sqrt(3^2 + 4^2))
+)
+```
+
+<!-- End tutorial -->
+
+### How our `hypotenuse()` function works
+
+There are a few things to note about this code:
+
+<!-- TODO:
+add a footnote about keywords (reserved words in R with special meanings, can't be used for other things). Maybe include more on them in the advanced R section?
+-->
+
+* We tell R that we are creating a reusable function using the `function` *keyword*.
+* `function` is followed by parentheses `(...)` that contain **parameters**. Parameters are the names that we give to the input data to the function.
+  * For example, above we created two parameters: `a` and `b`
+  * You can have as many parameters as you want in a function, from zero on up. They must be separated by commas.
+* The reusable code goes inside a pair of curly brackets `{...}`
+  * We can now use the function's parameters in this code (e.g. `a` and `b`). Essentially we temporarily create new variables with the parameter names (but these are)
+* At the end of the function we can return a particular result with `return(...)` - just replace the dots with a value or 
+* We store the function in a name with the assignment operator `<-` (just like we did with variables)
+* When we want to run the code, we write the function name followed by parentheses, with any arguments inside the parentheses (separated by commas)
+
+<!-- Book version -->
+
+<!-- TODO:
+Add webexercises solution boxes below
+-->
+
+```{r, eval=is_book, echo=F, results = 'asis'}
+cat('
+:::{.exercise}
+Replace the blanks to create a function to calculate the *area of a triangle* instead. Save this function as `triangle_area`.
+
+_______ <- function(a, b) {
+  area <- _______
+  return(area)
+}
+
+*Hint:* The area of a triangle is $0.5 \times a \times b$.
+:::
+')
+```
+
+<!-- End book -->
+
+
+<!-- Tutorial version -->
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<p class="comment3">
+Replace the blanks to create a function to calculate the *area of a triangle* instead. Save this function as `triangle_area`.
+</p>')
+```
+
+```{r triangle_area_function, exercise=TRUE, eval=is_tutorial, echo=F}
+_______ <- function(a, b) {
+  area <- _______
+  return(area)
+}
+```
+
+```{r, eval=is_tutorial, echo=F, results = 'asis'}
+cat('<div id="triangle_area_function-hint">
+<p class="comment">
+**Hint:** The area of a triangle is `0.5 * a * b`.
+</p>
+</div>')
+```
+
+```{r triangle_area_function-check, eval=is_tutorial, echo=F}
+grade_conditions(
+  pass_if(~ identical(.result(4,5), 10)),
+  pass_if(~ identical(.result(10,20), 100))
+)
+```
+
+<!-- End tutorial -->
+
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Add exercise: have students create a `subtractor` function by modifying `adder()`
+
+Additional exercise ideas:
+
+- Return a fixed value.
+- Calculate the area of a rectangle.
+- Passing variables, & making copies, modifying within function, & global variables")
+```
+
+
 
 
 ## Packages
 
-{{< include ../../src/snippets/r_programming_packages.Rmd >}}
+Functions are clearly useful - we can save a lot of time and effort by writing our code once as a function, and then just calling that function whenever we need to do that thing.
+
+Of course, we can save even more time by not writing the function ourselves but instead using a function that somebody else has written which does what we want.
+
+In R (as in many other programming languages) we can import collections of functions (and other useful things, such as datasets) that other people have written. These collections are called *packages*.
+
+### Installing packages {#sec-installing-packages}
+
+By default R will come with several useful packages installed. You can which ones are currently installed by going to the *Packages* tab of the bottom right pane in RStudio.
+
+To install a new package, either:
+
+* Click on the *Install* button in the Packages tab, and type the name of the package you want into to the pop-up that appears.
+
+* Go to the RStudio Console and type in (making sure to replace the name of the package you want inside the quotes!):
+
+    ```r
+    install.packages("some_package_name")
+    ```
+    
+    For example, to install a package called the `tidyverse` (which we will be using for much of this book), you would run:
+
+    ```r
+    install.packages("tidyverse")
+    ```
+    
+    Having gone through this chapter, this code should hopefully make some sense! `install.packages()` is a function (built-in to the core R programming language), and `"tidyverse"` is a character string that we are passing as the argument to that function.
+    
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("TODO: Open up an Rmd/Qmd file in RStudio, and click the install button in the yellow banner at the top. Does this also happen in R Scripts?")
+```
+    
+Note that it can take some time to install a package (e.g. the `tidyverse` package can take 10-15 minutes to install!), so it's worth checking to see if it is already installed before you waste a lot of time.
+
+### Loading packages
+
+A package only needs to be installed to your computer once.
+
+However, you need to load the functions and other objects from that package in every R session that you wish to use them (because they will not automatically be available to R even after you have installed them).
+
+To load a package we use the `library()` function. For example, to load the `tidyverse` package, you would run:
+
+```r
+library(tidyverse)
+```
+
+<!-- TODO:
+add exercises on R packages (installing and loading)
+-->
+
 
