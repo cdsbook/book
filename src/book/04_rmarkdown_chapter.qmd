@@ -486,9 +486,37 @@ There's a few ways that new R programmers run into errors due to this code chunk
 
 3. You restart RStudio after a break and your most recently written code chunk doesn't work. This is because anything R creates in the Environment is temporary. It will only last for as long as R or RStudio is running on the computer. When you restart RStudio and reopen a Rmd/Qmd file, you will need to re-run any code chunks whose output you need. (It's often easiest to just rerun all the code chunks, which you can do by clicking the "Run" button in the top right of the file editor pane and then selecting the last option to "Run All".)
 
+### Inline code
 
+We can also include code within paragraphs of text. Let's say you calculated some important number in your analyses, and you want to discuss that number. You could type in the number by hand, but this is prone to errors where the calculated number changes for some reason (maybe you adjust the analysis's code, for example) but then you forget to update the number in the text.
 
+We can instead just include the variable's value directly in the text using *inline code*, for example:
 
+```{verbatim}
+The answer to life, the universe, and everything is `r variable_name`.
+```
+
+Here, we use a single pair of backticks around the code to indicate where it starts an ends, and an `r` immediately after the first backtick to indicate that this is R code. When the document is rendered, the value assigned to the variable called `variable_name` will be rendered within the sentence instead of the code. For example (if `variable_name` = 42),
+
+    My results showed that the answer to life, the universe, and everything is 42.
+
+We can put more complicated expressions within the inline code backticks. For example, you could put a calculation to get the same result:
+
+```{verbatim}
+My results showed that the answer to life, the universe, and everything is `r 40 + 2`.
+```
+    
+or we could get the date at the time that the document is rendered by using the `Sys.Date()` function that is part of the R programming language:
+
+```{verbatim}
+This document was created on `r Sys.Date()`.
+```
+
+which would be rendered as:
+
+```
+This document was created on `r Sys.Date()`.
+```
 
 <!--
 
@@ -505,9 +533,7 @@ formatting:
 * Code comments vs. self-documenting code vs. text explanations
 
 
-### Setup code chunks (skip?)
 
-### Inline code
 
 ### The header section {#sec-yaml-header-section}
 

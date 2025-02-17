@@ -387,6 +387,7 @@ div.csl-indent {
   <li><a href="#rendering-to-an-output" id="toc-rendering-to-an-output" class="nav-link" data-scroll-target="#rendering-to-an-output"><span class="header-section-number">4.1.2</span> Rendering to an output</a></li>
   <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">4.1.3</span> Text</a></li>
   <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">4.1.4</span> Code chunks</a></li>
+  <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code"><span class="header-section-number">4.1.5</span> Inline code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -707,6 +708,20 @@ code goes here
 <li><p>You delete a code chunk that creates something another (not deleted) code chunk needs. That thing will stick around in your RStudio Environment, and so be availabe to any code chunks running interactively, but when you knit you get the same error as in the previous point (for the same reason).</p></li>
 <li><p>You restart RStudio after a break and your most recently written code chunk doesn’t work. This is because anything R creates in the Environment is temporary. It will only last for as long as R or RStudio is running on the computer. When you restart RStudio and reopen a Rmd/Qmd file, you will need to re-run any code chunks whose output you need. (It’s often easiest to just rerun all the code chunks, which you can do by clicking the “Run” button in the top right of the file editor pane and then selecting the last option to “Run All”.)</p></li>
 </ol>
+</section>
+<section id="inline-code" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="inline-code"><span class="header-section-number">4.1.5</span> Inline code</h3>
+<p>We can also include code within paragraphs of text. Let’s say you calculated some important number in your analyses, and you want to discuss that number. You could type in the number by hand, but this is prone to errors where the calculated number changes for some reason (maybe you adjust the analysis’s code, for example) but then you forget to update the number in the text.</p>
+<p>We can instead just include the variable’s value directly in the text using <em>inline code</em>, for example:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is `r variable_name`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Here, we use a single pair of backticks around the code to indicate where it starts an ends, and an <code>r</code> immediately after the first backtick to indicate that this is R code. When the document is rendered, the value assigned to the variable called <code>variable_name</code> will be rendered within the sentence instead of the code. For example (if <code>variable_name</code> = 42),</p>
+<pre><code>My results showed that the answer to life, the universe, and everything is 42.</code></pre>
+<p>We can put more complicated expressions within the inline code backticks. For example, you could put a calculation to get the same result:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is 42.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or we could get the date at the time that the document is rendered by using the <code>Sys.Date()</code> function that is part of the R programming language:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on 2025-02-17.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which would be rendered as:</p>
+<p>This document was created on 2025-02-17.</p>
 
 <!--
 
@@ -723,9 +738,7 @@ formatting:
 * Code comments vs. self-documenting code vs. text explanations
 
 
-### Setup code chunks (skip?)
 
-### Inline code
 
 ### The header section {#sec-yaml-header-section}
 
@@ -752,13 +765,13 @@ Tables produced by code chunks, and formatting.
 
 ### Visual editor {#sec-visual-editor}
 
-::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-11_3020f8c87c1a5a89512f2b78cfc2b822'}
+::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-12_a4df6c9220c7903943920d7c078d9cbb'}
 
 :::
 
 ### Frequently encountered problems
 
-::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-12_5bdf6f38d89d0f3e97ebd92de82bc9bb'}
+::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-13_ca4ac2a2cc68fc83682b63d44c05f7b4'}
 
 :::
 
