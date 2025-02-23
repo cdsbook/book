@@ -457,7 +457,7 @@ To indicate the programming language and thus to enable the code to be run, we n
 ```{r}
 code goes here
 ```
-````
+```
 
 A major reason for using RStudio to write Rmd/Qmd documents is that you can run code chunks from within the file editor tab. Either click on the green "Play" triangle in the top right, or click within the code chunk so that the cursor is flashing on a line of code and then simulatenously press the following keys: Ctrl + Shift + R (Windows/Linux) or Cmd + Option + R (Mac).
 
@@ -515,6 +515,107 @@ which would be rendered as:
 This document was created on `r Sys.Date()`.
 ```
 
+## The header section {#sec-yaml-header-section}
+
+We may wish to customize how our input document is rendered to an output file, instead of using the defaults. For example, you may wish to change the font size, or make all website links blue.
+
+In both RMarkdown and Quarto documents we do this in the *header section*. The general structure of a header section is similar in both cases, but the details can vary.
+
+The header section occurs before the actual contents of the document (i.e. before the text and code), and begins and ends with a line of three dashes: `---`. You may have already seen a header section if you created a Rmd or Qmd in RStudio, because the example files that RStudio create come with simple header sections.
+
+A simple example of a header section might be:
+
+```{verbatim}
+---
+title: "Computing and Data for Scientists"
+author: "Dominic White"
+---
+```
+
+The header section is written in another markup language called YAML.^[If you are wondering how many markup languages this book is going to require you to learn, you may be dismayed to learn that YAML stands for *Yet Another Markup Language*. Also, two. And you don't need to learn much YAML.] YAML uses a different format to the Markdown that we used for writing regular text. YAML is much better suited to writing a list of options, such as the rendering options you want to apply to your output file.
+
+There are a few things to note about header sections:
+
+* The example header section above would work in either an RMarkdown or Quarto file, because both have a `title` and `author` option. However, many of the options are different, either because they only exist in one of the two file types or because they are called different things!
+
+  For example, in both document types we can specifif the type of output file we want to render to.
+  
+  This is how we would could modify the example header section above to render to a PDF from an RMarkdown file:
+  
+  ```{verbatim}
+  ---
+  title: "Computing and Data for Scientists"
+  author: "Dominic White"
+  output: pdf_document
+  ---
+  ```
+  
+  And this is how we would write the same thing in a Quarto file:
+  
+  ```{verbatim}
+  ---
+  title: "Computing and Data for Scientists"
+  author: "Dominic White"
+  format: pdf
+  ---
+  ```
+
+* Some options will be shared between all output file types (like `title` and author`), but other options are specific to a particular type of output file.
+
+  For simplicity, let's consider just RMarkdown. We can specify multiple output formats with their own options (the first format will be the default), e.g.
+  
+  ```{verbatim}
+  ---
+  title: "Computing and Data for Scientists"
+  author: "Dominic White"
+  output: 
+    pdf_document:
+      keep_tex: true
+    html_document:
+      theme: cosmo
+      code_folding: hide
+  ---
+  ```
+  
+  What does all this mean?
+  
+  First we have specified options for rendering to both PDF (`pdf_document`) and HTML (i.e. web pages, with `html_document`).
+  
+  `keep_tex` is a PDF specific option. A `.tex` is an intermediate filetype that is created from the RMarkdown file, which can then be rendered as a PDF. By default, that intermediate file is deleted once the PDF is created. Here we've set an option to keep it instead.
+  
+  We've also set two html specific options. `theme` allows us to pick a style for our webpage (e.g. colors, font, etc.) from several pre-existing options. `code_folding` will hide the code of any code chunks, but create a button that can be used to expand the code (this is not something we could do in a PDF, since PDFs are static).
+
+These examples also highlight a bit of YAML formatting syntax (applicable in both Rmd and Qmd files). 
+
+* All of our options above have been specified in the format of `key: value` where `key` is the name of the option and `value` is what we set it to.
+
+* We can nest options under other options as we did with the format specfic options. In that case, we need to indent those nested lines two more spaces that the parent:
+
+  ```{verbatim}
+  key: 
+    value:
+      nested_key: nested_value
+  ```
+
+* Sometimes we want to provide a list of values to an option. For example, in RMarkdown header sections, we can provide multiple authors as a list to the `author` option.
+
+  We either enclose them in square brackets:
+
+  ```{verbatim}
+  author: ["Joe Bloggs", "Anna Smith"]
+  ```
+  
+  or list them on separate lines (indented 2 spaces, and starting with a hyphen):
+
+  ```{verbatim}
+  author: 
+    - "Joe Bloggs"
+    - "Anna Smith"
+  ```
+
+A detailed list of RMarkdown options can be found in the book RMarkdown: The Definite Guide (available at https://bookdown.org/yihui/rmarkdown-cookbook). For Quarto, the official documentation at https://quarto.org provides a similar list.
+
+
 <!--
 
 Move to a more advanced chapter:
@@ -530,11 +631,6 @@ formatting:
 * Code comments vs. self-documenting code vs. text explanations
 
 
-
-
-## The header section {#sec-yaml-header-section}
-
-* Outputting different file types
 
 ## Images & plots
 
