@@ -613,7 +613,35 @@ These examples also highlight a bit of YAML formatting syntax (applicable in bot
     - "Anna Smith"
   ```
 
-A detailed list of RMarkdown options can be found in the book RMarkdown: The Definite Guide (available at https://bookdown.org/yihui/rmarkdown-cookbook). For Quarto, the official documentation at https://quarto.org provides a similar list.
+A detailed list of header sections options for RMarkdown can be found in the book RMarkdown: The Definite Guide (available at https://bookdown.org/yihui/rmarkdown-cookbook). For Quarto, the official documentation at https://quarto.org provides a similar list.
+
+
+## Images & figures
+
+If you have an image in a separate file that you wish to include in the rendered output, then you can do so using the following Markdown syntax:
+
+```{verbatim}}
+![](image_file_name.jpg)
+```
+    
+You will note that this is very similar to the syntax for a web link (square brackets then parentheses), but with an exclaimation mark at the front.
+
+We can add *alternative text* within the square brackets like this:
+
+```{verbatim}}
+![description of image](image_file_name.jpg)
+```
+
+Alternative text is a description of the image that will be displayed if the image can't be loaded. It's a good idea to include alternative text even if you don't think that's a problem, because alternative text is used by blind or visually impaired users to understand what's in an image.^[Such users may read your document with *screen reading software* that reads the contents of the file out loud, including the alternative text that accompanies any images.]
+
+We can also include images using R code in a code chunk. This makes use of the `knitr` package:
+
+````{verbatim}
+```{r}
+knitr::include_graphics("image_file_name.jpg")
+```
+````
+
 
 
 <!--
@@ -631,12 +659,6 @@ formatting:
 * Code comments vs. self-documenting code vs. text explanations
 
 
-
-## Images & plots
-
-Images (plus size and floating), and captions & references.
-
-Plots produced by code chunks, and formatting.
 
 ## Tables
 
