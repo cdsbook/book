@@ -515,6 +515,7 @@ which would be rendered as:
 This document was created on `r Sys.Date()`.
 ```
 
+
 ## The header section {#sec-yaml-header-section}
 
 We may wish to customize how our input document is rendered to an output file, instead of using the defaults. For example, you may wish to change the font size, or make all website links blue.
@@ -643,87 +644,141 @@ knitr::include_graphics("image_file_name.jpg")
 ````
 
 
-
-<!--
-
-Move to a more advanced chapter:
-
-
-formatting:
-
-* options
-* names
-
-* breaking up long lines of code (and style recommendations/guides)
-* not running code (and optionally keeping syntax formatting - does this work in rmd like it does in GitHub flavored md)
-* Code comments vs. self-documenting code vs. text explanations
-
-
-
 ## Tables
 
-Markdown tables (& captions + references)
+You can create Markdown tables using the following syntax:
 
-| Column 1     | Column 2 | Column 3 |
-|--------------|:--------:|---------:|
-| Left aligned | Centered | Right    |
-| Cell 3       | Cell 4   | Cell 6   |
+```{verbatim}
+| column 1 heading | column 2 heading  |
+| ---------------- | ----------------- |
+| row 1 content    | other content     |
+| row 2 content    | other row 2 stuff |
+```
 
-Tables produced by code chunks, and formatting.
+which creates a table like this:
+
+| column 1 heading | column 2 heading  |
+| ---------------- | ----------------- |
+| row 1 content    | other content     |
+| row 2 stuff      | other row 2 stuff |
+
+A few things to note:
+
+* Vertical bars `|` divide columns. The hyphens `---` on the second line of the table divide the headings row from the data rows.
+
+* Nice formatting is not required by Markdown, but it helps anyone reading the source file understand the text. However, you are not required to align the column separators `|` on each line, nor do you need more than one hyphen below each heading. 
+
+  For example, this is a valid way of writing the same table as before:
+
+  ```{verbatim}
+  | column 1 heading | column 2 heading |
+  |-|-|
+  | row 1 content | other content |
+  | row 2 stuff | other row 2 stuff |
+  ```
+  
+  (Although you would hopefully agree that it's much harder to understand!)
+
+* You can adjust the alignment of content in each column (aligning it either to the left, the right, or centered) using colons `:` in the line of dashes.
+
+  For example:
+
+  ```{verbatim}
+  | column 1     | column 2 | column 3      |
+  | :----------- | :------: | ------------: |
+  | left aligned | centered | right aligned |
+  ```
+  
+* The contents of a table cell have to be on a single line. You cannot put a linebreak in the source file to make it easier to read.
+
+Tables can also be created by code chunks, typically by including a line of code that returns a dataframe, e.g.:
+
+```{r}
+head(iris)
+```
+
+Here we are using the `head()` function to retrieve just the first six rows of the `iris` dataframe.
+
+We could have included a line of code that was just the dataframe name:
+
+````{verbatim}
+```{r}
+iris
+```
+```
+
+However this would print out the entire dataframe, which has 150 rows! Since large dataframes make output documentshard to read, you generally don't want to display the original data.
+
 
 ## Math 
+
+We often want to include mathematical equations or other notation in scientific documents. Markdown does not include support for this, but RMarkdown and Quarto both allow us to include maths written in Latex notation.
+
+To do so, we put the math between dollar symbols: `$`.
+
+A single pair of dollar symbols allow us to write *inline* math, within a paragraph of regular text, for example:
+
+```{verbatim}
+The formula for the area of a circle is $A = \pi r^2$.
+```
+
+which becomes
+
+The formula for the area of a circle is $A = \pi r^2$.
+
+You may also want include a block of math as it's own entity, separate from the rest of the text. To do so, we use a pair of double dollar symbols, e.g.
+
+```{verbatim}
+$$A = \pi r^2$$
+```
+
+which becomes
+
+$$A = \pi r^2$$
+
+Note how the math block is centered.
+
+Here are some useful mathematical symbols for various operations in Latex, and what they render as in the output document.
+
+| Operation | Latex symbols | Example | Output |
+|-----------|--------------|--------|
+| Arithmetic | `+`, `-`, `=` | `$4 + 2 - 1 = 5$` | $4 + 2 - 1 = 5$ |
+| Basic division | `/` | `$1/2$` | $1/2$ |
+| Fancy division | `\frac{...}{...}` | `$\frac{1}{2}$` | $\frac{1}{1}$ |
+| Greek letters | \alpha, \Alpha | `$\alpha \pi$` | $\alpha \pi$ |
 
 
 ## Visual editor {#sec-visual-editor}
 
-```{r, echo=FALSE, results='asis'}
-pdf_dev_comment("
-Refs:
+So far we have written the contents of our input file in plain text, with markup symbols to indicate what the rendered output should look like. This can take some getting used to, especially if you are more familiar with word processing software like Microsoft Word or Google Docs where you can see the formatting as you edit the document. It can also sometimes be fiddly to edit markup symbols.
 
-* https://rstudio.github.io/visual-markdown-editing/
-")
-```
+To help, RStudio includes a *visual editor* in which you can get a live preview of what your document will look like as you write it.
 
-## Frequently encountered problems
+To switch to the visual editor when you have a source file open in RStudio, click the Settings dropdown (the white cog wheel) at the top of the file editor pane and select the first option (Use Visual Editor).
 
-```{r, echo=FALSE, results='asis'}
-pdf_dev_comment("
-Move these to the FEPs appendix.
-")
-```
+The visual editor can be useful if you find it easier to work with a visual representation of the output document. However, you should remember a few things when working with the visual editor:
 
-### RStudio has forgotten my variables
+* The underlying file is still a RMarkdown or Quarto file.
+* The visual editor view is what the output will look like if rendered to HTML (e.g. to  a webpage). If you render to a different output once you are finished (e.g. to a PDF), the output might look slightly different.
+* There may be times when you will need to switch back to the *Source* mode to edit the underlying source file, e.g. if you are trying to add some sort of advanced content that is not supported by the visual editor.
 
-### My formatting is wonky
-
-### My document won't render {#sec-common-render-issues}
-
-* Missing dependencies. R packages, Latex for PDF output.
-
-* Deciphering error messages.
-  * Run the code chunks interactively.
-    * Make sure you didn't create a variable out of sequence, or delete a code chunk with a variable (try clearing the Environment)
-  * Figuring out the offending code chunk.
-
-* Non ASCII characters.
-
-* Taking too long/crashes
-  * Memory/ large outputs/slow code.
-  
 
 ## RMarkdown versus Quarto
 
-Aside from the differences covered above:
+Aside from the differences covered in the previous sections:
 
-RMD has an extensive ecosystem. Quarto can be extended, but seems to be designed to contain most features within the main system (and because it's newer, doesn't have such an ecosystem).
+* RMarkdown has an extensive ecosystem of extensions developed over its long history. Quarto can be extended, but seems to be designed to contain most features within the main system (and because it's newer, has a smaller (albeit growing) set of extensions).
 
-Both can support multi-file projects, e.g. this book, but Quarto knits each file separately, whereas Rmd allows the files to be merged and subsequent files can access the output of code in previous files.
+* Both can support multi-file projects (e.g. if you wanted to write a book, with a separate source file for each chapter), but Quarto knits each source file separately, whereas RMarkdown make the code and results of each source file available to later files in the rendering process.
 
-Personally I have found Quarto to be a little less flexible and more prescriptive, but not deal-breakingly so. It has some nice new features that are not standard in RMarkdown, and is being actively developed and improved (whereas RMd is relatively stable at this point). 
+  For example, if you were writing a multi-file book and you create a variable in the Chapter 1 file, you can then access it in a separate Chapter 2 file if you are using RMarkdown. In Quarto, you would need to repeat all the code to recreate the same variable in difference chapter files.
 
-This book is written principally in Quarto.
+* Personally I have found Quarto to be a little less flexible and more prescriptive, but not deal-breakingly so. It has some nice new features that are not standard in RMarkdown, and is being actively developed and improved (whereas RMarkdown is relatively stable at this point). 
 
-Due to the similarities, its not too hard to switch between them, or even include RMarkdown files within Quarto files (which this book does).
+This book is written principally in Quarto, but due to the similarities, it's easy to switch between them, or even include RMarkdown files within Quarto files (which this book does).
+
+
+<!--
 
 ## Topics covered elsewhere in this book
 

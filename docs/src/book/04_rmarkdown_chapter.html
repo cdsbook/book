@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Computing and Data for Scientists - 4&nbsp; Literate Programming &amp; Reproducibility</title>
+<title>An Introduction to Computing and Data for Scientists - 4&nbsp; Literate Programming</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -116,6 +116,8 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../../include/webex.css">
 </head>
@@ -129,7 +131,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/04_rmarkdown_chapter.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/04_rmarkdown_chapter.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -190,7 +192,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/book/04_rmarkdown_chapter.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -381,14 +383,15 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#literate-programming" id="toc-literate-programming" class="nav-link active" data-scroll-target="#literate-programming"><span class="header-section-number">4.1</span> Literate programming</a>
-  <ul class="collapse">
-  <li><a href="#creating-rmarkdownquarto-files-in-rstudio" id="toc-creating-rmarkdownquarto-files-in-rstudio" class="nav-link" data-scroll-target="#creating-rmarkdownquarto-files-in-rstudio"><span class="header-section-number">4.1.1</span> Creating RMarkdown/Quarto files in RStudio</a></li>
-  <li><a href="#rendering-to-an-output" id="toc-rendering-to-an-output" class="nav-link" data-scroll-target="#rendering-to-an-output"><span class="header-section-number">4.1.2</span> Rendering to an output</a></li>
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">4.1.3</span> Text</a></li>
-  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">4.1.4</span> Code chunks</a></li>
-  <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code"><span class="header-section-number">4.1.5</span> Inline code</a></li>
-  </ul></li>
+  <li><a href="#rmarkdown-and-quarto-files" id="toc-rmarkdown-and-quarto-files" class="nav-link active" data-scroll-target="#rmarkdown-and-quarto-files"><span class="header-section-number">4.1</span> RMarkdown and Quarto files</a></li>
+  <li><a href="#rendering-to-an-output" id="toc-rendering-to-an-output" class="nav-link" data-scroll-target="#rendering-to-an-output"><span class="header-section-number">4.2</span> Rendering to an output</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">4.3</span> Text</a></li>
+  <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">4.4</span> Code chunks</a></li>
+  <li><a href="#sec-yaml-header-section" id="toc-sec-yaml-header-section" class="nav-link" data-scroll-target="#sec-yaml-header-section"><span class="header-section-number">4.5</span> The header section</a></li>
+  <li><a href="#images-figures" id="toc-images-figures" class="nav-link" data-scroll-target="#images-figures"><span class="header-section-number">4.6</span> Images &amp; figures</a></li>
+  <li><a href="#tables" id="toc-tables" class="nav-link" data-scroll-target="#tables"><span class="header-section-number">4.7</span> Tables</a></li>
+  <li><a href="#sec-visual-editor" id="toc-sec-visual-editor" class="nav-link" data-scroll-target="#sec-visual-editor"><span class="header-section-number">4.8</span> Visual editor</a></li>
+  <li><a href="#rmarkdown-versus-quarto" id="toc-rmarkdown-versus-quarto" class="nav-link" data-scroll-target="#rmarkdown-versus-quarto"><span class="header-section-number">4.9</span> RMarkdown versus Quarto</a></li>
   </ul>
 </nav>
     </div>
@@ -397,7 +400,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming &amp; Reproducibility</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></h1>
 </div>
 
 
@@ -427,8 +430,6 @@ Warning
 </div>
 </div>
 </div>
-<section id="literate-programming" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="literate-programming"><span class="header-section-number">4.1</span> Literate programming</h2>
 <p>Traditionally, if you needed to do science on a computer, you ran your analyses in one program, and then copied over any outputs you wanted into a separate document where you wrote your results.</p>
 <p>The separation of analysis and communication creates two main problems:</p>
 <ol type="1">
@@ -444,8 +445,8 @@ Warning
 <p>Quarto is an attempt to expand RMarkdown to support other programming languages and types of input document. As we will see in the rest of this chapter, RMarkdown and Quarto are extremely similar, and you can achieve almost identical results with either system.</p>
 <p>This book is written using literate programming, using a combination of RMarkdown and Quarto files.</p>
 <p>In the next few sections, we will go over how to create and edit RMarkdown and Quarto files. Most of the advice will be the same for each file type. Where the two systems differ, I will highlight this and show you both approaches. I will end the chapter with a more advanced discussion of the differences, in case you are planning a larger project and need to pick between the two (spoiler: it doesn’t matter too much).</p>
-<section id="creating-rmarkdownquarto-files-in-rstudio" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="creating-rmarkdownquarto-files-in-rstudio"><span class="header-section-number">4.1.1</span> Creating RMarkdown/Quarto files in RStudio</h3>
+<section id="rmarkdown-and-quarto-files" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="rmarkdown-and-quarto-files"><span class="header-section-number">4.1</span> RMarkdown and Quarto files</h2>
 <p>RMarkdown files are text files that end in the file extension <code>.Rmd</code>. For example, a file called <code>my_homework.Rmd</code> in an RMarkdown file. Quarto files are similar, but end with the extension <code>.qmd</code>.</p>
 <p>We can create both types of files from within RStudio. Click on the <em>File</em> menu in the top left of RStudio<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, then pick the <em>New File</em> option, and then select either:</p>
 <ul>
@@ -454,8 +455,8 @@ Warning
 </ul>
 <p>When you create new files in this way, RStudio will include some default contents to give an example of how each type of file works. (We will also see how to create empty files, with no default contents.)</p>
 <p>Since the results are slightly different, let’s look at each filetype in turn.</p>
-<section id="new-rmarkdown-files" class="level4" data-number="4.1.1.1">
-<h4 data-number="4.1.1.1" class="anchored" data-anchor-id="new-rmarkdown-files"><span class="header-section-number">4.1.1.1</span> New RMarkdown files</h4>
+<section id="new-rmarkdown-files" class="level4" data-number="4.1.0.1">
+<h4 data-number="4.1.0.1" class="anchored" data-anchor-id="new-rmarkdown-files"><span class="header-section-number">4.1.0.1</span> New RMarkdown files</h4>
 <p>When you create a new RMarkdown file, you will be presented with the following wizard:</p>
 <p></p>
 <p><em>Figure: RMarkdown creation wizard.</em></p>
@@ -465,34 +466,34 @@ Warning
 <p>To create an empty file without any default contents, click the <em>Create Empty Document</em> button instead.</p>
 <p>The file will automatically be opened in the Editor pane of RStudio.</p>
 </section>
-<section id="new-quarto-files" class="level4" data-number="4.1.1.2">
-<h4 data-number="4.1.1.2" class="anchored" data-anchor-id="new-quarto-files"><span class="header-section-number">4.1.1.2</span> New Quarto files</h4>
+<section id="new-quarto-files" class="level4" data-number="4.1.0.2">
+<h4 data-number="4.1.0.2" class="anchored" data-anchor-id="new-quarto-files"><span class="header-section-number">4.1.0.2</span> New Quarto files</h4>
 <p>Quarto files come with a similar set-up wizard:</p>
 <p></p>
 <p><em>Figure: Quarto creation wizard.</em></p>
 <p>Again, it is fine to just click OK with the defaults, but you can put in a title and author name if you like.</p>
-<p>I also like to deselect the <em>Editor</em> checkbox, but you can easily turn the visual editor on or off once you have created the file (<span class="quarto-unresolved-ref">?sec-visual-editor</span>).</p>
+<p>I also like to deselect the <em>Editor</em> checkbox, but you can easily turn the visual editor on or off once you have created the file (<a href="#sec-visual-editor"><span>Section&nbsp;4.8</span></a>).</p>
 <p>If you would like an empty Quarto document without any default contents, click the <em>Create Empty Document</em> button instead of <em>OK</em>.</p>
 <p>The file will automatically be opened in the Editor pane of RStudio.</p>
 <p></p>
 <p><em>Figure: Side-by-side examples of default RMarkdown &amp; Quarto files, with key features highlighted.</em></p>
 </section>
 </section>
-<section id="rendering-to-an-output" class="level3" data-number="4.1.2">
-<h3 data-number="4.1.2" class="anchored" data-anchor-id="rendering-to-an-output"><span class="header-section-number">4.1.2</span> Rendering to an output</h3>
+<section id="rendering-to-an-output" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="rendering-to-an-output"><span class="header-section-number">4.2</span> Rendering to an output</h2>
 <p>Note that the files you create are not saved when you create them. To save them, make sure the file is the current one open in the editor pane and either press the <em>Save</em> icon in the top toolbar, or <em>File &gt; Save</em> in the top menu, or click anywhere in the open file and then press the <kbd>Ctrl-S</kbd> keys at the same time.</p>
 <p>To render the saved RMarkdown/Quarto files to an output:</p>
 <ul>
 <li>In RMarkdown, click the <em>Knit</em> button at the top of the open file in the Editor pane.</li>
 <li>In Quarto, click the <em>Render</em> button.</li>
 </ul>
-<p>In each case, the default output filetype will be created, such as a PDF or a HTML file (a webpage). Later on we’ll see change the type of output file you render to in <span class="quarto-unresolved-ref">?sec-yaml-header-section</span>.</p>
+<p>In each case, the default output filetype will be created, such as a PDF or a HTML file (a webpage). Later on we’ll see change the type of output file you render to in <a href="#sec-yaml-header-section"><span>Section&nbsp;4.5</span></a>.</p>
 <p>The rendering process will be shown in the bottom-right pane of RStudio while it happens. Sometimes a problem will occur which prevents the file from rendering. Common reasons for this are covered in the Frequently Encountered Problems section: <span class="quarto-unresolved-ref">?sec-common-render-issues</span>.</p>
 <p>Once rendering is finished, the file should open up automatically. A PDF will typically open in your computer’s default PDF viewer. An HTML output file will open up in your browser. If the output file doesn’t open automatically, you can open it manually by clicking on the file in the Files tab in the bottom-right pane of RStudio.</p>
 </section>
-<section id="text" class="level3" data-number="4.1.3">
-<h3 data-number="4.1.3" class="anchored"><span class="header-section-number">4.1.3</span> Text</h3>
-<p>If you look at Fig. X (rmd/qmd side-by-side), you can see that both Quarto and RMarkdown files are divided into two sections. At the top of each file is a <em>header</em> section, which begins and ends with a line of three dashes: <code>---</code>. This is where we can specify settings for the file, which we will learn more about in <span class="quarto-unresolved-ref">?sec-yaml-header-section</span>.</p>
+<section id="text" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="text"><span class="header-section-number">4.3</span> Text</h2>
+<p>If you look at Fig. X (rmd/qmd side-by-side), you can see that both Quarto and RMarkdown files are divided into two sections. At the top of each file is a <em>header</em> section, which begins and ends with a line of three dashes: <code>---</code>. This is where we can specify settings for the file, which we will learn more about in <a href="#sec-yaml-header-section"><span>Section&nbsp;4.5</span></a>.</p>
 <p>Below that is the main section of the document. Here we can add text that will appear in our output when we render.</p>
 <p>We can try adding text to a document to see what effect it will have on the output. On the left of Fig. X, we can see an RMarkdown and Quarto files with a brief header section (the same contents should work just as well in a Quarto file. Below that is a line of text that says <code>Hello, world!</code>. On the right are the outputs that we get when we render these files to HTML.</p>
 <p>In the outputs, the text <code>Hello, world!</code> has been formatted as a paragraph of text.</p>
@@ -654,7 +655,7 @@ The importance of lines and spaces
 <div class="sourceCode" id="cb9"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>some regular text</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">### Important Heading</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>becomes</p>
-<p>some regular text ### Important Heading</p>
+<p>some regular text ### Important Heading {.unnumbered .unlisted}</p>
 <p>Spaces can also affect formatting.</p>
 <p>If you forget a space between a heading’s hashtags and its text, you will render it as normal text (with hashtags).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>###Heading Text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -684,8 +685,8 @@ Warning
 </div>
 </div>
 </section>
-<section id="code-chunks" class="level3" data-number="4.1.4">
-<h3 data-number="4.1.4" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">4.1.4</span> Code chunks</h3>
+<section id="code-chunks" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">4.4</span> Code chunks</h2>
 <p>The great power of RMarkdown and Quarto documents is that we can also include sections of code within the document. These sections are called <strong>code chunks</strong>.</p>
 <p>A code chunk begins and ends with a line of three backticks: ```. Note that a backtick is not a single quotation mark. On a US style keyboard it is the sumbol from the key in the top-left part of the keyboard.</p>
 <p>For example:</p>
@@ -695,126 +696,264 @@ code goes here
 <p>Backticks alone will format the code chunk like code, but you will not be able to run the code.</p>
 <p>To indicate the programming language and thus to enable the code to be run, we need to include curly braces around the programming languages symbol at the end of the opening line of backticks. For example, this is an R code chunk:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>code goes here</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>A major reason for using RStudio to write Rmd/Qmd documents is that you can run code chunks from within the file editor tab. Either click on the green “Play” triangle in the top right, or click within the code chunk so that the cursor is flashing on a line of code and then simulatenously press the following keys: Ctrl + Shift + R (Windows/Linux) or Cmd + Option + R (Mac).</p>
-<p>When you run a code chunk interactively from within the document, the code is sent to the Console to be executed, but any output is then displayed back below the code chunk. This allows us to preview what the output of a code chunk will look like without having to knit the entire document (which is a lot slower).</p>
-<p>Because code in code chunks is sent to the Console, it runs in the same place (called an <em>Environment</em>) as non-code chunk code that you type directly into the Console itself. This also means that all code chunks share this same environment, and the results of one code chunk are available to another.</p>
-<p>For example, if you create a R variable in one code chunk, a different code chunk can then use that variable.</p>
-<p>There’s just one problem: order matters. You have to run the code chunks in order. I.e. you would need to run the code chunk that creates the variable before you run the code chunk that references that variable. Otherwise the variable doesn’t exist yet in the Environment and you will get an error.</p>
-<p>There’s a few ways that new R programmers run into errors due to this code chunk execution in the shared environment:</p>
-<ol type="1">
-<li><p>You mix up the order of the code chunks within your file. You can run them interactively out of order, and so avoid the error, but when you try to knit you get an error. (This is because the knitting process runs the code chunks from scratch (in a new Environment) in order that they exist in the file.)</p></li>
-<li><p>You delete a code chunk that creates something another (not deleted) code chunk needs. That thing will stick around in your RStudio Environment, and so be availabe to any code chunks running interactively, but when you knit you get the same error as in the previous point (for the same reason).</p></li>
-<li><p>You restart RStudio after a break and your most recently written code chunk doesn’t work. This is because anything R creates in the Environment is temporary. It will only last for as long as R or RStudio is running on the computer. When you restart RStudio and reopen a Rmd/Qmd file, you will need to re-run any code chunks whose output you need. (It’s often easiest to just rerun all the code chunks, which you can do by clicking the “Run” button in the top right of the file editor pane and then selecting the last option to “Run All”.)</p></li>
-</ol>
-</section>
-<section id="inline-code" class="level3" data-number="4.1.5">
-<h3 data-number="4.1.5" class="anchored" data-anchor-id="inline-code"><span class="header-section-number">4.1.5</span> Inline code</h3>
-<p>We can also include code within paragraphs of text. Let’s say you calculated some important number in your analyses, and you want to discuss that number. You could type in the number by hand, but this is prone to errors where the calculated number changes for some reason (maybe you adjust the analysis’s code, for example) but then you forget to update the number in the text.</p>
-<p>We can instead just include the variable’s value directly in the text using <em>inline code</em>, for example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is `r variable_name`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>code goes here</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>
+A major reason for using RStudio to write Rmd/Qmd documents is that you can run code chunks from within the file editor tab. Either click on the green "Play" triangle in the top right, or click within the code chunk so that the cursor is flashing on a line of code and then simulatenously press the following keys: Ctrl + Shift + R (Windows/Linux) or Cmd + Option + R (Mac).
+
+When you run a code chunk interactively from within the document, the code is sent to the Console to be executed, but any output is then displayed back below the code chunk. This allows us to preview what the output of a code chunk will look like without having to knit the entire document (which is a lot slower).
+
+::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-10_6c65329346bf4a80133ca06a594aa16f'}
+
+:::
+
+Because code in code chunks is sent to the Console, it runs in the same place (called an *Environment*) as non-code chunk code that you type directly into the Console itself. This also means that all code chunks share this same environment, and the results of one code chunk are available to another.
+
+For example, if you create a R variable in one code chunk, a different code chunk can then use that variable.
+
+There's just one problem: order matters. You have to run the code chunks in order. I.e. you would need to run the code chunk that creates the variable before you run the code chunk that references that variable. Otherwise the variable doesn't exist yet in the Environment and you will get an error.
+
+There's a few ways that new R programmers run into errors due to this code chunk execution in the shared environment:
+
+1. You mix up the order of the code chunks within your file. You can run them interactively out of order, and so avoid the error, but when you try to knit you get an error. (This is because the knitting process runs the code chunks from scratch (in a new Environment) in order that they exist in the file.)
+
+2. You delete a code chunk that creates something another (not deleted) code chunk needs. That thing will stick around in your RStudio Environment, and so be availabe to any code chunks running interactively, but when you knit you get the same error as in the previous point (for the same reason).
+
+3. You restart RStudio after a break and your most recently written code chunk doesn't work. This is because anything R creates in the Environment is temporary. It will only last for as long as R or RStudio is running on the computer. When you restart RStudio and reopen a Rmd/Qmd file, you will need to re-run any code chunks whose output you need. (It's often easiest to just rerun all the code chunks, which you can do by clicking the "Run" button in the top right of the file editor pane and then selecting the last option to "Run All".)
+
+## Inline code
+
+We can also include code within paragraphs of text. Let's say you calculated some important number in your analyses, and you want to discuss that number. You could type in the number by hand, but this is prone to errors where the calculated number changes for some reason (maybe you adjust the analysis's code, for example) but then you forget to update the number in the text.
+
+We can instead just include the variable's value directly in the text using *inline code*, for example:
+
+
+
+````default
+The answer to life, the universe, and everything is `r variable_name`.</code></pre>
 <p>Here, we use a single pair of backticks around the code to indicate where it starts an ends, and an <code>r</code> immediately after the first backtick to indicate that this is R code. When the document is rendered, the value assigned to the variable called <code>variable_name</code> will be rendered within the sentence instead of the code. For example (if <code>variable_name</code> = 42),</p>
 <pre><code>My results showed that the answer to life, the universe, and everything is 42.</code></pre>
 <p>We can put more complicated expressions within the inline code backticks. For example, you could put a calculation to get the same result:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is 42.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is `r 40 + 2`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or we could get the date at the time that the document is rendered by using the <code>Sys.Date()</code> function that is part of the R programming language:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on 2025-02-17.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on `r Sys.Date()`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>which would be rendered as:</p>
-<p>This document was created on 2025-02-17.</p>
+<pre><code>This document was created on 2025-03-11.</code></pre>
+</section>
+<section id="sec-yaml-header-section" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sec-yaml-header-section"><span class="header-section-number">4.5</span> The header section</h2>
+<p>We may wish to customize how our input document is rendered to an output file, instead of using the defaults. For example, you may wish to change the font size, or make all website links blue.</p>
+<p>In both RMarkdown and Quarto documents we do this in the <em>header section</em>. The general structure of a header section is similar in both cases, but the details can vary.</p>
+<p>The header section occurs before the actual contents of the document (i.e.&nbsp;before the text and code), and begins and ends with a line of three dashes: <code>---</code>. You may have already seen a header section if you created a Rmd or Qmd in RStudio, because the example files that RStudio create come with simple header sections.</p>
+<p>A simple example of a header section might be:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The header section is written in another markup language called YAML.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> YAML uses a different format to the Markdown that we used for writing regular text. YAML is much better suited to writing a list of options, such as the rendering options you want to apply to your output file.</p>
+<p>There are a few things to note about header sections:</p>
+<ul>
+<li><p>The example header section above would work in either an RMarkdown or Quarto file, because both have a <code>title</code> and <code>author</code> option. However, many of the options are different, either because they only exist in one of the two file types or because they are called different things!</p>
+<p>For example, in both document types we can specifif the type of output file we want to render to.</p>
+<p>This is how we would could modify the example header section above to render to a PDF from an RMarkdown file:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>output: pdf_document</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And this is how we would write the same thing in a Quarto file:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>format: pdf</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Some options will be shared between all output file types (like <code>title</code> and author`), but other options are specific to a particular type of output file.</p>
+<p>For simplicity, let’s consider just RMarkdown. We can specify multiple output formats with their own options (the first format will be the default), e.g.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>output: </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  pdf_document:</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    keep_tex: true</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  html_document:</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    theme: cosmo</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    code_folding: hide</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>What does all this mean?</p>
+<p>First we have specified options for rendering to both PDF (<code>pdf_document</code>) and HTML (i.e.&nbsp;web pages, with <code>html_document</code>).</p>
+<p><code>keep_tex</code> is a PDF specific option. A <code>.tex</code> is an intermediate filetype that is created from the RMarkdown file, which can then be rendered as a PDF. By default, that intermediate file is deleted once the PDF is created. Here we’ve set an option to keep it instead.</p>
+<p>We’ve also set two html specific options. <code>theme</code> allows us to pick a style for our webpage (e.g.&nbsp;colors, font, etc.) from several pre-existing options. <code>code_folding</code> will hide the code of any code chunks, but create a button that can be used to expand the code (this is not something we could do in a PDF, since PDFs are static).</p></li>
+</ul>
+<p>These examples also highlight a bit of YAML formatting syntax (applicable in both Rmd and Qmd files).</p>
+<ul>
+<li><p>All of our options above have been specified in the format of <code>key: value</code> where <code>key</code> is the name of the option and <code>value</code> is what we set it to.</p></li>
+<li><p>We can nest options under other options as we did with the format specfic options. In that case, we need to indent those nested lines two more spaces that the parent:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>key: </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  value:</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    nested_key: nested_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Sometimes we want to provide a list of values to an option. For example, in RMarkdown header sections, we can provide multiple authors as a list to the <code>author</code> option.</p>
+<p>We either enclose them in square brackets:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>author: ["Joe Bloggs", "Anna Smith"]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or list them on separate lines (indented 2 spaces, and starting with a hyphen):</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>author: </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  - "Joe Bloggs"</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  - "Anna Smith"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p>A detailed list of header sections options for RMarkdown can be found in the book RMarkdown: The Definite Guide (available at https://bookdown.org/yihui/rmarkdown-cookbook). For Quarto, the official documentation at https://quarto.org provides a similar list.</p>
+</section>
+<section id="images-figures" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="images-figures"><span class="header-section-number">4.6</span> Images &amp; figures</h2>
+<p>If you have an image in a separate file that you wish to include in the rendered output, then you can do so using the following Markdown syntax:</p>
+<pre class="{verbatim}}"><code>![](image_file_name.jpg)</code></pre>
+<p>You will note that this is very similar to the syntax for a web link (square brackets then parentheses), but with an exclaimation mark at the front.</p>
+<p>We can add <em>alternative text</em> within the square brackets like this:</p>
+<pre class="{verbatim}}"><code>![description of image](image_file_name.jpg)</code></pre>
+<p>Alternative text is a description of the image that will be displayed if the image can’t be loaded. It’s a good idea to include alternative text even if you don’t think that’s a problem, because alternative text is used by blind or visually impaired users to understand what’s in an image.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<p>We can also include images using R code in a code chunk. This makes use of the <code>knitr</code> package:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>knitr::include_graphics("image_file_name.jpg")</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tables" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="tables"><span class="header-section-number">4.7</span> Tables</h2>
+<p>You can create Markdown tables using the following syntax:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>| column 1 heading | column 2 heading  |</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>| ---------------- | ----------------- |</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>| row 1 content    | other content     |</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>| row 2 content    | other row 2 stuff |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which creates a table like this:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>column 1 heading</th>
+<th>column 2 heading</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>row 1 content</td>
+<td>other content</td>
+</tr>
+<tr class="even">
+<td>row 2 stuff</td>
+<td>other row 2 stuff</td>
+</tr>
+</tbody>
+</table>
+<p>A few things to note:</p>
+<ul>
+<li><p>Vertical bars <code>|</code> divide columns. The hyphens <code>---</code> on the second line of the table divide the headings row from the data rows.</p></li>
+<li><p>Nice formatting is not required by Markdown, but it helps anyone reading the source file understand the text. However, you are not required to align the column separators <code>|</code> on each line, nor do you need more than one hyphen below each heading.</p>
+<p>For example, this is a valid way of writing the same table as before:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>| column 1 heading | column 2 heading |</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>|-|-|</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>| row 1 content | other content |</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>| row 2 stuff | other row 2 stuff |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(Although you would hopefully agree that it’s much harder to understand!)</p></li>
+<li><p>You can adjust the alignment of content in each column (aligning it either to the left, the right, or centered) using colons <code>:</code> in the line of dashes.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>| column 1     | column 2 | column 3      |</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>| :----------- | :------: | ------------: |</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>| left aligned | centered | right aligned |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>The contents of a table cell have to be on a single line. You cannot put a linebreak in the source file to make it easier to read.</p></li>
+</ul>
+<p>Tables can also be created by code chunks, typically by including a line of code that returns a dataframe, e.g.:</p>
+<div class="cell" data-hash="04_rmarkdown_chapter_cache/html/unnamed-chunk-25_88fa5662b93a71b63aecf5e4f7553ddb">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+</div>
+<p>Here we are using the <code>head()</code> function to retrieve just the first six rows of the <code>iris</code> dataframe.</p>
+<p>We could have included a line of code that was just the dataframe name:</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>iris</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>
+However this would print out the entire dataframe, which has 150 rows! Since large dataframes make output documentshard to read, you generally don't want to display the original data.
+
+
+## Math 
+
+We often want to include mathematical equations or other notation in scientific documents. Markdown does not include support for this, but RMarkdown and Quarto both allow us to include maths written in Latex notation.
+
+To do so, we put the math between dollar symbols: `$`.
+
+A single pair of dollar symbols allow us to write *inline* math, within a paragraph of regular text, for example:
+
+
+````default
+The formula for the area of a circle is $A = \pi r^2$.</code></pre>
+<p>which becomes</p>
+<p>The formula for the area of a circle is <span class="math inline">\(A = \pi r^2\)</span>.</p>
+<p>You may also want include a block of math as it’s own entity, separate from the rest of the text. To do so, we use a pair of double dollar symbols, e.g.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>$$A = \pi r^2$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>which becomes</p>
+<p><span class="math display">\[A = \pi r^2\]</span></p>
+<p>Note how the math block is centered.</p>
+<p>Here are some useful mathematical symbols for various operations in Latex, and what they render as in the output document.</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Latex symbols</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Arithmetic</td>
+<td><code>+</code>, <code>-</code>, <code>=</code></td>
+<td><code>$4 + 2 - 1 = 5$</code></td>
+</tr>
+<tr class="even">
+<td>Basic division</td>
+<td><code>/</code></td>
+<td><code>$1/2$</code></td>
+</tr>
+<tr class="odd">
+<td>Fancy division</td>
+<td><code>\frac{...}{...}</code></td>
+<td><code>$\frac{1}{2}$</code></td>
+</tr>
+<tr class="even">
+<td>Greek letters</td>
+<td>, </td>
+<td><code>$\alpha \pi$</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sec-visual-editor" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="sec-visual-editor"><span class="header-section-number">4.8</span> Visual editor</h2>
+<p>So far we have written the contents of our input file in plain text, with markup symbols to indicate what the rendered output should look like. This can take some getting used to, especially if you are more familiar with word processing software like Microsoft Word or Google Docs where you can see the formatting as you edit the document. It can also sometimes be fiddly to edit markup symbols.</p>
+<p>To help, RStudio includes a <em>visual editor</em> in which you can get a live preview of what your document will look like as you write it.</p>
+<p>To switch to the visual editor when you have a source file open in RStudio, click the Settings dropdown (the white cog wheel) at the top of the file editor pane and select the first option (Use Visual Editor).</p>
+<p>The visual editor can be useful if you find it easier to work with a visual representation of the output document. However, you should remember a few things when working with the visual editor:</p>
+<ul>
+<li>The underlying file is still a RMarkdown or Quarto file.</li>
+<li>The visual editor view is what the output will look like if rendered to HTML (e.g.&nbsp;to a webpage). If you render to a different output once you are finished (e.g.&nbsp;to a PDF), the output might look slightly different.</li>
+<li>There may be times when you will need to switch back to the <em>Source</em> mode to edit the underlying source file, e.g.&nbsp;if you are trying to add some sort of advanced content that is not supported by the visual editor.</li>
+</ul>
+</section>
+<section id="rmarkdown-versus-quarto" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="rmarkdown-versus-quarto"><span class="header-section-number">4.9</span> RMarkdown versus Quarto</h2>
+<p>Aside from the differences covered in the previous sections:</p>
+<ul>
+<li><p>RMarkdown has an extensive ecosystem of extensions developed over its long history. Quarto can be extended, but seems to be designed to contain most features within the main system (and because it’s newer, has a smaller (albeit growing) set of extensions).</p></li>
+<li><p>Both can support multi-file projects (e.g.&nbsp;if you wanted to write a book, with a separate source file for each chapter), but Quarto knits each source file separately, whereas RMarkdown make the code and results of each source file available to later files in the rendering process.</p>
+<p>For example, if you were writing a multi-file book and you create a variable in the Chapter 1 file, you can then access it in a separate Chapter 2 file if you are using RMarkdown. In Quarto, you would need to repeat all the code to recreate the same variable in difference chapter files.</p></li>
+<li><p>Personally I have found Quarto to be a little less flexible and more prescriptive, but not deal-breakingly so. It has some nice new features that are not standard in RMarkdown, and is being actively developed and improved (whereas RMarkdown is relatively stable at this point).</p></li>
+</ul>
+<p>This book is written principally in Quarto, but due to the similarities, it’s easy to switch between them, or even include RMarkdown files within Quarto files (which this book does).</p>
 
 <!--
 
-Move to a more advanced chapter:
-
-
-formatting:
-
-* options
-* names
-
-* breaking up long lines of code (and style recommendations/guides)
-* not running code (and optionally keeping syntax formatting - does this work in rmd like it does in GitHub flavored md)
-* Code comments vs. self-documenting code vs. text explanations
-
-
-
-
-### The header section {#sec-yaml-header-section}
-
-* Outputting different file types
-
-### Images & plots
-
-Images (plus size and floating), and captions & references.
-
-Plots produced by code chunks, and formatting.
-
-### Tables
-
-Markdown tables (& captions + references)
-
-| Column 1     | Column 2 | Column 3 |
-|--------------|:--------:|---------:|
-| Left aligned | Centered | Right    |
-| Cell 3       | Cell 4   | Cell 6   |
-
-Tables produced by code chunks, and formatting.
-
-### Latex (commands, formulas)
-
-### Visual editor {#sec-visual-editor}
-
-::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-12_a4df6c9220c7903943920d7c078d9cbb'}
-
-:::
-
-### Frequently encountered problems
-
-::: {.cell hash='04_rmarkdown_chapter_cache/html/unnamed-chunk-13_ca4ac2a2cc68fc83682b63d44c05f7b4'}
-
-:::
-
-#### RStudio has forgotten my variables
-
-#### My formatting is wonky
-
-#### My document won't render {#sec-common-render-issues}
-
-* Missing dependencies. R packages, Latex for PDF output.
-
-* Deciphering error messages.
-  * Run the code chunks interactively.
-    * Make sure you didn't create a variable out of sequence, or delete a code chunk with a variable (try clearing the Environment)
-  * Figuring out the offending code chunk.
-
-* Non ASCII characters.
-
-* Taking too long/crashes
-  * Memory/ large outputs/slow code.
-  
-
-### RMarkdown versus Quarto
-
-Aside from the differences covered above:
-
-RMD has an extensive ecosystem. Quarto can be extended, but seems to be designed to contain most features within the main system (and because it's newer, doesn't have such an ecosystem).
-
-Both can support multi-file projects, e.g. this book, but Quarto knits each file separately, whereas Rmd allows the files to be merged and subsequent files can access the output of code in previous files.
-
-Personally I have found Quarto to be a little less flexible and more prescriptive, but not deal-breakingly so. It has some nice new features that are not standard in RMarkdown, and is being actively developed and improved (whereas RMd is relatively stable at this point). 
-
-This book is written principally in Quarto.
-
-Due to the similarities, its not too hard to switch between them, or even include RMarkdown files within Quarto files (which this book does).
-
-### How rendering works
-
-
-### Best practices for reproducibility
-
-
-### Topics covered elsewhere in this book
+## Topics covered elsewhere in this book
 
 Links to RMarkdown/Quarto features covered elsewhere in this book:
 * table formatting
@@ -823,7 +962,7 @@ Links to RMarkdown/Quarto features covered elsewhere in this book:
 * outputs
 
 
-### Useful resources
+## Useful resources
 
 RMarkdown cheetsheet
 
@@ -838,11 +977,12 @@ Knuth, D. E. 1984. <span>“Literate <span>Programming</span>.”</span> <em>The
 </div>
 </div>
 </section>
-</section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
 <li id="fn1"><p>or click the New File icon in the top toolbar<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>If you are wondering how many markup languages this book is going to require you to learn, you may be dismayed to learn that YAML stands for <em>Yet Another Markup Language</em>. Also, two. And you don’t need to learn much YAML.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Such users may read your document with <em>screen reading software</em> that reads the contents of the file out loud, including the alternative text that accompanies any images.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
