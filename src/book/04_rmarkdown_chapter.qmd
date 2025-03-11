@@ -457,7 +457,7 @@ To indicate the programming language and thus to enable the code to be run, we n
 ```{r}
 code goes here
 ```
-```
+````
 
 A major reason for using RStudio to write Rmd/Qmd documents is that you can run code chunks from within the file editor tab. Either click on the green "Play" triangle in the top right, or click within the code chunk so that the cursor is flashing on a line of code and then simulatenously press the following keys: Ctrl + Shift + R (Windows/Linux) or Cmd + Option + R (Mac).
 
@@ -705,7 +705,7 @@ We could have included a line of code that was just the dataframe name:
 ```{r}
 iris
 ```
-```
+````
 
 However this would print out the entire dataframe, which has 150 rows! Since large dataframes make output documentshard to read, you generally don't want to display the original data.
 

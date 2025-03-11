@@ -526,8 +526,8 @@ Explanation
 </div>
 <div class="callout-body-container">
 <strong>Exercise:</strong> Is this a valid R statement that will run successfully, or will it give an error?
-<div id="radio_CDEBJZVCFI" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CDEBJZVCFI" value=""> <span>Run, but return the value 3 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_CDEBJZVCFI" value=""> <span>Run, but return the value 2 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_CDEBJZVCFI" value=""> <span>Give an error that the variable <code>y</code> does not exist in the environment</span></label><label><input type="radio" autocomplete="off" name="radio_CDEBJZVCFI" value="answer"> <span>Give an error that <code>2 + y</code> is not a variable</span></label>
+<div id="radio_CSGRORMBQC" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_CSGRORMBQC" value=""> <span>Run, but return the value 3 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_CSGRORMBQC" value=""> <span>Run, but return the value 2 and store <code>TRUE</code> in y</span></label><label><input type="radio" autocomplete="off" name="radio_CSGRORMBQC" value=""> <span>Give an error that the variable <code>y</code> does not exist in the environment</span></label><label><input type="radio" autocomplete="off" name="radio_CSGRORMBQC" value="answer"> <span>Give an error that <code>2 + y</code> is not a variable</span></label>
 </div>
 </div>
 </div>
@@ -549,8 +549,8 @@ Explanation
 </div>
 <div class="callout-body-container">
 <strong>Exercise:</strong> Is this a valid R statement that will run successfully, or will it give an error?
-<div id="radio_LDTUXGOBUS" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_LDTUXGOBUS" value=""> <span>It will run just fine</span></label><label><input type="radio" autocomplete="off" name="radio_LDTUXGOBUS" value="answer"> <span>There will be an error in the <code>mutate</code> function</span></label><label><input type="radio" autocomplete="off" name="radio_LDTUXGOBUS" value=""> <span>There will be an error in the <code>filter</code> function</span></label>
+<div id="radio_GXGCCAJYHO" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GXGCCAJYHO" value=""> <span>It will run just fine</span></label><label><input type="radio" autocomplete="off" name="radio_GXGCCAJYHO" value="answer"> <span>There will be an error in the <code>mutate</code> function</span></label><label><input type="radio" autocomplete="off" name="radio_GXGCCAJYHO" value=""> <span>There will be an error in the <code>filter</code> function</span></label>
 </div>
 </div>
 </div>
@@ -761,19 +761,19 @@ Add exercises
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="1" data-code-annotation="1">The first line creates the function almost like a new variable! We put the name for the new function (e.g.&nbsp;<code>function_name</code>) on the left-hand side of the assignment operator <code>&lt;-</code>. Then on the right-hand side of the assignment operator we use the <code>function</code> <em>keyword</em> to indicate that we are creating a function instead of a normal variable. <code>function</code> is immediately followed by parentheses <code>(...)</code>. Inside the parentheses we put the names of any parameters that the function will accept as inputs e.g.&nbsp;<code>parameter_1</code>. Each parameter name is separated by a comma. We end the line with a curly brace <code>{</code>. This indicates that all code after this is part of the function, until we reach a matching closing curly brace <code>}</code>.</span>
+<span data-code-cell="annotated-cell-19" data-code-annotation="1" data-code-lines="1">The first line creates the function almost like a new variable! We put the name for the new function (e.g.&nbsp;<code>function_name</code>) on the left-hand side of the assignment operator <code>&lt;-</code>. Then on the right-hand side of the assignment operator we use the <code>function</code> <em>keyword</em> to indicate that we are creating a function instead of a normal variable. <code>function</code> is immediately followed by parentheses <code>(...)</code>. Inside the parentheses we put the names of any parameters that the function will accept as inputs e.g.&nbsp;<code>parameter_1</code>. Each parameter name is separated by a comma. We end the line with a curly brace <code>{</code>. This indicates that all code after this is part of the function, until we reach a matching closing curly brace <code>}</code>.</span>
 </dd>
 <dt data-target-cell="annotated-cell-19" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="2,3" data-code-annotation="2">We can then add any code that we want to run inside the function. By default, we indent these lines by two spaces as a helpful visual cue that these lines are part of the function.</span>
+<span data-code-cell="annotated-cell-19" data-code-annotation="2" data-code-lines="2,3">We can then add any code that we want to run inside the function. By default, we indent these lines by two spaces as a helpful visual cue that these lines are part of the function.</span>
 </dd>
 <dt data-target-cell="annotated-cell-19" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="4" data-code-annotation="3">On the last line of the function’s code we can indicate the output that we wish to return from the function by using the <code>return(...)</code> function. Whatever we pass as an argument to <code>return()</code> will be returned by the original function.</span>
+<span data-code-cell="annotated-cell-19" data-code-annotation="3" data-code-lines="4">On the last line of the function’s code we can indicate the output that we wish to return from the function by using the <code>return(...)</code> function. Whatever we pass as an argument to <code>return()</code> will be returned by the original function.</span>
 </dd>
 <dt data-target-cell="annotated-cell-19" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="5" data-code-annotation="4">Finally, we need to remember to end the function with the closing curly brace <code>}</code>.</span>
+<span data-code-cell="annotated-cell-19" data-code-annotation="4" data-code-lines="5">Finally, we need to remember to end the function with the closing curly brace <code>}</code>.</span>
 </dd>
 </dl>
 <!--
@@ -973,8 +973,8 @@ function (check_env)
         .user_code = user_code)
     legacy_graded(correct = FALSE, message = message)
 }
-<bytecode: 0x6331948156b0>
-<environment: 0x633194816990>
+<bytecode: 0x5e46ec002718>
+<environment: 0x5e46ec003a30>
 ```
 :::
 :::
