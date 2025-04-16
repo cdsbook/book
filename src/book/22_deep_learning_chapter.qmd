@@ -1,6 +1,6 @@
 ---
 execute:
-  freeze: true
+  freeze: auto
   cache: true
 ---
 
@@ -132,7 +132,7 @@ For example, this image shows the intensities in each of the pixels of one of th
 
 ![A simple artifical neural network.](https://miro.medium.com/v2/resize:fit:629/1*THbDE9VGnlsm2lxnKZug2g.png){width=100%}
 
-Each pixel in our image will be an input to the model. Since there are 28 by 28 pixels in each images, then we will need $28 \times 28 = 512$ input nodes in any artificial neural network that we create.
+Each pixel in our image will be an input to the model. Since there are 28 by 28 pixels in each images, then we will need $28 \times 28 = 784$ input nodes in any artificial neural network that we create.
 
 There are 60,000 training images in the MNIST dataset, and an additional 10,000 test images.
 

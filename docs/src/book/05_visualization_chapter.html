@@ -560,7 +560,8 @@ Topics:
 <p>Let’s use a dataset that is included in the <code>tidyverse</code> R package which contains information about different characters from the Star Wars franchise.</p>
 <!-- TODO: use a more scientific dataset than Star Wars -->
 <p>You can load the dataset in RStudio by loading the <code>tidyverse</code> package (which you installed in <a href="03_r_programming_chapter.html#sec-installing-packages"><span>Section&nbsp;3.10.1</span></a>) by running <code>library(tidyverse)</code>. The dataset will then be available to you as a dataframe stored in an R variable called <code>starwars</code>.</p>
-<p>Here is an example of the data stored in the <code>starwars</code> dataframe: ::: {.cell hash=‘05_visualization_chapter_cache/html/unnamed-chunk-5_069e7b90eee93c4d5945aac111f22bcd’}</p>
+<p>Here is an example of the data stored in the <code>starwars</code> dataframe:</p>
+<div class="cell" data-hash="05_visualization_chapter_cache/html/unnamed-chunk-5_069e7b90eee93c4d5945aac111f22bcd">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>starwars</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 87 × 14
@@ -580,7 +581,7 @@ Topics:
 #   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
 #   ¹​hair_color, ²​skin_color, ³​eye_color, ⁴​birth_year, ⁵​homeworld</code></pre>
 </div>
-<p>:::</p>
+</div>
 <p>We might be interested in visualizing the heights of different Star Wars characters. Maybe we want to know if there are lots of tall characters and not many short ones.</p>
 <p>A graph of a single variable shows us the <strong>distribution</strong> of that variable. A good type of graph to visualize the distibution of a single continuous variable (like the <code>height</code> column) is a <strong>histogram</strong>.</p>
 <p>Here is how we can create a histogram of the <code>height</code> column with the <code>plot()</code> function:</p>
