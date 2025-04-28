@@ -46,7 +46,7 @@ The investigation also found that although the managers and engineers knew that 
 
 Visualization expert Edward Tufte suggested that clearer methods of presenting the data, such as a graph like this one, could have made a stronger case for delaying the launch:
 
-```{r, child="../src/snippets/visualization_challenger_disaster.Rmd"}
+```{r, child="../snippets/visualization_challenger_disaster.Rmd"}
 ```
 
 
