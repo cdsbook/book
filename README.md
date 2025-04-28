@@ -12,7 +12,15 @@ The book, tutorials, and slides share the same source .Rmd files in the `src` di
 
 ## Building
 
-By default the web version will be built, using the `website` Quarto profile (`_quarto-book.yml`). To build the book, run:
+By default the web version will be built using `quarto render`, using the `website` Quarto profile (`_quarto-website.yml`), or
+
+```bash
+quarto render && echo -e "\a"
+```
+
+to add a notification beep at the end.
+
+To build the book, run:
 
 ```bash
 quarto render --profile book
