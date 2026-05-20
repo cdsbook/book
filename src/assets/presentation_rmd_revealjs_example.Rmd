@@ -1,0 +1,24 @@
+---
+title: "Example Presentation"
+author: "Your Name Here!"
+date: "`r Sys.Date()`"
+output: revealjs::revealjs_presentation
+---
+
+
+## First Slide
+
+::: incremental
+
+* Bullet 1
+
+* Bullet 2
+
+:::
+
+## Another Slide
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
+ggplot2::qplot(x = Sepal.Length, data = iris)
+```
+
