@@ -11,7 +11,8 @@ execute:
 #| results: "asis"
 
 source("prechapter.R")
-insert_status_callout("draft")
+
+insert_status_callout("incomplete")
 ```
 
 ```{r, echo=FALSE, results='asis'}

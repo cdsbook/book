@@ -57,6 +57,15 @@ TODO: This section was copied from the RMarkdown chapter, and needs editing for 
 ")
 ```
 
+> We like to imagine science advancing through brilliant ideas. Whiteboards. Coffee. A genius squinting heroically. In practice, science advances through better instruments—and the slow, slightly humiliating realization that our previous ideas were incomplete.
+>
+> Or wrong.
+>
+> Often wrong.
+>
+> - Brian Keating, physicist
+
+
 Why don't we still believe that the sun is the flaming chariot wheel of the ancient Greek god Apollo as he drives across the sky each day? Why do we now have effective medicines and treatments for many illnesses that were a death sentence for our ancestors?
 
 The answer, in case you haven't guessed, is science. Science is the reason that human progress has exploded since the scientific revolution of the 16th and 17th centuries. And science offers our best path forwards for making future progress and confronting the challenges that we will inevitably face in the coming centuries.

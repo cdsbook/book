@@ -6,10 +6,13 @@
 
 # Graphs with `ggplot`
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 # suppressPackageStartupMessages(library(flair))
+insert_status_callout("draft")
 ```
 
 ## From `plot()` to `ggplot() + ...`

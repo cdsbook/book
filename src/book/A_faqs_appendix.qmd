@@ -11,6 +11,7 @@ toc-depth: 3
 VPN issues... possibly better for Blackboard/Canvas
 - https://answers.uillinois.edu/illinois/page.php?id=63520
 - https://kb.mit.edu/confluence/display/mitcontrib/Cisco+Anyconnect+Manual+uninstall+Mac+OS
+  - note this is now restricted, try: https://web.archive.org/web/20250101164337/https://kb.mit.edu/confluence/display/mitcontrib/Cisco+Anyconnect+Manual+uninstall+Mac+OS
 -->
 
 ## Software setup {#sec-faqs-software-setup}

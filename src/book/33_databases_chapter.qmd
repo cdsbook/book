@@ -5,7 +5,9 @@ execute:
 
 # Databases {#sec-databases-chapter}
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(webexercises))
@@ -15,6 +17,7 @@ add_to_quarto(
   include_dir = "docs/site_libs",
   output_format = c("html")
 )
+insert_status_callout("draft")
 ```
 
 ## Relational data

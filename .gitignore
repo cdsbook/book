@@ -26,3 +26,5 @@ test_files/
 .Rhistory
 .RData
 .Ruserdata
+
+**/*.quarto_ipynb

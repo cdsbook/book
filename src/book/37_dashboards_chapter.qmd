@@ -5,17 +5,15 @@ execute:
 ---
 # Dashboards {#sec-dashboards-chapter}
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(webexercises))
+insert_status_callout("incomplete")
 ```
 
-::: {.callout-tip}
-## Under Construction
-
-This chapter is not yet complete.
-:::
 
 <!--
 * Static dashboards (dynamic, with servers, in apps chapter)

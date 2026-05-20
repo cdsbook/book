@@ -39,6 +39,23 @@ Note that this also allows [optional profile content](https://quarto.org/docs/pr
 
 ## Helpful reminders
 
+
+### Chapter status
+
+Add to the setup code chunk:
+
+````md
+```{r setup}
+#| echo: false
+#| results: "asis"
+
+source("prechapter.R")
+insert_status_callout("draft")
+```
+````
+
+where options are `"incomplete"`, `"draft"`, or `"complete"`.
+
 ### How to include figures directly or from code chunks
 
 Either:

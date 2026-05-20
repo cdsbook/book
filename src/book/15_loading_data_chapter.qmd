@@ -5,7 +5,10 @@ execute:
 
 # Loading Data {#sec-loading-data-chapter}
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+insert_status_callout("draft")
 ```

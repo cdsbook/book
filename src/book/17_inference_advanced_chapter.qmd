@@ -5,24 +5,161 @@ execute:
 
 # More Statistics
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+insert_status_callout("draft")
 ```
 
 ## Statistical Inference Review
 
-{{< include ../../src/snippets/inference2_review.Rmd >}}
+### Video overview
+
+This video reviews the inference material covered in the first module.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pVAxez7pA1M?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1uQMSTvCp1sWsH2OY1nLfUjpXaHKgRK6s/view?usp=sharing)
+
+
+### Test your understanding
+
+<!--
+Other questions to add:
+* What is observed statistic
+* What is the null distribution
+* interpreting the p-values meaning -> the probability of coming from the null
+* alpha
+-->
+
+<!-- Book version -->
+
+```{r response_vs_explanatory-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "response = `treatment`, explanatory = `outcome`",
+  answer = "response = `outcome`, explanatory = `treatment`",
+  'response = `"survived"`, explanatory = `"drug"`',
+  'response = `"survived"`, explanatory = `"placebo"`'
+)
+q_character_data <- mcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** You give sick patients either a drug or a placebo, and you measure whether they die or survive. This is stored in 2 variables, `treatment` and `outcome`, which are both categorical. What are your explanatory and response variables?',
+q_character_data,
+'
+:::')
+```
+
+```{r response_vs_explanatory-book-exercise, eval=is_book, echo=F, results='asis'}
+answer_opts <- c(
+  "0",
+  "0.01",
+  answer = "0.02",
+  "0.05",
+  "0.1",
+  "0.2",
+  "0.5",
+  "1",
+  "2",
+  "5",
+  "50"
+)
+q_character_data <- mcq(answer_opts)
+cat('::: {.exercise .callout-note appearance="simple" icon=false}
+**Exercise:** In a particular hypothesis test, we generate 10,000 permutations of our original data. 200 of them have a test statistic more extreme than our observed statistic. What is the p-value?',
+q_character_data,
+'
+:::')
+```
+
+`r hide("Show explanation")`
+
+The p-value is the probability that a value as or more extreme than the observed statistic came from the null distribution, which equivalent to the fraction of simulations more extreme than the observed statistic. This is 200/10,000 = 0.02
+
+`r unhide()`
+
+
+### Supplementary reading
+
+These two chapters provide a good review of the original statistical inference material that we covered in the first inference module. You should review them before starting this week's assignment:
+
+* Statistical Inference via Data Science by Chester Ismay and Albert Kim (available online at: https://moderndive.com/)
+  * Chapter 7: Sampling - https://moderndive.com/7-sampling.html
+  * Chapter 9: Hypothesis testing - https://moderndive.com/9-hypothesis-testing.html
+  
+On a lighter note, you can get an animated explanation of a hypothesis test with alpacas here: https://www.jwilber.me/permutationtest/
+
+### Code review
+
+In the first inference module, we used the `infer` package to simulate the null distribution.
+
+We ran 10,000 random *permutations* to shuffle up the values of the response and explanatory variables. This random shuffling ensures that we simulate a distribution where there is no relationship between the two variables.
+
+```r
+<DATAFRAME> %>%
+  specify(<RESPONSE> ~ <EXPLANATORY>) %>%
+  hypothesize(null = "independence") %>%
+  generate(10000, type = "permute") %>%
+  calculate(stat = "...", order = c(..., ...))
+```
+
+* The `specify` function defines the response and explanatory variables.
+* The `hypothesize` function declares what the null hypothesis is between those variables. `"independence"` means that there is no relationship between them.
+* The `generate` function is where the simulations are actually run: we specify how many, and how to shuffle the data (in this case, using permutations).
+* The `calculate` functions takes the simulations and calculates a *test statistic*: i.e. a single value for each one (e.g. the difference in proportions, or the difference in means).
+
+<!--
+### Test how much you remember!
+-->
+
 
 
 ## One-sided vs. two-sided tests
 
-{{< include ../../src/snippets/inference2_sidedness.Rmd >}}
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/krwRh7G6FPI?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1EqzByiMEvi9V9MfPQ9XsLT-wcSkU69Fq/view?usp=sharing)
+
+
+<!-- ### 1 or 2? -->
+
+<!-- <!-- -->
+<!-- Questions to add: -->
+<!-- * Writing alternative hypotheses for 1 and 2 sides -->
+<!-- * Which parameter in code specifies order of diff calculation -> order -->
+<!-- * Examples of whether to use 1 or 2 sided. -->
+<!-- * Calculating p-value -->
+<!--   * 1 sided left and right -->
+<!--   * 2 sided -->
+<!-- --> -->
+
+<!-- ```{r alt_hypothesis_specification-quiz, eval=is_tutorial} -->
+<!-- question( -->
+<!--   "You want to conduct a *two-sided* hypothesis test on data from an experiment comparing whether a patient survive a disease after receiving a drug or a placebo. What is your alternative hypothesis?", -->
+<!--   answer("The difference in proportions of patients who survive is significantly different between drug and placebo groups.", correct = TRUE, message = "In a two-sided test, the alternative hypothesis is that there is a difference, regardless of direction (i.e. whether the difference is positive or negative is unimportant)."), -->
+<!--   answer("The difference in means of patients who survive is significantly different between drug and placebo groups."), -->
+<!--   answer("The difference in means of patients who survive is significantly greater in the drug group than the placebo group."), -->
+<!--   answer("The difference in proportions of patients who survive is significantly greater in the drug group than the placebo group."), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
 
 
 ## Effect sizes
 
-{{< include ../../src/snippets/inference2_effect_sizes.Rmd >}}
+### Video overview
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o7oJPQMUS6A?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/1Ysg-oR6FLpuJ2OQ9ArzPNLvakImMgpBP/view?usp=sharing)
+
+<!--
+### Question time
+
+-->
 
 <!--
 ## Resampling with permutations versus bootstraps
@@ -32,8 +169,38 @@ Coming soon.
 
 ## Confidence intervals
 
-{{< include ../../src/snippets/inference2_confidence_intervals.Rmd >}}
+### Video overview
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/iDxp6DHMHcc?rel=0" frameborder="0" allowfullscreen></iframe>
+
+Slides: [PDF](https://drive.google.com/file/d/11eyvzCjS_M-owi_6Ry3WH0_5sqk5Y009/view?usp=sharing)
+
+
+<!-- ### Questions -->
+
+<!-- <!-- -->
+<!-- Extra questions? -->
+<!-- --> -->
+
+<!-- ```{r permutations_vs_boostrap_1_quiz, eval=is_tutorial} -->
+<!-- question( -->
+<!--   "You want to conduct a hypothesis test using the `infer` package in R. How should you shuffle the data to generate a null distribution?", -->
+<!--   answer("Bootstraps"), -->
+<!--   answer("Permutations", correct = TRUE, message = "A permutation shuffles up the values of the explanatory and response variables, and so simulates a world in which there is no relationship between the two (i.e. the null hypothesis)."), -->
+<!--   answer("It doesn't matter"), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
+
+<!-- ```{r permutations_vs_boostrap_2_quiz, eval=is_tutorial} -->
+<!-- question( -->
+<!--   "You want to calculate the confidence interval around a statistic (e.g. the mean) using the `infer` package in R. How can you approximate resampling the original population?", -->
+<!--   answer("Bootstraps", correct = TRUE, message = "By taking random samples of rows from the original sample (*bootstrap resampling*), we can approximate resampling the original population."), -->
+<!--   answer("It doesn't matter"), -->
+<!--   answer("Permutations"), -->
+<!--   allow_retry = TRUE -->
+<!-- ) -->
+<!-- ``` -->
 
 <!-- TODO
 Bonferoni correction

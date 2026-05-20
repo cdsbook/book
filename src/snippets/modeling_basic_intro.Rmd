@@ -161,6 +161,54 @@ This is the same as asking *is there a non-linear relationship*? If the answer i
 
 #### Positive, negative, or no correlation?
 
+We can also describe the nature of a linear correlation, e.g. how does variable A change as variable B changes? Does variable A tend to increase or decrease as variable B changes? Or is variable A unaffected by changes in variable B?
+
+* If the *y*-axis variable *increases* as the *x*-axis variable increases then we say there is a __positive correlation__ between the two.
+
+* If the *y*-axis variable *decreases* as the *x*-axis variable increases then we say there is a __negative correlation__ between the two.
+
+* If the values of the *y*-axis variable seem unaffected by the values of *x*-axis variable, then we say there is __no correlation__ between them.
+
+```{r, echo=FALSE}
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(43)
+positive_corr <- sim_df %>%
+  ggplot(aes(x,y)) +
+  geom_point() +
+  geom_smooth(method="lm") +
+  # ylim(0,25) +
+  labs(
+    title = "Positive correlation",
+  )
+negative_corr <- sim_df %>%
+  ggplot(aes(x,-y)) +
+  geom_point() +
+  geom_smooth(method="lm") +
+  # ylim(0,25) +
+  labs(
+    title = "Negative correlation",
+  )
+no_corr <- sim_df %>%
+  ggplot(aes(x,rnorm(nrow(.)))) +
+  geom_point() +
+  geom_smooth(method="lm") +
+  # ylim(0,25) +
+  labs(
+    title = "No correlation",
+  )
+ggarrange(
+  positive_corr,
+  negative_corr,
+  no_corr,
+  ncol = 3,
+  nrow = 1
+)
+```
+
+<!-- TODO: (Maybe later in chapter?) Discuss statistical nature of the shaded confidence intervals around the geom_smooth line and how to use them to interpret a correlation statistically. -->
 
 
 #### Other linear model terminology

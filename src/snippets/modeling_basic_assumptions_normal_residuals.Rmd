@@ -1,4 +1,3 @@
-## Nearly normal residuals
 
 <!-- Related to conditional means. Plot the normal variation along the model line. -->
 

@@ -7,7 +7,9 @@ prefer-html: true # need to go through and remove html from PDF
 
 # Modeling {#sec-modeling-chapter}
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(ggpubr))
@@ -26,6 +28,8 @@ set.seed(42)
 x <- 1:10 + rnorm(10, 0, 0.5)
 y <- 2*x + rnorm(10, 0, 1)
 sim_df <- tibble(x, y)
+
+insert_status_callout("draft")
 ```
 
 ## What is a model

@@ -6,7 +6,9 @@ execute:
 
 # Deep Learning {#sec-deep-learning-chapter}
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(webexercises))
@@ -43,6 +45,7 @@ visualize_image <- function(x){
       scale_fill_gradient(low="white", high="black") +
       labs(title = str_c("Label: ", as_array(batch$y[x]) - 1), fill="Intensity", x = "", y = "")
 }
+insert_status_callout("draft")
 ```
 
 ## What is Deep Learning?
@@ -112,7 +115,8 @@ train_ds <- mnist_dataset(
   download = TRUE,
   transform = . %>%
     transform_to_tensor() %>%
-    torch_flatten()
+    torch_flatten(start_dim = 2) %>%
+    torch_tensor(requires_grad = TRUE)
   )
 train_dl <- dataloader(
   train_ds, 
@@ -148,7 +152,8 @@ train_ds <- mnist_dataset(
   download = TRUE,
   transform = . %>%
     transform_to_tensor() %>%
-    torch_flatten()
+    torch_flatten(start_dim = 2) %>%
+    torch_tensor(requires_grad = TRUE)
   )
 ```
 
@@ -167,7 +172,8 @@ test_ds <- mnist_dataset(
   train = FALSE,
   transform = . %>%
     transform_to_tensor() %>%
-    torch_flatten()
+    torch_flatten(start_dim = 2) %>%
+    torch_tensor(requires_grad = TRUE)
 )
 ```
 
@@ -194,8 +200,8 @@ Note:
 ## Splitting the dataset for training and validation
 
 ```{r, echo=FALSE, include=FALSE}
-train_ds <- dataset_subset(train_ds, indices=10001:59999)
 valid_ds <- dataset_subset(train_ds, indices=1:10000)
+train_ds <- dataset_subset(train_ds, indices=10001:59999)
 ```
 
 Recall <!--from Chapter @sec-prediction-chapter--> that it's a good idea to split our training set into training and validation data, so that we can tune the model's hyperparameters without overfitting to the test dataset.

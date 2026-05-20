@@ -6,12 +6,15 @@ execute:
 
 # Exploratory Data Analysis and Scientific Discovery
 
-```{r setup, include=FALSE}
+```{r setup}
+#| echo: false
+#| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(ggpubr))
 suppressPackageStartupMessages(library(ggbrace))
 suppressPackageStartupMessages(library(corrr))
+insert_status_callout("draft")
 ```
 
 ## What is EDA?

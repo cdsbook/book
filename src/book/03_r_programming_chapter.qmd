@@ -14,6 +14,7 @@ execute:
 #| results: "asis"
 
 source("prechapter.R")
+suppressPackageStartupMessages(library(webexercises))
 insert_status_callout("draft")
 ```
 
