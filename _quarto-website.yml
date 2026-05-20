@@ -1,7 +1,8 @@
 project:
   output-dir: docs
-  # post-render: # uncomment to put all chapter in top directory
-  #   - _flatten_html_output.R
+  post-render: 
+    - _copy_assets.R # copies assets folder (TODO: render files also?)
+  #   - _flatten_html_output.R # puts all chapters in top directory (needs edits)
 
 format:
   html:
