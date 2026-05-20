@@ -1,0 +1,175 @@
+---
+filters:
+   - include-code-files
+---
+
+# Presentations {#sec-presentations-chapter}
+
+```{r setup}
+#| echo: false
+#| output: "asis"
+source("prechapter.R")
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
+insert_status_callout("incomplete")
+```
+
+## Making Presentations
+
+It's hard for me to imagine that anyone reading this book hasn't sat through a slide presentation in their life, and very probably created their own.
+
+Slide decks are commonly created with tools like Microsoft PowerPoint or Google Slides, but these are not the only options. One alternative is to render a slide deck from an RMarkdown or Quarto file. The slides for all of the videos in this book were created in this way!
+
+There are advantages to this, particularly around reproducibility, since you can include the code that generates results/figures as part of the file, reducing the chance that you'll forget to copy over the latest version of your graph onto slide 7. It's also a less error prone way to include code examples (since you won't be able to render the slides if you have an error in your code), and you can do cool things like include interactive code boxes that you can edit and run during the presentation!
+
+A disadvantage (or, at least, a pitfall) is that it can take longer to setup and edit the slide deck, since you may have to fiddle with the formatting in the source file, and repeatedly re-render and tweak until you get the output looking how you want. By contrast, you can can often drag things around in a Powerpoint relatively quickly, and edit appearance with the click of a button.
+
+As with many things in both computers and life, you get more power and flexibility but accept that it comes with greater risks and time commitment.
+
+### Presentation output files
+
+PowerPoint presentations are stored in a dedicated file type, which has the extension `.pptx`. Since this was developed by Microsoft, there's a non-proprietary that is sometimes used instead, which has the extension `.odp`.
+
+It's possible to render a R/Qmd presentation to a PowerPoint file, but doing so often limits the utility of making a presentation in this way in the first place.
+
+Instead, it's more common to render a presentation to an HTML file, i.e. a webpage!^[Knitting to a PDF slide deck is also possible, but the result will be less interactive than the HTML format.]
+
+This means that you don't need any special software to present such a rendered slide deck. You can just open the slides in the web browser of your choice, and you're off.
+
+
+
+Used below instead in slide comparison.
+
+Here, for example, is an HTML slide deck, along with its source RMarkdown file:
+
+<!--
+::: {.panel-tabset}
+
+### Example Presentation
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+### Source RMarkdown
+
+```{.md include="../assets/presentation_rmd_revealjs_example.Rmd"}
+
+```
+
+:::
+
+-->
+
+
+In this chapter we will focus on rendering HTML slide decks. These will rely on another programming language, called Javascript, which is widely used to make web pages interactive.
+
+Fortunately we don't need to learn any Javascript ourselves! There are several R packages which will automatically render RMarkdown files to HTML-based presentations, and Quarto files can be rendered without needing any other packages.
+
+The key idea behind most of these methods is that Markdown headings (e.g. line beginning with `#` or `##`) are used to indicate new slides in the output file, instead of section headings.
+
+Since the process differs, we will look at how to create a simple RevealJS presentation from both RMarkdown and Quarto files. We will then go over some basics of good presentations, before looking at how to add useful features in each type of source file.
+
+
+## Presentations with RMarkdown
+
+There are several ways to turning RMarkdown files into presentations. We are going to focus on the `revealjs` package, but there are many similar options, which create slide decks with different styles and features.
+
+You can see some of the different options in the examples below.
+
+
+::: {.panel-tabset}
+
+### RevealJS
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+<!-- 
+TODO:
+
+- revealjs: make a more advanced presentation, than this basic one (the basic one is used below): https://github.com/rstudio/revealjs
+- ioslides: https://yihui.org/rmarkdown/ioslides-presentation.html
+- slidy: https://yihui.org/rmarkdown/slidy-presentation.html
+- xaringen: https://yihui.org/rmarkdown/xaringan.html and https://pkg.garrickadenbuie.com/xaringanExtra/#/ See also why Xaringen: https://yihui.org/en/2017/08/why-xaringan-remark-js/ 
+
+
+
+-->
+
+:::
+
+
+
+The `revealjs` package is a relatively new entrant to the space. It is not necessarily the best or most feature rich option (this author is partial to the `xaringen` package), but it creates slide decks using the *reveal.js* Javascript library which is also used by Quarto, which makes for a nice comparison between the two.
+
+To indicate that an RMarkdown file should be rendered to a reveal.js presentation, you will need to set the `output` option in your header section (you will also need to install the `revealjs` package if it is not installed):
+
+```{.md filename="rmarkdown_presentation.Rmd"}
+---
+output: revealjs::revealjs_presentation
+---
+```
+
+
+Top level headings (i.e. `#`) are used to indicate new slides, as you can see in this example RMarkdown file below.
+
+Other Markdown formatting symbols are treated normally, as introduced in @sec-markdown-formatting.
+
+
+::: {.panel-tabset}
+
+### Source RMarkdown
+
+```{.md include="../assets/presentation_rmd_revealjs_example.Rmd"}
+
+```
+
+### Example Presentation
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+:::
+
+
+In general, the basics of what you can do with just the `revealjs` package are somewhat limited - it has everything you need (and at least one thing you probably don't) to create a deck of slides, but more advanced customizations will need other R packages.
+
+We will discuss some of these features you can add to an RMarkdown reveal.js presentation later in this chapter, after we look at how we can create the same basic presentation from a Quarto file. 
+
+
+## Presentations with Quarto
+
+Quarto files can be rendered directly to reveal.js presentations without needing any extra R packages.
+
+To do so, just change the output file `format` option in the header section:
+
+```{.md filename="quarto_presentation.qmd"}
+---
+format: revealjs
+---
+```
+
+New slides are indicated by a level 2 heading (i.e. `##`), which is an important distinction from RMarkdown files.
+
+::: {.panel-tabset}
+
+### Source Quarto
+
+```{.md include="../assets/presentation_qmd_revealjs_example.qmd"}
+
+```
+
+### Example Presentation
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_qmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+:::
+
+
+
+
+
+
+
+<!--
+
+
+
+-->

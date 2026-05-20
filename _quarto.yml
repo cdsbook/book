@@ -50,8 +50,9 @@ book:
   - part: Outputs
     chapters:
     - src/book/35_papers_chapter.qmd
-    # - src/book/36_webpages_chapter.qmd
+    - src/book/36_presentations_chapter.qmd
     - src/book/37_dashboards_chapter.qmd
+    # - src/book/38_webpages_chapter.qmd
     # 38 Apps
     # 39 Software
     # 40 Presentations and posters

@@ -3,7 +3,7 @@
 #  freeze: auto
 ---
 
-# Literate Programming
+# Literate Programming {#sec-literate-programming-chapter}
 
 ```{r setup}
 #| results: "asis"
@@ -133,7 +133,7 @@ TODO: Add try-it-yourself exercises: Try rendering the file.
 ")
 ```
 
-## Text
+## Markdown Text {#sec-markdown-formatting}
 
 If you look at Fig. X (rmd/qmd side-by-side), you can see that both Quarto and RMarkdown files are divided into two sections. At the top of each file is a *header* section, which begins and ends with a line of three dashes: `---`. This is where we can specify settings for the file, which we will learn more about in @sec-yaml-header-section.
 
