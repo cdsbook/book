@@ -6,7 +6,7 @@ output: revealjs::revealjs_presentation
 ---
 
 
-## First Slide
+# First Slide
 
 ::: incremental
 
@@ -16,7 +16,7 @@ output: revealjs::revealjs_presentation
 
 :::
 
-## Another Slide
+# Another Slide
 
 ```{r, warning=FALSE, message=FALSE, echo=FALSE}
 ggplot2::qplot(x = Sepal.Length, data = iris)

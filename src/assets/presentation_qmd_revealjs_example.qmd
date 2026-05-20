@@ -2,13 +2,13 @@
 title: "Example Presentation"
 author: "Your Name Here!"
 date: "`r Sys.Date()`"
-output: revealjs::revealjs_presentation
+format: revealjs
 ---
 
 
-# First Slide
+## First Slide
 
-::: incremental
+::: {.incremental}
 
 * Bullet 1
 
@@ -16,9 +16,12 @@ output: revealjs::revealjs_presentation
 
 :::
 
-# Another Slide
+## Another Slide
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE}
+```{r}
+#| warning: false
+#| message: false
+#| echo: false
 ggplot2::qplot(x = Sepal.Length, data = iris)
 ```
 
