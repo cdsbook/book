@@ -6,7 +6,6 @@
 # Setup
 
 ```{r setup, results='asis'}
-#| results: "asis"
 #| echo: false
 
 source("prechapter.R")

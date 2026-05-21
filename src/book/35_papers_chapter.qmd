@@ -11,9 +11,13 @@ insert_status_callout("incomplete")
 
 
 <!--
+bookdown::pdf_document2 for table captions and references
+
 Nice tables:
 
 * `gtsummary` package: https://hal.ird.fr/ird-03883594
+
+Bibliographies, citations, and BibTex
 
 Latex templates for common journal submission styles
 
