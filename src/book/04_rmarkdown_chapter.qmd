@@ -617,7 +617,7 @@ These examples also highlight a bit of YAML formatting syntax (applicable in bot
 A detailed list of header sections options for RMarkdown can be found in the book RMarkdown: The Definite Guide (available at https://bookdown.org/yihui/rmarkdown-cookbook). For Quarto, the official documentation at https://quarto.org provides a similar list.
 
 
-## Images & figures
+## Images & figures {#sec-markdown-images}
 
 If you have an image in a separate file that you wish to include in the rendered output, then you can do so using the following Markdown syntax:
 
@@ -709,6 +709,16 @@ iris
 
 However this would print out the entire dataframe, which has 150 rows! Since large dataframes make output documentshard to read, you generally don't want to display the original data.
 
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO: Add code chunk options section: brief, maybe just echo, and 1 or two more. Diff between Quarto and RMarkdown (comment vs curly brackets)
+")
+```
+<!--
+
+
+
+-->
 
 ## Math 
 

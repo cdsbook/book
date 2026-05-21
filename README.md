@@ -217,3 +217,26 @@ type the note.]
 
 Conditional execution by output type: https://community.rstudio.com/t/set-options-conditional-on-output-formats-in-quarto/168989/2
 
+
+### To include examples of content from other files:
+
+**For "hard-coded" file contents:** Use a `md` chunk with `.` syntax to prevent exectution. No comma between chunk options.
+
+    ```{.md filename="test.Rmd"}
+    ---
+    output: revealjs::revealjs_presentation
+    ---
+    ```
+    
+**For the actual content of another file:** Again a `.md` chunk, with the `include` option.
+
+    ```{.md include="../assets/presentation_qmd_revealjs_example.qmd"}
+    
+    ```
+
+`code-preview`: Note that preview file also needs to be rendered to html. Then it will be embedded in an iframe below the code chunk (I think a post rendering script replaces .qmd with .html in the iframe link):
+
+    ``` {.markdown code-preview="test_smaller.qmd"}
+    ## Slide Title {.smaller}
+    ```
+

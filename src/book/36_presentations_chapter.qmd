@@ -14,6 +14,15 @@ suppressPackageStartupMessages(library(webexercises))
 insert_status_callout("incomplete")
 ```
 
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO:
+
+- Add example slides to all examples using the code-preview format (see later in this chapter, or README)
+")
+```
+
 ## Making Presentations
 
 It's hard for me to imagine that anyone reading this book hasn't sat through a slide presentation in their life, and very probably created their own.
@@ -36,30 +45,6 @@ Instead, it's more common to render a presentation to an HTML file, i.e. a webpa
 
 This means that you don't need any special software to present such a rendered slide deck. You can just open the slides in the web browser of your choice, and you're off.
 
-
-
-Used below instead in slide comparison.
-
-Here, for example, is an HTML slide deck, along with its source RMarkdown file:
-
-<!--
-::: {.panel-tabset}
-
-### Example Presentation
-
-<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
-
-### Source RMarkdown
-
-```{.md include="../assets/presentation_rmd_revealjs_example.Rmd"}
-
-```
-
-:::
-
--->
-
-
 In this chapter we will focus on rendering HTML slide decks. These will rely on another programming language, called Javascript, which is widely used to make web pages interactive.
 
 Fortunately we don't need to learn any Javascript ourselves! There are several R packages which will automatically render RMarkdown files to HTML-based presentations, and Quarto files can be rendered without needing any other packages.
@@ -75,6 +60,15 @@ There are several ways to turning RMarkdown files into presentations. We are goi
 
 You can see some of the different options in the examples below.
 
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO:
+
+- Change to code-preview format (see later in this chapter, or README)
+
+- Update the example presentation
+")
+```
 
 ::: {.panel-tabset}
 
@@ -82,21 +76,7 @@ You can see some of the different options in the examples below.
 
 <iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
 
-<!-- 
-TODO:
-
-- revealjs: make a more advanced presentation, than this basic one (the basic one is used below): https://github.com/rstudio/revealjs
-- ioslides: https://yihui.org/rmarkdown/ioslides-presentation.html
-- slidy: https://yihui.org/rmarkdown/slidy-presentation.html
-- xaringen: https://yihui.org/rmarkdown/xaringan.html and https://pkg.garrickadenbuie.com/xaringanExtra/#/ See also why Xaringen: https://yihui.org/en/2017/08/why-xaringan-remark-js/ 
-
-
-
--->
-
 :::
-
-
 
 The `revealjs` package is a relatively new entrant to the space. It is not necessarily the best or most feature rich option (this author is partial to the `xaringen` package), but it creates slide decks using the *reveal.js* Javascript library which is also used by Quarto, which makes for a nice comparison between the two.
 
@@ -107,11 +87,6 @@ To indicate that an RMarkdown file should be rendered to a reveal.js presentatio
 output: revealjs::revealjs_presentation
 ---
 ```
-
-
-Top level headings (i.e. `#`) are used to indicate new slides, as you can see in this example RMarkdown file below.
-
-Other Markdown formatting symbols are treated normally, as introduced in @sec-markdown-formatting.
 
 
 ::: {.panel-tabset}
@@ -146,13 +121,12 @@ format: revealjs
 ---
 ```
 
-New slides are indicated by a level 2 heading (i.e. `##`), which is an important distinction from RMarkdown files.
 
 ::: {.panel-tabset}
 
 ### Source Quarto
 
-```{.md include="../assets/presentation_qmd_revealjs_example.qmd"}
+```{.md include="../assets/presentation_qmd_revealjs_example.qmd" filename="quarto.qmd"}
 
 ```
 
@@ -163,13 +137,269 @@ New slides are indicated by a level 2 heading (i.e. `##`), which is an important
 :::
 
 
+Because Quarto contains a lot of features for presentations built into the rendering engine, you can add a lot of features to your slides without needing extra packages or extensions (compared to RMarkdown). The downside of this is that it can be harder to do something beyond this, since there is not the same ecosystem of packages and extensions for customizing slides.
 
 
+## Designing Slides
+
+### Slides and Sections
+
+Most Markdown formatting symbols are treated normally, as introduced in @sec-markdown-formatting.
+
+The one Markdown difference to remember is that headings are used to create slides (rather than sections). By default:
+
+* Second level headings (e.g. `##`) are used to indicate new slides. The heading text will become the slide title.
+  * To create a slide without a title, use a line of three dashes: `---`
+* Level 1 headings (a single `#`) create a new section within the slide deck.
+
+RMarkdown+*reveal.js* slides have an unusual *2-D* layout of sections and slides. The slide deck will be laid out in a grid, where each section creates a new column (i.e. section slides are added horizontally), and regular slides are added below their section (i.e. vertically). This means that when navigating through the slides, you need to remember whether to move down or right to get to the next slide in the sequence. This makes it very easy to forget about slides (at least in this author's experience). Fortunately you can turn this behavior off by setting the navigation mode to `linear` in the header options, which will stack all the slides one after another:
+
+```{.md filename="rmarkdown_example.Rmd"}
+---
+output:
+  revealjs::revealjs_presentation:
+    reveal_options:
+      navigationMode: linear
+---
+```
 
 
+### Columns
 
-<!--
+Columns can be created using the block syntax (a line of three or more colons, e.g. `:::`, opening and closing the block). 
+
+```{.markdown}
+:::: {.columns}
+
+::: {.column width="50%"}
+
+Contents of first column.
+
+:::
+
+::: {.column width="50%"}
+
+Contents of second column.
+
+:::
+
+::::
+```
+
+Note:
+
+* We can assign attributes to the blocks using curly brackets after the opening colons.
+
+  * For columns, we need a parent `.columns` block that contains all the columns, within which we have a `.column` block for each column.
+  
+  * We can use the `width` attribute to customize the widths of each column.
+
+* To nest blocks, parent blocks need more colons than their children, e.g. the `.columns` container block is created with four colons instead of three.
+
+### Incrementally revealing items
+
+It can be overwhelming for an audience to see a slide of lots of text. To reduce the cognitive overload, we can reveal the content on a slide piece-by-piece rather than all at once.
+
+Since this is commonly done with lists (bullets or numbered), there is an *incremental* block that we can put around a list:
+
+```{.markdown}
+::: {.incremental}
+
+* First point
+
+* Second point
+
+:::
+```
+
+We can also customize the placement breaks within slides, using a line of three dots (with spaces between them):
+
+```{.markdown}
+## Slide Title
+
+First point
+
+. . .
+
+Second point
+```
 
 
+### Slide backgrounds
 
--->
+We can include images using the standard Markdown formatting described in @sec-markdown-images, in which case the image will typically be scaled to fit into the content area of the slide (i.e. within the same margins as the text).
+
+However, it is often more visually interesting when an image occupies an entire slide (with no margins). We can do this by setting a **background image** for a slide:
+
+```{.markdown}
+## {background-image="https://images.unsplash.com/photo-1464802686167-b939a6910659"}
+```
+
+In this case we are creating a new slide with a level 2 heading `##` and then adding the `background-image` attribute inside curly brackets. The image can be a file on your computer or, as in the example above, the URL of a file on the internet.
+
+As the word "background" in "background image" implies, you can add content to a slide over it. You should be careful doing so, since it can overload the information content on the slide, but if you do so then you should also consider setting the `background-color` attribute of the slide. The background color won't be visible (since it's behind the image), but it will cause the font color of the slide contents to change from black to a color that contrasts with the background.
+
+For example, setting the background color to black changes the font color to white:
+
+```{.markdown}
+## Background Images {background-color="black" background-image="https://images.unsplash.com/photo-1464802686167-b939a6910659"}
+
+Adjust `background-color` to get a contrasting font color.
+```
+
+You can also omit the image to get slides with a non-white background:
+
+```{.markdown}
+## Background Color {background-color="black"}
+
+A non-white slide with a contrasting font.
+```
+
+### Presentation themes
+
+Of course, tweaking colors slide by slide can become arduous, especially if you want to adjust the color of every slide!
+
+*reveal.js* comes with several pre-existing themes ([see the full list here](https://revealjs.com/themes/)) than can be used change the appearance of every slide. These can be set in the header section of the source file.
+
+::: {.panel-tabset}
+
+#### RMarkdown
+
+```{.markdown}
+output:
+  revealjs::revealjs_presentation:
+    theme: dracula
+```
+
+#### Quarto
+
+```{.markdown}
+---
+format:
+  revealjs: 
+    theme: dracula
+---
+```
+
+:::
+
+Pretty much every aspect of the slide styling can be customized if you wish to do so - resources are provided at the end of this chapter.
+
+### Code chunks in slides
+
+A big reason for creating slides in RMarkdown or Quarto is that it allows us to do literate programming: we can include code, and its output, as part of the course document. No more having to copy your graphs from a separate software program into a PowerPoint presentation!
+
+The code chunks in **Quarto** presentations have a few defaults settings that are different to other output types (and to RMarkdown presentations):
+
+* Code chunks are hidden by default. You can override this either in the heading options, or in the options for an individual code chunk. (Code can easily overwhelm an audience, hence the choice to hide it - you usually only need to show it *if* you are trying to discuss or teach some aspect of the code itself.)
+
+* If a code chunk is echoed, then line numbers are shown next to the code.
+
+Since code can be overwhelming for an audience to follow in a presentation, it is a good idea to design slides to emphasize code you wish to focus on. There are different options depending on whether you are working in R Markdown or Quarto.
+
+#### RMarkdown line numbers
+
+You can turn on line numbers for a code chunk by:
+
+1. Adding a CSS code chunk somewhere^[it would make sense for this to be near the start of the file, either before or after your `setup` R code chunk] in your source file (CSS is the language used to format webpages, including *reveal.js* presentations):
+
+  ````{.markdown}
+  <!-- Somewhere in your file -->
+  ```{css, echo=FALSE}
+  .reveal pre code {
+    overflow: visible;
+  }
+  ```
+  ````
+
+2. Setting the `attr.source` option of the code chunk as follows: 
+
+  ````{.markdown}
+  ```{r, attr.source = ".numberLines"}
+  iris |>
+    ggplot() +
+    geom_point(aes(Sepal.Length, Sepal.Width))
+  ```
+  ````
+
+#### RMarkdown code highlighting
+
+RMarkdown code chunks can be highlighted using the `flair` package. Its usage is described in the package's [documentation](https://r-for-educators.github.io/flair/index.html).
+
+#### Quarto line highlighting
+
+In a Quarto file we can highlight lines using the `code-line-numbers` option:
+
+````{.markdown}
+```{r}
+#| code-line-numbers: "3,5-6"
+iris |>
+  ggplot() +
+  geom_point(
+    mapping = aes(
+      x = Sepal.Length,
+      y = Sepal.Width
+    )
+  )
+```
+````
+
+What this actually does is de-emphazise the other lines.
+
+#### Quarto code highlighting
+
+Unfortunately the `flair` package does not work with Quarto source files.
+
+We can use a Quarto extension called `detective`, but it is not as powerful as the `flair` package.
+
+````{.markdown}
+---
+format: revealjs
+revealjs-plugins:
+  - detective
+---
+
+## Example Slide
+
+::: {.detective data-detective-search="plot"}
+
+```{.r}
+qplot(x = Sepal.Length, data = iris)
+```
+
+:::
+````
+
+## Code Output
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO:
+
+Add sections on:
+
+- Output location (Quarto code chunks -> columns)
+- Figure sizing
+- Annotating graphs
+- Table output
+")
+```
+
+## Presenting
+
+```{r, echo=FALSE, results='asis'}
+pdf_dev_comment("
+TODO:
+
+Add sections on:
+
+- Speaker notes
+- Presenter mode
+")
+```
+
+## Further Reading
+
+Creating your own theme can be a bit of a rabbit hole, but burgeoning theme designers can check out the [section on custom CSS](https://yihui.org/rmarkdown/custom-css-1) from *R Markdown: The Definitive Guide* or the [Quarto theme documentation](https://quarto.org/docs/presentations/revealjs/themes.html) as appropriate for their choice of source file, as well as the [reveal.js theme page](https://revealjs.com/themes/).
+
+
