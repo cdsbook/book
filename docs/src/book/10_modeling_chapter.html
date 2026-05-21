@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.313">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>An Introduction to Computing and Data for Scientists - 10&nbsp; Modeling</title>
+<title>10&nbsp; Modeling – An Introduction to Computing and Data for Scientists</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,7 @@ ul.task-list li input[type="checkbox"] {
   vertical-align: middle;
 }
 /* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -66,22 +67,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta name="quarto:offset" content="../../">
 <link href="../../src/book/11_inference_chapter.html" rel="next">
 <link href="../../src/book/09_computing_chapter.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,37 +98,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
-<script src="../../site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="../../site_libs/plotly-binding-4.10.1/plotly.js"></script>
+<link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="../../site_libs/plotly-binding-4.12.0/plotly.js"></script>
 <script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
 <script src="../../site_libs/jquery-3.5.1/jquery.min.js"></script>
-<link href="../../site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
-<script src="../../site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="../../site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
-<script src="../../site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+<link href="../../site_libs/crosstalk-1.2.2/css/crosstalk.min.css" rel="stylesheet">
+<script src="../../site_libs/crosstalk-1.2.2/js/crosstalk.min.js"></script>
+<link href="../../site_libs/plotly-htmlwidgets-css-2.25.2/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="../../site_libs/plotly-main-2.25.2/plotly-latest.min.js"></script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../include/webex.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/10_modeling_chapter.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/10_modeling_chapter.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -130,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../../">An Introduction to Computing and Data for Scientists</a> 
@@ -157,9 +195,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Basic Topics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -228,9 +266,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Advanced Topics</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -287,9 +325,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Scientific Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -310,9 +348,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
  <span class="menu-text">Outputs</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -325,8 +363,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../src/book/36_presentations_chapter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Presentations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../src/book/37_dashboards_chapter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Dashboards</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,9 +383,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -363,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -396,11 +440,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#constant-variability-of-residuals" id="toc-constant-variability-of-residuals" class="nav-link" data-scroll-target="#constant-variability-of-residuals"><span class="header-section-number">10.4.4</span> Constant variability of residuals</a></li>
   <li><a href="#constant-variability" id="toc-constant-variability" class="nav-link" data-scroll-target="#constant-variability"><span class="header-section-number">10.4.5</span> Constant variability</a></li>
   <li><a href="#nearly-normal-residuals" id="toc-nearly-normal-residuals" class="nav-link" data-scroll-target="#nearly-normal-residuals"><span class="header-section-number">10.4.6</span> Nearly normal residuals</a></li>
-  </ul></li>
-  <li><a href="#nearly-normal-residuals-1" id="toc-nearly-normal-residuals-1" class="nav-link" data-scroll-target="#nearly-normal-residuals-1"><span class="header-section-number">10.5</span> Nearly normal residuals</a>
-  <ul class="collapse">
-  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">10.5.1</span> Independent observations</a></li>
-  <li><a href="#independent-observations-1" id="toc-independent-observations-1" class="nav-link" data-scroll-target="#independent-observations-1"><span class="header-section-number">10.5.2</span> Independent Observations</a></li>
+  <li><a href="#independent-observations" id="toc-independent-observations" class="nav-link" data-scroll-target="#independent-observations"><span class="header-section-number">10.4.7</span> Independent observations</a></li>
+  <li><a href="#independent-observations-1" id="toc-independent-observations-1" class="nav-link" data-scroll-target="#independent-observations-1"><span class="header-section-number">10.4.8</span> Independent Observations</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -408,7 +449,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/book/02_setup.html">Basic Topics</a></li><li class="breadcrumb-item"><a href="../../src/book/10_modeling_chapter.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span id="sec-modeling-chapter" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Modeling</span></span></h1>
 </div>
@@ -423,8 +464,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
+
+<pre><code>webex.css, webex.js, and webexercises.qmd updated</code></pre>
+<pre><code>./_quarto.yml updated</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter is a draft, and may be updated soon.</p>
+</div>
+</div>
 <section id="what-is-a-model" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="what-is-a-model"><span class="header-section-number">10.1</span> What is a model</h2>
 <p>This video will introduce you to the concept of <em>models</em>, and in particular the <em>linear model</em> (which you may already be familiar with as a <em>line of best fit</em>).</p>
@@ -439,7 +497,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>What a linear model means is that if we have two variables,<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> then we can simplify their relationship to a straight line:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This linear model’s line is simpler that the original dataset of 10 data points, because we can represent it with just two numbers: the slope and the intercept.</p>
@@ -459,7 +521,11 @@ y = ax + b
 <p>The opposite of a linear relationship is a non-linear relationship, which you can see in the underlying data on the right in this figure. Non-linear basically means <em>“there’s a curve”</em> in the data.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Mathematically, there is nothing that stops us we can still create a linear model for non-linear data! Unfortunately, it doesn’t do a very good job of capturing the underlying relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. It’s on you, the human operating the machine, to make sure that you only use a linear model if there is actually a linear relationship in the data. Later in this chapter, we will see how we can assess whether this is the case for any dataset.</p>
@@ -470,7 +536,11 @@ y = ax + b
 <p>Consider these two different sets of data:</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>There is a linear relationship in both of these plots! In both cases, the y values seem to increase by a constant amount (on average) as the x values increase by a constant amount.</p>
@@ -491,7 +561,11 @@ y = ax + b
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <!-- TODO: (Maybe later in chapter?) Discuss statistical nature of the shaded confidence intervals around the geom_smooth line and how to use them to interpret a correlation statistically. -->
@@ -547,11 +621,11 @@ TODO:
 <p>This is what the first few rows of the simulated dataset stored in the <code>sim_df</code> variable look like:</p>
 <div class="cell">
 <div class="cell-output-display">
-<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<table class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: right;" data-quarto-table-cell-role="th">x</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">y</th>
+<th style="text-align: right;">x</th>
+<th style="text-align: right;">y</th>
 </tr>
 </thead>
 <tbody>
@@ -581,22 +655,24 @@ TODO:
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </div>
 <p>As you can see, there are two variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Here’s what they look like:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(x,y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>This looks like a pretty good candidate for a linear model, so let’s create one.</p>
 <p>We’ll do that with the <code>lm()</code> function. The general syntax of this function is:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(response <span class="sc">~</span> explanatory, <span class="at">data =</span> _______)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(response <span class="sc">~</span> explanatory, <span class="at">data =</span> _______)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>response</code> and <code>explanatory</code> are the column names of those two variables.</li>
 <li>The <code>data</code> parameter expects the dataframe containing those columns.</li>
@@ -638,17 +714,17 @@ TODO: graphs showing different slopes, corresponding to the three bullet point e
 -->
 <p>The intercept is the point at which the line of our linear model intersects the <span class="math inline">\(y\)</span>-axis. This is the value of the response variable when the explanatory variable is 0.</p>
 <p>We can report the model’s coefficients with the <code>tidy()</code> function from the <code>broom</code> package. The syntax is like this:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(your_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(your_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>or equivalently</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>if you prefer to pipe the linear model in (the <code>your_model</code> variable above refers to the output of the <code>lm()</code> function).</p>
 <p>For example, here is the table of coefficients for the model we were trying to create in the previous section:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim_df)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> sim_df)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 5
   term        estimate std.error statistic  p.value
@@ -659,7 +735,6 @@ TODO: graphs showing different slopes, corresponding to the three bullet point e
 </div>
 <p>The important column here (for our current purposes) is the <em>estimate</em> column. This tells us that the <code>lm()</code> function estimates the intercept to be -0.0749858 and the slope to be 1.9468815.</p>
 <p>Note that although the intercept row is called <code>(Intercept)</code>, the slope row is named after the explanatory variable, <code>x</code>. As we shall see in the next section, we can have more than one explanatory variable in a single model, and this helps us keep track of the slope associated with each one.</p>
-
 <!-- TODO: show an example of creating the `tidy()` output table, and then how to interpret the numbers in it (since the column names are kind of weird).
 -->
 <!-- Book version -->
@@ -704,14 +779,18 @@ TODO: use coef() function to get model coefficients, and then inline code if you
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>But what does a linear model look like in higher dimensions?</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="htmlwidget-2a8e9539872343d5916c" style="width:100%;height:464px;" class="plotly html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2a8e9539872343d5916c">{"x":{"visdat":{"eb856381632a":["function () ","plotlyVisDat"]},"cur_data":"eb856381632a","attrs":{"eb856381632a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"uid":"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b","mode":"markers","name":"Data","type":"scatter3d","x":[3.88202617298383,-0.362741165987138,-0.854095739301725,1.32638589668703,-0.461584604814709,1.94362118564929,-1.60205765560675,-0.401780936208262,-0.977277879876411,0.378162519602174,-0.302302750575336,-0.747454811440758,-0.187183850025834,0.318727652943021,-1.53624368627722,0.400157208367223,-0.826438538659014,-0.742165020406442,0.706573168191948,0.900826486954187,-0.578849664764415,-0.208298755577995,0.681594518281627,0.802456395796395,0.77749035583191,-1.54477109677761,0.969396708158011,0.6764332949465,1.78587049390584,1.54301459540674,0.0561653422297454,-0.212740280213969,-0.359553161540541,-1.23482582035365,0.15634896910398,0.410598501938372,-0.155010093090834,1.20237984878441,0.401989363444702,-1.07993150836342,0.922206671566527,-0.689549777750201,-0.171546331222248,0.0875512413851909,1.89588917603058,-0.663478286362107,1.84926372847934,0.333674327374267,-1.37495129341802,1.46935876990029,0.0174791590250567,-1.18063218412241,0.267050869349183,1.11701628809585,1.45427350696298,2.24089319920146,-0.149634540327671,0.906044658275385,-1.1680934977412,-0.651025593300147,-1.98079646822393,-0.438074301611186,0.844362976401547,1.22244507038243,0.635031436892106,0.386902497859262,-0.205158263765801,0.128982910757411,1.33652794943639,1.95077539523179,1.48051479143442,0.31694261192485,-2.22340315222443,1.71334272164937,0.302471897739781,0.121675016492828,-1.42001793717898,0.439391701264537,-0.179924835812351,-0.684810090940313,-1.09940079058419,-0.151357208297698,-0.437820044744434,0.051945395796139,-1.09306150873051,0.40746183624111,0.539249191291817,1.91006495309903,0.428331870530418,0.653618595440361,0.944479486990414,0.0318305582743512,1.92953205381699,-1.45436567459876,0.462782255525774,0.823504153963731,0.976639036483713,-1.34775906114245,0.0521650792609744,-1.72628260233168],"y":[3.88202617298383,-0.634322093680964,0.313067701650901,0.298238174206056,-1.31590741051152,-1.17312340511416,0.625231451027187,0.177426142253753,1.86755799014997,0.154947425696916,-0.387326817407952,-0.413618980759747,0.0457585173014461,0.920858823780819,0.46566243973046,1.76405234596766,-0.74475482204844,0.864436198859506,0.356366397174402,-1.16514984078336,-0.870797149181882,0.576590816614941,-1.03424284178446,-0.26800337095138,-1.25279536004993,-1.00021534738956,-1.27048499848573,-0.635846078378881,0.0105000207208205,-0.739562996391313,-0.311552532127373,-1.61389784755795,-0.672460447775951,1.1394006845433,-0.347912149326153,-0.103218851793558,0.947251967773748,1.23029068072772,0.12691209270362,1.12663592210651,0.61407937034608,-0.803409664173841,0.523276660531754,0.949420806925761,1.4882521937956,-0.0984525244254323,-0.435153551721637,0.443863232745426,-0.353993911253484,1.53277921435846,-0.455532503517343,-0.510805137568873,-1.29285690972345,-0.912822225444159,0.144043571160878,0.978737984105739,-0.694567859731365,1.86755896042657,-0.0392828182274956,0.856830611902691,-0.887785747630113,-0.509652181751653,-1.22543551883017,-0.40317694697318,0.166673495372529,-0.895466561193676,1.49407907315761,0.729090562177537,2.16323594928069,-1.70627019062501,1.92294202648038,1.1880297923523,-0.643618402832891,-0.0682416053246312,0.0665172223831679,0.761037725146993,-1.04855296506709,-1.49125759270561,1.17877957115965,0.402341641177549,0.376425531155629,0.950088417525589,-1.1474686524111,-0.907298364383242,0.396006712661645,0.672294757012435,-0.769916074445316,-0.861225685054703,-0.0281822283386549,-2.55298981583408,2.38314477486394,-0.674332660657376,-0.498032450692305,2.26975462398761,-1.63019834696604,0.771790551213667,0.20827497807686,1.88315069705625,-1.10438333942845,-0.813146282044454],"z":[0.601414875305009,52.7649368002489,28.8301819439438,-52.7519412117855,-116.763251813566,-185.652779873292,166.926645302627,-32.7400441868645,200.354754382641,84.0711483909933,-388.735187515356,44.1641313590487,124.127664727862,11.3349895075826,137.753196929298,69.9338586409836,30.2334680473319,165.099923498895,132.691909463663,-206.11535605234,26.9973221941661,365.617426613482,-31.7849002234694,-165.834345944098,-146.277319109397,10.2106153904905,-50.8736167922411,-110.51610451998,-114.910597286598,-9.21107841525168,-12.3454962165698,-150.209633463559,-81.6021418991762,62.3772564029097,71.2915984442432,-79.8684789824688,72.6845550810986,75.9565128378878,-31.4455733793576,282.679079892168,-80.04878296553,-34.8773784402263,80.0106052206387,70.59644155587,36.8809004884179,-20.9603918832432,-215.601926932042,56.0292688175183,-39.2216858113509,109.194987315797,-92.3869459545954,-75.303411116867,-130.22720888849,-185.373157147355,105.226655861241,14.144545758253,2.92427324891582,1.16690163644435,121.878382838342,-46.941774325196,-50.0108395525938,-26.1670963009976,-6.07923977317353,-84.7611095980838,110.216363671291,-224.15927360347,186.410503323366,7.16968259250105,102.772097504716,-21.5817241380168,308.876886811525,229.413891066956,-5.20635835532203,83.9845870497286,-62.8785240564784,5.92850888270871,-235.179797223615,-258.927045561524,24.7504683819619,-112.633397599701,39.8357153926154,143.738763884351,-142.567103088046,-60.8802993940848,123.968741605005,76.2560481769906,-37.4958834727863,-162.463015575813,-20.6489203550743,-280.806208383408,201.029851268245,-72.2588583176328,35.0495561626435,270.534727279486,-193.103820805791,114.099913466429,-88.8687157083858,282.071569269954,-79.0750769257736,-154.610866200649],"marker":{"size":2,"opacity":0.9},"inherit":true},"eb856381632a.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"uid":"f606e49f-bb1b-4d74-acc9-a9d80027e663","name":"Plane of Best Fit","type":"surface","x":[[-3,-3,-3,-3,-3,-3,-3],[-2,-2,-2,-2,-2,-2,-2],[-1,-1,-1,-1,-1,-1,-1],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3]],"y":[[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3]],"z":[[-168.765935922114,-82.743180149586,3.27957562294235,89.3023313954707,175.325087167999,261.347842940527,347.370598713056],[-198.58607018108,-112.563314408552,-26.5405586360232,59.4821971365052,145.504952909034,231.527708681562,317.55046445409],[-228.406204440045,-142.383448667517,-56.3606928949887,29.6620628775397,115.684818650068,201.707574422596,287.730330195125],[-258.226338699011,-172.203582926483,-86.1808271539542,-0.158071381425801,85.8646843911026,171.887440163631,257.910195936159],[-288.046472957976,-202.023717185448,-116.00096141292,-29.9782056403913,56.0445501321371,142.067305904665,228.090061677194],[-317.866607216942,-231.843851444414,-145.821095671885,-59.7983398993568,26.2244158731716,112.2471716457,198.269927418228],[-347.686741475907,-261.663985703379,-175.641229930851,-89.6184741583223,-3.59571838579394,82.4270373867344,168.449793159263]],"opacity":0.7,"showscale":false,"colorscale":"Greys","inherit":true}},"layout":{"margin":{"b":10,"l":0,"t":100,"r":0},"scene":{"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"x2"}},"zaxis":{"title":{"text":"y"}}},"title":{"text":"3D Plane of Best Fit Through 2 Explanatory Variables"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"uid":"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b","mode":"markers","name":"Data","type":"scatter3d","x":[3.88202617298383,-0.362741165987138,-0.854095739301725,1.32638589668703,-0.461584604814709,1.94362118564929,-1.60205765560675,-0.401780936208262,-0.977277879876411,0.378162519602174,-0.302302750575336,-0.747454811440758,-0.187183850025834,0.318727652943021,-1.53624368627722,0.400157208367223,-0.826438538659014,-0.742165020406442,0.706573168191948,0.900826486954187,-0.578849664764415,-0.208298755577995,0.681594518281627,0.802456395796395,0.77749035583191,-1.54477109677761,0.969396708158011,0.6764332949465,1.78587049390584,1.54301459540674,0.0561653422297454,-0.212740280213969,-0.359553161540541,-1.23482582035365,0.15634896910398,0.410598501938372,-0.155010093090834,1.20237984878441,0.401989363444702,-1.07993150836342,0.922206671566527,-0.689549777750201,-0.171546331222248,0.0875512413851909,1.89588917603058,-0.663478286362107,1.84926372847934,0.333674327374267,-1.37495129341802,1.46935876990029,0.0174791590250567,-1.18063218412241,0.267050869349183,1.11701628809585,1.45427350696298,2.24089319920146,-0.149634540327671,0.906044658275385,-1.1680934977412,-0.651025593300147,-1.98079646822393,-0.438074301611186,0.844362976401547,1.22244507038243,0.635031436892106,0.386902497859262,-0.205158263765801,0.128982910757411,1.33652794943639,1.95077539523179,1.48051479143442,0.31694261192485,-2.22340315222443,1.71334272164937,0.302471897739781,0.121675016492828,-1.42001793717898,0.439391701264537,-0.179924835812351,-0.684810090940313,-1.09940079058419,-0.151357208297698,-0.437820044744434,0.051945395796139,-1.09306150873051,0.40746183624111,0.539249191291817,1.91006495309903,0.428331870530418,0.653618595440361,0.944479486990414,0.0318305582743512,1.92953205381699,-1.45436567459876,0.462782255525774,0.823504153963731,0.976639036483713,-1.34775906114245,0.0521650792609744,-1.72628260233168],"y":[3.88202617298383,-0.634322093680964,0.313067701650901,0.298238174206056,-1.31590741051152,-1.17312340511416,0.625231451027187,0.177426142253753,1.86755799014997,0.154947425696916,-0.387326817407952,-0.413618980759747,0.0457585173014461,0.920858823780819,0.46566243973046,1.76405234596766,-0.74475482204844,0.864436198859506,0.356366397174402,-1.16514984078336,-0.870797149181882,0.576590816614941,-1.03424284178446,-0.26800337095138,-1.25279536004993,-1.00021534738956,-1.27048499848573,-0.635846078378881,0.0105000207208205,-0.739562996391313,-0.311552532127373,-1.61389784755795,-0.672460447775951,1.1394006845433,-0.347912149326153,-0.103218851793558,0.947251967773748,1.23029068072772,0.12691209270362,1.12663592210651,0.61407937034608,-0.803409664173841,0.523276660531754,0.949420806925761,1.4882521937956,-0.0984525244254323,-0.435153551721637,0.443863232745426,-0.353993911253484,1.53277921435846,-0.455532503517343,-0.510805137568873,-1.29285690972345,-0.912822225444159,0.144043571160878,0.978737984105739,-0.694567859731365,1.86755896042657,-0.0392828182274956,0.856830611902691,-0.887785747630113,-0.509652181751653,-1.22543551883017,-0.40317694697318,0.166673495372529,-0.895466561193676,1.49407907315761,0.729090562177537,2.16323594928069,-1.70627019062501,1.92294202648038,1.1880297923523,-0.643618402832891,-0.0682416053246312,0.0665172223831679,0.761037725146993,-1.04855296506709,-1.49125759270561,1.17877957115965,0.402341641177549,0.376425531155629,0.950088417525589,-1.1474686524111,-0.907298364383242,0.396006712661645,0.672294757012435,-0.769916074445316,-0.861225685054703,-0.0281822283386549,-2.55298981583408,2.38314477486394,-0.674332660657376,-0.498032450692305,2.26975462398761,-1.63019834696604,0.771790551213667,0.20827497807686,1.88315069705625,-1.10438333942845,-0.813146282044454],"z":[0.601414875305009,52.7649368002489,28.8301819439438,-52.7519412117855,-116.763251813566,-185.652779873292,166.926645302627,-32.7400441868645,200.354754382641,84.0711483909933,-388.735187515356,44.1641313590487,124.127664727862,11.3349895075826,137.753196929298,69.9338586409836,30.2334680473319,165.099923498895,132.691909463663,-206.11535605234,26.9973221941661,365.617426613482,-31.7849002234694,-165.834345944098,-146.277319109397,10.2106153904905,-50.8736167922411,-110.51610451998,-114.910597286598,-9.21107841525168,-12.3454962165698,-150.209633463559,-81.6021418991762,62.3772564029097,71.2915984442432,-79.8684789824688,72.6845550810986,75.9565128378878,-31.4455733793576,282.679079892168,-80.04878296553,-34.8773784402263,80.0106052206387,70.59644155587,36.8809004884179,-20.9603918832432,-215.601926932042,56.0292688175183,-39.2216858113509,109.194987315797,-92.3869459545954,-75.303411116867,-130.22720888849,-185.373157147355,105.226655861241,14.144545758253,2.92427324891582,1.16690163644435,121.878382838342,-46.941774325196,-50.0108395525938,-26.1670963009976,-6.07923977317353,-84.7611095980838,110.216363671291,-224.15927360347,186.410503323366,7.16968259250105,102.772097504716,-21.5817241380168,308.876886811525,229.413891066956,-5.20635835532203,83.9845870497286,-62.8785240564784,5.92850888270871,-235.179797223615,-258.927045561524,24.7504683819619,-112.633397599701,39.8357153926154,143.738763884351,-142.567103088046,-60.8802993940848,123.968741605005,76.2560481769906,-37.4958834727863,-162.463015575813,-20.6489203550743,-280.806208383408,201.029851268245,-72.2588583176328,35.0495561626435,270.534727279486,-193.103820805791,114.099913466429,-88.8687157083858,282.071569269954,-79.0750769257736,-154.610866200649],"marker":{"color":"rgba(31,119,180,1)","size":2,"opacity":0.9,"line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"colorbar":{"title":"","ticklen":2},"colorscale":"Greys","showscale":false,"uid":"f606e49f-bb1b-4d74-acc9-a9d80027e663","name":"Plane of Best Fit","type":"surface","x":[[-3,-3,-3,-3,-3,-3,-3],[-2,-2,-2,-2,-2,-2,-2],[-1,-1,-1,-1,-1,-1,-1],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3]],"y":[[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3]],"z":[[-168.765935922114,-82.743180149586,3.27957562294235,89.3023313954707,175.325087167999,261.347842940527,347.370598713056],[-198.58607018108,-112.563314408552,-26.5405586360232,59.4821971365052,145.504952909034,231.527708681562,317.55046445409],[-228.406204440045,-142.383448667517,-56.3606928949887,29.6620628775397,115.684818650068,201.707574422596,287.730330195125],[-258.226338699011,-172.203582926483,-86.1808271539542,-0.158071381425801,85.8646843911026,171.887440163631,257.910195936159],[-288.046472957976,-202.023717185448,-116.00096141292,-29.9782056403913,56.0445501321371,142.067305904665,228.090061677194],[-317.866607216942,-231.843851444414,-145.821095671885,-59.7983398993568,26.2244158731716,112.2471716457,198.269927418228],[-347.686741475907,-261.663985703379,-175.641229930851,-89.6184741583223,-3.59571838579394,82.4270373867344,168.449793159263]],"opacity":0.7,"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<div class="plotly html-widget html-fill-item" id="htmlwidget-2a8e9539872343d5916c" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-2a8e9539872343d5916c">{"x":{"visdat":{"16bc061d1d20a":["function () ","plotlyVisDat"]},"cur_data":"16bc061d1d20a","attrs":{"16bc061d1d20a":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"uid":"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b","mode":"markers","name":"Data","type":"scatter3d","x":[3.8820261729838319,-0.36274116598713813,-0.85409573930172478,1.3263858966870303,-0.46158460481470898,1.9436211856492929,-1.6020576556067476,-0.40178093620826189,-0.97727787987641102,0.37816251960217362,-0.30230275057533557,-0.74745481144075776,-0.1871838500258336,0.31872765294302119,-1.5362436862772235,0.40015720836722329,-0.8264385386590144,-0.74216502040644194,0.70657316819194815,0.90082648695418721,-0.57884966476441546,-0.20829875557799488,0.68159451828162698,0.80245639579639516,0.77749035583191006,-1.5447710967776116,0.96939670815801116,0.67643329494649973,1.7858704939058352,1.5430145954067358,0.056165342229745438,-0.21274028021396871,-0.35955316154054129,-1.2348258203536526,0.15634896910398005,0.41059850193837233,-0.15501009309083419,1.2023798487844113,0.40198936344470165,-1.0799315083634231,0.9222066715665268,-0.68954977775020054,-0.17154633122224811,0.087551241385190895,1.8958891760305832,-0.66347828636210737,1.8492637284793416,0.33367432737426683,-1.3749512934180188,1.469358769900285,0.017479159025056729,-1.1806321841224121,0.26705086934918293,1.117016288095853,1.4542735069629751,2.2408931992014578,-0.14963454032767076,0.90604465827538516,-1.1680934977411974,-0.65102559330014687,-1.980796468223927,-0.43807430161118638,0.84436297640154712,1.2224450703824274,0.63503143689210639,0.38690249785926201,-0.20515826376580087,0.12898291075741067,1.336527949436392,1.9507753952317897,1.4805147914344243,0.31694261192484963,-2.2234031522244262,1.7133427216493666,0.30247189773978139,0.1216750164928284,-1.4200179371789752,0.43939170126453692,-0.17992483581235091,-0.6848100909403132,-1.0994007905841945,-0.15135720829769789,-0.43782004474443398,0.051945395796138952,-1.0930615087305058,0.40746183624111038,0.53924919129181725,1.9100649530990337,0.42833187053041766,0.65361859544036061,0.94447948699041384,0.031830558274351183,1.9295320538169856,-1.4543656745987648,0.46278225552577418,0.82350415396373144,0.97663903648371275,-1.3477590611424464,0.052165079260974405,-1.7262826023316769],"y":[3.8820261729838319,-0.63432209368096359,0.31306770165090136,0.29823817420605597,-1.3159074105115212,-1.1731234051141599,0.62523145102718747,0.17742614225375283,1.8675579901499677,0.1549474256969163,-0.38732681740795227,-0.41361898075974735,0.045758517301446068,0.92085882378081896,0.46566243973045984,1.764052345967664,-0.7447548220484399,0.86443619885950573,0.35636639717440188,-1.1651498407833565,-0.87079714918188178,0.57659081661494094,-1.0342428417844649,-0.26800337095138038,-1.2527953600499262,-1.0002153473895647,-1.2704849984857336,-0.63584607837888096,0.010500020720820478,-0.73956299639131329,-0.31155253212737266,-1.6138978475579515,-0.67246044777595104,1.1394006845433009,-0.34791214932615261,-0.10321885179355784,0.94725196777374798,1.2302906807277207,0.12691209270361992,1.126635922106507,0.61407937034608029,-0.80340966417384108,0.5232766605317537,0.94942080692576081,1.4882521937955997,-0.0984525244254323,-0.43515355172163744,0.44386323274542566,-0.35399391125348395,1.5327792143584575,-0.45553250351734315,-0.51080513756887302,-1.2928569097234486,-0.91282222544415859,0.14404357116087799,0.9787379841057392,-0.69456785973136548,1.8675589604265701,-0.039282818227495603,0.85683061190269116,-0.88778574763011275,-0.5096521817516535,-1.225435518830168,-0.40317694697317957,0.16667349537252904,-0.89546656119367563,1.4940790731576059,0.72909056217753687,2.1632359492806899,-1.7062701906250126,1.9229420264803847,1.1880297923523018,-0.64361840283289051,-0.068241605324631235,0.066517222383167887,0.76103772514699342,-1.0485529650670926,-1.4912575927056055,1.1787795711596507,0.402341641177549,0.37642553115562943,0.95008841752558937,-1.1474686524111024,-0.90729836438324218,0.39600671266164528,0.67229475701243546,-0.7699160744453164,-0.86122568505470254,-0.028182228338654868,-2.5529898158340787,2.3831447748639421,-0.67433266065737607,-0.4980324506923049,2.2697546239876076,-1.6301983469660446,0.77179055121366735,0.2082749780768603,1.8831506970562544,-1.1043833394284506,-0.81314628204445405],"z":[0.60141487530500948,52.764936800248861,28.830181943943813,-52.751941211785535,-116.76325181356648,-185.65277987329165,166.92664530262709,-32.74004418686453,200.35475438264095,84.071148390993258,-388.73518751535647,44.164131359048703,124.12766472786151,11.33498950758262,137.75319692929813,69.933858640983573,30.233468047331858,165.09992349889487,132.69190946366308,-206.11535605233959,26.99732219416606,365.61742661348171,-31.784900223469393,-165.83434594409849,-146.27731910939744,10.210615390490544,-50.873616792241052,-110.51610451997983,-114.91059728659812,-9.2110784152516754,-12.34549621656978,-150.20963346355904,-81.602141899176203,62.37725640290973,71.291598444243206,-79.868478982468787,72.684555081098566,75.956512837887843,-31.44557337935764,282.67907989216758,-80.048782965530023,-34.877378440226337,80.010605220638695,70.596441555870001,36.880900488417907,-20.960391883243197,-215.60192693204201,56.029268817518272,-39.221685811350888,109.19498731579706,-92.386945954595362,-75.303411116866982,-130.22720888849,-185.37315714735479,105.22665586124084,14.144545758253033,2.9242732489158243,1.1669016364443507,121.87838283834178,-46.941774325195993,-50.010839552593843,-26.167096300997564,-6.0792397731735264,-84.761109598083806,110.21636367129128,-224.15927360347007,186.41050332336596,7.1696825925010543,102.77209750471626,-21.581724138016796,308.87688681152468,229.41389106695561,-5.2063583553220312,83.984587049728603,-62.878524056478383,5.9285088827087122,-235.17979722361491,-258.92704556152404,24.750468381961923,-112.63339759970113,39.835715392615406,143.7387638843515,-142.56710308804608,-60.880299394084815,123.96874160500541,76.256048176990589,-37.495883472786346,-162.46301557581251,-20.648920355074303,-280.80620838340803,201.0298512682453,-72.258858317632772,35.049556162643526,270.53472727948645,-193.10382080579129,114.09991346642916,-88.868715708385835,282.07156926995401,-79.075076925773629,-154.61086620064873],"marker":{"size":2,"opacity":0.90000000000000002},"inherit":true},"16bc061d1d20a.1":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"uid":"f606e49f-bb1b-4d74-acc9-a9d80027e663","name":"Plane of Best Fit","type":"surface","x":[[-3,-3,-3,-3,-3,-3,-3],[-2,-2,-2,-2,-2,-2,-2],[-1,-1,-1,-1,-1,-1,-1],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3]],"y":[[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3]],"z":[[-168.76593592211438,-82.74318014958601,3.2795756229423461,89.302331395470702,175.32508716799907,261.34784294052741,347.37059871305576],[-198.58607018107989,-112.56331440855152,-26.540558636023157,59.482197136505199,145.50495290903356,231.5277086815619,317.55046445409027],[-228.40620444004537,-142.38344866751703,-56.360692894988659,29.662062877539697,115.68481865006804,201.70757442259639,287.73033019512479],[-258.22633869901091,-172.20358292648251,-86.180827153954155,-0.15807138142580102,85.864684391102557,171.88744016363091,257.91019593615925],[-288.04647295797639,-202.02371718544799,-116.00096141291964,-29.978205640391302,56.044550132137054,142.0673059046654,228.09006167719377],[-317.86660721694187,-231.8438514444135,-145.82109567188516,-59.798339899356797,26.224415873171559,112.24717164569992,198.26992741822829],[-347.68674147590741,-261.66398570337901,-175.64122993085067,-89.6184741583223,-3.5957183857939441,82.427037386734412,168.44979315926278]],"opacity":0.69999999999999996,"showscale":false,"colorscale":"Greys","inherit":true}},"layout":{"margin":{"b":10,"l":0,"t":100,"r":0},"scene":{"xaxis":{"title":{"text":"x1"}},"yaxis":{"title":{"text":"x2"}},"zaxis":{"title":{"text":"y"}}},"title":{"text":"3D Plane of Best Fit Through 2 Explanatory Variables"},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"uid":"5c56cf7b-dc4c-4dfa-b691-728a6a9e1b6b","mode":"markers","name":"Data","type":"scatter3d","x":[3.8820261729838319,-0.36274116598713813,-0.85409573930172478,1.3263858966870303,-0.46158460481470898,1.9436211856492929,-1.6020576556067476,-0.40178093620826189,-0.97727787987641102,0.37816251960217362,-0.30230275057533557,-0.74745481144075776,-0.1871838500258336,0.31872765294302119,-1.5362436862772235,0.40015720836722329,-0.8264385386590144,-0.74216502040644194,0.70657316819194815,0.90082648695418721,-0.57884966476441546,-0.20829875557799488,0.68159451828162698,0.80245639579639516,0.77749035583191006,-1.5447710967776116,0.96939670815801116,0.67643329494649973,1.7858704939058352,1.5430145954067358,0.056165342229745438,-0.21274028021396871,-0.35955316154054129,-1.2348258203536526,0.15634896910398005,0.41059850193837233,-0.15501009309083419,1.2023798487844113,0.40198936344470165,-1.0799315083634231,0.9222066715665268,-0.68954977775020054,-0.17154633122224811,0.087551241385190895,1.8958891760305832,-0.66347828636210737,1.8492637284793416,0.33367432737426683,-1.3749512934180188,1.469358769900285,0.017479159025056729,-1.1806321841224121,0.26705086934918293,1.117016288095853,1.4542735069629751,2.2408931992014578,-0.14963454032767076,0.90604465827538516,-1.1680934977411974,-0.65102559330014687,-1.980796468223927,-0.43807430161118638,0.84436297640154712,1.2224450703824274,0.63503143689210639,0.38690249785926201,-0.20515826376580087,0.12898291075741067,1.336527949436392,1.9507753952317897,1.4805147914344243,0.31694261192484963,-2.2234031522244262,1.7133427216493666,0.30247189773978139,0.1216750164928284,-1.4200179371789752,0.43939170126453692,-0.17992483581235091,-0.6848100909403132,-1.0994007905841945,-0.15135720829769789,-0.43782004474443398,0.051945395796138952,-1.0930615087305058,0.40746183624111038,0.53924919129181725,1.9100649530990337,0.42833187053041766,0.65361859544036061,0.94447948699041384,0.031830558274351183,1.9295320538169856,-1.4543656745987648,0.46278225552577418,0.82350415396373144,0.97663903648371275,-1.3477590611424464,0.052165079260974405,-1.7262826023316769],"y":[3.8820261729838319,-0.63432209368096359,0.31306770165090136,0.29823817420605597,-1.3159074105115212,-1.1731234051141599,0.62523145102718747,0.17742614225375283,1.8675579901499677,0.1549474256969163,-0.38732681740795227,-0.41361898075974735,0.045758517301446068,0.92085882378081896,0.46566243973045984,1.764052345967664,-0.7447548220484399,0.86443619885950573,0.35636639717440188,-1.1651498407833565,-0.87079714918188178,0.57659081661494094,-1.0342428417844649,-0.26800337095138038,-1.2527953600499262,-1.0002153473895647,-1.2704849984857336,-0.63584607837888096,0.010500020720820478,-0.73956299639131329,-0.31155253212737266,-1.6138978475579515,-0.67246044777595104,1.1394006845433009,-0.34791214932615261,-0.10321885179355784,0.94725196777374798,1.2302906807277207,0.12691209270361992,1.126635922106507,0.61407937034608029,-0.80340966417384108,0.5232766605317537,0.94942080692576081,1.4882521937955997,-0.0984525244254323,-0.43515355172163744,0.44386323274542566,-0.35399391125348395,1.5327792143584575,-0.45553250351734315,-0.51080513756887302,-1.2928569097234486,-0.91282222544415859,0.14404357116087799,0.9787379841057392,-0.69456785973136548,1.8675589604265701,-0.039282818227495603,0.85683061190269116,-0.88778574763011275,-0.5096521817516535,-1.225435518830168,-0.40317694697317957,0.16667349537252904,-0.89546656119367563,1.4940790731576059,0.72909056217753687,2.1632359492806899,-1.7062701906250126,1.9229420264803847,1.1880297923523018,-0.64361840283289051,-0.068241605324631235,0.066517222383167887,0.76103772514699342,-1.0485529650670926,-1.4912575927056055,1.1787795711596507,0.402341641177549,0.37642553115562943,0.95008841752558937,-1.1474686524111024,-0.90729836438324218,0.39600671266164528,0.67229475701243546,-0.7699160744453164,-0.86122568505470254,-0.028182228338654868,-2.5529898158340787,2.3831447748639421,-0.67433266065737607,-0.4980324506923049,2.2697546239876076,-1.6301983469660446,0.77179055121366735,0.2082749780768603,1.8831506970562544,-1.1043833394284506,-0.81314628204445405],"z":[0.60141487530500948,52.764936800248861,28.830181943943813,-52.751941211785535,-116.76325181356648,-185.65277987329165,166.92664530262709,-32.74004418686453,200.35475438264095,84.071148390993258,-388.73518751535647,44.164131359048703,124.12766472786151,11.33498950758262,137.75319692929813,69.933858640983573,30.233468047331858,165.09992349889487,132.69190946366308,-206.11535605233959,26.99732219416606,365.61742661348171,-31.784900223469393,-165.83434594409849,-146.27731910939744,10.210615390490544,-50.873616792241052,-110.51610451997983,-114.91059728659812,-9.2110784152516754,-12.34549621656978,-150.20963346355904,-81.602141899176203,62.37725640290973,71.291598444243206,-79.868478982468787,72.684555081098566,75.956512837887843,-31.44557337935764,282.67907989216758,-80.048782965530023,-34.877378440226337,80.010605220638695,70.596441555870001,36.880900488417907,-20.960391883243197,-215.60192693204201,56.029268817518272,-39.221685811350888,109.19498731579706,-92.386945954595362,-75.303411116866982,-130.22720888849,-185.37315714735479,105.22665586124084,14.144545758253033,2.9242732489158243,1.1669016364443507,121.87838283834178,-46.941774325195993,-50.010839552593843,-26.167096300997564,-6.0792397731735264,-84.761109598083806,110.21636367129128,-224.15927360347007,186.41050332336596,7.1696825925010543,102.77209750471626,-21.581724138016796,308.87688681152468,229.41389106695561,-5.2063583553220312,83.984587049728603,-62.878524056478383,5.9285088827087122,-235.17979722361491,-258.92704556152404,24.750468381961923,-112.63339759970113,39.835715392615406,143.7387638843515,-142.56710308804608,-60.880299394084815,123.96874160500541,76.256048176990589,-37.495883472786346,-162.46301557581251,-20.648920355074303,-280.80620838340803,201.0298512682453,-72.258858317632772,35.049556162643526,270.53472727948645,-193.10382080579129,114.09991346642916,-88.868715708385835,282.07156926995401,-79.075076925773629,-154.61086620064873],"marker":{"color":"rgba(31,119,180,1)","size":2,"opacity":0.90000000000000002,"line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"line":{"color":"rgba(31,119,180,1)"},"frame":null},{"colorbar":{"title":"","ticklen":2},"colorscale":"Greys","showscale":false,"uid":"f606e49f-bb1b-4d74-acc9-a9d80027e663","name":"Plane of Best Fit","type":"surface","x":[[-3,-3,-3,-3,-3,-3,-3],[-2,-2,-2,-2,-2,-2,-2],[-1,-1,-1,-1,-1,-1,-1],[0,0,0,0,0,0,0],[1,1,1,1,1,1,1],[2,2,2,2,2,2,2],[3,3,3,3,3,3,3]],"y":[[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3],[-3,-2,-1,0,1,2,3]],"z":[[-168.76593592211438,-82.74318014958601,3.2795756229423461,89.302331395470702,175.32508716799907,261.34784294052741,347.37059871305576],[-198.58607018107989,-112.56331440855152,-26.540558636023157,59.482197136505199,145.50495290903356,231.5277086815619,317.55046445409027],[-228.40620444004537,-142.38344866751703,-56.360692894988659,29.662062877539697,115.68481865006804,201.70757442259639,287.73033019512479],[-258.22633869901091,-172.20358292648251,-86.180827153954155,-0.15807138142580102,85.864684391102557,171.88744016363091,257.91019593615925],[-288.04647295797639,-202.02371718544799,-116.00096141291964,-29.978205640391302,56.044550132137054,142.0673059046654,228.09006167719377],[-317.86660721694187,-231.8438514444135,-145.82109567188516,-59.798339899356797,26.224415873171559,112.24717164569992,198.26992741822829],[-347.68674147590741,-261.66398570337901,-175.64122993085067,-89.6184741583223,-3.5957183857939441,82.427037386734412,168.44979315926278]],"opacity":0.69999999999999996,"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>As you can see, in three dimensions we have a <em>plane</em> of best fit rather than a line (note: you should be able to click-and-drag to rotate the 3D graph).</p>
@@ -771,54 +850,58 @@ TODO
 <p>So we’ve reported the slope and intercept: however, these don’t tell us about how well the model fits the data, i.e.&nbsp;how close the points are to the model’s line.</p>
 <p>For example, you could have a steep slope (suggesting that a change in <span class="math inline">\(x\)</span> is correlated with a big change in <span class="math inline">\(y\)</span>), but the points could be scattered a long way from the line (i.e.&nbsp;large residuals). For example, consider these two graphs:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, x2)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">3</span>), <span class="dv">2</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>series <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Low slope, large scatter"</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">"Steep slope, low scatter"</span>, <span class="dv">10</span>))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y, series) <span class="sc">%&gt;%</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>) </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(x1, x2)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(x1 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">3</span>), <span class="dv">2</span><span class="sc">*</span>x2 <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="fl">0.5</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>series <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Low slope, large scatter"</span>, <span class="dv">10</span>), <span class="fu">rep</span>(<span class="st">"Steep slope, low scatter"</span>, <span class="dv">10</span>))</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(x, y, series) <span class="sc">%&gt;%</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(x,y)) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> series)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>We can use a statistic called <span class="math inline">\(R^2\)</span> (R-squared). You can think of <span class="math inline">\(R^2\)</span> as <em>the % of the variation in <span class="math inline">\(y\)</span> that is explained by the explanatory variable, <span class="math inline">\(x\)</span></em>.</p>
 <p><span class="math inline">\(R^2\)</span> varies between 0 and 1. 1 means that the model explains all the variation: i.e.&nbsp;the points fall exactly on the line of best fit! As the points get further from the line, <span class="math inline">\(R^2\)</span> will decrease.</p>
 <p>We can report the <span class="math inline">\(R^2\)</span> by piping a model to the <code>glance()</code> function.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>your_model <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p class="comment3">
 Fill in the blank with the correct function to report the <span class="math inline">\(R^2\)</span> value of your model.
 </p>
 <div class="cell" data-exercise="true" data-exercise.setup="create_model">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">_______</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-exercise.setup="create_model">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>sim_model <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glance</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll note that <code>glance()</code> reports a whole bunch of statistics. We only care about the first column, <code>r.squared</code>, and can ignore the rest.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the R-squared value of your model?"</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.935"</span>, <span class="at">correct=</span><span class="cn">TRUE</span>),</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.926"</span>),</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.52"</span>),</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"114"</span>),</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"What is the R-squared value of your model?"</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.935"</span>, <span class="at">correct=</span><span class="cn">TRUE</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"0.926"</span>),</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"1.52"</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"114"</span>),</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="whats-a-good-r2" class="level3" data-number="10.3.10">
@@ -860,7 +943,11 @@ TODO:
 <p>If we have a simple linear model with just one explanatory variable, then we easily see whether the relationship is linear or non-linear (i.e.&nbsp;curved):</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In the left-hand graph the points obviously fall on a straight line (a linear trend). However, in the right-hand side plot, there is an obvious curved (<em>non-linear</em>) trend, and so that data violates this assumption of the linear model.</p>
@@ -879,7 +966,7 @@ linear nature of model predictions in n-dimensional space needs better explanati
 <p>We call this an <em>observed vs predicted</em> plot (with observed on the <em>y</em>-axis, predicted on the <em>x</em>-axis). Because these values are essentially the same number (or would be if the model went through every data point exactly), we should expect these variables to fall on a line with a slope of 1 and an intercept of 0. We will add such a reference line to our plot for comparison.</p>
 <p>Before we can do so, we need to calculate the predicted values. We can easily create a column of predicted values using the <code>augment()</code> function from the <code>broom</code> package, which adds a column called <code>.fitted</code> to a dataframe using a model (such as the <code>diamonds_model</code> that you created earlier with the <code>lm</code> function):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(diamonds_model, diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="ot">&lt;-</span> <span class="fu">augment</span>(diamonds_model, diamonds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>(Note that the <code>augment()</code> function also adds a column called <code>.resid</code> which contains the residuals.)</p>
 <!-- 
@@ -906,42 +993,50 @@ Also important to show the code for how to create this graph.
 <p>The linear model also assumes that this normal distribution is the same in all parts of the model (i.e.&nbsp;at both high and low value of <span class="math inline">\(x\)</span>).</p>
 <p>For example, in this model, we can clearly see that the variation in the residuals <em>is not constant</em> - this is a violation of this third assumption of the linear model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">46</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decreasing variation in points"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">46</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">100</span><span class="sc">:</span><span class="dv">1</span> <span class="sc">*</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Decreasing variation in points"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>In the graph above, the points on the right lie much closer to the line: i.e.&nbsp;the residuals will be smaller.</p>
 <p>For simple linear models like this (with only a single explanatory variable <span class="math inline">\(x\)</span>), we can get a reasonable idea of the variability of the residuals just by looking at a scatter plot of the model, as above.</p>
 <p>For comparison, here is the model you fit earlier:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>sim_df <span class="sc">%&gt;%</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Does your model (as shown above) satisfy the linear model's assumption of constant variability of residuals?"</span>,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Yes, the model satisfies this assumption."</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"No, the model violates this condition."</span>),</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">question</span>(</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Does your model (as shown above) satisfy the linear model's assumption of constant variability of residuals?"</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"Yes, the model satisfies this assumption."</span>, <span class="at">correct =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">answer</span>(<span class="st">"No, the model violates this condition."</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">allow_retry =</span> <span class="cn">TRUE</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>But as with the previous assumption of linearity we can’t plot the original model in a two dimensional screen or page if we have more than one explanatory variable.</p>
 <p>Fortunately there is another that we can make for any type of model! This is a <em>residuals vs predicted plot</em>, which has the residuals (on the y-axis) vs the predicted response variable (x-axis). This graph will also always have just two dimensions, regardless of how many explanatory variables are in our model, and so it is ideal for assessing this assumption.</p>
@@ -956,9 +1051,13 @@ Also important to show the code for how to create this graph.
 create illustration of resid vs pred plot
 -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../img/resid-vs-pred.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">"../img/resid-vs-pred.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="../img/resid-vs-pred.png" class="img-fluid" width="600"></p>
+<div>
+<figure class="figure">
+<p><img src="../img/resid-vs-pred.png" class="img-fluid figure-img" width="600"></p>
+</figure>
+</div>
 </div>
 </div>
 <!-- TODO:
@@ -980,29 +1079,25 @@ Add book exercises on resid vs pred plots
 <!-- End book -->
 <!-- Tutorial version -->
 <div class="cell" data-exercise="true" data-exercise.setup="add_pred_and_resid">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ______, <span class="at">y =</span> ______)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> ____, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ______, <span class="at">y =</span> ______)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> ____, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> .fitted, <span class="at">y =</span> .resid)) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check code</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gradethis<span class="sc">::</span><span class="fu">grade_code</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- End tutorial -->
 </section>
 <section id="nearly-normal-residuals" class="level3" data-number="10.4.6">
 <h3 data-number="10.4.6" class="anchored" data-anchor-id="nearly-normal-residuals"><span class="header-section-number">10.4.6</span> Nearly normal residuals</h3>
-</section>
-</section>
-<section id="nearly-normal-residuals-1" class="level2" data-number="10.5">
-<h2 data-number="10.5" class="anchored" data-anchor-id="nearly-normal-residuals-1"><span class="header-section-number">10.5</span> Nearly normal residuals</h2>
 <!-- Related to conditional means. Plot the normal variation along the model line. -->
 <p>The best linear model is the one that has the smallest sum of the squared residuals. We don’t need to worry too much about the mathematics behind this - however, you should be aware that the math does make the simplifying assumption that the residuals have a <em>normal</em> distribution (more or less).</p>
 <p>The normal distribution is a bell-shaped distribution:</p>
@@ -1018,12 +1113,16 @@ Add book exercises on resid vs pred plots
 <p>Q-Q plots are so useful that the <code>ggplot2</code> package already contains geom functions for creating them.</p>
 <p>We can use the <code>diamonds_plus_preds</code> data frame to create a Q-Q plot (with both points and a reference line):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> .resid))<span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> .resid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>diamonds_plus_preds <span class="sc">%&gt;%</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> .resid))<span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> .resid))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="10_modeling_chapter_files/figure-html/diamonds-qqplot-example-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="10_modeling_chapter_files/figure-html/diamonds-qqplot-example-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <!-- TODO:
@@ -1041,11 +1140,12 @@ Plot the graph of the true residual distribution against one axis of the QQ-plot
 
 Show how different skews/shapes manifest as different QQ-plots.
 -->
-<section id="independent-observations" class="level3" data-number="10.5.1">
-<h3 data-number="10.5.1" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">10.5.1</span> Independent observations</h3>
 </section>
-<section id="independent-observations-1" class="level3" data-number="10.5.2">
-<h3 data-number="10.5.2" class="anchored" data-anchor-id="independent-observations-1"><span class="header-section-number">10.5.2</span> Independent Observations</h3>
+<section id="independent-observations" class="level3" data-number="10.4.7">
+<h3 data-number="10.4.7" class="anchored" data-anchor-id="independent-observations"><span class="header-section-number">10.4.7</span> Independent observations</h3>
+</section>
+<section id="independent-observations-1" class="level3" data-number="10.4.8">
+<h3 data-number="10.4.8" class="anchored" data-anchor-id="independent-observations-1"><span class="header-section-number">10.4.8</span> Independent Observations</h3>
 <p>The fourth (and final) assumption of the linear model is that all the observations (data points) were generated <em>independently</em>.</p>
 <p>We will not worry to much about this assumption in this course, as the datasets we give you will have independent observations (for the most part).</p>
 <p>But what does it mean for observations to be <em>non-independent</em>?</p>
@@ -1276,251 +1376,418 @@ window.onload = function() {
 
 </script>
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn) {
-    const config = {
-      allowHTML: true,
-      content: contentFn,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start'
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
     };
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
+      return false;
     }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
           }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
       });
     }
-  }
-});
-</script>
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../src/book/09_computing_chapter.html" class="pagination-link">
+      <a href="../../src/book/09_computing_chapter.html" class="pagination-link" aria-label="More about R">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">More about R</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/book/11_inference_chapter.html" class="pagination-link">
+      <a href="../../src/book/11_inference_chapter.html" class="pagination-link" aria-label="Inference">
         <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Inference</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

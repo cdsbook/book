@@ -1,0 +1,161 @@
+---
+title: "Example Presentation"
+author: "Your Name Here!"
+date: "`r Sys.Date()`"
+output: revealjs::revealjs_presentation
+---
+
+```{r}
+library(tidyverse)
+```
+
+# Layout
+
+---
+
+> "Not every slide needs a title."
+
+
+::: aside
+
+Aside blocks can de-emphasize supplementary content.
+
+:::
+
+
+## Columns
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+* This is a 50% width column.
+
+:::
+
+::: {.column width="50%"}
+
+```{r}
+ggplot2::qplot(x = Sepal.Length, data = iris)
+```
+
+(Code is not echoed by default, & graphs in columns need re-sizing.)
+
+Code blocks in columns may need `code-block-height`
+
+:::
+
+::::
+
+->
+
+## Incremental Content
+
+::: {.incremental}
+
+* Bullet 1
+
+* Bullet 2
+
+:::
+
+. . .
+
+After the break.
+
+## Images
+
+```
+![](filename.jpg){fig-alt="Alternative text"}
+```
+
+## Background Images {background-color="black" background-image="https://images.unsplash.com/photo-1464802686167-b939a6910659"}
+
+Set `background-color` to get a different color font.
+
+## {background-image="https://images.unsplash.com/photo-1464802686167-b939a6910659"}
+
+
+## Slide transitions
+
+RMarkdown only
+
+## Themes
+
+# Code
+
+## Showing code
+
+Code is not echoed by default.
+
+```{r}
+#| echo: true
+ggplot2::qplot(x = Sepal.Length, data = iris)
+```
+
+## Highlighting lines
+
+Line numbers need to be set manually
+
+```{css, echo=FALSE}
+.reveal pre code {
+  overflow: visible;
+}
+```
+
+```{r, attr.source = ".numberLines"}
+iris |>
+  ggplot() +
+  geom_point(
+    mapping = aes(
+      x = Sepal.Length,
+      y = Sepal.Width
+    )
+  )
+```
+
+
+## Coloring code
+
+Data detective
+
+    ---
+    revealjs-plugins:
+      - detective
+    ---
+    
+    ::: {.detective data-detective-search="plot"}
+    
+    ```{.r}
+    plot(x = ..., data = ...)
+    ```
+    
+    :::
+
+
+## Output location
+
+```{r}
+#| echo: fenced
+#| output-location: column
+ggplot2::qplot(
+  x = Sepal.Length, 
+  data = iris
+  )
+```
+
+## Figure sizing
+
+
+## Annotating graphs
+
+
+## Table output
+
+
+# Presenting
+
+## Speaker notes
+
+## Presenter mode
+-->
