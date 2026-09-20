@@ -2,7 +2,9 @@
 title: "Example Presentation"
 author: "Your Name Here!"
 date: "`r Sys.Date()`"
-output: revealjs::revealjs_presentation
+output: 
+  revealjs::revealjs_presentation:
+    df_print: tibble
 ---
 
 ```{r}
@@ -151,6 +153,11 @@ ggplot2::qplot(
 
 
 ## Table output
+
+```{r}
+iris |>
+  head()
+```
 
 
 # Presenting

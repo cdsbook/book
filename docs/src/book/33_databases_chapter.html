@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>21&nbsp; Databases – An Introduction to Computing and Data for Scientists</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -483,7 +486,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>There are several different ways to join tables, which will link rows in different ways.</p>
 <p>To illustrate these different joins let us imagine that we are ecologists in a similar world to that inhabited by the hobbits from the previous section. We have gathered the following two tables of data about different species inhabiting this unusual world.</p>
 <div class="cell" data-hash="33_databases_chapter_cache/html/unnamed-chunk-3_31bc0c611b62e620e591e01da538f498">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">species =</span> <span class="fu">c</span>(<span class="st">"Giant Eagle"</span>, <span class="st">"Goblin"</span>, <span class="st">"Goblin"</span>, <span class="st">"Giant Spider"</span>, <span class="st">"Balrog"</span>),</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">location =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="cn">NA</span>)</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
@@ -491,7 +494,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sightings <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">location_id =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">name =</span> <span class="fu">c</span>(<span class="st">"Mirkwood Forest"</span>, <span class="st">"Misty Mountains"</span>, <span class="st">"Mordor"</span>, <span class="st">"The Shire"</span>)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>One important thing to note is that <strong>there are some rows in each table that do not have a match in the other table</strong>.</p>
 <!-- TODO: Exercise identifying these rows. -->
@@ -505,8 +508,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Note that: * We are piping in the <code>species</code> tibble to the <code>inner_join()</code> function, but we could have written it inside the function instead. * The argument to <code>by</code> is a <em>named vector</em> specifying the names of the columns. * <code>"location_id"</code> is the only value in this 1 item vector, but we have also named this item as <code>"location"</code>. * R will look for the column <code>"location"</code> in the first dataframe (which is <code>species</code> in this example), and <code>location_id</code> in the second dataframe (<code>sightings</code>).</p>
 <div class="cell" data-hash="33_databases_chapter_cache/html/unnamed-chunk-4_7167ba514ec02a2b76c61cfdf332839b">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 3
   species      location name           
@@ -535,7 +538,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="21.2.1" class="anchored" data-anchor-id="connecting-to-a-database."><span class="header-section-number">21.2.1</span> Connecting to a database.</h3>
 <p>Since a database management system is a separate software program, we need first need to set up a connection to that database software from R.</p>
 <p>To do this we can use an R package called <code>DBI</code>. In these examples we will connect to a database program called <em>SQLite</em>. (There are many other relational database systems (MySQL, PostgreSQL, etc.) but we could connect to those with very similar code.)</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"my_database_name.sqlite"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="st">"my_database_name.sqlite"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What is this code doing?</p>
 <ul>
 <li><p>The <code>dbConnect()</code> function from the <code>DBI</code> package sets up the connection to the database.</p>
@@ -549,12 +552,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="listing-tables" class="level3" data-number="21.2.2">
 <h3 data-number="21.2.2" class="anchored" data-anchor-id="listing-tables"><span class="header-section-number">21.2.2</span> Listing tables</h3>
 <p>We can get a list of all the tables in a database by running this <code>DBI</code> package function on our new connection:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbListTables</span>(con)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>DBI<span class="sc">::</span><span class="fu">dbListTables</span>(con)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="connecting-to-a-database-table" class="level3" data-number="21.2.3">
 <h3 data-number="21.2.3" class="anchored" data-anchor-id="connecting-to-a-database-table"><span class="header-section-number">21.2.3</span> Connecting to a database table</h3>
 <p>To access a table in our database with our standard data wrangling functions, we need to create a new R variable that points to that table. We do this with the <code>tbl()</code> function from the <code>dbplyr</code> package:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>some_table <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"table_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>some_table <span class="ot">&lt;-</span> <span class="fu">tbl</span>(con, <span class="st">"table_name"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This code creates a new variable called <code>some_table</code> that allows us to access a particular database table.</p>
 <p>You will need to create a new variable in the same way for every database table that you wish to access from R.</p>
 <blockquote class="blockquote">
@@ -569,15 +572,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="21.2.4" class="anchored" data-anchor-id="an-example-selecting-columns"><span class="header-section-number">21.2.4</span> An example: selecting columns</h3>
 <p>We can now use our data wrangling functions on the database table just as if it was an R dataframe.</p>
 <p>For example, to <code>select()</code> columns:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>example_query <span class="ot">&lt;-</span> some_table <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(example_column_1, example_column_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>example_query <span class="ot">&lt;-</span> some_table <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(example_column_1, example_column_2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>One difference, however, is that this code will not create a new dataframe. Instead it creates a SQL query that <em>can</em> be run on the database (in the future) to create a new dataframe.</p>
 <p>We have stored this query in a new variable called <code>example_query</code>. If we wish, we can view what the SQL query looks like by running the <code>show_query()</code> function:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>example_query <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>example_query <span class="sc">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show_query</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To run the query and return a dataframe, you need to run the <code>collect()</code> function on the query:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> example_query <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> example_query <span class="sc">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This will retrieve the data from the database and store it as an R dataframe in a new variable called <code>example_df</code>.</p>
 </section>
 </section>
@@ -597,8 +600,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="left-outer-joins" class="level4" data-number="21.3.1.1">
 <h4 data-number="21.3.1.1" class="anchored" data-anchor-id="left-outer-joins"><span class="header-section-number">21.3.1.1</span> Left outer joins</h4>
 <div class="cell" data-hash="33_databases_chapter_cache/html/unnamed-chunk-5_e625c193e3fdcaac41c99ccf0649fe3a">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   species      location name           
@@ -614,8 +617,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="right-outer-joins" class="level4" data-number="21.3.1.2">
 <h4 data-number="21.3.1.2" class="anchored" data-anchor-id="right-outer-joins"><span class="header-section-number">21.3.1.2</span> Right outer joins</h4>
 <div class="cell" data-hash="33_databases_chapter_cache/html/unnamed-chunk-6_750df2465857efca38012efc3a00551a">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">right_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 3
   species      location name           
@@ -631,8 +634,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="full-outer-joins" class="level4" data-number="21.3.1.3">
 <h4 data-number="21.3.1.3" class="anchored" data-anchor-id="full-outer-joins"><span class="header-section-number">21.3.1.3</span> Full outer joins</h4>
 <div class="cell" data-hash="33_databases_chapter_cache/html/unnamed-chunk-7_4878df7aee0af825acb7f2bc9461cb29">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>species <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">full_join</span>(sightings, <span class="at">by=</span><span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"location_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   species      location name           
@@ -962,13 +965,14 @@ window.onload = function() {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

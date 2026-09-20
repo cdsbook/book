@@ -6,11 +6,11 @@
 <script src="presentation_qmd_revealjs_demo_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="presentation_qmd_revealjs_demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="presentation_qmd_revealjs_demo_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="presentation_qmd_revealjs_demo_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="presentation_qmd_revealjs_demo_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
 
   <meta name="author" content="Your Name Here!">
-  <meta name="dcterms.date" content="2026-05-21">
+  <meta name="dcterms.date" content="2026-09-16">
   <title>Example Presentation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -18,6 +18,9 @@
   <link rel="stylesheet" href="presentation_qmd_revealjs_demo_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="presentation_qmd_revealjs_demo_files/libs/revealjs/dist/reveal.css">
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -96,7 +99,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="presentation_qmd_revealjs_demo_files/libs/revealjs/dist/theme/quarto-2c1b5f745a11cfad616ebade4a4a7d24.css">
+  <link rel="stylesheet" href="presentation_qmd_revealjs_demo_files/libs/revealjs/dist/theme/quarto-0427d8d92a431aa6a6430e53ec02a470.css">
   <link href="presentation_qmd_revealjs_demo_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentation_qmd_revealjs_demo_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="presentation_qmd_revealjs_demo_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -204,7 +207,7 @@ Your Name Here!
 </div>
 </div>
 
-  <p class="date">2026-05-21</p>
+  <p class="date">2026-09-16</p>
 </section>
 <section>
 <section id="layout" class="title-slide slide level1 center">
@@ -217,6 +220,19 @@ Your Name Here!
 <p>“Not every slide needs a title.”<sup>1</sup></p>
 </blockquote>
 
+<aside class="notes">
+<p>Some example notes for the presenter, which will not be shown on the slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <aside><div>
 <p>Aside blocks can de-emphasize supplementary content.</p>
 </div><ol class="aside-footnotes"><li id="fn1"><p>Said somebody, sometime, surely.</p></li></ol></aside></section>
@@ -270,6 +286,17 @@ format:
 </section>
 <section id="background-images" class="slide level2" data-background-color="black" data-background-image="https://images.unsplash.com/photo-1464802686167-b939a6910659">
 <h2>Background Images</h2>
+<p>Set <code>background-color</code> to get a different color font.</p>
+</section>
+<section id="section" class="slide level2" data-background-image="https://images.unsplash.com/photo-1464802686167-b939a6910659">
+<h2></h2>
+</section>
+<section id="slide-transitions" class="slide level2">
+<h2>Slide transitions</h2>
+<p>RMarkdown only</p>
+</section>
+<section id="themes" class="slide level2">
+<h2>Themes</h2>
 </section></section>
 <section>
 <section id="code" class="title-slide slide level1 center">
@@ -280,7 +307,7 @@ format:
 <h2>Showing code</h2>
 <p>Code is not echoed by default.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="at">x =</span> Sepal.Length, <span class="at">data =</span> iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(<span class="at">x =</span> Sepal.Length, <span class="at">data =</span> iris)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="presentation_qmd_revealjs_demo_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
@@ -288,7 +315,7 @@ format:
 <h2>Highlighting lines</h2>
 <p>Line numbers are shown if it is echoed.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="3,5-6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="3,5-6"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href=""></a><span class="in">```{r}</span></span>
 <span id="cb3-2"><a href=""></a><span class="co">#| code-line-numbers: "3,5-6"</span></span>
 <span id="cb3-3"><a href=""></a>iris <span class="sc">|&gt;</span></span>
 <span id="cb3-4"><a href=""></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
@@ -298,7 +325,7 @@ format:
 <span id="cb3-8"><a href=""></a>      <span class="at">y =</span> Sepal.Width</span>
 <span id="cb3-9"><a href=""></a>    )</span>
 <span id="cb3-10"><a href=""></a>  )</span>
-<span id="cb3-11"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-11"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 </div>
 <img data-src="presentation_qmd_revealjs_demo_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
@@ -322,13 +349,13 @@ plot(x = ..., data = ...)
 <h2>Output location</h2>
 <div class="cell columns column-output-location">
 <div class="column">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href=""></a><span class="in">```{r}</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href=""></a><span class="in">```{r}</span></span>
 <span id="cb5-2"><a href=""></a><span class="co">#| output-location: column</span></span>
 <span id="cb5-3"><a href=""></a>ggplot2<span class="sc">::</span><span class="fu">qplot</span>(</span>
 <span id="cb5-4"><a href=""></a>  <span class="at">x =</span> Sepal.Length, </span>
 <span id="cb5-5"><a href=""></a>  <span class="at">data =</span> iris</span>
 <span id="cb5-6"><a href=""></a>  )</span>
-<span id="cb5-7"><a href=""></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href=""></a><span class="in">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div>
@@ -341,6 +368,23 @@ plot(x = ..., data = ...)
 </section>
 <section id="figure-sizing" class="slide level2">
 <h2>Figure sizing</h2>
+</section>
+<section id="annotating-graphs" class="slide level2">
+<h2>Annotating graphs</h2>
+</section>
+<section id="table-output" class="slide level2">
+<h2>Table output</h2>
+</section></section>
+<section>
+<section id="presenting" class="title-slide slide level1 center">
+<h1>Presenting</h1>
+
+</section>
+<section id="speaker-notes" class="slide level2">
+<h2>Speaker notes</h2>
+</section>
+<section id="presenter-mode" class="slide level2">
+<h2>Presenter mode</h2>
 
 </section></section>
 
@@ -533,7 +577,7 @@ plot(x = ..., data = ...)
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -645,13 +689,14 @@ plot(x = ..., data = ...)
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy

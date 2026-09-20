@@ -25,6 +25,12 @@ Aside blocks can de-emphasize supplementary content.
 
 :::
 
+::: notes
+
+Some example notes for the presenter, which will not be shown on the slide.
+
+:::
+
 ## Columns
 
 :::: {.columns}

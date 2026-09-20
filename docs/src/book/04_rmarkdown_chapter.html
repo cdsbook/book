@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>4&nbsp; Literate Programming – An Introduction to Computing and Data for Scientists</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -59,7 +62,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -93,10 +95,10 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/kbd/kbd.js"></script>
 <link href="../../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -128,7 +130,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -141,7 +143,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -469,7 +471,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Important</span>Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -504,26 +506,26 @@ Warning
 <section id="new-rmarkdown-files" class="level4" data-number="4.1.0.1">
 <h4 data-number="4.1.0.1" class="anchored" data-anchor-id="new-rmarkdown-files"><span class="header-section-number">4.1.0.1</span> New RMarkdown files</h4>
 <p>When you create a new RMarkdown file, you will be presented with the following wizard:</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADNklEQVR4nO2WLVYrQRBGKwuADcAGYAGAwuFQ4MAEBwYcDgUKBwoHBhwoXFxUsoG4uGQBSRaQ13dyKpDAE5jJJ757zuT09E81p25XD41+vz8NI4OFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIsVIhvV4vtre3S+uLwWBQfiM2NzfL7xfdbjd2d3dL6+8Qc319vXoS+uC3fba2thbm1slKhJCMi4uLSkjZv/TMuL29jeFwWFoRBwcHcXx8XM29vr6uZJCsp6enPyXr9PQ0Op1OvL6+xt7eXumJeH9/j1arVVoRGxsbcXNzE+PxOM7Pz+f73N/f/5BVBysRkpycnMTb21tpRZUQ3j8/P8tbxP7+frTb7Xh4eKgSgxwSybyzs7MyY7bm4+Mjms1mwMvLSxwdHf0QRtzLy8u5kIwNh4eH1d+AIOIRmzYPUupGRginmCRwWoExEkJ1ZDKZ8/j4OF8DVBVja2trlRzWLEOsjEFV3t3dzWMQH4nsTVUyB1iTc+pESghXxdXVVXmbjZFEBOQ1tZxM4FQzl/GctwzjxCLZ7EPMjEEFck3Rl3OAyslqrRMpId9POGO0OcGZKOaQuFyTcPdPJpPqO/EbxMoY+U3KGKxtliuPw4AY5iCZ/pxTJzJCSALvnEranFDu+efn5+qdyuE05/ckyXEeksm1swxxUwgQm32ppmxzZVGBXJm0kU+7blYihI8z1UAC+LeXO5wkZz+nmATSR6I5rY1GI6bT6cK1xBjJ/i6Rdo5nPPZB5M7OTpVk+qk0+nJvoHKotNFotLBPnaxEiPk/FiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiLGPxfY2Bvll5LhAAAAAElFTkSuQmCC" class="img-fluid"> <em>Figure: RMarkdown creation wizard.</em></p>
+<p>Error rendering placeholder <em>Figure: RMarkdown creation wizard.</em></p>
 <p>You can accept the defaults in the wizard as shown above, and modify the rest later. Or you can enter a title, author name, and/or date now if you prefer. Click <em>OK</em> to create the file (which will contain some default contents).</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADNklEQVR4nO2WLVYrQRBGKwuADcAGYAGAwuFQ4MAEBwYcDgUKBwoHBhwoXFxUsoG4uGQBSRaQ13dyKpDAE5jJJ757zuT09E81p25XD41+vz8NI4OFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIsVIhvV4vtre3S+uLwWBQfiM2NzfL7xfdbjd2d3dL6+8Qc319vXoS+uC3fba2thbm1slKhJCMi4uLSkjZv/TMuL29jeFwWFoRBwcHcXx8XM29vr6uZJCsp6enPyXr9PQ0Op1OvL6+xt7eXumJeH9/j1arVVoRGxsbcXNzE+PxOM7Pz+f73N/f/5BVBysRkpycnMTb21tpRZUQ3j8/P8tbxP7+frTb7Xh4eKgSgxwSybyzs7MyY7bm4+Mjms1mwMvLSxwdHf0QRtzLy8u5kIwNh4eH1d+AIOIRmzYPUupGRginmCRwWoExEkJ1ZDKZ8/j4OF8DVBVja2trlRzWLEOsjEFV3t3dzWMQH4nsTVUyB1iTc+pESghXxdXVVXmbjZFEBOQ1tZxM4FQzl/GctwzjxCLZ7EPMjEEFck3Rl3OAyslqrRMpId9POGO0OcGZKOaQuFyTcPdPJpPqO/EbxMoY+U3KGKxtliuPw4AY5iCZ/pxTJzJCSALvnEranFDu+efn5+qdyuE05/ckyXEeksm1swxxUwgQm32ppmxzZVGBXJm0kU+7blYihI8z1UAC+LeXO5wkZz+nmATSR6I5rY1GI6bT6cK1xBjJ/i6Rdo5nPPZB5M7OTpVk+qk0+nJvoHKotNFotLBPnaxEiPk/FiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiLGPxfY2Bvll5LhAAAAAElFTkSuQmCC" class="img-fluid"> <em>Figure: Example default RMarkdown file.</em></p>
+<p>Error rendering placeholder <em>Figure: Example default RMarkdown file.</em></p>
 <p>To create an empty file without any default contents, click the <em>Create Empty Document</em> button instead.</p>
 <p>The file will automatically be opened in the Editor pane of RStudio.</p>
 </section>
 <section id="new-quarto-files" class="level4" data-number="4.1.0.2">
 <h4 data-number="4.1.0.2" class="anchored" data-anchor-id="new-quarto-files"><span class="header-section-number">4.1.0.2</span> New Quarto files</h4>
 <p>Quarto files come with a similar set-up wizard:</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADNklEQVR4nO2WLVYrQRBGKwuADcAGYAGAwuFQ4MAEBwYcDgUKBwoHBhwoXFxUsoG4uGQBSRaQ13dyKpDAE5jJJ757zuT09E81p25XD41+vz8NI4OFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIsVIhvV4vtre3S+uLwWBQfiM2NzfL7xfdbjd2d3dL6+8Qc319vXoS+uC3fba2thbm1slKhJCMi4uLSkjZv/TMuL29jeFwWFoRBwcHcXx8XM29vr6uZJCsp6enPyXr9PQ0Op1OvL6+xt7eXumJeH9/j1arVVoRGxsbcXNzE+PxOM7Pz+f73N/f/5BVBysRkpycnMTb21tpRZUQ3j8/P8tbxP7+frTb7Xh4eKgSgxwSybyzs7MyY7bm4+Mjms1mwMvLSxwdHf0QRtzLy8u5kIwNh4eH1d+AIOIRmzYPUupGRginmCRwWoExEkJ1ZDKZ8/j4OF8DVBVja2trlRzWLEOsjEFV3t3dzWMQH4nsTVUyB1iTc+pESghXxdXVVXmbjZFEBOQ1tZxM4FQzl/GctwzjxCLZ7EPMjEEFck3Rl3OAyslqrRMpId9POGO0OcGZKOaQuFyTcPdPJpPqO/EbxMoY+U3KGKxtliuPw4AY5iCZ/pxTJzJCSALvnEranFDu+efn5+qdyuE05/ckyXEeksm1swxxUwgQm32ppmxzZVGBXJm0kU+7blYihI8z1UAC+LeXO5wkZz+nmATSR6I5rY1GI6bT6cK1xBjJ/i6Rdo5nPPZB5M7OTpVk+qk0+nJvoHKotNFotLBPnaxEiPk/FiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiLGPxfY2Bvll5LhAAAAAElFTkSuQmCC" class="img-fluid"> <em>Figure: Quarto creation wizard.</em></p>
+<p>Error rendering placeholder <em>Figure: Quarto creation wizard.</em></p>
 <p>Again, it is fine to just click OK with the defaults, but you can put in a title and author name if you like.</p>
 <p>I also like to deselect the <em>Editor</em> checkbox, but you can easily turn the visual editor on or off once you have created the file (<a href="#sec-visual-editor" class="quarto-xref"><span>Section 4.10</span></a>).</p>
 <p>If you would like an empty Quarto document without any default contents, click the <em>Create Empty Document</em> button instead of <em>OK</em>.</p>
 <p>The file will automatically be opened in the Editor pane of RStudio.</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADNklEQVR4nO2WLVYrQRBGKwuADcAGYAGAwuFQ4MAEBwYcDgUKBwoHBhwoXFxUsoG4uGQBSRaQ13dyKpDAE5jJJ757zuT09E81p25XD41+vz8NI4OFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIsVIhvV4vtre3S+uLwWBQfiM2NzfL7xfdbjd2d3dL6+8Qc319vXoS+uC3fba2thbm1slKhJCMi4uLSkjZv/TMuL29jeFwWFoRBwcHcXx8XM29vr6uZJCsp6enPyXr9PQ0Op1OvL6+xt7eXumJeH9/j1arVVoRGxsbcXNzE+PxOM7Pz+f73N/f/5BVBysRkpycnMTb21tpRZUQ3j8/P8tbxP7+frTb7Xh4eKgSgxwSybyzs7MyY7bm4+Mjms1mwMvLSxwdHf0QRtzLy8u5kIwNh4eH1d+AIOIRmzYPUupGRginmCRwWoExEkJ1ZDKZ8/j4OF8DVBVja2trlRzWLEOsjEFV3t3dzWMQH4nsTVUyB1iTc+pESghXxdXVVXmbjZFEBOQ1tZxM4FQzl/GctwzjxCLZ7EPMjEEFck3Rl3OAyslqrRMpId9POGO0OcGZKOaQuFyTcPdPJpPqO/EbxMoY+U3KGKxtliuPw4AY5iCZ/pxTJzJCSALvnEranFDu+efn5+qdyuE05/ckyXEeksm1swxxUwgQm32ppmxzZVGBXJm0kU+7blYihI8z1UAC+LeXO5wkZz+nmATSR6I5rY1GI6bT6cK1xBjJ/i6Rdo5nPPZB5M7OTpVk+qk0+nJvoHKotNFotLBPnaxEiPk/FiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiLGPxfY2Bvll5LhAAAAAElFTkSuQmCC" class="img-fluid"> <em>Figure: Side-by-side examples of default RMarkdown &amp; Quarto files, with key features highlighted.</em></p>
+<p>Error rendering placeholder <em>Figure: Side-by-side examples of default RMarkdown &amp; Quarto files, with key features highlighted.</em></p>
 </section>
 </section>
 <section id="rendering-to-an-output" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="rendering-to-an-output"><span class="header-section-number">4.2</span> Rendering to an output</h2>
-<p>Note that the files you create are not saved when you create them. To save them, make sure the file is the current one open in the editor pane and either press the <em>Save</em> icon in the top toolbar, or <em>File &gt; Save</em> in the top menu, or click anywhere in the open file and then press the <kbd aria-hidden="true">Ctrl-S</kbd><span class="visually-hidden">Ctrl-S</span> keys at the same time.</p>
+<p>Note that the files you create are not saved when you create them. To save them, make sure the file is the current one open in the editor pane and either press the <em>Save</em> icon in the top toolbar, or <em>File &gt; Save</em> in the top menu, or click anywhere in the open file and then press the <kbd title="Ctrl-S" aria-hidden="true">Ctrl-S</kbd><span class="visually-hidden">Ctrl-S</span> keys at the same time.</p>
 <p>To render the saved RMarkdown/Quarto files to an output:</p>
 <ul>
 <li>In RMarkdown, click the <em>Knit</em> button at the top of the open file in the Editor pane.</li>
@@ -539,7 +541,7 @@ Warning
 <p>Below that is the main section of the document. Here we can add text that will appear in our output when we render.</p>
 <p>We can try adding text to a document to see what effect it will have on the output. On the left of Fig. X, we can see an RMarkdown and Quarto files with a brief header section (the same contents should work just as well in a Quarto file. Below that is a line of text that says <code>Hello, world!</code>. On the right are the outputs that we get when we render these files to HTML.</p>
 <p>In the outputs, the text <code>Hello, world!</code> has been formatted as a paragraph of text.</p>
-<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAADNklEQVR4nO2WLVYrQRBGKwuADcAGYAGAwuFQ4MAEBwYcDgUKBwoHBhwoXFxUsoG4uGQBSRaQ13dyKpDAE5jJJ757zuT09E81p25XD41+vz8NI4OFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIsVIhvV4vtre3S+uLwWBQfiM2NzfL7xfdbjd2d3dL6+8Qc319vXoS+uC3fba2thbm1slKhJCMi4uLSkjZv/TMuL29jeFwWFoRBwcHcXx8XM29vr6uZJCsp6enPyXr9PQ0Op1OvL6+xt7eXumJeH9/j1arVVoRGxsbcXNzE+PxOM7Pz+f73N/f/5BVBysRkpycnMTb21tpRZUQ3j8/P8tbxP7+frTb7Xh4eKgSgxwSybyzs7MyY7bm4+Mjms1mwMvLSxwdHf0QRtzLy8u5kIwNh4eH1d+AIOIRmzYPUupGRginmCRwWoExEkJ1ZDKZ8/j4OF8DVBVja2trlRzWLEOsjEFV3t3dzWMQH4nsTVUyB1iTc+pESghXxdXVVXmbjZFEBOQ1tZxM4FQzl/GctwzjxCLZ7EPMjEEFck3Rl3OAyslqrRMpId9POGO0OcGZKOaQuFyTcPdPJpPqO/EbxMoY+U3KGKxtliuPw4AY5iCZ/pxTJzJCSALvnEranFDu+efn5+qdyuE05/ckyXEeksm1swxxUwgQm32ppmxzZVGBXJm0kU+7blYihI8z1UAC+LeXO5wkZz+nmATSR6I5rY1GI6bT6cK1xBjJ/i6Rdo5nPPZB5M7OTpVk+qk0+nJvoHKotNFotLBPnaxEiPk/FiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiKGhYhhIWJYiBgWIoaFiGEhYliIGBYihoWIYSFiWIgYFiLGPxfY2Bvll5LhAAAAAElFTkSuQmCC" class="img-fluid"> <em>Figure: Side-by-side examples of RMarkdown and output, and Quarto and output (hello world).</em></p>
+<p>Error rendering placeholder <em>Figure: Side-by-side examples of RMarkdown and output, and Quarto and output (hello world).</em></p>
 <p>What about if we want to format contents as something other than regular paragraph text? For example, you might want section headings (like this book contains), or <em>italics</em> or <strong>bold text</strong>. In a program like Microsoft Word or Google Docs, you can click a button to apply these formatting styles.</p>
 <p>RMarkdown and Quarto files cannot contain this type of embedded formatting, because they are just text documents (i.e.&nbsp;the same thing as a file with a <em>.txt</em> extension). But we can specify that we want their output to contain formatting. We do this by including symbols in the input file that will be interpreted as formatting instructions when we render.</p>
 <p>For example, we can create <em>italicized text</em> by putting the words inside a pair of asterisks <code>*italicized text*</code> or a pair of underscores <code>_italicized_text_</code>. The asterisks or underscores will not appear in the output, but the output will instead have the formatting you have specified.</p>
@@ -560,7 +562,7 @@ Warning
 </tr>
 </tbody>
 </table>
-<table class="caption-top table" data-quarto-postprocess="true">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th">Write this in your file</th>
@@ -576,11 +578,11 @@ Warning
 </table>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>*italics* or _italics_</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>*italics* or _italics_</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>**bold** or __bold__</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>_**bold and italicized**_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>_**bold and italicized**_</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:50%;">
 <p><em>italics</em> or <em>italics</em></p>
 <p><strong>bold</strong> or <strong>bold</strong></p>
@@ -679,28 +681,28 @@ Warning
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-The importance of lines and spaces
+<span class="screen-reader-only">Note</span>The importance of lines and spaces
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>In general, text on consecutive lines will be bundled up into one line when you render Markdown into another format. For example,</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>This paragraph is written on two consecutive lines.</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>This paragraph is written on two consecutive lines.</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>It will be compiled into a single paragraph because there is no blank line between them.</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>This will be a second paragraph, since there is a blank link between it and the previous text.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>This will be a second paragraph, since there is a blank link between it and the previous text.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This can cause problems if you forget to put a blank line where you need it, e.g.&nbsp;before a heading line. For example,</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>some regular text</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">### Important Heading</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>some regular text</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">### Important Heading</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>becomes</p>
 <p>some regular text ### Important Heading {.unnumbered .unlisted}</p>
 <p>Spaces can also affect formatting.</p>
 <p>If you forget a space between a heading’s hashtags and its text, you will render it as normal text (with hashtags).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>###Heading Text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>###Heading Text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>becomes</p>
 <p>###Heading Text</p>
 <p>The same thing can happen if you forget a space between a list symbol and the text of that list item.</p>
 <p>Putting four spaces at the start of a line will cause it to be rendered like code:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">    Indented by four spaces.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="in">    Indented by four spaces.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>becomes</p>
 <pre><code>Indented by four spaces.</code></pre>
 <p>This has its uses if you need to render something like code, but is not appropriate for regular text. It is not only harder to read than properly formatted text, but it also will not be wrapped if the line is long (i.e.&nbsp;a long line will just run off the right side of the page instead of continuing onto the next line.)</p>
@@ -732,9 +734,9 @@ code goes here
 ```</code></pre>
 <p>Backticks alone will format the code chunk like code, but you will not be able to run the code.</p>
 <p>To indicate the programming language and thus to enable the code to be run, we need to include curly braces around the programming languages symbol at the end of the opening line of backticks. For example, this is an R code chunk:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>code goes here</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>A major reason for using RStudio to write Rmd/Qmd documents is that you can run code chunks from within the file editor tab. Either click on the green “Play” triangle in the top right, or click within the code chunk so that the cursor is flashing on a line of code and then simulatenously press the following keys: Ctrl + Shift + R (Windows/Linux) or Cmd + Option + R (Mac).</p>
 <p>When you run a code chunk interactively from within the document, the code is sent to the Console to be executed, but any output is then displayed back below the code chunk. This allows us to preview what the output of a code chunk will look like without having to knit the entire document (which is a lot slower).</p>
 <p>Because code in code chunks is sent to the Console, it runs in the same place (called an <em>Environment</em>) as non-code chunk code that you type directly into the Console itself. This also means that all code chunks share this same environment, and the results of one code chunk are available to another.</p>
@@ -751,15 +753,15 @@ code goes here
 <h2 data-number="4.5" class="anchored" data-anchor-id="inline-code"><span class="header-section-number">4.5</span> Inline code</h2>
 <p>We can also include code within paragraphs of text. Let’s say you calculated some important number in your analyses, and you want to discuss that number. You could type in the number by hand, but this is prone to errors where the calculated number changes for some reason (maybe you adjust the analysis’s code, for example) but then you forget to update the number in the text.</p>
 <p>We can instead just include the variable’s value directly in the text using <em>inline code</em>, for example:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>The answer to life, the universe, and everything is `r variable_name`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>The answer to life, the universe, and everything is `r variable_name`.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here, we use a single pair of backticks around the code to indicate where it starts an ends, and an <code>r</code> immediately after the first backtick to indicate that this is R code. When the document is rendered, the value assigned to the variable called <code>variable_name</code> will be rendered within the sentence instead of the code. For example (if <code>variable_name</code> = 42),</p>
 <pre><code>My results showed that the answer to life, the universe, and everything is 42.</code></pre>
 <p>We can put more complicated expressions within the inline code backticks. For example, you could put a calculation to get the same result:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is `r 40 + 2`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>My results showed that the answer to life, the universe, and everything is `r 40 + 2`.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or we could get the date at the time that the document is rendered by using the <code>Sys.Date()</code> function that is part of the R programming language:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on `r Sys.Date()`.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on `r Sys.Date()`.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which would be rendered as:</p>
-<pre><code>This document was created on 2026-05-21.</code></pre>
+<pre><code>This document was created on 2026-09-16.</code></pre>
 </section>
 <section id="sec-yaml-header-section" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="sec-yaml-header-section"><span class="header-section-number">4.6</span> The header section</h2>
@@ -767,30 +769,30 @@ code goes here
 <p>In both RMarkdown and Quarto documents we do this in the <em>header section</em>. The general structure of a header section is similar in both cases, but the details can vary.</p>
 <p>The header section occurs before the actual contents of the document (i.e.&nbsp;before the text and code), and begins and ends with a line of three dashes: <code>---</code>. You may have already seen a header section if you created a Rmd or Qmd in RStudio, because the example files that RStudio create come with simple header sections.</p>
 <p>A simple example of a header section might be:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The header section is written in another markup language called YAML.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> YAML uses a different format to the Markdown that we used for writing regular text. YAML is much better suited to writing a list of options, such as the rendering options you want to apply to your output file.</p>
 <p>There are a few things to note about header sections:</p>
 <ul>
 <li><p>The example header section above would work in either an RMarkdown or Quarto file, because both have a <code>title</code> and <code>author</code> option. However, many of the options are different, either because they only exist in one of the two file types or because they are called different things!</p>
 <p>For example, in both document types we can specifif the type of output file we want to render to.</p>
 <p>This is how we would could modify the example header section above to render to a PDF from an RMarkdown file:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>output: pdf_document</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And this is how we would write the same thing in a Quarto file:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>format: pdf</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Some options will be shared between all output file types (like <code>title</code> and author`), but other options are specific to a particular type of output file.</p>
 <p>For simplicity, let’s consider just RMarkdown. We can specify multiple output formats with their own options (the first format will be the default), e.g.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>---</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>title: "Computing and Data for Scientists"</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>author: "Dominic White"</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>output: </span>
@@ -799,7 +801,7 @@ code goes here
 <span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  html_document:</span>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>    theme: cosmo</span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    code_folding: hide</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>---</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>---</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What does all this mean?</p>
 <p>First we have specified options for rendering to both PDF (<code>pdf_document</code>) and HTML (i.e.&nbsp;web pages, with <code>html_document</code>).</p>
 <p><code>keep_tex</code> is a PDF specific option. A <code>.tex</code> is an intermediate filetype that is created from the RMarkdown file, which can then be rendered as a PDF. By default, that intermediate file is deleted once the PDF is created. Here we’ve set an option to keep it instead.</p>
@@ -809,16 +811,16 @@ code goes here
 <ul>
 <li><p>All of our options above have been specified in the format of <code>key: value</code> where <code>key</code> is the name of the option and <code>value</code> is what we set it to.</p></li>
 <li><p>We can nest options under other options as we did with the format specfic options. In that case, we need to indent those nested lines two more spaces that the parent:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>key: </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>key: </span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  value:</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    nested_key: nested_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    nested_key: nested_value</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>Sometimes we want to provide a list of values to an option. For example, in RMarkdown header sections, we can provide multiple authors as a list to the <code>author</code> option.</p>
 <p>We either enclose them in square brackets:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>author: ["Joe Bloggs", "Anna Smith"]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>author: ["Joe Bloggs", "Anna Smith"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or list them on separate lines (indented 2 spaces, and starting with a hyphen):</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>author: </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>author: </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  - "Joe Bloggs"</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  - "Anna Smith"</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  - "Anna Smith"</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ul>
 <p>A detailed list of header sections options for RMarkdown can be found in the book RMarkdown: The Definite Guide (available at https://bookdown.org/yihui/rmarkdown-cookbook). For Quarto, the official documentation at https://quarto.org provides a similar list.</p>
 </section>
@@ -831,17 +833,17 @@ code goes here
 <pre class="{verbatim}}"><code>![description of image](image_file_name.jpg)</code></pre>
 <p>Alternative text is a description of the image that will be displayed if the image can’t be loaded. It’s a good idea to include alternative text even if you don’t think that’s a problem, because alternative text is used by blind or visually impaired users to understand what’s in an image.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <p>We can also include images using R code in a code chunk. This makes use of the <code>knitr</code> package:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>knitr::include_graphics("image_file_name.jpg")</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="tables" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="tables"><span class="header-section-number">4.8</span> Tables</h2>
 <p>You can create Markdown tables using the following syntax:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>| column 1 heading | column 2 heading  |</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>| column 1 heading | column 2 heading  |</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>| ---------------- | ----------------- |</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>| row 1 content    | other content     |</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>| row 2 content    | other row 2 stuff |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>| row 2 content    | other row 2 stuff |</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which creates a table like this:</p>
 <table class="caption-top table">
 <thead>
@@ -866,21 +868,21 @@ code goes here
 <li><p>Vertical bars <code>|</code> divide columns. The hyphens <code>---</code> on the second line of the table divide the headings row from the data rows.</p></li>
 <li><p>Nice formatting is not required by Markdown, but it helps anyone reading the source file understand the text. However, you are not required to align the column separators <code>|</code> on each line, nor do you need more than one hyphen below each heading.</p>
 <p>For example, this is a valid way of writing the same table as before:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>| column 1 heading | column 2 heading |</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>| column 1 heading | column 2 heading |</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>|-|-|</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>| row 1 content | other content |</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>| row 2 stuff | other row 2 stuff |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>| row 2 stuff | other row 2 stuff |</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>(Although you would hopefully agree that it’s much harder to understand!)</p></li>
 <li><p>You can adjust the alignment of content in each column (aligning it either to the left, the right, or centered) using colons <code>:</code> in the line of dashes.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>| column 1     | column 2 | column 3      |</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>| column 1     | column 2 | column 3      |</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>| :----------- | :------: | ------------: |</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>| left aligned | centered | right aligned |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>| left aligned | centered | right aligned |</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>The contents of a table cell have to be on a single line. You cannot put a linebreak in the source file to make it easier to read.</p></li>
 </ul>
 <p>Tables can also be created by code chunks, typically by including a line of code that returns a dataframe, e.g.:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
@@ -893,9 +895,9 @@ code goes here
 </div>
 <p>Here we are using the <code>head()</code> function to retrieve just the first six rows of the <code>iris</code> dataframe.</p>
 <p>We could have included a line of code that was just the dataframe name:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>```{r}</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>iris</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>```</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>However this would print out the entire dataframe, which has 150 rows! Since large dataframes make output documentshard to read, you generally don’t want to display the original data.</p>
 <!--
 
@@ -908,11 +910,11 @@ code goes here
 <p>We often want to include mathematical equations or other notation in scientific documents. Markdown does not include support for this, but RMarkdown and Quarto both allow us to include maths written in Latex notation.</p>
 <p>To do so, we put the math between dollar symbols: <code>$</code>.</p>
 <p>A single pair of dollar symbols allow us to write <em>inline</em> math, within a paragraph of regular text, for example:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>The formula for the area of a circle is $A = \pi r^2$.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>The formula for the area of a circle is $A = \pi r^2$.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which becomes</p>
 <p>The formula for the area of a circle is <span class="math inline">\(A = \pi r^2\)</span>.</p>
 <p>You may also want include a block of math as it’s own entity, separate from the rest of the text. To do so, we use a pair of double dollar symbols, e.g.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>$$A = \pi r^2$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>$$A = \pi r^2$$</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which becomes</p>
 <p><span class="math display">\[A = \pi r^2\]</span></p>
 <p>Note how the math block is centered.</p>
@@ -991,7 +993,7 @@ Pandoc markdown guide: https://pandoc.org/MANUAL.html#pandocs-markdown
 -->
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-knuth_literate_1984" class="csl-entry" role="listitem">
 Knuth, D. E. 1984. <span>“Literate <span>Programming</span>.”</span> <em>The Computer Journal</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
 </div>
@@ -1264,13 +1266,14 @@ window.onload = function() {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

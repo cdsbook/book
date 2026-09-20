@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>3&nbsp; Introduction to R – An Introduction to Computing and Data for Scientists</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +109,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script defer="" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -119,7 +122,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -470,7 +473,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning
+<span class="screen-reader-only">Warning</span>Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -482,7 +485,7 @@ Warning
 <p>It is a long-standing tradition that your first program in any new programming language should simply display the message “Hello, World!”.</p>
 <p>In R we can use the <code>print()</code> <em>function</em> to display a piece of data (such as the text <em>Hello, World!</em>).</p>
 <p>For example, we can run this line of code in R:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="st">"Hello, World!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And R will return this result:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -643,12 +646,12 @@ Tip
 <div class="callout-body-container">
 <p><strong>Exercise:</strong> What data type is <code>""5"</code>? <select class="webex-select"><option value="blank"></option><option value="">numeric</option><option value="answer">character</option><option value="">Boolean</option></select></p>
 <div class="info-box callout callout-style-default callout-tip callout-titled" title="Explanation">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Explanation
+<span class="screen-reader-only">Tip</span>Explanation
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -760,8 +763,8 @@ Explanation
 <div class="callout-body-container">
 <p><strong>Exercise (the <code>-</code> operator):</strong> In the R Console, type <code>5 - 2</code> and hit enter to run the line of code. (You probably have a good idea of what <code>-</code> does, but try changing the numbers just to make sure!)</p>
 What does <code>-</code> do?
-<div id="radio_TJGJJBDRXZ" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_TJGJJBDRXZ" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_TJGJJBDRXZ" value="answer"> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_TJGJJBDRXZ" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_TJGJJBDRXZ" value=""> <span>Divides one number by another.</span></label>
+<div id="radio_OODZEPUZZH" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_OODZEPUZZH" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_OODZEPUZZH" value="answer"> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_OODZEPUZZH" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_OODZEPUZZH" value=""> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -776,8 +779,8 @@ What does <code>-</code> do?
 <div class="callout-body-container">
 <p><strong>Exercise (the <code>*</code> operator):</strong> In the R Console, type <code>3 * 2</code> and hit enter to run the line of code.</p>
 What does <code>*</code> do?
-<div id="radio_RCBEMGSQCU" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_RCBEMGSQCU" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_RCBEMGSQCU" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_RCBEMGSQCU" value="answer"> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_RCBEMGSQCU" value=""> <span>Divides one number by another.</span></label>
+<div id="radio_GJOXQIDWSK" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GJOXQIDWSK" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_GJOXQIDWSK" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_GJOXQIDWSK" value="answer"> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_GJOXQIDWSK" value=""> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -792,8 +795,8 @@ What does <code>*</code> do?
 <div class="callout-body-container">
 <p><strong>Exercise (The <code>/</code> operator):</strong> In the R Console, type <code>3 / 2</code> and hit enter to run the line of code.</p>
 What does <code>/</code> do? (Just to be sure, try some other numbers.)
-<div id="radio_OVSAYMTMXA" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_OVSAYMTMXA" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_OVSAYMTMXA" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_OVSAYMTMXA" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_OVSAYMTMXA" value="answer"> <span>Divides one number by another.</span></label>
+<div id="radio_RBAEFTPKJS" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_RBAEFTPKJS" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_RBAEFTPKJS" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_RBAEFTPKJS" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_RBAEFTPKJS" value="answer"> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -808,8 +811,8 @@ What does <code>/</code> do? (Just to be sure, try some other numbers.)
 <div class="callout-body-container">
 <p><strong>Exercise (The <code>^</code> operator):</strong>In the R Console, type <code>3 ^ 2</code> and hit enter to run the line of code.</p>
 What does <code>^</code> do? (Hint: Try some other numbers, like <code>2 ^ 3</code> or <code>16 ^ 0.5</code>)
-<div id="radio_HLQCVZHDLH" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_HLQCVZHDLH" value=""> <span>Returns the modulus (the remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_HLQCVZHDLH" value="answer"> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_HLQCVZHDLH" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_HLQCVZHDLH" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
+<div id="radio_DEUFIVNIAG" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DEUFIVNIAG" value=""> <span>Returns the modulus (the remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_DEUFIVNIAG" value="answer"> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_DEUFIVNIAG" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_DEUFIVNIAG" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
 </div>
 </div>
 </div>
@@ -828,8 +831,8 @@ What does <code>^</code> do? (Hint: Try some other numbers, like <code>2 ^ 3</co
 <p><strong>Exercise (The <code>%</code> operator):</strong> Next up, a slightly trickier one. Type <code>3 %% 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>%%</code> do? You will probably have to try some other numbers to figure this one out.</p>
 If you have difficulty, try also dividing the same numbers. E.g. try both <code>9 %% 4</code> and <code>9 / 4</code>.
-<div id="radio_SRSBTXJCBG" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_SRSBTXJCBG" value="answer"> <span>Returns the modulus (the integer remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_SRSBTXJCBG" value=""> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_SRSBTXJCBG" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_SRSBTXJCBG" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
+<div id="radio_DYMRALSUZP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_DYMRALSUZP" value="answer"> <span>Returns the modulus (the integer remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_DYMRALSUZP" value=""> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_DYMRALSUZP" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_DYMRALSUZP" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
 </div>
 </div>
 </div>
@@ -840,7 +843,7 @@ If you have difficulty, try also dividing the same numbers. E.g. try both <code>
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="which-operator-goes-first"><span class="header-section-number">3.3.4</span> Which operator goes first?</h3>
 <p> </p>
 <p>Just like in normal math, we can do sums in R with multiple operators:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">/</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">3</span> <span class="sc">^</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In such a case, which operation do we do first?</p>
 <p>Again, just like in regular math, some operations are always done before others. For example, all multiplication and division will be done before any addition or subtraction.</p>
 <blockquote class="blockquote">
@@ -848,9 +851,9 @@ If you have difficulty, try also dividing the same numbers. E.g. try both <code>
 <p>The order in which operators are calculated is known as <em>operator precedence</em>, and you can find the precedence of any operator here: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html</a></p>
 </blockquote>
 <p>We can change the order of operations with parentheses: <code>(</code> and <code>)</code>. For example</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">12</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">12</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>whereas</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">20</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">5</span> <span class="ot">=</span> <span class="dv">20</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- Book version -->
 <div class="exercise callout callout-style-simple callout-note no-icon">
 <div class="callout-body d-flex">
@@ -877,8 +880,8 @@ video overview of R variable creation
 -->
 <p>So far we have learnt how to combine data to get different results.</p>
 <p>We can do multiple separate calculations by putting each one on a separate line. When R reads your code, it treats everything on one line as a single expression that is separate from other lines:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This program will have two separate outputs: 4 and 25</p>
 <p>However, after these results are shown to us, they are thrown away! All that effort just discarded…</p>
 <p>What if we wish to save the result of a calculation so that we can reuse it in a subsequent line?</p>
@@ -897,7 +900,7 @@ add a hint showing where the environment is in RStudio via a screenshot. Might b
 <section id="the-result-of-the-assignment-operator" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="the-result-of-the-assignment-operator"><span class="header-section-number">3.4.1</span> The “result” of the assignment operator</h3>
 <p>We store the result of an expression in a variable using the <strong>assignment operator</strong>: <code>&lt;-</code></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>variable_name <span class="ot">&lt;-</span> value_to_be_stored</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>variable_name <span class="ot">&lt;-</span> value_to_be_stored</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- Book version -->
 <div class="exercise">
 <p>Run these two lines of code in the RStudio Console and see what result you get.</p>
@@ -908,21 +911,21 @@ add a hint showing where the environment is in RStudio via a screenshot. Might b
 <!-- End book version -->
 <!-- Tutorial version -->
 <div class="cell" data-exercise="true">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell" data-exercise="true">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- End tutorial version -->
 <p>The second line of code should not print out any output when it runs. This is because assigning the result of an expression to a variable has no “result” in itself. For example, in math <span class="math inline">\(2+2\)</span> is <span class="math inline">\(4\)</span>, but the expression <span class="math inline">\(b = 2 + 2\)</span> does <em>not</em> return <span class="math inline">\(4\)</span> directly (but somebody somewhere is hopefully keeping track of the fact that <span class="math inline">\(b\)</span> is now equivalent to <span class="math inline">\(4\)</span>).</p>
 <p>If you want to see the data that is stored in a variable, you can put the name of the variable on a line by itself:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>some_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>some_variable</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>R will evaluate this line: it will ask itself “What is the <em>result</em> of <code>some_variable</code>”, which is just whatever value is stored in that variable.</p>
 <p>For example,</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -948,7 +951,7 @@ add a hint showing where the environment is in RStudio via a screenshot. Might b
 <!-- End book version -->
 <!-- Tutorial version -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">7</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- TODO: weird output needs fixing -->
 <!-- End tutorial version-->
@@ -959,9 +962,9 @@ add a hint showing where the environment is in RStudio via a screenshot. Might b
 <p><code>&lt;-</code> is an operator, just like <code>+</code> or <code>*</code>. As such, it has a <em>precedence</em>: it will happen before some operators but after others.</p>
 <p>However, it turns out that the <code>&lt;-</code> precedence is <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html">extremely low</a> - i.e.&nbsp;it will happen after the result of all the other operators on that line of code have been calculated.</p>
 <p>So, when you write:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>…you are essentially doing this:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- TODO: 
 Add exercises e.g. remove parentheses from over parenthesized expression; split line of code over multiple lines.
 -->
@@ -1034,7 +1037,7 @@ Tip
 </table>
 <p>For example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">&lt;</span> <span class="dv">9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span> <span class="sc">&lt;</span> <span class="dv">9</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -1078,7 +1081,7 @@ Tip
 <!-- End book version -->
 <!-- Tutorial version -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> d <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a> d <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- End tutorial -->
 </section>
@@ -1090,18 +1093,18 @@ intro video on vectors in R
 -->
 <p>So far we have looked at pieces of data by themselves:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">2</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -1109,7 +1112,7 @@ intro video on vectors in R
 <p>But what about if we want to combine multiple pieces of data together?</p>
 <p>R includes several types of <em>container</em> that can hold multiple pieces of data. We can then refer to that container by a single variable. For example, instead of the three variables above, we can create a <strong>vector</strong> that holds all three values. We create a vector with <code>c(...)</code>, putting the objects we want to combine inside the parentheses (and separated by commas):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 2 3</code></pre>
 </div>
@@ -1125,7 +1128,7 @@ Add webexercises solution below
 <!-- End book -->
 <!-- Tutorial version -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"This"</span>, <span class="st">"is a"</span>, <span class="st">"vector!"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"This"</span>, <span class="st">"is a"</span>, <span class="st">"vector!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- End tutorial -->
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1147,9 +1150,9 @@ Tip
 <h4 data-number="3.7.0.1" class="anchored" data-anchor-id="operations-on-vectors"><span class="header-section-number">3.7.0.1</span> Operations on vectors</h4>
 <p>We can use operators on more complicated data structures just as we did on the simpler data types. For example, we can add 2 vectors together:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5 7 9</code></pre>
 </div>
@@ -1163,9 +1166,9 @@ Add webexercises solution below
 <p>What happens if you add two vectors of different lengths? For example, run this code and see what happens:</p>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What happens when you add two <code>v3</code> and <code>v4</code>?</p>
 <p>Firstly, we get a warning <code>"longer object length is not a multiple of shorter object length"</code> because <code>v3</code> is longer than <code>v4</code>. However, a warning doesn’t stop the code running - it merely tells us that something unexpected might be happening.</p>
@@ -1174,9 +1177,9 @@ Add webexercises solution below
 <!-- End book -->
 <!-- Tutorial version -->
 <div class="cell" data-exercise="true">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>v4 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="sc">+</span> v4</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- End tutorial -->
 </section>
@@ -1209,7 +1212,7 @@ Add webexercises solution below
 <p>Just like R has a vectors to store a single series of values, it also contains a structure called a <em>dataframe</em> to hold a table of data. In fact, R uses vectors to create dataframes: behind the scenes, each column of a dataframe is stored within a vector.</p>
 <p>Dataframes can also be assigned to R variables so that we can store and retrieve them. For the purposes of this section, suppose that the R variable <code>df</code> contains a dataframe of the table above. If we run the variable by itself, we will print out the dataframe:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  ID Measurement A Measurement B
 1 S1           5.2           8.1
@@ -1220,7 +1223,7 @@ Add webexercises solution below
 <p>You might ask, how do we retrive the a single column from a dataframe? We will talk more about this in <a href="06_wrangling_chapter.html" class="quarto-xref"><span>Chapter 6</span></a>, but for now you should know that there is a very basic method to get a column using the <code>$</code> operator. (Once we learn better methods of wrangling dataframes, we will rarely use this, but it’s helpful to know.)</p>
 <p>In code, we would write the dataframe’s variable, followed by a <code>$</code>, followed by the column name. There are no spaces between these three things. For example, we could retrieve the <code>ID</code> column from <code>df</code> as follows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ID</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>ID</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "S1" "S2"</code></pre>
 </div>
@@ -1231,7 +1234,7 @@ Add webexercises solution below
 <p>For example, <code>df</code> contains two columns that have a space in their column name: <code>Measurement A</code> and <code>Measurement B</code>. Just as with variables, if we need to reference these columns then we have to wrap the column name in backticks, e.g.&nbsp;<code>`Measurement A`</code>.</p>
 <p>For example, if we wanted to extract the <code>Measurement B</code> column as a vector using the <code>$</code> operator, we would need to write:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">Measurement B</span><span class="st">`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span><span class="st">`</span><span class="at">Measurement B</span><span class="st">`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 8.1 7.9</code></pre>
 </div>
@@ -1287,14 +1290,14 @@ Add webexercises solution below
 <p>Yes, it would! So let’s look at a more complicated function.</p>
 <p>We can create a function to calculate the hypotenuse like this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(c)</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Then we can use this <code>hypotenuse</code> function as many times as we like. For example calculate the hypotenuse of a triangle with sides of length 3 and 4, we would run:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypotenuse</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hypotenuse</span>(<span class="dv">3</span>, <span class="dv">4</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
@@ -1308,10 +1311,10 @@ Add webexercises solution below
 <!-- End book -->
 <!-- Tutorial version -->
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>hypotenuse <span class="ot">&lt;-</span> <span class="cf">function</span>(a, b) {</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">&lt;-</span> (a<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> b<span class="sc">^</span><span class="dv">2</span>)<span class="sc">^</span><span class="fl">0.5</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(c)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- End tutorial -->
 </section>
@@ -1362,9 +1365,9 @@ Add webexercises solution boxes below
 <ul>
 <li><p>Click on the <em>Install</em> button in the Packages tab, and type the name of the package you want into to the pop-up that appears.</p></li>
 <li><p>Go to the RStudio Console and type in (making sure to replace the name of the package you want inside the quotes!):</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"some_package_name"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"some_package_name"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For example, to install a package called the <code>tidyverse</code> (which we will be using for much of this book), you would run:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Having gone through this chapter, this code should hopefully make some sense! <code>install.packages()</code> is a function (built-in to the core R programming language), and <code>"tidyverse"</code> is a character string that we are passing as the argument to that function.</p></li>
 </ul>
 <p>Note that it can take some time to install a package (e.g.&nbsp;the <code>tidyverse</code> package can take 10-15 minutes to install!), so it’s worth checking to see if it is already installed before you waste a lot of time.</p>
@@ -1374,7 +1377,7 @@ Add webexercises solution boxes below
 <p>A package only needs to be installed to your computer once.</p>
 <p>However, you need to load the functions and other objects from that package in every R session that you wish to use them (because they will not automatically be available to R even after you have installed them).</p>
 <p>To load a package we use the <code>library()</code> function. For example, to load the <code>tidyverse</code> package, you would run:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <!-- TODO:
 add exercises on R packages (installing and loading)
 -->
@@ -1647,13 +1650,14 @@ window.onload = function() {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
