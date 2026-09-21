@@ -429,17 +429,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Warning
+<span class="screen-reader-only">Warning</span>Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is in an early draft form, and is incomplete.</p>
+<p>This chapter is a draft, and may be updated soon.</p>
 </div>
 </div>
 <section id="making-presentations" class="level2" data-number="23.1">
@@ -876,17 +876,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="presenting" class="level2" data-number="23.6">
 <h2 data-number="23.6" class="anchored" data-anchor-id="presenting"><span class="header-section-number">23.6</span> Presenting</h2>
 <p>Since RevealJS presentations are webpages, we can present them by sharing our webpage. You can make the presentation webpage occupy the fullscreen by pressing the <kbd title="f" aria-hidden="true">f</kbd><span class="visually-hidden">f</span> key.</p>
-<p>There is also a <em>speaker view</em>, which opens a separate browser window showing helpful information for the presenter, such as the speaker notes, a timer, and the next slide (Fig. #fig-revealjs_speaker_mode). You can open the speaker view by pressing the <kbd title="s" aria-hidden="true">s</kbd><span class="visually-hidden">s</span> key.</p>
-<div id="fig-revealjs_speaker_mode" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="A screenshot showing the reveal JS speaker view window next to the slide show window.">
+<p>There is also a <em>speaker view</em>, which opens a separate browser window showing helpful information for the presenter, such as the speaker notes, a timer, and the next slide (Fig. <a href="#fig-revealjs-speaker-mode" class="quarto-xref">Figure&nbsp;<span>23.1</span></a>). You can open the speaker view by pressing the <kbd title="s" aria-hidden="true">s</kbd><span class="visually-hidden">s</span> key.</p>
+<div id="fig-revealjs-speaker-mode" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="A screenshot showing the reveal JS speaker view window next to the slide show window.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-revealjs_speaker_mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../img/revealjs_speaker_mode.png" title="Title: Optional title" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="A screenshot showing the reveal JS speaker view window next to the slide show window.">
+<div aria-describedby="fig-revealjs-speaker-mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../img/revealjs_speaker_mode.png" title="RevealJS speaker view" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:100.0%" alt="A screenshot showing the reveal JS speaker view window next to the slide show window.">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-revealjs_speaker_mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-revealjs-speaker-mode-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;23.1: A RevealJS presentation showing the speaker view window on the left and the slide show on the right.
 </figcaption>
 </figure>
 </div>
+<p>Speaker notes can be added within the source file.</p>
+<p>In a Quarto file, they are added in a <code>notes</code> block at the end of a slide:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide Title</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>Content of the slide.</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>::: notes</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>Notes go inside this block, starting and ending with three colon : symbols.</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>Notes are not added to the slide, and will only be visible in the speaker view window.</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In a RMarkdown file, we need to include the <code>notes</code> plugin within the YAML header section, and then put the notes inside an HTML block as in this example:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Presentation Title"</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">  revealjs::revealjs_presentation:</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co">    self_contained: false</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co">    reveal_plugins: ["notes", "search"]</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Slide title</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>Slide content</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">aside</span><span class="ot"> class</span><span class="op">=</span><span class="st">"notes"</span><span class="dt">&gt;</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>  Notes go here.</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">aside</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="further-reading" class="level2" data-number="23.7">
 <h2 data-number="23.7" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">23.7</span> Further Reading</h2>
