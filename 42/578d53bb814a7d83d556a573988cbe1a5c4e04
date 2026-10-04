@@ -1,0 +1,26 @@
+docs/index.html
+  h_a9b14fc0d83d0d 10,375
+docs/search.json
+  h_a9b14fc0d83d0d 342,1365-1387
+docs/src/book/03_r_programming_chapter.html
+  h_a9b14fc0d83d0d 766-767,782-783,798-799,814-815,834-835
+docs/src/book/04_rmarkdown_chapter.html
+  h_a9b14fc0d83d0d 764
+docs/src/book/09_computing_chapter.html
+  h_a9b14fc0d83d0d 577-578,600-601,1052-1053
+docs/src/book/29_online_data_chapter.html
+  h_a9b14fc0d83d0d 26-60,377-393,434-699,702-703
+src/book/29_online_data_chapter.qmd
+  h_a9b14fc0d83d0d 17-261
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "42578d53bb814a7d83d556a573988cbe1a5c4e04",
+  "prompts": {},
+  "humans": {
+    "h_a9b14fc0d83d0d": {
+      "author": "Dominic White <dwhite34@gmu.edu>"
+    }
+  }
+}
