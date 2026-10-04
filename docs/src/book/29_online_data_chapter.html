@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -339,8 +374,23 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#existing-datasets" id="toc-existing-datasets" class="nav-link active" data-scroll-target="#existing-datasets"><span class="header-section-number">20.1</span> Existing datasets</a></li>
+  <li><a href="#requesting-data-through-apis" id="toc-requesting-data-through-apis" class="nav-link" data-scroll-target="#requesting-data-through-apis"><span class="header-section-number">20.2</span> Requesting data through APIs</a>
+  <ul class="collapse">
+  <li><a href="#building-a-web-address" id="toc-building-a-web-address" class="nav-link" data-scroll-target="#building-a-web-address"><span class="header-section-number">20.2.1</span> Building a web address</a></li>
+  <li><a href="#apis" id="toc-apis" class="nav-link" data-scroll-target="#apis"><span class="header-section-number">20.2.2</span> APIs</a></li>
+  <li><a href="#the-paleobiology-database-api" id="toc-the-paleobiology-database-api" class="nav-link" data-scroll-target="#the-paleobiology-database-api"><span class="header-section-number">20.2.3</span> The Paleobiology Database API</a></li>
+  <li><a href="#api-requests-in-r" id="toc-api-requests-in-r" class="nav-link" data-scroll-target="#api-requests-in-r"><span class="header-section-number">20.2.4</span> API requests in R</a></li>
+  <li><a href="#converting-json-to-data-frames" id="toc-converting-json-to-data-frames" class="nav-link" data-scroll-target="#converting-json-to-data-frames"><span class="header-section-number">20.2.5</span> Converting JSON to data frames</a></li>
+  <li><a href="#apis-with-dedicated-packages" id="toc-apis-with-dedicated-packages" class="nav-link" data-scroll-target="#apis-with-dedicated-packages"><span class="header-section-number">20.2.6</span> APIs with dedicated packages</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -381,8 +431,276 @@ ul.task-list li input[type="checkbox"] {
 * APIs: json, other formats
 * Web scraping: See `rvest` and `polite` packages.
 -->
+<p>The internet provides access to a huge amount of data that could be analyzed to study scientific questions.</p>
+<p>Generally speaking, there are three main sources of datasets from the internet:</p>
+<ol type="1">
+<li>Existing datasets that have been shared online</li>
+<li>Websites that provide access to data on request.</li>
+<li>Creating your own datasets from web pages.</li>
+</ol>
+<p>As with everything you find on the internet, user discretion is needed to evaluate quality and trustworthiness.</p>
+<section id="existing-datasets" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="existing-datasets"><span class="header-section-number">20.1</span> Existing datasets</h2>
+<p>Many scientific (and non-scientific) datasets are provided online as files that can be downloaded.</p>
+<p>The ease with which one can understand the contents of the dataset, and begin working with it, varies, often based on how much effort the dataset’s creator put into making it reuseable by others.</p>
+<p>Here are some places to look for datasets:</p>
+<ul>
+<li><p>R packages: Many R packages include datasets. These datasets are usually relatively small (to keep the package small), and the contents are usually tabular.</p>
+<p>One nice feature of most of these datasets is that the package’s creators usually put effort into making the datasets re-usable. The data has often been cleaned, and the package documentation will come with a help page describing the dataset.</p>
+<ul>
+<li>The <code>datasets</code> package contains (unsurprisingly) many datasets! It is one of the default packages installed as part of the R programming language itself. Since this means that every R user has access to it, these datasets are frequently used in R example code, leading to a kind of infamy for some of these datasets (such as the <code>iris</code> dataset).</li>
+</ul>
+<p>The <code>data()</code> function returns a list of datasets in any package that you have already installed. Running <code>data()</code> without arguments will typically just show datasets in the <code>datasets</code> package.</p>
+<p>To see datasets from a particular package, pass that name to the <code>package</code> argument, e.g.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">"ggplot2"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The package argument can accept a vector of multiple packages (e.g.&nbsp;<code>package = c("ggplot2", "dplyr")</code>), which means that the following code will list all of the datasets in every package installed in your system:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="at">package =</span> <span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Many websites exist with the goal of sharing datasets for data science. The quality of these websites varies, as does the quality of the data within each dataset.</p>
+<p>Some examples:</p>
+<ul>
+<li><p>Kaggle runs data science competitions, but also hosts datasets uploaded by its users at <a href="https://www.kaggle.com/datasets">kaggle.com/datasets</a>.</p>
+<p>The datasets are easy to search and browse, and cover a wide range of topics. You can also see code and analyses of each dataset that have been shared by other Kaggle users.</p>
+<p>Unfortunately, since anyone can upload a dataset, the quality is patchy. In particular, you should be careful about the source of the data - many datasets just contain simulated data rather than real observations.</p></li>
+<li><p>The UC Irvine Machine Learning Repository is a curated list of datasets focused on predictive tasks. The data is often high quality, with a well defined provenance.</p>
+<p>The datasets are currently hosted at <a href="https://archive.ics.uci.edu/">archive.ics.uci.edu</a></p></li>
+</ul></li>
+</ul>
+</section>
+<section id="requesting-data-through-apis" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="requesting-data-through-apis"><span class="header-section-number">20.2</span> Requesting data through APIs</h2>
+<p>In many cases, an organization or website will provide an alternative method to access its data: an API, which stands for Application Programming Interface.</p>
+<p>The term “API” has a few different uses in programming, but in general it refers to a defined way to access another computer program which should return a defined result.</p>
+<p>In the context of internet data, it refers to ways of writing web addresses (or URLs (Uniform Resource Locators)) to tell a website to return a particular set of data.</p>
+<section id="building-a-web-address" class="level3" data-number="20.2.1">
+<h3 data-number="20.2.1" class="anchored" data-anchor-id="building-a-web-address"><span class="header-section-number">20.2.1</span> Building a web address</h3>
+<p>A basic web address, e.g.&nbsp;<code>https://cran.r-project.org/</code> has a few parts:</p>
+<ol type="i">
+<li><p><code>https://</code> is the protocol that your computer will use to contact the website. HTTPS stands for Hypertext Transfer Protocol Secure, which is the typical way of browsing the internet securely (i.e.&nbsp;encrypting your data).</p></li>
+<li><p><code>cran.r-project.org</code> is the domain of the website. Other examples are <code>www.google.com</code> or <code>www.gmu.edu</code></p></li>
+</ol>
+<p>We can specify particular webpages of a website by putting a path after the domain:</p>
+<pre><code>https://cran.r-project.org/web/packages/index.html</code></pre>
+</section>
+<section id="apis" class="level3" data-number="20.2.2">
+<h3 data-number="20.2.2" class="anchored" data-anchor-id="apis"><span class="header-section-number">20.2.2</span> APIs</h3>
+<p>Websites with APIs will define certain URLs that are called <em>endpoints</em>. An endpoint can be used to access a particular type of data.</p>
+<p>URLs can also contain <em>queries</em>. These are typically used to customize the webpage in some way. They go at the end of the URL, after a <code>?</code>. In APIs, queries are often used to specifiy the particular data we want.</p>
+<p>For example:</p>
+<pre><code>https://www.some-website.com/api/endpoint-3/?year=2010&amp;format=json</code></pre>
+<ul>
+<li><p><code>https://www.some-website.com/api/global-temperatures/</code> is the API endpoint.</p></li>
+<li><p><code>year=2010&amp;format=json</code> is the query that contains two parameters: <code>year=2010</code> and <code>format=json</code></p>
+<ul>
+<li><p><code>year</code> and <code>format</code> are examples of parameter names.</p></li>
+<li><p><code>2010</code> and <code>json</code> are the corresponding parameter values.</p></li>
+</ul></li>
+</ul>
+<p>Most APIs will come with documentation that describes the available endpoints, as well as the parameters that can be used to customize each endpoint’s response.</p>
+</section>
+<section id="the-paleobiology-database-api" class="level3" data-number="20.2.3">
+<h3 data-number="20.2.3" class="anchored" data-anchor-id="the-paleobiology-database-api"><span class="header-section-number">20.2.3</span> The Paleobiology Database API</h3>
+<p>The Paleobiology Database (PDB) is a research project that digitizes information about fossils from published research (such as where a fossil was found, or how old it is). This data is then available for anyone to access and use.</p>
+<p>PDB provides an API to access this data, which is currently documented at: <a href="https://paleobiodb.org/data1.2/">paleobiodb.org/data1.2/</a></p>
+<p>One of the endpoints returns information about when and where a particular fossil occurs. This endpoint is <code>/data1.2/occs/single.json</code> and an example of a response is:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"elapsed_time"</span><span class="fu">:</span><span class="fl">0.00145</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"records"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"occurrence_no"</span><span class="fu">:</span> <span class="st">"139292"</span><span class="fu">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"record_type"</span><span class="fu">:</span> <span class="st">"occ"</span><span class="fu">,</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"reid_no"</span><span class="fu">:</span> <span class="st">"22878"</span><span class="fu">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"collection_no"</span><span class="fu">:</span> <span class="st">"11917"</span><span class="fu">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"identified_name"</span><span class="fu">:</span> <span class="st">"Tyrannosaurus rex"</span><span class="fu">,</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"identified_rank"</span><span class="fu">:</span> <span class="st">"species"</span><span class="fu">,</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"accepted_name"</span><span class="fu">:</span> <span class="st">"Tyrannosaurus rex"</span><span class="fu">,</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"accepted_rank"</span><span class="fu">:</span> <span class="st">"species"</span><span class="fu">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"accepted_no"</span><span class="fu">:</span> <span class="st">"54833"</span><span class="fu">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"early_interval"</span><span class="fu">:</span> <span class="st">"Late Maastrichtian"</span><span class="fu">,</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"max_ma"</span><span class="fu">:</span> <span class="fl">72.2</span><span class="fu">,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"min_ma"</span><span class="fu">:</span> <span class="dv">66</span><span class="fu">,</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"reference_no"</span><span class="fu">:</span> <span class="st">"4218"</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li>This particular request contains two parameters:
+<ul>
+<li><code>id=139292</code> which specifies the particular occurrence that we are requesting</li>
+<li><code>vocab=pbdb</code> which tells this particular API that we do not want the API to include certain abbreviations.</li>
+</ul></li>
+<li>This response is in a format called JSON, which is commonly used in APIs. JSON is made up of <em>objects</em>, which are created with curly brackets <code>{ ... }</code>, and typically contain <code>key: value</code> pairs. You can think of the <em>key</em> as the ID for a piece of information (kind of like a column name) and the <em>value</em> as the data itself.
+<ul>
+<li>You might note that this has certain similarities to an R list - hold that thought, because it will be relevant shortly!</li>
+</ul></li>
+</ul>
+<p>You should be able to copy and paste the the URL of this API call into your web browser and access the same data, although you will probably find that the response JSON is compressed into a single line of text that is much harder to read. This is because JSON is designed to be requested and processed by computer programs.</p>
+<p>So how can we write an R program to retrieve that same API data?</p>
+</section>
+<section id="api-requests-in-r" class="level3" data-number="20.2.4">
+<h3 data-number="20.2.4" class="anchored" data-anchor-id="api-requests-in-r"><span class="header-section-number">20.2.4</span> API requests in R</h3>
+<p>There are many R packages that can be used to request webpages, but we will use one called <code>httr2</code> (pronounced “hitter two”).</p>
+<p>We could request the same API endpoint using the <code>request()</code> and <code>req_perform()</code> functions from the httr2 package:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>api_request <span class="ot">&lt;-</span> <span class="fu">request</span>(<span class="st">"https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>api_response <span class="ot">&lt;-</span> <span class="fu">req_perform</span>(api_request)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We have stored the response in <code>api_response</code> - printing out the contents of that variable shows:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>api_response</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;httr2_response&gt;
+GET https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb
+Status: 200 OK
+Content-Type: application/json
+Body: In memory (368 bytes)</code></pre>
+</div>
+</div>
+<p>One thing to note is the line that says <code>Status: 200 OK</code>, which means that the server was able to return the web page that we asked for. There are other codes that can be returned, such as the 404 code that you may have encountered when browsing the internet - that would mean that we requested a webpage that could not be returned.</p>
+<p>However, the variable actually contains a list, which we can see if we pass it to the <code>str()</code> function:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(api_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 8
+ $ method     : chr "GET"
+ $ url        : chr "https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb"
+ $ status_code: int 200
+ $ headers    : &lt;httr2_headers&gt;
+  ..$ Server                     : chr "nginx"
+  ..$ Date                       : chr "Sun, 04 Oct 2026 18:09:19 GMT"
+  ..$ Content-Type               : chr "application/json; charset=utf-8"
+  ..$ Content-Length             : chr "368"
+  ..$ Connection                 : chr "keep-alive"
+  ..$ Access-Control-Allow-Origin: chr "*"
+  ..$ X-Powered-By               : chr "Perl Dancer 1.3522"
+  ..$ Strict-Transport-Security  : chr "max-age=63072000"
+  ..$ X-Frame-Options            : chr "DENY"
+  ..$ X-Content-Type-Options     : chr "nosniff"
+ $ body       : raw [1:368] 7b 0a 22 65 ...
+ $ timing     : Named num [1:6] 0 0.0695 0.105 0.144 0.1857 ...
+  ..- attr(*, "names")= chr [1:6] "redirect" "namelookup" "connect" "pretransfer" ...
+ $ request    :List of 8
+  ..$ url     : chr "https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb"
+  ..$ method  : NULL
+  ..$ headers : list()
+  ..$ body    : NULL
+  ..$ fields  : list()
+  ..$ options : list()
+  ..$ policies: list()
+  ..$ state   :&lt;environment: 0x12bc34958&gt; 
+  ..- attr(*, "class")= chr "httr2_request"
+ $ cache      :&lt;environment: 0x13b083008&gt; 
+ - attr(*, "class")= chr "httr2_response"</code></pre>
+</div>
+</div>
+<p>The JSON response from the API is in the <code>body</code> component of this list. However the data is transmitted over the internet as a series of bytes (1s and 0s) - to convert it to text we can use the <code>resp_body_string()</code> function:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resp_body_string</span>(api_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "{\n\"elapsed_time\":0.00135,\n\"records\": [\n{\"occurrence_no\":\"139292\",\"record_type\":\"occ\",\"reid_no\":\"22878\",\"collection_no\":\"11917\",\"identified_name\":\"Tyrannosaurus rex\",\"identified_rank\":\"species\",\"accepted_name\":\"Tyrannosaurus rex\",\"accepted_rank\":\"species\",\"accepted_no\":\"54833\",\"early_interval\":\"Late Maastrichtian\",\"max_ma\":72.2,\"min_ma\":66,\"reference_no\":\"4218\"}\n]\n}\n"</code></pre>
+</div>
+</div>
+<p>Alternatively, since we know that this response is in the JSON format, we can use the <code>resp_body_json()</code> function:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>json_response <span class="ot">&lt;-</span> <span class="fu">resp_body_json</span>(api_response)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(json_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 2
+ $ elapsed_time: num 0.00135
+ $ records     :List of 1
+  ..$ :List of 13
+  .. ..$ occurrence_no  : chr "139292"
+  .. ..$ record_type    : chr "occ"
+  .. ..$ reid_no        : chr "22878"
+  .. ..$ collection_no  : chr "11917"
+  .. ..$ identified_name: chr "Tyrannosaurus rex"
+  .. ..$ identified_rank: chr "species"
+  .. ..$ accepted_name  : chr "Tyrannosaurus rex"
+  .. ..$ accepted_rank  : chr "species"
+  .. ..$ accepted_no    : chr "54833"
+  .. ..$ early_interval : chr "Late Maastrichtian"
+  .. ..$ max_ma         : num 72.2
+  .. ..$ min_ma         : int 66
+  .. ..$ reference_no   : chr "4218"</code></pre>
+</div>
+</div>
+<p>The JSON object has been converted into an R list. Lists are a relatively natural way to store JSON-formatted data in R.</p>
+<p>However lists aren’t necessarily ideal for analyzing data - in many cases we might prefer to convert this data to a data frame.</p>
+</section>
+<section id="converting-json-to-data-frames" class="level3" data-number="20.2.5">
+<h3 data-number="20.2.5" class="anchored" data-anchor-id="converting-json-to-data-frames"><span class="header-section-number">20.2.5</span> Converting JSON to data frames</h3>
+<p>This API response contains two fields at the top level:</p>
+<ul>
+<li><p><code>elapsed_time</code>, which tells us how long the server took to process our request, and which we can ignore.</p></li>
+<li><p><code>records</code>, which contains the information about this fossil occurrence. This is the part we care about.</p>
+<ul>
+<li><p>It contains another list, which itself contains a list.</p></li>
+<li><p>That inner-most list contains the <code>key : value</code> pairs of information that we need.</p>
+<ul>
+<li>We could convert this list to a data frame, with the keys as column names, and the values as the data in a single row.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>We can <em>coerce</em> the records item into a list using the <code>as.data.frame()</code> function</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  json_response<span class="sc">$</span>records</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  occurrence_no record_type reid_no collection_no   identified_name
+1        139292         occ   22878         11917 Tyrannosaurus rex
+  identified_rank     accepted_name accepted_rank accepted_no
+1         species Tyrannosaurus rex       species       54833
+      early_interval max_ma min_ma reference_no
+1 Late Maastrichtian   72.2     66         4218</code></pre>
+</div>
+</div>
+</section>
+<section id="apis-with-dedicated-packages" class="level3" data-number="20.2.6">
+<h3 data-number="20.2.6" class="anchored" data-anchor-id="apis-with-dedicated-packages"><span class="header-section-number">20.2.6</span> APIs with dedicated packages</h3>
+<p>Some very popular APIs may have packages dedicated to accessing their data. This simplifies the process immensely. Rather than writing code yourself to make the request and parse the response, you can just use an existing code which will often do most of the hard work for you.</p>
+<p>Some examples:</p>
+<ul>
+<li><p>The <code>paleobioDB</code> package can retrieve data from the Paleobiology Database API. For example:</p>
+<ul>
+<li><code>pbdb_occurrence(id = 139292, vocab = "pbdb")</code> would return the same 1-row data frame that we just retrieved by hand.</li>
+</ul></li>
+<li><p>The <code>tidycensus</code> package fetches data from the US Census Bureau.</p></li>
+<li><p>The <code>uisapi</code> package fetches data from UNESCO’s stats APIs.</p></li>
+</ul>
+<!--
+Existing
+* Repositories: Kaggle, UCI, etc.
+* R packages
+* Journals
+* Article supplementary information. Can also email the authors.
+* Supp info hosting sites, and open science sites
+* Government websites - national and local. Scientific and research agencies or labs. (Census) -> may have an API, in which case, see the next section
+
+Requestable:
+* Sidebar: Why do companies use APIs? -> too much data, too varied for one file, control access, data constantly updating.
+* APIs
+  * API keys
+* Packages for working with APIs
+  * Dedicated to particular APIs
+  * Generic
+
+Creating
+* web scraping
+
+-->
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script>
