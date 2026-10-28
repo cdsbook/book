@@ -1,0 +1,32 @@
+docs/index.html
+  h_a9b14fc0d83d0d 10,375
+docs/search.json
+  h_a9b14fc0d83d0d 342,1035-1057,1409
+docs/src/book/03_r_programming_chapter.html
+  h_a9b14fc0d83d0d 766-767,782-783,798-799,814-815,834-835
+docs/src/book/04_rmarkdown_chapter.html
+  h_a9b14fc0d83d0d 764
+docs/src/book/09_computing_chapter.html
+  h_a9b14fc0d83d0d 577-578,600-601,1052-1053
+docs/src/book/15_loading_data_chapter.html
+  h_a9b14fc0d83d0d 48-49,344-356,393-549,552
+docs/src/book/29_online_data_chapter.html
+  h_a9b14fc0d83d0d 417,423,427,577,587,597,599,607,617
+docs/src/book/36_presentations_chapter.html
+  h_a9b14fc0d83d0d 880
+src/book/15_loading_data_chapter.qmd
+  h_a9b14fc0d83d0d 13,15-182
+src/book/29_online_data_chapter.qmd
+  h_a9b14fc0d83d0d 9
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "0324ce0e86c68505f04642a51e3b026e4c434bbe",
+  "prompts": {},
+  "humans": {
+    "h_a9b14fc0d83d0d": {
+      "author": "Dominic White <dwhite34@gmu.edu>"
+    }
+  }
+}
