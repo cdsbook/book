@@ -45,6 +45,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="../../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -339,8 +341,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#some-background-on-files" id="toc-some-background-on-files" class="nav-link active" data-scroll-target="#some-background-on-files"><span class="header-section-number">13.1</span> Some Background on Files</a>
+  <ul class="collapse">
+  <li><a href="#windows-file-systems" id="toc-windows-file-systems" class="nav-link" data-scroll-target="#windows-file-systems"><span class="header-section-number">13.1.1</span> Windows file systems</a></li>
+  <li><a href="#unix-based-file-systems" id="toc-unix-based-file-systems" class="nav-link" data-scroll-target="#unix-based-file-systems"><span class="header-section-number">13.1.2</span> Unix-based file systems</a></li>
+  </ul></li>
+  <li><a href="#csv-files" id="toc-csv-files" class="nav-link" data-scroll-target="#csv-files"><span class="header-section-number">13.2</span> CSV files</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -377,8 +390,166 @@ ul.task-list li input[type="checkbox"] {
 <p>This chapter is a draft, and may be updated soon.</p>
 </div>
 </div>
+<p>The motivating question for this chapter is:</p>
+<blockquote class="blockquote">
+<p>How do we open files of data using R?</p>
+</blockquote>
+<p>Before we can work with data, we need to get it into R. Data will be stored somewhere, such as in a file (or multiple files).</p>
+<p>In this chapter are going to assume that the data already exists in one or more files on your computer. In later chapters we will extend upon this foundation:</p>
+<ul>
+<li>In chapter … we , we will learn how to interact with specialized data-storage programs called databases.</li>
+<li>In chapter <a href="29_online_data_chapter.html" class="quarto-xref"><span>Chapter 20</span></a> we will look at how to acquire datasets if we don’t already have them.</li>
+</ul>
+<section id="some-background-on-files" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="some-background-on-files"><span class="header-section-number">13.1</span> Some Background on Files</h2>
+<p>If you are already familiar with how file systems are organized on a computer, then you can skip this section. However, modern devices and apps do a very good job of disguising how files and folders work, so it is very possible to have spent most of your life using digital devices without ever needing to learn how computers store files.</p>
+<p>A non-exhaustive list of indicators that ten minutes on this section will repay you 10-fold include:</p>
+<ul>
+<li>You had a hard time finding where files are located on your computer in previous chapters.</li>
+<li>You keep everything on your Desktop or Downloads folder because otherwise it vanishes into the black hole of your laptop.</li>
+<li>The easiest way for you to find an old file is to search your computer for it.</li>
+</ul>
+<p>Fortunately, to understand a computer <em>file system</em>, all you need to remember is three concepts:</p>
+<ol type="1">
+<li>Your computer stores information in <strong>files</strong>.</li>
+<li>These files are organized into <strong>folders</strong> (also known as <em><strong>directories</strong></em>).</li>
+<li>Those folders are themselves <strong>nested</strong> within into parent folders (which also have parent folders, etc.)</li>
+</ol>
+<!-- TODO:
+add an image of nested files and folders
+-->
+<p>Point number three might leave you asking “Does every folder have a parent folder? And if so, does that go on for ever?”</p>
+<p>The answer is “No” - every file system has a <em>root</em> folder, i.e.&nbsp;the top-most folder that has no parent. Every other folder and file on your computer is nested within this. However, you can keep on adding sub-folders within an existing folder, which theoretically means that you can bury files within a very deeply nested system of folders.</p>
+<div id="fig-xkcd-1360-old-files" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left" alt="XKCD comic number 1360 showing a complicated mess of files.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-xkcd-1360-old-files-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://imgs.xkcd.com/comics/old_files.png" title="Wow, ANIMORPHS-NOVEL.RTF? Just gonna, uh, go through and delete that from all my archives real quick." class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:20.0%" alt="XKCD comic number 1360 showing a complicated mess of files.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-xkcd-1360-old-files-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.1: Relevant XKCD comic. <a href="https://xkcd.com/1360/">Source.</a>
+</figcaption>
+</figure>
+</div>
+<p>File systems are part of the computer’s operating system (OS), e.g.&nbsp;Windows, Mac OS, Android, etc. This means that each OS behaves a little differently. In general we can divide file systems into Windows vs.&nbsp;everything else (aka Unix-based OS’s, since most other widely used OS’s are based on something called Unix).</p>
+<p>For example, all files and folders in a file system have a <em>path</em>, which is an address for where they are located. Paths are written differently in Windows vs.&nbsp;other operating systems.</p>
+<p>Suppose a computer’s root folder contains a sub-folder called “Documents” which contains a sub-folder called “coursework”, which contains a file called “data_analysis.Rmd”. Here’s how the path to this file might be specified:</p>
+<ul>
+<li>Windows: <code>C:\Documents\coursework\data_analysis.Rmd</code></li>
+<li>Unix-based: <code>/Documents/coursework/data_analysis.Rmd</code></li>
+</ul>
+<p>Below we briefly mention a few specifics of these two families of file system. <!-- TODO: More information can be found in Appendix ... --></p>
+<section id="windows-file-systems" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="windows-file-systems"><span class="header-section-number">13.1.1</span> Windows file systems</h3>
+<p>Let’s take a close look at an example file on a Windows computer:</p>
+<p><code>C:\Users\Dominic\Documents\coursework\data_analysis.Rmd</code></p>
+<p>This is a slightly different (and more realistic) file path to a file.</p>
+<ul>
+<li><p>The path begins with <code>C:</code> which is the drive where the file is stored. For historic reasons, the <code>C</code> drive typically refers to the hard drive.</p></li>
+<li><p>The end of a folder name is denoted by a backslash <code>\</code>.</p></li>
+<li><p>Most of the files created by you will be stored in a folder named your name (or your login username), inside the <code>Users</code> folder. If your computer has multiple users who login to it, they will each get their own folder inside the <code>Users</code> folder. I.e. you might have <code>C:\Users\Dominic\</code> and <code>C:\Users\Bob\</code>.</p></li>
+<li><p>Files for the Windows operating system are stored elsewhere (e.g.&nbsp;in <code>C:/Windows/</code>), as are files for any software applications that you have installed (typically in <code>C:\Program Files\</code>).</p></li>
+<li><p>The Windows <em>File Explorer</em> program can be used to browser your computer’s file system. However:</p>
+<ul>
+<li><p>It has a tendency to obscure or actively distort the underlying hierarchy of how folders are organized. This can make it hard to navigate to a particular folder.</p></li>
+<li><p>It usually hides any non-user files that are outside your <code>C:\Users\username</code> folder. This is probably for the best, because those files are needed to run the computer and you will end up in trouble if you delete or incorrectly modify them. However, it is sometimes necessary for a programmer to interact with those parts of the computer.</p>
+<ul>
+<li>To show hidden files and folders in <em>File Explorer</em>, go to <em>View &gt; Show &gt; Hidden items</em>.</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="unix-based-file-systems" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="unix-based-file-systems"><span class="header-section-number">13.1.2</span> Unix-based file systems</h3>
+<p>Most of the information here is relevant to both Apple and Linux computers. We take an Apple-first approach, and mention any Linux-specific differences afterwards.</p>
+<p>Let’s take a close look at an example file on an Apple computer:</p>
+<p><code>/Users/dominic/Documents/coursework/data_analysis.Rmd</code></p>
+<ul>
+<li><p>The end of a folder name is denoted by a forward slash <code>/</code>.</p></li>
+<li><p>The root folder is denoted <code>/</code>. (No drive letters are used, unlike in Windows.)</p></li>
+<li><p>Most of the files created by you will be stored in a folder named your name (or your login username), inside the <code>Users</code> folder. If your computer has multiple users who login to it, they will each get their own folder inside the <code>Users</code> folder. I.e. you might have <code>/Users/Dominic/</code> and <code>/Users/Bob/</code>.</p>
+<ul>
+<li>In Linux, the users parent folder is usually called <code>home</code>, i.e.&nbsp;your individual user directory would be at a location like: <code>/home/dominic/</code>.</li>
+</ul></li>
+<li><p>Files for the operating system and any installed software applications are stored elsewhere. The locations differ in Apple and Linux.</p></li>
+<li><p>There will be some kind of program you can use to explore your computer’s filesystem. On a Mac, this is called <em>Finder</em>. Linux has a variety of similar programs, so we will not go into their specifics here.</p>
+<p>Some things to note when using <em>Finder</em> on a Mac:</p>
+<ul>
+<li><p>It is much easier to see the hierarchical nature of your folders in <em>Finder</em> than in Window’s <em>File Explorer</em>.</p></li>
+<li><p>However, <em>Finder</em> also hides non-user files (e.g.&nbsp;files for the operating system), again to prevent you from accidentally bricking your Mac, as well as <em>hidden</em> files and folders. It is sometimes necessary for a programmer to interact with those parts of the computer.</p>
+<ul>
+<li>To show hidden files and folders in a <em>Finder</em> directory, use the keyboard shortcut: <kbd title="mac: Command-Shift-." aria-hidden="true" data-mac="Command-Shift-."></kbd><span class="visually-hidden"></span></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="csv-files" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="csv-files"><span class="header-section-number">13.2</span> CSV files</h2>
+<p>Comma separated values (CSV) is an easy way to store data that comes in the form of a table.</p>
+<ul>
+<li><p>Each row of the file represents a row of the table.</p></li>
+<li><p>Within each row, a comma separated where one column ends and another one starts.</p></li>
+</ul>
+<p>Here is an example of the CSV representation of a table:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<pre class="csv"><code>column 1,column 2
+42,something
+7,else</code></pre>
+</div><div class="column" style="width:50%;">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">column 1</th>
+<th style="text-align: center;">column 2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">something</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">else</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!--
+**More ~~Loading~~ data #chapter**
+
+- General
+  - Move some data loading stuff to the wrangling chapter
+- Background on Files
+  - files and filesystems
+    - windows vs mac
+      - put some stuff in an appendix -> limit to just path differences, and root folder. Add relative paths?
+      - general organization
+      - paths
+        - drives
+      - hidden folders & files
+    - 
+- **.csv files**
+  - **The readr package**
+  - problems with csv format
+    - size
+    - formatting
+    - no consistent spec?
+    - commas within values
+- **Excel files**
+- Organizing data as keys and values
+  - JSON
+- **Other file types**
+  - Binary vs non-binary formats
+- **Other types of data**
+- **Projects**
+
+-->
 
 
+</section>
 
 </main> <!-- /main -->
 <script>

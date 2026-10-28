@@ -6,7 +6,7 @@
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(webexercises))
-insert_status_callout("incomplete")
+insert_status_callout("draft")
 ```
 
 

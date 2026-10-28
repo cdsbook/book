@@ -414,17 +414,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Warning
+<span class="screen-reader-only">Warning</span>Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is in an early draft form, and is incomplete.</p>
+<p>This chapter is a draft, and may be updated soon.</p>
 </div>
 </div>
 <!--
@@ -574,7 +574,7 @@ Body: In memory (368 bytes)</code></pre>
  $ status_code: int 200
  $ headers    : &lt;httr2_headers&gt;
   ..$ Server                     : chr "nginx"
-  ..$ Date                       : chr "Sun, 04 Oct 2026 18:09:19 GMT"
+  ..$ Date                       : chr "Wed, 28 Oct 2026 15:57:03 GMT"
   ..$ Content-Type               : chr "application/json; charset=utf-8"
   ..$ Content-Length             : chr "368"
   ..$ Connection                 : chr "keep-alive"
@@ -584,7 +584,7 @@ Body: In memory (368 bytes)</code></pre>
   ..$ X-Frame-Options            : chr "DENY"
   ..$ X-Content-Type-Options     : chr "nosniff"
  $ body       : raw [1:368] 7b 0a 22 65 ...
- $ timing     : Named num [1:6] 0 0.0695 0.105 0.144 0.1857 ...
+ $ timing     : Named num [1:6] 0 0.0495 0.0727 0.1007 0.1306 ...
   ..- attr(*, "names")= chr [1:6] "redirect" "namelookup" "connect" "pretransfer" ...
  $ request    :List of 8
   ..$ url     : chr "https://paleobiodb.org/data1.2/occs/single.json?id=139292&amp;vocab=pbdb"
@@ -594,9 +594,9 @@ Body: In memory (368 bytes)</code></pre>
   ..$ fields  : list()
   ..$ options : list()
   ..$ policies: list()
-  ..$ state   :&lt;environment: 0x12bc34958&gt; 
+  ..$ state   :&lt;environment: 0x12aec4bc8&gt; 
   ..- attr(*, "class")= chr "httr2_request"
- $ cache      :&lt;environment: 0x13b083008&gt; 
+ $ cache      :&lt;environment: 0x13a115a78&gt; 
  - attr(*, "class")= chr "httr2_response"</code></pre>
 </div>
 </div>
@@ -604,7 +604,7 @@ Body: In memory (368 bytes)</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">resp_body_string</span>(api_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "{\n\"elapsed_time\":0.00135,\n\"records\": [\n{\"occurrence_no\":\"139292\",\"record_type\":\"occ\",\"reid_no\":\"22878\",\"collection_no\":\"11917\",\"identified_name\":\"Tyrannosaurus rex\",\"identified_rank\":\"species\",\"accepted_name\":\"Tyrannosaurus rex\",\"accepted_rank\":\"species\",\"accepted_no\":\"54833\",\"early_interval\":\"Late Maastrichtian\",\"max_ma\":72.2,\"min_ma\":66,\"reference_no\":\"4218\"}\n]\n}\n"</code></pre>
+<pre><code>[1] "{\n\"elapsed_time\":0.00184,\n\"records\": [\n{\"occurrence_no\":\"139292\",\"record_type\":\"occ\",\"reid_no\":\"22878\",\"collection_no\":\"11917\",\"identified_name\":\"Tyrannosaurus rex\",\"identified_rank\":\"species\",\"accepted_name\":\"Tyrannosaurus rex\",\"accepted_rank\":\"species\",\"accepted_no\":\"54833\",\"early_interval\":\"Late Maastrichtian\",\"max_ma\":72.2,\"min_ma\":66,\"reference_no\":\"4218\"}\n]\n}\n"</code></pre>
 </div>
 </div>
 <p>Alternatively, since we know that this response is in the JSON format, we can use the <code>resp_body_json()</code> function:</p>
@@ -614,7 +614,7 @@ Body: In memory (368 bytes)</code></pre>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(json_response)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 2
- $ elapsed_time: num 0.00135
+ $ elapsed_time: num 0.00184
  $ records     :List of 1
   ..$ :List of 13
   .. ..$ occurrence_no  : chr "139292"

@@ -10,5 +10,173 @@ execute:
 #| results: "asis"
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(webexercises))
 insert_status_callout("draft")
 ```
+
+
+
+The motivating question for this chapter is:
+
+> How do we open files of data using R?
+
+Before we can work with data, we need to get it into R. Data will be stored somewhere, such as in a file (or multiple files).
+
+In this chapter are going to assume that the data already exists in one or more files on your computer. In later chapters we will extend upon this foundation:
+
+* In chapter ... we , we will learn how to interact with specialized data-storage programs called databases.
+* In chapter @sec-online-data-chapter we will look at how to acquire datasets if we don't already have them.
+
+## Some Background on Files
+
+If you are already familiar with how file systems are organized on a computer, then you can skip this section. However, modern devices and apps do a very good job of disguising how files and folders work, so it is very possible to have spent most of your life using digital devices without ever needing to learn how computers store files.
+
+A non-exhaustive list of indicators that ten minutes on this section will repay you 10-fold include:
+
+* You had a hard time finding where files are located on your computer in previous chapters.
+* You keep everything on your Desktop or Downloads folder because otherwise it vanishes into the black hole of your laptop.
+* The easiest way for you to find an old file is to search your computer for it.
+
+Fortunately, to understand a computer *file system*, all you need to remember is three concepts:
+
+1. Your computer stores information in **files**. 
+2. These files are organized into **folders** (also known as _**directories**_).
+3. Those folders are themselves **nested** within into parent folders (which also have parent folders, etc.)
+
+<!-- TODO:
+add an image of nested files and folders
+-->
+
+Point number three might leave you asking "Does every folder have a parent folder? And if so, does that go on for ever?"
+
+The answer is "No" - every file system has a *root* folder, i.e. the top-most folder that has no parent. Every other folder and file on your computer is nested within this. However, you can keep on adding sub-folders within an existing folder, which theoretically means that you can bury files within a very deeply nested system of folders.
+
+![Relevant XKCD comic. [Source.](https://xkcd.com/1360/)](https://imgs.xkcd.com/comics/old_files.png "Wow, ANIMORPHS-NOVEL.RTF? Just gonna, uh, go through and delete that from all my archives real quick."){#fig-xkcd-1360-old-files fig-alt="XKCD comic number 1360 showing a complicated mess of files." fig-align="left" width=20%}
+
+File systems are part of the computer's operating system (OS), e.g. Windows, Mac OS, Android, etc. This means that each OS behaves a little differently. In general we can divide file systems into Windows vs. everything else (aka Unix-based OS's, since most other widely used OS's are based on something called Unix). 
+
+For example, all files and folders in a file system have a *path*, which is an address for where they are located. Paths are written differently in Windows vs. other operating systems.
+
+Suppose a computer's root folder contains a sub-folder called "Documents" which contains a sub-folder called "coursework", which contains a file called "data_analysis.Rmd". Here's how the path to this file might be specified:
+
+* Windows: `C:\Documents\coursework\data_analysis.Rmd`
+* Unix-based: `/Documents/coursework/data_analysis.Rmd`
+
+Below we briefly mention a few specifics of these two families of file system. <!-- TODO: More information can be found in Appendix ... -->
+
+### Windows file systems
+
+Let's take a close look at an example file on a Windows computer:
+
+`C:\Users\Dominic\Documents\coursework\data_analysis.Rmd`
+
+This is a slightly different (and more realistic) file path to a file.
+
+* The path begins with `C:` which is the drive where the file is stored. For historic reasons, the `C` drive typically refers to the hard drive.
+
+* The end of a folder name is denoted by a backslash `\`.
+
+* Most of the files created by you will be stored in a folder named your name (or your login username), inside the `Users` folder. If your computer has multiple users who login to it, they will each get their own folder inside the `Users` folder. I.e. you might have `C:\Users\Dominic\` and `C:\Users\Bob\`.
+
+* Files for the Windows operating system are stored elsewhere (e.g. in `C:/Windows/`), as are files for any software applications that you have installed (typically in `C:\Program Files\`).
+
+* The Windows *File Explorer* program can be used to browser your computer's file system. However:
+
+  * It has a tendency to obscure or actively distort the underlying hierarchy of how folders are organized. This can make it hard to navigate to a particular folder.
+  
+  * It usually hides any non-user files that are outside your `C:\Users\username` folder. This is probably for the best, because those files are needed to run the computer and you will end up in trouble if you delete or incorrectly modify them. However, it is sometimes necessary for a programmer to interact with those parts of the computer.
+  
+    * To show hidden files and folders in *File Explorer*, go to *View > Show > Hidden items*.
+
+### Unix-based file systems
+
+Most of the information here is relevant to both Apple and Linux computers. We take an Apple-first approach, and mention any Linux-specific differences afterwards.
+
+Let's take a close look at an example file on an Apple computer:
+
+`/Users/dominic/Documents/coursework/data_analysis.Rmd`
+
+* The end of a folder name is denoted by a forward slash `/`.
+
+* The root folder is denoted `/`. (No drive letters are used, unlike in Windows.)
+
+* Most of the files created by you will be stored in a folder named your name (or your login username), inside the `Users` folder. If your computer has multiple users who login to it, they will each get their own folder inside the `Users` folder. I.e. you might have `/Users/Dominic/` and `/Users/Bob/`.
+
+  * In Linux, the users parent folder is usually called `home`, i.e. your individual user directory would be at a location like: `/home/dominic/`.
+
+* Files for the operating system and any installed software applications are stored elsewhere. The locations differ in Apple and Linux.
+
+* There will be some kind of program you can use to explore your computer's filesystem. On a Mac, this is called *Finder*. Linux has a variety of similar programs, so we will not go into their specifics here.
+
+  Some things to note when using *Finder* on a Mac:
+
+  * It is much easier to see the hierarchical nature of your folders in *Finder* than in Window's *File Explorer*.
+  
+  * However, *Finder* also hides non-user files (e.g. files for the operating system), again to prevent you from accidentally bricking your Mac, as well as *hidden* files and folders. It is sometimes necessary for a programmer to interact with those parts of the computer.
+  
+    * To show hidden files and folders in a *Finder* directory, use the keyboard shortcut: {{< kbd mac=Command-Shift-. >}}
+
+## CSV files
+
+Comma separated values (CSV) is an easy way to store data that comes in the form of a table.
+
+* Each row of the file represents a row of the table.
+
+* Within each row, a comma separated where one column ends and another one starts.
+
+Here is an example of the CSV representation of a table:
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```csv
+column 1,column 2
+42,something
+7,else
+```
+
+:::
+
+::: {.column width="50%"}
+
+| column 1 | column 2  |
+|:--------:|:---------:|
+| 42       | something |
+| 7        | else      |
+
+:::
+
+::::
+
+<!--
+**More ~~Loading~~ data #chapter**
+
+- General
+  - Move some data loading stuff to the wrangling chapter
+- Background on Files
+  - files and filesystems
+    - windows vs mac
+      - put some stuff in an appendix -> limit to just path differences, and root folder. Add relative paths?
+      - general organization
+      - paths
+        - drives
+      - hidden folders & files
+    - 
+- **.csv files**
+  - **The readr package**
+  - problems with csv format
+    - size
+    - formatting
+    - no consistent spec?
+    - commas within values
+- **Excel files**
+- Organizing data as keys and values
+  - JSON
+- **Other file types**
+  - Binary vs non-binary formats
+- **Other types of data**
+- **Projects**
+
+-->
+
