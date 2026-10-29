@@ -57,12 +57,20 @@ File systems are part of the computer's operating system (OS), e.g. Windows, Mac
 
 For example, all files and folders in a file system have a *path*, which is an address for where they are located. Paths are written differently in Windows vs. other operating systems.
 
-Suppose a computer's root folder contains a sub-folder called "Documents" which contains a sub-folder called "coursework", which contains a file called "data_analysis.Rmd". Here's how the path to this file might be specified:
+Suppose a computer's root folder contains a sub-folder called "Documents" which contains a sub-folder called "coursework", which contains a file called "data_analysis.Rmd". Here's how the full path to this file might be specified:
 
 * Windows: `C:\Documents\coursework\data_analysis.Rmd`
 * Unix-based: `/Documents/coursework/data_analysis.Rmd`
 
-Below we briefly mention a few specifics of these two families of file system. <!-- TODO: More information can be found in Appendix ... -->
+You can also specify a *relative path* to a file. This is relative to whatever folder you (i.e. the computer program you are using) are currently in. You current folder is called the *working directory*.
+
+In an RStudio project, the working directory will typically be the main folder for the project. 
+
+As an example, if this folder contains both an R Markdown file as well as a data file (e.g. `data.csv`), then your code can refer to the file using just the file name `data.csv` rather than the full path.
+
+<!-- Relative paths preferred? E.g. due to greater reproducibility. -->
+
+Below we briefly mention a few file system specifics that differ between operating systems. <!-- TODO: More information can be found in Appendix ... -->
 
 ### Windows file systems
 
@@ -149,6 +157,58 @@ column 1,column 2
 
 ::::
 
+The `readr` package (which is part of the `tidyverse`) contains the `read_csv()` function which can be used to open CSV files, and load their contents as a tibble.
+
+The first argument of `read_csv()` is the path to the file you wish to open. Here are some examples of how you could specify a path to a csv function with `read_csv()`:
+
+* Use the full path to the file, starting with the computer's root directory
+
+* If the csv file is in the working directory:
+
+  ```r
+  read_csv("file_name.csv")
+  ```
+
+* If the csv file is in a sub-folder of the working directory:
+
+  ```r
+  read_csv("subfolder_name/file_name.csv")
+  ```
+
+* If the csv file is in a sibling folder to the working directory:
+
+  ```r
+  read_csv("../sibling_folder/file_name.csv")
+  ```
+
+* If the csv file is located online, then `read_csv()` will automatically download it each time it runs:
+
+  ```r
+  read_csv("https://www.example.com/path/to/file_name.csv")
+  ```
+  
+  However, it is a good practice to manually download online data to a local file on your computer. (Otherwise, if the website disappears in the future then your code will break.)
+  
+  Online data is covered in more detail in @sec-online-data-chapter.
+  
+When `read_csv()` runs it prints out some messages about
+
+The `read_csv()` function has many other arguments that can be used to customize how it interprets the contents of the CSV file:
+
+* `col_types`: set the type of data 
+
+
+
+::: {.callout-tip}
+## `read_csv()` vs. `read.csv()`
+
+Don't confuse `read_csv()` with `read.csv()`. The latter is a much older function that has long been part of base R. Unfortunately it has a few counter-intuitive behaviors, so it is better to stick with the read_csv() function if possible.
+
+:::
+
+
+
+
 <!--
 **More ~~Loading~~ data #chapter**
 
@@ -158,6 +218,7 @@ column 1,column 2
   - files and filesystems
     - windows vs mac
       - put some stuff in an appendix -> limit to just path differences, and root folder. Add relative paths?
+      - also, windows paths in R can use regular slashes? (Back slashes have to be double escaped...?)
       - general organization
       - paths
         - drives
