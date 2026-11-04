@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -95,10 +98,10 @@ div.csl-indent {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../../site_libs/quarto-contrib/kbd/kbd.js"></script>
 <link href="../../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -130,7 +133,7 @@ div.csl-indent {
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -506,21 +509,21 @@ window.Quarto = {
 <section id="new-rmarkdown-files" class="level4" data-number="4.1.0.1">
 <h4 data-number="4.1.0.1" class="anchored" data-anchor-id="new-rmarkdown-files"><span class="header-section-number">4.1.0.1</span> New RMarkdown files</h4>
 <p>When you create a new RMarkdown file, you will be presented with the following wizard:</p>
-<p>Error rendering placeholder <em>Figure: RMarkdown creation wizard.</em></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAACgUlEQVR4nO3csa4hURzH8f/u3USnU5mKikpHp6FUeQKVclTqTTwBL0Clo1N5AV5ANFSj0ulobP4nGcEme5Nt5pv4fZLJnZl7HXK+54zu/jocDncTjJ9ZfwB5pSAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCk3mQ5XJpzWbzcZ0kiY1GI5tOp7bb7cK9xWIRjuFw+F/jP7/Ox/Sx/T38vdx4PLb1eh1+2qcHabVaViwWH9eTycR6vV44/Nx5jG63a/V6PZynLpeLbbfbMMk+uX7u997HTyf+eXwfz8/9d6fTydrtdvh9ugg+Nkg+n3+5TpLEoigK5+lkpzzc8+T6azebTfg7v+/H+3jv174TXLVafbzmeUH4WB8d5F/u9/tfK/5dHMdhEn2V+6r/jocgwwWJouixCxqNRjjSVe6Tnu6eZ5VK5eVR9l1k5zvPx/LDx035YzFLX3Ec/87yA/gjZzabWblcDoc/PubzuR2Px7DiC4WCXa9X2+/3YSf4jkj57hkMBtbv90PE1WoVJjSXy718qXusWq0WJr9UKoVrH9+/S/yef4bb7Wbn89k6nY5l6Yf+oxwL7pH16RQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBjOUPhrbOsxsB4ZEAAAAASUVORK5CYII=" class="img-fluid"> <em>Figure: RMarkdown creation wizard.</em></p>
 <p>You can accept the defaults in the wizard as shown above, and modify the rest later. Or you can enter a title, author name, and/or date now if you prefer. Click <em>OK</em> to create the file (which will contain some default contents).</p>
-<p>Error rendering placeholder <em>Figure: Example default RMarkdown file.</em></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAACgUlEQVR4nO3csa4hURzH8f/u3USnU5mKikpHp6FUeQKVclTqTTwBL0Clo1N5AV5ANFSj0ulobP4nGcEme5Nt5pv4fZLJnZl7HXK+54zu/jocDncTjJ9ZfwB5pSAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCk3mQ5XJpzWbzcZ0kiY1GI5tOp7bb7cK9xWIRjuFw+F/jP7/Ox/Sx/T38vdx4PLb1eh1+2qcHabVaViwWH9eTycR6vV44/Nx5jG63a/V6PZynLpeLbbfbMMk+uX7u997HTyf+eXwfz8/9d6fTydrtdvh9ugg+Nkg+n3+5TpLEoigK5+lkpzzc8+T6azebTfg7v+/H+3jv174TXLVafbzmeUH4WB8d5F/u9/tfK/5dHMdhEn2V+6r/jocgwwWJouixCxqNRjjSVe6Tnu6eZ5VK5eVR9l1k5zvPx/LDx035YzFLX3Ec/87yA/gjZzabWblcDoc/PubzuR2Px7DiC4WCXa9X2+/3YSf4jkj57hkMBtbv90PE1WoVJjSXy718qXusWq0WJr9UKoVrH9+/S/yef4bb7Wbn89k6nY5l6Yf+oxwL7pH16RQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBjOUPhrbOsxsB4ZEAAAAASUVORK5CYII=" class="img-fluid"> <em>Figure: Example default RMarkdown file.</em></p>
 <p>To create an empty file without any default contents, click the <em>Create Empty Document</em> button instead.</p>
 <p>The file will automatically be opened in the Editor pane of RStudio.</p>
 </section>
 <section id="new-quarto-files" class="level4" data-number="4.1.0.2">
 <h4 data-number="4.1.0.2" class="anchored" data-anchor-id="new-quarto-files"><span class="header-section-number">4.1.0.2</span> New Quarto files</h4>
 <p>Quarto files come with a similar set-up wizard:</p>
-<p>Error rendering placeholder <em>Figure: Quarto creation wizard.</em></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAACgUlEQVR4nO3csa4hURzH8f/u3USnU5mKikpHp6FUeQKVclTqTTwBL0Clo1N5AV5ANFSj0ulobP4nGcEme5Nt5pv4fZLJnZl7HXK+54zu/jocDncTjJ9ZfwB5pSAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCk3mQ5XJpzWbzcZ0kiY1GI5tOp7bb7cK9xWIRjuFw+F/jP7/Ox/Sx/T38vdx4PLb1eh1+2qcHabVaViwWH9eTycR6vV44/Nx5jG63a/V6PZynLpeLbbfbMMk+uX7u997HTyf+eXwfz8/9d6fTydrtdvh9ugg+Nkg+n3+5TpLEoigK5+lkpzzc8+T6azebTfg7v+/H+3jv174TXLVafbzmeUH4WB8d5F/u9/tfK/5dHMdhEn2V+6r/jocgwwWJouixCxqNRjjSVe6Tnu6eZ5VK5eVR9l1k5zvPx/LDx035YzFLX3Ec/87yA/gjZzabWblcDoc/PubzuR2Px7DiC4WCXa9X2+/3YSf4jkj57hkMBtbv90PE1WoVJjSXy718qXusWq0WJr9UKoVrH9+/S/yef4bb7Wbn89k6nY5l6Yf+oxwL7pH16RQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBjOUPhrbOsxsB4ZEAAAAASUVORK5CYII=" class="img-fluid"> <em>Figure: Quarto creation wizard.</em></p>
 <p>Again, it is fine to just click OK with the defaults, but you can put in a title and author name if you like.</p>
 <p>I also like to deselect the <em>Editor</em> checkbox, but you can easily turn the visual editor on or off once you have created the file (<a href="#sec-visual-editor" class="quarto-xref"><span>Section 4.10</span></a>).</p>
 <p>If you would like an empty Quarto document without any default contents, click the <em>Create Empty Document</em> button instead of <em>OK</em>.</p>
 <p>The file will automatically be opened in the Editor pane of RStudio.</p>
-<p>Error rendering placeholder <em>Figure: Side-by-side examples of default RMarkdown &amp; Quarto files, with key features highlighted.</em></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAACgUlEQVR4nO3csa4hURzH8f/u3USnU5mKikpHp6FUeQKVclTqTTwBL0Clo1N5AV5ANFSj0ulobP4nGcEme5Nt5pv4fZLJnZl7HXK+54zu/jocDncTjJ9ZfwB5pSAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCk3mQ5XJpzWbzcZ0kiY1GI5tOp7bb7cK9xWIRjuFw+F/jP7/Ox/Sx/T38vdx4PLb1eh1+2qcHabVaViwWH9eTycR6vV44/Nx5jG63a/V6PZynLpeLbbfbMMk+uX7u997HTyf+eXwfz8/9d6fTydrtdvh9ugg+Nkg+n3+5TpLEoigK5+lkpzzc8+T6azebTfg7v+/H+3jv174TXLVafbzmeUH4WB8d5F/u9/tfK/5dHMdhEn2V+6r/jocgwwWJouixCxqNRjjSVe6Tnu6eZ5VK5eVR9l1k5zvPx/LDx035YzFLX3Ec/87yA/gjZzabWblcDoc/PubzuR2Px7DiC4WCXa9X2+/3YSf4jkj57hkMBtbv90PE1WoVJjSXy718qXusWq0WJr9UKoVrH9+/S/yef4bb7Wbn89k6nY5l6Yf+oxwL7pH16RQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBjOUPhrbOsxsB4ZEAAAAASUVORK5CYII=" class="img-fluid"> <em>Figure: Side-by-side examples of default RMarkdown &amp; Quarto files, with key features highlighted.</em></p>
 </section>
 </section>
 <section id="rendering-to-an-output" class="level2" data-number="4.2">
@@ -541,7 +544,7 @@ window.Quarto = {
 <p>Below that is the main section of the document. Here we can add text that will appear in our output when we render.</p>
 <p>We can try adding text to a document to see what effect it will have on the output. On the left of Fig. X, we can see an RMarkdown and Quarto files with a brief header section (the same contents should work just as well in a Quarto file. Below that is a line of text that says <code>Hello, world!</code>. On the right are the outputs that we get when we render these files to HTML.</p>
 <p>In the outputs, the text <code>Hello, world!</code> has been formatted as a paragraph of text.</p>
-<p>Error rendering placeholder <em>Figure: Side-by-side examples of RMarkdown and output, and Quarto and output (hello world).</em></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAACgUlEQVR4nO3csa4hURzH8f/u3USnU5mKikpHp6FUeQKVclTqTTwBL0Clo1N5AV5ANFSj0ulobP4nGcEme5Nt5pv4fZLJnZl7HXK+54zu/jocDncTjJ9ZfwB5pSAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCoyAwCgKjIDAKAqMgMAoCk3mQ5XJpzWbzcZ0kiY1GI5tOp7bb7cK9xWIRjuFw+F/jP7/Ox/Sx/T38vdx4PLb1eh1+2qcHabVaViwWH9eTycR6vV44/Nx5jG63a/V6PZynLpeLbbfbMMk+uX7u997HTyf+eXwfz8/9d6fTydrtdvh9ugg+Nkg+n3+5TpLEoigK5+lkpzzc8+T6azebTfg7v+/H+3jv174TXLVafbzmeUH4WB8d5F/u9/tfK/5dHMdhEn2V+6r/jocgwwWJouixCxqNRjjSVe6Tnu6eZ5VK5eVR9l1k5zvPx/LDx035YzFLX3Ec/87yA/gjZzabWblcDoc/PubzuR2Px7DiC4WCXa9X2+/3YSf4jkj57hkMBtbv90PE1WoVJjSXy718qXusWq0WJr9UKoVrH9+/S/yef4bb7Wbn89k6nY5l6Yf+oxwL7pH16RQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBYBQERkFgFARGQWAUBEZBjOUPhrbOsxsB4ZEAAAAASUVORK5CYII=" class="img-fluid"> <em>Figure: Side-by-side examples of RMarkdown and output, and Quarto and output (hello world).</em></p>
 <p>What about if we want to format contents as something other than regular paragraph text? For example, you might want section headings (like this book contains), or <em>italics</em> or <strong>bold text</strong>. In a program like Microsoft Word or Google Docs, you can click a button to apply these formatting styles.</p>
 <p>RMarkdown and Quarto files cannot contain this type of embedded formatting, because they are just text documents (i.e.&nbsp;the same thing as a file with a <em>.txt</em> extension). But we can specify that we want their output to contain formatting. We do this by including symbols in the input file that will be interpreted as formatting instructions when we render.</p>
 <p>For example, we can create <em>italicized text</em> by putting the words inside a pair of asterisks <code>*italicized text*</code> or a pair of underscores <code>_italicized_text_</code>. The asterisks or underscores will not appear in the output, but the output will instead have the formatting you have specified.</p>
@@ -571,7 +574,7 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td><code class="sourceCode markdown">**bold** or __bold__</code></td>
+<td><code class="sourceCode markdown md">**bold** or __bold__</code></td>
 <td>Regular output</td>
 </tr>
 </tbody>
@@ -761,7 +764,7 @@ code goes here
 <p>or we could get the date at the time that the document is rendered by using the <code>Sys.Date()</code> function that is part of the R programming language:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on `r Sys.Date()`.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which would be rendered as:</p>
-<pre><code>This document was created on 2026-10-28.</code></pre>
+<pre><code>This document was created on 2026-11-04.</code></pre>
 </section>
 <section id="sec-yaml-header-section" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="sec-yaml-header-section"><span class="header-section-number">4.6</span> The header section</h2>

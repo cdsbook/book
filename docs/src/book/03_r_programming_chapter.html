@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -763,8 +766,8 @@ Tip
 <div class="callout-body-container">
 <p><strong>Exercise (the <code>-</code> operator):</strong> In the R Console, type <code>5 - 2</code> and hit enter to run the line of code. (You probably have a good idea of what <code>-</code> does, but try changing the numbers just to make sure!)</p>
 What does <code>-</code> do?
-<div id="radio_CYKIRNWMXV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_CYKIRNWMXV" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_CYKIRNWMXV" value="answer"> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_CYKIRNWMXV" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_CYKIRNWMXV" value=""> <span>Divides one number by another.</span></label>
+<div id="radio_ZVXTMVEVMF" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_ZVXTMVEVMF" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_ZVXTMVEVMF" value="answer"> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_ZVXTMVEVMF" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_ZVXTMVEVMF" value=""> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -779,8 +782,8 @@ What does <code>-</code> do?
 <div class="callout-body-container">
 <p><strong>Exercise (the <code>*</code> operator):</strong> In the R Console, type <code>3 * 2</code> and hit enter to run the line of code.</p>
 What does <code>*</code> do?
-<div id="radio_UYZACBCBUE" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_UYZACBCBUE" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_UYZACBCBUE" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_UYZACBCBUE" value="answer"> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_UYZACBCBUE" value=""> <span>Divides one number by another.</span></label>
+<div id="radio_LFWNWUKJQR" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_LFWNWUKJQR" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_LFWNWUKJQR" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_LFWNWUKJQR" value="answer"> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_LFWNWUKJQR" value=""> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -795,8 +798,8 @@ What does <code>*</code> do?
 <div class="callout-body-container">
 <p><strong>Exercise (The <code>/</code> operator):</strong> In the R Console, type <code>3 / 2</code> and hit enter to run the line of code.</p>
 What does <code>/</code> do? (Just to be sure, try some other numbers.)
-<div id="radio_QWLFKCFGWW" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_QWLFKCFGWW" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_QWLFKCFGWW" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_QWLFKCFGWW" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_QWLFKCFGWW" value="answer"> <span>Divides one number by another.</span></label>
+<div id="radio_GXPQWRMZHI" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_GXPQWRMZHI" value=""> <span>Adds two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_GXPQWRMZHI" value=""> <span>Subtracts one number from another.</span></label><label><input type="radio" autocomplete="off" name="radio_GXPQWRMZHI" value=""> <span>Multiplies two numbers together.</span></label><label><input type="radio" autocomplete="off" name="radio_GXPQWRMZHI" value="answer"> <span>Divides one number by another.</span></label>
 </div>
 </div>
 </div>
@@ -811,8 +814,8 @@ What does <code>/</code> do? (Just to be sure, try some other numbers.)
 <div class="callout-body-container">
 <p><strong>Exercise (The <code>^</code> operator):</strong>In the R Console, type <code>3 ^ 2</code> and hit enter to run the line of code.</p>
 What does <code>^</code> do? (Hint: Try some other numbers, like <code>2 ^ 3</code> or <code>16 ^ 0.5</code>)
-<div id="radio_AMGQKVQUYN" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_AMGQKVQUYN" value=""> <span>Returns the modulus (the remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_AMGQKVQUYN" value="answer"> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_AMGQKVQUYN" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_AMGQKVQUYN" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
+<div id="radio_QIXZZCQYBP" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_QIXZZCQYBP" value=""> <span>Returns the modulus (the remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_QIXZZCQYBP" value="answer"> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_QIXZZCQYBP" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_QIXZZCQYBP" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
 </div>
 </div>
 </div>
@@ -831,8 +834,8 @@ What does <code>^</code> do? (Hint: Try some other numbers, like <code>2 ^ 3</co
 <p><strong>Exercise (The <code>%</code> operator):</strong> Next up, a slightly trickier one. Type <code>3 %% 2</code> and hit enter to run the line of code.</p>
 <p>What does <code>%%</code> do? You will probably have to try some other numbers to figure this one out.</p>
 If you have difficulty, try also dividing the same numbers. E.g. try both <code>9 %% 4</code> and <code>9 / 4</code>.
-<div id="radio_ATLAGEDGTV" class="webex-radiogroup">
-<label><input type="radio" autocomplete="off" name="radio_ATLAGEDGTV" value="answer"> <span>Returns the modulus (the integer remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_ATLAGEDGTV" value=""> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_ATLAGEDGTV" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_ATLAGEDGTV" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
+<div id="radio_WQHQXLZBPE" class="webex-radiogroup">
+<label><input type="radio" autocomplete="off" name="radio_WQHQXLZBPE" value="answer"> <span>Returns the modulus (the integer remainder after dividing one number by another).</span></label><label><input type="radio" autocomplete="off" name="radio_WQHQXLZBPE" value=""> <span>Calculates an exponential (raises one number to the power of the second).</span></label><label><input type="radio" autocomplete="off" name="radio_WQHQXLZBPE" value=""> <span>Evaluates an equality (whether one number is equal to another).</span></label><label><input type="radio" autocomplete="off" name="radio_WQHQXLZBPE" value=""> <span>Evaluates an inequality (whether one number is bigger or smaller than another).</span></label>
 </div>
 </div>
 </div>

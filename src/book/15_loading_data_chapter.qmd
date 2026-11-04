@@ -195,8 +195,52 @@ When `read_csv()` runs it prints out some messages about
 
 The `read_csv()` function has many other arguments that can be used to customize how it interprets the contents of the CSV file:
 
-* `col_types`: set the type of data 
+* `col_types`: set the type of data contained in particular columns.
 
+  CSV files don't specify the type of data contained in each column, so the `read_csv()` function has to guess it by looking at the types of values in the first few rows.
+  
+  Sometimes this guess can be wrong, or sometimes there are multiple options and the first guess is not what you want.
+  
+  To specify the data type in a particular column, you need to specify a function corresponding to that type. 
+  
+  For example:
+  
+  ```r
+  read_csv(
+    "example.csv",
+    col_types = cols(
+      column_name = col_character()
+    )
+  )
+  ```
+  
+  There are a few steps here:
+  
+  * We need to add the argument `col_types = cols(...)`.
+  
+    The `cols()` function is needed to create the column specifications.
+    
+  * The arguments to `cols()` are of the form `column_name = col_...()`.
+  
+    The `col_...()` function is from a family of functions that specify a particular data type. E.g. `col_character()` would load values in that column as character data, `col_logical()` would load the values as boolean `TRUE` and `FALSE` values, etc.
+    
+  * Each column who's data type you want to specify needs to be a separate argument of the `cols()` function.
+  
+    For example:
+    
+    ```r
+    read_csv(
+      "example.csv",
+      col_types = cols(
+        species = col_factor(),
+        height = col_integer(),
+      )
+    )
+    ```
+    
+    specifies that the `species` column is a factor and the `height` column contains integer numbers.
+  
+    However, you do not need to provide specifications for columns where you are happy to accept the default.
 
 
 ::: {.callout-tip}
@@ -226,6 +270,7 @@ Don't confuse `read_csv()` with `read.csv()`. The latter is a much older functio
     - 
 - **.csv files**
   - **The readr package**
+    - more on col types
   - problems with csv format
     - size
     - formatting
