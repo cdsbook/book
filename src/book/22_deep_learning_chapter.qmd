@@ -1,7 +1,7 @@
 ---
 execute:
   freeze: auto
-  cache: true
+  cache: false
 ---
 
 # Deep Learning {#sec-deep-learning-chapter}
@@ -9,6 +9,8 @@ execute:
 ```{r setup}
 #| echo: false
 #| results: "asis"
+#| message: false
+#| warning: false
 source("prechapter.R")
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(webexercises))
@@ -200,17 +202,17 @@ Note:
 ## Splitting the dataset for training and validation
 
 ```{r, echo=FALSE, include=FALSE}
-valid_ds <- dataset_subset(train_ds, indices=1:10000)
-train_ds <- dataset_subset(train_ds, indices=10001:59999)
+valid_ds <- dataset_subset(train_ds, indices=50001:60000)
+train_ds <- dataset_subset(train_ds, indices=1:50000)
 ```
 
 Recall <!--from Chapter @sec-prediction-chapter--> that it's a good idea to split our training set into training and validation data, so that we can tune the model's hyperparameters without overfitting to the test dataset.
 
-Instead of cross-validation, we will simply take a fixed subset of the training images to be the validation set, which we can do with the `dataset_subset()` function from the `torch` package. Here we are selecting the last 10000 images to be our validation set:
+Instead of cross-validation, we will simply take a fixed subset of the training images to be the validation set, which we can do with the `dataset_subset()` function from the `torch` package. Here we are selecting the last 10,000 images to be our validation set:
 
 ```r
-train_ds <- dataset_subset(train_ds, indices=1:50000)
 valid_ds <- dataset_subset(train_ds, indices=50001:60000)
+train_ds <- dataset_subset(train_ds, indices=1:50000)
 ```
 
 <!-- TODO: justify this choice instead of using cross-validation. Maybe add example cross validation code later? -->
@@ -271,6 +273,7 @@ net <- nn_module(
     )
   },
   forward = function(x) {
+    x <- torch_flatten(x, start_dim = 2)
     self$net(x)
   }
 )
@@ -324,6 +327,7 @@ At last we are ready to train the model!
 
 We can use the `fit()` function (also from the `luz` package) to quickly define the training process to run:
 
+<!--
 ```r
 fitted <- model %>% 
   fit(
@@ -333,8 +337,9 @@ fitted <- model %>%
     verbose = TRUE
     )
 ```
+-->
 
-```{r, include=FALSE, cache=TRUE, eval=FALSE}
+```{r, warning=FALSE}
 fitted <- model %>% 
   fit(
     train_dl, 
