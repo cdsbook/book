@@ -14,10 +14,62 @@ suppressPackageStartupMessages(library(webexercises))
 insert_status_callout("incomplete")
 ```
 
+A data dashboard is an interface to a dataset.
+
+Typically:
+
+* It provides a curated view of the most important summaries related to a particular question. (Such as graphs or summary statistics.)
+
+* It fits on a single screen. (Dashboards are typically web pages.)
+
+* It is interactive. (This can vary from small changes as the user moves their mouse across the dashboard, to allowing the user to customize what and how the data is summarized.)
+
+Dashboards are a good way of distributing information to a less technical audience - however, a good dashboard requires some thought in its design.
+
+In this chapter we will first consider the technical aspects of creating a dashboard, and then consider how to combine those into a good design.
+
+## Formatting dashboards
+
+We have already seen that R Markdown and Quarto files can be rendered to HTML files (i.e. web pages). However, these output files structure the content in a long vertical format that requires the user to scroll.
+
+This works well for a long sequential report, but in a dashboard we want all the information to be visible on the screen at once. To do so we need to format the output webpage in a different style.
+
+* R Markdown: we will use a package called `flexdashboard`.
+
+  To do so, make sure the package is installed and then set the following line in your header section:
+  
+  ```md
+  ---
+  output: flexdashboard::flex_dashboard
+  ---
+  ```
+
+* Quarto: we will use the built-in dashboard output, which is based on `flexdashboard`.
+
+  To do so, change the `format` option in the header section to:
+  
+  ```md
+  ---
+  format: dashboard
+  ---
+  ```
+
+
 
 <!--
+
+* Formatting dashboards
+
+* Better graphs with plotly (is there anything else?)
+
+* Interactive dashboards (shiny -> link elsewhere, e.g. to the textbook, but mention the package for static dashboards)
+
+* Designing effective dashboards
+
+
+
 * Static dashboards (dynamic, with servers, in apps chapter)
-* principles of dashboard design
-* Package for sharing data among widgets.
 * plotly (also in webpages chapter)
+* Package for sharing data among widgets.
+* principles of dashboard design
 -->
