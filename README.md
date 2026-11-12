@@ -61,7 +61,7 @@ where options are `"incomplete"`, `"draft"`, or `"complete"`.
 Either:
 
 ```
-![Caption goes here](../img/rstudio_hello_world_output.png "Title: Optional title"){#fig-rstudio-helloworld, fig-alt="A drawing of an elephant." fig-align="left" width=20%}
+![Caption goes here](../img/rstudio_hello_world_output.png "Optional hover title"){#fig-rstudio-helloworld fig-alt="A drawing of an elephant." fig-align="left" width=20%}
 ```
 
 or in an R code chunk using Quarto's syntax:
