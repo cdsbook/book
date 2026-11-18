@@ -434,7 +434,10 @@ window.Quarto = {
   <ul>
   <li><a href="#rmarkdown-and-quarto-files" id="toc-rmarkdown-and-quarto-files" class="nav-link active" data-scroll-target="#rmarkdown-and-quarto-files"><span class="header-section-number">4.1</span> RMarkdown and Quarto files</a></li>
   <li><a href="#rendering-to-an-output" id="toc-rendering-to-an-output" class="nav-link" data-scroll-target="#rendering-to-an-output"><span class="header-section-number">4.2</span> Rendering to an output</a></li>
-  <li><a href="#sec-markdown-formatting" id="toc-sec-markdown-formatting" class="nav-link" data-scroll-target="#sec-markdown-formatting"><span class="header-section-number">4.3</span> Markdown Text</a></li>
+  <li><a href="#sec-markdown-formatting" id="toc-sec-markdown-formatting" class="nav-link" data-scroll-target="#sec-markdown-formatting"><span class="header-section-number">4.3</span> Markdown Text</a>
+  <ul class="collapse">
+  <li><a href="#sec-markdown-headings" id="toc-sec-markdown-headings" class="nav-link" data-scroll-target="#sec-markdown-headings"><span class="header-section-number">4.3.1</span> Headings</a></li>
+  </ul></li>
   <li><a href="#code-chunks" id="toc-code-chunks" class="nav-link" data-scroll-target="#code-chunks"><span class="header-section-number">4.4</span> Code chunks</a></li>
   <li><a href="#inline-code" id="toc-inline-code" class="nav-link" data-scroll-target="#inline-code"><span class="header-section-number">4.5</span> Inline code</a></li>
   <li><a href="#sec-yaml-header-section" id="toc-sec-yaml-header-section" class="nav-link" data-scroll-target="#sec-yaml-header-section"><span class="header-section-number">4.6</span> The header section</a></li>
@@ -592,6 +595,8 @@ window.Quarto = {
 <p><em><strong>bold and italicized</strong></em></p>
 </div>
 </div>
+<section id="sec-markdown-headings" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored"><span class="header-section-number">4.3.1</span> Headings</h3>
 <p>We create section headings by putting the hashtag/pound symbol <code>#</code> at the start of a line that contains the text of a heading. Two hashtags create a sub-heading (e.g.&nbsp;for a subsection), three hashtags create a sub-sub-heading, and so on. Note that there should be no spaces before the hashtags (it should be the first character on a line), but there should be a space between the hashtags and the first character of the text of the heading.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -727,6 +732,7 @@ Warning
 </div>
 </div>
 </section>
+</section>
 <section id="code-chunks" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="code-chunks"><span class="header-section-number">4.4</span> Code chunks</h2>
 <p>The great power of RMarkdown and Quarto documents is that we can also include sections of code within the document. These sections are called <strong>code chunks</strong>.</p>
@@ -764,7 +770,7 @@ code goes here
 <p>or we could get the date at the time that the document is rendered by using the <code>Sys.Date()</code> function that is part of the R programming language:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>This document was created on `r Sys.Date()`.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>which would be rendered as:</p>
-<pre><code>This document was created on 2026-11-11.</code></pre>
+<pre><code>This document was created on 2026-11-18.</code></pre>
 </section>
 <section id="sec-yaml-header-section" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="sec-yaml-header-section"><span class="header-section-number">4.6</span> The header section</h2>

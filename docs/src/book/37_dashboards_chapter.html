@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -342,8 +377,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#formatting-dashboards" id="toc-formatting-dashboards" class="nav-link active" data-scroll-target="#formatting-dashboards"><span class="header-section-number">24.1</span> Formatting dashboards</a>
+  <ul class="collapse">
+  <li><a href="#dashboard-grid-layout" id="toc-dashboard-grid-layout" class="nav-link" data-scroll-target="#dashboard-grid-layout"><span class="header-section-number">24.1.1</span> Dashboard grid layout</a></li>
+  <li><a href="#graphs-in-dashboards" id="toc-graphs-in-dashboards" class="nav-link" data-scroll-target="#graphs-in-dashboards"><span class="header-section-number">24.1.2</span> Graphs in dashboards</a></li>
+  <li><a href="#basic-dashboard-example" id="toc-basic-dashboard-example" class="nav-link" data-scroll-target="#basic-dashboard-example"><span class="header-section-number">24.1.3</span> Basic dashboard example</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -367,27 +413,156 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Under Construction
+<span class="screen-reader-only">Important</span>Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>This chapter is not yet complete.</p>
+<p>This chapter is in an early draft form, and is incomplete.</p>
+</div>
+</div>
+<p>A data dashboard is an interface to a dataset.</p>
+<p>Typically:</p>
+<ul>
+<li><p>It provides a curated view of the most important summaries related to a particular question. (Such as graphs or summary statistics.)</p></li>
+<li><p>It fits on a single screen. (Dashboards are typically web pages.)</p></li>
+<li><p>It is interactive. (This can vary from small changes as the user moves their mouse across the dashboard, to allowing the user to customize what and how the data is summarized.)</p></li>
+</ul>
+<p>Dashboards are a good way of distributing information to a less technical audience - however, a good dashboard requires some thought in its design.</p>
+<p>In this chapter we will first consider the technical aspects of creating a dashboard, and then consider how to combine those into a good design.</p>
+<section id="formatting-dashboards" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="formatting-dashboards"><span class="header-section-number">24.1</span> Formatting dashboards</h2>
+<p>We have already seen that R Markdown and Quarto files can be rendered to HTML files (i.e.&nbsp;web pages). However, these output files structure the content in a long vertical format that requires the user to scroll.</p>
+<p>This works well for a long sequential report, but in a dashboard we want all the information to be visible on the screen at once. To do so we need to format the output webpage in a different style.</p>
+<ul>
+<li><p>R Markdown: we will use a package called <code>flexdashboard</code>.</p>
+<p>To do so, make sure the package is installed and then set the following line in your header section:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> flexdashboard::flex_dashboard</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Quarto: we will use the built-in dashboard output, which is based on <code>flexdashboard</code>.</p>
+<p>To do so, change the <code>format</code> option in the header section to:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span><span class="co"> dashboard</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul>
+<section id="dashboard-grid-layout" class="level3" data-number="24.1.1">
+<h3 data-number="24.1.1" class="anchored" data-anchor-id="dashboard-grid-layout"><span class="header-section-number">24.1.1</span> Dashboard grid layout</h3>
+<p>A flexdashboard contains components (an example of a component could be a graph), which are arranged in a grid of columns and rows.</p>
+<p>Within our source file we indicate the start of a column with a 2nd level markdown heading (<a href="04_rmarkdown_chapter.html#sec-markdown-headings" class="quarto-xref"><span>Section 4.3.1</span></a>). The text of this heading will be ignored.</p>
+<p>The rows (or components) within that column are denoted by 3rd level headings. These headings’ text will be used at the component title.</p>
+</section>
+<section id="graphs-in-dashboards" class="level3" data-number="24.1.2">
+<h3 data-number="24.1.2" class="anchored" data-anchor-id="graphs-in-dashboards"><span class="header-section-number">24.1.2</span> Graphs in dashboards</h3>
+<p>The <code>ggplot2</code> package creates great graphs - however, the output figures are images of a fixed size and dimension. This dimension will be optimized to the output file <em>at the time of rendering</em>. While this is fine for an output type like a PDF, where a page is a page regardless of who views it, webpages (like dashboards) tend to scale and adapt to the screen that they are being viewed on. Unfortunately, any ggplot graphs in the dashboard will not re-scale.</p>
+<p>We will use a package called <code>plotly</code> to create dashboard graphs that are designed for webpages.</p>
+<p><code>plotly</code> has its own syntax for creating graphs that is different to the <code>ggplot2</code> syntax that we have spent so much time learning. Fortunately, the <code>plotly</code> library contains the <code>ggplotly()</code> function which converts a ggplot graph into a plotly graph:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> ...) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_FUNCTION</span>(...)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(g)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ul>
+<li><p>Note how we assign the ggplot graph to a variable, <code>g</code>, instead of displaying it.</p></li>
+<li><p>We then pass <code>g</code> to <code>ggplotly()</code>.</p></li>
+</ul>
+</section>
+<section id="basic-dashboard-example" class="level3" data-number="24.1.3">
+<h3 data-number="24.1.3" class="anchored" data-anchor-id="basic-dashboard-example"><span class="header-section-number">24.1.3</span> Basic dashboard example</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Source RMarkdown</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Example Dashboard</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode md code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Dashboard example"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="an">output:</span><span class="co"> flexdashboard::flex_dashboard</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup}</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">## Column</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">### Component (i.e. row)</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(<span class="at">x =</span> Sepal.Length, <span class="at">data =</span> iris) <span class="sc">|&gt;</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplotly</span>()</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<iframe src="https://cdsbook.github.io/book/assets/dashboard_flex_basic_example.html" title="Example Dashboard" width="100%" height="600px">
+</iframe>
+</div>
 </div>
 </div>
 <!--
+
+* Formatting dashboards
+
+* Better graphs with plotly (is there anything else?)
+
+* Interactive dashboards (shiny -> link elsewhere, e.g. to the textbook, but mention the `crosstalk` package for static dashboards)
+
+* Designing effective dashboards
+
+
+
 * Static dashboards (dynamic, with servers, in apps chapter)
-* principles of dashboard design
-* Package for sharing data among widgets.
 * plotly (also in webpages chapter)
+* Package for sharing data among widgets.
+* principles of dashboard design
+-->
+<!-- 
+Examples code from presentations chapter:
+
+::: {.panel-tabset}
+
+### RevealJS
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+:::
+
+The `revealjs` package is a relatively new entrant to the space. It is not necessarily the best or most feature rich option (this author is partial to the `xaringen` package), but it creates slide decks using the *reveal.js* Javascript library which is also used by Quarto, which makes for a nice comparison between the two.
+
+To indicate that an RMarkdown file should be rendered to a reveal.js presentation, you will need to set the `output` option in your header section (you will also need to install the `revealjs` package if it is not installed):
+
+```{.md filename="rmarkdown_presentation.Rmd"}
+---
+output: revealjs::revealjs_presentation
+---
+```
+
+
+::: {.panel-tabset}
+
+### Source RMarkdown
+
+```{.md include="../assets/presentation_rmd_revealjs_example.Rmd"}
+
+```
+
+### Example Presentation
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+:::
+
 -->
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script>

@@ -1,6 +1,8 @@
 ---
+filters:
+   - include-code-files
 execute:
-  freeze: true
+  freeze: false
   cache: false
 ---
 # Dashboards {#sec-dashboards-chapter}
@@ -54,7 +56,51 @@ This works well for a long sequential report, but in a dashboard we want all the
   ---
   ```
 
+### Dashboard grid layout
 
+A flexdashboard contains components (an example of a component could be a graph), which are arranged in a grid of columns and rows.
+
+Within our source file we indicate the start of a column with a 2nd level markdown heading (@sec-markdown-headings). The text of this heading will be ignored.
+
+The rows (or components) within that column are denoted by 3rd level headings. These headings' text will be used at the component title.
+
+
+### Graphs in dashboards
+
+The `ggplot2` package creates great graphs - however, the output figures are images of a fixed size and dimension. This dimension will be optimized to the output file *at the time of rendering*. While this is fine for an output type like a PDF, where a page is a page regardless of who views it, webpages (like dashboards) tend to scale and adapt to the screen that they are being viewed on. Unfortunately, any ggplot graphs in the dashboard will not re-scale.
+
+We will use a package called `plotly` to create dashboard graphs that are designed for webpages.
+
+`plotly` has its own syntax for creating graphs that is different to the `ggplot2` syntax that we have spent so much time learning. Fortunately, the `plotly` library contains the `ggplotly()` function which converts a ggplot graph into a plotly graph:
+
+```{r}
+#| eval: false
+g <- ggplot(data = ...) +
+  geom_FUNCTION(...)
+
+ggplotly(g)
+```
+
+* Note how we assign the ggplot graph to a variable, `g`, instead of displaying it.
+
+* We then pass `g` to `ggplotly()`.
+
+
+### Basic dashboard example
+
+::: {.panel-tabset}
+
+### Source RMarkdown
+
+```{.md include="../assets/dashboard_flex_basic_example.Rmd"}
+
+```
+
+### Example Dashboard
+
+<iframe src="https://cdsbook.github.io/book/assets/dashboard_flex_basic_example.html" title="Example Dashboard" width="100%" height="600px"></iframe>
+
+:::
 
 <!--
 
@@ -62,7 +108,7 @@ This works well for a long sequential report, but in a dashboard we want all the
 
 * Better graphs with plotly (is there anything else?)
 
-* Interactive dashboards (shiny -> link elsewhere, e.g. to the textbook, but mention the package for static dashboards)
+* Interactive dashboards (shiny -> link elsewhere, e.g. to the textbook, but mention the `crosstalk` package for static dashboards)
 
 * Designing effective dashboards
 
@@ -72,4 +118,43 @@ This works well for a long sequential report, but in a dashboard we want all the
 * plotly (also in webpages chapter)
 * Package for sharing data among widgets.
 * principles of dashboard design
+-->
+
+
+<!-- 
+Examples code from presentations chapter:
+
+::: {.panel-tabset}
+
+### RevealJS
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+:::
+
+The `revealjs` package is a relatively new entrant to the space. It is not necessarily the best or most feature rich option (this author is partial to the `xaringen` package), but it creates slide decks using the *reveal.js* Javascript library which is also used by Quarto, which makes for a nice comparison between the two.
+
+To indicate that an RMarkdown file should be rendered to a reveal.js presentation, you will need to set the `output` option in your header section (you will also need to install the `revealjs` package if it is not installed):
+
+```{.md filename="rmarkdown_presentation.Rmd"}
+---
+output: revealjs::revealjs_presentation
+---
+```
+
+
+::: {.panel-tabset}
+
+### Source RMarkdown
+
+```{.md include="../assets/presentation_rmd_revealjs_example.Rmd"}
+
+```
+
+### Example Presentation
+
+<iframe src="https://cdsbook.github.io/book/assets/presentation_rmd_revealjs_example.html" title="Example Presentation" width="100%" height="400px"></iframe>
+
+:::
+
 -->

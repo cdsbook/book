@@ -221,6 +221,7 @@ _**bold and italicized**_
 
 ::::
 
+### Headings {#sec-markdown-headings}
 
 We create section headings by putting the hashtag/pound symbol `#` at the start of a line that contains the text of a heading. Two hashtags create a sub-heading (e.g. for a subsection), three hashtags create a sub-sub-heading, and so on. Note that there should be no spaces before the hashtags (it should be the first character on a line), but there should be a space between the hashtags and the first character of the text of the heading.
 
