@@ -1,0 +1,19 @@
+---
+title: "Dashboard example"
+output: flexdashboard::flex_dashboard
+---
+
+```{r setup}
+library(tidyverse)
+library(plotly)
+```
+
+## Column
+
+### Component (i.e. row)
+
+```{r}
+qplot(x = Sepal.Length, data = iris) |>
+  ggplotly()
+```
+
